@@ -53,42 +53,5 @@
     "shortblade": "단검",
     "axe": "도끼",
     "cudgel": "곤봉"
-  },
-  "ui": {
-    "newGame": "새로운 게임",
-    "continue": "이어하기",
-    "loadGame": "불러오기",
-    "saveGame": "저장하기",
-    "options": "설정",
-    "mods": "모드",
-    "quit": "종료",
-    "inventory": "인벤토리",
-    "equipment": "장비",
-    "weight": "무게",
-    "value": "가치",
-    "equip": "장착",
-    "unequip": "해제",
-    "drop": "버리기",
-    "use": "사용",
-    "navigate": "이동",
-    "select": "선택",
-    "randomize selection": "무작위 선택",
-    "reset selection": "선택 초기화",
-    "re-randomize selections": "다시 무작위 선택"
-  },
-  "common": {
-    "yes": "예",
-    "no": "아니오",
-    "ok": "확인",
-    "cancel": "취소",
-    "accept": "수락",
-    "submit": "확인",
-    "copy": "복사",
-    "look": "살펴보기",
-    "continue": "계속",
-    "color": "색상",
-    "hold to accept": "길게 눌러 수락",
-    "trade": "거래",
-    "are you sure you want to quit?": "정말 종료하시겠습니까?"
   }
 }
