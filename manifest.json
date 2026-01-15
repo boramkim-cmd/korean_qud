@@ -2,8 +2,8 @@
   "id": "KoreanLocalization",
   "title": "Korean Localization (한글화)",
   "version": "1.0.0",
-  "author": "boramkim-cmd",
-  "description": "Complete Korean (Hangul) localization for Caves of Qud. 쿠드의 동굴 완전 한글화 모드.",
+  "author": "boram",
+  "description": "Complete Korean (Hangul) localization for Caves of Qud. Unified mod with Harmony engine and translation data. 쿠드의 동굴 완전 한글화 모드 (통합 버전).",
   "tags": ["Translation", "Localization", "Korean"],
   "preloadScripts": [
     "Scripts/QudKREngine.cs"
