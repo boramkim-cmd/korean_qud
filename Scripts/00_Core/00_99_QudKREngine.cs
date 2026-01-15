@@ -14,13 +14,15 @@ using Qud.UI;
 // GameObject 명시적 지정
 using GameObject = XRL.World.GameObject;
 
-namespace QudKREngine
+namespace QudKRTranslation.Core
 {
     // =================================================================
     // 1. 폰트 매니저
     // =================================================================
     public static class FontManager
     {
+        public static bool IsFontLoaded { get; private set; } = false;
+
         // [중요] 찾아주신 정확한 이름을 1순위에 넣었습니다.
         public static string[] TargetFontNames = { 
             "NeoDunggeunmo-Regular", // 1순위: 정확한 이름
@@ -83,6 +85,7 @@ namespace QudKREngine
                 }
             }
             Debug.Log($"[Qud-KR] UI 폰트 {count}개에 '{loadedName}' 적용 완료.");
+            IsFontLoaded = true;
             _patched = true;
         }
     }

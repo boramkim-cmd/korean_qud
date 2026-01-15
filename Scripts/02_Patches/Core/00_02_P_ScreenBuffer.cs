@@ -8,6 +8,7 @@
 
 using HarmonyLib;
 using ConsoleLib.Console;
+using QudKRTranslation.Utils;
 
 namespace QudKRTranslation.Patches
 {
@@ -31,7 +32,7 @@ namespace QudKRTranslation.Patches
             if (scope == null) return;
             
             // 태그를 보존하며 번역 시도
-            if (Utils.TranslationUtils.TryTranslatePreservingTags(s, out string translated, scope))
+            if (TranslationUtils.TryTranslatePreservingTags(s, out string translated, scope))
             {
                 s = translated;
             }
@@ -47,7 +48,7 @@ namespace QudKRTranslation.Patches
             var scope = ScopeManager.GetCurrentScope();
             if (scope == null) return;
 
-            if (Utils.TranslationUtils.TryTranslatePreservingTags(s, out string translated, scope))
+            if (TranslationUtils.TryTranslatePreservingTags(s, out string translated, scope))
             {
                 s = translated;
             }

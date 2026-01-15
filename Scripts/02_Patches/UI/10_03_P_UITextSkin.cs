@@ -7,6 +7,7 @@
 
 using HarmonyLib;
 using XRL.UI;
+using QudKRTranslation.Utils;
 
 namespace QudKRTranslation.Patches
 {
@@ -23,7 +24,7 @@ namespace QudKRTranslation.Patches
             if (scope == null) return;
 
             // 태그를 보존하며 번역 시도
-            if (Utils.TranslationUtils.TryTranslatePreservingTags(__instance.text, out string translated, scope))
+            if (TranslationUtils.TryTranslatePreservingTags(__instance.text, out string translated, scope))
             {
                 if (__instance.text != translated)
                 {

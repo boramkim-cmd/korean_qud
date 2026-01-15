@@ -73,7 +73,7 @@ namespace QudKRTranslation.Core
 
         private static string GetModDirectory()
         {
-            // 1. ModManager API 시도
+            // 1. ModManager API 시도 (가장 정확)
             try
             {
                 var mod = ModManager.GetMod("KoreanLocalization");
@@ -81,23 +81,41 @@ namespace QudKRTranslation.Core
             }
             catch { }
 
-            // 2. Fallback: 수동 경로 찾기
-            string userPath = XRL.XRLCore.CorePath; // 보통 Save 경로 등
-            // * 정확한 경로는 기존 GlossaryLoader의 로직 재사용
-             string modsPath = Path.Combine(
+            // 2. Mods 루트 경로 계산
+            string modsRoot = Path.Combine(
                 Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData).Replace("Roaming", "LocalLow"),
                 "com.FreeholdGames.CavesOfQud",
-                "Mods",
-                "KoreanLocalization"
+                "Mods"
             );
 
             if (Application.platform == RuntimePlatform.OSXPlayer)
             {
                 string homeDir = Environment.GetFolderPath(Environment.SpecialFolder.Personal);
-                 modsPath = Path.Combine(homeDir, "Library/Application Support/com.FreeholdGames.CavesOfQud/Mods/KoreanLocalization");
+                 modsRoot = Path.Combine(homeDir, "Library/Application Support/com.FreeholdGames.CavesOfQud/Mods");
+            }
+
+            // 3. "KoreanLocalization" 폴더 확인 (기본)
+            string targetPath = Path.Combine(modsRoot, "KoreanLocalization");
+            if (Directory.Exists(targetPath)) return targetPath;
+
+            // 4. Auto-Detect: 이름이 바뀌었을 경우를 대비해 LOCALIZATION 폴더를 가진 디렉토리 검색
+            if (Directory.Exists(modsRoot))
+            {
+                try 
+                {
+                    foreach (var dir in Directory.GetDirectories(modsRoot))
+                    {
+                        if (Directory.Exists(Path.Combine(dir, "LOCALIZATION")))
+                        {
+                            Debug.Log($"[LocalizationManager] Auto-detected mod directory: {dir}");
+                            return dir;
+                        }
+                    }
+                }
+                catch { }
             }
             
-            return modsPath;
+            return targetPath; // 없으면 기본 경로 반환 (에러 유도)
         }
 
         private static void LoadJsonFile(string path)
@@ -264,22 +282,46 @@ namespace QudKRTranslation.Core
                     else if (currentDict != null && trimmed.Contains(":"))
                     {
                         // "Key": "Value"
-                        int firstQuote = trimmed.IndexOf('"');
-                        int secondQuote = trimmed.IndexOf('"', firstQuote + 1);
-                        // Value 찾기 (이스케이프 문자 처리 등은 생략된 기본형)
-                        int partsIndex = trimmed.IndexOf(':');
-                        int thirdQuote = trimmed.IndexOf('"', partsIndex + 1);
-                        int fourthQuote = trimmed.LastIndexOf('"'); // 마지막 따옴표
-
-                        if (firstQuote >= 0 && secondQuote > firstQuote && thirdQuote > partsIndex && fourthQuote > thirdQuote)
+                        // 1. Key 추출
+                        int keyStart = trimmed.IndexOf('"');
+                        int keyEnd = -1;
+                        
+                        // 키 닫는 따옴표 찾기 (이스케이프 안 함 가정)
+                        for (int i = keyStart + 1; i < trimmed.Length; i++)
                         {
-                            string key = trimmed.Substring(firstQuote + 1, secondQuote - firstQuote - 1);
-                            string value = trimmed.Substring(thirdQuote + 1, fourthQuote - thirdQuote - 1);
+                            if (trimmed[i] == '"' && trimmed[i-1] != '\\') 
+                            {
+                                keyEnd = i;
+                                break;
+                            }
+                        }
+
+                        if (keyStart >= 0 && keyEnd > keyStart)
+                        {
+                            string key = trimmed.Substring(keyStart + 1, keyEnd - keyStart - 1);
                             
-                            // 콤마 제거
-                            // (위 로직은 파싱이 취약할 수 있으므로, 키/값을 정확히 추출하는 것이 중요)
+                            // 2. 콜론 찾기 (키 뒤에서부터)
+                            int colonIndex = trimmed.IndexOf(':', keyEnd + 1);
                             
-                            currentDict[key] = value;
+                            if (colonIndex > 0)
+                            {
+                                // 3. Value 추출
+                                int valStart = trimmed.IndexOf('"', colonIndex + 1);
+                                int valEnd = trimmed.LastIndexOf('"'); 
+                                // LastIndexOf는 끝에 콤마가 있을 경우 주의 필요.
+                                // 가장 마지막 따옴표를 찾되, 콤마가 있다면 그 앞의 따옴표일 것임.
+                                
+                                // 더 정확하게: valStart 이후의 "를 찾음
+                                if (valStart > 0 && valEnd > valStart)
+                                {
+                                    string value = trimmed.Substring(valStart + 1, valEnd - valStart - 1);
+                                    
+                                    // 이스케이프 문자 처리 (간단)
+                                    value = value.Replace("\\\"", "\"").Replace("\\\\", "\\");
+                                    
+                                    currentDict[key] = value;
+                                }
+                            }
                         }
                     }
                 }

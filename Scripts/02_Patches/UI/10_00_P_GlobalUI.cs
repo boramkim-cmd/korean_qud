@@ -16,7 +16,6 @@ using Qud.UI;
 using XRL.UI;
 using XRL.UI.Framework;
 using XRL.CharacterBuilds;
-using QudKRTranslation.Data;
 using QudKRTranslation.Core;
 using QudKRTranslation.Utils;
 
@@ -34,14 +33,42 @@ namespace QudKRTranslation.Patches
             return type != null ? AccessTools.Method(type, "Show") : null;
         }
 
+        private static bool _scopePushed = false;
+        private static bool _fontWarned = false;
+
         [HarmonyPrefix]
         static void Show_Prefix()
         {
-            if (!ScopeManager.IsScopeActive(Data.MainMenuData.Translations))
+            // 메인 메뉴 진입 시 스택 초기화 (안전장치)
+            ScopeManager.ClearAll();
+            _scopePushed = false;
+
+            if (!_scopePushed)
             {
-                ScopeManager.PushScope(Data.MainMenuData.Translations, Data.CommonData.Translations);
+                var uiDict = LocalizationManager.GetCategory("ui");
+                var commonDict = LocalizationManager.GetCategory("common");
+
+                var pushList = new List<Dictionary<string, string>>();
+                if (uiDict != null) pushList.Add(uiDict);
+                if (commonDict != null) pushList.Add(commonDict);
+
+                if (pushList.Count > 0)
+                {
+                    ScopeManager.PushScope(pushList.ToArray());
+                    _scopePushed = true;
+                }
             }
             Patch_MainMenu_Data.TranslateMenuData();
+        }
+
+        [HarmonyPostfix]
+        static void Show_Postfix()
+        {
+            if (!FontManager.IsFontLoaded && !_fontWarned)
+            {
+                _fontWarned = true;
+                Popup.Show("한국어 폰트(NeoDunggeunmo)가 설치되지 않았습니다.\n\n글자가 깨져 보일 수 있습니다.\n운영체제에 해당 폰트를 설치해주세요.");
+            }
         }
     }
 
@@ -57,10 +84,12 @@ namespace QudKRTranslation.Patches
         [HarmonyPrefix]
         static void Hide_Prefix()
         {
-            if (ScopeManager.IsScopeActive(Data.MainMenuData.Translations))
-            {
-                ScopeManager.PopScope();
-            }
+            // MainMenu는 닫힐 때 명확히 Pop을 하기엔 싱글톤/다중 호출 등의 이슈가 있을 수 있어
+            // ScopeManager의 자동 관리나 명시적 Clear를 기대해야 할 수도 있지만,
+            // 여기서는 일단 PopScope 시도. (하지만 _scopePushed 상태 공유가 안되므로 주의)
+            
+            // ScopeManager.PopScope(); 
+            // -> 메인 메뉴가 최상위이므로 보통 놔둬도 됨. 또는 다른 화면으로 갈 때 덮어씌워짐.
         }
     }
 
@@ -154,12 +183,37 @@ namespace QudKRTranslation.Patches
             try
             {
                 if (string.IsNullOrEmpty(value)) return;
+                
+                // 1. 활성 스코프 우선
                 var scope = ScopeManager.GetCurrentScope();
-                if (scope == null) return;
-
-                if (TranslationUtils.TryTranslatePreservingTags(value, out string translated, scope))
+                if (scope != null)
                 {
-                    if (value != translated) value = translated;
+                    if (TranslationUtils.TryTranslatePreservingTags(value, out string translated, scope))
+                    {
+                        if (value != translated) 
+                        {
+                            value = translated;
+                            return; // 스코프에서 찾았으면 종료
+                        }
+                    }
+                }
+
+                // 2. 기본 UI/Common 딕셔너리에서 검색 (Fallback)
+                // 활성 스코프가 없거나 거기서 못 찾았을 때
+                // 매번 GetCategory 호출은 오버헤드가 있으므로 캐싱 고려 가능하지만 일단 직접 호출
+                var uiDict = LocalizationManager.GetCategory("ui");
+                var commonDict = LocalizationManager.GetCategory("common");
+                
+                var fallbackScopes = new List<Dictionary<string, string>>();
+                if (uiDict != null) fallbackScopes.Add(uiDict);
+                if (commonDict != null) fallbackScopes.Add(commonDict);
+
+                if (fallbackScopes.Count > 0)
+                {
+                    if (TranslationUtils.TryTranslatePreservingTags(value, out string t2, fallbackScopes.ToArray()))
+                    {
+                        if (value != t2) value = t2;
+                    }
                 }
             }
             catch { }

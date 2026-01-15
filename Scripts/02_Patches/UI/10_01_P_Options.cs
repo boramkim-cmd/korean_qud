@@ -2,7 +2,7 @@
  * 파일명: 10_01_P_Options.cs
  * 분류: [UI Patch] 설정(Options) 화면 통합 패치
  * 역할: 데이터 로딩(LoadOptionNode) 및 UI 표시(OptionsScreen) 시점을 모두 패치하여 완벽한 번역을 제공합니다.
- * 통합된 파일: 10_05_P_OptionsData
+ *       기존 하드코딩 데이터 대신 LocalizationManager를 사용합니다.
  */
 
 using HarmonyLib;
@@ -11,7 +11,7 @@ using XRL.UI;
 using UnityEngine;
 using TMPro;
 using System.Collections.Generic;
-using QudKRTranslation.Data;
+using QudKRTranslation.Core; // LocalizationManager
 using QudKRTranslation.Utils;
 using System;
 
@@ -74,20 +74,29 @@ namespace QudKRTranslation.Patches
         {
             if (opt == null) return;
 
-            // 우선순위 스코프: 옵션 전용 데이터 -> 공통 데이터
-            var scopes = new[] { OptionsData.Translations, QudKRTranslation.Data.CommonData.Translations };
+            // 우선순위 스코프: options -> common -> ui
+            var optionsDict = LocalizationManager.GetCategory("options");
+            var displayDict = LocalizationManager.GetCategory("display"); // display 옵션 분리된 경우 대비
+            var commonDict = LocalizationManager.GetCategory("common");
+
+            var scopes = new List<Dictionary<string, string>>();
+            if (optionsDict != null) scopes.Add(optionsDict);
+            if (displayDict != null) scopes.Add(displayDict);
+            if (commonDict != null) scopes.Add(commonDict);
+
+            var scopeArray = scopes.ToArray();
 
             // DisplayText (타이틀)
             if (!string.IsNullOrEmpty(opt.DisplayText))
             {
-                if (TranslationUtils.TryTranslatePreservingTags(opt.DisplayText, out string t, scopes))
+                if (TranslationUtils.TryTranslatePreservingTags(opt.DisplayText, out string t, scopeArray))
                     opt.DisplayText = t;
             }
 
             // HelpText (설명 / 툴팁)
             if (!string.IsNullOrEmpty(opt.HelpText))
             {
-                if (TranslationUtils.TryTranslatePreservingTags(opt.HelpText, out string h, scopes))
+                if (TranslationUtils.TryTranslatePreservingTags(opt.HelpText, out string h, scopeArray))
                     opt.HelpText = h;
             }
 
@@ -99,7 +108,7 @@ namespace QudKRTranslation.Patches
                     for (int i = 0; i < opt.DisplayValues.Length; i++)
                     {
                         if (string.IsNullOrEmpty(opt.DisplayValues[i])) continue;
-                        if (TranslationUtils.TryTranslatePreservingTags(opt.DisplayValues[i], out string dv, scopes))
+                        if (TranslationUtils.TryTranslatePreservingTags(opt.DisplayValues[i], out string dv, scopeArray))
                             opt.DisplayValues[i] = dv;
                     }
                 }
@@ -114,14 +123,27 @@ namespace QudKRTranslation.Patches
     [HarmonyPatch(typeof(OptionsScreen))]
     public static class Patch_OptionsUI
     {
+        private static bool _scopePushed = false;
+
         // Show: Scope push (옵션 전용 스코프)
         [HarmonyPatch(nameof(OptionsScreen.Show), new System.Type[0])]
         [HarmonyPrefix]
         static void Show_Prefix()
         {
-            if (!ScopeManager.IsScopeActive(OptionsData.Translations))
+            if (!_scopePushed)
             {
-                ScopeManager.PushScope(OptionsData.Translations);
+                var optionsDict = LocalizationManager.GetCategory("options");
+                var displayDict = LocalizationManager.GetCategory("display");
+
+                var pushList = new List<Dictionary<string, string>>();
+                if (optionsDict != null) pushList.Add(optionsDict);
+                if (displayDict != null) pushList.Add(displayDict);
+
+                if (pushList.Count > 0)
+                {
+                    ScopeManager.PushScope(pushList.ToArray());
+                    _scopePushed = true;
+                }
             }
         }
 
@@ -146,9 +168,10 @@ namespace QudKRTranslation.Patches
         [HarmonyFinalizer]
         static void Show_Finalizer(System.Exception __exception)
         {
-            if (__exception != null && ScopeManager.IsScopeActive(OptionsData.Translations))
+            if (__exception != null && _scopePushed)
             {
                 ScopeManager.PopScope();
+                _scopePushed = false;
             }
         }
 
@@ -157,9 +180,10 @@ namespace QudKRTranslation.Patches
         [HarmonyPostfix]
         static void Hide_Postfix()
         {
-            if (ScopeManager.IsScopeActive(OptionsData.Translations))
+            if (_scopePushed)
             {
                 ScopeManager.PopScope();
+                _scopePushed = false;
             }
         }
 
@@ -169,11 +193,20 @@ namespace QudKRTranslation.Patches
             {
                 if (screen == null) return;
 
-                var scopes = new[] { 
-                    OptionsData.Translations, 
-                    QudKRTranslation.Data.MainMenuData.Translations, 
-                    QudKRTranslation.Data.CommonData.Translations 
-                };
+                // UI 스캔 시에는 options, display, ui, common 모두 사용
+                var optionsDict = LocalizationManager.GetCategory("options");
+                var displayDict = LocalizationManager.GetCategory("display");
+                var uiDict = LocalizationManager.GetCategory("ui");
+                var commonDict = LocalizationManager.GetCategory("common");
+
+                var scopes = new List<Dictionary<string, string>>();
+                if (optionsDict != null) scopes.Add(optionsDict);
+                if (displayDict != null) scopes.Add(displayDict);
+                if (uiDict != null) scopes.Add(uiDict);
+                if (commonDict != null) scopes.Add(commonDict);
+
+                if (scopes.Count == 0) return;
+                var scopeArray = scopes.ToArray();
 
                 var texts = screen.GetComponentsInChildren<TMP_Text>(true);
                 foreach (var t in texts)
@@ -182,7 +215,7 @@ namespace QudKRTranslation.Patches
 
                     if (TranslationUtils.IsControlValue(t.text)) continue;
 
-                    if (TranslationUtils.TryTranslatePreservingTags(t.text, out string translated, scopes))
+                    if (TranslationUtils.TryTranslatePreservingTags(t.text, out string translated, scopeArray))
                     {
                         if (t.text != translated) t.text = translated;
                     }

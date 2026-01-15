@@ -19,6 +19,9 @@ namespace QudKRTranslation
                 
                 // Harmony 인스턴스 생성
                 var harmony = new Harmony("com.boram.qud.translation");
+
+                // 번역 데이터 초기화
+                QudKRTranslation.Core.LocalizationManager.Initialize();
                 
                 // 패치 적용 전 타입 검증 (선택적)
                 VerifyPatchTargets();
