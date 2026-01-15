@@ -18,7 +18,6 @@ namespace QudKRTranslation.Core
     public static class GlossaryLoader
     {
         private static Dictionary<string, object> _glossary = null;
-        private static readonly string GLOSSARY_PATH = "Mods/KoreanLocalization/LOCALIZATION/glossary.json";
 
         /// <summary>
         /// 용어집 로드 (최초 1회만)
@@ -29,7 +28,53 @@ namespace QudKRTranslation.Core
 
             try
             {
-                string fullPath = Path.Combine(Application.dataPath, GLOSSARY_PATH);
+                // 1. 공식 API 사용 (XRL.ModManager.GetMod)
+                // 소스 코드 분석 결과: XRL.ModManager.GetMod(string ID)가 ModInfo를 반환하며, ModInfo에 Path 속성이 있음.
+                string modPath = null;
+                var modInfo = XRL.ModManager.GetMod("KoreanLocalization");
+                
+                if (modInfo != null)
+                {
+                    modPath = modInfo.Path;
+                    Debug.Log($"[GlossaryLoader] ModManager API로 경로 확인: {modPath}");
+                }
+                
+                // 2. API 실패 시 Fallback (직접 경로 구성)
+                if (string.IsNullOrEmpty(modPath))
+                {
+                    Debug.LogWarning("[GlossaryLoader] ModManager.GetMod 실패, 수동 경로 탐색 시도");
+                    
+                    string modsPath = Path.Combine(
+                        Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData).Replace("Roaming", "LocalLow"),
+                        "com.FreeholdGames.CavesOfQud",
+                        "Mods",
+                        "KoreanLocalization"
+                    );
+                    
+                    if (Application.platform == RuntimePlatform.OSXPlayer)
+                    {
+                        string homeDir = Environment.GetFolderPath(Environment.SpecialFolder.Personal);
+                        modsPath = Path.Combine(
+                            homeDir,
+                            "Library/Application Support/com.FreeholdGames.CavesOfQud/Mods/KoreanLocalization"
+                        );
+                    }
+                    
+                    if (Directory.Exists(modsPath))
+                    {
+                        modPath = modsPath;
+                    }
+                }
+
+                if (string.IsNullOrEmpty(modPath))
+                {
+                    Debug.LogWarning("[GlossaryLoader] 모드 폴더를 찾을 수 없습니다");
+                    _glossary = new Dictionary<string, object>();
+                    return;
+                }
+
+                // local path/Mod/KoreanLocalization/LOCALIZATION/glossary.json
+                string fullPath = Path.Combine(modPath, "LOCALIZATION", "glossary.json");
                 
                 if (!File.Exists(fullPath))
                 {
@@ -39,15 +84,99 @@ namespace QudKRTranslation.Core
                 }
 
                 string json = File.ReadAllText(fullPath);
-                _glossary = JsonUtility.FromJson<Dictionary<string, object>>(json);
                 
-                Debug.Log($"[GlossaryLoader] 용어집 로드 완료: {_glossary.Count}개 카테고리");
+                // 간단한 수동 JSON 파싱
+                _glossary = ParseGlossaryJson(json);
+                
+                Debug.Log($"[GlossaryLoader] 용어집 로드 완료: {fullPath}");
             }
             catch (Exception ex)
             {
-                Debug.LogError($"[GlossaryLoader] 용어집 로드 실패: {ex.Message}");
+                Debug.LogError($"[GlossaryLoader] 용어집 로드 실패: {ex.Message}\n{ex.StackTrace}");
                 _glossary = new Dictionary<string, object>();
             }
+        }
+        
+        /// <summary>
+        /// Glossary JSON 파싱 (개선된 버전)
+        /// </summary>
+        private static Dictionary<string, object> ParseGlossaryJson(string json)
+        {
+            var result = new Dictionary<string, object>();
+            
+            try
+            {
+                json = json.Trim();
+                if (!json.StartsWith("{") || !json.EndsWith("}"))
+                {
+                    Debug.LogError("[GlossaryLoader] Invalid JSON format");
+                    return result;
+                }
+                
+                json = json.Substring(1, json.Length - 2).Trim();
+                
+                string currentCategory = null;
+                Dictionary<string, object> currentDict = null;
+                int braceDepth = 0;
+                
+                var lines = json.Split(new[] { '\r', '\n' }, StringSplitOptions.RemoveEmptyEntries);
+                
+                foreach (var line in lines)
+                {
+                    var trimmed = line.Trim();
+                    if (string.IsNullOrEmpty(trimmed)) continue;
+                    
+                    // 중괄호 카운팅
+                    foreach (char c in trimmed)
+                    {
+                        if (c == '{') braceDepth++;
+                        else if (c == '}') braceDepth--;
+                    }
+                    
+                    // 카테고리 시작: "category": {
+                    if (trimmed.Contains(": {") && braceDepth == 1)
+                    {
+                        int colonIndex = trimmed.IndexOf(':');
+                        if (colonIndex > 0)
+                        {
+                            currentCategory = trimmed.Substring(0, colonIndex).Trim().Trim('"');
+                            currentDict = new Dictionary<string, object>();
+                            result[currentCategory] = currentDict;
+                        }
+                    }
+                    // 카테고리 종료
+                    else if (trimmed.StartsWith("}") && braceDepth == 0)
+                    {
+                        currentCategory = null;
+                        currentDict = null;
+                    }
+                    // key-value 파싱
+                    else if (currentDict != null && braceDepth == 1 && trimmed.Contains(":"))
+                    {
+                        // "key": "value" 파싱
+                        int firstQuote = trimmed.IndexOf('"');
+                        int secondQuote = trimmed.IndexOf('"', firstQuote + 1);
+                        int thirdQuote = trimmed.IndexOf('"', secondQuote + 1);
+                        int fourthQuote = trimmed.IndexOf('"', thirdQuote + 1);
+                        
+                        if (firstQuote >= 0 && secondQuote > firstQuote && 
+                            thirdQuote > secondQuote && fourthQuote > thirdQuote)
+                        {
+                            string key = trimmed.Substring(firstQuote + 1, secondQuote - firstQuote - 1);
+                            string value = trimmed.Substring(thirdQuote + 1, fourthQuote - thirdQuote - 1);
+                            currentDict[key] = value;
+                        }
+                    }
+                }
+                
+                Debug.Log($"[GlossaryLoader] 파싱 완료: {result.Count}개 카테고리");
+            }
+            catch (Exception ex)
+            {
+                Debug.LogError($"[GlossaryLoader] JSON 파싱 오류: {ex.Message}\n{ex.StackTrace}");
+            }
+            
+            return result;
         }
 
         /// <summary>

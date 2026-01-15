@@ -136,7 +136,11 @@ namespace QudKRTranslation
                 {
                     if (dict != null && dict.TryGetValue(key, out val))
                     {
-                        return true;
+                        // [중요] 빈 문자열이면 번역하지 않은 것으로 간주하고 계속 검색하거나 실패 처리
+                        if (!string.IsNullOrEmpty(val))
+                        {
+                            return true;
+                        }
                     }
                 }
             }
