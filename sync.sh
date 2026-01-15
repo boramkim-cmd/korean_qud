@@ -75,4 +75,4 @@ echo -e "\n${YELLOW}최근 커밋:${NC}"
 git log --oneline -3
 
 echo -e "\n${YELLOW}원격 저장소:${NC}"
-echo -e "https://github.com/codekkj/qud_korean"
+echo -e "https://github.com/boramkim-cmd/korean_qud"
