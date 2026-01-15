@@ -35,58 +35,21 @@ namespace QudKRTranslation.Core
 
         public static void ApplyKoreanFont()
         {
-            if (_patched) return;
-
-            Font osFont = null;
-            string loadedName = "";
-
-            // 1. 폰트 찾기
-            foreach (string fontName in TargetFontNames)
-            {
-                Font tempFont = Font.CreateDynamicFontFromOSFont(fontName, 32);
-                // 폰트 유효성 검사
-                if (tempFont != null && tempFont.fontNames != null && tempFont.fontNames.Length > 0)
-                {
-                    osFont = tempFont;
-                    loadedName = fontName;
-                    Debug.Log($"[Qud-KR] 폰트 발견 성공: '{fontName}'");
-                    break;
-                }
-            }
-
-            if (osFont == null)
-            {
-                Debug.LogError($"[Qud-KR] 폰트 로드 실패. 'NeoDunggeunmo-Regular'가 설치되었는지 확인하세요.");
-                return;
-            }
-
-            // 2. TMPro 폰트 에셋 생성 및 연결
-            TMP_FontAsset koreanTMPFont = TMP_FontAsset.CreateFontAsset(osFont);
-            koreanTMPFont.name = "QudKR_Fallback_" + loadedName;
+            // [Emergency] UI 깨짐 현상으로 폰트 적용 로직 비활성화
+            // 추후 적절한 폰트 적용 방식(AssetBundle 등)으로 대체 필요
+            Debug.Log("[Qud-KR] 폰트 적용 로직 비활성화 (UI 깨짐 방지)");
             
-            var allTMPFonts = Resources.FindObjectsOfTypeAll<TMP_FontAsset>();
-            int count = 0;
-            foreach (var fontAsset in allTMPFonts)
-            {
-                if (fontAsset == null || fontAsset.name.Contains("QudKR_Fallback")) continue;
-                if (fontAsset.fallbackFontAssetTable == null)
-                    fontAsset.fallbackFontAssetTable = new List<TMP_FontAsset>();
+            /*
+            if (_patched) return;
+            
+            ... (중략) ...
 
-                bool alreadyHas = false;
-                foreach (var fb in fontAsset.fallbackFontAssetTable)
-                {
-                    if (fb != null && fb.name.Contains("QudKR_Fallback")) { alreadyHas = true; break; }
-                }
-
-                if (!alreadyHas)
-                {
-                    fontAsset.fallbackFontAssetTable.Add(koreanTMPFont);
-                    count++;
-                }
-            }
-            Debug.Log($"[Qud-KR] UI 폰트 {count}개에 '{loadedName}' 적용 완료.");
+            // 2. TMPro 폰트 에셋 생성 및 연결 (Dynamic)
+             ...
+            Debug.Log($"[Qud-KR] UI 폰트 {count}개에 '{loadedName}' (Size:18) 적용 완료.");
             IsFontLoaded = true;
             _patched = true;
+            */
         }
     }
 

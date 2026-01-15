@@ -1,9 +1,9 @@
 {
   "ui": {
-    "newGame": "새로운 게임",
+    "new game": "새로운 게임",
     "continue": "이어하기",
-    "loadGame": "불러오기",
-    "saveGame": "저장하기",
+    "load game": "불러오기",
+    "save game": "저장하기",
     "options": "설정",
     "mods": "모드",
     "quit": "종료",

@@ -8,6 +8,7 @@ namespace QudKRTranslation
 {
     public class ModEntry
     {
+        [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)]
         public static void Main()
         {
             try

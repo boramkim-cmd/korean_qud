@@ -14,6 +14,7 @@ using XRL.World;
 using XRL.UI.Framework;
 using QudKRTranslation.Core;
 using UnityEngine;
+using GameObject = XRL.World.GameObject;
 
 namespace QudKRTranslation.Patches.UI
 {

@@ -39,6 +39,9 @@ namespace QudKRTranslation.Patches
         [HarmonyPrefix]
         static void Show_Prefix()
         {
+            // [Essential] 폰트 로드 보장 (UIManager.Init 시점 문제 해결)
+            FontManager.ApplyKoreanFont();
+
             // 메인 메뉴 진입 시 스택 초기화 (안전장치)
             ScopeManager.ClearAll();
             _scopePushed = false;
@@ -64,11 +67,14 @@ namespace QudKRTranslation.Patches
         [HarmonyPostfix]
         static void Show_Postfix()
         {
+            // 폰트 안내 팝업 비활성화 (사용자 요청)
+            /*
             if (!FontManager.IsFontLoaded && !_fontWarned)
             {
                 _fontWarned = true;
                 Popup.Show("한국어 폰트(NeoDunggeunmo)가 설치되지 않았습니다.\n\n글자가 깨져 보일 수 있습니다.\n운영체제에 해당 폰트를 설치해주세요.");
             }
+            */
         }
     }
 
@@ -137,10 +143,30 @@ namespace QudKRTranslation.Patches
                         string original = GetTextFromItem(item, out MemberInfo member);
                         if (string.IsNullOrEmpty(original)) continue;
 
-                        // UI 데이터 우선 검색 (glossary_ui.json)
-                        if (LocalizationManager.TryGetAnyTerm(original.ToLowerInvariant(), out string translated, "ui", "common"))
+                        // [Fix] TranslationUtils 오버로드 타입 불일치 수정
+                        var scopes = new List<Dictionary<string, string>>();
+                        var uiDict = LocalizationManager.GetCategory("ui");
+                        if (uiDict != null) scopes.Add(uiDict);
+                        var commonDict = LocalizationManager.GetCategory("common");
+                        if (commonDict != null) scopes.Add(commonDict);
+
+                        // UI 데이터 우선 검색 (glossary_ui.json) - 태그 보존 번역 시도
+                        if (scopes.Count > 0 && TranslationUtils.TryTranslatePreservingTags(original, out string translated, scopes.ToArray()))
                         {
                             SetTextToItem(item, member, translated);
+                        }
+                        // Fallback: 단순 소문자 검색
+                        else if (LocalizationManager.TryGetAnyTerm(original.ToLowerInvariant(), out string t2, "ui", "common"))
+                        {
+                            SetTextToItem(item, member, t2);
+                        }
+                        else
+                        {
+                            // 디버깅: 번역 실패한 중요 항목 로그 출력
+                            if (original.IndexOf("new", StringComparison.OrdinalIgnoreCase) >= 0 || original.IndexOf("game", StringComparison.OrdinalIgnoreCase) >= 0)
+                            {
+                                Debug.Log($"[Qud-KR] Failed to translate: '{original}'");
+                            }
                         }
                     }
                 }
@@ -238,7 +264,7 @@ namespace QudKRTranslation.Patches
 
         static void TranslateStaticButtons()
         {
-            var lists = new List<List<QudMenuItem>>[] {
+            var lists = new List<QudMenuItem>[] {
                 PopupMessage._YesNoButton, PopupMessage._YesNoCancelButton, PopupMessage._SingleButton,
                 PopupMessage._CancelButton, PopupMessage._CopyButton, PopupMessage._AcceptCancelButton,
                 PopupMessage._SubmitCancelButton, PopupMessage._AcceptCancelColorButton,
@@ -247,14 +273,22 @@ namespace QudKRTranslation.Patches
 
             foreach (var list in lists)
             {
-                if (list != null) list.ForEach(TranslateMenuItem);
+                if (list != null)
+                {
+                    for (int i = 0; i < list.Count; i++)
+                    {
+                        var item = list[i];
+                        TranslateMenuItem(ref item);
+                        list[i] = item;
+                    }
+                }
             }
-            TranslateMenuItem(PopupMessage.LookButton);
+
         }
 
-        static void TranslateMenuItem(QudMenuItem item)
+        static void TranslateMenuItem(ref QudMenuItem item)
         {
-            if (item == null || string.IsNullOrEmpty(item.text)) return;
+            if (string.IsNullOrEmpty(item.text)) return;
             
             string[] keywords = { "Yes", "No", "Cancel", "Accept", "Submit", "Copy", "Look", "Continue", "Color", "Hold to Accept", "Trade" };
             foreach (var key in keywords)
