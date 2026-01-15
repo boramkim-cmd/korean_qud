@@ -1,0 +1,7 @@
+{
+  "Title": "Korean Localization (한글화)",
+  "Description": "Complete Korean localization for Caves of Qud\n\n쿠드의 동굴 완전 한글화 모드입니다.\n\nFeatures:\n- Full UI translation (메인 메뉴, 인벤토리, 옵션 등)\n- Korean particle (josa) processing (한글 조사 자동 처리)\n- Menu, inventory, dialogue translation (대화, 퀘스트 번역)\n- Character creation and status screens (캐릭터 생성 및 상태창)\n\n설치 후 게임을 재시작하세요.\nPlease restart the game after installation.\n\nRequirements:\n- Caves of Qud (latest version)\n\nSupport:\n- GitHub: https://github.com/boramkim-cmd/korean_qud\n- Issues: https://github.com/boramkim-cmd/korean_qud/issues",
+  "Tags": "Localization,Translation,Korean,Language",
+  "Visibility": "Public",
+  "PreviewFile": "preview.png"
+}

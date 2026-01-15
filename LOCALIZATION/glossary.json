@@ -1,0 +1,80 @@
+{
+  "phrase": {
+    "greeting": "안녕하세요",
+    "farewell": "안녕히 가세요",
+    "waterRitual": "당신의 갈증은 나의 것, 나의 물은 당신의 것"
+  },
+  "world": {
+    "qud": "쿼드",
+    "joppa": "조파",
+    "redRock": "붉은 바위",
+    "sixDayStilt": "여섯날의 스틸트",
+    "gritGate": "그릿 게이트",
+    "bethesdaSusa": "베데스다 수사"
+  },
+  "faction": {
+    "crystalism": "크리스탈리즘",
+    "mechanimists": "메카니미스트",
+    "barathrumites": "바라스러미트",
+    "putusTemplar": "푸투스 템플러",
+    "consortiumOfPhyta": "피타 연합"
+  },
+  "genotype": {
+    "trueKin": "트루킨",
+    "mutant": "뮤턴트"
+  },
+  "character": {
+    "genotype": "유전형",
+    "calling": "소명",
+    "attribute": "능력치",
+    "skill": "스킬",
+    "mutation": "뮤테이션"
+  },
+  "attribute": {
+    "strength": "힘",
+    "agility": "민첩",
+    "toughness": "건강",
+    "intelligence": "지능",
+    "willpower": "의지",
+    "ego": "자아"
+  },
+  "item": {
+    "artifact": "유물",
+    "relic": "성유물",
+    "schematic": "스케매틱",
+    "blueprint": "설계도",
+    "trinket": "장신구",
+    "water": "물",
+    "bread": "빵",
+  },
+  "weapon": {
+    "shortbow": "단궁",
+    "longblade": "장검",
+    "shortblade": "단검",
+    "axe": "도끼",
+    "cudgel": "곤봉"
+  },
+  "ui": {
+    "newGame": "새 게임",
+    "continue": "이어하기",
+    "loadGame": "불러오기",
+    "saveGame": "저장하기",
+    "options": "설정",
+    "mods": "모드",
+    "quit": "종료",
+    "inventory": "인벤토리",
+    "equipment": "장비",
+    "weight": "무게",
+    "value": "가치",
+    "equip": "장착",
+    "unequip": "해제",
+    "drop": "버리기",
+    "use": "사용"
+  },
+  "common": {
+    "yes": "예",
+    "no": "아니오",
+    "ok": "확인",
+    "cancel": "취소"
+  }
+}

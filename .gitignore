@@ -28,5 +28,16 @@ Logs/*.log
 # Git
 .git/
 
+# Development-only directories (배포 제외)
+Assets/
+Legacy/
+HarmonyAnalyzer/
+tools/
+etc/
+
+# Build and validation artifacts
+validation_report.txt
+*.report.txt
+
 # Large binary files (선택적)
 # Assets/core_source/**/*.dll
