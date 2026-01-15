@@ -49,7 +49,14 @@ namespace QudKRTranslation.Data
             
             // 기타
             { "Press any key to continue", "아무 키나 눌러 계속하기" },
-            { "Loading...", "로딩 중..." }
+            { "Loading...", "로딩 중..." },
+            
+            // 팝업 메시지
+            { "Are you sure you want to quit?", "정말 종료하시겠습니까?" },
+            { "Redeem a Code", "코드 입력" },
+            { "That save file looks like it's from an older save format revision", "이 저장 파일은 이전 버전의 형식인 것으로 보입니다" },
+            { "You can probably change to a previous branch in your game client and get it to load if you want to finish it off.", "게임 클라이언트에서 이전 브랜치로 변경하면 불러올 수 있을 것입니다." },
+            { "Game Deleted!", "게임이 삭제되었습니다!" }
         };
     }
 }

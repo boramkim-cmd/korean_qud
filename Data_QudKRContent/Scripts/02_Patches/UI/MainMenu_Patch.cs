@@ -52,37 +52,30 @@ namespace QudKRTranslation.Patches
         }
         
         /// <summary>
-        /// 메인 메뉴 열릴 때: 범위 설정
+        /// 메인 메뉴 열릴 때: 범위 설정 (지속적)
         /// </summary>
         [HarmonyPrefix]
         static void Show_Prefix()
         {
-            // MainMenuData를 우선, CommonData를 보조로 사용
-            ScopeManager.PushScope(Data.MainMenuData.Translations, Data.CommonData.Translations);
-            Debug.Log("[MainMenu_Patch] Scope activated");
+            // 이미 메인 메뉴 범위가 로드되어 있는지 확인 (중복 방지)
+            if (!ScopeManager.IsScopeActive(Data.MainMenuData.Translations))
+            {
+                ScopeManager.PushScope(Data.MainMenuData.Translations, Data.CommonData.Translations);
+                Debug.Log("[MainMenu_Patch] Scope activated (Persistent)");
+            }
         }
         
         /// <summary>
         /// 메인 메뉴 닫힐 때: 범위 해제
         /// </summary>
+        [HarmonyPatch(typeof(Qud.UI.MainMenu), "Hide")]
         [HarmonyPostfix]
-        static void Show_Postfix()
+        static void Hide_Postfix()
         {
-            ScopeManager.PopScope();
-            Debug.Log("[MainMenu_Patch] Scope deactivated");
-        }
-        
-        /// <summary>
-        /// 예외 발생 시에도 범위 정리
-        /// </summary>
-        [HarmonyFinalizer]
-        static void Show_Finalizer()
-        {
-            // Postfix가 호출되지 않은 경우에만 정리
-            if (ScopeManager.GetDepth() > 0)
+            if (ScopeManager.IsScopeActive(Data.MainMenuData.Translations))
             {
-                Debug.LogWarning("[MainMenu_Patch] Finalizer cleaning up scope");
                 ScopeManager.PopScope();
+                Debug.Log("[MainMenu_Patch] Scope deactivated");
             }
         }
     }
