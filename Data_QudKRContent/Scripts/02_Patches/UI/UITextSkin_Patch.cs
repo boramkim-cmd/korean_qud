@@ -20,15 +20,10 @@ namespace QudKRTranslation.Patches
 
             // 현재 활성 Scope 가져오기
             var scope = ScopeManager.GetCurrentScope();
-            
-            // Scope가 없으면 기본적으로 CommonData 사용 시도 (선택 사항)
-            if (scope == null)
-            {
-                // 전역적으로 항상 한글화하고 싶은 항목이 있다면 여기서 처리
-                return;
-            }
+            if (scope == null) return;
 
-            if (TranslationEngine.TryTranslate(__instance.text, out string translated, scope))
+            // 태그를 보존하며 번역 시도
+            if (Utils.TranslationUtils.TryTranslatePreservingTags(__instance.text, out string translated, scope))
             {
                 if (__instance.text != translated)
                 {
