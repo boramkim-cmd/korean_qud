@@ -1,0 +1,564 @@
+When dealing with hoar-frost, which is just frozen dew, we shall find
+visible evidence of the rising of dew from the ground.
+
+The sun's heat on the previous day warmed the earth. This heat the earth
+retained till evening. As the air chilled, the water-vapour from the
+warmer earth rose from its surface, and was arrested by the cold surface
+of the leaves. So cold was that surface that it froze the water-vapour
+when rising from the earth, and formed hoar-frost in very large
+quantities. When this happens later on in the season, one may be almost
+sure of having rain in the forenoon.
+
+The day I used the instrument we counted 4,000,000 of dust-particles in a
+cubic inch of the air outside of the room, due to the quantity of smoke
+from the passing trains. Dr. Aitken has counted in 1 cubic inch of air
+immediately above a Bunsen flame the fabulous number of 489,000,000 of
+dust-particles.
+
+A small instrument has been constructed which can bring about results
+sufficiently accurate for ordinary purposes. It is so constructed that,
+when the different parts are unscrewed, they fit into a case 4-1/2 inches
+by 2-1/2 by 1-1/4 deep--about the size of an ordinary cigar-case.
+
+After knowing this, we are apt to wonder why our lungs do not get clogged
+up with the enormous number of dust-particles. In ordinary breathing, 30
+cubic inches of air pass in and out at every breath, and adults breathe
+about fifteen times every minute. But the warm lung-surface repels the
+colder dust-particles, and the continuous evaporation of moisture from the
+surface of the air-tubes prevents the dust from alighting or clinging to
+the surface at all.
+
+Dr. Aitken has devoted a vast amount of attention to the enumeration of
+dust-particles in the air, on the Continent as well as in Scotland, to
+determine the effects of their variation in number.
+
+On his first visit to Hy res, in 1890, he counted with the instrument
+12,000 dust-particles in a cubic inch of the air: whereas in the following
+year he counted 250,000. He observed, however, that where there was least
+dust, the air was very clear; whereas with the maximum of dust, there was
+a very thick haze.
+
+At Mentone, the corresponding number was 13,000, when the wind was blowing
+from the mountains; but increased to 430,000, when the wind was blowing
+from the populous town.
+
+On his first visit to the Rigi Kulm, in Switzerland, the air was
+remarkably clear and brilliant, and the corresponding number never
+exceeded 33,000; but, on his second visit, he counted no less than
+166,000. This was accounted for by a thick haze, which rendered the lower
+Alps scarcely visible. The upper limit of the haze was well defined; and
+though the sky was cloudless, the sun looked like a harvest moon, and
+required no eagle's eye to keep fixed on it.
+
+Next day there was a violent thunder-storm. At 6 P.M. the storm commenced,
+and 60,000 dust-particles to the cubic inch of air were registered; but in
+the middle of the storm he counted only 13,000. There was a heavy fall of
+hail at this time, and he accounts for the diminution of dust-particles by
+the down-rush of purer upper air, which displaced the contaminated lower
+air.
+
+At the Lake of Lucerne there was an exceptional diminution of the number
+in the course of an hour, viz. from 171,000 to 28,000 in a cubic inch. On
+looking about, he found that the direction of the wind had changed,
+bringing down the purer upper air to the place of observation. The bending
+downwards of the trees by the strong wind showed that it was coming from
+the upper air.
+
+Returning to Scotland, he continued his observations at Ben Nevis and at
+Kingairloch, opposite Appin, Mr. Rankin using the instrument at the top of
+the mountain. These observations showed in general that on the mountain
+southerly, south-easterly, and easterly winds were more impregnated with
+dust-particles, sometimes containing 133,000 per cubic inch. Northerly
+winds brought pure air. The observations at sea-level showed a certain
+parallelism to those on the summit of the mountain. With a north-westerly
+wind the dust-particles reached the low number of 300 per cubic inch, the
+lowest recorded at any low-level station.
+
+The general deductions which he made from his numerous observations during
+these two years are that (1) air coming from inhabited districts is always
+impure; (2) dust is carried by the wind to enormous distances; (3) dust
+rises to the tops of mountains during the day; (4) with much dust there is
+much haze; (5) high humidity causes great thickness of the atmosphere, if
+accompanied by a great amount of dust, whereas there is no evidence that
+humidity alone has any effect in producing thickness; (6) and there is
+generally a high amount of dust with high temperature, and a low amount of
+dust with low temperature.
+
+Next to the enumeration of the dust-particles in the atmosphere is the
+marvellous accuracy of counting the number of particles in a fog. The same
+ingenious inventor has constructed a fog-counter for the purpose; and the
+number of fog-particles in a cubic inch can be ascertained. This
+instrument consists of a glass micrometer divided into squares of a known
+size, and a strong microscope for observing the drops on the stage. The
+space between the micrometer and the microscope is open, so that the air
+passes freely over the stage; and the drops that fall on its surface are
+easily seen. These drops are very small; many of them when spread on the
+glass are no more than the five-hundredth of an inch in diameter.
+
+In observing these drops, the attention requires to be confined to a
+limited area of the stage, as many of the drops rapidly evaporate, some
+almost as soon as they touch the glass, whilst the large ones remain a few
+seconds.
+
+In one set of Dr. Aitken's observations, in February 1891, the fog was so
+thick that objects beyond a hundred yards were quite invisible. The number
+of drops falling per second varied greatly from time to time. The greatest
+number was 323 drops per square inch in one second. The high number never
+lasted for long, and in the intervals the number fell as low as 32, or to
+one-tenth.
+
+If we knew the size of these drops, we might be able to calculate the
+velocity of their fall, and from that obtain the number in a cubic inch.
+
+Though the particles in a fog are slightly finer, the number is about the
+same as in a cloud--that is, generally. As clouds vary in density, the
+number of particles varies. Sometimes in a cloud one cannot see farther
+than 30 yards; whereas in a few minutes it clears up a little, so that we
+can see 100 yards. Of course, the denser the cloud the greater the number
+of water-particles falling on the calculating-stage of the instrument.
+
+Very heavy falls of cloud-particles seldom last more than a few seconds,
+the average being about 325 on the square inch per second, the maximum
+reaching to 1290. This is about four times the number counted in a fog.
+Yet the particles are so very small that they evaporate instantly when
+they reach a slight increase of temperature.
+
+In our ordinary atmosphere there can be no clouds without dust. A
+dust-particle is the nucleus that at a certain humidity becomes the centre
+of condensation of the water-vapour so as to form a cloud-particle; and a
+collection of these forms a cloud.
+
+This condensation of vapour round a number of dust-particles in visible
+form gives rise to a vast variety of cloud-shapes. There are two distinct
+ways in which the formation of clouds generally takes place. Either a
+layer of air is cooled in a body below the dew-point; or a mass of warm
+and moist air rises into a mass which is cold and dry. The first forms a
+cloud, called, from being a layer, _stratus_; the second forms a cloud,
+called, from its heap appearance, _cumulus_. The first is widely extended
+and horizontal, averaging 1800 feet in height; the second is convex or
+conical, like the head of a sheaf, increasing upward from a level base,
+averaging from 4500 feet to 6000 feet in height.
+
+There are endless combinations of these two; but at the height of 27,000
+feet, where the cloud-particles are frozen, the structure of the cloud is
+finer, like "mares' tails," receiving the name _cirrus_. When the cirrus
+and cumulus are combined, in well-defined roundish masses, what is
+familiarly described as a "mackerel sky" is beautifully presented. The
+dark mass of cloud, called _nimbus_, is the threatening rain-cloud, about
+4500 feet in height.
+
+The process of decay in clouds takes place in various ways. A careful
+observer may witness the gradual wasting away and dilution into thin air
+of even great stretches of cloud, when circumstances are favourable. In
+May 1896 my attention was particularly drawn to this at my manse in
+Strathmore. In the middle of that exceptionally sultry month, I was
+arrested by a remarkable transformation scene. It was the hottest May for
+seventy-two years, and the driest for twenty-five years. The whole parched
+earth was thirsting for rain. All the morning my eyes were turned to the
+clouds in the hope that the much-desired shower should fall. Till ten
+o'clock the sun was not seen, and there was no blue in the sky. Nor was
+there any haze or fog.
+
+But suddenly the sun shone through a thinner portion of the enveloping
+clouds, and, to the north, the sky began to open. As if by some magic
+spell there was, in a quarter of an hour, more blue to be seen than
+clouds. At the same time, near the horizon, a haze was forming, gradually
+becoming denser as time wore on. In an hour the whole clouds were gone,
+and the glorious orb of day dispelled the moisture to its thin-air form.
+
+The dust from the air has first to be collected. This is done by placing a
+glass plate vertically, and in close contact with one of the panes of
+glass in the window, by means of a little india-rubber solution. The plate
+being thus rendered colder than the air in the room, the dust is deposited
+on it.
+
+Construct a rectangular box, with a square bottom, 1-1/2 inches a side and
+3/4 inch deep, and open at the top. Cover the top edge of the box with a
+thickness of india-rubber. Place the dusty plate--a square glass mirror, 4
+inches a side--on the top of the india-rubber, and hold it down by spring
+catches, so as to make the box water-tight. The box has been provided with
+two pipes, one for taking in water and the other for taking away the
+overflow, with the bulb of a thermometer in the centre. Clean the dust
+carefully off one half of the mirror, so that one half of the glass
+covering the box is clean and the other half dusty. Pour cold water
+through the pipe into the box, so as to lower the temperature of the
+mirror, and carefully observe when condensation begins on the clean part
+and on the dusty part, taking a note of the difference of temperature. The
+condensation of the water-vapour will appear on the dust-particles before
+coming down to the natural dew-point temperature of the clean glass. And
+the difference between the two temperatures indicates the temperature
+above the dew-point at which the dust has condensed the water-vapour.
+
+Magnesia dust has small affinity for water-vapour; accordingly, it
+condenses at almost exactly the same temperature as the glass. But
+gunpowder has great condensing power. All have noticed that the smoke
+from exploded gunpowder is far more dense in damp than in dry weather. In
+the experiment it will be found that the dust from gunpowder smoke begins
+to show signs of condensing the vapour at a temperature of 9  Fahr. above
+the dew-point. In the case of sodium dust, the vapour is condensed from
+the air at a temperature of 30  above the dew-point.
+
+Dust collected in a smoking-room shows a decidedly greater condensing
+power than that from the outer air.
+
+We can now understand why the glass in picture frames and other places
+sometimes appears damp when the air is not saturated. When in winter the
+windows are not often cleaned, a damp deposit may be frequently seen on
+the glass. Any one can try the experiment. Clean one half of a dusty pane
+of glass in cold weather, and the clean part will remain undewed and
+clear, while the dusty part is damp to the eye and greasy to the touch.
+
+These observations indicate that moisture is deposited on the
+dust-particles from air, which is not saturated, and that the condensation
+takes place while the air is comparatively dry, _before_ the temperature
+is lowered to the dew-point. There is, then, no definite demarcation
+between what seems to us clear air and thick haze. The clearest air has
+some haze, and, as the humidity increases, the thickness of the air
+increases.
+
+In all haze the temperature is above the dew-point. The dust-particles
+have only condensed a very small amount of the moisture so as to form
+haze, before the fuller condensation takes place at the dew-point.
+
+At the Italian lakes, on many occasions when the air is damp and still,
+every stage of condensation may be observed in close proximity, not
+separated by a hard and fast line, but when no one could determine where
+the clear air ended and the cloud began. Sometimes in the sky overhead a
+gradual change can be observed from perfect clearness to thick air, and
+then the cloud.
+
+A thick haze may be occasioned by an increased number of dust-particles
+with little moisture, or of a diminished number of dust-particles with
+much moisture, above the point of saturation. The haze is cleared by this
+temperature rising, so as to allow the moisture to evaporate from the
+dust-particles.
+
+Whenever the air is dry and hazy, much dust is found in it; as the dust
+decreases the haze also decreases. For example, Dr. Aitken, at
+Kingairloch, in one of the clearest districts of Argyleshire, on a clear
+July afternoon, counted 4000 dust-particles in a cubic inch of the air;
+whereas, two days before, in thick haze, he counted no fewer than 64,000
+in the cubic inch. At Dumfries the number counted on a very hazy day in
+October increased twenty-fold over the number counted the day before, when
+it was clear.
+
+All know that thick haze is usual in very sultry weather. The wavy,
+will-o'-the-wisp ripples near the horizon indicate its presence very
+plainly. During the intense heat there is generally much dust in the
+atmosphere; this dust, by the high temperature, attracts moisture from the
+apparently dry air, though above the saturation point. In all
+circumstances, then, the haze can be accounted for by the condensing power
+of the dust-particles in the atmosphere, at a higher temperature than that
+required for the formation of fogs, or mists, or rain.
+
+The transparency of the atmosphere is very much destroyed by the
+impurities communicated to it while passing over the inhabited areas of
+the country. Dr. Aitken devoted eighteen months to compare the amount of
+dusty impurities in different masses of air, or of different airs brought
+in by winds from different directions.
+
+He took Falkirk for his centre of observations. This town lies a little to
+the north of a line drawn between Edinburgh and Glasgow, and is nearly
+midway between them. If we draw a line due west from it, and another due
+north, we find that, in the north-west quadrant so enclosed, the
+population of that part of Scotland is extremely thin, the country over
+that area being chiefly mountainous. In all other directions, the
+conditions are quite different. In the north-east quadrant are the fairly
+well-populated areas of Aberdeenshire, Forfarshire, and the thickly
+populated county of Fife. In the south-east quadrant are situated
+Edinburgh and the well-populated districts of the south-east of Scotland.
+And in the south-west quadrant are Glasgow and the large manufacturing
+towns which surround it. The winds from three of these quadrants bring air
+polluted in its passage over populated areas, whereas the winds from the
+north-west come comparatively pure.
+
+The general plan of estimating the amount of haze is to note the most
+distant hill that can be seen through the haze. The distance in miles of
+the farthest away hill visible is then called "the limit of visibility" of
+the air at the time. For the observations made at Falkirk, only three
+hills are available, one about four miles distant, the Ochils about
+fifteen miles distant, and Ben Ledi about twenty-five miles distant--all
+in the north-west quadrant. When the air is thick, only the near hill can
+be seen; then the Ochils become visible as the air clears; and at last Ben
+Ledi is seen, when the haze becomes still less. After Ben Ledi is visible,
+it then becomes necessary to estimate the amount of haze on it, in order
+to get the limit of visibility of the air at the time. Thus, if Ben Ledi
+be half-hazed, then the limit of visibility will be fifty miles. In this
+way all the estimates of haze have been reduced to one scale for
+comparison.
+
+As the result of all the observations it was found that, as the dryness of
+the air increases, the limit of visibility also increases. A very marked
+difference in the transparency of the air was found with winds from the
+different directions. In the north-west quadrant the winds made the air
+very clear, whereas winds from all other directions made the air very much
+hazed. The winds in the other three areas are nearly ten times more hazed
+than those from the north-west quadrant. That is very striking.
+
+The conclusion come to is that the air from densely inhabited districts is
+so polluted that it is fully nine times more hazed than the air that comes
+from the thinly inhabited districts; in other words, the atmosphere at
+Falkirk is about ten times thicker when the wind is east or south than it
+would be if there were no fires and no inhabitants.
+
+It is interesting to notice that the limit varies considerably for the
+same wind at the same humidity. This is what might have been expected,
+because from the observations made by the dust-counter the number of
+particles varied greatly in winds from the same directions, but at
+different times. This depends upon the rise and fall of the wind, changes
+in the state of trade, season of the year, and other causes. During a
+strike, the dearth of coal will make a considerable diminution in the
+number of dust-particles in the air of large towns. With a north wind, the
+extreme limits of visibility are 120 to 200 miles; and with a north-west
+wind, from 70 to 250 miles. An east wind has as limits 4 to 50 miles, and
+a south-east wind 2 to 60 miles.
+
+One interesting fact to be noticed, after wading through these tables, is
+this--that, as a general result, the transparency of the air increases
+about 3 7 times for any increase in dryness from 2  to 8  of wet-bulb
+depression. That is, the clearness of the air is inversely proportional to
+the relative humidity; or, put another way, if the air is four times drier
+it is about four times clearer.
+
+The phrase "thunder clears the air" is familiar to all. It contains a very
+vital truth, yet even scientific men did not know its full meaning until
+just the other day. It came by experience to people who had been for ages
+observing the weather; and it is one of the most pointed of the
+"weather-lore" expressions. Folks got to know, by a sort of rule-of-thumb,
+truths which scientifically they were unable to learn. And this is one.
+
+Perhaps, therefore, we should respect a little more what is called
+"folk-lore," or ordinary people's sayings. Experience has taught men many
+wonderful things. In olden times they were keener natural observers. They
+had few books, but they had plenty of time. They studied the habits of
+animals and moods of nature, and they came wonderfully near to reaching
+the full truth, though they could not give a reason for it. The
+awe-inspiring in nature has especially riveted the attention of man.
+
+No less than thirty colonies of organisms were counted in a cubic foot of
+air taken from the Golden Gallery of St. Paul's Cathedral, London, and 140
+from the air of the churchyard. An ordinary man would breathe there
+thirty-six micro-organisms every minute.
+
+Electricity has a powerful effect in destroying these organisms. Ozone is
+generated in the air by lightning, and it is detrimental to them. In fine
+ozoned Highland air scarcely a disease-germ can be detected. Open sea air
+contains about one germ in two cubic feet. It has been found that in Paris
+the average in summer is about 140 per cubic foot of air, but in bedrooms
+the number is double. During the twenty-four hours of the day the number
+of germs is highest about 6 A.M., and lowest about mid-day.
+
+Raindrops carry the germs to the ground. Hence the advantage of a thunder
+plout in a sanitary way. A cubic foot of rain has been found to contain
+5500 organic dust-germs, besides 7,000,000,000 of inorganic
+dust-particles. In a dirty town the rain will bring down in a year, upon a
+square foot of surface, no less than 3,000,000 of bacteria, many of them
+being disease-bearing and death-bearing. No wonder, then, that scientific
+men are using every endeavour to protect the human frame, as well as the
+frame of the lower animals, from the baneful inroads of these floating
+nuclei of disease and death.
+
+For weakness of body and fatigue of mind a very common and essentially
+serviceable recommendation is "a change of air." Of course, the change of
+scene from coast to country, or from town to hillside, may help much the
+depressed in body or mind; and this is very commendable. But, strange to
+say, there is a healing virtue in breathing different air.
+
+At first one is apt to think that air is the same all over, as he thinks
+water is--especially outside smoky towns; but both have varied qualities
+in different parts. You have only to be assured that in a cubic inch of
+bedroom air in the denser parts of a large town there are about 20,000,000
+of dust-particles, and in the open air of a heathery mountain-side there
+are only some hundreds, to see that there is something after all on the
+face of it in the "old wives' saw."
+
+Not that the dust-particles are all injurious; for most of them are
+inorganic, and many of the organic particles are quite wholesome; yet
+there is a change wrought, often very marked, in going from one place to
+another for different air.
+
+Even in the country, especially in summer-time, one distinctly notices the
+great difference in the air of lowland and highland localities. The ten
+miles change from Strathmore to Glenisla shows a marked difference in the
+air. Below, it is close, weakening, enervating; above, it is exhilarating,
+invigorating, and strong.
+
+So people must have a change--at least those who can afford it--for health
+must be seen to first of all, if one has means to do so. Oh! the blessing
+of good health! How many who enjoy it never think of the misery of its
+loss! In fact, health is the soul that animates all enjoyments of life;
+for without it those would soon be tasteless. A man starves at the
+best-spread table, and is poor in the midst of the greatest treasures
+without health.
+
+Sportsmen are livingly aware of the recuperative power of the Highland
+air. Perhaps these city men do not benefit so much by the easy walking
+exercise on the grouse moors as in breathing the splendidly
+delight-inspiring air. What a change one feels there in a very few hours!
+
+After the sun's broad beams have tired the sight, the moon with more sober
+light charms us to descry her beauty, as she shines sublimely in her
+virgin modesty. There is always a most fascinating freshness in the first
+sight of the new moon. The superstition of centuries adds to this charm.
+Why boys and girls like to turn over a coin in their pocket at this sight
+one cannot tell: yet it is done. No young lady likes to look at the new
+moon through a pane of glass. And farmers are always confident of a change
+of weather with a new moon: at least in bad weather they earnestly hope
+for it.
+
+Accordingly, I concluded that there must be clouds to the west, though I
+could not see them, which reflected rays of light and faintly illuminated
+the shadowed part of the moon. It had become much colder, and I concluded
+that during the night the cloud-particles, if driven near by the wind,
+would condense into rain. And, assuredly, next morning I was gratified to
+find that rain had fallen in large quantities, substantiating the theory.
+
+Gradually the eastern glow rose and reddened all the clouds, but the front
+clouds were still grey. The effect was very fine in contrast. The fleecy
+clouds overhead became transparently light red, as they stretched over to
+reach the silver-streaked west. The new moon was just appearing upright
+against a slightly less bright opening in the sky, betokening the firm
+hardness of autumn.
+
+Soon the colouring melted away, and the peaceful reign of the later
+twilight possessed the land.
+
+Now why that brilliancy of the east, when the west was colourless? Most of
+all you note the immense variety and wealth of reds. These are due to dust
+in the atmosphere. We are the more convinced of this by the very
+remarkable and beautiful sunsets which occurred after the tremendous
+eruption at Krakatoa, in the Straits of Sunda, thirty years ago. There was
+then ejected an enormous quantity of fine dust, which spread over the
+whole world's atmosphere. So long as that vast amount of dust remained in
+the air did the sunsets and afterglows display an exceptional wealth of
+colouring. All observers were struck with the vividly brilliant red
+colours in all shades and tints.
+
+The minute particles of dust in the atmosphere arrest the sun's rays and
+scatter them in all directions; they are so small, however, that they
+cannot reflect and scatter all; their power is limited to the scattering
+of the rays at the blue end of the spectrum, while the red rays pass on
+unarrested. The display of the colours of the blue end are found in
+numberless shades, from the full deep blue in the zenith to the
+greenish-blue near the horizon.
+
+If there were no fine dust-particles in the upper strata, the sunset
+effect would be whiter; if there were no large dust-particles, there would
+be no colouring at all. If there were no dust-particles in the air at all,
+the light would simply pass through into space without revealing itself,
+and the moment the sun disappeared there would be total darkness. The very
+existence of our twilight depends on the dust in the air; and its length
+depends on the amount and extension upwards of the dust-particles.
+
+But how have the particles been increased in size in the east? Because, as
+the sun was sinking, but before its rays failed to illumine the heavens,
+the temperature of the air began to fall. This cooling made the
+dust-particles seize the water-vapour to form haze-particles of a larger
+size. The particles in the east first lose the sun's heat, and first
+become cool; and the rays of light are then best sifted, producing a more
+distinct and darker red. As the sun dipped lower, the particles overhead
+became a turn larger, and thereby better reflected the red rays.
+Accordingly, the roseate bands in the east spread over to the zenith, and
+passed over to the west, producing in a few minutes a universal
+transformation glow.
+
+To produce the full effect often witnessed, there must be, besides the
+ordinary dust-particles, small crystals floating in the air, which
+increase the reflection from their surfaces and enhance the glow effects.
+In autumn, after sunset, the water-covered dust-particles become frozen
+and the red light streams with rare brilliancy, causing all reddish and
+coloured objects to glow with a rare brightness. Then the air glows with a
+strange light as of the northern dawn. From all this it is clear that,
+though the colouring of sunset is produced by the direct rays of the sun,
+the afterglow is produced by reflection, or, rather, radiation from the
+illuminated particles near the horizon.
+
+The effect in autumn is a stream of red light, of varied tones, and rare
+brilliancy in all quarters, unseen during the warmer summer. We have to
+witness the sunsets at Ballachulish to be assured that Waller Paton really
+imitated nature in the characteristic bronze tints of his richly painted
+landscapes.
+
+Little attention has been paid to foreglows compared with afterglows,
+either with regard to their natural beauty or their weather forecasting.
+But either the ordinary red-cloud surroundings at sunrise, or the western
+foreglow at rarer intervals, betokens to the weather-prophet wet and
+gloomy weather. The farmer and the sailor do not like the sight, they
+depend so much on favourable weather conditions.
+
+Of course, sunrise to the  sthetic observer has always its charms. The
+powerful king of day rejoices "as a bridegroom coming out of his chamber"
+as he steps upon the earth over the dewy mountain tops, bathing all in
+light, and spreading gladness and deep joy before him. The lessening
+cloud, the kindling azure, and the mountain's brow illumined with golden
+streaks, mark his approach; he is encompassed with bright beams, as he
+throws his unutterable love upon the clouds, "the beauteous robes of
+heaven." Aslant the dew-bright earth and coloured air he looks in
+boundless majesty abroad, touching the green leaves all a-tremble with
+gold light.
+
+But glorious, and educating, and inspiring as is the sunrise in itself in
+many cases, there is occasionally something very remarkable that is
+connected with it. Rare is it, but how charming when witnessed, though
+till very recently it was all but unexplained. This is the _foreglow_.
+
+It is in no respect so splendid as the afterglow succeeding sunset; but,
+because of its comparative rarity, its beauty is enhanced. I remember a
+foreglow most vividly which was seen at my manse, in Strathmore, in
+January 1893. My bedroom window looked due west; I slept with the blind
+up. On that morning I was struck, just after the darkness was fading away,
+with a slight colouring all along the western horizon. The skeleton
+branches of the trees stood out strongly against it. The colouring
+gradually increased, and the roseate hue stretched higher. The old
+well-known faces that I used to conjure up out of the thin blended boughs
+became more life-like, as the cheeks flushed. There was rare warmth on a
+winter morning to cheer a half-despairing soul, tired out with the long
+hours of oil reading, and pierced to the heart by the never-ceasing
+rimes; yet I could not understand it.
+
+He was taking his walk on the high ground south of Falkirk. In the east he
+observed a strange pillar-like cloud, lit up with the light of the setting
+sun. Then the red pillar extended, curved over, and formed a perfect arch
+across the north-eastern sky. When fully developed, this rainbow was the
+most extraordinary one which he had ever seen. There was no colour in it
+but red. It consisted simply of a red arch, and even the red had a
+sameness about it.
+
+Outside the rainbow there was part of a secondary bow. The Ochil Hills
+were north of his point of observation. These hills were covered with
+snow, and the setting sun was glowing with rosy light. Never had he seen
+such a depth of colour as was on them on this occasion. It was a deep,
+furnacy red. The sun's light was shorn of all the rays of short-wave
+length on its passage through the atmosphere, and only the red rays
+reached the earth. The reason why the Ochils glowed with so deep a red
+was owing to their being overhung by a dense curtain of clouds, which
+screened off the light of the sky. The illumination was thus principally
+that of the direct softer light of the sun.
+
+He must be a very careless observer who has not been struck with the
+appearance of the streamers which occasionally light up the northern
+heavens, and which farmers consider to be indicators of strong wind or
+broken weather.
+
+Though no fixed conclusions are yet established about the causes of the
+brilliant auroral display, yet, as the results of laborious observations,
+we are assured that the stabler centre of our solar system holds in its
+powerful sway the several planets at their respective distances, supplying
+them all with their seasonable light and heat, vibrating sympathetic
+chords in all, and even controlling under certain--though to us still
+unknown--laws the electric streamers that flit, apparently lawlessly, in
+the distant earth's atmosphere.
+
+At the same time, the dust-particles suspended in the water have a great
+effect in making the water appear more beautiful, brilliant, and varied in
+its colouring; because little or no light is reflected by the interior of
+a mass of water itself. If a dark metal vessel be filled with a weak
+solution of Prussian blue, the liquid will appear quite dark and void of
+colour. But throw in some fine white powder, and the liquid will at once
+become of a brilliant blue colour. This accounts for the change of depth
+and brilliancy of colour in the several shores of the Mediterranean.
+
+The wide range of the indications of the instrument, from pure clearness
+to nearly black blue, makes the estimate of the impurity very easily taken
+with it; and, as there are few parts to get out of order, it is hoped it
+may come into general use for sanitary work. 

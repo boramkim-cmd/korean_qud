@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<quests>
+  <!-- 테스트 퀘스트 1: 조사 처리 테스트 -->
+  <quest Name="TestJosa1" DisplayName="조사 테스트 1">
+    <text>검<josa_eul_reul> 발견하라.</text>
+    <step Name="Step1" XP="10">
+      <text>사과<josa_wa_gwa> 책<josa_eul_reul> 찾아라.</text>
+    </step>
+  </quest>
+
+  <!-- 테스트 퀘스트 2: 다양한 조사 -->
+  <quest Name="TestJosa2" DisplayName="조사 테스트 2">
+    <text>철수<josa_i_ga> 학교<josa_euro_ro> 갔다.</text>
+    <step Name="Step1" XP="10">
+      <text>연필<josa_eun_neun> 파란색이다.</text>
+    </step>
+  </quest>
+
+  <!-- 테스트 퀘스트 3: ㄹ 받침 테스트 -->
+  <quest Name="TestJosa3" DisplayName="ㄹ 받침 테스트">
+    <text>서울<josa_euro_ro> 가라.</text>
+    <step Name="Step1" XP="10">
+      <text>물<josa_eul_reul> 마셔라.</text>
+    </step>
+  </quest>
+
+  <!-- 원본 퀘스트 (참고용) -->
+  <quest Name="WatersEdge" DisplayName="What's Eating the Watervine?">
+    <text>Investigate the dying watervine in Joppa.</text>
+    <step Name="TalkToMehmet" XP="50">
+      <text>Talk to Mehmet about the watervine.</text>
+    </step>
+  </quest>
+</quests>

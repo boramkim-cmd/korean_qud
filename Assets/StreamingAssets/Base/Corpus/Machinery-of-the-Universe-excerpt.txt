@@ -1,0 +1,678 @@
+﻿
+For mathematical purposes, it has sometimes been convenient to treat a
+problem as if one body could act upon another without any physical
+medium between them; but such a conception has no degree of rationality,
+and I know of no one who believes in it as a fact. If this be granted,
+then our philosophy agrees with our experience, and every body moves
+because it is pushed, and the mechanical antecedent of every kind of
+phenomenon is to be looked for in some adjacent body possessing
+energy; that is, the ability to push or produce pressure.
+
+It must not be forgotten that energy is not a simple factor, but is
+always a product of two factors--a mass with a velocity, a mass with a
+temperature, a quantity of electricity into a pressure, and so on. One
+may sometimes meet the statement that matter and energy are the two
+realities; both are spoken of as entities. It is much more philosophical
+to speak of matter and motion, for in the absence of motion there is no
+energy, and the energy varies with the amount of motion; and
+furthermore, to understand any manifestation of energy one must inquire
+what kind of motion is involved. This we do when we speak of mechanical
+energy as the energy involved in a body having a translatory motion;
+also, when we speak of heat as a vibratory, and of light as a wave
+motion. To speak of energy without stating or implying these
+distinctions, is to speak loosely and to keep far within the bounds of
+actual knowledge. To speak thus of a body possessing energy, or
+expending energy, is to imply that the body possesses some kind of
+motion, and produces pressure upon another body because it has motion.
+Tait and others have pointed out the fact, that what is called potential
+energy must, in its nature, be kinetic. Tait says--"Now it is impossible
+to conceive of a truly dormant form of energy, whose magnitude should
+depend, in any way, upon the unit of time; and we are forced to conclude
+that potential energy, like kinetic energy, depends (even if unexplained
+or unimagined) upon motion." All this means that it is now too late to
+stop with energy as a final factor in any phenomenon, that the _form of
+motion_ which embodies the energy is the factor that determines _what_
+happens, as distinguished from how _much_ happens. Here, then, are to be
+found the distinctions which have heretofore been called forces; here
+is embodied the proof that direct pressure of one body upon another is
+what causes the latter to move, and that the direction of movement
+depends on the point of application, with reference to the centre
+of mass.
+
+It is needful now to look at the other term in the product we call
+energy, namely, the substance moving, sometimes called matter or mass.
+It has been mentioned that the idea of a medium filling space was
+present to Newton, but his gravitation problem did not require that he
+should consider other factors than masses and distances. The law of
+gravitation as considered by him was--Every particle of matter attracts
+every other particle of matter with a stress which is proportional to
+the product of their masses, and inversely to the squares of the
+distance between them. Here we are concerned only with the statement
+that every particle of matter attracts every other particle of matter.
+Everything then that possesses gravitative attraction is matter in the
+sense in which that term is used in this law. If there be any other
+substance in the universe that is not thus subject to gravitation, then
+it is improper to call it matter, otherwise the law should read, "Some
+particles of matter attract," etc., which will never do.
+
+We are now assured that there is something else in the universe which
+has no gravitative property at all, namely, the ether. It was first
+imagined in order to account for the phenomena of light, which was
+observed to take about eight minutes to come from the sun to the earth.
+Then Young applied the wave theory to the explanation of polarization
+and other phenomena; and in 1851 Foucault proved experimentally that the
+velocity of light was less in water than in air, as it should be if the
+wave theory be true, and this has been considered a crucial experiment
+which took away the last hope for the corpuscular theory, and
+demonstrated the existence of the ether as a space-filling medium
+capable of transmitting light-waves known to have a velocity of 186,000
+miles per second. It was called the luminiferous ether, to distinguish
+it from other ethers which had also been imagined, such as electric
+ether for electrical phenomena, magnetic ether for magnetic phenomena,
+and so on--as many ethers, in fact, as there were different kinds of
+phenomena to be explained.
+
+It was Faraday who put a stop to the invention of ethers, by suggesting
+that the so-called luminiferous ether might be the one concerned in all
+the different phenomena, and who pointed out that the arrangement of
+iron filings about a magnet was indicative of the direction of the
+stresses in the ether. This suggestion did not meet the approval of the
+mathematical physicists of his day, for it necessitated the abandonment
+of the conceptions they had worked with, as well as the terminology
+which had been employed, and made it needful to reconstruct all their
+work to make it intelligible--a labour which was the more distasteful as
+it was forced upon them by one who, although expert enough in
+experimentation, was not a mathematician, and who boasted that the most
+complicated mathematical work he ever did was to turn the crank of a
+calculating machine; who did all his work, formed his conclusions, and
+then said--"The work is done; hand it over to the computers."
+
+It has turned out that Faraday's mechanical conceptions were right.
+Every one now knows of Maxwell's work, which was to start with Faraday's
+conceptions as to magnetic phenomena, and follow them out to their
+logical conclusions, applying them to molecules and the reactions of the
+latter upon the ether. Thus he was led to conclude that light was an
+electro-magnetic phenomenon; that is, that the waves which constitute
+light, and the waves produced by changing magnetism were identical in
+their nature, were in the same medium, travelled with the same velocity,
+were capable of refraction, and so on. Now that all this is a matter of
+common knowledge to-day, it is curious to look back no further than ten
+years. Maxwell's conclusions were adopted by scarcely a physicist in
+the world. Although it was known that inductive action travelled with
+finite velocity in space, and that an electro-magnet would affect the
+space about it practically inversely as the square of the distance, and
+that such phenomena as are involved in telephonic induction between
+circuits could have no other meaning than the one assigned by Maxwell,
+yet nearly all the physicists failed to form the only conception of it
+that was possible, and waited for Hertz to devise apparatus for
+producing interference before they grasped it. It was even then so new,
+to some, that it was proclaimed to be a demonstration of the existence
+of the ether itself, as well as a method of producing waves short enough
+to enable one to notice interference phenomena. It is obvious that Hertz
+himself must have had the mechanics of wave-motion plainly in mind, or
+he would not have planned such experiments. The outcome of it all is,
+that we now have experimental demonstration, as well as theoretical
+reason for believing, that the ether, once considered as only
+luminiferous, is concerned in all electric and magnetic phenomena, and
+that waves set up in it by electro-magnetic actions are capable of being
+reflected, refracted, polarized, and twisted, in the same way as
+ordinary light-waves can be, and that the laws of optics are applicable
+to both.
+
+A common conception of the ether has been that it is a finer-grained
+substance than ordinary matter, but otherwise so like the latter that
+the laws found to hold good with matter were equally applicable to the
+ether, and hence the mechanical conceptions formed from experience in
+regard to the one have been transferred to the other, and the properties
+belonging to one, such as density, elasticity, etc., have been asserted
+as properties of the other.
+
+There is so considerable a body of knowledge bearing upon the
+similarities and dissimilarities of these two entities that it will be
+well to compare them. After such comparison one will be better able to
+judge of the propriety of assuming them to be subject to identical laws.
+
+Matter is made up of atoms having dimensions approximately determined to
+be in the neighbourhood of the one fifty-millionth of an inch in
+diameter. These atoms may have various degrees of aggregation;--they may
+be in practical contact, as in most solid bodies such as metals and
+rocks; in molecular groupings as in water, and in gases such as
+hydrogen, oxygen, and so forth, where two, three, or more atoms cohere
+so strongly as to enable the molecules to act under ordinary
+circumstances like simple particles. Any or all of these molecules and
+atoms may be separated by any assignable distance from each other. Thus,
+in common air the molecules, though rapidly changing their positions,
+are on the average about two hundred and fifty times their own diameter
+apart. This is a distance relatively greater than the distance apart of
+the earth and the moon, for two hundred and fifty times the diameter of
+the earth will be 8000 × 250 = 2,000,000 miles, while the distance to
+the moon is but 240,000 miles. The sun is 93,000,000 miles from the
+earth, and the most of the bodies of the solar system are still more
+widely separated, Neptune being nearly 3000 millions of miles from the
+sun. As for the fixed stars, they are so far separated from us that, at
+the present rate of motion of the solar system in its drift through
+space--500 millions of miles in a year--it would take not less than
+40,000 years to reach the nearest star among its neighbours, while for
+the more remote ones millions of years must be reckoned. The huge space
+separating these masses is practically devoid of matter; it is a vacuum.
+
+The idea of continuity as distinguished from discontinuity may be gained
+by considering what would be made visible by magnification. Water
+appears to the eye as if it were without pores, but if sugar or salt be
+put into it, either will be dissolved and quite disappear among the
+molecules of the water as steam does in the air, which shows that there
+are some unoccupied spaces between the molecules. If a microscope be
+employed to magnify a minute drop of water it still shows the same lack
+of structure as that looked at with the unaided eye. If the magnifying
+power be the highest it may reveal a speck as small as the
+hundred-thousandth part of an inch, yet the speck looks no different in
+character. We know that water is composed of two different kinds of
+atoms, hydrogen and oxygen, for they can be separated by chemical means
+and kept in separate bottles, and again made to combine to form water
+having all the qualities that belonged to it before it was decomposed.
+If a very much higher magnifying power were available, we should
+ultimately be able to see the individual water molecules, and recognize
+their hydrogen and oxygen constituents by their difference in size, rate
+of movements, and we might possibly separate them by mechanical methods.
+What one would see would be something very different in structure from
+the water as it appears to our eyes. If the ether were similarly to be
+examined through higher and still higher magnifying powers, even up to
+infinity, there is no reason for thinking that the last examination
+would show anything different in structure or quality from that which
+was examined with low power or with no microscope at all. This is all
+expressed by saying that the ether is a continuous substance, without
+interstices, that it fills space completely, and, unlike gases,
+liquids, and solids, is incapable of absorbing or dissolving anything.
+
+There appears to be a definite amount of matter in the visible universe,
+a definite number of molecules and atoms. How many molecules there are
+in a cubic inch of air under ordinary pressure has been determined, and
+is represented approximately by a huge number, something like a thousand
+million million millions.
+
+When the diameter of a molecule has been measured, as it has been
+approximately, and found to be about one fifty-millionth of an inch,
+then fifty million in a row would reach an inch, and the cube of fifty
+million is 125,000,000000,000000,000000, one hundred and twenty-five
+thousand million million millions. In a cubic foot there will of course
+be 1728 times that number. One may if one likes find how many there may
+be in the earth, and moon, sun and planets, for the dimensions of them
+are all very well known. Only the multiplication table need be used, and
+the sum of all these will give how many molecules there are in the solar
+system. If one should feel that the number thus obtained was not very
+accurate, he might reflect that if there were ten times as many it would
+add but another cipher to a long line of similar ones and would not
+materially modify it. The point is that there is a definite, computable
+number. If one will then add to these the number of molecules in the
+more distant stars and nebulæ, of which there are visible about
+100,000,000, making such estimate of their individual size as he thinks
+prudent, the sum of all will give the number of molecules in the visible
+universe. The number is not so large but it can be written down in a
+minute or two. Those who have been to the pains to do the sum say it may
+be represented by seven followed by ninety-one ciphers. One could easily
+compute how many molecules so large a space would contain if it were
+full and as closely packed as they are in a drop of water, but there
+would be a finite and not an infinite number, and therefore there is a
+limited number of atoms in the visible universe.
+
+
+The evidence for this comes to us from the phenomena of light.
+Experimentally, ether waves of all lengths are found to have a velocity
+of 186,000 miles in a second. It takes about eight minutes to reach us
+from the sun, four hours from Neptune the most distant planet, and from
+the nearest fixed star about three and a half years. Astronomers tell us
+that some visible stars are so distant that their light requires not
+less than ten thousand years and probably more to reach us, though
+travelling at the enormous rate of 186,000 miles a second. This means
+that the whole of space is filled with this medium. If there were any
+vacant spaces, the light would fail to get through them, and stars
+beyond them would become invisible. There are no such vacant spaces, for
+any part of the heavens shows stars beaming continuously, and every
+increase in telescopic power shows stars still further removed than any
+seen before. The whole of this intervening space must therefore be
+filled with the ether. Some of the waves that reach us are not more than
+the hundred-thousandth of an inch long, so there can be no crack or
+break or absence of ether from so small a section as the
+hundred-thousandth of an inch in all this great expanse. More than this.
+No one can think that the remotest visible stars are upon the boundary
+of space, that if one could get to the most distant star he would have
+on one side the whole of space while the opposite side would be devoid
+of it. Space we know is of three dimensions, and a straight line may be
+prolonged in any direction to an infinite distance, and a ray of light
+may travel on for an infinite time and come to no end provided space be
+filled with ether.
+
+How long the sun and stars have been shining no one knows, but it is
+highly probable that the sun has existed for not less than 1000 million
+years, and has during that time been pouring its rays as radiant energy
+into space. If then in half that time, or 500 millions of years, the
+light had somewhere reached a boundary to the ether, it could not have
+gone beyond but would have been reflected back into the ether-filled
+space, and such part of the sky would be lit up by this reflected light.
+There is no indication that anything like reflection comes to us from
+the sky. This is equivalent to saying that the ether fills space in
+every direction away from us to an unlimited distance, and so far is
+itself unlimited.
+
+The various kinds of matter we are acquainted with are commonly called
+the elements. These when combined in various ways exhibit characteristic
+phenomena which depend upon the kinds of matter, the structure and
+motions which are involved. There are some seventy different kinds of
+this elemental matter which may be identified as constituents of the
+earth. Many of the same elements have been identified in the sun and
+stars, such for instance as hydrogen, carbon, and iron. Such phenomena
+lead us to conclude that the kinds of matter elsewhere in the universe
+are identical with such as we are familiar with, and that elsewhere the
+variety is as great. The qualities of the elements, within a certain
+range of temperature, are permanent; they are not subject to
+fluctuations, though the qualities of combinations of them may vary
+indefinitely. The elements therefore may be regarded as retaining their
+identity in all ordinary experience.
+
+One part of the ether is precisely like any other part everywhere and
+always, and there are no such distinctions in it as correspond with the
+elemental forms of matter.
+
+There is an ultimate particle of each one of the elements which is
+practically absolute and known as an atom. The atom retains its identity
+through all combinations and processes. It may be here or there, move
+fast or slow, but its atomic form persists.
+
+One might infer, from what has already been said about continuity, that
+the ether could not be constituted of separable particles like masses of
+matter; for no matter how minute they might be, there would be
+interspaces and unoccupied spaces which would present us with phenomena
+which have never been seen. It is the general consensus of opinion
+among those who have studied the subject that the ether is not atomic in
+structure.
+
+Every atom of every element is so like every other atom of the same
+element as to exhibit the same characteristics, size, weight, chemical
+activity, vibratory rate, etc., and it is thus shown conclusively that
+the structural form of the elemental particles is the same for each
+element, for such characteristic reactions as they exhibit could hardly
+be if they were mechanically unlike.
+
+Of what form the atoms of an element may be is not very definitely
+known. The earlier philosophers assumed them to be hard round particles,
+but later thinkers have concluded that atoms of such a character are
+highly improbable, for they could not exhibit in this case the
+properties which the elements do exhibit. They have therefore dismissed
+such a conception from consideration. In place of this hypothesis has
+been substituted a very different idea, namely, that an atom is a
+vortex-ring[1] of ether floating in the ether, as a smoke-ring puffed
+out by a locomotive in still air may float in the air and show various
+phenomena.
+
+Vortex-rings for illustration may be made by having a
+wooden box about a foot on a side, with a round orifice in the middle of
+one side, and the side opposite covered with stout cloth stretched tight
+over a framework. A saucer containing strong ammonia water, and another
+containing strong hydrochloric acid, will cause dense fumes in the box,
+and a tap with the hand upon the cloth back will force out a ring from
+the orifice. These may be made to follow and strike each other,
+rebounding and vibrating, apparently attracting each other and being
+attracted by neighbouring bodies.
+
+By filling the mouth with smoke, and pursing the lips as if to make the
+sound _o_, one may make fifteen or twenty small rings by snapping the
+cheek with the finger.
+
+A vortex-ring produced in the air behaves in the most surprising manner.
+
+Such rings formed in air by a locomotive may rise wriggling in the air
+to the height of several hundred feet, but they are soon dissolved and
+disappear. This is because the friction and viscosity of the air robs
+the rings of their substance and energy. If the air were without
+friction this could not happen, and the rings would then be persistent,
+and would retain all their qualities.
+
+Suppose then that such rings were produced in a medium without friction
+as the ether is believed to be, they would be permanent structures with
+a variety of properties. They would occupy space, have definite form and
+dimensions, momentum, energy, attraction and repulsion, elasticity; obey
+the laws of motion, and so far behave quite like such matter as we know.
+For such reasons it is thought by some persons to be not improbable
+that the atoms of matter are minute vortex-rings of ether in the ether.
+That which distinguishes the atom from the ether is the form of motion
+which is embodied in it, and if the motion were simply arrested, there
+would be nothing to distinguish the atom from the ether into which it
+dissolved. In other words, such a conception makes the atoms of matter a
+form of motion of the ether, and not a created something put into the
+ether.
+
+If the ether be the boundless substance described, it is clear it can
+have no form as a whole, and if it be continuous it can have no minute
+structure. If not constituted of atoms or molecules there is nothing
+descriptive that can be said about it. A molecule or a particular mass
+of matter could be identified by its form, and is thus in marked
+contrast with any portion of ether, for the latter could not be
+identified in a similar way. One may therefore say that the ether is
+formless.
+
+The law of gravitation is held as being universal. According to it every
+particle of matter in the universe attracts every other particle. The
+evidence for this law in the solar system is complete. Sun, planets,
+satellites, comets and meteors are all controlled by gravitation, and
+the movements of double stars testify to its activity among the more
+distant bodies of the universe. The attraction does not depend upon the
+kind of matter nor the arrangement of molecules or atoms, but upon the
+amount or mass of matter present, and if it be of a definite kind of
+matter, as of hydrogen or iron, the gravitative action is proportional
+to the number of atoms.
+
+One might infer already that if the ether were structureless, physical
+laws operative upon such material substances as atoms could not be
+applicable to it, and so indeed all the evidence we have shows that
+gravitation is not one of its properties. If it were, and it behaved in
+any degree like atomic structures, it would be found to be denser in the
+neighbourhood of large bodies like the earth, planets, and the sun.
+Light would be turned from its straight path while travelling in such
+denser medium, or made to move with less velocity. There is not the
+slightest indication of any such effect anywhere within the range of
+astronomical vision.
+
+Gravitation then is a property belonging to matter and not to ether.
+The impropriety of thinking or speaking of the ether as matter of any
+kind will be apparent if one reflects upon the significance of the law
+of gravitation as stated. Every particle of matter in the universe
+attracts every other particle. If there be anything else in the universe
+which has no such quality, then it should not be called matter, else the
+law should read: Some particles of matter attract some other particles,
+which would be no law at all, for a real physical law has no exceptions
+any more than the multiplication table has. Physical laws are physical
+relations, and all such relations are quantitative.
+
+A bullet shot into the air has its velocity continuously reduced by the
+air, to which its energy is imparted by making it move out of its way. A
+railway train is brought to rest by the friction brake upon the wheels.
+The translatory energy of the train is transformed into the molecular
+energy called heat. The steamship requires to propel it fast, a large
+amount of coal for its engines, because the water in which it moves
+offers great friction--resistance which must be overcome. Whenever one
+surface of matter is moved in contact with another surface there is a
+resistance called friction, the moving body loses its rate of motion,
+and will presently be brought to rest unless energy be continuously
+supplied. This is true for masses of matter of all sizes and with all
+kinds of motion. Friction is the condition for the transformation of all
+kinds of mechanical motions into heat. The test of the amount of
+friction is the rate of loss of motion. A top will spin some time in the
+air because its point is small. It will spin longer on a plate than on
+the carpet, and longer in a vacuum than in the air, for it does not have
+the air friction to resist it, and there is no kind or form of matter
+not subject to frictional resistance.
+
+The earth is a mass of matter moving in the ether. In the equatorial
+region the velocity of a point is more than a thousand miles in an hour,
+for the circumference of the earth is 25,000 miles, and it turns once on
+its axis in 24 hours, which is the length of the day. If the earth were
+thus spinning in the atmosphere, the latter not being in motion, the
+wind would blow with ten times hurricane velocity. The friction would be
+so great that nothing but the foundation rocks of the earth's crust
+could withstand it, and the velocity of rotation would be reduced
+appreciably in a relatively short time. Astronomical observations
+show that the length of the day has certainly not changed so much as the
+tenth of a second during the past 2000 years. The earth also revolves
+about the sun, having a speed of about 19 miles in a second, or 68,000
+miles an hour. This motion of the earth and the other planets about the
+sun is one of the most stable phenomena we know. The mean distance and
+period of revolution of every planet is unalterable in the long run. 
+They assert that a change in the length of a year by so much as the
+hundredth part of a second has not happened during the past thousand
+years. This then is testimony, that a velocity of nineteen miles a
+second for a thousand years has produced no effect upon the earth's
+motion that is noticeable. Some years ago a comet was noticed to have 
+its periodic time shortened an hour or two, and the explanation offered at first was
+that the shortening was due to friction in the ether although no other
+comet was thus affected. The idea was soon abandoned, and to-day there
+is no astronomical evidence that bodies having translatory motion in the
+ether meet with any frictional resistance whatever. If a stone could be
+thrown in interstellar space with a velocity of fifty feet a second it
+would continue to move in a straight line with the same speed for any
+assignable time.
+
+As has been said, light moves with the velocity of 186,000 miles per
+second, and it may pursue its course for tens of thousands of years.
+There is no evidence that it ever loses either its wave-length or
+energy. It is not transformed as friction would transform it, else there
+would be some distance at which light of given wave-length and amplitude
+would be quite extinguished. The light from distant stars would be
+different in character from that coming from nearer stars. Furthermore,
+as the whole solar system is drifting in space some 500,000,000 of miles
+in a year, new stars would be coming into view in that direction, and
+faint stars would be dropping out of sight in the opposite direction, a
+phenomenon which has not been observed. Altogether the testimony seems
+conclusive that the ether is a frictionless medium, and does not
+transform mechanical motion into heat.
+
+That is, its properties are not alike in all directions. Chemical
+phenomena, crystallization, magnetic and electrical phenomena show each
+in their way that the properties of atoms are not alike on opposite
+faces. Atoms combine to form molecules, and molecules arrange themselves
+in certain definite geometric forms such as cubes, tetrahedra, hexagonal
+prisms and stellate forms, with properties emphasized on certain faces
+or ends. Thus quartz will twist a ray of light in one direction or the
+other, depending upon the arrangement which may be known by the external
+form of the crystal. Calc spar will break up a ray of light into two
+parts if the light be sent through it in certain directions, but not if
+in another. Tourmaline polarizes light sent through its sides and
+becomes positively electrified at one end while being heated. Some
+substances will conduct sound or light or heat or electricity better in
+one direction than in another. All matter is magnetic in some degree,
+and that implies polarity. If one will recall the structure of a
+vortex-ring, he will see how all the motion is inward on one side and
+outward on the other, which gives different properties to the two sides:
+a push away from it on one side and a pull toward it on the other.
+
+That is, its properties are alike in every direction. There is no
+distinction due to position. A mass of matter will move as freely in one
+direction as in another; a ray of light of any wave-length will travel
+in it in one direction as freely as in any other; neither velocity nor
+direction are changed by the action of the ether alone.
+
+When the elements combine to form molecules they always combine in
+definite ways and in definite proportions. Carbon will combine with
+hydrogen, but will drop it if it can get oxygen. Oxygen will combine
+with iron or lead or sodium, but cannot be made to combine with
+fluorine. No more than two atoms of oxygen can be made to unite with one
+carbon atom, nor more than one hydrogen with one chlorine atom. There is
+thus an apparent choice for the kind and number of associates in
+molecular structure, and the instability of a molecule depends
+altogether upon the presence in its neighbourhood of other atoms for
+which some of the elements in the molecule have a stronger attraction
+or affinity than they have for the atoms they are now combined with.
+Thus iron is not stable in the presence of water molecules, and it
+becomes iron oxide; iron oxide is not stable in the presence of hot
+sulphur, it becomes an iron sulphide. All the elements are thus
+selective, and it is by such means that they may be chemically
+identified.
+
+There is no phenomenon in the ether that is comparable with this.
+Evidently there could not be unless there were atomic structures having
+in some degree different characteristics which we know the ether to be
+without.
+
+It is possible to arrange the elements in the order of their atomic
+weights in columns which will show communities of property. Newlands,
+Mendeléeff, Meyer, and others have done this. The explanation for such
+an arrangement has not yet been forthcoming, but that it expresses a
+real fact is certain, for in the original scheme there were several gaps
+representing undiscovered elements, the properties of which were
+predicted from that of their associates in the table. Some of these have
+since been discovered, and their atomic weight and physical properties
+accord with those predicted.
+
+With the ether such a scheme is quite impossible, for the very evident
+reason that there are no different things to have relation with each
+other. Every part is just like every other part. Where there are no
+differences and no distinctions there can be no relations. The ether is
+quite harmonic without relations.
+
+So long as the atoms of matter were regarded as hard round particles,
+they were assumed to be inert and only active when acted upon by what
+were called forces, which were held to be entities of some sort,
+independent of matter. These could pull or push it here or there, but
+the matter was itself incapable of independent activity. All this is now
+changed, and we are called upon to consider every atom as being itself a
+form of energy in the same sense as heat or light are forms of energy,
+the energy being embodied in particular forms of motion. Light, for
+instance, is a wave motion of the ether. An atom is a rotary ring of
+ether. Stop the wave motion, and the light would be annihilated. Stop
+the rotation, and the atom would be annihilated for the same reason. As
+the ray of light is a particular embodiment of energy, and has no
+existence apart from it, so an atom is to be regarded as an embodiment
+of energy. On a previous page it is said that energy is the ability of
+one body to act upon and move another in some degree. An atom of any
+kind is not the inert thing it has been supposed to be, for it can do
+something. Even at absolute zero, when all its vibratory or heat energy
+would be absent, it would be still an elastic whirling body pulling upon
+every other atom in the universe with gravitational energy, twisting
+other atoms into conformity with its own position with its magnetic
+energy; and, if such ether rings are like the rings which are made in
+air, will not stand still in one place even if no others act upon it,
+but will start at once by its own inherent energy to move in a right
+line at right angles to its own plane and in the direction of the whirl
+inside the ring. Two rings of wood or iron might remain in contact with
+each other for an indefinite time, but vortex-rings will not, but will
+beat each other away as two spinning tops will do if they touch ever so
+gently. If they do not thus separate it is because there are other forms
+of energy acting to press them together, but such external pressure will
+be lessened by the rings' own reactions.
+
+It is true that in a frictionless medium like the ether one cannot at
+present see how such vortex-rings could be produced in it. Certainly not
+by any such mechanical methods as are employed to make smoke-rings in
+air, for the friction of the air is the condition for producing them.
+However they came to be, there is implied the previous existence of the
+ether and of energy in some form capable of acting upon it in a manner
+radically different from any known in physical science.
+
+There is good spectroscopic evidence that in some way elements of
+different kinds are now being formed in nebulæ, for the simplest show
+the presence of hydrogen alone. As they increase in complexity other
+elements are added, until the spectrum exhibits all the elements we know
+of. It has thus seemed likely either that most of what are called
+elements are composed of molecular groupings of some fundamental
+element, which by proper physical methods might be decomposed, as one
+can now decompose a molecule of ammonia or sulphuric acid, or that the
+elements are now being created by some extra-physical process in those
+far-off regions. In either case an atom is the embodiment of energy in
+such a form as to be permanent under ordinary physical circumstances,
+but of which, if in any manner it should be destroyed, only the form
+would be lost. The ether would remain, and the energy which was embodied
+would be distributed in other ways.
+
+The distinction between energy in matter and energy in the ether will be
+apparent, on considering that both the ether and energy in some form
+must be conceived as existing independent of matter; though every atom
+were annihilated, the ether would remain and all the energy embodied in
+the atoms would be still in existence in the ether. The atomic energy
+would simply be dissolved. One can easily conceive the ether as the same
+space-filling, continuous, unlimited medium, without an atom in it. On
+this assumption it is clear that no form of energy with which we have to
+deal in physical science would have any existence in the ether; for
+every one of those forms, gravitational, thermal, electric, magnetic, or
+any other--all are the results of the forms of energy in matter. If
+there were no atoms, there would be no gravitation, for that is the
+attraction of atoms upon each other. If there were no atoms, there could
+be no atomic vibration, therefore no heat, and so on for each and all.
+Nevertheless, if an atom be the embodiment of energy, there must have
+been energy in the ether before any atom existed. One of the properties
+of the ether is its ability to distribute energy in certain ways, but
+there is no evidence that of itself it ever transforms energy. Once a
+given kind of energy is in it, it does not change; hence for the
+apparition of a form of energy, like the first vortex-ring, there must
+have been not only energy, but some other agency capable of transforming
+that energy into a permanent structure. To the best of our knowledge
+to-day, the ether would be absolutely helpless. Such energy as was
+active in forming atoms must be called by another name than what is
+appropriate for such transformations as occur when, for instance, the
+mechanical energy of a bullet is transformed into heat when the target
+is struck. Behind the ether must be assumed some agency, directing and
+controlling energy in a manner totally different from any agency, which
+is operative in what we call physical science. Nothing short of what is
+called a miracle will do--an event without a physical antecedent in any
+way necessarily related to its factors, as is the fact of a stone
+related to gravity or heat to an electric current.
+
+Ether energy is an endowment instead of being an embodiment, and implies
+antecedents of a super-physical kind.
+
+As each different kind of energy represents some specific form of
+motion, and vice versa, some sort of mechanism is needful for
+transforming one kind into another, therefore molecular structure of
+one kind or another is essential. The transformation is a mechanical
+process, and matter in some particular and appropriate form is the
+condition of its taking place. If heat appears, then its antecedent has
+been some other form of motion acting upon the substance heated. It may
+have been the mechanical motion of another mass of matter, as when a
+bullet strikes a target and becomes heated; or it may be friction, as
+when a car-axle heats when run without proper oiling to reduce friction;
+or it may be condensation, as when tinder is ignited by condensing the
+air about it; or chemical reactions, when molecular structure is changed
+as in combustion, or an electrical current, which implies a dynamo and
+steam-engine or water-power. If light appears, its antecedent has been
+impact or friction, condensation or chemical action, and if electricity
+appears the same sort of antecedents are present. Whether the one or the
+other of these forms of energy is developed, depends upon what kind of a
+structure the antecedent energy has acted upon. If radiant energy,
+so-called, falls upon a mass of matter, what is absorbed is at once
+transformed into heat or into electric or magnetic effects; _which_ one
+of these depends upon the character of the mechanism upon which the
+radiant energy acts, but the radiant energy itself, which consists of
+ether-waves, is traceable back in every case to a mass of matter having
+definite characteristic motions.
+
+One may therefore say with certainty that every physical phenomenon is a
+change in the direction, or velocity, or character, of the energy
+present, and such change has been produced by matter acting as a
+transformer.
+
+It has already been said that the absence of friction in the ether
+enables light-waves to maintain their identity for an indefinite time,
+and to an indefinitely great distance. In a uniform, homogeneous
+substance of any kind, any kind of energy which might be in it would
+continue in it without any change. Uniformity and homogeneity imply
+similarity throughout, and the necessary condition for transformation is
+unlikeness. One might not look for any kind of physical phenomenon which
+was not due to the presence and activity of some heterogeneity.
+
+As a ray of light continues a ray of light so long as it exists in free
+ether, so all kinds of radiations, of whatever wave-length, continue
+identical until they fall upon some mechanical structure called matter.
+Translatory motion continues translatory, rotary continues rotary, and
+vibratory continues to be vibratory, and no transforming change can
+take place in the absence of matter. The ether is helpless.
+
+It is commonly stated that certain substances, like putty and dough, are
+inelastic, while some other substances, like glass, steel, and wood, are
+elastic. This quality of elasticity, as manifested in such different
+degrees, depends upon molecular combinations; some of which, as in glass
+and steel, are favourable for exhibiting it, while others mask it, for
+the ultimate atoms of all kinds are certainly highly elastic.
+
+The measure of elasticity in a mass of matter is the velocity with which
+a wave-motion will be transmitted through it. Thus the elasticity of the
+air determines the velocity of sound in it. If the air be heated, the
+elasticity is increased and the sound moves faster. The rates of such
+sound-conduction range from a few feet in a second to about 16,000, five
+times swifter than a cannon ball. In such elastic bodies as vibrate to
+and fro like the prongs of a tuning-fork, or give sounds of a definite
+pitch, the rate of vibration is determined by the size and shape of the
+body as well as by their elementary composition. The smaller a body is,
+the higher its vibratory rate, if it be made of the same material and
+the form remains the same. Thus a tuning-fork, that may be carried in
+the waistcoat-pocket, may vibrate 500 times a second. If it were only
+the fifty-millionth of an inch in size, but of the same material and
+form, it would vibrate 30,000,000000 times a second; and if it were made
+of ether, instead of steel, it would vibrate as many times faster as the
+velocity of waves in the ether is greater than it is in steel, and would
+be as many as 400,000000,000000 times per second. The amount of
+displacement, or the amplitude of vibration, with the pocket-fork might
+be no more than the hundredth of an inch, and this rate measured as
+translation velocity would be but five inches per second. If the fork
+were of atomic magnitude, and should swing its sides one half the
+diameter of the atom, or say the hundred-millionth of an inch, the
+translational velocity would be equivalent to about eighty miles a
+second, or a hundred and fifty times the velocity of a cannon ball,
+which may be reckoned at about 3000 feet. 

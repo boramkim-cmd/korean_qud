@@ -1,0 +1,32 @@
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+
+# Logs
+*.log
+Logs/*.log
+
+# Temporary files
+*.tmp
+*.temp
+*~
+
+# Build artifacts
+*.dll
+*.pdb
+*.mdb
+
+# IDE
+.vscode/
+.idea/
+*.iml
+*.suo
+*.user
+
+# Git
+.git/
+
+# Large binary files (선택적)
+# Assets/core_source/**/*.dll

@@ -1,0 +1,13 @@
+{
+  "id": "KoreanLocalization",
+  "title": "Korean Localization (한글화)",
+  "description": "Complete Korean translation for Caves of Qud with automatic particle handling (이/가, 을/를, 은/는)",
+  "version": "0.1.0",
+  "author": "Korean Translation Team",
+  "tags": ["Localization", "Korean", "Translation", "Language"],
+  "preloadScripts": [
+    "Scripts/JosaHandler.cs"
+  ],
+  "loadOrder": 100,
+  "dependencies": []
+}
