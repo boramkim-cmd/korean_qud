@@ -22,7 +22,7 @@ namespace QudKRTranslation.Patches
         /// ScreenBuffer.Write 메서드 패치
         /// 현재 활성 Scope가 있을 때만 번역을 시도합니다.
         /// </summary>
-        [HarmonyPatch("Write", new System.Type[] { typeof(string), typeof(bool), typeof(bool), typeof(bool), typeof(System.Collections.Generic.List<string>), typeof(int) })]
+        [HarmonyPatch(nameof(ScreenBuffer.Write), new System.Type[] { typeof(string), typeof(bool), typeof(bool), typeof(bool), typeof(System.Collections.Generic.List<string>), typeof(int) })]
         [HarmonyPrefix]
         static void Write_Prefix(ref string s)
         {
