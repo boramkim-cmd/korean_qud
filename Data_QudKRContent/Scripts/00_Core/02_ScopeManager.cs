@@ -81,5 +81,21 @@ namespace QudKRTranslation
                 Debug.LogWarning($"[ScopeManager] Cleared {count} scopes (emergency cleanup)");
             }
         }
+        
+        /// <summary>
+        /// 특정 딕셔너리가 현재 활성 스코프에 포함되어 있는지 확인합니다.
+        /// (중복 Push 방지용)
+        /// </summary>
+        public static bool IsScopeActive(Dictionary<string, string> targetDict)
+        {
+            if (scopeStack.Count == 0) return false;
+            
+            var currentScopes = scopeStack.Peek();
+            foreach (var dict in currentScopes)
+            {
+                if (dict == targetDict) return true;
+            }
+            return false;
+        }
     }
 }
