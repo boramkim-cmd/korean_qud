@@ -3,6 +3,7 @@
 
 [1/5] 메서드 존재 확인
 ℹ /Users/ben/Desktop/qud_korean/Data_QudKRContent/Scripts/02_Patches/UI/MainMenu_Patch.cs: TargetMethod() 사용됨
+ℹ /Users/ben/Desktop/qud_korean/Data_QudKRContent/Scripts/02_Patches/Core/SteamGalaxyPatch.cs: TargetMethod() 사용됨
 
 [2/5] 네임스페이스 검증
 ✓ Popup → XRL.UI

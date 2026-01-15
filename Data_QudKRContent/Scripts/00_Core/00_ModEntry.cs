@@ -1,12 +1,6 @@
-/*
- * 파일명: 00_ModEntry.cs
- * 분류: [Core] 시스템 진입점
- * 역할: Harmony 라이브러리를 초기화하고 모든 패치를 적용합니다.
- *       에러 핸들링 및 로깅을 담당합니다.
- * 작성일: 2026-01-15
- */
-
 using System;
+using System.Linq;
+using System.Reflection;
 using HarmonyLib;
 using UnityEngine;
 
@@ -20,38 +14,49 @@ namespace QudKRTranslation
             {
                 Debug.Log("=================================================");
                 Debug.Log("[Qud-KR Translation] 모드 초기화 시작...");
-                Debug.Log("[Qud-KR Translation] Version: 0.2.0");
+                Debug.Log("[Qud-KR Translation] Version: 0.2.1 (Safe-Patch)");
                 Debug.Log("=================================================");
                 
                 // Harmony 인스턴스 생성
                 var harmony = new Harmony("com.boram.qud.translation");
-                Debug.Log($"[Qud-KR Translation] Harmony Version: {Harmony.VersionInfo(out var version)} (Actual: {version})");
                 
-                // 패치 적용 전 타입 검증
+                // 패치 적용 전 타입 검증 (선택적)
                 VerifyPatchTargets();
                 
-                // 모든 Harmony 패치 적용
-                Debug.Log("[Qud-KR Translation] Harmony PatchAll 실행 중...");
-                harmony.PatchAll();
-                
-                // 적용된 패치 확인
-                var patches = harmony.GetPatchedMethods();
-                int count = 0;
-                foreach (var method in patches)
+                // 현재 어셈블리의 모든 HarmonyPatch 클래스 찾기
+                var assembly = Assembly.GetExecutingAssembly();
+                var patchTypes = assembly.GetTypes()
+                    .Where(t => t.IsDefined(typeof(HarmonyAttribute), inherit: true))
+                    .ToArray();
+
+                Debug.Log($"[Qud-KR Translation] 총 {patchTypes.Length}개의 패치 클래스 발견. 개별 적용 시작...");
+
+                int successCount = 0;
+                foreach (var type in patchTypes)
                 {
-                    count++;
-                    Debug.Log($"[Qud-KR Translation] ✓ 패치됨: {method.DeclaringType?.Name}.{method.Name}");
+                    try
+                    {
+                        // 개별 클래스 단위로 패치 적용 (하나가 실패해도 나머지는 진행됨)
+                        harmony.CreateClassProcessor(type).Patch();
+                        successCount++;
+                        Debug.Log($"[Qud-KR Translation] ✓ 패치 성공: {type.Name}");
+                    }
+                    catch (Exception ex)
+                    {
+                        Debug.LogError($"[Qud-KR Translation] ❌ 패치 실패: {type.Name}");
+                        Debug.LogError($"[Qud-KR Translation] 원인: {ex.GetType().Name} - {ex.Message}");
+                    }
                 }
                 
                 Debug.Log("=================================================");
-                Debug.Log($"[Qud-KR Translation] 총 {count}개 메서드 패치 완료");
+                Debug.Log($"[Qud-KR Translation] 패치 완료: {successCount}/{patchTypes.Length} 성공");
                 Debug.Log("[Qud-KR Translation] 모드 로드 완료!");
                 Debug.Log("=================================================");
             }
             catch (Exception e)
             {
                 Debug.LogError("=================================================");
-                Debug.LogError("[Qud-KR Translation] ❌ 로드 실패!");
+                Debug.LogError("[Qud-KR Translation] ❌ 치명적 로드 실패!");
                 Debug.LogError($"[Qud-KR Translation] 에러: {e.Message}");
                 Debug.LogError($"[Qud-KR Translation] 스택 트레이스:\n{e.StackTrace}");
                 Debug.LogError("=================================================");
@@ -63,56 +68,16 @@ namespace QudKRTranslation
         /// </summary>
         private static void VerifyPatchTargets()
         {
-            Debug.Log("[Qud-KR Translation] 패치 대상 검증 중...");
+            // 주요 타겟 타입 존재 여부만 로그로 남김
+            string[] criticalTypes = { 
+                "ConsoleLib.Console.ScreenBuffer", 
+                "XRL.UI.UITextSkin",
+                "Qud.UI.MainMenu" 
+            };
             
-            // 주요 타입 확인
-            InspectType("ConsoleLib.Console.ScreenBuffer");
-            InspectType("XRL.UI.UITextSkin");
-            InspectType("XRL.UI.Popup");
-            InspectType("Qud.UI.InventoryScreen");
-            InspectType("Qud.UI.TradeScreen");
-            InspectType("Qud.UI.CharacterStatusScreen");
-            
-            Debug.Log("[Qud-KR Translation] 패치 대상 검증 완료");
-        }
-        
-        /// <summary>
-        /// 타입의 존재 여부와 주요 메서드를 확인합니다.
-        /// </summary>
-        private static void InspectType(string typeName)
-        {
-            var type = AccessTools.TypeByName(typeName);
-            if (type != null)
-            {
-                Debug.Log($"[Qud-KR Translation]   ✓ {typeName} 발견");
-                
-                // 주요 메서드 나열 (최대 5개)
-                var methods = type.GetMethods(
-                    System.Reflection.BindingFlags.Public | 
-                    System.Reflection.BindingFlags.Instance | 
-                    System.Reflection.BindingFlags.DeclaredOnly
-                );
-                
-                if (methods.Length > 0)
-                {
-                    int maxCount = methods.Length > 5 ? 5 : methods.Length;
-                    for (int i = 0; i < maxCount; i++)
-                    {
-                        var paramTypes = methods[i].GetParameters();
-                        string paramStr = paramTypes.Length > 0 
-                            ? string.Join(", ", Array.ConvertAll(paramTypes, p => p.ParameterType.Name))
-                            : "";
-                        Debug.Log($"[Qud-KR Translation]     - {methods[i].Name}({paramStr})");
-                    }
-                    if (methods.Length > 5)
-                    {
-                        Debug.Log($"[Qud-KR Translation]     ... 외 {methods.Length - 5}개");
-                    }
-                }
-            }
-            else
-            {
-                Debug.LogWarning($"[Qud-KR Translation]   ✗ {typeName} 찾을 수 없음");
+            foreach(var typeName in criticalTypes) {
+                if(AccessTools.TypeByName(typeName) == null) 
+                    Debug.LogWarning($"[Qud-KR Translation] 경고: 핵심 타입 '{typeName}'을 찾을 수 없습니다.");
             }
         }
     }
