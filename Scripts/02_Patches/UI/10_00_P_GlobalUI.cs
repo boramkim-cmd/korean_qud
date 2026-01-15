@@ -119,7 +119,7 @@ namespace QudKRTranslation.Patches
                 object ownerInstance = null;
                 if ((leftField != null && !leftField.IsStatic) || (rightField != null && !rightField.IsStatic))
                 {
-                    ownerInstance = UnityEngine.Object.FindObjectOfType(menuType);
+                    ownerInstance = UnityEngine.Object.FindFirstObjectByType(menuType);
                 }
 
                 if (leftField != null) TranslateList(leftField, ownerInstance);
@@ -333,8 +333,10 @@ namespace QudKRTranslation.Patches
         {
             foreach (var option in __result)
             {
-                if (LocalizationManager.TryGetAnyTerm(option.Description.ToLowerInvariant(), out string translated, "ui", "common"))
-                    option.Description = translated;
+                var tr = Traverse.Create(option);
+                string desc = tr.Field<string>("Description").Value;
+                if (LocalizationManager.TryGetAnyTerm(desc?.ToLowerInvariant(), out string translated, "ui", "common"))
+                    tr.Field<string>("Description").Value = translated;
                 yield return option;
             }
         }
@@ -348,8 +350,10 @@ namespace QudKRTranslation.Patches
         {
             foreach (var option in __result)
             {
-                if (LocalizationManager.TryGetAnyTerm(option.Description.ToLowerInvariant(), out string translated, "ui", "common"))
-                    option.Description = translated;
+                var tr = Traverse.Create(option);
+                string desc = tr.Field<string>("Description").Value;
+                if (LocalizationManager.TryGetAnyTerm(desc?.ToLowerInvariant(), out string translated, "ui", "common"))
+                    tr.Field<string>("Description").Value = translated;
                 yield return option;
             }
         }
@@ -365,11 +369,16 @@ namespace QudKRTranslation.Patches
             
             foreach (var item in selections)
             {
-                if (item is MenuOption menuOption && !string.IsNullOrEmpty(menuOption.Description))
+                if (item is MenuOption menuOption)
                 {
-                    if (LocalizationManager.TryGetAnyTerm(menuOption.Description.ToLowerInvariant(), out string translated, "ui", "common"))
+                    var tr = Traverse.Create(menuOption);
+                    string desc = tr.Field<string>("Description").Value;
+                    if (!string.IsNullOrEmpty(desc))
                     {
-                        menuOption.Description = translated;
+                        if (LocalizationManager.TryGetAnyTerm(desc.ToLowerInvariant(), out string translated, "ui", "common"))
+                        {
+                            tr.Field<string>("Description").Value = translated;
+                        }
                     }
                 }
             }
