@@ -98,8 +98,7 @@ def get_keys(path):
             keys.add(dt)
             keys.add(dt.upper())
             keys.add(strip_tags(dt))
-            if "color" not in dt and not dt.startswith("<"):
-                 keys.add(f"<color=#77BFCFFF>{dt.upper()}</color>")
+            # Note: We don't add color tags here anymore because C# will handle it
         help_el = opt.find('helptext')
         if help_el is not None and help_el.text:
             keys.add(help_el.text.strip())
@@ -117,6 +116,10 @@ all_keys = get_keys(xml_path)
 
 final_dict = {}
 for k in all_keys:
+    # Skip keys that already have color tags (we'll generate them in C#)
+    if k.startswith("<color"):
+        continue
+        
     # Use core translation if available
     if k in core_translations:
         final_dict[k] = core_translations[k]
@@ -142,10 +145,35 @@ namespace QudKRTranslation.Data
 {
     public static class OptionsData
     {
-        public static Dictionary<string, string> Translations = new Dictionary<string, string>()
+        // 실제 번역 데이터 (컬러 코드 제거)
+        private static Dictionary<string, string> baseTranslations = new Dictionary<string, string>()
         {
 """
+
 footer = """        };
+
+        // 동적으로 생성된 공개 Dictionary (기존 코드와 호환)
+        public static Dictionary<string, string> Translations { get; private set; }
+
+        static OptionsData()
+        {
+            Translations = new Dictionary<string, string>();
+
+            // 원본 데이터와 컬러 코드 버전 모두 등록
+            foreach (var kvp in baseTranslations)
+            {
+                // 원본 추가
+                Translations[kvp.Key] = kvp.Value;
+
+                // 컬러 코드 버전 추가 (헤더 등에서 사용됨)
+                if (!string.IsNullOrEmpty(kvp.Value))
+                {
+                    string coloredKey = $"<color=#77BFCFFF>{kvp.Key}</color>";
+                    string coloredValue = $"<color=#77BFCFFF>{kvp.Value}</color>";
+                    Translations[coloredKey] = coloredValue;
+                }
+            }
+        }
     }
 }
 """
