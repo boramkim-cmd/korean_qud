@@ -12,67 +12,77 @@ namespace QudKRTranslation.Data
     {
         public static Dictionary<string, string> Translations = new Dictionary<string, string>()
         {
-            // 상단 카테고리 (대소문자 변형 포함)
-            { "General", "일반" },
-            { "GENERAL", "일반" },
-            { "Graphics", "그래픽" },
-            { "GRAPHICS", "그래픽" },
-            { "Display", "디스플레이" },
-            { "DISPLAY", "디스플레이" },
-            { "Audio", "오디오" },
-            { "AUDIO", "오디오" },
+            // === [1] 카테고리 (좌측 사이드바 & 헤더) ===
             { "Sound", "사운드" },
             { "SOUND", "사운드" },
-            { "Gameplay", "게임플레이" },
-            { "GAMEPLAY", "게임플레이" },
+            { "Display", "디스플레이" },
+            { "DISPLAY", "디스플레이" },
             { "Controls", "조작" },
             { "CONTROLS", "조작" },
-            { "Interface", "인터페이스" },
-            { "INTERFACE", "인터페이스" },
-            { "Keybinds", "단축키" },
-            { "KEYBINDS", "단축키" },
-            { "UI", "UI" },
-            { "Automation", "자동화" },
-            { "AUTOMATION", "자동화" },
             { "Accessibility", "접근성" },
             { "ACCESSIBILITY", "접근성" },
+            { "UI", "UI" },
+            { "Legacy UI", "레거시 UI" },
+            { "Automation", "자동화" },
+            { "Autoget", "자동 습득" },
+            { "Prompts", "알림" },
             { "Mods", "모드" },
             { "MODS", "모드" },
+            { "Performance", "성능" },
             { "App Settings", "앱 설정" },
-            { "APP SETTINGS", "앱 설정" },
             { "Debug", "디버그" },
             { "DEBUG", "디버그" },
-            { "Modding", "모딩" },
-            { "MODDING", "모딩" },
+
+            // === [2] 사운드 (Sound) 항목 ===
+            { "Main volume", "주 볼륨" },
+            { "Sound effects", "효과음" },
+            { "Sound effects volume", "효과음 볼륨" },
+            { "Music", "음악" },
+            { "Music volume", "음악 볼륨" },
+            { "Ambient sounds", "환경음" },
+            { "Ambient volume", "환경음 볼륨" },
+            { "Interface sounds", "인터페이스 소리" },
+            { "Interface volume", "인터페이스 볼륨" },
+            { "Combat sounds", "전투 소리" },
+            { "Combat volume", "전투 볼륨" },
+            { "Fire crackling sounds", "불 타는 소리" },
+
+            // === [3] 디스플레이 (Display) 항목 ===
+            { "Brightness", "밝기" },
+            { "Contrast", "대비" },
+            { "Fullscreen", "전체 화면" }, // 이미 작동 중
+            { "Fullscreen resolution", "전체 화면 해상도" },
+            { "Frame rate", "프레임 레이트" },
+            { "Enable tile graphics", "타일 그래픽 활성화" },
+            { "Display vignette effect", "비네트 효과 표시" },
+            { "Display scanlines", "스캔라인 표시" },
+            { "Display combat animations", "전투 애니메이션 표시" },
+            { "Display floating damage numbers", "피해 수치 표시" },
+            { "Display modern visual effects", "최신 시각 효과 표시" },
+            { "Use pixel font", "픽셀 폰트 사용" }, 
             
-            // 색상 태그가 포함된 카테고리 변형 (RTF 대응)
-            { "<color=#77BFCFFF>SOUND</color>", "<color=#77BFCFFF>사운드</color>" },
-            { "<color=#77BFCFFF>DISPLAY</color>", "<color=#77BFCFFF>디스플레이</color>" },
-            { "<color=#77BFCFFF>CONTROLS</color>", "<color=#77BFCFFF>조작</color>" },
-            { "<color=#77BFCFFF>GENERAL</color>", "<color=#77BFCFFF>일반</color>" },
-            { "<color=#77BFCFFF>GAMEPLAY</color>", "<color=#77BFCFFF>게임플레이</color>" },
-            
-            // 일반 설정
+            // === [4] 상단 & 하단 네비게이션 ===
+            { "Show advanced options", "고급 설정 표시" },
+            { "<search>", "검색" }, // 검색창 플레이스홀더
+            { "navigate", "이동" },
+            { "Collapse All", "모두 접기" },
+            { "Expand All", "모두 펼치기" },
+            { "Toggle Visibilty", "보기 전환" }, // 오타 고려 (Visibilty)
+            { "Toggle Visibility", "보기 전환" }, // 정타
+            { "Back", "뒤로" },
+            { "Apply", "적용" },
+            { "Default", "기본값" },
+
+            // === [5] 기타 누락 가능성 높은 항목들 ===
             { "Language", "언어" },
             { "Autosave", "자동 저장" },
             { "Show Tutorials", "튜토리얼 표시" },
-            
-            // 그래픽 설정
-            { "Resolution", "해상도" },
-            { "Fullscreen", "전체 화면" },
-            { "UI Scale", "UI 크기" },
-            { "Tile Set", "타일셋" },
-            
-            // 공통 버튼 및 라벨
-            { "Apply", "적용" },
-            { "Back", "뒤로" },
-            { "Default", "기본값" },
-            { "Cancel", "취소" },
-            { "Reset to Defaults", "초기화" },
-            
-            // 툴팁/설명 (예시)
-            { "Adjust the volume of the sound effects.", "효과음의 음량을 조절합니다." },
-            { "Toggle whether the game automatically saves at key points.", "주요 시점에서 게임을 자동으로 저장할지 여부를 설정합니다." }
+            { "Zoom level", "확대 레벨" },
+            { "Sidebar width", "사이드바 너비" },
+            { "Message log opacity", "메시지 로그 투명도" },
+            { "Minimap", "미니맵" },
+            { "Show overlay map", "오버레이 지도 표시" },
+            { "Overlay map opacity", "오버레이 지도 투명도" }
         };
     }
 }
