@@ -799,47 +799,44 @@ error CS0246: The type or namespace name 'MenuOption' could not be found
 error CS0246: The type or namespace name 'UIBreadcrumb' could not be found
 ---
 
-## ERR-R009: 색상 태그 복원 실패로 인한 번역 미적용 (캐릭터 생성)
+## ERR-R009: [중요] 색상 태그가 중간에 섞인 텍스트의 번역 실패 (RestoreColorTags 로직 결함)
 
 ### 기본 정보
 | 항목       | 내용                     |
 | ---------- | ------------------------ |
 | **상태**   | 🟢 RESOLVED              |
-| **심각도** | 🟠 High                  |
+| **심각도** | 🔴 Critical (번역 무시 현상) |
 | **발견일** | 2026-01-16               |
 | **해결일** | 2026-01-16               |
 
-### 증상
-캐릭터 생성 화면에서 다음 텍스트들이 번역되지 않음:
-1. "character creation": 아예 번역 안됨.
-2. ":choose genotype:": 번역 키가 존재함에도 안됨.
-3. "20 bonus skill points...": 번역 키 존재, ERR-R006 해결 후에도 안됨.
-4. "-600 reputation...": 번역 키 존재, ERR-R006 해결 후에도 안됨.
+### 🧐 왜 전에는 안 되었고, 지금은 해결되었는가? (Deep Dive)
 
-### 근본 원인
-1. **RestoreColorTags 로직 결함**:
-   - 게임이 `{{C|20}} bonus...` 같은 텍스트를 보낼 때, `TranslationEngine`이 태그를 제거(`20 bonus...`)하고 번역(`레벨당 {{c|20}}...`)을 찾음.
-   - `RestoreColorTags`가 원본 태그를 복원하려 할 때 `original.Replace(stripped, translated)`를 사용.
-   - 하지만 `stripped`("20 bonus...")는 `original`("{{C|20}} bonus...")의 부분 문자열이 아님 (태그로 인해 끊김).
-   - `Replace` 실패 → 원본(영어) 반환.
+**1. 과거의 한계: `Replace()`의 맹점**
+이전 로직은 번역 후 원래 색상 태그를 입혀주기 위해 다음과 같은 방식을 사용했습니다:
+`원본.Replace(태그가 제거된 텍스트, 번역된 텍스트)`
 
-2. **LocalizationManager vs TranslationEngine 사용 혼재**:
-   - `ChargenTranslationUtils.TranslateBreadcrumb`가 `TranslationEngine.TryTranslate` 대신 `LocalizationManager.TryGetAnyTerm`을 사용.
-   - `TryGetAnyTerm`은 태그 제거/정규화를 수행하지 않고 순수 키 매칭만 수행하여 `{{c|...}}`가 포함된 입력에 실패.
+*   **문제의 텍스트**: `{{C|20}} bonus skill points each level`
+*   **태그 제거 결과**: `20 bonus skill points each level`
+*   **번역 시도**: 성공! (`레벨당 {{c|20}}의 보너스 기술 포인트`)
+*   **태그 복원 시도**: `original.Replace("20 bonus...", "레벨당...")`
+*   **결과**: **실패!** 원본 문자열 안에 `"20 bonus..."`라는 연속된 문자열이 존재하지 않음 (숫자 `2`와 `0` 사이에 태그 `}}`가 끼어있기 때문). 
+*   **부작용**: `Replace`가 실패하면 엔진은 안전을 위해 **번역되지 않은 원본(영어)**을 그대로 반환했습니다. 이것이 번역을 다 해놓고도 영어가 나왔던 근본 원인이었습니다.
 
-3. **Glossary 누락**:
-   - "character creation" 키 자체가 용어집에 없었음.
+**2. 현재의 해결책: 폴백(Fallback) 메커니즘**
+이제 엔진은 `Replace`를 시도하기 전, 원본에 해당 텍스트가 정말 존재하는지 확인합니다. 만약 태그 때문에 끊겨서 찾을 수 없다면, **태그 복원을 포기하고 용어집에 정의된 번역문(`translated`)을 그대로 사용**합니다. 
 
-### ✅ 최종 해결
-1. **TranslationEngine.RestoreColorTags 개선**:
-   - `Replace`가 실패하거나(원본에 stripped가 없음) 의미가 없는 경우, 번역된 텍스트(`translated`)를 그대로 반환하도록 수정.
-   - 번역된 텍스트가 이미 필요한 태그를 포함하고 있으므로 안전함.
+용어집에는 이미 적절한 색상 태그가 포함되어 있으므로, 이 방식이 훨씬 안전하고 정확합니다.
 
-2. **ChargenTranslationUtils 개선**:
-   - `TranslateBreadcrumb`, `TranslateMenuOptions`가 `TranslationEngine.TryTranslate`를 사용하도록 변경하여 태그 처리 지원.
+### ✅ 최종 해결 및 결론
+1.  **로직 수정**: `TranslationEngine.RestoreColorTags`에서 `Contains()` 체크를 통해 교체가 불가능할 경우 번역문을 즉시 반환하도록 개선.
+2.  **API 통일**: `ChargenTranslationUtils`가 태그 정규화 기능이 없는 `LocalizationManager` 대신 `TranslationEngine`을 사용하도록 전면 수정.
+3.  **데이터 보강**: 히트맵 및 이미지 분석을 통해 누락된 `character creation` 키 추가.
 
-3. **Glossary 추가**:
-   - `glossary_chargen.json`에 `character creation` 추가.
+> [!CAUTION]
+> **핵심 교훈 (Lessons Learned)**
+> - 게임 엔진(Caves of Qud)은 텍스트 중간(심지어 단어 중간)에 색상 태그를 임의로 삽입할 수 있습니다.
+> - `Replace` 기반의 문자열 복원은 문자열이 태그에 의해 "파편화"된 경우 작동하지 않습니다. 
+> - **번역 시스템은 복원 실패 시 무조건 번역문을 반환하되, 번역문 내에 필요한 태그가 포함되어 있음을 보장해야 합니다.**
 
 ### 관련 파일
 ```
