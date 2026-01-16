@@ -1,9 +1,3 @@
-/*
- * 파일명: 00_99_QudKREngine.cs
- * 분류: [Core] 엔진 확장 유틸리티
- * 역할: 한국어 폰트 강제 적용, 조사(Josa) 처리 로직 등 엔진 레벨의 기능을 제공합니다.
- */
-
 using System;
 using System.Collections.Generic;
 using System.Reflection;
@@ -29,17 +23,33 @@ namespace QudKRTranslation.Core
     {
         public static bool IsFontLoaded { get; private set; } = false;
 
+        // [중요] 찾아주신 정확한 이름을 1순위에 넣었습니다.
         public static string[] TargetFontNames = { 
-            "NeoDunggeunmo-Regular", 
-            "NeoDunggeunmo",         
-            "neodgm",                
-            "AppleGothic",           
+            "NeoDunggeunmo-Regular", // 1순위: 정확한 이름
+            "NeoDunggeunmo",         // 2순위: 패밀리 이름
+            "neodgm",                // 3순위: 파일명
+            "AppleGothic",           // 4순위: 맥 기본
             "Arial" 
         };
+        private static bool _patched = false;
 
         public static void ApplyKoreanFont()
         {
+            // [Emergency] UI 깨짐 현상으로 폰트 적용 로직 비활성화
+            // 추후 적절한 폰트 적용 방식(AssetBundle 등)으로 대체 필요
             Debug.Log("[Qud-KR] 폰트 적용 로직 비활성화 (UI 깨짐 방지)");
+            
+            /*
+            if (_patched) return;
+            
+            ... (중략) ...
+
+            // 2. TMPro 폰트 에셋 생성 및 연결 (Dynamic)
+             ...
+            Debug.Log($"[Qud-KR] UI 폰트 {count}개에 '{loadedName}' (Size:18) 적용 완료.");
+            IsFontLoaded = true;
+            _patched = true;
+            */
         }
     }
 
@@ -47,6 +57,7 @@ namespace QudKRTranslation.Core
     // 2. Harmony Patches
     // =================================================================
 
+    // UI 초기화 시점 후킹 (폰트 적용 타이밍)
     [HarmonyPatch(typeof(Qud.UI.UIManager), "Init")]
     public static class UILoadPatch
     {
@@ -56,6 +67,7 @@ namespace QudKRTranslation.Core
         }
     }
 
+    // 로그 한글화 (조사 처리)
     [HarmonyPatch(typeof(MessageQueue), "AddPlayerMessage", new Type[] { typeof(string), typeof(string), typeof(bool) })]
     public static class MessageLogPatch
     {
@@ -66,6 +78,7 @@ namespace QudKRTranslation.Core
         }
     }
 
+    // 관사(a/an) 제거
     [HarmonyPatch(typeof(Grammar), "IndefiniteArticle", new Type[] { typeof(string), typeof(bool) })]
     public static class ArticleKillerPatch
     {
@@ -76,6 +89,7 @@ namespace QudKRTranslation.Core
         }
     }
 
+    // 복수형(s) 제거
     [HarmonyPatch(typeof(Grammar), "Pluralize")]
     public static class PluralizeKillerPatch
     {
@@ -86,6 +100,7 @@ namespace QudKRTranslation.Core
         }
     }
 
+    // 이름 어순 교정
     [HarmonyPatch]
     public static class NameOrderPatch
     {
@@ -119,6 +134,7 @@ namespace QudKRTranslation.Core
         }
     }
 
+    // 설명문 교정
     [HarmonyPatch(typeof(Description), "GetShortDescription")]
     public static class DescriptionPatch
     {
@@ -155,87 +171,13 @@ namespace QudKRTranslation.Core
         }
         private static void ProcessPattern(StringBuilder sb, string pattern, string josaWith, string josaWithout)
         {
-            string str = sb.ToString();
-            int offset = 0;
             while (true)
             {
-                int idx = str.IndexOf(pattern, offset);
+                string current = sb.ToString();
+                int idx = current.IndexOf(pattern);
                 if (idx == -1) break;
-
-                // 조사 바로 앞 글자 찾기
-                char target = ' ';
-                if (idx > 0)
-                {
-                    target = str[idx - 1];
-                    
-                    // 만약 앞 글자가 '}'라면, 색상 태그({{...}})가 닫히는 부분인지 확인
-                    if (target == '}')
-                    {
-                        // 색상 태그 내부의 마지막 글자를 찾는다
-                        // 예: {{w|검}}{을/를} -> '검'이 target이 되어야 함
-                        int closeCount = 0;
-                        int openPos = -1;
-                        
-                        // 역방향으로 {{ 찾기
-                        for (int i = idx - 1; i >= 0; i--)
-                        {
-                            if (str[i] == '}') closeCount++;
-                            else if (str[i] == '{' && i > 0 && str[i-1] == '{')
-                            {
-                                // {{ 발견
-                                openPos = i - 1;
-                                break;
-                            }
-                        }
-
-                        if (openPos != -1)
-                        {
-                            // 태그 내용물 추출 (예: w|검)
-                            // 인덱스는 {{ 이후부터 }} 이전까지
-                            // {{w|검}} 에서 openPos는 0, idx-1은 7 (last })
-                            // 내부: w|검 (len: 6, idx 2~5) - index mismatch correction
-                            // 구조: {{A|B}}
-                            // A|B 부분만 추출
-                            // {{ 길이 2, }} 길이 2
-                            
-                            // 더 간단히: 역방향으로 탐색하며 '|' 뒤의 마지막 글자(한글)를 찾는다
-                            for (int k = idx - 2; k > openPos + 2; k--)
-                            {
-                                if (str[k] == '|') 
-                                {
-                                    // 파이프 바로 뒤부터 내용 시작. 
-                                    // 하지만 우리는 마지막 글자가 필요하므로
-                                    // idx-3 (}} 바로 앞) 부터 역으로 탐색해서 한글을 찾는다
-                                    char lastContentChar = ' ';
-                                    for (int m = idx - 3; m > k; m--)
-                                    {
-                                        if (HasJongsung(str[m]) || (str[m] >= 0xAC00 && str[m] <= 0xD7A3))
-                                        {
-                                            lastContentChar = str[m];
-                                            break;
-                                        }
-                                        // 한글이 아닌 문자는 무시 (가정)? 
-                                        // 보통 {{w|Sword}} 처럼 영어가 오면 'd'가 됨.
-                                        // {{w|검}} 이면 '검'.
-                                        // 단순히 마지막 문자 채택
-                                        if (m == idx - 3) lastContentChar = str[m];
-                                    }
-                                    
-                                    if (lastContentChar != ' ') target = lastContentChar;
-                                    break;
-                                }
-                            }
-                        }
-                    }
-                }
-
-                string replacement = HasJongsung(target) ? josaWith : josaWithout;
-                sb.Remove(idx, pattern.Length);
-                sb.Insert(idx, replacement);
-                
-                // 문자열 변경됨, 다시 문자열 갱신 (비효율적이지만 안전함)
-                str = sb.ToString();
-                offset = idx + replacement.Length;
+                char prevChar = (idx > 0) ? current[idx - 1] : ' ';
+                sb.Replace(pattern, HasJongsung(prevChar) ? josaWith : josaWithout, idx, pattern.Length);
             }
         }
     }

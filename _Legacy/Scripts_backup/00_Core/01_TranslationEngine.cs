@@ -57,13 +57,20 @@ namespace QudKRTranslation
                 FindInScopes(ToTitleCase(core), out result, scopes) ||       // 3) 첫 글자만 대문자
                 FindInScopes(core.ToLower(), out result, scopes))            // 4) 전체 소문자
             {
-                // 6. 번역 성공: 색상 태그 복원
-                if (hasColorTags)
+                // 6. 번역 결과에서 bullet 접두사 제거 (이중 접두사 방지)
+                // prefix가 추출되었다면, 번역 결과에도 동일한 bullet이 있을 수 있음
+                if (!string.IsNullOrEmpty(prefix))
+                {
+                    result = StripColorTags(result); // 색상 태그 제거하여 bullet 문자 노출
+                }
+                
+                // 7. 색상 태그 복원 (prefix가 없는 경우에만)
+                if (hasColorTags && string.IsNullOrEmpty(prefix))
                 {
                     result = RestoreColorTags(working, stripped, result);
                 }
                 
-                // 7. 접두사 복원
+                // 8. 접두사 복원
                 translated = prefix + result;
                 return true;
             }
@@ -77,10 +84,13 @@ namespace QudKRTranslation
         /// </summary>
         private static string ExtractPrefix(ref string text)
         {
+            // Bullet/list 접두사 패턴들
             string[] prefixes = { 
                 "[■] ", "[ ] ", "[*] ", "[X] ", "[x] ", 
                 "[Space] ", "[-] ", "[+] ", 
-                "( ) ", "(X) ", "(x) ", "(*) ", "(-) ", "(+) " 
+                "( ) ", "(X) ", "(x) ", "(*) ", "(-) ", "(+) ",
+                // 게임에서 렌더링된 bullet 형태 (ù, · 등이 - 로 표시됨)
+                "- ", "· ", "• ", "◦ ", "‣ ", "⁃ "
             };
             
             foreach (var p in prefixes)
@@ -128,18 +138,7 @@ namespace QudKRTranslation
         {
             // 간단한 방법: 원본에서 stripped를 translated로 교체
             // 색상 태그는 그대로 유지됨
-            string restored = original.Replace(stripped, translated);
-            
-            // 만약 Replacement가 실패했거나(원본에 stripped가 없음) 의미가 없다면
-            // 그리고 translated가 유효하다면, 태그 복원보다 번역된 텍스트(이미 태그가 있을 수 있음)를 우선합니다.
-            if (!original.Contains(stripped))
-            {
-                // 원본이 stripped를 포함하지 않음 (태그로 인해 끊겨있을 수 있음: {{C|2}}0 등)
-                // 이 경우 번역된 텍스트를 그대로 반환합니다.
-                return translated;
-            }
-            
-            return restored;
+            return original.Replace(stripped, translated);
         }
         
         /// <summary>

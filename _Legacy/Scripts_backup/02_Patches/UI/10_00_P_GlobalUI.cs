@@ -34,6 +34,7 @@ namespace QudKRTranslation.Patches
         }
 
         private static bool _scopePushed = false;
+        private static bool _fontWarned = false;
 
         [HarmonyPrefix]
         static void Show_Prefix()

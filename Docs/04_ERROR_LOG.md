@@ -54,9 +54,11 @@
 
 # 🔴 미해결 이슈 (Open Issues)
 
+*현재 미해결된 이슈가 없습니다.*
+
 ---
 
-## ERR-001: 인벤토리 "*All" 필터 미번역
+## 해결된 오류 (Resolved)
 
 ### 기본 정보
 | 항목          | 내용       |
@@ -209,6 +211,84 @@ LOCALIZATION/glossary_mutations.json
 ---
 
 ## 해결된 오류 (Resolved)
+
+## ERR-001: 인벤토리 "*All" 필터 미번역
+
+### 기본 정보
+| 항목       | 내용                   |
+| ---------- | ---------------------- |
+| **상태**   | 🟢 RESOLVED            |
+| **심각도** | 🟠 High                |
+| **발견일** | 2026-01-15             |
+| **해결일** | 2026-01-16             |
+
+### 증상
+인벤토리 화면 상단의 필터 바에서 "*All" 텍스트와 카테고리(Weapons 등)가 영어로 표시됨.
+
+### ✅ 최종 해결
+`InventoryAndEquipmentStatusScreen.UpdateViewFromData`에 Postfix 패치를 추가하여 FilterBar 컴포넌트 내부의 버튼 텍스트를 직접 수정. `*All` 및 `*all`에 대한 예외 처리 추가.
+
+- **관련 파일**: `Scripts/02_Patches/UI/02_10_07_Inventory.cs`
+
+---
+
+## ERR-002: 조사 처리 시 색상 태그 내부 미인식
+
+### 기본 정보
+| 항목       | 내용                   |
+| ---------- | ---------------------- |
+| **상태**   | 🟢 RESOLVED            |
+| **심각도** | 🟡 Medium              |
+| **발견일** | 2026-01-15             |
+| **해결일** | 2026-01-16             |
+
+### 증상
+`{{w|검}}{을/를}` 같이 색상 태그 바로 뒤에 조사가 올 때, 받침 인식이 안됨.
+
+### ✅ 최종 해결
+`QudKREngine.KoreanTextHelper.ProcessPattern` 메서드를 개선. 앞 글자가 `}`일 경우 역방향으로 탐색하여 색상 태그 내부의 실제 텍스트(`검`)를 찾아 받침 유무를 판단하도록 수정.
+
+- **관련 파일**: `Scripts/00_Core/00_99_QudKREngine.cs`
+
+---
+
+## ERR-003: Options 빈 값 (검증 완료)
+
+### 기본 정보
+| 항목       | 내용                   |
+| ---------- | ---------------------- |
+| **상태**   | 🟢 RESOLVED            |
+| **심각도** | 🟡 Medium              |
+| **발견일** | 2026-01-15             |
+| **해결일** | 2026-01-16             |
+
+### 증상
+설정 옵션 중 일부가 빈 값으로 되어 있어 번역되지 않는다는 리포트.
+
+### 검증 결과
+`glossary_options.json` 전수 검사 결과, 빈 값이나 미번역 키가 발견되지 않음. (단 'PS'는 예외). 이전 작업에서 해결되었거나 정오탐으로 판단하여 종결.
+
+---
+
+## ERR-004: 변이 설명 누락
+
+### 기본 정보
+| 항목       | 내용                   |
+| ---------- | ---------------------- |
+| **상태**   | 🟢 RESOLVED            |
+| **심각도** | 🟢 Low                 |
+| **발견일** | 2026-01-15             |
+| **해결일** | 2026-01-16             |
+
+### 증상
+`glossary_mutations.json`에 정신 변이(Mental Mutations) 설명이 누락됨.
+
+### ✅ 최종 해결
+`Mutations.xml`에서 설명 태그가 존재하는 `Clairvoyance`와 `Pyrokinesis`의 설명을 추출하여 `mutation_desc_mental` 카테고리에 추가.
+
+- **관련 파일**: `LOCALIZATION/glossary_mutations.json`
+
+---
 
 ## ERR-R007: 방랑 모드 이중 Bullet 표시
 
@@ -717,7 +797,56 @@ LOCALIZATION/ (정상)
 ```
 error CS0246: The type or namespace name 'MenuOption' could not be found
 error CS0246: The type or namespace name 'UIBreadcrumb' could not be found
-error CS0246: The type or namespace name 'ChoiceWithColorIcon' could not be found
+---
+
+## ERR-R009: 색상 태그 복원 실패로 인한 번역 미적용 (캐릭터 생성)
+
+### 기본 정보
+| 항목       | 내용                     |
+| ---------- | ------------------------ |
+| **상태**   | 🟢 RESOLVED              |
+| **심각도** | 🟠 High                  |
+| **발견일** | 2026-01-16               |
+| **해결일** | 2026-01-16               |
+
+### 증상
+캐릭터 생성 화면에서 다음 텍스트들이 번역되지 않음:
+1. "character creation": 아예 번역 안됨.
+2. ":choose genotype:": 번역 키가 존재함에도 안됨.
+3. "20 bonus skill points...": 번역 키 존재, ERR-R006 해결 후에도 안됨.
+4. "-600 reputation...": 번역 키 존재, ERR-R006 해결 후에도 안됨.
+
+### 근본 원인
+1. **RestoreColorTags 로직 결함**:
+   - 게임이 `{{C|20}} bonus...` 같은 텍스트를 보낼 때, `TranslationEngine`이 태그를 제거(`20 bonus...`)하고 번역(`레벨당 {{c|20}}...`)을 찾음.
+   - `RestoreColorTags`가 원본 태그를 복원하려 할 때 `original.Replace(stripped, translated)`를 사용.
+   - 하지만 `stripped`("20 bonus...")는 `original`("{{C|20}} bonus...")의 부분 문자열이 아님 (태그로 인해 끊김).
+   - `Replace` 실패 → 원본(영어) 반환.
+
+2. **LocalizationManager vs TranslationEngine 사용 혼재**:
+   - `ChargenTranslationUtils.TranslateBreadcrumb`가 `TranslationEngine.TryTranslate` 대신 `LocalizationManager.TryGetAnyTerm`을 사용.
+   - `TryGetAnyTerm`은 태그 제거/정규화를 수행하지 않고 순수 키 매칭만 수행하여 `{{c|...}}`가 포함된 입력에 실패.
+
+3. **Glossary 누락**:
+   - "character creation" 키 자체가 용어집에 없었음.
+
+### ✅ 최종 해결
+1. **TranslationEngine.RestoreColorTags 개선**:
+   - `Replace`가 실패하거나(원본에 stripped가 없음) 의미가 없는 경우, 번역된 텍스트(`translated`)를 그대로 반환하도록 수정.
+   - 번역된 텍스트가 이미 필요한 태그를 포함하고 있으므로 안전함.
+
+2. **ChargenTranslationUtils 개선**:
+   - `TranslateBreadcrumb`, `TranslateMenuOptions`가 `TranslationEngine.TryTranslate`를 사용하도록 변경하여 태그 처리 지원.
+
+3. **Glossary 추가**:
+   - `glossary_chargen.json`에 `character creation` 추가.
+
+### 관련 파일
+```
+Scripts/00_Core/00_00_01_TranslationEngine.cs (RestoreColorTags)
+Scripts/99_Utils/99_00_02_ChargenTranslationUtils.cs
+LOCALIZATION/glossary_chargen.json
+```
 error CS0246: The type or namespace name 'PrefixMenuOption' could not be found
 error CS0246: The type or namespace name 'SummaryBlockData' could not be found
 error CS0246: The type or namespace name 'CategoryMenuData' could not be found
@@ -1160,3 +1289,140 @@ UnityEngine.Debug.Log($"[DEBUG] 처리 후: '{processed}'");
 ---
 
 *ERROR_LOG 버전 1.0 | 2026-01-16 | 신규 생성*
+
+## ERR-R010: 컴파일 오류 (Regex 및 Namespace)
+ 
+ ### 기본 정보
+ | 항목       | 내용                     |
+ | ---------- | ------------------------ |
+ | **상태**   | 🟢 RESOLVED              |
+ | **심각도** | 🔴 Critical              |
+ | **발견일** | 2026-01-16               |
+ | **해결일** | 2026-01-16               |
+ 
+ ### 증상
+ ```
+ error CS0103: The name 'Regex' does not exist in the current context
+ error CS0246: The type or namespace name 'CategoryMenuData' could not be found
+ ```
+ 
+ ### 원인
+ - `LocalizationManager.cs`: `using System.Text.RegularExpressions;` 누락
+ - `CharacterCreation.cs`: `using XRL.UI.Framework;` 누락
+ 
+ ### ✅ 최종 해결
+ 누락된 네임스페이스 추가.
+ 
+ ---
+ 
+ ## ERR-R011: 소스 파일 누락 및 중복 (ChargenTranslationUtils)
+ 
+ ### 기본 정보
+ | 항목       | 내용                     |
+ | ---------- | ------------------------ |
+ | **상태**   | 🟢 RESOLVED              |
+ | **심각도** | 🔴 Critical              |
+ | **발견일** | 2026-01-16               |
+ | **해결일** | 2026-01-16               |
+ 
+ ### 증상
+ `ChargenTranslationUtils.cs`가 소스 디렉토리(`Desktop/qud_korean`)에는 없고 배포판(`Mods/...`)에만 존재.
+ 
+ ### 원인
+ AI 에이전트의 작업 경로 혼동. `deploy-mods.sh` 실행 시 소스 기준으로 동기화되므로 파일 소실 위험.
+ 
+ ### ✅ 최종 해결
+ 배포판의 파일을 소스 디렉토리로 복구 및 중복 파일 정리.
+ 
+ ---
+ 
+ ## ERR-R009: 폴더 구조 및 파일명 규칙 불일치
+
+### 기본 정보
+| 항목       | 내용                     |
+| ---------- | ------------------------ |
+| **상태**   | 🟢 RESOLVED              |
+| **심각도** | 🟠 High                  |
+| **발견일** | 2026-01-16               |
+| **해결일** | 2026-01-16               |
+| **담당자** | AI Agent (구조 이슈)     |
+
+### 증상
+1. **잘못된 폴더 구조**: `02_Patches/Core/`와 `02_Patches/00_Core/` 혼재
+2. **파일명 규칙 불일치**: `ChargenTranslationUtils.cs` vs `99_00_02_ChargenTranslationUtils.cs`
+3. **중복 파일 생성**: 같은 내용이지만 이름만 다른 파일 공존
+
+### 근본 원인
+AI 에이전트의 파일명 규칙 이해 부족. 올바른 규칙은 `[폴더번호]_[파일번호]_[이름].cs` 형식이지만 AI가 번호 prefix를 누락하거나 잘못 사용함.
+
+### ✅ 최종 해결
+1. **올바른 구조 확립**: `02_Patches/00_Core/`, `02_Patches/10_UI/` 유지
+2. **잘못된 폴더 정리**: `Core/`, `UI/` → `_Legacy/` 이동
+3. **파일명 정리**: 규칙 위반 파일 → `_Legacy/` 이동
+
+### 파일명 규칙
+- `00_Core/`: `00_00_[번호]_[이름].cs`
+- `02_Patches/00_Core/`: `02_00_[번호]_[이름].cs`
+- `02_Patches/10_UI/`: `02_10_[번호]_[이름].cs`
+- `99_Utils/`: `99_00_[번호]_[이름].cs`
+
+---
+ 
+ ## ERR-R012: 유틸리티 클래스 네임스페이스 누락 (MenuOption)
+ 
+ ### 기본 정보
+ | 항목       | 내용                     |
+ | ---------- | ------------------------ |
+ | **상태**   | 🟢 RESOLVED              |
+ | **심각도** | 🔴 Critical              |
+ | **발견일** | 2026-01-16               |
+ | **해결일** | 2026-01-16               |
+ 
+ ### 증상
+ ```
+ error CS0246: The type or namespace name 'MenuOption' could not be found
+ error CS1503: cannot convert from '...XRL.UI.Framework.MenuOption' to '...MenuOption'
+ ```
+ 
+ ### 원인
+ `ChargenTranslationUtils.cs`에서 `MenuOption`을 사용(`TranslateMenuOptions` 메서드)하지만 `using XRL.UI.Framework;`가 누락됨.
+ 
+ ### ✅ 최종 해결
+ `ChargenTranslationUtils.cs`에 `using XRL.UI.Framework;` 추가.
+ 
+ ---
+
+## ERR-R013: 인벤토리 필터 텍스트 설정 시 컴파일 오류
+
+### 기본 정보
+| 항목       | 내용                     |
+| ---------- | ------------------------ |
+| **상태**   | 🟢 RESOLVED              |
+| **심각도** | 🔴 Critical              |
+| **발견일** | 2026-01-16               |
+| **해결일** | 2026-01-16               |
+
+### 증상
+```
+error CS7036: There is no argument given that corresponds to the required formal parameter 'Predicate' of 'Extensions.Exists<T>(...)'
+error CS1061: 'Traverse' does not contain a definition for 'Value'
+```
+
+### 원인
+`Scripts/02_Patches/10_UI/02_10_07_Inventory.cs`에서 Harmony `Traverse` API를 잘못 사용함.
+1. `Traverse` (non-generic) 객체에는 `.Value` 프로퍼티가 없음.
+2. `Traverse` 객체에 `.Exists()` 메서드가 없으며, 잘못된 확장 메서드가 호출됨.
+
+### ✅ 최종 해결
+`Traverse<string>` 제네릭을 사용하여 타입 안정성을 확보하고, `.Value` 프로퍼티를 통해 값을 설정하도록 수정.
+Harmony의 Traverse는 필드/프로퍼티가 없을 경우 setter 동작을 무시하므로 별도의 존재 확인 로직 제거.
+
+```csharp
+// 변경 전
+if (btnTr.Field("text").Exists()) btnTr.Field("text").Value = tAll;
+
+// 변경 후
+btnTr.Field<string>("text").Value = tAll;
+```
+
+---

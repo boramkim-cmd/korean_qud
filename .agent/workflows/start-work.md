@@ -50,7 +50,18 @@ python3 tools/project_tool.py
 
 ## 5. 작업 완료 후
 
-1. `project_tool.py` 검증
-2. 게임 내 테스트
-3. `02_TODO.md` 상태 업데이트 (`[/]` → `[x]`)
-4. 에러 발생 시 `04_ERROR_LOG.md` 기록
+// turbo
+```bash
+python3 tools/project_tool.py
+```
+> 코드 및 JSON 무결성 검증
+
+// turbo
+```bash
+./tools/deploy-mods.sh
+```
+> 게임 모드 폴더로 자동 배포 (작업 완료 시 필수!)
+
+1. 게임 재시작하여 테스트
+2. `02_TODO.md` 상태 업데이트 (`[/]` → `[x]`)
+3. 에러 발생 시 `04_ERROR_LOG.md` 기록

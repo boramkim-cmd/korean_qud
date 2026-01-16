@@ -40,6 +40,10 @@
     "physical mutations": "육체적 변이",
     "points remaining": "남은 포인트"
   },
+  "mutation_desc_mental": {
+    "you briefly gain vision of a nearby area.": "잠시 동안 주변 지역의 시야를 확보합니다.",
+    "you heat a nearby area with your mind.": "정신력으로 주변 지역을 가열합니다."
+  },
   "mutation_desc_physical": {
     "several horns jut out of your head.": "머리에 여러 개의 뿔이 솟아나 있습니다.",
     "you are a crystalline being.": "당신은 수정으로 이루어진 존재입니다.",

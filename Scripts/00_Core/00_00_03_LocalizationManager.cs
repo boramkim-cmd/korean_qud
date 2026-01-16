@@ -8,6 +8,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Text.RegularExpressions;
 using UnityEngine;
 using XRL;
 
@@ -48,6 +49,23 @@ namespace QudKRTranslation.Core
             }
         }
 
+        private static string NormalizeKey(string key)
+        {
+            if (string.IsNullOrEmpty(key)) return key;
+            
+            // 0. 색상 태그를 소문자로 통일: {{C|text}} → {{c|text}}
+            string result = Regex.Replace(key, @"\{\{([a-zA-Z])\|", m => $"{{{{{m.Groups[1].Value.ToLower()}|", RegexOptions.IgnoreCase);
+            
+            // 1. Qud 색상 태그 제거: {{X|text}} → text
+            result = Regex.Replace(result, @"\{\{[a-zA-Z]\|([^}]+)\}\}", "$1");
+            
+            // 2. 특수 bullet 문자 제거 (ù 등 - 색상 태그 내부에서 사용됨)
+            result = Regex.Replace(result, @"^[ùúûü·•◦‣⁃]\s*", "");
+            
+            // 3. 소문자 변환 및 앞뒤 공백 제거
+            return result.Trim().ToLowerInvariant();
+        }
+        
         private static string GetModDirectory()
         {
             if (_modPath != null) return _modPath;
@@ -95,6 +113,17 @@ namespace QudKRTranslation.Core
                     foreach (var termPair in terms)
                     {
                         _translationDB[category][termPair.Key] = termPair.Value;
+
+                        // NormalizeKey를 사용하여 정규화된 키도 함께 저장
+                        // 예: "{{c|ù}} most creatures..."와 "most creatures..." 모두 검색 가능하게 함
+                        string normalized = NormalizeKey(termPair.Key);
+                        if (!string.IsNullOrEmpty(normalized) && !normalized.Equals(termPair.Key, StringComparison.OrdinalIgnoreCase))
+                        {
+                            if (!_translationDB[category].ContainsKey(normalized))
+                            {
+                                _translationDB[category][normalized] = termPair.Value;
+                            }
+                        }
                     }
                 }
             }

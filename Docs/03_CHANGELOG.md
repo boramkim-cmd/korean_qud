@@ -57,6 +57,25 @@
   - **파일**: [`tools/deploy-mods.sh`](file:///Users/ben/Desktop/qud_korean/tools/deploy-mods.sh)
   - **관련 이슈**: ERR-R008
 
+---
+
+## [2026-01-16] v2.0.2 - 긴급 수정 (Hotfix)
+
+### 🐛 Critical Fixes
+- **컴파일 오류 수정**
+  - `LocalizationManager`: Regex 네임스페이스 추가
+  - `CharacterCreation`: UI Framework 네임스페이스 추가
+  - **관련 이슈**: ERR-R010
+
+- **파일 누락 복구**
+  - `ChargenTranslationUtils.cs` 소스 복구
+  - **관련 이슈**: ERR-R011
+
+### 🧹 Cleanup
+- 미사용 필드 제거 (`_patched`, `_fontWarned`)
+
+---
+
 ### 📝 Technical Details
 - **색상 태그 정규화 알고리즘**:
   ```csharp

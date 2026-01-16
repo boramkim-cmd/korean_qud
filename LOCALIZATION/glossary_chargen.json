@@ -11,12 +11,12 @@
     "start a new game with one button.": "버튼 하나로 새로운 게임을 시작합니다.",
     "tutorial": "튜토리얼",
     "wander": "방랑",
-    "{{c|ù}} checkpointing at settlements.": "{{c|ù}} 정착지에서 체크포인트 저장.",
-    "{{c|ù}} currently in day {{w|{day_of_year}}} of {{w|{year}}}.": "{{c|ù}} 현재 {{w|{year}}}년 {{w|{day_of_year}}}일차.",
-    "{{c|ù}} more xp for discoveries and performing the water ritual.": "{{c|ù}} 발견 및 물 의식 수행 시 더 많은 경험치 획득.",
-    "{{c|ù}} most creatures begin neutral to you.": "{{c|ù}} 대부분의 생물이 당신에게 중립입니다.",
-    "{{c|ù}} no xp for killing.": "{{c|ù}} 처치 경험치 없음.",
-    "{{c|ù}} one chance with a fixed character and world seed.": "{{c|ù}} 고정된 캐릭터와 월드 시드로 단 한 번의 기회."
+    "{{c|ù}} checkpointing at settlements.": "정착지에서 체크포인트 저장.",
+    "{{c|ù}} currently in day {{w|{day_of_year}}} of {{w|{year}}}.": "현재 {{w|{year}}}년 {{w|{day_of_year}}}일차.",
+    "{{c|ù}} more xp for discoveries and performing the water ritual.": "발견 및 물 의식 수행 시 더 많은 경험치 획득.",
+    "{{c|ù}} most creatures begin neutral to you.": "대부분의 생물이 당신에게 중립입니다.",
+    "{{c|ù}} no xp for killing.": "처치 경험치 없음.",
+    "{{c|ù}} one chance with a fixed character and world seed.": "고정된 캐릭터와 월드 시드로 단 한 번의 기회."
   },
   "chargen_stats": {
     "your {{w|agility}} score determines your accuracy with both melee and ranged weapons and your ability to dodge attacks.": "{{w|민첩(Agility)}} 수치는 근접 및 원거리 무기의 명중률과 공격을 회피하는 능력을 결정합니다.",
@@ -61,6 +61,7 @@
     "callings": "직업",
     "caste": "계급",
     "castes": "계급",
+    "character creation": "캐릭터 생성",
     "choose a character from your build library.": "빌드 라이브러리에서 캐릭터를 선택합니다.",
     "choose attributes": "속성 선택",
     "choose calling": "직업 선택",

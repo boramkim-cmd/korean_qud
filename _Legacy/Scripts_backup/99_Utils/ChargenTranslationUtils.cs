@@ -46,6 +46,14 @@ namespace QudKRTranslation.Utils
                     lines[i] = lines[i].Replace(trimmed, translated);
                     changed = true;
                 }
+                else
+                {
+                    // [DEBUG] 번역 실패 로그 (중요한 텍스트만)
+                    if (trimmed.Contains("bonus skill") || trimmed.Contains("putus") || trimmed.Contains("reputation"))
+                    {
+                        UnityEngine.Debug.LogWarning($"[ChargenTranslationUtils] 번역 실패: '{trimmed}' (카테고리: {string.Join(", ", categories)})");
+                    }
+                }
             }
             
             return changed ? string.Join("\n", lines) : original;
@@ -54,16 +62,8 @@ namespace QudKRTranslation.Utils
         /// <summary>
         /// MenuOption 리스트를 번역합니다.
         /// </summary>
-        /// <summary>
-        /// MenuOption 리스트를 번역합니다.
-        /// </summary>
         public static IEnumerable<MenuOption> TranslateMenuOptions(IEnumerable<MenuOption> options)
         {
-            var scopes = new[] { "chargen_ui", "mutation_desc", "ui", "common" }
-                .Select(cat => LocalizationManager.GetCategory(cat))
-                .Where(d => d != null)
-                .ToArray();
-
             foreach (var opt in options)
             {
                 if (opt != null)
@@ -72,7 +72,7 @@ namespace QudKRTranslation.Utils
                     string desc = tr.Field<string>("Description").Value;
                     if (!string.IsNullOrEmpty(desc))
                     {
-                        if (TranslationEngine.TryTranslate(desc, out string translated, scopes))
+                        if (LocalizationManager.TryGetAnyTerm(desc.ToLowerInvariant(), out string translated, "chargen_ui", "mutation_desc", "ui", "common"))
                         {
                             tr.Field<string>("Description").Value = translated;
                         }
@@ -88,13 +88,7 @@ namespace QudKRTranslation.Utils
         public static void TranslateBreadcrumb(UIBreadcrumb breadcrumb)
         {
             if (breadcrumb == null || string.IsNullOrEmpty(breadcrumb.Title)) return;
-            
-            var scopes = new[] { "chargen_ui", "chargen_proto", "mutation", "skill", "cybernetics", "ui", "common" }
-                .Select(cat => LocalizationManager.GetCategory(cat))
-                .Where(d => d != null)
-                .ToArray();
-
-            if (TranslationEngine.TryTranslate(breadcrumb.Title, out string translated, scopes))
+            if (LocalizationManager.TryGetAnyTerm(breadcrumb.Title.ToLowerInvariant(), out string translated, "chargen_ui", "chargen_proto", "mutation", "skill", "cybernetics", "ui", "common"))
             {
                 breadcrumb.Title = translated;
             }

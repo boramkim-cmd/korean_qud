@@ -86,64 +86,10 @@ namespace QudKRTranslation.Patches.UI
     [HarmonyPatch(typeof(InventoryAndEquipmentStatusScreen), "UpdateViewFromData")]
     public static class Patch_InventoryScreen_UpdateView
     {
-        [HarmonyPostfix]
-        static void Postfix(InventoryAndEquipmentStatusScreen __instance)
-        {
-            try
-            {
-                // FilterBar에 접근
-                var tr = Traverse.Create(__instance);
-                var filterBar = tr.Field("filterBar").GetValue<UnityEngine.Component>(); 
-                // 정확한 타입은 FilterBar이지만 public이 아닐 수 있음. Component로 받고 Traverse로 다시 접근.
-                
-                if (filterBar != null)
-                {
-                    var barTr = Traverse.Create(filterBar);
-                    var buttons = barTr.Field("buttons").GetValue<System.Collections.IList>();
-                    
-                    if (buttons != null)
-                    {
-                        foreach (var btn in buttons)
-                        {
-                            var btnTr = Traverse.Create(btn);
-                            
-                            // 텍스트 필드 접근 (FilterBarButton 내부의 TextMeshProUGUI 등)
-                            // 보통 Text 속성이나 필드가 있을 것임.
-                            // FilterBarButton 구조: public string text; 혹은 public TextMeshProUGUI textComponent;
-                            
-                            string rawText = btnTr.Property<string>("Text").Value; // 대소문자 주의
-                            if (string.IsNullOrEmpty(rawText)) 
-                                rawText = btnTr.Field<string>("text").Value;
-
-                            if (!string.IsNullOrEmpty(rawText))
-                            {
-                                // "*All" -> "전체"
-                                // "Weapons" -> "무기"
-                                if (rawText == "*All" || rawText == "*all")
-                                {
-                                    if (LocalizationManager.TryGetAnyTerm("*all", out string tAll, "inventory", "ui"))
-                                    {
-                                        // 텍스트 설정 시도
-                                        // Traverse<T>.Value setter does nothing if the field/property is missing.
-                                        btnTr.Property<string>("Text").Value = tAll;
-                                        btnTr.Field<string>("text").Value = tAll;
-                                    }
-                                }
-                                else if (LocalizationManager.TryGetAnyTerm(rawText.ToLowerInvariant(), out string translated, "inventory"))
-                                {
-                                    btnTr.Property<string>("Text").Value = translated;
-                                    btnTr.Field<string>("text").Value = translated;
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                // UI 접근 실패 시 게임 진행에는 영향 없도록
-                UnityEngine.Debug.LogWarning($"[Qud-KR] Inventory FilterBar Patch Failed: {ex.Message}");
-            }
-        }
+        // UpdateViewFromData 내부에서 filterBarCategories.Add("*All")을 하므로,
+        // Postfix에서 FilterBar의 카테고리를 다시 덮어쓰거나 해야 함.
+        // 하지만 FilterBar 객체에 접근하기 까다로울 수 있음.
+        
+        // 일단은 GetInventoryCategory 패치만으로 대부분 해결될 것으로 기대.
     }
 }

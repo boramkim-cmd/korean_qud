@@ -1,7 +1,6 @@
 /*
  * 파일명: 10_10_P_CharacterCreation.cs
  * 분류: [UI Patch] 캐릭터 생성 화면 통합 패치
- * 역할: 캐릭터 생성의 모든 단계(모드, 종족, 직업, 스탯, 변이 등)의 UI와 설명을 번역합니다.
  */
 
 using System;
@@ -68,6 +67,9 @@ namespace QudKRTranslation.Patches
                 string desc = tr.Field<string>("Description").Value;
                 if (!string.IsNullOrEmpty(desc))
                 {
+                    // [DEBUG] 원본 Description 로깅
+                    UnityEngine.Debug.Log($"[Qud-KR DEBUG] GameMode '{choice.Id}' Description 원본:\n{desc}");
+                    
                     // Daily 모드의 동적 날짜 처리
                     if (choice.Id == "Daily" && desc.Contains("Currently in day"))
                     {
@@ -97,7 +99,12 @@ namespace QudKRTranslation.Patches
                         }
                     }
                     
-                    tr.Field<string>("Description").Value = ChargenTranslationUtils.TranslateLongDescription(desc, "chargen_mode", "chargen_ui");
+                    string translated = ChargenTranslationUtils.TranslateLongDescription(desc, "chargen_mode", "chargen_ui");
+                    
+                    // [DEBUG] 번역 결과 로깅
+                    UnityEngine.Debug.Log($"[Qud-KR DEBUG] GameMode '{choice.Id}' Description 번역 후:\n{translated}");
+                    
+                    tr.Field<string>("Description").Value = translated;
                 }
             }
             __result = list;
@@ -153,7 +160,13 @@ namespace QudKRTranslation.Patches
                 {
                     for (int i = 0; i < genotype.ExtraInfo.Count; i++)
                     {
+                        // [DEBUG] Log original ExtraInfo
+                        UnityEngine.Debug.Log($"[Qud-KR DEBUG] Genotype '{genotype.DisplayName}' ExtraInfo[{i}] 원본:\n{genotype.ExtraInfo[i]}");
+                        
                         genotype.ExtraInfo[i] = ChargenTranslationUtils.TranslateLongDescription(genotype.ExtraInfo[i], "chargen_proto", "chargen_ui", "mutation", "mutation_desc", "skill", "skill_desc");
+                        
+                        // [DEBUG] Log translated ExtraInfo
+                        UnityEngine.Debug.Log($"[Qud-KR DEBUG] Genotype '{genotype.DisplayName}' ExtraInfo[{i}] 번역 후:\n{genotype.ExtraInfo[i]}");
                     }
                 }
             }
