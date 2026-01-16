@@ -213,9 +213,37 @@ namespace QudKRTranslation.Patches
             
             foreach (var cat in list)
             {
+            foreach (var cat in list)
+            {
                 // Category Title Translation (e.g. "The Toxic Arboreta...")
-                if (LocalizationManager.TryGetAnyTerm(cat.Title?.ToLowerInvariant(), out string tTitle, "chargen_ui", "chargen_proto", "mutation", "ui"))
-                     cat.Title = tTitle;
+                // Normalize key (remove color tags) for lookup
+                string rawTitle = cat.Title;
+                if (!string.IsNullOrEmpty(rawTitle))
+                {
+                    // Basic Strip of {{X|...}} but keep content? No, lookup keys usually need clean text?
+                    // LocalizationManager.NormalizeKey handles stripping tags. 
+                    // But TryGetAnyTerm does NOT auto-normalize inputs unless we check against normalized DB keys loop?
+                    // Actually LocalizationManager.LoadJsonFile stores normalized keys.
+                    // TryGetAnyTerm iterates over DB and matches keys.
+                    // Wait, Look at LocalizationManager.cs:
+                    // It stores [category][key] = value AND [category][normalizedKey] = value.
+                    // So if we pass "The Toxic Arboreta...", NormalizeKey("The Toxic Arboreta...") -> lowercase etc.
+                    // But if input has "{{G|The ...}}", NormalizeKey strips tags.
+                    // HOWEVER, TryGetAnyTerm expects exact key match OR... it doesn't call NormalizeKey on input `key`.
+                    // So if input is "{{G|Text}}", and DB has normalized key "text", we miss it.
+                    // We must normalize input here manually if we want to match normalized keys in DB.
+                    // But we don't have access to private NormalizeKey.
+                    // Let's strip tags manually.
+                    
+                    string cleanTitle = System.Text.RegularExpressions.Regex.Replace(rawTitle, @"\{\{[a-zA-Z]\|([^}]+)\}\}", "$1");
+                    cleanTitle = cleanTitle.Trim();
+
+                    if (LocalizationManager.TryGetAnyTerm(cleanTitle, out string tTitle, "chargen_ui", "chargen_proto", "mutation", "ui"))
+                        cat.Title = tTitle;
+                    // Also try raw just in case
+                    else if (LocalizationManager.TryGetAnyTerm(rawTitle, out tTitle, "chargen_ui", "chargen_proto", "mutation", "ui"))
+                        cat.Title = tTitle;
+                }
 
                 if (cat.Choices != null)
                 {
