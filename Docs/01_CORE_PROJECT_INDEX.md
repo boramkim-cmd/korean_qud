@@ -1,6 +1,6 @@
 # 📚 프로젝트 완전 인덱스 (자동 생성)
 
-**생성**: 2026-01-16 09:55:43
+**생성**: 2026-01-16 09:59:31
 
 이 문서는 프로젝트의 모든 파일과 메서드 시그니처를 포함합니다. **새로운 기능을 만들기 전, 반드시 여기서 기존 메서드를 검색하십시오.**
 
@@ -88,17 +88,17 @@
 
 ## 📂 [Core Patch]
 
-### `Scripts/02_Patches/Core/00_01_P_SteamGalaxy.cs`
+### `Scripts/02_Patches/Core/02_00_01_SteamGalaxy.cs`
 - **역할**: 스팀 환경에서 GOG Galaxy 초기화 중 오류가 발생하는 것을 방지하기 위해 Galaxy 초기화를 건너뛰고 Steam만 초기화합니다.
 - **Namespace**: `QudKRTranslation.Patches`
 
-### `Scripts/02_Patches/Core/00_02_P_ScreenBuffer.cs`
+### `Scripts/02_Patches/Core/02_00_02_ScreenBuffer.cs`
 - **역할**: ScreenBuffer.Write 메서드를 패치하여 모든 화면의 텍스트를 번역합니다.
 - **Namespace**: `QudKRTranslation.Patches`
 
 ## 📂 [UI Patch]
 
-### `Scripts/02_Patches/UI/10_00_P_GlobalUI.cs`
+### `Scripts/02_Patches/UI/02_10_00_GlobalUI.cs`
 - **역할**: 메인 메뉴, 팝업 메시지, 네비게이션 바, 공용 버튼 등 전반적인 UI 번역을 담당합니다.
 - **Namespace**: `QudKRTranslation.Patches`
 - **공개 메서드 (Public Methods)**:
@@ -106,7 +106,7 @@
   void TranslateMenuData()
   ```
 
-### `Scripts/02_Patches/UI/10_01_P_Options.cs`
+### `Scripts/02_Patches/UI/02_10_01_Options.cs`
 - **역할**: 데이터 로딩(LoadOptionNode) 및 UI 표시(OptionsScreen) 시점을 모두 패치하여 완벽한 번역을 제공합니다.
 - **Namespace**: `QudKRTranslation.Patches`
 - **공개 메서드 (Public Methods)**:
@@ -114,31 +114,31 @@
   void TranslateOption(GameOption opt)
   ```
 
-### `Scripts/02_Patches/UI/10_02_P_Tooltip.cs`
+### `Scripts/02_Patches/UI/02_10_02_Tooltip.cs`
 - **역할**: ModelShark Tooltip 시스템의 텍스트를 번역합니다.
 - **Namespace**: `QudKRTranslation.Patches`
 
-### `Scripts/02_Patches/UI/10_03_P_UITextSkin.cs`
+### `Scripts/02_Patches/UI/02_10_03_UITextSkin.cs`
 - **역할**: UITextSkin.Apply 메서드를 패치하여 TMPro 기반 UI 텍스트를 번역합니다.
 - **Namespace**: `QudKRTranslation.Patches`
 
-### `Scripts/02_Patches/UI/10_04_P_ListScroller.cs`
+### `Scripts/02_Patches/UI/02_10_04_ListScroller.cs`
 - **역할**: FrameworkScroller가 프리팹(각 줄의 UI)을 설정할 때 즉시 번역을 적용합니다.
 - **Namespace**: `QudKRTranslation.Patches`
 
-### `Scripts/02_Patches/UI/10_07_P_Inventory.cs`
+### `Scripts/02_Patches/UI/02_10_07_Inventory.cs`
 - **역할**: 인벤토리 화면의 메뉴, 카테고리, 도움말 텍스트를 번역합니다.
 - **Namespace**: `QudKRTranslation.Patches.UI`
 
-### `Scripts/02_Patches/UI/10_08_P_Status.cs`
+### `Scripts/02_Patches/UI/02_10_08_Status.cs`
 - **역할**: 상태창(인벤토리, 장비, 캐릭터 시트 등 포함)이 열릴 때
 - **Namespace**: `QudKRTranslation.Patches.UI`
 
-### `Scripts/02_Patches/UI/10_10_P_CharacterCreation.cs`
+### `Scripts/02_Patches/UI/02_10_10_CharacterCreation.cs`
 - **역할**: 캐릭터 생성의 모든 단계(모드, 종족, 직업, 스탯, 변이 등)의 UI와 설명을 번역합니다.
 - **Namespace**: `QudKRTranslation.Patches`
 
-### `Scripts/02_Patches/UI/10_15_P_EmbarkOverlay.cs`
+### `Scripts/02_Patches/UI/02_10_15_EmbarkOverlay.cs`
 - **역할**: 캐릭터 생성 화면 하단의 'Back', 'Next' 공통 버튼 텍스트를 번역합니다.
 - **Namespace**: `QudKRTranslation.Patches`
 
