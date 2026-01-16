@@ -1,68 +1,136 @@
-# Korean Localization for Caves of Qud
+# Caves of Qud 한글화 프로젝트
 
-Complete Korean (Hangul) localization mod for Caves of Qud.
+## 📁 프로젝트 구조 (최종 정리)
 
-쿠드의 동굴 완전 한글화 모드입니다.
+```
+qud_korean/
+├── Docs/                    📖 모든 가이드 문서 (11개)
+│   ├── 00_CORE_START_HERE.md       ⭐ AI 에이전트 필독
+│   ├── 01_CORE_PROJECT_INDEX.md    📚 전체 메서드 시그니처
+│   ├── 02_CORE_QUICK_REFERENCE.md  🔍 빠른 참조
+│   ├── ... (03~05 기타 기술/API 문서)
+│   ├── 06_CORE_TOOLS_GUIDE.md      🛠️ 프로젝트 도구 가이드
+│   │
+│   ├── 10_LOC_WORKFLOW.md          📝 번역 작업 프로세스
+│   ├── 11_LOC_GLOSSARY_GUIDE.md    📖 용어 시스템 가이드
+│   ├── 13_LOC_STYLE_GUIDE.md       🎨 한글화 스타일 가이드
+│   └── 14_LOC_QA_CHECKLIST.md      ✅ 품질 검증 체크리스트
+│
+├── tools/                   🔧 도구 모음
+│   ├── *.py (14개)         🐍 Python 도구 (project_tool.py 등)
+│   └── *.sh (6개)          🔨 Shell 스크립트 (deploy-mods.sh 등)
+│
+├── Scripts/                 💻 C# 코드 (21개)
+│   ├── 00_Core/            핵심 로컬라이제이션 시스템
+│   ├── 99_Utils/           유틸리티 및 헬퍼
+│   └── 02_Patches/         Harmony 엔진 패치
+│
+├── LOCALIZATION/            📚 번역 데이터 (JSON)
+│   └── glossary_*.json     # 카테고리별 용어 데이터 (10개)
+│
+├── Assets/                  🎮 게임 연동 에셋 (XML 등)
+├── _backup/                 💾 자동 백업 폴더
+└── _Docs_Archive/           📦 레거시/참고용 문서
+```
 
-## Features
+## 🚀 빠른 시작 (AI 에이전트)
 
-- ✅ **Full UI Translation** - Main menu, inventory, character screens, options
-- ✅ **Korean Particle Processing** - Automatic josa (조사) handling for natural Korean grammar
-- ✅ **Dialogue & Quest Translation** - Conversations, quests, and story content
-- ✅ **Character Creation** - Genotypes, callings, attributes, and skills
+### 1. 작업 시작 전 (30초)
+```bash
+cat Docs/00_CORE_START_HERE.md
+```
 
-## Installation
+### 2. 메서드 확인 (10초)
+```bash
+cat Docs/01_CORE_PROJECT_INDEX.md | grep -A 5 "메서드명"
+```
 
-### Steam Workshop (Recommended)
+### 3. 통합 검증 (1분)
+```bash
+python3 tools/project_tool.py
+```
 
-1. Subscribe to the mod on [Steam Workshop](https://steamcommunity.com/sharedfiles/filedetails/?id=XXXXXXXXX)
-2. Launch Caves of Qud
-3. Enable the mod in the Mods menu
-4. Restart the game
+## 🔧 주요 도구
 
-### Manual Installation
+### Python 도구 (tools/*.py)
 
-1. Download the latest release from [GitHub Releases](https://github.com/boramkim-cmd/korean_qud/releases)
-2. Extract the mod folder to your Caves of Qud Mods directory:
-   - **Windows**: `%USERPROFILE%\AppData\LocalLow\Freehold Games\CavesOfQud\Mods\`
-   - **macOS**: `~/Library/Application Support/com.FreeholdGames.CavesOfQud/Mods/`
-   - **Linux**: `~/.config/unity3d/Freehold Games/CavesOfQud/Mods/`
-3. Launch Caves of Qud
-4. Enable "Korean Localization (한글화)" in the Mods menu
-5. Restart the game
+#### `project_tool.py` - 통합 도구 ⭐
+```bash
+python3 tools/project_tool.py
+```
+- 코드 검증 (중복, 구문 오류)
+- 번역 커버리지 확인
+- 메타데이터 자동 생성
+- 빠른 참조 업데이트
 
-## Requirements
+#### 개별 도구
+```bash
+python3 tools/verify_code.py              # 코드 검증
+python3 tools/build_project_db.py         # 메타데이터 생성
+python3 tools/check_translation_coverage.py  # 번역 확인
+python3 tools/clean_json.py               # JSON 정리
+```
 
-- Caves of Qud (latest version recommended)
-- No other mods required
+### Shell 스크립트 (tools/*.sh)
 
-## Known Issues
+```bash
+./tools/sync.sh                # Git 동기화
+./tools/deploy-mods.sh         # 모드 배포
+./tools/sync-and-deploy.sh     # 동기화 + 배포
+./tools/validate-mod.sh        # 모드 검증
+./tools/watch-and-sync.sh      # 파일 감시
+./tools/quick-save.sh          # 빠른 저장
+```
 
-- Some procedurally generated content may still appear in English
-- Historical text generation uses English names (by design)
+## 📚 핵심 문서
 
-For a full list of known issues, see [LOCALIZATION/QA_CHECKLIST.md](LOCALIZATION/QA_CHECKLIST.md)
+1. **Docs/00_CORE_START_HERE.md** - 단 하나의 진입점
+2. **Docs/01_CORE_PROJECT_INDEX.md** - 모든 메서드 시그니처
+3. **Docs/02_CORE_QUICK_REFERENCE.md** - 프로젝트 구조
 
-## Support
+## ⚡ 워크플로우
 
-- **Bug Reports**: [GitHub Issues](https://github.com/boramkim-cmd/korean_qud/issues)
-- **Documentation**: [LOCALIZATION/](LOCALIZATION/)
-- **Korean Guide**: [README_KO.md](README_KO.md)
+```
+1. cat Docs/00_CORE_START_HERE.md
+   ↓
+2. 메서드 확인 (01_CORE_PROJECT_INDEX.md)
+   ↓
+3. 코드 작성
+   ↓
+4. python3 tools/project_tool.py
+   ↓
+5. ./tools/deploy-mods.sh
+```
 
-## Contributing
+## 🎯 핵심 규칙
 
-Contributions are welcome! Please see [LOCALIZATION/TRANSLATOR_WORKFLOW.md](LOCALIZATION/TRANSLATOR_WORKFLOW.md) for guidelines.
+### ✅ 해야 할 것
+- 00_CORE_START_HERE.md 먼저 읽기
+- 기존 함수 재사용 (TranslationEngine, LocalizationManager)
+- project_tool.py로 검증 후 배포
 
-## Credits
+### ❌ 하지 말아야 할 것
+- _Legacy/ 폴더 코드 사용
+- TranslationEngine 로직 중복 구현
+- 검증 없이 배포
 
-- **Translation & Development**: boramkim-cmd
-- **Game**: Freehold Games (Caves of Qud)
-- **Harmony Library**: pardeike
+## 📊 통계
 
-## License
+- **Scripts**: 21개 C# 파일
+- **Python Tools**: 14개
+- **Shell Scripts**: 6개
+- **Localization**: 10개 JSON (1,492개 항목)
+- **Docs**: 6개 핵심 문서
 
-MIT License - See [LICENSE](LICENSE) for details
+## 🔄 업데이트
+
+프로젝트 변경 후:
+```bash
+python3 tools/project_tool.py
+```
+
+모든 메타데이터와 참조 문서가 자동 갱신됩니다.
 
 ---
 
-**한글 가이드는 [README_KO.md](README_KO.md)를 참조하세요.**
+**시작점**: `cat Docs/00_CORE_START_HERE.md`

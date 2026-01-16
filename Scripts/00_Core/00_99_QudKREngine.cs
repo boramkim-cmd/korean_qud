@@ -23,33 +23,18 @@ namespace QudKRTranslation.Core
     {
         public static bool IsFontLoaded { get; private set; } = false;
 
-        // [중요] 찾아주신 정확한 이름을 1순위에 넣었습니다.
         public static string[] TargetFontNames = { 
-            "NeoDunggeunmo-Regular", // 1순위: 정확한 이름
-            "NeoDunggeunmo",         // 2순위: 패밀리 이름
-            "neodgm",                // 3순위: 파일명
-            "AppleGothic",           // 4순위: 맥 기본
+            "NeoDunggeunmo-Regular", 
+            "NeoDunggeunmo",         
+            "neodgm",                
+            "AppleGothic",           
             "Arial" 
         };
         private static bool _patched = false;
 
         public static void ApplyKoreanFont()
         {
-            // [Emergency] UI 깨짐 현상으로 폰트 적용 로직 비활성화
-            // 추후 적절한 폰트 적용 방식(AssetBundle 등)으로 대체 필요
             Debug.Log("[Qud-KR] 폰트 적용 로직 비활성화 (UI 깨짐 방지)");
-            
-            /*
-            if (_patched) return;
-            
-            ... (중략) ...
-
-            // 2. TMPro 폰트 에셋 생성 및 연결 (Dynamic)
-             ...
-            Debug.Log($"[Qud-KR] UI 폰트 {count}개에 '{loadedName}' (Size:18) 적용 완료.");
-            IsFontLoaded = true;
-            _patched = true;
-            */
         }
     }
 
@@ -57,7 +42,6 @@ namespace QudKRTranslation.Core
     // 2. Harmony Patches
     // =================================================================
 
-    // UI 초기화 시점 후킹 (폰트 적용 타이밍)
     [HarmonyPatch(typeof(Qud.UI.UIManager), "Init")]
     public static class UILoadPatch
     {
@@ -67,7 +51,6 @@ namespace QudKRTranslation.Core
         }
     }
 
-    // 로그 한글화 (조사 처리)
     [HarmonyPatch(typeof(MessageQueue), "AddPlayerMessage", new Type[] { typeof(string), typeof(string), typeof(bool) })]
     public static class MessageLogPatch
     {
@@ -78,7 +61,6 @@ namespace QudKRTranslation.Core
         }
     }
 
-    // 관사(a/an) 제거
     [HarmonyPatch(typeof(Grammar), "IndefiniteArticle", new Type[] { typeof(string), typeof(bool) })]
     public static class ArticleKillerPatch
     {
@@ -89,7 +71,6 @@ namespace QudKRTranslation.Core
         }
     }
 
-    // 복수형(s) 제거
     [HarmonyPatch(typeof(Grammar), "Pluralize")]
     public static class PluralizeKillerPatch
     {
@@ -100,7 +81,6 @@ namespace QudKRTranslation.Core
         }
     }
 
-    // 이름 어순 교정
     [HarmonyPatch]
     public static class NameOrderPatch
     {
@@ -134,7 +114,6 @@ namespace QudKRTranslation.Core
         }
     }
 
-    // 설명문 교정
     [HarmonyPatch(typeof(Description), "GetShortDescription")]
     public static class DescriptionPatch
     {

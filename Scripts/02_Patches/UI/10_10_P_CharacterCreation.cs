@@ -4,75 +4,22 @@
  */
 
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using HarmonyLib;
 using UnityEngine;
-using XRL.UI;
-using XRL.UI.Framework;
-using XRL.CharacterBuilds;
 using XRL.CharacterBuilds.Qud;
 using XRL.CharacterBuilds.Qud.UI;
+using XRL.CharacterBuilds.UI;
+using XRL.UI;
 using QudKRTranslation.Core;
 using QudKRTranslation.Utils;
 
 namespace QudKRTranslation.Patches
 {
     // ========================================================================
-    // 공통 유틸리티
+    // 캐릭터 생성 화면 번역 패치
     // ========================================================================
-    public static class ChargenTranslationUtils
-    {
-        public static string TranslateLongDescription(string original, params string[] categories)
-        {
-            if (string.IsNullOrEmpty(original)) return original;
-            var lines = original.Split('\n');
-            bool changed = false;
-            for (int i = 0; i < lines.Length; i++)
-            {
-                var trimmed = lines[i].Trim();
-                if (string.IsNullOrEmpty(trimmed)) continue;
-                if (LocalizationManager.TryGetAnyTerm(trimmed.ToLowerInvariant(), out string tLine, categories))
-                {
-                    lines[i] = lines[i].Replace(trimmed, tLine);
-                    changed = true;
-                }
-            }
-            return changed ? string.Join("\n", lines) : original;
-        }
-
-        public static IEnumerable<MenuOption> TranslateMenuOptions(IEnumerable<MenuOption> options)
-        {
-            foreach (var opt in options)
-            {
-                if (opt != null)
-                {
-                    // Description ambiguity fix using Traverse
-                    var tr = Traverse.Create(opt);
-                    string desc = tr.Field<string>("Description").Value;
-                    if (!string.IsNullOrEmpty(desc))
-                    {
-                        if (LocalizationManager.TryGetAnyTerm(desc.ToLowerInvariant(), out string translated, "chargen_ui", "mutation_desc", "ui", "common"))
-                        {
-                            tr.Field<string>("Description").Value = translated;
-                        }
-                    }
-                }
-                yield return opt;
-            }
-        }
-
-        // 브레드크럼 공통 번역 로직
-        public static void TranslateBreadcrumb(UIBreadcrumb breadcrumb)
-        {
-            if (breadcrumb == null || string.IsNullOrEmpty(breadcrumb.Title)) return;
-            if (LocalizationManager.TryGetAnyTerm(breadcrumb.Title.ToLowerInvariant(), out string translated, "chargen_ui", "chargen_proto", "mutation", "skill", "cybernetics", "ui", "common"))
-            {
-                breadcrumb.Title = translated;
-            }
-        }
-    }
 
     // ========================================================================
     // [0] 베이스 클래스 패치 (모든 화면 공통 하단 메뉴 및 브레드크럼)
@@ -118,6 +65,35 @@ namespace QudKRTranslation.Patches
                 string desc = tr.Field<string>("Description").Value;
                 if (!string.IsNullOrEmpty(desc))
                 {
+                    // Daily 모드의 동적 날짜 처리
+                    if (choice.Id == "Daily" && desc.Contains("Currently in day"))
+                    {
+                        // 숫자 부분 추출 (예: "Currently in day {{W|16}} of {{W|2026}}.")
+                        var match = System.Text.RegularExpressions.Regex.Match(desc, @"day {{W\|(\d+)}} of {{W\|(\d+)}}");
+                        if (match.Success)
+                        {
+                            string dayOfYear = match.Groups[1].Value;
+                            string year = match.Groups[2].Value;
+                            
+                            // 번역된 템플릿 가져오기
+                            if (LocalizationManager.TryGetAnyTerm("{{c|ù}} currently in day {{w|{day_of_year}}} of {{w|{year}}}.", out string template, "chargen_mode"))
+                            {
+                                // 플레이스홀더를 실제 값으로 치환
+                                string translatedLine = template
+                                    .Replace("{day_of_year}", dayOfYear)
+                                    .Replace("{year}", year);
+                                
+                                // Description의 해당 라인만 교체
+                                desc = System.Text.RegularExpressions.Regex.Replace(
+                                    desc,
+                                    @"{{c\|ù}} Currently in day {{W\|\d+}} of {{W\|\d+}}\.",
+                                    translatedLine,
+                                    System.Text.RegularExpressions.RegexOptions.IgnoreCase
+                                );
+                            }
+                        }
+                    }
+                    
                     tr.Field<string>("Description").Value = ChargenTranslationUtils.TranslateLongDescription(desc, "chargen_mode", "chargen_ui");
                 }
             }
@@ -182,31 +158,54 @@ namespace QudKRTranslation.Patches
     }
 
     // ========================================================================
-    // [4] 하위 유형 및 직업/계급 선택 (QudSubtypeModuleWindow)
+    // [4] 하위 유형 및 직업/계급 선택 (QudSubtypeModule & QudSubtypeModuleWindow)
     // ========================================================================
-    [HarmonyPatch(typeof(QudSubtypeModuleWindow))]
-    public static class Patch_QudSubtypeModuleWindow
+    
+    // QudSubtypeModule.GetSelections 패치 - Description 번역
+    [HarmonyPatch(typeof(QudSubtypeModule))]
+    public static class Patch_QudSubtypeModule
     {
-        [HarmonyPatch(nameof(QudSubtypeModuleWindow.BeforeShow))]
-        [HarmonyPrefix]
-        static void BeforeShow_Prefix(QudSubtypeModuleWindow __instance)
+        [HarmonyPatch(nameof(QudSubtypeModule.GetSelections))]
+        [HarmonyPostfix]
+        static void GetSelections_Postfix(ref IEnumerable<ChoiceWithColorIcon> __result)
         {
-            if (__instance.module?.subtypes == null) return;
-            foreach (var subtype in __instance.module.subtypes)
+            if (__result == null) return;
+            var list = __result.ToList();
+            
+            foreach (var choice in list)
             {
-                if (subtype == null) continue;
-                if (LocalizationManager.TryGetAnyTerm(subtype.DisplayName?.ToLowerInvariant(), out string tName, "chargen_proto", "mutation", "skill"))
-                    subtype.DisplayName = tName;
-                
-                if (subtype.ExtraInfo != null)
+                // Title 번역
+                if (LocalizationManager.TryGetAnyTerm(choice.Title?.ToLowerInvariant(), out string tTitle, "chargen_proto", "mutation", "skill"))
                 {
-                    for (int i = 0; i < subtype.ExtraInfo.Count; i++)
+                    UnityEngine.Debug.Log($"[Subtype] Title 번역: {choice.Title} → {tTitle}");
+                    choice.Title = tTitle;
+                }
+                
+                // Description 번역 (GetFlatChargenInfo()의 결과)
+                var tr = Traverse.Create(choice);
+                string desc = tr.Field<string>("Description").Value;
+                if (!string.IsNullOrEmpty(desc))
+                {
+                    UnityEngine.Debug.Log($"[Subtype] Description 원본 [{choice.Title}]: {desc}");
+                    
+                    string translated = ChargenTranslationUtils.TranslateLongDescription(desc, "chargen_proto", "chargen_ui", "mutation", "mutation_desc", "skill", "skill_desc");
+                    
+                    if (translated != desc)
                     {
-                        subtype.ExtraInfo[i] = ChargenTranslationUtils.TranslateLongDescription(subtype.ExtraInfo[i], "chargen_proto", "chargen_ui", "mutation", "mutation_desc", "skill", "skill_desc");
+                        tr.Field<string>("Description").Value = translated;
+                        UnityEngine.Debug.Log($"[Subtype] Description 번역됨: {translated}");
                     }
                 }
             }
+            
+            __result = list;
         }
+    }
+    
+    // QudSubtypeModuleWindow 패치 - UI 텍스트 번역
+    [HarmonyPatch(typeof(QudSubtypeModuleWindow))]
+    public static class Patch_QudSubtypeModuleWindow
+    {
 
         [HarmonyPatch(nameof(QudSubtypeModuleWindow.getSubtypeTitle))]
         [HarmonyPostfix]
