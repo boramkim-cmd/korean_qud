@@ -8,6 +8,66 @@
 완료된 모든 작업을 기록하는 **공식 변경 이력**입니다.
 `02_TODO.md`에서 완료된 항목은 이 문서로 이동됩니다.
 
+# Changelog
+
+모든 주요 변경사항은 이 문서에 기록됩니다.
+
+---
+
+## [Unreleased]
+
+## [2026-01-16] - 색상 태그 정규화 및 이중 Bullet 수정
+
+### 🐛 Fixed
+- **[Critical] 색상 태그 대소문자 불일치로 인한 번역 실패**
+  - **증상**: 캐릭터 생성 화면에서 일부 텍스트가 영어로 표시됨
+    - `{{C|20}} bonus skill points each level` (True Kin)
+    - `-600 reputation with {{C|the Putus Templar}}` (Mutated Human)
+  - **원인**: 게임 데이터는 대문자 색상 태그(`{{C|...}}`) 사용, 용어집 키는 소문자(`{{c|...}}`) 저장
+    - `LocalizationManager.NormalizeKey()`와 `TranslationEngine.StripColorTags()`가 태그를 제거하지만 대소문자는 그대로 유지
+    - 결과적으로 `"{{C|20}} bonus"` ≠ `"{{c|20}} bonus"` 불일치 발생
+  - **해결**: 색상 태그를 소문자로 정규화하는 로직 추가
+    - `LocalizationManager.NormalizeKey()`: 용어집 로드 시 `{{C|text}}` → `{{c|text}}` 변환
+    - `TranslationEngine.StripColorTags()`: 런타임에 `{{C|text}}` → `{{c|text}}` 변환
+  - **관련 파일**:
+    - [`Scripts/00_Core/00_00_03_LocalizationManager.cs`](file:///Users/ben/Desktop/qud_korean/Scripts/00_Core/00_00_03_LocalizationManager.cs#L55)
+    - [`Scripts/00_Core/00_00_01_TranslationEngine.cs`](file:///Users/ben/Desktop/qud_korean/Scripts/00_Core/00_00_01_TranslationEngine.cs#L107)
+  - **관련 이슈**: ERR-R006
+
+- **[High] 방랑 모드 이중 Bullet 표시**
+  - **증상**: `{{c|ù}} {{c|ù}} 대부분의 생물이...` (bullet 2개)
+  - **원인**: 용어집 번역문에 `{{c|ù}}` 접두사 포함 + `TranslationEngine.RestoreColorTags()`가 원본 태그 복원
+    - 원본: `"{{c|ù}} Most creatures..."`
+    - 번역: `"{{c|ù}} 대부분의 생물..."` (용어집)
+    - 결과: `"{{c|ù}} {{c|ù}} 대부분의 생물..."` (이중)
+  - **해결**: 용어집 번역문에서 색상 태그 접두사 제거 (6개 항목)
+    - `TranslationEngine`이 자동으로 원본 태그 복원하므로 중복 불필요
+  - **관련 파일**: [`LOCALIZATION/glossary_chargen.json`](file:///Users/ben/Desktop/qud_korean/LOCALIZATION/glossary_chargen.json#L14-L19)
+  - **관련 이슈**: ERR-R007
+
+### 🔧 Changed
+- **배포 스크립트 재작성**
+  - **문제**: 기존 스크립트가 Core_QudKREngine, Data_QudKRContent를 배포하지만 게임은 KoreanLocalization 로드
+  - **문제**: AI 에이전트가 Mods 폴더에서 직접 작업하여 소스-배포본 불일치
+  - **해결**: 
+    - 양방향 동기화 → 단방향 배포 (Desktop → Mods only)
+    - 개발 파일 자동 제거 (.md, Docs, Assets 등)  
+    - Desktop/qud_korean을 유일한 소스로 정립
+    - rsync --delete로 Mods 폴더 완전 미러링
+  - **파일**: [`tools/deploy-mods.sh`](file:///Users/ben/Desktop/qud_korean/tools/deploy-mods.sh)
+  - **관련 이슈**: ERR-R008
+
+### 📝 Technical Details
+- **색상 태그 정규화 알고리즘**:
+  ```csharp
+  // 대소문자 통일 정규식
+  Regex.Replace(text, @"\{\{([a-zA-Z])\|", 
+      m => $"{{{{{m.Groups[1].Value.ToLower()}|", 
+      RegexOptions.IgnoreCase);
+  ```
+- **영향 범위**: 모든 Qud 색상 태그 (`{{w|...}}`, `{{R|...}}`, `{{C|...}}` 등)
+- **호환성**: 기존 용어집과 하위 호환
+
 ---
 
 ## 📋 문서 시스템 연동
@@ -39,22 +99,22 @@
 ### 🔄 문서 재구성
 기존 14개의 분산된 문서를 4개의 핵심 문서로 통합:
 
-| 이전 | 이후 | 변경 |
-|------|------|------|
-| 00_CORE_START_HERE.md | → | 01_DEVELOPMENT_GUIDE.md Part A |
-| 01_CORE_PROJECT_INDEX.md | → | project_tool.py 자동 생성 (참조) |
-| 02_CORE_QUICK_REFERENCE.md | → | 01_DEVELOPMENT_GUIDE.md Part A |
-| 03_CORE_API_REFERENCE.md | → | 01_DEVELOPMENT_GUIDE.md Part C |
-| 04_CORE_NAMESPACE_GUIDE.md | → | 01_DEVELOPMENT_GUIDE.md Part C |
-| 05_CORE_DEVELOPMENT_PROCESS.md | → | 01_DEVELOPMENT_GUIDE.md Part D |
-| 06_CORE_TOOLS_GUIDE.md | → | 01_DEVELOPMENT_GUIDE.md Part E |
-| 10_DEVELOPMENT_GUIDE.md | → | 01_DEVELOPMENT_GUIDE.md (통합) |
-| 10_LOC_WORKFLOW.md | → | 01_DEVELOPMENT_GUIDE.md Part F |
-| 11_LOC_GLOSSARY_GUIDE.md | → | 01_DEVELOPMENT_GUIDE.md Part G |
-| 11_TODO.md | → | 02_TODO.md (확장) |
-| 12_CHANGELOG.md | → | 03_CHANGELOG.md (이 문서, 확장) |
-| 13_LOC_STYLE_GUIDE.md | → | 01_DEVELOPMENT_GUIDE.md Part H |
-| 14_LOC_QA_CHECKLIST.md | → | 01_DEVELOPMENT_GUIDE.md Part I |
+| 이전                           | 이후 | 변경                             |
+| ------------------------------ | ---- | -------------------------------- |
+| 00_CORE_START_HERE.md          | →    | 01_DEVELOPMENT_GUIDE.md Part A   |
+| 01_CORE_PROJECT_INDEX.md       | →    | project_tool.py 자동 생성 (참조) |
+| 02_CORE_QUICK_REFERENCE.md     | →    | 01_DEVELOPMENT_GUIDE.md Part A   |
+| 03_CORE_API_REFERENCE.md       | →    | 01_DEVELOPMENT_GUIDE.md Part C   |
+| 04_CORE_NAMESPACE_GUIDE.md     | →    | 01_DEVELOPMENT_GUIDE.md Part C   |
+| 05_CORE_DEVELOPMENT_PROCESS.md | →    | 01_DEVELOPMENT_GUIDE.md Part D   |
+| 06_CORE_TOOLS_GUIDE.md         | →    | 01_DEVELOPMENT_GUIDE.md Part E   |
+| 10_DEVELOPMENT_GUIDE.md        | →    | 01_DEVELOPMENT_GUIDE.md (통합)   |
+| 10_LOC_WORKFLOW.md             | →    | 01_DEVELOPMENT_GUIDE.md Part F   |
+| 11_LOC_GLOSSARY_GUIDE.md       | →    | 01_DEVELOPMENT_GUIDE.md Part G   |
+| 11_TODO.md                     | →    | 02_TODO.md (확장)                |
+| 12_CHANGELOG.md                | →    | 03_CHANGELOG.md (이 문서, 확장)  |
+| 13_LOC_STYLE_GUIDE.md          | →    | 01_DEVELOPMENT_GUIDE.md Part H   |
+| 14_LOC_QA_CHECKLIST.md         | →    | 01_DEVELOPMENT_GUIDE.md Part I   |
 
 ### 📁 백업
 - 기존 문서 백업 위치: `Docs/_Legacy_20260116/`
@@ -68,7 +128,19 @@
 
 ---
 
-## [2026-01-16] v1.0.0 - 초기 문서 시스템 생성
+## [2026-01-16] v2.0.1 - 캐릭터 생성 번역 수정
+
+### 🐛 버그 수정
+
+#### ERR-R004: 캐릭터 생성 패치 네임스페이스 오류
+- 누락된 `using XRL.UI.Framework;` 및 `using XRL.CharacterBuilds;` 추가
+- 영향 파일: `10_10_P_CharacterCreation.cs`, `ChargenTranslationUtils.cs`
+
+#### ERR-R005: 용어집 키 정규화 문제
+- **문제**: 용어집 키에 색상 태그(`{{c|ù}}`)가 포함되어 있어 매칭 실패
+- **해결**: `LocalizationManager`에 `NormalizeKey()` 메서드 추가
+- 색상 태그 제거 + 소문자 변환으로 정규화된 키도 함께 저장
+- 영향 파일: `00_03_LocalizationManager.cs`
 
 ### 생성된 문서
 - `10_DEVELOPMENT_GUIDE.md`: 개발 가이드 (v2.1)
@@ -209,22 +281,22 @@
 ## 용어집 구축
 
 ### 완성된 용어집
-| 파일 | 항목 수 | 완성도 |
-|------|---------|--------|
-| `glossary_ui.json` | ~170 | 100% |
-| `glossary_chargen.json` | ~130 | 100% |
-| `glossary_skills.json` | ~280 | 100% |
-| `glossary_cybernetics.json` | ~190 | 100% |
-| `glossary_pregen.json` | ~50 | 100% |
-| `glossary_proto.json` | ~60 | 100% |
-| `glossary_location.json` | ~50 | 100% |
-| `glossary_terms.json` | ~35 | 100% |
+| 파일                        | 항목 수 | 완성도 |
+| --------------------------- | ------- | ------ |
+| `glossary_ui.json`          | ~170    | 100%   |
+| `glossary_chargen.json`     | ~130    | 100%   |
+| `glossary_skills.json`      | ~280    | 100%   |
+| `glossary_cybernetics.json` | ~190    | 100%   |
+| `glossary_pregen.json`      | ~50     | 100%   |
+| `glossary_proto.json`       | ~60     | 100%   |
+| `glossary_location.json`    | ~50     | 100%   |
+| `glossary_terms.json`       | ~35     | 100%   |
 
 ### 진행 중인 용어집
-| 파일 | 항목 수 | 완성도 |
-|------|---------|--------|
-| `glossary_mutations.json` | ~150 | 96.5% |
-| `glossary_options.json` | ~800 | 94% |
+| 파일                      | 항목 수 | 완성도 |
+| ------------------------- | ------- | ------ |
+| `glossary_mutations.json` | ~150    | 96.5%  |
+| `glossary_options.json`   | ~800    | 94%    |
 
 ---
 
@@ -249,19 +321,19 @@
 
 ## 전체 진행률
 
-| 영역 | 완료 | 진행 중 | 미착수 | 완료율 |
-|------|------|---------|--------|--------|
-| Core 시스템 | 4 | 0 | 0 | 100% |
-| UI 패치 | 3 | 1 | 2 | 50% |
-| 용어집 | 8 | 2 | 0 | 80% |
-| 도구 | 4 | 0 | 3 | 57% |
-| **전체** | **19** | **3** | **5** | **70%** |
+| 영역        | 완료   | 진행 중 | 미착수 | 완료율  |
+| ----------- | ------ | ------- | ------ | ------- |
+| Core 시스템 | 4      | 0       | 0      | 100%    |
+| UI 패치     | 3      | 1       | 2      | 50%     |
+| 용어집      | 8      | 2       | 0      | 80%     |
+| 도구        | 4      | 0       | 3      | 57%     |
+| **전체**    | **19** | **3**   | **5**  | **70%** |
 
 ## 월별 활동
 
-| 월 | 주요 작업 | 완료 항목 수 |
-|----|----------|--------------|
-| 2026-01 | 문서 시스템 개편, 기초 시스템 구축 | - |
+| 월      | 주요 작업                          | 완료 항목 수 |
+| ------- | ---------------------------------- | ------------ |
+| 2026-01 | 문서 시스템 개편, 기초 시스템 구축 | -            |
 
 ---
 

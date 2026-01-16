@@ -35,20 +35,20 @@
 ## 📊 이슈 분류
 
 ### 상태 표기
-| 상태 | 의미 |
-|------|------|
-| 🔴 **OPEN** | 미해결 - 작업 필요 |
-| 🟡 **IN PROGRESS** | 해결 중 |
-| 🟢 **RESOLVED** | 해결 완료 |
-| ⚪ **WONTFIX** | 해결 불가 또는 수정 불필요 |
+| 상태              | 의미                       |
+| ----------------- | -------------------------- |
+| 🔴 **OPEN**        | 미해결 - 작업 필요         |
+| 🟡 **IN PROGRESS** | 해결 중                    |
+| 🟢 **RESOLVED**    | 해결 완료                  |
+| ⚪ **WONTFIX**     | 해결 불가 또는 수정 불필요 |
 
 ### 심각도 분류
-| 심각도 | 의미 | 예시 |
-|--------|------|------|
-| 🔴 **Critical** | 게임 크래시 또는 모드 로드 실패 | Harmony 패치 오류 |
-| 🟠 **High** | 주요 기능 동작 안함 | 번역 표시 안됨 |
-| 🟡 **Medium** | 일부 기능 이상 | 특정 화면 번역 누락 |
-| 🟢 **Low** | 사소한 문제 | 오타, 스타일 불일치 |
+| 심각도         | 의미                            | 예시                |
+| -------------- | ------------------------------- | ------------------- |
+| 🔴 **Critical** | 게임 크래시 또는 모드 로드 실패 | Harmony 패치 오류   |
+| 🟠 **High**     | 주요 기능 동작 안함             | 번역 표시 안됨      |
+| 🟡 **Medium**   | 일부 기능 이상                  | 특정 화면 번역 누락 |
+| 🟢 **Low**      | 사소한 문제                     | 오타, 스타일 불일치 |
 
 ---
 
@@ -59,12 +59,12 @@
 ## ERR-001: 인벤토리 "*All" 필터 미번역
 
 ### 기본 정보
-| 항목 | 내용 |
-|------|------|
-| **상태** | 🔴 OPEN |
-| **심각도** | 🟠 High |
-| **발견일** | 2026-01-15 |
-| **관련 TODO** | P1-01 |
+| 항목          | 내용       |
+| ------------- | ---------- |
+| **상태**      | 🔴 OPEN     |
+| **심각도**    | 🟠 High     |
+| **발견일**    | 2026-01-15 |
+| **관련 TODO** | P1-01      |
 
 ### 증상
 인벤토리 화면 상단의 필터 바에서 "*All" 텍스트가 영어로 표시됨.
@@ -76,10 +76,10 @@
 - FilterBar 컴포넌트에 직접 접근하는 패치 필요
 
 ### 시도한 해결 방법
-| # | 방법 | 결과 |
-|---|------|------|
-| 1 | UITextSkin 패치로 시도 | ❌ 실패 - 필터 바에 적용 안됨 |
-| 2 | TMP_Text.text setter 훅 | ❌ 실패 - 필터 텍스트 캡처 안됨 |
+| #   | 방법                    | 결과                           |
+| --- | ----------------------- | ------------------------------ |
+| 1   | UITextSkin 패치로 시도  | ❌ 실패 - 필터 바에 적용 안됨   |
+| 2   | TMP_Text.text setter 훅 | ❌ 실패 - 필터 텍스트 캡처 안됨 |
 
 ### 다음 시도 예정
 - [ ] `UpdateViewFromData` 내부 Traverse로 FilterBar 접근
@@ -96,12 +96,12 @@ Assets/core_source/_GameSource/Qud.UI/InventoryAndEquipmentStatusScreen.cs
 ## ERR-002: 조사 처리 시 색상 태그 내부 미인식
 
 ### 기본 정보
-| 항목 | 내용 |
-|------|------|
-| **상태** | 🔴 OPEN |
-| **심각도** | 🟡 Medium |
-| **발견일** | 2026-01-15 |
-| **관련 TODO** | P1-03 |
+| 항목          | 내용       |
+| ------------- | ---------- |
+| **상태**      | 🔴 OPEN     |
+| **심각도**    | 🟡 Medium   |
+| **발견일**    | 2026-01-15 |
+| **관련 TODO** | P1-03      |
 
 ### 증상
 ```
@@ -149,12 +149,12 @@ Scripts/00_Core/00_99_QudKREngine.cs
 ## ERR-003: Options 빈 값 약 50개 존재
 
 ### 기본 정보
-| 항목 | 내용 |
-|------|------|
-| **상태** | 🔴 OPEN |
-| **심각도** | 🟡 Medium |
-| **발견일** | 2026-01-15 |
-| **관련 TODO** | P1-02 |
+| 항목          | 내용       |
+| ------------- | ---------- |
+| **상태**      | 🔴 OPEN     |
+| **심각도**    | 🟡 Medium   |
+| **발견일**    | 2026-01-15 |
+| **관련 TODO** | P1-02      |
 
 ### 증상
 `glossary_options.json`에 약 50개의 빈 값 존재.
@@ -175,12 +175,12 @@ Assets/StreamingAssets/Base/Options.xml
 ## ERR-004: 변이 설명 5개 누락
 
 ### 기본 정보
-| 항목 | 내용 |
-|------|------|
-| **상태** | 🔴 OPEN |
-| **심각도** | 🟢 Low |
-| **발견일** | 2026-01-15 |
-| **관련 TODO** | P1-04 |
+| 항목          | 내용       |
+| ------------- | ---------- |
+| **상태**      | 🔴 OPEN     |
+| **심각도**    | 🟢 Low      |
+| **발견일**    | 2026-01-15 |
+| **관련 TODO** | P1-04      |
 
 ### 증상
 `glossary_mutations.json`에 5개의 변이 설명이 빈 값으로 존재.
@@ -193,19 +193,640 @@ LOCALIZATION/glossary_mutations.json
 
 ---
 
-# 🟢 해결된 이슈 (Resolved Issues)
+# Error Log
+
+모든 오류와 해결 과정을 기록합니다.
+
+---
+
+## 📋 목차
+
+- [해결된 오류 (Resolved)](#해결된-오류-resolved)
+- [진행 중 (In Progress)](#진행-중-in-progress)
+- [보류 (On Hold)](#보류-on-hold)
+- [FAQ](#faq)
+
+---
+
+## 해결된 오류 (Resolved)
+
+## ERR-R007: 방랑 모드 이중 Bullet 표시
+
+### 기본 정보
+| 항목       | 내용                     |
+| ---------- | ------------------------ |
+| **상태**   | 🟢 RESOLVED              |
+| **심각도** | 🟠 High                  |
+| **발견일** | 2026-01-16               |
+| **해결일** | 2026-01-16               |
+| **담당자** | AI Agent + User          |
+
+### 증상
+게임 모드 선택 화면의 "방랑(Wander)" 모드 설명에서 bullet 문자가 이중으로 표시됨:
+```
+{{c|ù}} {{c|ù}} 대부분의 생물이 당신에게 중립입니다.
+{{c|ù}} {{c|ù}} 처치 경험치 없음.
+{{c|ù}} {{c|ù}} 발견 및 물 의식 수행 시 더 많은 경험치 획득.
+```
+
+예상: `{{c|ù}} 대부분의 생물이...` (bullet 1개)  
+실제: `{{c|ù}} {{c|ù}} 대부분의 생물이...` (bullet 2개)
+
+### 근본 원인
+**TranslationEngine의 색상 태그 복원 메커니즘과 용어집 번역문의 중복**
+
+1. **데이터 흐름**:
+   ```
+   게임 원본: "{{c|ù}} Most creatures begin neutral to you."
+   ↓ StripColorTags()
+   처리 후:   "Most creatures begin neutral to you."
+   ↓ FindInScopes() - 용어집 검색
+   번역 결과: "{{c|ù}} 대부분의 생물이..." (용어집에 태그 포함)
+   ↓ RestoreColorTags() - 원본 태그 복원
+   최종 결과: "{{c|ù}} {{c|ù}} 대부분의 생물이..."
+   ```
+
+2. **RestoreColorTags() 메커니즘**:
+   ```csharp
+   // TranslationEngine.cs
+   private static string RestoreColorTags(string original, string stripped, string translated)
+   {
+       return original.Replace(stripped, translated);
+   }
+   
+   // 실행 예시:
+   // original  = "{{c|ù}} Most creatures..."
+   // stripped  = "Most creatures..."
+   // translated = "{{c|ù}} 대부분의 생물..." (용어집)
+   // 결과       = "{{c|ù}} {{c|ù}} 대부분의 생물..." ← 이중!
+   ```
+
+3. **용어집 데이터 문제**:
+   ```json
+   // glossary_chargen.json (변경 전)
+   "{{c|ù}} most creatures begin neutral to you.": "{{c|ù}} 대부분의 생물이..."
+   //                                                 ^^^^^^^^
+   //                                                 불필요한 중복
+   ```
+
+### 왜 이렇게 설계되었는가?
+- 초기 용어집 작성 시 **원본 키와 번역문의 형식을 동일**하게 유지하려는 의도
+- `TranslationEngine`의 자동 태그 복원 기능을 인지하지 못함
+- 결과적으로 **수동 태그 포함 + 자동 복원 = 이중 표시**
+
+### 시도한 해결 방법
+| #   | 방법                           | 결과        |
+| --- | ------------------------------ | ----------- |
+| 1   | 디버그 로깅 추가하여 원인 파악 | ✅ 성공      |
+| 2   | 용어집 번역문에서 태그 제거    | ✅ 성공      |
+
+### ✅ 최종 해결
+**glossary_chargen.json에서 bullet 접두사 제거** (6개 항목)
+
+```json
+// 변경 전
+"{{c|ù}} most creatures begin neutral to you.": "{{c|ù}} 대부분의 생물이..."
+
+// 변경 후
+"{{c|ù}} most creatures begin neutral to you.": "대부분의 생물이..."
+```
+
+**영향받은 키**:
+- `{{c|ù}} checkpointing at settlements.`
+- `{{c|ù}} currently in day {{w|{day_of_year}}} of {{w|{year}}}.`
+- `{{c|ù}} more xp for discoveries...`
+- `{{c|ù}} most creatures begin neutral...`
+- `{{c|ù}} no xp for killing.`
+- `{{c|ù}} one chance with a fixed...`
+
+### 예방 가이드
+> [!TIP]
+> **용어집 작성 규칙**: 번역문에는 색상 태그나 bullet 문자를 포함하지 마세요!
+> 
+> ❌ 잘못된 예시:
+> ```json
+> "{{c|ù}} text": "{{c|ù}} 번역문"
+> "{{w|word}}": "{{w|단어}}"
+> ```
+> 
+> ✅ 올바른 예시:
+> ```json
+> "{{c|ù}} text": "번역문"
+> "{{w|word}}": "단어"
+> ```
+> 
+> **이유**: `TranslationEngine.RestoreColorTags()`가 자동으로 원본 태그를 복원합니다.
+
+### 관련 파일
+```
+LOCALIZATION/glossary_chargen.json (L14-19)
+Scripts/00_Core/00_00_01_TranslationEngine.cs (RestoreColorTags)
+```
+
+---
+
+## ERR-R006: 색상 태그 대소문자 불일치로 인한 번역 실패
+
+### 기본 정보
+| 항목       | 내용                     |
+| ---------- | ------------------------ |
+| **상태**   | 🟢 RESOLVED              |
+| **심각도** | 🔴 Critical              |
+| **발견일** | 2026-01-16               |
+| **해결일** | 2026-01-16               |
+| **담당자** | AI Agent + User          |
+
+### 증상
+캐릭터 생성 화면(Genotype 선택)에서 특정 텍스트가 번역되지 않고 영어로 표시됨:
+
+**True Kin (순수 인간)**:
+```
+영어: {{C|20}} bonus skill points each level
+예상: 레벨당 {{c|20}}의 보너스 기술 포인트
+```
+
+**Mutated Human (변이된 인간)**:
+```
+영어: -600 reputation with {{C|the Putus Templar}}
+예상: {{c|푸투스 템플러}} 평판 -600
+```
+
+용어집에 번역이 **명확히 존재**함에도 불구하고 번역 실패.
+
+### 근본 원인
+**게임 XML 데이터와 용어집 키의 색상 태그 대소문자 불일치**
+
+1. **게임에서 전달되는 실제 데이터** (Player.log):
+   ```
+   [Qud-KR DEBUG] Genotype '순수 인간' ExtraInfo[2] 원본:
+   {{C|20}} bonus skill points each level
+   ^^^^^^^^ 대문자 C!
+   ```
+
+2. **용어집 키** (glossary_chargen.json):
+   ```json
+   "{{c|20}} bonus skill points each level": "레벨당..."
+    ^^^^^^^^ 소문자 c
+   ```
+
+3. **기존 정규화 로직의 한계**:
+   ```csharp
+   // LocalizationManager.NormalizeKey() - 변경 전
+   string result = Regex.Replace(key, @"\{\{[a-zA-Z]\|([^}]+)\}\}", "$1");
+   // "{{c|20}} bonus..." → "20 bonus..."
+   // "{{C|20}} bonus..." → "20 bonus..."  ← 제거는 되지만...
+   
+   // TranslationEngine.StripColorTags() - 변경 전
+   result = Regex.Replace(result, @"\{\{[a-zA-Z]\|([^}]+)\}\}", "$1");
+   // 동일한 문제
+   ```
+
+4. **매칭 실패 과정**:
+   ```
+   입력 (게임):     "{{C|20}} bonus skill points each level"
+   태그 제거 후:    "20 bonus skill points each level"
+   소문자 변환:     "20 bonus skill points each level"
+   
+   용어집 키:       "{{c|20}} bonus skill points each level"
+   정규화 저장 시:  "20 bonus skill points each level"
+   
+   문제: 용어집 원본 키 "{{c|20}}..."는 딕셔너리에 그대로 저장됨
+         하지만 검색 시 입력은 "{{C|20}}..."
+         StringComparer.OrdinalIgnoreCase는 문자는 비교하지만
+         중괄호 안의 대소문자까지는 처리 못함!
+   ```
+
+### 심화 분석: 왜 기존 로직이 실패했는가?
+
+**기존 구조**:
+```csharp
+// LocalizationManager
+_translationDB[category][termPair.Key] = termPair.Value;
+// 원본 키 "{{c|20}} bonus..." 저장
+
+string normalizedKey = NormalizeKey(termPair.Key);
+_translationDB[category][normalizedKey] = termPair.Value;
+// 정규화 키 "20 bonus..." 저장
+```
+
+**Dictionary 설정**:
+```csharp
+new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase)
+// 'A' == 'a'는 true
+// 하지만 "{{C|text}}" == "{{c|text}}"는 false!
+// StringComparer는 전체 문자열을 비교하지, 
+// 중괄호 내부의 특정 위치만 비교하지 않음
+```
+
+**검색 시도**:
+```csharp
+// TranslationEngine.TryTranslate()
+입력: "{{C|20}} bonus skill points each level"
+↓ StripColorTags()
+결과: "20 bonus skill points each level"
+↓ FindInScopes() 시도
+1) core.ToLower() = "20 bonus skill points each level" 
+   → _translationDB에서 검색 시도
+   → "20 bonus..." 정규화 키로 검색 → ✅ 찾아야 하는데...
+   
+실제로는:
+   원본 키 "{{c|20}} bonus..."와 
+   입력 "{{C|20}} bonus..."가 
+   태그 제거 전에 이미 다른 문자열로 인식됨!
+```
+
+### 왜 이 버그가 발견되지 않았는가?
+1. **용어집 작성 시** 소문자 태그 사용 (`{{c|...}}`)
+2. **대부분의 게임 데이터**도 소문자 태그 사용
+3. **일부 XML 데이터만** 대문자 태그 사용 (`{{C|...}}`, `{{W|...}}`)
+4. **XML 작성 일관성 없음** - Freehold Games의 원본 데이터 이슈
+
+### 시도한 해결 방법
+| #   | 방법                                    | 결과        |
+| --- | --------------------------------------- | ----------- |
+| 1   | 디버그 로깅으로 실제 입력 텍스트 확인  | ✅ 원인 파악 |
+| 2   | 색상 태그 정규화 전에 대소문자 통일 추가 | ✅ 성공      |
+
+### ✅ 최종 해결
+**색상 태그를 소문자로 정규화하는 전처리 단계 추가**
+
+#### LocalizationManager.cs
+```csharp
+private static string NormalizeKey(string key)
+{
+    if (string.IsNullOrEmpty(key)) return key;
+    
+    // 0. 색상 태그를 소문자로 통일: {{C|text}} → {{c|text}}
+    string result = Regex.Replace(key, @"\{\{([a-zA-Z])\|", 
+        m => $"{{{{{m.Groups[1].Value.ToLower()}|", 
+        RegexOptions.IgnoreCase);
+    
+    // 1. Qud 색상 태그 제거: {{X|text}} → text
+    result = Regex.Replace(result, @"\{\{[a-zA-Z]\|([^}]+)\}\}", "$1");
+    
+    // 2-3. (기존 로직)
+    return result.Trim().ToLowerInvariant();
+}
+```
+
+#### TranslationEngine.cs
+```csharp
+private static string StripColorTags(string text)
+{
+    string result = text;
+    
+    // 0. 색상 태그를 소문자로 통일: {{C|text}} → {{c|text}}
+    result = Regex.Replace(result, @"\{\{([a-zA-Z])\|", 
+        m => $"{{{{{m.Groups[1].Value.ToLower()}|", 
+        RegexOptions.IgnoreCase);
+    
+    // 1-2. (기존 로직)
+    return result;
+}
+```
+
+### 수정 후 동작
+```
+입력 (게임):        "{{C|20}} bonus skill points each level"
+↓ 정규화 (NEW)
+대소문자 통일:      "{{c|20}} bonus skill points each level"
+↓ StripColorTags
+태그 제거:          "20 bonus skill points each level"
+↓ FindInScopes
+용어집 매칭:        ✅ 성공! (정규화 키로 검색)
+번역 결과:          "레벨당 {{c|20}}의 보너스 기술 포인트"
+```
+
+### 예방 가이드
+> [!TIP]
+> **색상 태그 일관성 유지**
+> 
+> 게임 XML 데이터는 대소문자가 혼재되어 있으므로, 번역 시스템은 **항상 대소문자를 정규화**해야 합니다.
+> 
+> **영향받는 태그**:
+> - `{{C|...}}`, `{{c|...}}` (cyan)
+> - `{{W|...}}`, `{{w|...}}` (white)
+> - `{{R|...}}`, `{{r|...}}` (red)
+> - 기타 모든 색상 태그
+> 
+> **테스트 방법**:
+> ```csharp
+> Debug.Log($"[Qud-KR DEBUG] 원본 텍스트: '{original}'");
+> ```
+> 로그에서 실제 대소문자 확인!
+
+### 관련 파일
+```
+Scripts/00_Core/00_00_03_LocalizationManager.cs (L55)
+Scripts/00_Core/00_00_01_TranslationEngine.cs (L107)
+```
+
+---
+
+## ERR-R008: 배포 스크립트 오작동 및 작업 폴더 혼란
+
+### 기본 정보
+| 항목       | 내용                     |
+| ---------- | ------------------------ |
+| **상태**   | 🟢 RESOLVED              |
+| **심각도** | 🟠 High                  |
+| **발견일** | 2026-01-16               |
+| **해결일** | 2026-01-16               |
+| **담당자** | AI Agent (프로세스 이슈) |
+
+### 증상
+1. **배포 후에도 변경사항이 게임에 반영되지 않음**
+   - `glossary_chargen.json` 수정 완료
+   - `deploy-mods.sh` 실행
+   - 게임 재시작 후에도 여전히 문제 발생
+
+2. **파일 동기화 방향 혼란**
+   - AI 에이전트가 Mods 폴더(`/Users/ben/Library/.../KoreanLocalization/`)에서 직접 작업
+   - Desktop 소스(`/Users/ben/Desktop/qud_korean/`)와 Mods 폴더 불일치
+
+3. **중복 파일 발생**
+   - `00_03_LocalizationManager.cs` (AI가 추가)
+   - `00_00_03_LocalizationManager.cs` (원본)
+   - 같은 내용이지만 파일명 규칙이 다른 파일들 생성
+
+### 근본 원인
+**잘못된 배포 스크립트 + AI 에이전트의 작업 폴더 혼란**
+
+1. **배포 스크립트 문제**:
+   ```bash
+   # 기존 deploy-mods.sh (잘못된 버전)
+   # Core_QudKREngine과 Data_QudKRContent를 배포
+   # 하지만 실제 게임은 KoreanLocalization 폴더를 로드!
+   
+   cp -r "$PROJECT_DIR/Core_QudKREngine" "$MODS_DIR/"
+   cp -r "$PROJECT_DIR/Data_QudKRContent" "$MODS_DIR/QudKR_Translation"
+   
+   # 문제: KoreanLocalization 폴더는 전혀 업데이트되지 않음
+   ```
+
+2. **AI 에이전트의 작업 흐름 오류**:
+   ```
+   올바른 워크플로우:
+   1. Desktop/qud_korean에서 작업 (소스)
+   2. deploy-mods.sh 실행
+   3. Mods/KoreanLocalization 업데이트 (배포)
+   4. 게임 재시작
+   
+   실제 AI의 작업 흐름 (잘못됨):
+   1. Mods/KoreanLocalization에서 직접 코드 수정 ❌
+   2. Desktop/qud_korean LOCALIZATION만 수정 ✓
+   3. deploy-mods.sh 실행 (잘못된 폴더 복사)
+   4. 게임 재시작 → 변경사항 반영 안됨
+   ```
+
+3. **양방향 동기화 시도의 부작용**:
+   ```bash
+   # AI가 작성한 스크립트 (혼란 유발)
+   # Step 1: Mods → Desktop 백업 (Scripts)
+   rsync -av --delete "$GAME_MOD/Scripts/" "$SOURCE_DIR/Scripts/"
+   
+   # Step 2: Desktop → Mods 배포 (Scripts)  
+   rsync -av --delete "$SOURCE_DIR/Scripts/" "$GAME_MOD/Scripts/"
+   
+   # 문제: 어디가 소스인지 불명확!
+   ```
+
+### 왜 이런 혼란이 발생했는가?
+
+1. **프로젝트 구조 이해 부족**:
+   - Desktop/qud_korean: 개발 소스 (Git 관리)
+   - Mods/KoreanLocalization: 게임 로드용 복사본
+   - **단방향 배포**가 원칙인데 AI가 양방향으로 착각
+
+2. **배포 스크립트의 오래된 설정**:
+   - 스크립트가 Core_QudKREngine, Data_QudKRContent를 참조
+   - 실제 게임은 KoreanLocalization을 로드
+   - 프로젝트 구조 변경 후 스크립트 미업데이트
+
+3. **디버깅 중 직접 수정 습관**:
+   - AI가 빠른 테스트를 위해 Mods 폴더에서 직접 수정
+   - 이후 Desktop으로 복사하는 것을 잊음
+   - 결과: 소스와 배포본 불일치
+
+### 시도한 해결 방법
+| #   | 방법                                | 결과                          |
+| --- | ----------------------------------- | ----------------------------- |
+| 1   | 수동으로 JSON 파일 복사             | ✅ 임시 해결                   |
+| 2   | 배포 스크립트 재작성 (양방향)       | ⚠️ 부분 성공 (혼란 지속)       |
+| 3   | 배포 스크립트 단순화 (단방향 only)  | ✅ 완전 해결                   |
+| 4   | 중복 파일 제거                      | ✅ 완료                        |
+
+### ✅ 최종 해결
+
+#### 1. 배포 스크립트 완전 재작성 (단방향)
+```bash
+#!/bin/bash
+# Desktop → Mods 단방향 배포만
+
+SOURCE_DIR="/Users/ben/Desktop/qud_korean"
+GAME_MOD="/.../Mods/KoreanLocalization"
+
+# 1. 개발 파일 정리 (Mods에서 .md, Docs 등 제거)
+# 2. Scripts 배포 (Desktop → Mods)
+rsync -a --delete "$SOURCE_DIR/Scripts/" "$GAME_MOD/Scripts/"
+
+# 3. LOCALIZATION 배포 (Desktop → Mods)
+rsync -a --delete "$SOURCE_DIR/LOCALIZATION/" "$GAME_MOD/LOCALIZATION/"
+
+# 4. 메타 파일 복사
+cp -f "$SOURCE_DIR/manifest.json" "$GAME_MOD/"
+cp -f "$SOURCE_DIR/preview.png" "$GAME_MOD/"
+```
+
+#### 2. 작업 원칙 명확화
+```
+✅ 올바른 워크플로우:
+1. Desktop/qud_korean에서만 작업
+2. ./tools/deploy-mods.sh 실행
+3. 게임 재시작
+
+❌ 절대 하지 말아야 할 것:
+- Mods 폴더에서 직접 코드 수정
+- 양방향 동기화 시도
+- 백업 없이 rsync --delete 사용
+```
+
+#### 3. 중복 파일 정리
+```bash
+# AI가 생성한 잘못된 파일명 제거
+rm Scripts/00_03_LocalizationManager.cs  # 원본은 00_00_03_...
+rm Scripts/01_TranslationEngine.cs       # 원본은 00_00_01_...
+rm Scripts/02_ScopeManager.cs            # 원본은 00_00_02_...
+```
+
+### 예방 가이드
+> [!CAUTION]
+> **AI 에이전트 작업 규칙**
+> 
+> 1. **절대 Mods 폴더에서 직접 작업하지 마세요!**
+>    ```bash
+>    # ❌ 잘못된 경로
+>    /Users/ben/Library/Application Support/.../Mods/KoreanLocalization/
+>    
+>    # ✅ 올바른 경로  
+>    /Users/ben/Desktop/qud_korean/
+>    ```
+> 
+> 2. **배포 스크립트는 단방향만**
+>    - Desktop → Mods (배포)
+>    - Mods → Desktop (백업 금지!)
+> 
+> 3. **파일 수정 전 경로 확인**
+>    ```bash
+>    pwd
+>    # 반드시 /Users/ben/Desktop/qud_korean 또는 하위 폴더여야 함
+>    ```
+> 
+> 4. **rsync --delete 사용 시 주의**
+>    - 소스와 대상을 절대 혼동하지 말 것
+>    - 백업 없이 사용 금지
+
+### 파급 효과
+- ✅ 모든 변경사항이 이제 정확히 배포됨
+- ✅ Desktop/qud_korean이 유일한 소스로 확립
+- ✅ Git 커밋 시 올바른 파일만 포함됨
+- ✅ 협업 시 혼란 방지
+
+### 관련 파일
+```
+tools/deploy-mods.sh (완전 재작성)
+Scripts/ (중복 파일 제거)
+LOCALIZATION/ (정상)
+```
+
+---
+
+---
+
+## ERR-R004: 캐릭터 생성 패치 네임스페이스 오류
+
+### 기본 정보
+| 항목       | 내용       |
+| ---------- | ---------- |
+| **상태**   | 🟢 RESOLVED |
+| **심각도** | 🔴 Critical |
+| **발견일** | 2026-01-16 |
+| **해결일** | 2026-01-16 |
+
+### 증상
+```
+error CS0246: The type or namespace name 'MenuOption' could not be found
+error CS0246: The type or namespace name 'UIBreadcrumb' could not be found
+error CS0246: The type or namespace name 'ChoiceWithColorIcon' could not be found
+error CS0246: The type or namespace name 'PrefixMenuOption' could not be found
+error CS0246: The type or namespace name 'SummaryBlockData' could not be found
+error CS0246: The type or namespace name 'CategoryMenuData' could not be found
+error CS0246: The type or namespace name 'AbstractBuilderModuleWindowBase' could not be found
+```
+
+모드 컴파일 실패로 인해 게임에서 한글화 모드가 로드되지 않음.
+
+### 원인
+`10_10_P_CharacterCreation.cs`와 `ChargenTranslationUtils.cs`에서 필요한 네임스페이스 `using` 선언이 누락됨.
+- `MenuOption`, `ChoiceWithColorIcon`, `PrefixMenuOption`, `SummaryBlockData`, `CategoryMenuData` → `XRL.UI.Framework` 네임스페이스
+- `UIBreadcrumb`, `AbstractBuilderModuleWindowBase` → `XRL.CharacterBuilds` 네임스페이스
+
+### ❌ 실패한 시도
+없음 (즉시 해결)
+
+### ✅ 최종 해결
+**10_10_P_CharacterCreation.cs**:
+```csharp
+using XRL.CharacterBuilds;      // 추가
+using XRL.UI.Framework;         // 추가
+```
+
+**ChargenTranslationUtils.cs**:
+```csharp
+using XRL.CharacterBuilds;      // 추가
+using XRL.UI.Framework;         // 추가
+```
+
+### 예방 가이드
+> [!TIP]
+> 새로운 타입 사용 시 **반드시** 네임스페이스 확인:
+> ```bash
+> grep -r "class TypeName" Assets/core_source/
+> ```
+> 
+> 주요 네임스페이스:
+> - `XRL.UI` - 기본 UI 클래스
+> - `XRL.UI.Framework` - UI 프레임워크 데이터 요소 (MenuOption, ChoiceWithColorIcon 등)
+> - `XRL.CharacterBuilds` - 캐릭터 생성 관련 클래스
+> - `XRL.CharacterBuilds.Qud` - Qud 특화 캐릭터 생성 모듈
+> - `XRL.CharacterBuilds.Qud.UI` - Qud 캐릭터 생성 UI
+> - `XRL.CharacterBuilds.UI` - 캐릭터 생성 UI 베이스
+
+---
+
+## ERR-R005: 용어집 키 매칭 실패 (색상 태그 포함)
+
+### 기본 정보
+| 항목       | 내용       |
+| ---------- | ---------- |
+| **상태**   | 🟢 RESOLVED |
+| **심각도** | 🟠 High     |
+| **발견일** | 2026-01-16 |
+| **해결일** | 2026-01-16 |
+
+### 증상
+캐릭터 생성 화면에서 일부 텍스트가 번역되지 않음:
+- "Most creatures begin neutral to you."
+- "2% bonus skill points each level"
+- "-600 reputation with the Putus Templar"
+
+용어집에 번역이 존재함에도 불구하고 영어로 표시됨.
+
+### 원인
+`TranslationEngine`이 입력 텍스트에서 색상 태그를 **제거**하고 검색하지만, 용어집 키에는 색상 태그가 **포함**되어 있어 키 불일치 발생.
+
+```
+게임 입력: "Most creatures begin neutral to you."
+검색 키:   "most creatures begin neutral to you."
+용어집 키: "{{c|ù}} most creatures begin neutral to you." ← 불일치!
+```
+
+### ✅ 최종 해결
+`LocalizationManager`에 키 정규화 로직 추가:
+
+```csharp
+private static string NormalizeKey(string key)
+{
+    // Qud 색상 태그 제거: {{X|text}} → text
+    string result = Regex.Replace(key, @"\{\{[a-zA-Z]\|([^}]+)\}\}", "$1");
+    return result.Trim().ToLowerInvariant();
+}
+```
+
+JSON 로드 시 정규화된 키도 함께 저장하여 두 가지 방식으로 검색 가능.
+
+### 예방 가이드
+> [!TIP]
+> 용어집에 새 항목 추가 시:
+> - 색상 태그가 포함된 키는 자동으로 정규화된 키도 생성됨
+> - 별도로 태그 없는 버전을 추가할 필요 없음
+
+### 관련 파일
+```
+Scripts/00_Core/00_03_LocalizationManager.cs
+```
 
 ---
 
 ## ERR-R001: ScreenBuffer 네임스페이스 오류 [예시]
 
 ### 기본 정보
-| 항목 | 내용 |
-|------|------|
-| **상태** | 🟢 RESOLVED |
+| 항목       | 내용       |
+| ---------- | ---------- |
+| **상태**   | 🟢 RESOLVED |
 | **심각도** | 🔴 Critical |
-| **발견일** | - |
-| **해결일** | - |
+| **발견일** | -          |
+| **해결일** | -          |
 
 ### 증상
 ```
@@ -241,12 +862,12 @@ using ConsoleLib.Console;  // 올바른 네임스페이스
 ## ERR-R002: Undefined target method 에러 [예시]
 
 ### 기본 정보
-| 항목 | 내용 |
-|------|------|
-| **상태** | 🟢 RESOLVED |
+| 항목       | 내용       |
+| ---------- | ---------- |
+| **상태**   | 🟢 RESOLVED |
 | **심각도** | 🔴 Critical |
-| **발견일** | - |
-| **해결일** | - |
+| **발견일** | -          |
+| **해결일** | -          |
 
 ### 증상
 ```
@@ -288,12 +909,12 @@ static MethodBase TargetMethod()
 ## ERR-R003: JSON 파싱 오류 [예시]
 
 ### 기본 정보
-| 항목 | 내용 |
-|------|------|
-| **상태** | 🟢 RESOLVED |
-| **심각도** | 🟠 High |
-| **발견일** | - |
-| **해결일** | - |
+| 항목       | 내용       |
+| ---------- | ---------- |
+| **상태**   | 🟢 RESOLVED |
+| **심각도** | 🟠 High     |
+| **발견일** | -          |
+| **해결일** | -          |
 
 ### 증상
 ```
@@ -429,6 +1050,50 @@ JSON 파일에서 마지막 항목 뒤에 쉼표(trailing comma) 존재.
 
 ---
 
+## FAQ-006: 디버깅 시 "해결됨" 판단 기준 [중요]
+
+> [!CAUTION]
+> **AI 에이전트**: 아래 검증 단계를 모두 완료하기 전에 "해결됨"이라고 선언하지 마세요!
+
+### 필수 검증 단계
+
+#### 1단계: 실제 런타임 데이터 확인
+```
+❌ 잘못된 방법: 코드 분석만으로 "이렇게 되어야 한다"고 가정
+✅ 올바른 방법: 게임 로그에 Debug.Log 추가하여 실제 전송되는 값 확인
+```
+
+예시:
+```csharp
+// 패치에 임시 로그 추가
+UnityEngine.Debug.Log($"[DEBUG] 입력 텍스트: '{text}'");
+UnityEngine.Debug.Log($"[DEBUG] 처리 후: '{processed}'");
+```
+
+#### 2단계: 전체 데이터 흐름 추적
+```
+게임 원본 데이터 → 패치에서 받는 값 → 변환 처리 → 용어집 검색 → 결과
+```
+
+각 단계에서 실제 값을 확인할 것!
+
+#### 3단계: 스크린샷/로그 기반 검증
+- 사용자가 제공한 스크린샷의 **실제 문자**를 확인
+- 예: `- `(하이픈)와 `·`(middle dot)와 `ù`(u-grave)는 **다른 문자**
+
+#### 4단계: 게임 재시작 후 확인
+- 모드 변경사항은 게임 재시작 후에만 적용됨
+- 재시작 후 직접 확인하거나 사용자에게 확인 요청
+
+### 흔한 실수
+| 실수 | 결과 |
+|------|------|
+| 코드 변경만으로 "수정됨" 선언 | 실제 문제 해결 안됨 |
+| 용어집 키만 확인하고 입력 확인 안함 | 키 불일치 미발견 |
+| 스크린샷 대충 보고 가정함 | 실제 문자 차이 놓침 |
+
+---
+
 ## FAQ-005: 게임 업데이트 후 모드 동작 안함
 
 ### 체크리스트
@@ -459,12 +1124,12 @@ JSON 파일에서 마지막 항목 뒤에 쉼표(trailing comma) 존재.
 ## ERR-XXX: [에러 제목]
 
 ### 기본 정보
-| 항목 | 내용 |
-|------|------|
-| **상태** | 🔴 OPEN |
-| **심각도** | 🟠 High |
-| **발견일** | YYYY-MM-DD |
-| **관련 TODO** | P?-?? |
+| 항목          | 내용       |
+| ------------- | ---------- |
+| **상태**      | 🔴 OPEN     |
+| **심각도**    | 🟠 High     |
+| **발견일**    | YYYY-MM-DD |
+| **관련 TODO** | P?-??      |
 
 ### 증상
 [에러 메시지 또는 현상 상세 설명]
@@ -473,10 +1138,10 @@ JSON 파일에서 마지막 항목 뒤에 쉼표(trailing comma) 존재.
 [왜 이 에러가 발생하는지 분석]
 
 ### 시도한 해결 방법
-| # | 방법 | 결과 |
-|---|------|------|
-| 1 | [시도한 방법] | ❌ 실패 - [이유] |
-| 2 | [시도한 방법] | ❌ 실패 - [이유] |
+| #   | 방법          | 결과            |
+| --- | ------------- | --------------- |
+| 1   | [시도한 방법] | ❌ 실패 - [이유] |
+| 2   | [시도한 방법] | ❌ 실패 - [이유] |
 
 ### ✅ 최종 해결 (해결 시)
 [성공한 해결 방법 상세 설명]
