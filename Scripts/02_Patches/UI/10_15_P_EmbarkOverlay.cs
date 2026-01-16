@@ -1,6 +1,7 @@
 /*
  * 파일명: 10_15_P_EmbarkOverlay.cs
  * 분류: [UI Patch] 캐릭터 생성 오버레이 (Back/Next 버튼)
+ * 역할: 캐릭터 생성 화면 하단의 'Back', 'Next' 공통 버튼 텍스트를 번역합니다.
  */
 
 using HarmonyLib;

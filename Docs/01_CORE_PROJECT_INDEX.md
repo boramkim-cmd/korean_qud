@@ -1,203 +1,165 @@
 # 📚 프로젝트 완전 인덱스 (자동 생성)
 
-**생성**: 2026-01-16 09:19:54
+**생성**: 2026-01-16 09:35:03
+
+이 문서는 프로젝트의 모든 파일과 메서드 시그니처를 포함합니다. **새로운 기능을 만들기 전, 반드시 여기서 기존 메서드를 검색하십시오.**
 
 ================================================================================
 
-## 🔧 Scripts (핵심 코드)
+## 📂 [Core]
 
-### TranslationEngine 및 Core
+### `Scripts/00_Core/00_03_LocalizationManager.cs`
+- **역할**: JSON 번역 파일을 로드하고 카테고리별로 관리하며, 세분화된 카테고리 병합 기능을 제공합니다.
+- **Namespace**: `QudKRTranslation.Core`
+- **공개 메서드 (Public Methods)**:
+  ```csharp
+  void Initialize()
+  void Reload()
+  string GetTerm(string category, string key, string fallback = "")
+  bool TryGetAnyTerm(string key, out string result, params string[] categories)
+  bool HasTerm(string category, string key)
+  ```
 
-#### `Scripts/00_Core/00_03_LocalizationManager.cs`
-- **클래스**: LocalizationManager, SimpleJsonParser
-- **주요 메서드**:
-  - `void Initialize(void)`
-  - `void Reload(void)`
-  - `Dictionary<string, string> GetCategory(string category)`
-  - `Dictionary<string, string> GetCategoryGroup(string prefix)`
-  - `string GetTerm(string category, string key, string fallback = "")`
+### `Scripts/00_Core/00_04_GlossaryLoader.cs`
+- **역할**: 기존 코드가 LocalizationManager를 사용할 수 있도록 연결해줍니다.
+- **Namespace**: `QudKRTranslation.Core`
+- **공개 메서드 (Public Methods)**:
+  ```csharp
+  void LoadGlossary()
+  string GetTerm(string category, string key, string fallback = "")
+  bool HasTerm(string category, string key)
+  void ReloadGlossary()
+  ```
 
-#### `Scripts/00_Core/00_04_GlossaryLoader.cs`
-- **클래스**: GlossaryLoader
-- **주요 메서드**:
-  - `void LoadGlossary(void)`
-  - `string GetTerm(string category, string key, string fallback = "")`
-  - `bool HasTerm(string category, string key)`
-  - `void ReloadGlossary(void)`
+### `Scripts/00_Core/00_05_GlossaryExtensions.cs`
+- **역할**: 문자열 보간으로 간단하게 용어 사용
+- **Namespace**: `QudKRTranslation.Core`
+- **공개 메서드 (Public Methods)**:
+  ```csharp
+  string G(this string placeholder)
+  ```
 
-#### `Scripts/00_Core/00_05_GlossaryExtensions.cs`
-- **클래스**: GlossaryExtensions
-- **주요 메서드**:
-  - `string G(this string placeholder)`
+### `Scripts/00_Core/00_06_G.cs`
+- **역할**: 초간단 glossary 접근을 위한 헬퍼
+- **Namespace**: `QudKRTranslation.Core`
+- **공개 메서드 (Public Methods)**:
+  ```csharp
+  string _(string placeholder)
+  ```
 
-#### `Scripts/00_Core/00_06_G.cs`
-- **클래스**: G
-- **주요 메서드**:
-  - `string _(string placeholder)`
+### `Scripts/00_Core/00_99_QudKREngine.cs`
+- **역할**: 한국어 폰트 강제 적용, 조사(Josa) 처리 로직 등 엔진 레벨의 기능을 제공합니다.
+- **Namespace**: `QudKRTranslation.Core`
+- **공개 메서드 (Public Methods)**:
+  ```csharp
+  void ApplyKoreanFont()
+  bool HasJongsung(char c)
+  string ResolveJosa(string text)
+  ```
 
-#### `Scripts/00_Core/00_99_QudKREngine.cs`
-- **클래스**: FontManager, UILoadPatch, MessageLogPatch, ArticleKillerPatch, PluralizeKillerPatch, NameOrderPatch, DescriptionPatch, KoreanTextHelper
-- **주요 메서드**:
-  - `void ApplyKoreanFont(void)`
-  - `bool HasJongsung(char c)`
-  - `string ResolveJosa(string text)`
+### `Scripts/00_Core/00_ModEntry.cs`
+- **역할**: 모드 로드 시 LocalizationManager를 초기화하고 모든 Harmony 패치를 어셈블리에서 찾아 실행합니다.
+- **Namespace**: `QudKRTranslation`
+- **공개 메서드 (Public Methods)**:
+  ```csharp
+  void Main()
+  ```
 
-#### `Scripts/00_Core/00_ModEntry.cs`
-- **클래스**: ModEntry
-- **주요 메서드**:
-  - `void Main(void)`
+### `Scripts/00_Core/01_TranslationEngine.cs`
+- **역할**: 색상 태그, 체크박스, 대소문자를 무시하고 번역을 찾아주는 핵심 로직
+- **Namespace**: `QudKRTranslation`
+- **공개 메서드 (Public Methods)**:
+  ```csharp
+  bool TryTranslate(string text, out string translated)
+  bool TryTranslate(string text, out string translated, Dictionary<string, string>[] scopes)
+  ```
 
-#### `Scripts/00_Core/01_TranslationEngine.cs`
-- **클래스**: TranslationEngine
-- **주요 메서드**:
-  - `bool TryTranslate(string text, out string translated)`
-  - `bool TryTranslate(string text, out string translated, Dictionary<string, string>[] scopes)`
+### `Scripts/00_Core/02_ScopeManager.cs`
+- **역할**: Stack 기반으로 현재 활성 번역 범위를 관리합니다.
+- **Namespace**: `QudKRTranslation`
+- **공개 메서드 (Public Methods)**:
+  ```csharp
+  void PushScope(params Dictionary<string, string>[] scopes)
+  void PopScope()
+  int GetDepth()
+  void ClearAll()
+  bool IsScopeActive(Dictionary<string, string> targetDict)
+  ```
 
-#### `Scripts/00_Core/02_ScopeManager.cs`
-- **클래스**: ScopeManager
-- **주요 메서드**:
-  - `void PushScope(params Dictionary<string, string>[] scopes)`
-  - `void PopScope(void)`
-  - `int GetDepth(void)`
-  - `void ClearAll(void)`
-  - `bool IsScopeActive(Dictionary<string, string> targetDict)`
+## 📂 [Core Patch]
 
-### Utils
+### `Scripts/02_Patches/Core/00_01_P_SteamGalaxy.cs`
+- **역할**: 스팀 환경에서 GOG Galaxy 초기화 중 오류가 발생하는 것을 방지하기 위해 Galaxy 초기화를 건너뛰고 Steam만 초기화합니다.
+- **Namespace**: `QudKRTranslation.Patches`
 
-#### `Scripts/99_Utils/ChargenTranslationUtils.cs`
-- **클래스**: ChargenTranslationUtils
-- **메서드**: TranslateLongDescription, TranslateMenuOptions, TranslateBreadcrumb
+### `Scripts/02_Patches/Core/00_02_P_ScreenBuffer.cs`
+- **역할**: ScreenBuffer.Write 메서드를 패치하여 모든 화면의 텍스트를 번역합니다.
+- **Namespace**: `QudKRTranslation.Patches`
 
-#### `Scripts/99_Utils/TranslationUtils.cs`
-- **클래스**: TranslationUtils
-- **메서드**: TryTranslatePreservingTags, TryTranslatePreservingTags, IsControlValue
+## 📂 [UI Patch]
 
-## 🐍 Python 도구
+### `Scripts/02_Patches/UI/10_00_P_GlobalUI.cs`
+- **역할**: 메인 메뉴, 팝업 메시지, 네비게이션 바, 공용 버튼 등 전반적인 UI 번역을 담당합니다.
+- **Namespace**: `QudKRTranslation.Patches`
+- **공개 메서드 (Public Methods)**:
+  ```csharp
+  void TranslateMenuData()
+  ```
 
-### `analyze_json_conflicts.py`
-- **함수**: analyze_json_conflicts
+### `Scripts/02_Patches/UI/10_01_P_Options.cs`
+- **역할**: 데이터 로딩(LoadOptionNode) 및 UI 표시(OptionsScreen) 시점을 모두 패치하여 완벽한 번역을 제공합니다.
+- **Namespace**: `QudKRTranslation.Patches`
+- **공개 메서드 (Public Methods)**:
+  ```csharp
+  void TranslateOption(GameOption opt)
+  ```
 
-### `build_project_db.py`
-- 프로젝트 메타데이터 데이터베이스 생성기
-- **함수**: extract_cs_metadata, extract_py_metadata, extract_md_metadata, extract_json_metadata, build_database
+### `Scripts/02_Patches/UI/10_02_P_Tooltip.cs`
+- **역할**: ModelShark Tooltip 시스템의 텍스트를 번역합니다.
+- **Namespace**: `QudKRTranslation.Patches`
 
-### `check_json_dupes.py`
-- **함수**: find_duplicates, check_file, __init__, dict_with_check
+### `Scripts/02_Patches/UI/10_03_P_UITextSkin.cs`
+- **역할**: UITextSkin.Apply 메서드를 패치하여 TMPro 기반 UI 텍스트를 번역합니다.
+- **Namespace**: `QudKRTranslation.Patches`
 
-### `check_logs_for_untranslated.py`
-- 실제 게임 로그에서 번역되지 않은 영문 텍스트를 찾는 스크립트
-- **함수**: find_untranslated_in_logs
+### `Scripts/02_Patches/UI/10_04_P_ListScroller.cs`
+- **역할**: FrameworkScroller가 프리팹(각 줄의 UI)을 설정할 때 즉시 번역을 적용합니다.
+- **Namespace**: `QudKRTranslation.Patches`
 
-### `check_missing.py`
-- **함수**: check_missing
+### `Scripts/02_Patches/UI/10_07_P_Inventory.cs`
+- **역할**: 인벤토리 화면의 메뉴, 카테고리, 도움말 텍스트를 번역합니다.
+- **Namespace**: `QudKRTranslation.Patches.UI`
 
-### `check_missing_cs.py`
-- **함수**: check_missing_cs
+### `Scripts/02_Patches/UI/10_08_P_Status.cs`
+- **역할**: 상태창(인벤토리, 장비, 캐릭터 시트 등 포함)이 열릴 때
+- **Namespace**: `QudKRTranslation.Patches.UI`
 
-### `check_translation_coverage.py`
-- 캐릭터 생성 화면에서 번역되지 않은 텍스트를 찾는 스크립트
-- **함수**: check_glossary_coverage
+### `Scripts/02_Patches/UI/10_10_P_CharacterCreation.cs`
+- **역할**: 캐릭터 생성의 모든 단계(모드, 종족, 직업, 스탯, 변이 등)의 UI와 설명을 번역합니다.
+- **Namespace**: `QudKRTranslation.Patches`
 
-### `check_xml_glossary_match.py`
-- 캐릭터 생성 화면에서 실제로 사용되는 텍스트와 glossary 매칭 확인
-- **함수**: check_xml_vs_glossary
+### `Scripts/02_Patches/UI/10_15_P_EmbarkOverlay.cs`
+- **역할**: 캐릭터 생성 화면 하단의 'Back', 'Next' 공통 버튼 텍스트를 번역합니다.
+- **Namespace**: `QudKRTranslation.Patches`
 
-### `clean_json.py`
-- **함수**: clean_json, dict_with_order
+## 📂 [Utils]
 
-### `extract_keys.py`
-- **함수**: strip_tags, get_keys
+### `Scripts/99_Utils/ChargenTranslationUtils.cs`
+- **역할**: 캐릭터 생성 화면의 다중 라인 설명 등을 TranslationEngine을 사용해 번역합니다.
+- **Namespace**: `QudKRTranslation.Utils`
+- **공개 메서드 (Public Methods)**:
+  ```csharp
+  string TranslateLongDescription(string original, params string[] categories)
+  IEnumerable<MenuOption> TranslateMenuOptions(IEnumerable<MenuOption> options)
+  void TranslateBreadcrumb(UIBreadcrumb breadcrumb)
+  ```
 
-### `fix_json_duplicates.py`
-- JSON 중복 키 제거 도구 (개선 버전)
-- **함수**: remove_duplicates, clean_all_glossaries
-
-### `generate_quick_reference.py`
-- 프로젝트 상태 자동 요약 생성기
-- **함수**: scan_project_structure, generate_quick_reference, main
-
-### `merge_options.py`
-- /*
-- **함수**: strip_tags, get_keys
-
-### `project_tool.py`
-- 통합 프로젝트 도구
-- **함수**: verify_code, check_translation_coverage, check_json_duplicates, build_metadata, generate_quick_reference
-
-### `sort_json.py`
-- JSON 정렬 및 포맷팅 도구
-- **함수**: sort_json
-
-### `sync_glossary.py`
-- 번역 파일 찾기
-- **함수**: find_translation_files, replace_in_file, replacer, main
-
-### `verify_code.py`
-- 코드 검증 시스템
-- **함수**: find_duplicate_functions, find_duplicate_classes, check_common_functions, verify_compilation, main
-
-## 📖 문서
-
-### ⭐ `00_CORE_START_HERE.md`
-- **제목**: ⚡ 프로젝트 통합 시작 가이드 (Quick Start)
-- **수정**: 2026-01-16 09:19
-
-### ⭐ `01_CORE_PROJECT_INDEX.md`
-- **제목**: 📚 프로젝트 완전 인덱스 (자동 생성)
-- **수정**: 2026-01-16 09:17
-
-### ⭐ `02_CORE_QUICK_REFERENCE.md`
-- **제목**: 🚀 프로젝트 빠른 참조 (자동 생성)
-- **수정**: 2026-01-16 09:19
-
-### ⭐ `10_LOC_WORKFLOW.md`
-- **제목**: 번역 작업 워크플로우
-- **수정**: 2026-01-16 09:19
-
-## 📚 Glossary 파일
-
-### `glossary_chargen.json`
-- **항목 수**: 121
-- **카테고리**: chargen_mode, chargen_stats, chargen_ui
-
-### `glossary_cybernetics.json`
-- **항목 수**: 63
-- **카테고리**: cybernetics, cybernetics_desc
-
-### `glossary_location.json`
-- **항목 수**: 23
-- **카테고리**: chargen_location
-
-### `glossary_mutations.json`
-- **항목 수**: 130
-- **카테고리**: mutation_base, mutation_defect, mutation_desc_base, mutation_desc_physical, mutation_mental, mutation_physical
-
-### `glossary_options.json`
-- **항목 수**: 403
-- **카테고리**: options
-
-### `glossary_pregen.json`
-- **항목 수**: 34
-- **카테고리**: chargen_pregen
-
-### `glossary_proto.json`
-- **항목 수**: 40
-- **카테고리**: chargen_proto
-
-### `glossary_skills.json`
-- **항목 수**: 158
-- **카테고리**: power_axe, power_axe_desc, power_general, power_general_desc, power_pistol, power_pistol_desc, power_tinkering, power_tinkering_desc, power_wayfaring, power_wayfaring_desc, skill, skill_desc
-
-### `glossary_terms.json`
-- **항목 수**: 39
-- **카테고리**: attribute, character, faction, genotype, item, phrase, weapon, world
-
-### `glossary_ui.json`
-- **항목 수**: 159
-- **카테고리**: common, inventory, status, ui
-
-================================================================================
-
-**이 파일은 자동 생성됩니다.**
-
-재생성: `python3 build_project_db.py`
+### `Scripts/99_Utils/TranslationUtils.cs`
+- **역할**: UI 태그(<...>, {{...}})를 보존하고, 숫구나 제어값을 번역에서 제외합니다.
+- **Namespace**: `QudKRTranslation.Utils`
+- **공개 메서드 (Public Methods)**:
+  ```csharp
+  bool TryTranslatePreservingTags(string input, out string output, Dictionary<string, string> scope)
+  bool TryTranslatePreservingTags(string input, out string output, Dictionary<string, string>[] scopes)
+  bool IsControlValue(string s)
+  ```

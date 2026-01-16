@@ -63,12 +63,9 @@ python3 tools/project_tool.py
 - 메타데이터 자동 생성
 - 빠른 참조 업데이트
 
-#### 개별 도구
+#### 정밀 검증 도구
 ```bash
-python3 tools/verify_code.py              # 코드 검증
-python3 tools/build_project_db.py         # 메타데이터 생성
-python3 tools/check_translation_coverage.py  # 번역 확인
-python3 tools/clean_json.py               # JSON 정리
+python3 tools/check_missing_translations.py  # 미번역 정밀 탐색
 ```
 
 ### Shell 스크립트 (tools/*.sh)

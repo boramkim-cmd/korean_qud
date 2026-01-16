@@ -17,12 +17,12 @@ python3 tools/project_tool.py
 ### 1. **01_CORE_PROJECT_INDEX.md** ⭐⭐⭐
 - **모든 파일의 메서드 시그니처 포함**
 - 파일 열지 않고 메서드 확인 가능
-- 자동 생성: `python3 build_project_db.py`
+- 자동 생성: `python3 tools/project_tool.py`
 
 ### 2. **02_CORE_QUICK_REFERENCE.md** ⭐⭐⭐
 - 프로젝트 구조 요약
 - 핵심 함수 위치
-- 자동 생성: `python3 generate_quick_reference.py`
+- 자동 생성: `python3 tools/project_tool.py`
 
 ### 3. **project_metadata.json** ⭐⭐
 - 프로그래밍 방식으로 읽을 수 있는 메타데이터
@@ -34,7 +34,7 @@ python3 tools/project_tool.py
 ```
 1. 01_CORE_PROJECT_INDEX.md 먼저 확인
 2. 기존 메서드 재사용
-3. verify_code.py 실행 후 배포
+3. project_tool.py 실행 후 배포
 ```
 
 ### ❌ 절대 금지
@@ -72,17 +72,14 @@ ChargenTranslationUtils
    ↓
 3. 코드 작성
    ↓
-4. python3 verify_code.py   # 검증
+4. python3 tools/project_tool.py   # 검증
    ↓
 5. 배포
 ```
 
-## 🔄 데이터베이스 갱신
-
 ```bash
 # 프로젝트 변경 후 실행
-python3 build_project_db.py
-python3 generate_quick_reference.py
+python3 tools/project_tool.py
 ```
 
 ## 📖 로컬라이제이션 (번역 지침) ⭐⭐⭐

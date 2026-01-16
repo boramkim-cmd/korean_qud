@@ -1,6 +1,7 @@
 /*
  * 파일명: 10_10_P_CharacterCreation.cs
  * 분류: [UI Patch] 캐릭터 생성 화면 통합 패치
+ * 역할: 캐릭터 생성의 모든 단계(모드, 종족, 직업, 스탯, 변이 등)의 UI와 설명을 번역합니다.
  */
 
 using System;

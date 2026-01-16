@@ -1,3 +1,9 @@
+/*
+ * 파일명: 00_99_QudKREngine.cs
+ * 분류: [Core] 엔진 확장 유틸리티
+ * 역할: 한국어 폰트 강제 적용, 조사(Josa) 처리 로직 등 엔진 레벨의 기능을 제공합니다.
+ */
+
 using System;
 using System.Collections.Generic;
 using System.Reflection;

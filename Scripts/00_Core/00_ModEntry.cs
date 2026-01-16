@@ -1,3 +1,9 @@
+/*
+ * 파일명: 00_ModEntry.cs
+ * 분류: [Core] 모드 진입점
+ * 역할: 모드 로드 시 LocalizationManager를 초기화하고 모든 Harmony 패치를 어셈블리에서 찾아 실행합니다.
+ */
+
 using System;
 using System.Linq;
 using System.Reflection;

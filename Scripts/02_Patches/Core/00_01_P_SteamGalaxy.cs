@@ -1,8 +1,7 @@
 /*
- * File: SteamGalaxyPatch.cs
- * Category: [Patch] Skip Galaxy initialization when running on Steam-only environments
- * Purpose: Prefix PlatformManager.Awake to call Steam.Awake only and skip Galaxy.Awake to avoid DllNotFoundException.
- * Created: 2026-01-15
+ * 파일명: 00_01_P_SteamGalaxy.cs
+ * 분류: [Core Patch] 플랫폼 초기화 수정
+ * 역할: 스팀 환경에서 GOG Galaxy 초기화 중 오류가 발생하는 것을 방지하기 위해 Galaxy 초기화를 건너뛰고 Steam만 초기화합니다.
  */
 
 using System;

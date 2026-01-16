@@ -120,15 +120,8 @@ string term = LocalizationManager.GetTerm("ui", "newGame", "새 게임");
 
 → 게임 재시작 → 모든 곳에 자동 적용!
 
-### 2. 자동화 스크립트 (선택)
-
-```bash
-# 미리보기
-python tools/sync_glossary.py --old "우유" --new "생수" --dry-run
-
-# 실제 적용
-python tools/sync_glossary.py --old "우유" --new "생수"
-```
+### 2. 일괄 변경 시 주의사항
+용어 일괄 변경이 필요한 경우, 텍스트 에디터(VS Code 등)의 '전체 바꾸기(Ctrl+Shift+F)' 기능을 사용하거나, AI 에이전트에게 요청하십시오. JSON 파일 수정 후 반드시 `python3 tools/project_tool.py`를 실행하여 무결성을 확인하십시오.
 
 ---
 
