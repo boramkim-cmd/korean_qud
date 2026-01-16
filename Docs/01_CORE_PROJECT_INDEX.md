@@ -1,12 +1,41 @@
 # 📚 프로젝트 완전 인덱스 (자동 생성)
 
-**생성**: 2026-01-16 09:50:54
+**생성**: 2026-01-16 09:55:43
 
 이 문서는 프로젝트의 모든 파일과 메서드 시그니처를 포함합니다. **새로운 기능을 만들기 전, 반드시 여기서 기존 메서드를 검색하십시오.**
 
 ================================================================================
 
 ## 📂 [Core]
+
+### `Scripts/00_Core/00_00_ModEntry.cs`
+- **역할**: 모드 로드 시 LocalizationManager를 초기화하고 모든 Harmony 패치를 어셈블리에서 찾아 실행합니다.
+- **Namespace**: `QudKRTranslation`
+- **공개 메서드 (Public Methods)**:
+  ```csharp
+  void Main()
+  ```
+
+### `Scripts/00_Core/00_01_TranslationEngine.cs`
+- **역할**: 색상 태그, 체크박스, 대소문자를 무시하고 번역을 찾아주는 핵심 로직
+- **Namespace**: `QudKRTranslation`
+- **공개 메서드 (Public Methods)**:
+  ```csharp
+  bool TryTranslate(string text, out string translated)
+  bool TryTranslate(string text, out string translated, Dictionary<string, string>[] scopes)
+  ```
+
+### `Scripts/00_Core/00_02_ScopeManager.cs`
+- **역할**: Stack 기반으로 현재 활성 번역 범위를 관리합니다.
+- **Namespace**: `QudKRTranslation`
+- **공개 메서드 (Public Methods)**:
+  ```csharp
+  void PushScope(params Dictionary<string, string>[] scopes)
+  void PopScope()
+  int GetDepth()
+  void ClearAll()
+  bool IsScopeActive(Dictionary<string, string> targetDict)
+  ```
 
 ### `Scripts/00_Core/00_03_LocalizationManager.cs`
 - **역할**: JSON 번역 파일을 로드하고 카테고리별로 관리하며, 세분화된 카테고리 병합 기능을 제공합니다.
@@ -55,35 +84,6 @@
   void ApplyKoreanFont()
   bool HasJongsung(char c)
   string ResolveJosa(string text)
-  ```
-
-### `Scripts/00_Core/00_ModEntry.cs`
-- **역할**: 모드 로드 시 LocalizationManager를 초기화하고 모든 Harmony 패치를 어셈블리에서 찾아 실행합니다.
-- **Namespace**: `QudKRTranslation`
-- **공개 메서드 (Public Methods)**:
-  ```csharp
-  void Main()
-  ```
-
-### `Scripts/00_Core/01_TranslationEngine.cs`
-- **역할**: 색상 태그, 체크박스, 대소문자를 무시하고 번역을 찾아주는 핵심 로직
-- **Namespace**: `QudKRTranslation`
-- **공개 메서드 (Public Methods)**:
-  ```csharp
-  bool TryTranslate(string text, out string translated)
-  bool TryTranslate(string text, out string translated, Dictionary<string, string>[] scopes)
-  ```
-
-### `Scripts/00_Core/02_ScopeManager.cs`
-- **역할**: Stack 기반으로 현재 활성 번역 범위를 관리합니다.
-- **Namespace**: `QudKRTranslation`
-- **공개 메서드 (Public Methods)**:
-  ```csharp
-  void PushScope(params Dictionary<string, string>[] scopes)
-  void PopScope()
-  int GetDepth()
-  void ClearAll()
-  bool IsScopeActive(Dictionary<string, string> targetDict)
   ```
 
 ## 📂 [Core Patch]
@@ -144,17 +144,7 @@
 
 ## 📂 [Utils]
 
-### `Scripts/99_Utils/ChargenTranslationUtils.cs`
-- **역할**: 캐릭터 생성 화면의 다중 라인 설명 등을 TranslationEngine을 사용해 번역합니다.
-- **Namespace**: `QudKRTranslation.Utils`
-- **공개 메서드 (Public Methods)**:
-  ```csharp
-  string TranslateLongDescription(string original, params string[] categories)
-  IEnumerable<MenuOption> TranslateMenuOptions(IEnumerable<MenuOption> options)
-  void TranslateBreadcrumb(UIBreadcrumb breadcrumb)
-  ```
-
-### `Scripts/99_Utils/TranslationUtils.cs`
+### `Scripts/99_Utils/99_01_TranslationUtils.cs`
 - **역할**: UI 태그(<...>, {{...}})를 보존하고, 숫구나 제어값을 번역에서 제외합니다.
 - **Namespace**: `QudKRTranslation.Utils`
 - **공개 메서드 (Public Methods)**:
@@ -162,4 +152,14 @@
   bool TryTranslatePreservingTags(string input, out string output, Dictionary<string, string> scope)
   bool TryTranslatePreservingTags(string input, out string output, Dictionary<string, string>[] scopes)
   bool IsControlValue(string s)
+  ```
+
+### `Scripts/99_Utils/99_02_ChargenTranslationUtils.cs`
+- **역할**: 캐릭터 생성 화면의 다중 라인 설명 등을 TranslationEngine을 사용해 번역합니다.
+- **Namespace**: `QudKRTranslation.Utils`
+- **공개 메서드 (Public Methods)**:
+  ```csharp
+  string TranslateLongDescription(string original, params string[] categories)
+  IEnumerable<MenuOption> TranslateMenuOptions(IEnumerable<MenuOption> options)
+  void TranslateBreadcrumb(UIBreadcrumb breadcrumb)
   ```

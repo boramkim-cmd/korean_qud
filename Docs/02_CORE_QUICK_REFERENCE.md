@@ -1,10 +1,10 @@
 # 🚀 프로젝트 빠른 참조 (자동 생성)
 
-**생성**: 2026-01-16 09:50:54
+**생성**: 2026-01-16 09:55:43
 
 ## ⭐ 핵심 경로
 ```
-Scripts/00_Core/01_TranslationEngine.cs  → 핵심 엔진
+Scripts/00_Core/00_01_TranslationEngine.cs  → 핵심 엔진
 Scripts/00_Core/00_03_LocalizationManager.cs → 데이터 관리
 LOCALIZATION/glossary_*.json              → 용어집 데이터
 ```
