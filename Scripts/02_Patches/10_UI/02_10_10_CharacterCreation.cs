@@ -227,9 +227,7 @@ namespace QudKRTranslation.Patches
 
                          // Translate Description
                         var tr = Traverse.Create(choice);
-                        string desc = tr.Field<string>("Description").Value;
-                        if (!string.IsNullOrEmpty(desc))
-                        {
+
                         string desc = tr.Field<string>("Description").Value;
                         if (!string.IsNullOrEmpty(desc))
                         {

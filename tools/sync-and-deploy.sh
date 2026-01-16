@@ -40,17 +40,17 @@ echo -e "${BLUE}========================================${NC}"
 
 if [ -z "$1" ]; then
     # 커밋 메시지가 없으면 quick-save 사용
-    ./quick-save.sh
+    ./tools/quick-save.sh
 else
     # 커밋 메시지가 있으면 sync 사용
-    ./sync.sh "$1"
+    ./tools/sync.sh "$1"
 fi
 
 # 2단계: 모드 배포
 echo -e "\n${BLUE}[단계 2/3] 모드 배포${NC}"
 echo -e "${BLUE}========================================${NC}"
 
-./deploy-mods.sh
+./tools/deploy-mods.sh
 
 # 완료
 echo -e "\n${BLUE}========================================${NC}"
