@@ -1,0 +1,540 @@
+{
+  "generated": "2026-01-16 23:54:57",
+  "scripts": {
+    "Scripts/99_Utils/99_00_02_ChargenTranslationUtils.cs": {
+      "classification": "Utils",
+      "role": "캐릭터 생성 화면의 다중 라인 설명 등을 TranslationEngine을 사용해 번역합니다.",
+      "namespace": "QudKRTranslation.Utils",
+      "classes": [
+        "ChargenTranslationUtils"
+      ],
+      "methods": [
+        {
+          "name": "TranslateLongDescription",
+          "return": "string",
+          "params": "string original, params string[] categories"
+        },
+        {
+          "name": "TranslateMenuOptions",
+          "return": "IEnumerable<MenuOption>",
+          "params": "IEnumerable<MenuOption> options"
+        },
+        {
+          "name": "TranslateBreadcrumb",
+          "return": "void",
+          "params": "UIBreadcrumb breadcrumb"
+        }
+      ]
+    },
+    "Scripts/99_Utils/99_00_01_TranslationUtils.cs": {
+      "classification": "Utils",
+      "role": "UI 태그(<...>, {{...}})를 보존하고, 숫구나 제어값을 번역에서 제외합니다.",
+      "namespace": "QudKRTranslation.Utils",
+      "classes": [
+        "TranslationUtils"
+      ],
+      "methods": [
+        {
+          "name": "TryTranslatePreservingTags",
+          "return": "bool",
+          "params": "string input, out string output, Dictionary<string, string> scope"
+        },
+        {
+          "name": "TryTranslatePreservingTags",
+          "return": "bool",
+          "params": "string input, out string output, Dictionary<string, string>[] scopes"
+        },
+        {
+          "name": "IsControlValue",
+          "return": "bool",
+          "params": "string s"
+        }
+      ]
+    },
+    "Scripts/00_Core/00_00_02_ScopeManager.cs": {
+      "classification": "Core",
+      "role": "Stack 기반으로 현재 활성 번역 범위를 관리합니다.",
+      "namespace": "QudKRTranslation",
+      "classes": [
+        "ScopeManager"
+      ],
+      "methods": [
+        {
+          "name": "PushScope",
+          "return": "void",
+          "params": "params Dictionary<string, string>[] scopes"
+        },
+        {
+          "name": "PopScope",
+          "return": "void",
+          "params": ""
+        },
+        {
+          "name": "GetDepth",
+          "return": "int",
+          "params": ""
+        },
+        {
+          "name": "ClearAll",
+          "return": "void",
+          "params": ""
+        },
+        {
+          "name": "IsScopeActive",
+          "return": "bool",
+          "params": "Dictionary<string, string> targetDict"
+        }
+      ]
+    },
+    "Scripts/00_Core/00_00_03_LocalizationManager.cs": {
+      "classification": "Core",
+      "role": "JSON 번역 파일을 로드하고 카테고리별로 관리하며, 세분화된 카테고리 병합 기능을 제공합니다.",
+      "namespace": "QudKRTranslation.Core",
+      "classes": [
+        "LocalizationManager",
+        "SimpleJsonParser"
+      ],
+      "methods": [
+        {
+          "name": "Initialize",
+          "return": "void",
+          "params": ""
+        },
+        {
+          "name": "Reload",
+          "return": "void",
+          "params": ""
+        },
+        {
+          "name": "GetTerm",
+          "return": "string",
+          "params": "string category, string key, string fallback = \"\""
+        },
+        {
+          "name": "TryGetAnyTerm",
+          "return": "bool",
+          "params": "string key, out string result, params string[] categories"
+        },
+        {
+          "name": "HasTerm",
+          "return": "bool",
+          "params": "string category, string key"
+        }
+      ]
+    },
+    "Scripts/00_Core/00_00_01_TranslationEngine.cs": {
+      "classification": "Core",
+      "role": "색상 태그, 체크박스, 대소문자를 무시하고 번역을 찾아주는 핵심 로직",
+      "namespace": "QudKRTranslation",
+      "classes": [
+        "TranslationEngine"
+      ],
+      "methods": [
+        {
+          "name": "TryTranslate",
+          "return": "bool",
+          "params": "string text, out string translated"
+        },
+        {
+          "name": "TryTranslate",
+          "return": "bool",
+          "params": "string text, out string translated, Dictionary<string, string>[] scopes"
+        }
+      ]
+    },
+    "Scripts/00_Core/00_00_04_GlossaryLoader.cs": {
+      "classification": "Core",
+      "role": "기존 코드가 LocalizationManager를 사용할 수 있도록 연결해줍니다.",
+      "namespace": "QudKRTranslation.Core",
+      "classes": [
+        "GlossaryLoader"
+      ],
+      "methods": [
+        {
+          "name": "LoadGlossary",
+          "return": "void",
+          "params": ""
+        },
+        {
+          "name": "GetTerm",
+          "return": "string",
+          "params": "string category, string key, string fallback = \"\""
+        },
+        {
+          "name": "HasTerm",
+          "return": "bool",
+          "params": "string category, string key"
+        },
+        {
+          "name": "ReloadGlossary",
+          "return": "void",
+          "params": ""
+        }
+      ]
+    },
+    "Scripts/00_Core/00_00_05_GlossaryExtensions.cs": {
+      "classification": "Core",
+      "role": "문자열 보간으로 간단하게 용어 사용",
+      "namespace": "QudKRTranslation.Core",
+      "classes": [
+        "GlossaryExtensions"
+      ],
+      "methods": [
+        {
+          "name": "G",
+          "return": "string",
+          "params": "this string placeholder"
+        }
+      ]
+    },
+    "Scripts/00_Core/00_00_06_G.cs": {
+      "classification": "Core",
+      "role": "초간단 glossary 접근을 위한 헬퍼",
+      "namespace": "QudKRTranslation.Core",
+      "classes": [
+        "G"
+      ],
+      "methods": [
+        {
+          "name": "_",
+          "return": "string",
+          "params": "string placeholder"
+        }
+      ]
+    },
+    "Scripts/00_Core/00_00_00_ModEntry.cs": {
+      "classification": "Core",
+      "role": "모드 로드 시 LocalizationManager를 초기화하고 모든 Harmony 패치를 어셈블리에서 찾아 실행합니다.",
+      "namespace": "QudKRTranslation",
+      "classes": [
+        "ModEntry"
+      ],
+      "methods": [
+        {
+          "name": "Main",
+          "return": "void",
+          "params": ""
+        }
+      ]
+    },
+    "Scripts/00_Core/00_00_99_QudKREngine.cs": {
+      "classification": "Core",
+      "role": "한국어 폰트 강제 적용, 조사(Josa) 처리 로직 등 엔진 레벨의 기능을 제공합니다.",
+      "namespace": "QudKRTranslation.Core",
+      "classes": [
+        "FontManager",
+        "UILoadPatch",
+        "MessageLogPatch",
+        "ArticleKillerPatch",
+        "PluralizeKillerPatch",
+        "NameOrderPatch",
+        "DescriptionPatch",
+        "KoreanTextHelper"
+      ],
+      "methods": [
+        {
+          "name": "ApplyKoreanFont",
+          "return": "void",
+          "params": ""
+        },
+        {
+          "name": "HasJongsung",
+          "return": "bool",
+          "params": "char c"
+        },
+        {
+          "name": "ResolveJosa",
+          "return": "string",
+          "params": "string text"
+        }
+      ]
+    },
+    "Scripts/02_Patches/10_UI/02_10_01_Options.cs": {
+      "classification": "UI Patch",
+      "role": "데이터 로딩(LoadOptionNode) 및 UI 표시(OptionsScreen) 시점을 모두 패치하여 완벽한 번역을 제공합니다.",
+      "namespace": "QudKRTranslation.Patches",
+      "classes": [
+        "Patch_OptionsData",
+        "LoadOptionNode_Patch",
+        "LoadAllOptions_Patch",
+        "Patch_OptionsUI"
+      ],
+      "methods": [
+        {
+          "name": "TranslateOption",
+          "return": "void",
+          "params": "GameOption opt"
+        }
+      ]
+    },
+    "Scripts/02_Patches/10_UI/02_10_10_CharacterCreation.cs": {
+      "classification": "UI Patch",
+      "role": "캐릭터 생성의 모든 단계(모드, 종족, 직업, 스탯, 변이 등)의 UI와 설명을 번역합니다.",
+      "namespace": "QudKRTranslation.Patches",
+      "classes": [
+        "Patch_AbstractBuilderModuleWindowBase",
+        "Patch_QudGamemodeModuleWindow",
+        "Patch_QudChartypeModuleWindow",
+        "Patch_QudGenotypeModuleWindow",
+        "Patch_QudSubtypeModule",
+        "Patch_QudSubtypeModuleWindow",
+        "Patch_QudAttributesModuleWindow",
+        "Patch_QudMutationsModuleWindow",
+        "Patch_QudCyberneticsModuleWindow",
+        "Patch_QudPregenModuleWindow",
+        "Patch_QudChooseStartingLocationModuleWindow",
+        "Patch_QudCustomizeCharacterModuleWindow",
+        "Patch_QudBuildSummaryModuleWindow",
+        "Patch_GenericBreadcrumbs"
+      ],
+      "methods": []
+    },
+    "Scripts/02_Patches/10_UI/02_10_04_ListScroller.cs": {
+      "classification": "UI Patch",
+      "role": "FrameworkScroller가 프리팹(각 줄의 UI)을 설정할 때 즉시 번역을 적용합니다.",
+      "namespace": "QudKRTranslation.Patches",
+      "classes": [
+        "FrameworkScroller_SetupPrefab_Patch"
+      ],
+      "methods": []
+    },
+    "Scripts/02_Patches/10_UI/02_10_15_EmbarkOverlay.cs": {
+      "classification": "UI Patch",
+      "role": "캐릭터 생성 화면 하단의 'Back', 'Next' 공통 버튼 텍스트를 번역합니다.",
+      "namespace": "QudKRTranslation.Patches",
+      "classes": [
+        "Patch_EmbarkBuilderOverlayWindow"
+      ],
+      "methods": []
+    },
+    "Scripts/02_Patches/10_UI/02_10_07_Inventory.cs": {
+      "classification": "UI Patch",
+      "role": "인벤토리 화면의 메뉴, 카테고리, 도움말 텍스트를 번역합니다.",
+      "namespace": "QudKRTranslation.Patches.UI",
+      "classes": [
+        "Patch_GameObject_GetInventoryCategory",
+        "Patch_InventoryScreen_ShowScreen",
+        "Patch_InventoryScreen_UpdateView"
+      ],
+      "methods": []
+    },
+    "Scripts/02_Patches/10_UI/02_10_02_Tooltip.cs": {
+      "classification": "UI Patch",
+      "role": "ModelShark Tooltip 시스템의 텍스트를 번역합니다.",
+      "namespace": "QudKRTranslation.Patches",
+      "classes": [
+        "Tooltip_Patch"
+      ],
+      "methods": []
+    },
+    "Scripts/02_Patches/10_UI/02_10_03_UITextSkin.cs": {
+      "classification": "UI Patch",
+      "role": "UITextSkin.Apply 메서드를 패치하여 TMPro 기반 UI 텍스트를 번역합니다.",
+      "namespace": "QudKRTranslation.Patches",
+      "classes": [
+        "UITextSkin_Patch"
+      ],
+      "methods": []
+    },
+    "Scripts/02_Patches/10_UI/02_10_08_Status.cs": {
+      "classification": "UI Patch",
+      "role": "상태창(인벤토리, 장비, 캐릭터 시트 등 포함)이 열릴 때",
+      "namespace": "QudKRTranslation.Patches.UI",
+      "classes": [
+        "Patch_StatusScreensScreen_Scope"
+      ],
+      "methods": []
+    },
+    "Scripts/02_Patches/10_UI/02_10_00_GlobalUI.cs": {
+      "classification": "UI Patch",
+      "role": "메인 메뉴, 팝업 메시지, 네비게이션 바, 공용 버튼 등 전반적인 UI 번역을 담당합니다.",
+      "namespace": "QudKRTranslation.Patches",
+      "classes": [
+        "Patch_MainMenu_Scope",
+        "Patch_MainMenu_Hide",
+        "Patch_MainMenu_Data",
+        "Patch_TMP_Text_Setter",
+        "Patch_PopupMessage_Buttons",
+        "Patch_Popup_ShowYesNoAsync",
+        "Patch_AbstractBuilder_GetKeyLegend",
+        "Patch_AbstractBuilder_GetKeyMenuBar",
+        "Patch_FrameworkScroller_BeforeShow"
+      ],
+      "methods": [
+        {
+          "name": "TranslateMenuData",
+          "return": "void",
+          "params": ""
+        }
+      ]
+    },
+    "Scripts/02_Patches/00_Core/02_00_02_ScreenBuffer.cs": {
+      "classification": "Core Patch",
+      "role": "ScreenBuffer.Write 메서드를 패치하여 모든 화면의 텍스트를 번역합니다.",
+      "namespace": "QudKRTranslation.Patches",
+      "classes": [
+        "ScreenBuffer_Patch"
+      ],
+      "methods": []
+    },
+    "Scripts/02_Patches/00_Core/02_00_01_SteamGalaxy.cs": {
+      "classification": "Core Patch",
+      "role": "스팀 환경에서 GOG Galaxy 초기화 중 오류가 발생하는 것을 방지하기 위해 Galaxy 초기화를 건너뛰고 Steam만 초기화합니다.",
+      "namespace": "QudKRTranslation.Patches",
+      "classes": [
+        "SteamGalaxyPatch"
+      ],
+      "methods": []
+    }
+  },
+  "tools": {
+    "merge_options.py": {
+      "type": "script",
+      "size": 34666
+    },
+    "fix_json_duplicates.py": {
+      "type": "script",
+      "size": 3771
+    },
+    "project_tool.py": {
+      "type": "script",
+      "size": 12175
+    },
+    "extract_keys.py": {
+      "type": "script",
+      "size": 1405
+    },
+    "check_logs_for_untranslated.py": {
+      "type": "script",
+      "size": 2530
+    },
+    "check_missing_translations.py": {
+      "type": "script",
+      "size": 3945
+    },
+    "sort_json.py": {
+      "type": "script",
+      "size": 1631
+    },
+    "HarmonyAnalyzer": {
+      "type": "tool_folder"
+    }
+  },
+  "docs": {
+    "03_CHANGELOG.md": {
+      "modified": "2026-01-16"
+    },
+    "01_DEVELOPMENT_GUIDE.md": {
+      "modified": "2026-01-16"
+    },
+    "02_TODO.md": {
+      "modified": "2026-01-16"
+    },
+    "01_CORE_PROJECT_INDEX.md": {
+      "modified": "2026-01-16"
+    },
+    "02_CORE_QUICK_REFERENCE.md": {
+      "modified": "2026-01-16"
+    },
+    "00_PRINCIPLES.md": {
+      "modified": "2026-01-16"
+    },
+    "04_ERROR_LOG.md": {
+      "modified": "2026-01-16"
+    }
+  },
+  "localization": {
+    "glossary_cybernetics.json": {
+      "categories": [
+        "cybernetics",
+        "cybernetics_desc"
+      ],
+      "entries": 63
+    },
+    "glossary_mutations.json": {
+      "categories": [
+        "mutation_base",
+        "mutation_defect",
+        "mutation_desc_base",
+        "mutation_desc_mental",
+        "mutation_desc_physical",
+        "mutation_desc_defect",
+        "mutation_mental",
+        "mutation_physical"
+      ],
+      "entries": 139
+    },
+    "glossary_ui.json": {
+      "categories": [
+        "common",
+        "inventory",
+        "status",
+        "ui"
+      ],
+      "entries": 159
+    },
+    "glossary_pregen.json": {
+      "categories": [
+        "chargen_pregen"
+      ],
+      "entries": 34
+    },
+    "glossary_proto.json": {
+      "categories": [
+        "chargen_proto"
+      ],
+      "entries": 40
+    },
+    "glossary_location.json": {
+      "categories": [
+        "chargen_location"
+      ],
+      "entries": 23
+    },
+    "glossary_terms.json": {
+      "categories": [
+        "attribute",
+        "character",
+        "faction",
+        "genotype",
+        "item",
+        "phrase",
+        "weapon",
+        "world"
+      ],
+      "entries": 39
+    },
+    "glossary_options.json": {
+      "categories": [
+        "options"
+      ],
+      "entries": 403
+    },
+    "glossary_skills.json": {
+      "categories": [
+        "power_axe",
+        "power_axe_desc",
+        "power_general",
+        "power_general_desc",
+        "power_pistol",
+        "power_pistol_desc",
+        "power_tinkering",
+        "power_tinkering_desc",
+        "power_wayfaring",
+        "power_wayfaring_desc",
+        "skill",
+        "skill_desc",
+        "powers"
+      ],
+      "entries": 240
+    },
+    "glossary_chargen.json": {
+      "categories": [
+        "chargen_mode",
+        "chargen_stats",
+        "chargen_ui"
+      ],
+      "entries": 191
+    }
+  }
+}
