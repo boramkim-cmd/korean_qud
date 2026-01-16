@@ -59,7 +59,7 @@ namespace QudKRTranslation.Utils
         /// </summary>
         public static IEnumerable<MenuOption> TranslateMenuOptions(IEnumerable<MenuOption> options)
         {
-            var scopes = new[] { "chargen_ui", "mutation_desc", "ui", "common" }
+            var scopes = new[] { "chargen_ui", "mutation_desc", "powers", "power", "skill", "skill_desc", "ui", "common" }
                 .Select(cat => LocalizationManager.GetCategory(cat))
                 .Where(d => d != null)
                 .ToArray();

@@ -32,7 +32,6 @@ Logs/*.log
 Assets/
 Legacy/
 HarmonyAnalyzer/
-tools/
 etc/
 
 # Build and validation artifacts

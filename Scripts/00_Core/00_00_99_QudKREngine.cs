@@ -8,6 +8,7 @@ using System;
 using System.Collections.Generic;
 using System.Reflection;
 using System.Text;
+using System.Text.RegularExpressions;
 using HarmonyLib;
 using UnityEngine;
 using UnityEngine.UI;
@@ -173,57 +174,20 @@ namespace QudKRTranslation.Core
                     {
                         // 색상 태그 내부의 마지막 글자를 찾는다
                         // 예: {{w|검}}{을/를} -> '검'이 target이 되어야 함
-                        int closeCount = 0;
-                        int openPos = -1;
                         
-                        // 역방향으로 {{ 찾기
-                        for (int i = idx - 1; i >= 0; i--)
+                        // 정규식으로 현재 위치 바로 앞의 색상 태그 추출
+                        // pattern: {{[a-zA-Z]\|([^}]+)}}
+                        string sub = str.Substring(0, idx);
+                        var tagMatch = Regex.Match(sub, @"\{\{[a-zA-Z]\|([^}]+)\}\}$");
+                        
+                        if (tagMatch.Success)
                         {
-                            if (str[i] == '}') closeCount++;
-                            else if (str[i] == '{' && i > 0 && str[i-1] == '{')
+                            string innerContent = tagMatch.Groups[1].Value;
+                            if (!string.IsNullOrEmpty(innerContent))
                             {
-                                // {{ 발견
-                                openPos = i - 1;
-                                break;
-                            }
-                        }
-
-                        if (openPos != -1)
-                        {
-                            // 태그 내용물 추출 (예: w|검)
-                            // 인덱스는 {{ 이후부터 }} 이전까지
-                            // {{w|검}} 에서 openPos는 0, idx-1은 7 (last })
-                            // 내부: w|검 (len: 6, idx 2~5) - index mismatch correction
-                            // 구조: {{A|B}}
-                            // A|B 부분만 추출
-                            // {{ 길이 2, }} 길이 2
-                            
-                            // 더 간단히: 역방향으로 탐색하며 '|' 뒤의 마지막 글자(한글)를 찾는다
-                            for (int k = idx - 2; k > openPos + 2; k--)
-                            {
-                                if (str[k] == '|') 
-                                {
-                                    // 파이프 바로 뒤부터 내용 시작. 
-                                    // 하지만 우리는 마지막 글자가 필요하므로
-                                    // idx-3 (}} 바로 앞) 부터 역으로 탐색해서 한글을 찾는다
-                                    char lastContentChar = ' ';
-                                    for (int m = idx - 3; m > k; m--)
-                                    {
-                                        if (HasJongsung(str[m]) || (str[m] >= 0xAC00 && str[m] <= 0xD7A3))
-                                        {
-                                            lastContentChar = str[m];
-                                            break;
-                                        }
-                                        // 한글이 아닌 문자는 무시 (가정)? 
-                                        // 보통 {{w|Sword}} 처럼 영어가 오면 'd'가 됨.
-                                        // {{w|검}} 이면 '검'.
-                                        // 단순히 마지막 문자 채택
-                                        if (m == idx - 3) lastContentChar = str[m];
-                                    }
-                                    
-                                    if (lastContentChar != ' ') target = lastContentChar;
-                                    break;
-                                }
+                                // 태그 내용물 중 마지막 문자를 target으로 설정
+                                // (보통 마지막 글자가 한글일 가능성이 높음)
+                                target = innerContent[innerContent.Length - 1];
                             }
                         }
                     }

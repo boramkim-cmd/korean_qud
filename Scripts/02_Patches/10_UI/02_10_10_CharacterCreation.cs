@@ -153,7 +153,7 @@ namespace QudKRTranslation.Patches
                 {
                     for (int i = 0; i < genotype.ExtraInfo.Count; i++)
                     {
-                        genotype.ExtraInfo[i] = ChargenTranslationUtils.TranslateLongDescription(genotype.ExtraInfo[i], "chargen_proto", "chargen_ui", "mutation", "mutation_desc", "skill", "skill_desc");
+                        genotype.ExtraInfo[i] = ChargenTranslationUtils.TranslateLongDescription(genotype.ExtraInfo[i], "chargen_proto", "chargen_ui", "mutation", "mutation_desc", "powers", "power", "skill", "skill_desc");
                     }
                 }
             }
@@ -178,7 +178,7 @@ namespace QudKRTranslation.Patches
             foreach (var choice in list)
             {
                 // Title 번역
-                if (LocalizationManager.TryGetAnyTerm(choice.Title?.ToLowerInvariant(), out string tTitle, "chargen_proto", "mutation", "skill"))
+                if (LocalizationManager.TryGetAnyTerm(choice.Title?.ToLowerInvariant(), out string tTitle, "chargen_ui", "chargen_proto", "mutation", "skill"))
                 {
                     UnityEngine.Debug.Log($"[Subtype] Title 번역: {choice.Title} → {tTitle}");
                     choice.Title = tTitle;
@@ -191,7 +191,7 @@ namespace QudKRTranslation.Patches
                 {
                     UnityEngine.Debug.Log($"[Subtype] Description 원본 [{choice.Title}]: {desc}");
                     
-                    string translated = ChargenTranslationUtils.TranslateLongDescription(desc, "chargen_proto", "chargen_ui", "mutation", "mutation_desc", "skill", "skill_desc");
+                    string translated = ChargenTranslationUtils.TranslateLongDescription(desc, "chargen_proto", "chargen_ui", "mutation", "mutation_desc", "powers", "power", "skill", "skill_desc");
                     
                     if (translated != desc)
                     {
@@ -201,6 +201,47 @@ namespace QudKRTranslation.Patches
                 }
             }
             
+            __result = list;
+        }
+
+        [HarmonyPatch(nameof(QudSubtypeModule.GetSelectionCategories))]
+        [HarmonyPostfix]
+        static void GetSelectionCategories_Postfix(ref IEnumerable<CategoryIcons> __result)
+        {
+            if (__result == null) return;
+            var list = __result.ToList();
+            
+            foreach (var cat in list)
+            {
+                // Category Title Translation (e.g. "The Toxic Arboreta...")
+                if (LocalizationManager.TryGetAnyTerm(cat.Title?.ToLowerInvariant(), out string tTitle, "chargen_ui", "chargen_proto", "mutation", "ui"))
+                     cat.Title = tTitle;
+
+                if (cat.Choices != null)
+                {
+                    foreach (var choice in cat.Choices)
+                    {
+                         // Translate Choice Title (e.g. "Horticulturist")
+                        if (LocalizationManager.TryGetAnyTerm(choice.Title?.ToLowerInvariant(), out string tChoiceTitle, "chargen_ui", "chargen_proto", "mutation", "skill"))
+                             choice.Title = tChoiceTitle;
+
+                         // Translate Description
+                        var tr = Traverse.Create(choice);
+                        string desc = tr.Field<string>("Description").Value;
+                        if (!string.IsNullOrEmpty(desc))
+                        {
+                        string desc = tr.Field<string>("Description").Value;
+                        if (!string.IsNullOrEmpty(desc))
+                        {
+                            string translated = ChargenTranslationUtils.TranslateLongDescription(desc, "chargen_proto", "chargen_ui", "mutation", "mutation_desc", "powers", "power", "skill", "skill_desc");
+                             if (translated != desc)
+                            {
+                                tr.Field<string>("Description").Value = translated;
+                            }
+                        }
+                    }
+                }
+            }
             __result = list;
         }
     }
@@ -453,7 +494,7 @@ namespace QudKRTranslation.Patches
                 string desc = tr.Field<string>("Description").Value;
                 if (!string.IsNullOrEmpty(desc))
                 {
-                    tr.Field<string>("Description").Value = ChargenTranslationUtils.TranslateLongDescription(desc, "mutation", "mutation_desc", "skill", "skill_desc", "cybernetics", "cybernetics_desc", "chargen_proto", "chargen_location", "ui", "common");
+                    tr.Field<string>("Description").Value = ChargenTranslationUtils.TranslateLongDescription(desc, "mutation", "mutation_desc", "powers", "power", "skill", "skill_desc", "cybernetics", "cybernetics_desc", "chargen_proto", "chargen_location", "ui", "common");
                 }
             }
             __result = list;
