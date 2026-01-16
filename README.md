@@ -17,8 +17,10 @@ qud_korean/
 │   └── 14_LOC_QA_CHECKLIST.md      ✅ 품질 검증 체크리스트
 │
 ├── tools/                   🔧 도구 모음
+│   ├── HarmonyAnalyzer/    🔧 게임 DLL API 추출 도구 (C#)
 │   ├── *.py (14개)         🐍 Python 도구 (project_tool.py 등)
-│   └── *.sh (6개)          🔨 Shell 스크립트 (deploy-mods.sh 등)
+│   ├── *.sh (6개)          🔨 Shell 스크립트 (deploy-mods.sh, validate-mod.sh 등)
+│   └── HarmonyAnalyzer/    🔧 Harmony DLL 분석기
 │
 ├── Scripts/                 💻 C# 코드 (21개)
 │   ├── 00_Core/            핵심 로컬라이제이션 시스템

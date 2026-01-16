@@ -1,23 +1,2 @@
 모드 검증 보고서 - #오후
 ========================================
-
-[1/5] 메서드 존재 확인
-ℹ /Users/ben/Desktop/qud_korean/Data_QudKRContent/Scripts/02_Patches/UI/MainMenu_Patch.cs: TargetMethod() 사용됨
-ℹ /Users/ben/Desktop/qud_korean/Data_QudKRContent/Scripts/02_Patches/UI/MainMenuTranslator.cs: TargetMethod() 사용됨
-ℹ /Users/ben/Desktop/qud_korean/Data_QudKRContent/Scripts/02_Patches/Core/SteamGalaxyPatch.cs: TargetMethod() 사용됨
-
-[2/5] 네임스페이스 검증 (비활성화됨)
-
-[3/5] using 지시문 검증
-
-[4/5] C# 문법 검증
-
-[5/5] 교차 참조 검증
-⚠ �� 패치 파일에서 사용되지 않음
-⚠ �� 패치 파일에서 사용되지 않음
-⚠ �� 패치 파일에서 사용되지 않음
-
-========================================
-검증 완료
-에러: ��
-경고: ��
