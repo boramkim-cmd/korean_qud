@@ -43,7 +43,7 @@ flowchart TB
     end
 
     subgraph "Data Layer"
-        D1[glossary_*.json<br/>단일 파일 용어집]
+        D1[CHARGEN/, GAMEPLAY/, UI/<br/>카테고리별 용어집]
         D2[MUTATIONS/<br/>구조화된 변이]
         D3[GENOTYPES/<br/>종족]
         D4[SUBTYPES/<br/>직업/계급]
@@ -84,8 +84,8 @@ flowchart TB
 
 | 유형 | 경로 | 담당 컴포넌트 |
 |------|------|---------------|
-| **Layer 1** | `glossary_*.json` | LocalizationManager |
-| **Layer 2** | `MUTATIONS/`, `GENOTYPES/`, `SUBTYPES/` | StructureTranslator |
+| **Layer 1** | `CHARGEN/*.json`, `GAMEPLAY/*.json`, `UI/*.json` | LocalizationManager |
+| **Layer 2** | `CHARGEN/GENOTYPES/`, `CHARGEN/SUBTYPES/`, `GAMEPLAY/MUTATIONS/` | StructureTranslator |
 
 ---
 
@@ -131,11 +131,11 @@ flowchart TB
 
 ```
 ┌─────────────────────────────────────────────┐
-│ Stack[2]: 팝업 메뉴 (glossary_ui)           │ ← 현재 (최우선 검색)
+│ Stack[2]: 팝업 메뉴 (UI/common)             │ ← 현재 (최우선 검색)
 ├─────────────────────────────────────────────┤
-│ Stack[1]: 캐릭터 생성 (glossary_chargen_*)  │
+│ Stack[1]: 캐릭터 생성 (CHARGEN/*.json)      │
 ├─────────────────────────────────────────────┤
-│ Stack[0]: 전역 (glossary_ui, glossary_terms)│ ← 베이스
+│ Stack[0]: 전역 (UI/common, UI/terms)        │ ← 베이스
 └─────────────────────────────────────────────┘
 ```
 
@@ -196,10 +196,16 @@ qud_korean/
 │       └── 99_00_03_StructureTranslator.cs
 ├── LOCALIZATION/             # 번역 데이터
 │   ├── README.md             # 구조 가이드
-│   ├── glossary_*.json       # Layer 1 용어집
-│   ├── MUTATIONS/            # Layer 2 변이
-│   ├── GENOTYPES/            # Layer 2 종족
-│   └── SUBTYPES/             # Layer 2 직업
+│   ├── CHARGEN/              # 캐릭터 생성 (Layer 1 + 2)
+│   │   ├── *.json            # 모드, 스탯, UI 등
+│   │   ├── GENOTYPES/        # 종족 (Layer 2)
+│   │   └── SUBTYPES/         # 직업/계급 (Layer 2)
+│   ├── GAMEPLAY/             # 게임플레이 (Layer 1 + 2)
+│   │   ├── *.json            # 스킬, 사이버네틱스
+│   │   └── MUTATIONS/        # 변이 (Layer 2)
+│   ├── UI/                   # 사용자 인터페이스 (Layer 1)
+│   │   └── *.json            # 공통 UI, 옵션, 용어
+│   └── _DEPRECATED/          # 구버전 파일 보관
 ├── tools/                    # 개발 도구 (20개)
 ├── Docs/                     # 가이드 문서
 ├── Assets/                   # 게임 에셋 참조

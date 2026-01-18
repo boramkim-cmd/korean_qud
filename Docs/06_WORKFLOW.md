@@ -111,11 +111,11 @@ python3 tools/project_tool.py
 
 ### 유형 B: 용어집 항목 추가/수정
 
-**Layer 1 (glossary_*.json)**:
+**Layer 1 (CHARGEN/, GAMEPLAY/, UI/ 폴더)**:
 
 ```bash
 # 1. 올바른 카테고리 확인
-grep -r "검색할 영문" LOCALIZATION/*.json
+grep -r "검색할 영문" LOCALIZATION/**/*.json
 
 # 2. JSON 수정
 # {

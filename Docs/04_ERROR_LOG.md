@@ -15,7 +15,7 @@
 
 ### 연동 구조
 ```
-01_DEVELOPMENT_GUIDE.md (불변 참조)
+09_DEVELOPMENT_GUIDE.md (불변 참조)
           ↓
 02_TODO.md (동적 추적)
           ↓
