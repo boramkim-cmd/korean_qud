@@ -1,167 +1,167 @@
-# 🚨 AI 에이전트 필수 문서 - 개발 대원칙
+# 🚨 AI Agent Required Document - Development Principles
 
-> **이 문서는 모든 작업의 시작점입니다. 반드시 전체를 읽으세요.**
+> **This document is the starting point for all work. Read it completely.**
 >
-> 📍 **문서 크기**: ~4KB | **예상 읽기 시간**: 2분 | **필수 숙지**: ⭐⭐⭐
+> 📍 **Document Size**: ~4KB | **Estimated Reading Time**: 2 min | **Required**: ⭐⭐⭐
 
 ---
 
-## 📚 문서 시스템 구조
+## 📚 Documentation System Structure
 
 ```
 Docs/
-├── 00_PRINCIPLES.md           ← 지금 읽는 문서 (필수, 먼저 읽기)
-├── 01_PROJECT_INDEX.md        ← 프로젝트 파일/메서드 인덱스 (자동생성)
-├── 02_QUICK_REFERENCE.md      ← 빠른 참조 카드 (자동생성)
-├── 03_TODO.md                 ← 작업 추적 (작업 전 확인)
-├── 04_CHANGELOG.md            ← 완료 기록 (Phase 완료 시 업데이트)
-├── 05_ERROR_LOG.md            ← 에러 추적 (에러 발생 시 기록/확인)
-├── 06_ARCHITECTURE.md         ← 시스템 아키텍처
-├── 07_WORKFLOW.md             ← 작업 절차
-├── 08_STYLE_GUIDE.md          ← 번역 스타일 가이드
-├── 09_TOOLS_AND_BUILD.md      ← 빌드 도구 가이드
-└── 10_DEVELOPMENT_GUIDE.md    ← 상세 개발 가이드 (필요 시 참조)
+├── 00_PRINCIPLES.md           ← This document (required, read first)
+├── 01_PROJECT_INDEX.md        ← Project file/method index (auto-generated)
+├── 02_QUICK_REFERENCE.md      ← Quick reference card (auto-generated)
+├── 03_TODO.md                 ← Task tracking (check before work)
+├── 04_CHANGELOG.md            ← Completion log (update on phase complete)
+├── 05_ERROR_LOG.md            ← Error tracking (log/check on errors)
+├── 06_ARCHITECTURE.md         ← System architecture
+├── 07_WORKFLOW.md             ← Work procedures
+├── 08_STYLE_GUIDE.md          ← Translation style guide
+├── 09_TOOLS_AND_BUILD.md      ← Build tools guide
+└── 10_DEVELOPMENT_GUIDE.md    ← Detailed development guide (reference as needed)
 ```
 
-### 문서 읽기 순서
+### Document Reading Order
 ```
-1. 00_PRINCIPLES.md (이 문서) → 필수, 전체 읽기
-2. 03_TODO.md → 현재 진행 중인 작업 확인
-3. 05_ERROR_LOG.md → 알려진 이슈 확인
-4. 10_DEVELOPMENT_GUIDE.md → 필요한 Part만 참조
-```
-
----
-
-## 🎯 7대 대원칙 (반드시 암기)
-
-```
-┌─────────────────────────────────┐
-│ 1. 문서 우선: 문서에 없으면 존재하지 않는 것                     │
-│ 2. 추측 금지: 반드시 실제 코드에서 확인 (grep 명령 사용)         │
-│ 3. 재사용 우선: 새 코드 전에 기존 코드 검색                      │
-│ 4. 검증 필수: project_tool.py 없이 배포 금지                     │
-│ 5. 에러 기록: 모든 이슈는 04_ERROR_LOG.md에 기록                 │
-│ 6. 완전성 추구: 중간 상태로 두지 않고 완료까지                   │
-│ 7. 상세 기록: AI도 이해할 수 있게 구체적으로 작성                │
-└─────────────────────────────────┘
+1. 00_PRINCIPLES.md (this document) → Required, read fully
+2. 03_TODO.md → Check current work in progress
+3. 05_ERROR_LOG.md → Check known issues
+4. 10_DEVELOPMENT_GUIDE.md → Reference specific parts as needed
 ```
 
 ---
 
-## ⚠️ 절대 금지 사항 (NEVER DO)
+## 🎯 Seven Core Principles (Must Memorize)
 
-| 금지                 | 이유                  | 올바른 방법             |
-| -------------------- | --------------------- | ----------------------- |
-| `_Legacy/` 폴더 사용 | 더 이상 유효하지 않음 | `Scripts/` 폴더만 사용  |
-| 메서드 시그니처 추측 | Harmony 패치 실패     | `grep`으로 실제 확인    |
-| 검증 없이 배포       | 런타임 에러           | `project_tool.py` 먼저  |
-| 특수 태그 번역       | 게임 파손             | `%var%`, `{{tag}}` 유지 |
-| XRL.UI만 확인        | Qud.UI 사용 가능      | 양쪽 네임스페이스 확인  |
+```
+┌─────────────────────────────────────────────────────────────────────────┐
+│ 1. Documentation First: If not documented, it doesn't exist            │
+│ 2. No Guessing: Always verify in actual code (use grep commands)       │
+│ 3. Reuse First: Search existing code before writing new                │
+│ 4. Validation Required: Never deploy without project_tool.py           │
+│ 5. Log Errors: All issues go to 05_ERROR_LOG.md                        │
+│ 6. Pursue Completeness: Don't leave in intermediate state              │
+│ 7. Detailed Records: Write specifically so AI can understand           │
+└─────────────────────────────────────────────────────────────────────────┘
+```
 
 ---
 
-## ✅ 작업 시작 전 체크리스트
+## ⚠️ Forbidden Actions (NEVER DO)
+
+| Forbidden | Reason | Correct Approach |
+|-----------|--------|------------------|
+| Use `_Legacy/` folder | No longer valid | Use only `Scripts/` folder |
+| Guess method signatures | Harmony patch fails | Verify with `grep` |
+| Deploy without validation | Runtime errors | Run `project_tool.py` first |
+| Translate special tags | Game breaks | Keep `%var%`, `{{tag}}` as-is |
+| Check only XRL.UI | Qud.UI may be used | Check both namespaces |
+
+---
+
+## ✅ Pre-Work Checklist
 
 ```bash
-# 1. 문서 확인 (필수)
-cat Docs/00_PRINCIPLES.md     # 이 문서
-cat Docs/02_TODO.md           # 진행 중 작업
-cat Docs/04_ERROR_LOG.md      # 알려진 이슈
+# 1. Check documentation (required)
+cat Docs/00_PRINCIPLES.md     # This document
+cat Docs/03_TODO.md           # Work in progress
+cat Docs/05_ERROR_LOG.md      # Known issues
 
-# 2. 프로젝트 상태 검증
+# 2. Validate project state
 python3 tools/project_tool.py
 
-# 3. 작업 대상 조사 (새 기능 시)
+# 3. Research target (for new features)
 grep -r "class ClassName" Assets/core_source/
-grep -r "기능명" Scripts/02_Patches/
-grep -r "키워드" LOCALIZATION/*.json
+grep -r "feature_name" Scripts/02_Patches/
+grep -r "keyword" LOCALIZATION/*.json
 ```
 
 ---
 
-## 📝 문서 업데이트 규칙
+## 📝 Documentation Update Rules
 
-| 상황          | 행동                               |
-| ------------- | ---------------------------------- |
-| 작업 시작 시  | `02_TODO.md`에서 `[ ]` → `[/]`     |
-| 작업 완료 시  | `02_TODO.md`에서 `[/]` → `[x]`     |
-| 에러 발생 시  | `04_ERROR_LOG.md`에 즉시 기록      |
-| 에러 해결 시  | `04_ERROR_LOG.md`에 해결 방법 기록 |
-| Phase 완료 시 | `03_CHANGELOG.md`에 정리           |
+| Situation | Action |
+|-----------|--------|
+| Starting work | `03_TODO.md`: `[ ]` → `[/]` |
+| Completing work | `03_TODO.md`: `[/]` → `[x]` |
+| Error occurs | Log immediately in `05_ERROR_LOG.md` |
+| Error resolved | Log solution in `05_ERROR_LOG.md` |
+| Phase complete | Summarize in `04_CHANGELOG.md` |
 
 ---
 
-## 🔧 핵심 명령어 (복사해서 사용)
+## 🔧 Essential Commands (Copy and Use)
 
 ```bash
-# 클래스 찾기
+# Find class
 grep -r "class ClassName" Assets/core_source/
 
-# 메서드 시그니처 확인
+# Check method signature
 grep -A 5 "void MethodName" Assets/core_source/_GameSource/*/File.cs
 
-# 텍스트 출처 확인
-grep -ri "텍스트" Assets/core_source/ Assets/StreamingAssets/Base/
+# Find text source
+grep -ri "text" Assets/core_source/ Assets/StreamingAssets/Base/
 
-# 프로젝트 검증
+# Validate project
 python3 tools/project_tool.py
 
-# 모드 배포
+# Deploy mod
 ./tools/deploy-mods.sh
 ```
 
 ---
 
-## 📂 핵심 파일 경로
+## 📂 Key File Paths
 
-| 용도         | 경로                                           |
-| ------------ | ---------------------------------------------- |
-| 번역 엔진    | `Scripts/00_Core/00_01_TranslationEngine.cs`   |
-| 데이터 관리  | `Scripts/00_Core/00_03_LocalizationManager.cs` |
-| 전역 UI 패치 | `Scripts/02_Patches/UI/02_10_00_GlobalUI.cs`   |
-| 용어집       | `LOCALIZATION/glossary_*.json`                 |
+| Purpose | Path |
+|---------|------|
+| Translation Engine | `Scripts/00_Core/00_00_01_TranslationEngine.cs` |
+| Data Management | `Scripts/00_Core/00_00_03_LocalizationManager.cs` |
+| Global UI Patch | `Scripts/02_Patches/10_UI/02_10_00_GlobalUI.cs` |
+| Glossaries | `LOCALIZATION/*.json` |
 
 ---
 
-## 🎯 작업 완료 기준
+## 🎯 Work Completion Criteria
 
-작업이 "완료"로 간주되려면:
+For work to be considered "complete":
 
 ```markdown
-☐ project_tool.py 검증 통과
-☐ 게임 내 테스트 완료
-☐ 02_TODO.md 상태 업데이트
-☐ 에러 발생 시 04_ERROR_LOG.md 기록
+☐ project_tool.py validation passed
+☐ In-game testing completed
+☐ 03_TODO.md status updated
+☐ Errors logged in 05_ERROR_LOG.md if any occurred
 ```
 
 ---
 
-## 💡 핵심 교훈 (Lessons Learned)
+## 💡 Lessons Learned
 
-> **"게임 엔진은 텍스트 파편화의 명수입니다."**
+> **"Game engines are masters of text fragmentation."**
 
-| 교훈 | 상세 설명 | 대응 방안 |
-| :--- | :--- | :--- |
-| **태그 파편화 주의** | `{{C|2}}0` 처럼 단어 중간에 태그가 섞여 들어올 수 있습니다. | `Replace` 기반 복원 실패를 항상 가정하고 폴백(Fallback) 로직을 갖추세요. |
-| **용어집 태그 포함** | 자동 복원은 완벽하지 않습니다. | 중요한 색상/형식 태그는 용어집 번역문 자체에 포함시키는 것이 가장 안전합니다. |
-| **엔진 API 우선** | `LocalizationManager`는 순수 데이터 접근용입니다. | 번역 시 반드시 태그 처리 로직이 포함된 `TranslationEngine.TryTranslate`를 사용하세요. |
-| **🔴 데이터 가공 확인** | 게임 원본이 `Substring()`, `Split()` 등으로 필드를 가공할 수 있습니다. | **가공되는 필드는 절대 직접 번역 금지!** UI 표시 시점에 Postfix 패치 사용. (ERR-008 참조) |
-| **🔴 동적 생성 텍스트** | 평판 등 런타임에 조합되는 텍스트는 JSON에 정의 불가. | Regex 패턴 매칭으로 동적 번역 처리. (ERR-011 참조) |
+| Lesson | Details | Solution |
+|--------|---------|----------|
+| **Tag Fragmentation** | Tags can appear mid-word like `{{C|2}}0` | Always assume Replace-based restoration may fail; implement fallback logic |
+| **Tags in Glossary** | Auto-restoration is not perfect | Include important color/format tags directly in glossary translations |
+| **Engine API First** | `LocalizationManager` is for pure data access | Always use `TranslationEngine.TryTranslate` which includes tag handling |
+| **🔴 Data Processing Check** | Game source may use `Substring()`, `Split()` on fields | **NEVER translate processed fields directly!** Use Postfix patch at UI display. (See ERR-008) |
+| **🔴 Dynamic Text** | Reputation etc. are runtime-generated, cannot define in JSON | Use Regex pattern matching for dynamic translation. (See ERR-011) |
 
 ---
 
-## 🔴 위험 필드 목록 (직접 번역 금지)
+## 🔴 Dangerous Fields List (NEVER Translate Directly)
 
-> **2026-01-19 추가**: 아래 필드들은 게임 원본에서 가공되므로 직접 번역하면 크래시 발생
+> **Added 2026-01-19**: These fields are processed by game source - direct translation causes crash
 
-| 클래스 | 필드 | 가공 방식 | 안전한 패치 지점 |
-|--------|------|----------|-----------------|
+| Class | Field | Processing | Safe Patch Point |
+|-------|-------|------------|------------------|
 | `AttributeDataElement` | `Attribute` | `Substring(0,3)` | `AttributeSelectionControl.Updated()` |
-| `ChoiceWithColorIcon` | `Id` | 선택 로직 비교 | `Title`만 번역 |
+| `ChoiceWithColorIcon` | `Id` | Selection logic comparison | Translate `Title` only |
 
-새로운 위험 필드 발견 시 이 목록에 추가하세요.
+Add new dangerous fields to this list when discovered.
 
 ---
 
-> **다음 단계**: 구체적인 작업 내용은 `10_DEVELOPMENT_GUIDE.md`의 해당 Part 참조
+> **Next Step**: See relevant Part in `10_DEVELOPMENT_GUIDE.md` for specific work details

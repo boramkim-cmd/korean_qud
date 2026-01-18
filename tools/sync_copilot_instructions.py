@@ -22,8 +22,8 @@ ERROR_LOG_PATH = PROJECT_ROOT / "Docs" / "05_ERROR_LOG.md"
 INSTRUCTIONS_PATH = PROJECT_ROOT / ".github" / "copilot-instructions.md"
 
 # Markers in instructions file
-LAYER3_START = "# LAYER 3: 과거 Critical 에러 요약 (반복 금지!)"
-LAYER3_END = "# LAYER 4: 핵심 파일 경로"
+LAYER3_START = "# LAYER 3: PAST CRITICAL ERRORS (Never Repeat!)"
+LAYER3_END = "# LAYER 4: KEY FILE PATHS"
 
 
 def extract_critical_errors(error_log_content: str) -> list[dict]:
@@ -42,8 +42,11 @@ def extract_critical_errors(error_log_content: str) -> list[dict]:
         err_id = header_match.group(1)
         title = header_match.group(2).strip()
         
-        # Check severity - look for Critical or High
-        severity_match = re.search(r'\*\*심각도\*\*\s*\|\s*([^\|]+)\|', section)
+        # Check severity - look for Critical or High (English format)
+        severity_match = re.search(r'\*\*Severity\*\*\s*\|\s*([^\|]+)\|', section)
+        if not severity_match:
+            # Try Korean format as fallback
+            severity_match = re.search(r'\*\*심각도\*\*\s*\|\s*([^\|]+)\|', section)
         if not severity_match:
             continue
         
@@ -51,20 +54,22 @@ def extract_critical_errors(error_log_content: str) -> list[dict]:
         if 'Critical' not in severity and 'High' not in severity:
             continue
         
-        # Extract symptom from ### 증상 section
-        symptom_match = re.search(r'### 증상\s*\n(?:.*?\n)*?1\.\s*([^\n]+)', section)
+        # Extract symptom from ### Symptoms section (English) or ### 증상 (Korean)
+        symptom_match = re.search(r'### Symptoms\s*\n(?:.*?\n)*?1\.\s*([^\n]+)', section)
+        if not symptom_match:
+            symptom_match = re.search(r'### 증상\s*\n(?:.*?\n)*?1\.\s*([^\n]+)', section)
         symptom = symptom_match.group(1)[:35] if symptom_match else title[:35]
         
-        # Extract cause - look for ### 원인 분석 or 근본 원인
-        cause_match = re.search(r'### 원인 분석\s*\n(?:.*?\n)*?(?:\d+\.\s*)?([^\n]+)', section)
+        # Extract cause - look for Root Cause Analysis or 원인 분석
+        cause_match = re.search(r'### Root Cause Analysis\s*\n(?:.*?\n)*?(?:\d+\.\s*)?([^\n]+)', section)
         if not cause_match:
-            cause_match = re.search(r'\*\*근본 원인\*\*[:\s]*([^\n]+)', section)
+            cause_match = re.search(r'### 원인 분석\s*\n(?:.*?\n)*?(?:\d+\.\s*)?([^\n]+)', section)
         cause = cause_match.group(1)[:40] if cause_match else "Unknown"
         
-        # Extract solution - look for ✅ 최종 해결 or 해결 방법
-        solution_match = re.search(r'### ✅ 최종 해결\s*\n(?:.*?\n)*?(?:\d+\.\s*)?(?:\*\*[^*]+\*\*:\s*)?([^\n]+)', section)
+        # Extract solution - look for Final Resolution or 최종 해결
+        solution_match = re.search(r'### ✅ Final Resolution\s*\n(?:.*?\n)*?(?:\d+\.\s*)?(?:\*\*[^*]+\*\*:\s*)?([^\n]+)', section)
         if not solution_match:
-            solution_match = re.search(r'\*\*해결 방법\*\*[:\s]*([^\n]+)', section)
+            solution_match = re.search(r'### ✅ 최종 해결\s*\n(?:.*?\n)*?(?:\d+\.\s*)?(?:\*\*[^*]+\*\*:\s*)?([^\n]+)', section)
         solution = solution_match.group(1)[:40] if solution_match else "See error log"
         
         # Clean up extracted text
@@ -90,8 +95,8 @@ def extract_critical_errors(error_log_content: str) -> list[dict]:
 def generate_error_table(errors: list[dict]) -> str:
     """Generate markdown table from errors."""
     lines = [
-        "| ID | 증상 | 원인 | 해결 |",
-        "|----|------|------|------|"
+        "| ID | Symptom | Root Cause | Resolution |",
+        "|----|---------|------------|------------|"
     ]
     
     for err in errors:
@@ -116,7 +121,7 @@ def update_instructions(instructions_content: str, error_table: str) -> str:
 
 {error_table}
 
-# 상세 내용: Docs/05_ERROR_LOG.md 참조
+# Full details: Docs/05_ERROR_LOG.md
 
 ################################################################################
 """
