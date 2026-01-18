@@ -41,6 +41,7 @@ LOCALIZATION/
 │   ├── README.md
 │   ├── common.json              # 공통 UI 요소 (버튼, 메뉴 등)
 │   ├── options.json             # 설정 화면 (362개 항목)
+│   ├── display.json             # 디스플레이 설정 (16개 항목)
 │   └── terms.json               # 일반 게임 용어
 │
 └── _DEPRECATED/                 # 구 버전 파일 보관

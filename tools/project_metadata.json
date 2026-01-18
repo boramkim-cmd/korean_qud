@@ -1,5 +1,5 @@
 {
-  "generated": "2026-01-18 13:50:02",
+  "generated": "2026-01-18 13:56:14",
   "scripts": {
     "Scripts/00_Core/00_00_99_QudKREngine.cs": {
       "classification": "Core",
@@ -476,12 +476,6 @@
     }
   },
   "localization": {
-    "glossary_display.json": {
-      "categories": [
-        "display"
-      ],
-      "entries": 32
-    },
     "glossary_proto.json": {
       "categories": [
         "chargen_proto"
@@ -536,6 +530,12 @@
         "world"
       ],
       "entries": 35
+    },
+    "display.json": {
+      "categories": [
+        "display"
+      ],
+      "entries": 32
     },
     "common.json": {
       "categories": [

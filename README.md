@@ -4,42 +4,45 @@
 
 ```
 qud_korean/
-├── Docs/                    📖 모든 가이드 문서 (11개)
-│   ├── 00_CORE_START_HERE.md       ⭐ AI 에이전트 필독
+├── Docs/                    📖 모든 가이드 문서
+│   ├── 00_PRINCIPLES.md            ⭐ AI 에이전트 필독 - 개발 대원칙
 │   ├── 01_CORE_PROJECT_INDEX.md    📚 전체 메서드 시그니처
+│   ├── 01_DEVELOPMENT_GUIDE.md     📘 상세 개발 가이드
 │   ├── 02_CORE_QUICK_REFERENCE.md  🔍 빠른 참조
-│   ├── ... (03~05 기타 기술/API 문서)
-│   ├── 06_CORE_TOOLS_GUIDE.md      🛠️ 프로젝트 도구 가이드
-│   │
-│   ├── 10_LOC_WORKFLOW.md          📝 번역 작업 프로세스
-│   ├── 11_LOC_GLOSSARY_GUIDE.md    📖 용어 시스템 가이드
-│   ├── 13_LOC_STYLE_GUIDE.md       🎨 한글화 스타일 가이드
-│   └── 14_LOC_QA_CHECKLIST.md      ✅ 품질 검증 체크리스트
+│   ├── 02_TODO.md                  📝 작업 추적
+│   ├── 03_CHANGELOG.md             📋 변경 이력
+│   ├── 04_ERROR_LOG.md             ⚠️ 에러/이슈 추적
+│   ├── 05_ARCHITECTURE.md          🏗️ 아키텍처 문서
+│   ├── 06_WORKFLOW.md              🔄 워크플로우
+│   ├── 07_STYLE_GUIDE.md           🎨 스타일 가이드
+│   └── 08_TOOLS_AND_BUILD.md       🛠️ 도구 및 빌드 가이드
 │
 ├── tools/                   🔧 도구 모음
 │   ├── HarmonyAnalyzer/    🔧 게임 DLL API 추출 도구 (C#)
-│   ├── *.py (14개)         🐍 Python 도구 (project_tool.py 등)
-│   ├── *.sh (6개)          🔨 Shell 스크립트 (deploy-mods.sh, validate-mod.sh 등)
-│   └── HarmonyAnalyzer/    🔧 Harmony DLL 분석기
+│   ├── *.py                🐍 Python 도구 (project_tool.py 등)
+│   └── *.sh                🔨 Shell 스크립트 (deploy-mods.sh 등)
 │
-├── Scripts/                 💻 C# 코드 (21개)
+├── Scripts/                 💻 C# 코드
 │   ├── 00_Core/            핵심 로컬라이제이션 시스템
-│   ├── 99_Utils/           유틸리티 및 헬퍼
-│   └── 02_Patches/         Harmony 엔진 패치
+│   ├── 02_Patches/         Harmony 엔진 패치
+│   └── 99_Utils/           유틸리티 및 헬퍼
 │
 ├── LOCALIZATION/            📚 번역 데이터 (JSON)
-│   └── glossary_*.json     # 카테고리별 용어 데이터 (10개)
+│   ├── CHARGEN/            캐릭터 생성 관련
+│   ├── GAMEPLAY/           게임플레이 관련
+│   ├── UI/                 UI 관련
+│   └── _DEPRECATED/        더 이상 사용하지 않는 파일
 │
 ├── Assets/                  🎮 게임 연동 에셋 (XML 등)
-├── _backup/                 💾 자동 백업 폴더
-└── _Docs_Archive/           📦 레거시/참고용 문서
+├── Fonts/                   🔤 폰트 파일
+└── _Legacy/                 📦 레거시/참고용 코드
 ```
 
 ## 🚀 빠른 시작 (AI 에이전트)
 
 ### 1. 작업 시작 전 (30초)
 ```bash
-cat Docs/00_CORE_START_HERE.md
+cat Docs/00_PRINCIPLES.md
 ```
 
 ### 2. 메서드 확인 (10초)
@@ -83,14 +86,14 @@ python3 tools/check_missing_translations.py  # 미번역 정밀 탐색
 
 ## 📚 핵심 문서
 
-1. **Docs/00_CORE_START_HERE.md** - 단 하나의 진입점
+1. **Docs/00_PRINCIPLES.md** - AI 에이전트 필독 대원칙
 2. **Docs/01_CORE_PROJECT_INDEX.md** - 모든 메서드 시그니처
 3. **Docs/02_CORE_QUICK_REFERENCE.md** - 프로젝트 구조
 
 ## ⚡ 워크플로우
 
 ```
-1. cat Docs/00_CORE_START_HERE.md
+1. cat Docs/00_PRINCIPLES.md
    ↓
 2. 메서드 확인 (01_CORE_PROJECT_INDEX.md)
    ↓
@@ -104,7 +107,7 @@ python3 tools/check_missing_translations.py  # 미번역 정밀 탐색
 ## 🎯 핵심 규칙
 
 ### ✅ 해야 할 것
-- 00_CORE_START_HERE.md 먼저 읽기
+- 00_PRINCIPLES.md 먼저 읽기
 - 기존 함수 재사용 (TranslationEngine, LocalizationManager)
 - project_tool.py로 검증 후 배포
 
@@ -116,10 +119,8 @@ python3 tools/check_missing_translations.py  # 미번역 정밀 탐색
 ## 📊 통계
 
 - **Scripts**: 21개 C# 파일
-- **Python Tools**: 14개
-- **Shell Scripts**: 6개
-- **Localization**: 10개 JSON (1,492개 항목)
-- **Docs**: 6개 핵심 문서
+- **Localization**: Context-based 구조 (CHARGEN/, GAMEPLAY/, UI/)
+- **Docs**: 11개 문서
 
 ## 🔄 업데이트
 
@@ -132,4 +133,4 @@ python3 tools/project_tool.py
 
 ---
 
-**시작점**: `cat Docs/00_CORE_START_HERE.md`
+**시작점**: `cat Docs/00_PRINCIPLES.md`

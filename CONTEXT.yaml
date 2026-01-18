@@ -69,15 +69,22 @@ key_paths:
 # 로컬라이제이션 구조 요약
 localization_structure:
   layer1_files:  # LocalizationManager가 처리
-    - "glossary_ui.json"
-    - "glossary_skills.json"
-    - "glossary_options.json"
-    - "glossary_chargen_*.json"
-    - "glossary_*.json"
+    - "CHARGEN/modes.json"
+    - "CHARGEN/stats.json"
+    - "CHARGEN/ui.json"
+    - "CHARGEN/presets.json"
+    - "CHARGEN/locations.json"
+    - "CHARGEN/factions.json"
+    - "GAMEPLAY/skills.json"
+    - "GAMEPLAY/cybernetics.json"
+    - "UI/common.json"
+    - "UI/options.json"
+    - "UI/display.json"
+    - "UI/terms.json"
   layer2_directories:  # StructureTranslator가 처리
-    - "MUTATIONS/"
-    - "GENOTYPES/"
-    - "SUBTYPES/"
+    - "GAMEPLAY/MUTATIONS/"
+    - "CHARGEN/GENOTYPES/"
+    - "CHARGEN/SUBTYPES/"
 
 # 컴포넌트 역할 요약
 component_roles:
