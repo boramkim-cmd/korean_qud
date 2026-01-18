@@ -1,0 +1,15 @@
+{
+  "names": {
+    "Two-hearted": "Two-hearted"
+  },
+  "description": "You have two hearts.",
+  "leveltext": [
+    "+{{rules|2}} Toughness",
+    "You can sprint for {{rules|30%}} longer."
+  ],
+  "description_ko": "심장이 두 개입니다.",
+  "leveltext_ko": [
+    "+{{rules|2}} 지구력(Toughness)",
+    "전력 질주(sprint) 지속 시간 {{rules|30%}} 증가"
+  ]
+}

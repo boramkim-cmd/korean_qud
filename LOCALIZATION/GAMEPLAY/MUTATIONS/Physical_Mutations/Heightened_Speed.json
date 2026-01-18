@@ -1,0 +1,13 @@
+{
+  "names": {
+    "Heightened Quickness": "Heightened Quickness"
+  },
+  "description": "You are gifted with tremendous speed.",
+  "leveltext": [
+    "+{{rules|15}} Quickness"
+  ],
+  "description_ko": "엄청난 속도를 타고났습니다.",
+  "leveltext_ko": [
+    "+{{rules|15}} 퀵니스(Quickness)"
+  ]
+}

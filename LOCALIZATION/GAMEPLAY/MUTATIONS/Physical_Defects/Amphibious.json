@@ -1,0 +1,17 @@
+{
+  "names": {
+    "Amphibious": "양서류"
+  },
+  "description": "Your skin must be kept moist with fresh water.",
+  "leveltext": [
+    "You pour water on yourself rather than drinking it to quench your thirst.",
+    "You require about two-thirds more water than usual.",
+    "+100 reputation with {{w|frogs}}"
+  ],
+  "description_ko": "피부를 담수로 촉촉하게 유지해야 합니다.",
+  "leveltext_ko": [
+    "갈증을 해소하기 위해 물을 마시는 대신 몸에 붓습니다.",
+    "평소보다 약 2/3 더 많은 물이 필요합니다.",
+    "{{w|개구리(frogs)}} 평판 +100"
+  ]
+}

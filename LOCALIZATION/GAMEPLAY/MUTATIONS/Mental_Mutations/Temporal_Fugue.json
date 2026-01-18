@@ -1,0 +1,17 @@
+{
+  "names": {
+    "Temporal Fugue": "시간 둔주"
+  },
+  "description": "You quickly pass back and forth through time creating multiple copies of yourself.",
+  "leveltext": [
+    "Duration: {{rules|20 + 2 * (Level / 2)}} rounds",
+    "Copies: {{rules|(Level - 1) / 2 + 1}}",
+    "Cooldown: 200 rounds"
+  ],
+  "description_ko": "시간을 빠르게 왕복하며 자신의 복제본을 여러 개 생성합니다.",
+  "leveltext_ko": [
+    "지속시간: {{rules|20 + 2 * (Level / 2)}}라운드",
+    "복제본 수: {{rules|(Level - 1) / 2 + 1}}",
+    "재사용 대기시간: 200라운드"
+  ]
+}

@@ -1,0 +1,9 @@
+{
+  "names": {
+    "Slime Glands": "점액샘"
+  },
+  "description": "You produce a viscous slime that you can spit at things.\n\nCovers an area with slime\nRange: 8\nArea: 3x3\nCooldown: 40 rounds\nYou can walk over slime without slipping.",
+  "leveltext": [],
+  "description_ko": "점성이 있는 점액을 생성하여 뱉을 수 있습니다.\n\n해당 지역을 점액으로 뒤덮음\n사거리: 8\n범위: 3x3\n재사용 대기시간: 40라운드\n점액 위를 미끄러지지 않고 걸을 수 있습니다.",
+  "leveltext_ko": []
+}

@@ -1,0 +1,15 @@
+{
+  "names": {
+    "Tonic Allergy": "강장제 알레르기"
+  },
+  "description": "You are allergic to tonics.",
+  "leveltext": [
+    "The chance your mutant physiology reacts adversely to a tonic is increased to 33%.",
+    "If you react adversely this way to a salve or ubernostrum tonic, the adverse reaction effect is chosen randomly from among other tonic effects. You will still heal."
+  ],
+  "description_ko": "강장제에 알레르기가 있습니다.",
+  "leveltext_ko": [
+    "변이된 신체가 강장제에 거부 반응을 일으킬 확률이 33%로 증가합니다.",
+    "연고나 우버노스트럼 강장제에 거부 반응을 보이면, 다른 강장제 효과 중 하나가 무작위로 선택되어 부작용으로 나타납니다. 치유 효과는 그대로 적용됩니다."
+  ]
+}

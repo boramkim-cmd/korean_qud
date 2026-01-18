@@ -1,0 +1,27 @@
+{
+  "names": {
+    "Praetorian": "프라이토리아(Praetorian)"
+  },
+  "description": "",
+  "description_ko": "",
+  "leveltext": [
+    "Strength +2",
+    "Toughness +1",
+    "Willpower +1",
+    "ColdResistance +15",
+    "Long Blade",
+    "Shield",
+    "Shield Slam",
+    "Bow and Rifle"
+  ],
+  "leveltext_ko": [
+    "힘 +2",
+    "지구력 +1",
+    "의지력 +1",
+    "냉기 저항 +15",
+    "롱 블레이드",
+    "방패",
+    "방패 슬램",
+    "활과 소총"
+  ]
+}

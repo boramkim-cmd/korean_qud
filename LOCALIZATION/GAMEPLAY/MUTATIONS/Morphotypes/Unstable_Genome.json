@@ -1,0 +1,13 @@
+{
+  "names": {
+    "Unstable Genome": "불안정한 게놈"
+  },
+  "description": "You gain one extra mutation each time you buy this, but the mutations don't manifest right away.",
+  "leveltext": [
+    "Whenever you gain a level, there's a 33% chance that your genome destabilizes and you get to choose from 3 random mutations."
+  ],
+  "description_ko": "구매할 때마다 변이를 하나 더 얻지만, 변이가 즉시 발현되지는 않습니다.",
+  "leveltext_ko": [
+    "레벨을 얻을 때마다, 33% 확률로 게놈이 불안정해져 3가지 무작위 변이 중 하나를 선택할 수 있게 됩니다."
+  ]
+}

@@ -1,0 +1,31 @@
+{
+  "names": {
+    "Child of the Wheel": "바퀴의 아이"
+  },
+  "description": "",
+  "description_ko": "",
+  "leveltext": [
+    "Agility +2",
+    "Strength +1",
+    "Ego +1",
+    "HeatResistance +15",
+    "Short Blade",
+    "Axe",
+    "Cleave",
+    "Multiweapon Fighting",
+    "Multiweapon Proficiency",
+    "Iron Mind"
+  ],
+  "leveltext_ko": [
+    "민첩성 +2",
+    "힘 +1",
+    "자아 +1",
+    "열 저항 +15",
+    "숏 블레이드",
+    "도끼",
+    "쪼개기",
+    "다중 무기 전투",
+    "다중 무기 숙련",
+    "강철 정신"
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "names": {
+    "Triple-jointed": "삼중 관절"
+  },
+  "description": "Your joints stretch much further than usual.",
+  "leveltext": [
+    "+{{rules|2}} Agility",
+    "{{rules|10%}} chance that Sprint and skills with Agility prerequisites don't go on cooldown after use"
+  ],
+  "description_ko": "관절이 평소보다 훨씬 더 유연하게 늘어납니다.",
+  "leveltext_ko": [
+    "+{{rules|2}} 민첩(Agility)",
+    "전력 질주(Sprint) 및 민첩 관련 기술 사용 시 {{rules|10%}} 확률로 재사용 대기시간이 발생하지 않음"
+  ]
+}

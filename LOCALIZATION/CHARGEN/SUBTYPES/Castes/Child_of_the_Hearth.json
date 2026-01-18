@@ -1,0 +1,23 @@
+{
+  "names": {
+    "Child of the Hearth": "벽난로의 아이"
+  },
+  "description": "",
+  "description_ko": "",
+  "leveltext": [
+    "Strength +3",
+    "HeatResistance +15",
+    "Cudgel",
+    "Slam",
+    "Heavy Weapon",
+    "Calloused"
+  ],
+  "leveltext_ko": [
+    "힘 +3",
+    "열 저항 +15",
+    "곤봉",
+    "슬램(Slam)",
+    "중화기",
+    "피부 각질화"
+  ]
+}

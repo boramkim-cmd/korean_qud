@@ -1,0 +1,25 @@
+{
+  "names": {
+    "Stinger (Confusing Venom)": "독침 (혼란 맹독)"
+  },
+  "description": "You bear a confusing stinger.",
+  "leveltext": [
+    "20% chance on melee attack to sting your opponent",
+    "Stinger is a long blade and can only penetrate once.",
+    "Always sting on charge or lunge.",
+    "Stinger applies venom on damage (only 20% chance if Stinger is your primary weapon).",
+    "May use Sting activated ability to strike with your stinger and automatically hit and penetrate.",
+    "Sting cooldown: 25 rounds",
+    "+200 reputation with {{w|arachnids}}"
+  ],
+  "description_ko": "혼란을 유발하는 독침을 가지고 있습니다.",
+  "leveltext_ko": [
+    "근접 공격 시 20% 확률로 상대를 찌릅니다",
+    "독침은 롱블레이드(long blade)이며 한 번만 관통할 수 있습니다.",
+    "돌진(charge)이나 런지(lunge) 시 항상 찌릅니다.",
+    "독침으로 피해를 입히면 독을 주입합니다 (독침이 주무기일 경우 20% 확률).",
+    "찌르기(Sting) 기술을 사용하여 독침으로 공격하면 자동으로 명중하고 관통합니다.",
+    "찌르기 재사용 대기시간: 25라운드",
+    "{{w|거미류(arachnids)}} 평판 +200"
+  ]
+}

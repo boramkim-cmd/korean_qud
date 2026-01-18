@@ -1,0 +1,25 @@
+{
+  "names": {
+    "Child of the Deep": "심연의 아이"
+  },
+  "description": "",
+  "description_ko": "",
+  "leveltext": [
+    "Toughness +3",
+    "HeatResistance +15",
+    "Heavy Weapon",
+    "Tank",
+    "Endurance",
+    "Wilderness Lore: Hills and Mountains",
+    "Wilderness Lore: Canyons"
+  ],
+  "leveltext_ko": [
+    "지구력 +3",
+    "열 저항 +15",
+    "중화기",
+    "탱크",
+    "지구력",
+    "야생 지식: 언덕과 산",
+    "야생 지식: 협곡"
+  ]
+}

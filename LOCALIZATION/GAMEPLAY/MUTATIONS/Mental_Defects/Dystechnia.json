@@ -1,0 +1,23 @@
+{
+  "names": {
+    "Dystechnia": "기술 난해증"
+  },
+  "description": "You are befuddled by technological complexity.",
+  "leveltext": [
+    "You're much worse at examining artifacts.",
+    "You can't have artifacts identified for you because you don't understand their explanations.",
+    "When you fail severely during artifact examination, the artifact explodes.",
+    "You lose a turn in most tinkering Sifrah games, and two turns in hacking Sifrah games.",
+    "-50% move speed on the world map",
+    "Excludes: Psychometry"
+  ],
+  "description_ko": "기술적 복잡함에 혼란을 느낍니다.",
+  "leveltext_ko": [
+    "아티팩트 검사 능력이 크게 떨어집니다.",
+    "설명을 이해하지 못하기 때문에 다른 사람에게 아티팩트 식별을 맡길 수 없습니다.",
+    "아티팩트 검사에 심각하게 실패하면, 아티팩트가 폭발합니다.",
+    "대부분의 팅커링 시프라(Sifrah) 게임에서 1턴, 해킹 시프라 게임에서 2턴을 잃습니다.",
+    "월드맵 이동 속도 -50%",
+    "제외: 사이코메트리(Psychometry)"
+  ]
+}

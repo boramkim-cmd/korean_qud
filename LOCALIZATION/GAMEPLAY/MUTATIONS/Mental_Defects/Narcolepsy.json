@@ -1,0 +1,13 @@
+{
+  "names": {
+    "Narcolepsy": "Narcolepsy"
+  },
+  "description": "You fall asleep involuntarily from time to time.",
+  "leveltext": [
+    "Small chance each round you're in combat that you fall asleep for 20-29 rounds."
+  ],
+  "description_ko": "때때로 의지와 상관없이 잠이 듭니다.",
+  "leveltext_ko": [
+    "전투 중 매 라운드 적은 확률로 20-29라운드 동안 잠이 듭니다."
+  ]
+}

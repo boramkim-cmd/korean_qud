@@ -1,0 +1,25 @@
+{
+  "names": {
+    "Tinker": "팅커"
+  },
+  "description": "",
+  "description_ko": "",
+  "leveltext": [
+    "Intelligence +2",
+    "Tinkering",
+    "Lay Mine / Set Bomb",
+    "Disassemble",
+    "Repair",
+    "Tinker I",
+    "Begins with a number of random artifacts and scrap"
+  ],
+  "leveltext_ko": [
+    "지능 +2",
+    "팅커링",
+    "지뢰 매설 / 폭탄 설치",
+    "분해",
+    "수리",
+    "팅커 I",
+    "여러 개의 무작위 유물과 고철을 가지고 시작"
+  ]
+}

@@ -1,0 +1,27 @@
+{
+  "names": {
+    "Wings": "Wings"
+  },
+  "description": "You fly.",
+  "leveltext": [
+    "You travel on the world map at {{rules|2x}} speed.",
+    "{{rules|40%}} reduced chance of becoming lost",
+    "While outside, you may fly. You cannot be hit in melee by grounded creatures while flying.",
+    "{{rules|5%}} chance of falling clumsily to the ground",
+    "{{rules|20%}} move speed while sprinting",
+    "You can jump {{rules|1}} square farther.",
+    "You can charge {{rules|2}} squares farther.",
+    "+300 reputation with {{w|birds}} and {{w|winged mammals}}"
+  ],
+  "description_ko": "하늘을 날 수 있습니다.",
+  "leveltext_ko": [
+    "월드맵에서 {{rules|2배}} 속도로 이동합니다.",
+    "길을 잃을 확률 {{rules|40%}} 감소",
+    "야외에서 비행할 수 있습니다. 비행 중에는 지상 생명체의 근접 공격에 맞지 않습니다.",
+    "{{rules|5%}} 확률로 서툴게 땅으로 추락할 수 있음",
+    "전력 질주 시 이동 속도 {{rules|20%}}",
+    "점프(jump) 거리가 {{rules|1}}칸 증가합니다.",
+    "돌진(charge) 거리가 {{rules|2}}칸 증가합니다.",
+    "{{w|조류(birds)}} 및 {{w|날개 달린 포유류(winged mammals)}} 평판 +300"
+  ]
+}

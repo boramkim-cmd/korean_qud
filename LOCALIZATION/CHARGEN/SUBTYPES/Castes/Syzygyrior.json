@@ -1,0 +1,21 @@
+{
+  "names": {
+    "Syzygyrior": "시지지리어(Syzygyrior)"
+  },
+  "description": "",
+  "description_ko": "",
+  "leveltext": [
+    "Agility +3",
+    "Multiweapon Fighting",
+    "Multiweapon Proficiency",
+    "Multiweapon Expertise",
+    "Wilderness Lore: Jungles"
+  ],
+  "leveltext_ko": [
+    "민첩성 +3",
+    "다중 무기 전투",
+    "다중 무기 숙련",
+    "다중 무기 전문화",
+    "야생 지식: 정글"
+  ]
+}

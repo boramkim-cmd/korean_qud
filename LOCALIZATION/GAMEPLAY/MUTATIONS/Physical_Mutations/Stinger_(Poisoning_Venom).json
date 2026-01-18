@@ -1,0 +1,27 @@
+{
+  "names": {
+    "Stinger (Poisoning Venom)": "독침 (독성 맹독)"
+  },
+  "description": "You bear a tail with a stinger that delivers poisonous venom to your enemies.",
+  "leveltext": [
+    "20% chance on melee attack to sting your opponent ({{c|▼}}{{rules|7}} {{heart|♥}}1d6)",
+    "Stinger is a long blade and can only penetrate once.",
+    "Always sting on charge or lunge.",
+    "Stinger applies venom on damage (only 20% chance if Stinger is your primary weapon).",
+    "May use Sting activated ability to strike with your stinger and automatically hit and penetrate.",
+    "Sting cooldown: 25",
+    "Venom poisons opponents for 8-12 rounds (damage increment 1d2)",
+    "+200 reputation with {{w|arachnids}}"
+  ],
+  "description_ko": "적에게 중독 맹독을 주입하는 침이 달린 꼬리를 가지고 있습니다.",
+  "leveltext_ko": [
+    "근접 공격 시 20% 확률로 상대를 찌릅니다 ({{c|▼}}{{rules|7}} {{heart|♥}}1d6)",
+    "독침은 롱블레이드(long blade)이며 한 번만 관통할 수 있습니다.",
+    "돌진(charge)이나 런지(lunge) 시 항상 찌릅니다.",
+    "독침으로 피해를 입히면 독을 주입합니다 (독침이 주무기일 경우 20% 확률).",
+    "찌르기(Sting) 기술을 사용하여 독침으로 공격하면 자동으로 명중하고 관통합니다.",
+    "찌르기 재사용 대기시간: 25라운드",
+    "맹독이 8-12라운드 동안 상대를 중독시킵니다 (피해 증가량 1d2)",
+    "{{w|거미류(arachnids)}} 평판 +200"
+  ]
+}

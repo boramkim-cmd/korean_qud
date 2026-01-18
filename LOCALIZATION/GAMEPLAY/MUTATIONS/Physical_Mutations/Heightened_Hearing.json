@@ -1,0 +1,15 @@
+{
+  "names": {
+    "Heightened Hearing": "Heightened Hearing"
+  },
+  "description": "You are possessed of unnaturally acute hearing.",
+  "leveltext": [
+    "You detect the presence of creatures within a radius of {{rules|5}}.",
+    "Chance to identify nearby detected creatures"
+  ],
+  "description_ko": "비정상적으로 예민한 청각을 소유하게 됩니다.",
+  "leveltext_ko": [
+    "반경 {{rules|5}}칸 내의 생명체 존재를 감지합니다.",
+    "감지된 생명체의 정체를 파악할 확률이 생깁니다"
+  ]
+}

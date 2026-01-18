@@ -1,0 +1,19 @@
+{
+  "names": {
+    "Regeneration": "Regeneration"
+  },
+  "description": "Your wounds heal very quickly.",
+  "leveltext": [
+    "Your full natural healing rate applies in combat.",
+    "+{{rules|20%}} faster natural healing rate",
+    "{{rules|10%}} chance to regrow a missing limb each round",
+    "{{rules|1}}% chance to remove a {{rules|minor physical debuff}} at random each round"
+  ],
+  "description_ko": "상처가 매우 빠르게 치유됩니다.",
+  "leveltext_ko": [
+    "전투 중에도 자연 회복 속도가 온전하게 적용됩니다.",
+    "자연 회복 속도 +{{rules|20%}}",
+    "매 라운드 {{rules|10%}} 확률로 결손 부위(limb) 재생",
+    "매 라운드 {{rules|1}}% 확률로 무작위 {{rules|경미한 신체 상태이상(minor physical debuff)}} 제거"
+  ]
+}

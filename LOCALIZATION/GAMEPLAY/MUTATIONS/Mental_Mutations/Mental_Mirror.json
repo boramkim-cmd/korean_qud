@@ -1,0 +1,17 @@
+{
+  "names": {
+    "Mental Mirror": "정신 반사"
+  },
+  "description": "You reflect mental attacks back at your attackers.",
+  "leveltext": [
+    "When you suffer a mental attack while Mental Mirror is off cooldown, you gain +{{rules|3 + Level}} mental armor (MA).",
+    "If the attack then fails to penetrate your MA, it's reflected back at your attacker.",
+    "Cooldown: {{rules|50}} rounds"
+  ],
+  "description_ko": "정신 공격을 공격자에게 반사합니다.",
+  "leveltext_ko": [
+    "정신 반사(Mental Mirror)의 재사용 대기시간이 아닐 때 정신 공격을 받으면, 정신 방어력(MA)이 +{{rules|3 + Level}} 증가합니다.",
+    "만약 공격이 증가된 정신 방어력을 뚫지 못하면, 그 공격은 공격자에게 반사됩니다.",
+    "재사용 대기시간: {{rules|50}}라운드"
+  ]
+}

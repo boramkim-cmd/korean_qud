@@ -1,0 +1,21 @@
+{
+  "names": {
+    "Beguiling": "매혹"
+  },
+  "description": "You beguile a nearby creature into serving you loyally.",
+  "leveltext": [
+    "Mental attack versus a creature with a mind",
+    "Success roll: {{rules|mutation rank}} or Ego mod (whichever is higher) + character level + 1d8 VS. Defender MA + character level",
+    "Range: 1",
+    "Beguiled creature: +{{rules|5 * Level}} bonus hit points",
+    "Cooldown: 50 rounds"
+  ],
+  "description_ko": "가까운 생명체를 매혹하여 당신을 충성스럽게 섬기게 만듭니다.",
+  "leveltext_ko": [
+    "정신을 가진 생명체에 대한 정신 공격",
+    "성공 굴림: {{rules|변이 랭크}} 또는 자아(Ego) 수정치 (높은 값) + 캐릭터 레벨 + 1d8 대 방어자의 정신 방어력(MA) + 캐릭터 레벨",
+    "사거리: 1",
+    "매혹된 생명체: 추가 체력 +{{rules|5 * Level}}",
+    "재사용 대기시간: 50라운드"
+  ]
+}

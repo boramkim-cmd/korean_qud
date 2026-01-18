@@ -1,0 +1,13 @@
+{
+  "names": {
+    "Hooks for Feet": "발톱"
+  },
+  "description": "You have hooks for feet.",
+  "leveltext": [
+    "You cannot wear shoes."
+  ],
+  "description_ko": "발 대신 발톱이 있습니다.",
+  "leveltext_ko": [
+    "신발을 신을 수 없습니다."
+  ]
+}

@@ -1,0 +1,13 @@
+{
+  "names": {
+    "Teleport Other": "타인 순간이동"
+  },
+  "description": "You teleport an adjacent creature to a random nearby location.",
+  "leveltext": [
+    "Cooldown: {{rules|max(115 - 10 * Level, 5)}} rounds"
+  ],
+  "description_ko": "인접한 생명체를 무작위 인근 위치로 순간이동시킵니다.",
+  "leveltext_ko": [
+    "재사용 대기시간: {{rules|max(115 - 10 * Level, 5)}}라운드"
+  ]
+}

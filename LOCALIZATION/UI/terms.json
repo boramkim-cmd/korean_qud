@@ -1,0 +1,53 @@
+{
+  "attribute": {
+    "agility": "민첩",
+    "ego": "자아",
+    "intelligence": "지능",
+    "strength": "힘",
+    "toughness": "강인함",
+    "willpower": "의지력"
+  },
+  "character": {
+    "attribute": "능력치",
+    "calling": "소명",
+    "genotype": "유전형",
+    "skill": "스킬"
+  },
+  "faction": {
+    "barathrumites": "바라스럼추종자",
+    "mechanimists": "메카니카신자",
+    "putusTemplar": "푸투스템플러"
+  },
+  "genotype": {
+    "mutant": "돌연변이",
+    "trueKin": "순수인"
+  },
+  "item": {
+    "artifact": "유물",
+    "blueprint": "설계도",
+    "bread": "빵",
+    "relic": "성유물",
+    "schematic": "스케매틱",
+    "trinket": "장신구"
+  },
+  "phrase": {
+    "farewell": "안녕히 가세요",
+    "greeting": "안녕하세요",
+    "waterRitual": "당신의 갈증은 나의 것, 나의 물은 당신의 것"
+  },
+  "weapon": {
+    "axe": "도끼",
+    "cudgel": "곤봉",
+    "longblade": "장검",
+    "shortblade": "단검",
+    "shortbow": "짧은 활"
+  },
+  "world": {
+    "bethesdaSusa": "베데스다 수사",
+    "gritGate": "그릿 게이트",
+    "joppa": "조파",
+    "qud": "쿼드",
+    "redRock": "붉은 바위",
+    "sixDayStilt": "여섯날의 스틸트"
+  }
+}

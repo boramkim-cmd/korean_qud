@@ -1,0 +1,15 @@
+{
+  "names": {
+    "Corrosive Gas Generation": "부식성 가스 생성"
+  },
+  "description": "You release a burst of corrosive gas around yourself.",
+  "leveltext": [
+    "Releases gas for {{rules|3}} rounds",
+    "Cooldown: 40 rounds"
+  ],
+  "description_ko": "자신 주변에 부식성 가스를 방출합니다.",
+  "leveltext_ko": [
+    "{{rules|3}}라운드 동안 가스를 방출합니다",
+    "재사용 대기시간: 40라운드"
+  ]
+}

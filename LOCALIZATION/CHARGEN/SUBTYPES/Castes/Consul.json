@@ -1,0 +1,19 @@
+{
+  "names": {
+    "Consul": "영사(Consul)"
+  },
+  "description": "",
+  "description_ko": "",
+  "leveltext": [
+    "Ego +3",
+    "ColdResistance +15",
+    "Inspiring Presence",
+    "Proselytize"
+  ],
+  "leveltext_ko": [
+    "자아 +3",
+    "냉기 저항 +15",
+    "고무적인 존재감",
+    "개종"
+  ]
+}

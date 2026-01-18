@@ -1,0 +1,15 @@
+{
+  "names": {
+    "Two-headed": "Two-headed"
+  },
+  "description": "You have two heads.",
+  "leveltext": [
+    "Mental actions have {{rules|20%}} lower action costs",
+    "{{rules|50%}} chance initially and each round to shake off a negative mental status effect"
+  ],
+  "description_ko": "머리가 두 개입니다.",
+  "leveltext_ko": [
+    "정신계 행동의 행동 비용 {{rules|20%}} 감소",
+    "부정적인 정신 상태이상을 {{rules|50%}} 확률로 초기에, 또는 매 라운드마다 떨쳐냄"
+  ]
+}

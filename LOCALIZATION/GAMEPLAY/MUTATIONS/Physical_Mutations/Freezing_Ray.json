@@ -1,0 +1,19 @@
+{
+  "names": {
+    "Freezing Ray": "Freezing Ray"
+  },
+  "description": "You emit a ray of frost from your hands.",
+  "leveltext": [
+    "Emits a 9-square ray of frost in the direction of your choice.",
+    "Damage: {{rules|1d3+1}}",
+    "Cooldown: 20 rounds",
+    "Melee attacks cool opponents by {{rules|-1d4}} degrees"
+  ],
+  "description_ko": "손에서 냉기 광선을 내뿜습니다.",
+  "leveltext_ko": [
+    "선택한 방향으로 {{rules|9}}칸의 냉기 광선을 발사합니다.",
+    "피해량: {{rules|1d3+1}}",
+    "재사용 대기시간: 20라운드",
+    "근접 공격이 상대를 {{rules|-1d4}}도만큼 냉각시킵니다"
+  ]
+}

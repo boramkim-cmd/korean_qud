@@ -1,0 +1,17 @@
+{
+  "names": {
+    "Beak": "부리"
+  },
+  "description": "Your face bears a sightly beak.",
+  "leveltext": [
+    "+1 Ego",
+    "You occasionally peck at your opponents.",
+    "+200 reputation with {{w|birds}}"
+  ],
+  "description_ko": "얼굴에 멋진 부리가 생깁니다.",
+  "leveltext_ko": [
+    "+1 자아(Ego)",
+    "가끔 상대를 쪼아 공격합니다.",
+    "{{w|조류(birds)}}에 대한 평판 +200"
+  ]
+}

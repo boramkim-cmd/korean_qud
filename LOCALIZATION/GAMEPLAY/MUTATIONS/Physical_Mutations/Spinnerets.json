@@ -1,0 +1,23 @@
+{
+  "names": {
+    "Spinnerets": "Spinnerets"
+  },
+  "description": "You can spin sticky silk webs.",
+  "leveltext": [
+    "While spinning, you leave webs in your wake as you move.",
+    "Duration: {{rules|6}} move actions",
+    "+{{rules|6}} save vs. Move",
+    "Cooldown: 80 rounds",
+    "You are immune to getting stuck.",
+    "+300 reputation with {{w|arachnids}}"
+  ],
+  "description_ko": "끈적거리는 거미줄을 칠 수 있습니다.",
+  "leveltext_ko": [
+    "줄을 뿜는 동안, 이동하는 경로에 거미줄을 남깁니다.",
+    "지속 시간: {{rules|6}} 이동 행동",
+    "+{{rules|6}} 이동(Move) 내성",
+    "재사용 대기시간: 80라운드",
+    "이동 불가(stuck) 상태에 면역입니다.",
+    "{{w|거미류(arachnids)}} 평판 +300"
+  ]
+}

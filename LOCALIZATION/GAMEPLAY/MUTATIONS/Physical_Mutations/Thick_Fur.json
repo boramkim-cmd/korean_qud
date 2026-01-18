@@ -1,0 +1,14 @@
+{
+  "names": {
+    "Thick Fur": "두꺼운 털"
+  },
+  "description": "Your thick fur protects you from the elements.",
+  "leveltext": [
+    "+1 AV",
+    "+20 Cold Resistance",
+    "+2 bonus to saves vs. negative cold-based effects",
+    "You overheat 15% faster."
+  ],
+  "description_ko": "두꺼운 털로 뒤덮여 있어 자연 환경으로부터 보호받습니다.\n\n+5 열기 저항(Heat Resistance)\n+5 냉기 저항(Cold Resistance)\n{{w|유인원(apes)}}, {{w|개코원숭이(baboons)}}, {{w|곰(bears)}}, {{w|초식 쾌락주의자(grazing hedonists)}} 평판 +100",
+  "leveltext_ko": []
+}

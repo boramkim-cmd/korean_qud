@@ -1,0 +1,15 @@
+{
+  "names": {
+    "Phasing": "Phasing"
+  },
+  "description": "You may phase through solid objects for brief periods of time.",
+  "leveltext": [
+    "Duration: {{rules|7}} rounds",
+    "Cooldown: {{rules|100}} rounds"
+  ],
+  "description_ko": "짧은 시간 동안 고체 물체를 통과할 수 있습니다.",
+  "leveltext_ko": [
+    "지속 시간: {{rules|7}}라운드",
+    "재사용 대기시간: {{rules|100}}라운드"
+  ]
+}

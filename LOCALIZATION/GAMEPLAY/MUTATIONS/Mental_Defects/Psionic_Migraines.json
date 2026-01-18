@@ -1,0 +1,13 @@
+{
+  "names": {
+    "Psionic Migraines": "Psionic Migraines"
+  },
+  "description": "You suffer from powerful psionic migraines that render your head extremely sensitive.",
+  "leveltext": [
+    "You can't wear hats or helmets."
+  ],
+  "description_ko": "머리가 극도로 예민해지는 강력한 사이킥 편두통을 앓고 있습니다.",
+  "leveltext_ko": [
+    "모자나 헬멧을 착용할 수 없습니다."
+  ]
+}

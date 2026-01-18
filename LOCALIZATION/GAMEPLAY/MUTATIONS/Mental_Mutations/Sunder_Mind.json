@@ -1,0 +1,25 @@
+{
+  "names": {
+    "Sunder Mind": "정신 파괴"
+  },
+  "description": "You sunder the mind of an enemy, leaving them reeling in pain.",
+  "leveltext": [
+    "For up to 10 rounds, you engage in psychic combat with an opponent, dealing damage each round.",
+    "Taking any action other than passing the turn will break the connection.",
+    "Each round you make a mental attack vs mental armor (MA).",
+    "Damage increment: {{rules|1d3(odd)/1d4(even) + Level / 2}}",
+    "After the tenth round, you deal bonus damage equal to the total amount of damage you've done so far.",
+    "Range: sight",
+    "Cooldown: 80 rounds"
+  ],
+  "description_ko": "적의 정신을 파괴하여 고통에 몸부림치게 만듭니다.",
+  "leveltext_ko": [
+    "최대 10라운드 동안 적과 정신적 전투를 벌여 매 라운드 피해를 입힙니다.",
+    "턴을 넘기는 것 외의 행동을 하면 연결이 끊어집니다.",
+    "매 라운드 정신 방어력(MA)에 대항하여 정신 공격을 수행합니다.",
+    "피해 증가량: {{rules|1d3(홀수)/1d4(짝수) + Level / 2}}",
+    "10번째 라운드 후에는 지금까지 입힌 총 피해량만큼의 추가 피해를 줍니다.",
+    "사거리: 시야 내",
+    "재사용 대기시간: 80라운드"
+  ]
+}

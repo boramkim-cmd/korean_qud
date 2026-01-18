@@ -1,0 +1,23 @@
+{
+  "names": {
+    "Carapace": "갑피"
+  },
+  "description": "You are protected by a durable carapace.",
+  "leveltext": [
+    "{{rules|+3}} AV",
+    "{{rules|-2}} DV",
+    "{{rules|+10}} Heat Resistance",
+    "{{rules|+10}} Cold Resistance",
+    "You may tighten your carapace to receive double the AV bonus at a -2 DV penalty as long as you remain still.",
+    "Cannot wear body armor."
+  ],
+  "description_ko": "견고한 갑피로 보호받습니다.",
+  "leveltext_ko": [
+    "{{rules|+3}} AV",
+    "{{rules|-2}} DV",
+    "{{rules|+10}} 열기 저항(Heat Resistance)",
+    "{{rules|+10}} 냉기 저항(Cold Resistance)",
+    "제자리에 멈춰 있는 동안 갑피를 조여(tighten) DV에 -2 페널티를 받는 대신 AV 보너스를 두 배로 얻을 수 있습니다.",
+    "몸통 방어구(body armor)를 착용할 수 없습니다."
+  ]
+}

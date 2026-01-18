@@ -1,0 +1,13 @@
+{
+  "names": {
+    "Nerve Poppy": "신경 양귀비"
+  },
+  "description": "You lack a developed sense of pain.",
+  "leveltext": [
+    "You only know your general state of health and not your precise number of hit points."
+  ],
+  "description_ko": "고통을 느끼는 감각이 발달하지 않았습니다.",
+  "leveltext_ko": [
+    "자신의 대략적인 건강 상태만 알 수 있으며, 정확한 체력 수치는 알 수 없습니다."
+  ]
+}

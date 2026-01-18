@@ -1,0 +1,27 @@
+{
+  "names": {
+    "Electrical Generation": "전기 생성"
+  },
+  "description": "You accrue electrical charge that you can use and discharge to deal damage.",
+  "leveltext": [
+    "Maximum charge: {{C|4000}}",
+    "Accrue base {{C|100}} charge per turn",
+    "Can discharge all held charge for 1d4 damage per 1000 charge",
+    "Discharge can arc to adjacent targets dealing reduced damage, up to 1 target per 1000 charge",
+    "EMP causes involuntary discharge (difficulty 18 Willpower save)",
+    "You can drink charge from energy cells and capacitors.",
+    "You gain 100 charge per point of electrical damage taken.",
+    "You can provide charge to equipped devices that have integrated power systems."
+  ],
+  "description_ko": "사용하거나 방출하여 피해를 줄 수 있는 전하를 축적합니다.",
+  "leveltext_ko": [
+    "최대 충전량: {{C|4000}}",
+    "턴당 기본 충전량 {{C|100}} 축적",
+    "보유한 모든 전하를 방출하여 충전량 1000당 1d4의 피해를 입힙니다",
+    "방전은 인접한 대상에게 아크(arc)를 일으켜 감소된 피해를 주며, 충전량 1000당 최대 1명의 대상에게 추가로 적중합니다",
+    "EMP 피격 시 의도치 않은 방전 유발 (의지력 내성 난이도 18)",
+    "에너지 셀과 축전기(capacitor)에서 전하를 흡수할 수 있습니다.",
+    "전기 피해를 1 입을 때마다 100의 전하를 얻습니다.",
+    "통합 전력 시스템이 있는 장착된 장비에 전력을 공급할 수 있습니다."
+  ]
+}

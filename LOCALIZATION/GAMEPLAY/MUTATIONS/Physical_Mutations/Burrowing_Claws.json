@@ -1,0 +1,17 @@
+{
+  "names": {
+    "Burrowing Claws": "굴착 발톱"
+  },
+  "description": "You have powerful claws that can dig through the earth.",
+  "leveltext": [
+    "Burrowing claws penetration vs. walls: {{rules|+3}}",
+    "Can dig passages up or down when outside of combat",
+    "Burrowing claws are also a short-blade class natural weapon that deal {{rules|1d2}} base damage to non-walls."
+  ],
+  "description_ko": "흙을 파헤칠 수 있는 삽 모양의 발톱이 생깁니다.",
+  "leveltext_ko": [
+    "굴착 발톱(Burrowing claws)의 벽 관통력: {{rules|+3}}",
+    "전투 중이 아닐 때 위나 아래로 굴착하여 이동할 수 있는 통로를 만들 수 있습니다.",
+    "굴착 발톱은 숏블레이드(short-blade) 클래스의 자연 무기이며, 벽이 아닌 대상에게 {{rules|1d2}}의 기본 피해를 입힙니다."
+  ]
+}

@@ -1,6 +1,6 @@
 # Caves of Qud 한글화 프로젝트 - 변경 이력 (Changelog)
 
-> **버전**: 2.1 | **최종 업데이트**: 2026-01-16
+> **버전**: 2.2 | **최종 업데이트**: 2026-01-18
 
 > [!NOTE]
 > **AI 에이전트**: 이 문서는 완료 기록용입니다. 먼저 `00_PRINCIPLES.md`를 읽으세요!
@@ -11,6 +11,42 @@
 # Changelog
 
 모든 주요 변경사항은 이 문서에 기록됩니다.
+
+---
+
+## [2026-01-18] - LOCALIZATION 폴더 구조 재정리
+
+### 🏗️ Refactored
+- **번역 파일 구조 전면 재편**
+  - 컨텍스트 기반 계층 구조 도입 (CHARGEN/, GAMEPLAY/, UI/)
+  - Layer 1 파일 12개 이동 및 이름 변경
+  - Layer 2 폴더 3개 재배치 (MUTATIONS, GENOTYPES, SUBTYPES)
+  - `glossary_proto.json`을 GENOTYPES/SUBTYPES에 통합 후 deprecated 처리
+
+- **코드 업데이트**
+  - `LocalizationManager.cs`: 재귀적 JSON 로딩 지원 (`SearchOption.AllDirectories`)
+  - `StructureTranslator.cs`: 새 폴더 경로 반영
+
+- **문서화 개선**
+  - `LOCALIZATION/README.md`: 전면 개편
+  - 각 서브폴더에 `README.md` 추가 (CHARGEN, GAMEPLAY, UI)
+  - `Docs/01_DEVELOPMENT_GUIDE.md`: 파일 경로 업데이트
+  - `LOCALIZATION_REORGANIZATION_SUMMARY.md`: 상세 마이그레이션 문서 생성
+
+### ✨ Added
+- **새 폴더 구조**:
+  - `CHARGEN/`: 캐릭터 생성 관련 (modes, stats, ui, presets, locations, factions + GENOTYPES, SUBTYPES)
+  - `GAMEPLAY/`: 게임플레이 기능 (skills, cybernetics + MUTATIONS)
+  - `UI/`: 사용자 인터페이스 (common, options, terms)
+  - `_DEPRECATED/`: 구 버전 보관
+
+### 🔧 Changed
+- **번역 일관성 개선**: 7개 SUBTYPES 파일의 번역 업데이트 (Artifex, Consul, Praetorian 등)
+
+### 📊 Impact
+- **파일 이동**: 12개 glossary + 3개 폴더
+- **총 번역 항목**: ~560개 (유지, 재구성만)
+- **효과**: 관리 효율성 향상, 확장성 개선, 중복 제거
 
 ---
 

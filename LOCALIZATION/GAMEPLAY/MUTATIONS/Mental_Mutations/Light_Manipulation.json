@@ -1,0 +1,23 @@
+{
+  "names": {
+    "Light Manipulation": "빛 조작"
+  },
+  "description": "You manipulate light to your advantage.",
+  "leveltext": [
+    "You produce ambient light within a radius of {{rules|4 + floor(Level / 2)}}.",
+    "You may focus the light into a laser beam, temporarily reducing the radius of your ambient light by 1.",
+    "Laser damage increment: {{rules|Damage Dice}}",
+    "Laser penetration: {{rules|4 + (Level - 1) / 2}}",
+    "Ambient light recharges at a rate of 1 unit every 15 rounds until it reaches its maximum value.",
+    "{{rules|10 + 3 * Level}}% chance to reflect light-based damage"
+  ],
+  "description_ko": "빛을 조작하여 자신에게 유리하게 사용합니다.",
+  "leveltext_ko": [
+    "반경 {{rules|4 + floor(Level / 2)}} 내에 주변광을 생성합니다.",
+    "빛을 집중시켜 레이저 빔을 발사할 수 있으며, 이 경우 주변광의 반경이 일시적으로 1 감소합니다.",
+    "레이저 피해 증가량: {{rules|Damage Dice}}",
+    "레이저 관통력: {{rules|4 + (Level - 1) / 2}}",
+    "주변광은 최대치에 도달할 때까지 15라운드마다 1씩 재충전됩니다.",
+    "빛 속성 피해를 반사할 확률 {{rules|10 + 3 * Level}}%"
+  ]
+}

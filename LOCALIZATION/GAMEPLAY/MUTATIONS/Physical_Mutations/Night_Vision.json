@@ -1,0 +1,13 @@
+{
+  "names": {
+    "Night Vision": "야간 시야"
+  },
+  "description": "You can see in the dark.",
+  "leveltext": [
+    "You see in the dark."
+  ],
+  "description_ko": "어둠 속에서 볼 수 있습니다.",
+  "leveltext_ko": [
+    "어둠 속에서 볼 수 있습니다."
+  ]
+}

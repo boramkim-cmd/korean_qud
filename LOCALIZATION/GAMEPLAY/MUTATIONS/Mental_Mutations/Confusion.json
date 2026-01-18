@@ -1,0 +1,21 @@
+{
+  "names": {
+    "Confusion": "혼란"
+  },
+  "description": "You confuse nearby enemies.",
+  "leveltext": [
+    "Affected creatures act semi-randomly and receive a {{rules|Mental Penalty}} to their mental abilities.",
+    "Cone angle: {{rules|29 + Level}} degrees",
+    "Cone length: {{rules|4 + Level / 3}}",
+    "Duration: {{rules|Duration}} rounds",
+    "Cooldown: 75 rounds"
+  ],
+  "description_ko": "주변의 적들을 혼란스럽게 만듭니다.",
+  "leveltext_ko": [
+    "영향받은 생명체는 반무작위로 행동하며 정신 능력에 {{rules|패널티(Mental Penalty)}}를 받습니다.",
+    "원뿔 각도: {{rules|29 + Level}}도",
+    "원뿔 길이: {{rules|4 + Level / 3}}",
+    "지속 시간: {{rules|Duration}}라운드",
+    "재사용 대기시간: 75라운드"
+  ]
+}

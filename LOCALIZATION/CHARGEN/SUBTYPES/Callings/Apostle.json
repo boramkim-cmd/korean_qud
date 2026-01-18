@@ -1,0 +1,19 @@
+{
+  "names": {
+    "Apostle": "사도"
+  },
+  "description": "",
+  "description_ko": "",
+  "leveltext": [
+    "Ego +2",
+    "Intimidate",
+    "Proselytize",
+    "Customs and Folklore"
+  ],
+  "leveltext_ko": [
+    "자아 +2",
+    "위협",
+    "개종",
+    "풍습 및 민속"
+  ]
+}

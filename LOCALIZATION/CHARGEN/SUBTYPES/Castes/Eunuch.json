@@ -1,0 +1,31 @@
+{
+  "names": {
+    "Eunuch": "환관(Eunuch)"
+  },
+  "description": "",
+  "description_ko": "",
+  "leveltext": [
+    "Agility +2",
+    "Intelligence +2",
+    "ColdResistance +15",
+    "Short Blade",
+    "Hobble",
+    "Pistol",
+    "Weak Spotter",
+    "Acrobatics",
+    "Spry",
+    "Tactics"
+  ],
+  "leveltext_ko": [
+    "민첩성 +2",
+    "지능 +2",
+    "냉기 저항 +15",
+    "숏 블레이드",
+    "절뚝거리게 만들기",
+    "권총",
+    "약점 포착",
+    "곡예",
+    "활발함",
+    "전술"
+  ]
+}

@@ -1,0 +1,31 @@
+{
+  "chargen_mode": {
+    "Tutorial": {
+      "tutorial": "튜토리얼",
+      "learn the basics of caves of qud.": "Caves of Qud의 기초를 배웁니다."
+    },
+    "Classic": {
+      "classic": "클래식",
+      "roguelike mode. permadeath: you lose your character when you die.": "로그라이크 모드. 영구적 죽음: 캐릭터 사망 시 해당 캐릭터로 더 이상 플레이할 수 없습니다."
+    },
+    "Roleplay": {
+      "roleplay": "롤플레이",
+      "checkpointing at settlements.": "정착지에서 체크포인트 저장."
+    },
+    "Wander": {
+      "wander": "방랑",
+      "{{c|ù}} most creatures begin neutral to you.": "대부분의 생물이 당신에게 중립입니다.",
+      "{{c|ù}} no xp for killing.": "처치 경험치 없음.",
+      "{{c|ù}} more xp for discoveries and performing the water ritual.": "발견 및 물의 의식 수행 시 더 많은 경험치 획득."
+    },
+    "Daily": {
+      "daily": "일일 도전",
+      "{{c|ù}} currently in day {{w|{day_of_year}}} of {{w|{year}}}.": "현재 {{w|{year}}}년 {{w|{day_of_year}}}일차 진행 중",
+      "{{c|ù}} one chance with a fixed character and world seed.": "고정된 캐릭터와 시드로 단 한 번의 기회 제공"
+    },
+    "Quickstart": {
+      "quickstart": "빠른 시작",
+      "start a new game with one button.": "버튼 하나로 새 게임을 즉시 시작합니다."
+    }
+  }
+}

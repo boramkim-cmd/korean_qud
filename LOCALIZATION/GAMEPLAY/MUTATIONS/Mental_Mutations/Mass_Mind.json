@@ -1,0 +1,23 @@
+{
+  "names": {
+    "Mass Mind": "집단 의식"
+  },
+  "description": "You tap into the aggregate mind and steal power from other espers.",
+  "leveltext": [
+    "Refreshes all mental mutations",
+    "Cooldown: {{rules|max(100, 550 - 50 * Level)}} rounds",
+    "Cooldown is not affected by Willpower.",
+    "Each use attracts slightly more attention from psychic interlopers.",
+    "{{rules|Small chance each round for another esper to steal your powers}}",
+    "-200 reputation with {{w|the Seekers of the Sightless Way}}"
+  ],
+  "description_ko": "집합적 정신(aggregate mind)에 접속하여 다른 에스퍼(esper)들로부터 힘을 훔칩니다.",
+  "leveltext_ko": [
+    "모든 정신 변이의 재사용 대기시간 초기화",
+    "재사용 대기시간: {{rules|max(100, 550 - 50 * Level)}}라운드",
+    "재사용 대기시간은 의지력(Willpower)의 영향을 받지 않습니다.",
+    "사용할 때마다 사이킥 침입자들의 주의를 조금씩 더 끌게 됩니다.",
+    "{{rules|매 라운드 다른 에스퍼가 당신의 힘을 훔쳐갈 작은 확률 존재}}",
+    "{{w|보이지 않는 길의 구도자들(the Seekers of the Sightless Way)}} 평판 -200"
+  ]
+}

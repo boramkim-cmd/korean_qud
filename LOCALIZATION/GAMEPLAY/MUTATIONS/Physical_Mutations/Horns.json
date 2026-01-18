@@ -1,0 +1,27 @@
+{
+  "names": {
+    "Horns": "Horns"
+  },
+  "description": "Horns jut out of your head.",
+  "leveltext": [
+    "20% chance on melee attack to gore your opponent",
+    "Damage increment: {{rules|2d3}}",
+    "To-hit bonus: {{rules|+1}}",
+    "Goring attacks may cause bleeding",
+    "Horns are a short-blade class natural weapon.",
+    "+{{rules|1 AV}}",
+    "Cannot wear helmets",
+    "+100 reputation with {{w|antelopes}} and {{w|goatfolk}}"
+  ],
+  "description_ko": "머리에 뿔이 돋아납니다.",
+  "leveltext_ko": [
+    "근접 공격 시 20% 확률로 상대를 들이받음(gore)",
+    "피해량: {{rules|2d3}}",
+    "명중 보너스: {{rules|+1}}",
+    "들이받기 공격은 출혈을 유발할 수 있습니다",
+    "뿔은 숏블레이드(short-blade) 클래스의 자연 무기입니다.",
+    "+{{rules|1 AV}}",
+    "헬멧을 착용할 수 없습니다",
+    "{{w|영양(antelopes)}} 및 {{w|염소인간(goatfolk)}} 평판 +100"
+  ]
+}

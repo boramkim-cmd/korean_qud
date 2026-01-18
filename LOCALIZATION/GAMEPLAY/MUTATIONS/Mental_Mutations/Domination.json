@@ -1,0 +1,21 @@
+{
+  "names": {
+    "Domination": "지배"
+  },
+  "description": "You garrote an adjacent creature's mind and control its actions while your own body lies dormant.",
+  "leveltext": [
+    "Mental attack versus creature with a mind",
+    "Success roll: {{rules|mutation rank}} or Ego mod (whichever is higher) + character level + 1d8 VS. Defender MA + character level",
+    "Range: 1",
+    "Duration: {{rules|100 * (Level + 1)}} rounds",
+    "Cooldown: 75 rounds"
+  ],
+  "description_ko": "가까운 생명체의 정신을 장악하여 조종합니다. 조종하는 동안 본체는 무방비 상태가 됩니다.",
+  "leveltext_ko": [
+    "정신을 가진 생명체에 대한 정신 공격",
+    "성공 굴림: {{rules|변이 랭크}} 또는 자아(Ego) 수정치 (높은 값) + 캐릭터 레벨 + 1d8 대 방어자의 정신 방어력(MA) + 캐릭터 레벨",
+    "사거리: 1",
+    "지속 시간: {{rules|100 * (Level + 1)}}라운드",
+    "재사용 대기시간: 75라운드"
+  ]
+}

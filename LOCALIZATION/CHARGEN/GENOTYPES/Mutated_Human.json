@@ -1,0 +1,15 @@
+{
+  "names": {
+    "Mutated Human": "변이된 인간"
+  },
+  "leveltext": [
+    "Mutations",
+    "Moderate starting attributes",
+    "-600 reputation with {{C|the Putus Templar}}"
+  ],
+  "leveltext_ko": [
+    "변이(Mutations)",
+    "보통 수준의 능력치로 시작",
+    "{{c|푸투스 템플러}} 평판 -600"
+  ]
+}

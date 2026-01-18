@@ -8,47 +8,50 @@
 
 ```
 LOCALIZATION/
-├── glossary_*.json          # Layer 1: 단일 파일 용어집
-│   ├── glossary_ui.json           → UI 공통 용어 (버튼, 메뉴 등)
-│   ├── glossary_skills.json       → 스킬 이름/설명
-│   ├── glossary_options.json      → 설정 화면 텍스트
-│   ├── glossary_chargen_modes.json → 게임 모드 (Classic, Wander 등)
-│   ├── glossary_chargen_stats.json → 스탯 (Strength, Agility 등)
-│   ├── glossary_chargen_ui.json   → 캐릭터 생성 UI
-│   ├── glossary_proto.json        → 종족 유형
-│   ├── glossary_pregen.json       → 프리셋 캐릭터
-│   ├── glossary_cybernetics.json  → 사이버네틱스
-│   ├── glossary_factions.json     → 팩션
-│   ├── glossary_location.json     → 지역
-│   └── glossary_terms.json        → 일반 용어
+├── README.md                    # 이 파일
+├── integrity_report.md          # 자동 생성 보고서
 │
-├── MUTATIONS/               # Layer 2: 구조화된 데이터
-│   ├── Physical_Mutations/        → 육체적 변이 (Stinger 등)
-│   ├── Mental_Mutations/          → 정신적 변이 (Telepathy 등)
-│   ├── Physical_Defects/          → 육체적 결함 (Albino 등)
-│   ├── Mental_Defects/            → 정신적 결함 (Amnesia 등)
-│   └── Morphotypes/               → 형태 (Chimera, Esper 등)
+├── CHARGEN/                     # 캐릭터 생성 컨텍스트
+│   ├── README.md                # 하위 폴더 가이드
+│   ├── modes.json               # 게임 모드 (Classic, Roleplay, Wander 등)
+│   ├── stats.json               # 스탯 설명 (Strength, Agility 등)
+│   ├── ui.json                  # 캐릭터 생성 UI 텍스트
+│   ├── presets.json             # 프리셋 캐릭터 설명
+│   ├── locations.json           # 시작 위치 이름
+│   ├── factions.json            # 팩션 이름
+│   ├── GENOTYPES/               # 종족 (Layer 2)
+│   │   ├── Mutated_Human.json
+│   │   └── True_Kin.json
+│   └── SUBTYPES/                # 직업/계급 (Layer 2)
+│       ├── Callings/            # 변이 인간 직업 (12개)
+│       └── Castes/              # 순수 인간 계급 (12개)
 │
-├── GENOTYPES/               # Layer 2: 종족 데이터
-│   ├── Mutated_Human.json
-│   └── True_Kin.json
+├── GAMEPLAY/                    # 게임플레이 기능
+│   ├── README.md
+│   ├── skills.json              # 스킬 및 권능
+│   ├── cybernetics.json         # 사이버네틱스 이식물
+│   └── MUTATIONS/               # 변이 (Layer 2)
+│       ├── Physical_Mutations/  # 육체 변이 (31개)
+│       ├── Mental_Mutations/    # 정신 변이 (27개)
+│       ├── Physical_Defects/    # 육체 결함 (12개)
+│       ├── Mental_Defects/      # 정신 결함 (8개)
+│       └── Morphotypes/         # 형태형 (3개)
 │
-└── SUBTYPES/                # Layer 2: 하위 타입
-    ├── Callings/                  → 변이 인간 직업
-    │   ├── Apostle.json
-    │   ├── Marauder.json
-    │   └── ...
-    └── Castes/                    → 순수 인간 계급
-        ├── Artifex.json
-        ├── Consul.json
-        └── ...
+├── UI/                          # 사용자 인터페이스
+│   ├── README.md
+│   ├── common.json              # 공통 UI 요소 (버튼, 메뉴 등)
+│   ├── options.json             # 설정 화면 (362개 항목)
+│   └── terms.json               # 일반 게임 용어
+│
+└── _DEPRECATED/                 # 구 버전 파일 보관
+    └── glossary_proto.json      # 더 이상 사용 안 함
 ```
 
 ---
 
 ## 📊 Layer 1 vs Layer 2 선택 기준
 
-### Layer 1: glossary_*.json (단일 파일 용어집)
+### Layer 1: 단일 파일 용어집 (*.json)
 
 **사용 시점**:
 - 단순한 key:value 쌍
@@ -68,7 +71,7 @@ LOCALIZATION/
 }
 ```
 
-**예시** (`glossary_ui.json`):
+**예시** (`UI/common.json`):
 ```json
 {
   "ui": {
@@ -107,7 +110,7 @@ LOCALIZATION/
 }
 ```
 
-**예시** (`MUTATIONS/Physical_Mutations/Stinger_(Poisoning_Venom).json`):
+**예시** (`GAMEPLAY/MUTATIONS/Physical_Mutations/Stinger_(Poisoning_Venom).json`):
 ```json
 {
   "names": {
@@ -212,4 +215,20 @@ grep -A 10 "GetLevelText" Assets/core_source/.../Stinger.cs
 
 ---
 
-> **다음 단계**: 번역 규칙과 스타일은 `Docs/STYLE_GUIDE.md` 참조
+## 🔄 변경 이력
+
+### 2026-01-18: 폴더 구조 재정리
+- 컨텍스트 기반 구조로 재편성 (CHARGEN, GAMEPLAY, UI)
+- Layer 1 파일을 서브폴더로 이동 및 이름 변경
+  - `glossary_ui.json` → `UI/common.json`
+  - `glossary_chargen_modes.json` → `CHARGEN/modes.json` 등
+- Layer 2 폴더를 컨텍스트별로 재배치
+  - `MUTATIONS/` → `GAMEPLAY/MUTATIONS/`
+  - `GENOTYPES/` → `CHARGEN/GENOTYPES/`
+  - `SUBTYPES/` → `CHARGEN/SUBTYPES/`
+- `glossary_proto.json`을 GENOTYPES/SUBTYPES에 통합 후 deprecated 처리
+- LocalizationManager 및 StructureTranslator 경로 업데이트
+
+---
+
+> **다음 단계**: 번역 규칙과 스타일은 `Docs/07_STYLE_GUIDE.md` 참조

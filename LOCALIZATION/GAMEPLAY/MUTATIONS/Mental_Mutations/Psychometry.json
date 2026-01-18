@@ -1,0 +1,17 @@
+{
+  "names": {
+    "Psychometry": "물체 감지"
+  },
+  "description": "You read the history of artifacts by touching them, learning what they do and how they were made.",
+  "leveltext": [
+    "Unerringly identify artifacts up to complexity tier {{rules|4 + Level / 2}}.",
+    "Learn how to construct identified artifacts up to complexity tier {{rules|2 + (Level - 1) / 2}} (must have the appropriate Tinker skill).",
+    "You may open security doors and use some secure devices by touching them."
+  ],
+  "description_ko": "유물을 만져 그 역사를 읽어내고, 기능과 제작 방법을 알아냅니다.",
+  "leveltext_ko": [
+    "복잡도 {{rules|4 + Level / 2}} 이하의 유물을 정확하게 감별합니다.",
+    "복잡도 {{rules|2 + (Level - 1) / 2}} 이하의 감별된 유물 제작법을 배웁니다 (적절한 팅커 스킬 필요).",
+    "접촉하는 것만으로 보안 문을 열거나 일부 보안 장치를 사용할 수 있습니다."
+  ]
+}

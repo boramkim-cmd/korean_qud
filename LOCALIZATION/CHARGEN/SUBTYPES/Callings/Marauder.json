@@ -1,0 +1,21 @@
+{
+  "names": {
+    "Marauder": "약탈자"
+  },
+  "description": "",
+  "description_ko": "",
+  "leveltext": [
+    "Strength +2",
+    "Axe",
+    "Dismember",
+    "Charge",
+    "Butchery"
+  ],
+  "leveltext_ko": [
+    "힘 +2",
+    "도끼",
+    "신체 절단",
+    "돌격",
+    "도축"
+  ]
+}
