@@ -1,6 +1,6 @@
 # 📚 프로젝트 완전 인덱스 (자동 생성)
 
-**생성**: 2026-01-18 19:58:23
+**생성**: 2026-01-18 20:44:27
 
 이 문서는 프로젝트의 모든 파일과 메서드 시그니처를 포함합니다. **새로운 기능을 만들기 전, 반드시 여기서 기존 메서드를 검색하십시오.**
 
@@ -45,20 +45,10 @@
   void Initialize()
   void Reload()
   void LoadGlossary()
+  string GetModDirectory()
   string GetTerm(string category, string key, string fallback = "")
   bool TryGetAnyTerm(string key, out string result, params string[] categories)
   bool HasTerm(string category, string key)
-  ```
-
-### `Scripts/00_Core/00_00_04_GlossaryLoader.cs`
-- **역할**: 기존 코드가 LocalizationManager를 사용할 수 있도록 연결해줍니다.
-- **Namespace**: `QudKRTranslation.Core`
-- **공개 메서드 (Public Methods)**:
-  ```csharp
-  void LoadGlossary()
-  string GetTerm(string category, string key, string fallback = "")
-  bool HasTerm(string category, string key)
-  void ReloadGlossary()
   ```
 
 ### `Scripts/00_Core/00_00_05_GlossaryExtensions.cs`
@@ -154,7 +144,7 @@
   void InitializeDirectory(string directoryPath)
   bool TryGetData(string englishName, out TranslationData data)
   string TranslateName(string englishName)
-  string TranslateLongDescription(string englishName, string fallbackOriginal = null)
+  string GetLongDescription(string englishName, string fallbackOriginal = null)
   List<string> TranslateLevelText(string englishName)
   ```
 

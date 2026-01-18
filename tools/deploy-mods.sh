@@ -18,17 +18,22 @@ echo -e "  모드 배포 (Desktop → Mods)"
 echo -e "========================================${NC}"
 
 # 경로 설정
-SOURCE_DIR="/Users/ben/Desktop/qud_korean"
-GAME_MOD="/Users/ben/Library/Application Support/com.FreeholdGames.CavesOfQud/Mods/KoreanLocalization"
+
+# 경로 설정
+SOURCE_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )/.." && pwd )"
+GAME_MOD=$(python3 "$SOURCE_DIR/tools/get_deploy_path.py")
+
+echo -e "${BLUE}설정:${NC} ${GAME_MOD}"
 
 # 게임 모드 폴더 존재 확인
 if [ ! -d "$GAME_MOD" ]; then
-    echo -e "${RED}✗ 게임 모드 폴더 없음${NC}"
+    echo -e "${RED}✗ 게임 모드 폴더 없음: $GAME_MOD${NC}"
+    echo -e "${YELLOW}💡 tools/config.json을 생성하여 경로를 지정할 수 있습니다. (tools/config.json.example 참조)${NC}"
     exit 1
 fi
 
-echo -e "\n${BLUE}소스:${NC} Desktop/qud_korean"
-echo -e "${BLUE}대상:${NC} Mods/KoreanLocalization"
+echo -e "\n${BLUE}소스:${NC} $SOURCE_DIR"
+echo -e "${BLUE}대상:${NC} $GAME_MOD"
 
 # ========================================
 # Step 1: 개발 파일 정리 (Mods에서 제거)
@@ -39,7 +44,7 @@ echo -e "\n${YELLOW}[1/4] 개발 파일 정리...${NC}"
 patterns_to_remove=(
     "_Legacy" "_archive" "_backup" "_Docs_Archive" "Docs" "Assets" "tools" 
     "Fonts" ".git" ".gitignore" ".gitattributes" "*.md" "*.sh" "*.code-workspace"
-    "project_metadata.json" "README*" "Scripts_backup"
+    "project_metadata.json" "README*" "Scripts_backup" "config.json" "config.json.example"
 )
 
 for pattern in "${patterns_to_remove[@]}"; do

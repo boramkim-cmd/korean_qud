@@ -1,5 +1,5 @@
 {
-  "generated": "2026-01-18 19:58:23",
+  "generated": "2026-01-18 20:44:27",
   "scripts": {
     "Scripts/99_Utils/99_00_03_StructureTranslator.cs": {
       "classification": "Util",
@@ -31,7 +31,7 @@
           "params": "string englishName"
         },
         {
-          "name": "TranslateLongDescription",
+          "name": "GetLongDescription",
           "return": "string",
           "params": "string englishName, string fallbackOriginal = null"
         },
@@ -152,6 +152,11 @@
           "params": ""
         },
         {
+          "name": "GetModDirectory",
+          "return": "string",
+          "params": ""
+        },
+        {
           "name": "GetTerm",
           "return": "string",
           "params": "string category, string key, string fallback = \"\""
@@ -185,36 +190,6 @@
           "name": "TryTranslate",
           "return": "bool",
           "params": "string text, out string translated, Dictionary<string, string>[] scopes"
-        }
-      ]
-    },
-    "Scripts/00_Core/00_00_04_GlossaryLoader.cs": {
-      "classification": "Core",
-      "role": "기존 코드가 LocalizationManager를 사용할 수 있도록 연결해줍니다.",
-      "namespace": "QudKRTranslation.Core",
-      "classes": [
-        "GlossaryLoader"
-      ],
-      "methods": [
-        {
-          "name": "LoadGlossary",
-          "return": "void",
-          "params": ""
-        },
-        {
-          "name": "GetTerm",
-          "return": "string",
-          "params": "string category, string key, string fallback = \"\""
-        },
-        {
-          "name": "HasTerm",
-          "return": "bool",
-          "params": "string category, string key"
-        },
-        {
-          "name": "ReloadGlossary",
-          "return": "void",
-          "params": ""
         }
       ]
     },
@@ -440,7 +415,11 @@
     },
     "project_tool.py": {
       "type": "script",
-      "size": 14444
+      "size": 15763
+    },
+    "get_deploy_path.py": {
+      "type": "script",
+      "size": 663
     },
     "analyze_glossary.py": {
       "type": "script",
@@ -456,6 +435,10 @@
     },
     "HarmonyAnalyzer": {
       "type": "tool_folder"
+    },
+    "generate_csproj.py": {
+      "type": "script",
+      "size": 1699
     }
   },
   "docs": {
@@ -481,6 +464,9 @@
       "modified": "2026-01-16"
     },
     "05_ARCHITECTURE.md": {
+      "modified": "2026-01-18"
+    },
+    "08_TOOLS_AND_BUILD.md": {
       "modified": "2026-01-18"
     },
     "04_ERROR_LOG.md": {

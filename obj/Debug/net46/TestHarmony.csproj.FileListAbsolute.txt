@@ -1,0 +1,6 @@
+/Users/ben/Desktop/qud_korean/obj/Debug/net46/TestHarmony.csproj.AssemblyReference.cache
+/Users/ben/Desktop/qud_korean/obj/Debug/net46/TestHarmony.GeneratedMSBuildEditorConfig.editorconfig
+/Users/ben/Desktop/qud_korean/obj/Debug/net46/TestHarmony.AssemblyInfoInputs.cache
+/Users/ben/Desktop/qud_korean/obj/Debug/net46/TestHarmony.AssemblyInfo.cs
+/Users/ben/Desktop/qud_korean/obj/Debug/net46/TestHarmony.csproj.CoreCompileInputs.cache
+/Users/ben/Desktop/qud_korean/obj/Debug/net46/TestHarmony.sourcelink.json

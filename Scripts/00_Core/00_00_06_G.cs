@@ -35,8 +35,8 @@ namespace QudKRTranslation.Core
                 string category = parts[0];
                 string key = parts[1];
                 
-                GlossaryLoader.LoadGlossary();
-                string result = GlossaryLoader.GetTerm(category, key, "");
+                LocalizationManager.Initialize();
+                string result = LocalizationManager.GetTerm(category, key, "");
                 
                 // 용어를 찾지 못하면 빈 문자열 대신 key만 반환
                 if (string.IsNullOrEmpty(result))

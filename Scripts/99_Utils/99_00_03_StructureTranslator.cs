@@ -114,7 +114,7 @@ namespace QudKRTranslation.Utils
 
             try
             {
-                string modPath = GetModDirectory();
+                string modPath = QudKRTranslation.Core.LocalizationManager.GetModDirectory();
                 
                 if (modPath != null)
                 {
@@ -137,23 +137,7 @@ namespace QudKRTranslation.Utils
             }
         }
 
-        private static string GetModDirectory()
-        {
-             // Option 1: Get from ModManager
-            var mod = ModManager.GetMod("KoreanLocalization");
-            if (mod != null && !string.IsNullOrEmpty(mod.Path))
-            {
-                return mod.Path;
-            }
-            
-            // Option 2: OSX fallback
-            if (Application.platform == RuntimePlatform.OSXPlayer)
-            {
-                string homeDir = Environment.GetFolderPath(Environment.SpecialFolder.Personal);
-                return Path.Combine(homeDir, "Library/Application Support/com.FreeholdGames.CavesOfQud/Mods/KoreanLocalization");
-            }
-            return null;
-        }
+
 
         public static void InitializeDirectory(string directoryPath)
         {
@@ -323,7 +307,7 @@ namespace QudKRTranslation.Utils
             return englishName;
         }
 
-        public static string TranslateLongDescription(string englishName, string fallbackOriginal = null)
+        public static string GetLongDescription(string englishName, string fallbackOriginal = null)
         {
             EnsureInitialized();
             if (_data.TryGetValue(englishName, out var data))

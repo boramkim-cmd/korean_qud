@@ -412,7 +412,7 @@ namespace QudKRTranslation.Patches
                             // Translate LongDescription using StructureTranslator
                             if (!string.IsNullOrEmpty(opt.LongDescription) && !string.IsNullOrEmpty(opt.Id))
                             {
-                                string translatedLong = StructureTranslator.TranslateLongDescription(opt.Id);
+                                string translatedLong = StructureTranslator.GetLongDescription(opt.Id);
                                 if (!string.IsNullOrEmpty(translatedLong))
                                 {
                                     opt.LongDescription = translatedLong;

@@ -1,0 +1,12 @@
+/Users/ben/Desktop/qud_korean/bin/Debug/net48/TestHarmony.dll
+/Users/ben/Desktop/qud_korean/bin/Debug/net48/TestHarmony.pdb
+/Users/ben/Desktop/qud_korean/bin/Debug/net48/System.dll
+/Users/ben/Desktop/qud_korean/obj/Debug/net48/TestHarmony.csproj.AssemblyReference.cache
+/Users/ben/Desktop/qud_korean/obj/Debug/net48/TestHarmony.GeneratedMSBuildEditorConfig.editorconfig
+/Users/ben/Desktop/qud_korean/obj/Debug/net48/TestHarmony.AssemblyInfoInputs.cache
+/Users/ben/Desktop/qud_korean/obj/Debug/net48/TestHarmony.AssemblyInfo.cs
+/Users/ben/Desktop/qud_korean/obj/Debug/net48/TestHarmony.csproj.CoreCompileInputs.cache
+/Users/ben/Desktop/qud_korean/obj/Debug/net48/TestHarmony.sourcelink.json
+/Users/ben/Desktop/qud_korean/obj/Debug/net48/TestHarm.D8871BB6.Up2Date
+/Users/ben/Desktop/qud_korean/obj/Debug/net48/TestHarmony.dll
+/Users/ben/Desktop/qud_korean/obj/Debug/net48/TestHarmony.pdb

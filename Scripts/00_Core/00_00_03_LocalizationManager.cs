@@ -96,7 +96,7 @@ namespace QudKRTranslation.Core
             return result.Trim().ToLowerInvariant();
         }
         
-        private static string GetModDirectory()
+        public static string GetModDirectory()
         {
             if (_modPath != null) return _modPath;
 

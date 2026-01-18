@@ -9,6 +9,7 @@
 from __future__ import annotations
 import json
 import re
+import subprocess
 from datetime import datetime
 from pathlib import Path
 from typing import Any
@@ -31,33 +32,36 @@ NAMESPACE_PATTERN = re.compile(r'namespace\s+([\w\.]+)')
 METHOD_PATTERN = re.compile(r'public\s+(?:static\s+)?([\w\[\]<>]+)\s+(\w+)\s*\(([^)]*)\)')
 CLASSIFICATION_PATTERN = re.compile(r'\* 분류:\s*\[([^\]]+)\]')
 ROLE_PATTERN = re.compile(r'\* 역할:\s*([^\n\*]+)')
-COMMENT_PATTERN = re.compile(r'//.*')
-BLOCK_COMMENT_PATTERN = re.compile(r'/\*.*?\*/', re.DOTALL)
-STRING_PATTERN = re.compile(r'"[^"\\]*(?:\\.[^"\\]*)*"')
-CHAR_PATTERN = re.compile(r"'[^'\\]*(?:\\.[^'\\]*)*'")
+
 
 # Harmony 함수명 (중복 허용)
 HARMONY_FUNCS = frozenset({"Postfix", "Prefix", "TargetMethod"})
 
 
 def _read_file(path: Path) -> str | None:
-    """파일을 읽고 내용 반환. 실패 시 None."""
+    """파일을 읽고 내용 반환. 실패 시 None. utf-8-sig로 BOM 처리."""
     try:
-        return path.read_text(encoding='utf-8')
+        return path.read_text(encoding='utf-8-sig')
     except IOError:
         return None
 
-
-# Verbatim string pattern (C# @"...")
-VERBATIM_STRING_PATTERN = re.compile(r'@"[^"]*(?:""[^"]*)*"')
+# Master Code Noise Regex
+# 1. Line Comment: //...
+# 2. Block Comment: /*...*/
+# 3. Verbatim String: @"..." (allows "")
+# 4. Normal String: "..." (allows \")
+# 5. Char Literal: '.' (allows \')
+NOISE_PATTERN = re.compile(
+    r'//[^\n]*|/\*.*?\*/|@"(?:[^"]|"")*"|"(?:[^"\\]|\\.)*"|\'(?:[^\'\\]|\\.)*\'',
+    re.DOTALL
+)
 
 def _strip_code_noise(content: str) -> str:
-    """주석 및 문자열 제거하여 구조만 추출"""
-    clean = COMMENT_PATTERN.sub('', content)
-    clean = BLOCK_COMMENT_PATTERN.sub('', clean)
-    clean = VERBATIM_STRING_PATTERN.sub('', clean) # Remove verbatim strings first
-    clean = STRING_PATTERN.sub('', clean)
-    return CHAR_PATTERN.sub('', clean)
+    """주석 및 문자열 제거하여 구조만 추출 (Master Regex 사용)"""
+    # 매칭된 모든 노이즈(주석, 문자열)를 공백으로 치환하여 길이/라인 보존
+    # 다만 단순히 제거('')하면 인덱스가 밀릴 수 있으나, 
+    # 중괄호 개수만 세는 용도라면 제거해도 무방.
+    return NOISE_PATTERN.sub('', content)
 
 
 # ============================================================================
@@ -210,7 +214,40 @@ def verify_localization() -> bool:
 
     return dupe_count == 0
 
+# ============================================================================
+# 2.5 빌드 검증 (Build Validation)
+# ============================================================================
 
+def verify_build() -> bool:
+    """dotnet build 실행 및 결과 검증"""
+    print("\n" + "=" * 80)
+    print("🔨 빌드 검증 (Build Validation)")
+    print("=" * 80)
+
+    try:
+        # Run dotnet build
+        result = subprocess.run(
+            ["dotnet", "build", "-v", "q", "/property:WarningLevel=0"], # Quiet output, suppress warnings for cleaner output checks
+            cwd=PROJECT_ROOT,
+            capture_output=True,
+            text=True
+        )
+
+        if result.returncode == 0:
+            print("✅ 빌드 성공")
+            return True
+        else:
+            print("❌ 빌드 실패")
+            print(result.stdout)
+            print(result.stderr)
+            return False
+
+    except FileNotFoundError:
+        print("❌ dotnet 명령어를 찾을 수 없습니다. .NET SDK가 설치되어 있는지 확인하세요.")
+        return False
+    except Exception as e:
+        print(f"❌ 빌드 실행 중 오류 발생: {e}")
+        return False
 # ============================================================================
 # 3. 메타데이터 및 인덱스 생성
 # ============================================================================
@@ -387,7 +424,8 @@ def main() -> None:
 
     results = [
         verify_code(),
-        verify_localization()
+        verify_localization(),
+        verify_build()
     ]
 
     build_project_references()

@@ -32,8 +32,8 @@ namespace QudKRTranslation.Core
                     string category = parts[0];
                     string key = parts[1];
                     
-                    GlossaryLoader.LoadGlossary();
-                    return GlossaryLoader.GetTerm(category, key, placeholder);
+                    LocalizationManager.Initialize();
+                    return LocalizationManager.GetTerm(category, key, placeholder);
                 }
             }
             
