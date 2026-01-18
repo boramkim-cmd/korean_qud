@@ -4,7 +4,7 @@ category: reference
 audience: [developer, ai-agent]
 update_frequency: rare
 prerequisites: [00_PRINCIPLES.md]
-last_updated: 2026-01-18
+last_updated: 2026-01-19
 estimated_read_time: 5min
 ai_summary: |
   번역 시스템의 계층 구조 설명. Core(LocalizationManager, TranslationEngine, ScopeManager) → 
@@ -15,6 +15,44 @@ ai_summary: |
 # 시스템 아키텍처
 
 > 이 문서는 한글화 모드의 기술적 구조를 설명합니다.
+
+---
+
+## ⚠️ 패치 시 주의사항 (Critical Rules)
+
+> **2026-01-19 추가**: ERR-008 사건에서 학습한 핵심 규칙
+
+### 데이터 필드 vs UI 표시 분리 원칙
+
+```
+❌ 잘못된 패턴: 데이터 필드 직접 번역
+   attr.Attribute = "힘";  // 게임이 Substring(0,3)으로 가공 → 크래시!
+
+✅ 올바른 패턴: UI 표시 시점에 Postfix 패치
+   [HarmonyPostfix]
+   void Updated_Postfix(AttributeSelectionControl __instance) {
+       __instance.attribute.text = "힘";  // UI 텍스트만 변경
+   }
+```
+
+### 위험 필드 목록 (번역 금지)
+
+| 클래스 | 필드 | 가공 방식 | 안전한 패치 지점 |
+|--------|------|----------|-----------------|
+| `AttributeDataElement` | `Attribute` | `Substring(0,3)` | `AttributeSelectionControl.Updated()` |
+| `ChoiceWithColorIcon` | `Id` | 선택 로직 비교 | `Title`만 번역, `Id` 절대 변경 금지 |
+
+### 동적 생성 텍스트 처리
+
+평판 등 런타임에 조합되는 텍스트는 JSON에 정의할 수 없으므로 Regex 패턴 매칭 사용:
+
+```csharp
+// ChargenTranslationUtils.TranslateLongDescription()
+var repMatch = Regex.Match(text, @"^([+-]?\d+)\s+reputation with\s+(.+)$");
+if (repMatch.Success) {
+    // 팩션명만 번역하고 포맷 재조합
+}
+```
 
 ---
 

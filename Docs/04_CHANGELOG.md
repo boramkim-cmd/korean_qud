@@ -1,6 +1,6 @@
 # Caves of Qud 한글화 프로젝트 - 변경 이력 (Changelog)
 
-> **버전**: 2.2 | **최종 업데이트**: 2026-01-18
+> **버전**: 2.3 | **최종 업데이트**: 2026-01-19
 
 > [!NOTE]
 > **AI 에이전트**: 이 문서는 완료 기록용입니다. 먼저 `00_PRINCIPLES.md`를 읽으세요!
@@ -11,6 +11,47 @@
 # Changelog
 
 모든 주요 변경사항은 이 문서에 기록됩니다.
+
+---
+
+## [2026-01-19] - 캐릭터 생성 화면 Critical 버그 수정
+
+### 🔴 Critical Bug Fixes
+- **[ERR-008] 속성 화면 크래시 수정**
+  - **원인**: 게임 원본 `AttributeSelectionControl.Updated()`에서 `Attribute.Substring(0,3)` 호출 시, 한글 번역("힘" 등)이 3글자 미만이어서 `ArgumentOutOfRangeException` 발생
+  - **해결**: `attr.Attribute` 직접 번역 삭제, `AttributeSelectionControl.Updated()` Postfix 패치로 UI 텍스트만 번역
+  - **영향**: 캐릭터 생성에서 계급/직업 선택 후 다음 단계 진행 불가 문제 해결
+
+### 🔧 Changed
+- **[ERR-009] 불렛(닷) 자동 추가 로직**
+  - `StructureTranslator.CombineWithLevelText()` 개선
+  - LevelTextKo 각 항목에 `{{c|ù}} ` 자동 추가 (중복 방지 로직 포함)
+  - 더블 닷 이슈 및 닷 누락 이슈 해결
+
+- **[ERR-011] 평판 번역 로직 개선**
+  - `ChargenTranslationUtils.TranslateLongDescription()`: 색상 태그 제거 후 팩션명 조회
+  - 대소문자 무관 매칭 추가
+  - `factions.json`: 다양한 팩션명 변형 추가 (30개 → 52개)
+
+### 🗑️ Removed
+- **[ERR-010] 계급명 영문 괄호 표기 제거**
+  - 5개 Castes JSON에서 영문 병기 제거
+  - `"영사(Consul)"` → `"영사"` 형식으로 통일
+  - 해당 파일: Artifex, Consul, Eunuch, Praetorian, Syzygyrior
+
+### 📋 Documentation
+- `05_ERROR_LOG.md`: ERR-008 ~ ERR-011 추가 (버전 1.2)
+- 예방 가이드 추가: "게임 원본이 데이터 필드를 가공하는 경우 해당 필드 직접 번역 금지"
+
+### 📊 Impact
+- **수정 파일**: 9개
+- **해결된 이슈**: 5개 (더블 닷, 닷 누락, 하드코딩/순서, 계급 선택 불가, 영문 혼용)
+- **심각도**: Critical → Resolved
+
+### ⚠️ 학습된 교훈 (Lessons Learned)
+1. **데이터 vs UI 분리 원칙**: 게임 원본이 `Substring()`, `Split()` 등으로 가공하는 필드는 절대 직접 번역하지 말 것. 대신 가공 후 UI 표시 시점에 Postfix 패치로 번역.
+2. **Player.log 확인 필수**: 캐릭터 생성 버그 발생 시 반드시 로그에서 `ArgumentOutOfRangeException` 등 런타임 에러 확인.
+3. **동적 생성 텍스트 처리**: 평판 같은 런타임 동적 생성 텍스트는 Regex 패턴 매칭으로 번역해야 함.
 
 ---
 
