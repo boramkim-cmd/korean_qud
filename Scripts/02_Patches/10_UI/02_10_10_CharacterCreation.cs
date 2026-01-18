@@ -286,13 +286,13 @@ namespace QudKRTranslation.Patches
                          {
                              choice.Title = data.KoreanName;
                              
-                             var tr = Traverse.Create(choice);
-                             string originalDesc = tr.Field<string>("Description").Value;
+                             var trStruct = Traverse.Create(choice);
+                             string originalDesc = trStruct.Field<string>("Description").Value;
                              
                              string newDesc = data.GetCombinedLongDescription(originalDesc);
                              if (!string.IsNullOrEmpty(newDesc))
                              {
-                                 tr.Field<string>("Description").Value = newDesc;
+                                 trStruct.Field<string>("Description").Value = newDesc;
                              }
                              continue;
                          }
@@ -303,15 +303,15 @@ namespace QudKRTranslation.Patches
                              choice.Title = tChoiceTitle;
 
                          // Translate Description
-                        var tr = Traverse.Create(choice);
+                        var trFallback = Traverse.Create(choice);
 
-                        string desc = tr.Field<string>("Description").Value;
+                        string desc = trFallback.Field<string>("Description").Value;
                         if (!string.IsNullOrEmpty(desc))
                         {
                             string translated = ChargenTranslationUtils.TranslateLongDescription(desc, "chargen_proto", "chargen_ui", "mutation", "mutation_desc", "powers", "power", "skill", "skill_desc");
                              if (translated != desc)
                             {
-                                tr.Field<string>("Description").Value = translated;
+                                trFallback.Field<string>("Description").Value = translated;
                             }
                         }
                     }
