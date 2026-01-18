@@ -20,7 +20,7 @@ echo -e "${BLUE}========================================${NC}"
 cd "$(dirname "$0")/.."
 
 # 0단계: 모드 검증
-echo -e "\n${BLUE}[단계 0/3] 모드 검증${NC}"
+echo -e "\n${BLUE}[단계 0/4] 모드 검증${NC}"
 echo -e "${BLUE}========================================${NC}"
 
 if [ -f "./validate-mod.sh" ]; then
@@ -34,8 +34,18 @@ else
     echo -e "${YELLOW}⚠ 검증 스크립트 없음 - 건너뜀${NC}"
 fi
 
+# 0.5단계: Copilot Instructions 동기화
+echo -e "\n${BLUE}[단계 0.5/4] Copilot Instructions 동기화${NC}"
+echo -e "${BLUE}========================================${NC}"
+if [ -f "./tools/sync_copilot_instructions.py" ]; then
+    python3 ./tools/sync_copilot_instructions.py
+    echo -e "${GREEN}✓ Copilot Instructions 동기화 완료${NC}"
+else
+    echo -e "${YELLOW}⚠ 동기화 스크립트 없음 - 건너뜀${NC}"
+fi
+
 # 1단계: Git 동기화
-echo -e "\n${BLUE}[단계 1/3] Git 동기화${NC}"
+echo -e "\n${BLUE}[단계 1/4] Git 동기화${NC}"
 echo -e "${BLUE}========================================${NC}"
 
 if [ -z "$1" ]; then
@@ -47,7 +57,7 @@ else
 fi
 
 # 2단계: 모드 배포
-echo -e "\n${BLUE}[단계 2/3] 모드 배포${NC}"
+echo -e "\n${BLUE}[단계 2/4] 모드 배포${NC}"
 echo -e "${BLUE}========================================${NC}"
 
 ./tools/deploy-mods.sh
