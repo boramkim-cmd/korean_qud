@@ -260,10 +260,16 @@ namespace QudKRTranslation.Patches
         static void GetSelectionCategories_Postfix(ref IEnumerable<CategoryIcons> __result)
         {
             if (__result == null) return;
-            var list = __result.ToList();
             
-            foreach (var cat in list)
+            // 원본 백업 (예외 발생 시 복원용)
+            var originalList = __result.ToList();
+            
+            try
             {
+                var list = new List<CategoryIcons>(originalList);
+            
+                foreach (var cat in list)
+                {
 
                 // Category Title Translation (e.g. "The Toxic Arboreta...")
                 // Normalize key (remove color tags) for lookup
@@ -343,6 +349,13 @@ namespace QudKRTranslation.Patches
                 }
             }
             __result = list;
+            }
+            catch (Exception ex)
+            {
+                // 패치 실패 시 원본 복원
+                UnityEngine.Debug.LogError($"[KoreanLocalization] GetSelectionCategories translation failed: {ex.Message}\n{ex.StackTrace}");
+                __result = originalList;
+            }
         }
     }
     

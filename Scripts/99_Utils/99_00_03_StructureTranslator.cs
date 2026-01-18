@@ -363,7 +363,17 @@ namespace QudKRTranslation.Utils
             string normalized = Unformat(englishName);
             if (_data.TryGetValue(normalized, out data)) return true;
             
-            // 3. Recursive check? No, just keys.
+            // 3. Case-insensitive fallback (대소문자 무시)
+            foreach (var kvp in _data)
+            {
+                if (kvp.Key.Equals(englishName, StringComparison.OrdinalIgnoreCase) ||
+                    kvp.Key.Equals(normalized, StringComparison.OrdinalIgnoreCase))
+                {
+                    data = kvp.Value;
+                    return true;
+                }
+            }
+            
             return false;
         }
 

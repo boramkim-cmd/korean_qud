@@ -16,9 +16,9 @@
     },
     "Wander": {
       "wander": "방랑",
-      "{{c|ù}} most creatures begin neutral to you.": "대부분의 생물이 당신에게 중립입니다.",
-      "{{c|ù}} no xp for killing.": "처치 경험치 없음.",
-      "{{c|ù}} more xp for discoveries and performing the water ritual.": "발견 및 물의 의식 수행 시 더 많은 경험치 획득."
+      "{{c|ù}} most creatures begin neutral to you.": "{{c|ù}} 대부분의 생물이 당신에게 중립입니다.",
+      "{{c|ù}} no xp for killing.": "{{c|ù}} 처치 경험치 없음.",
+      "{{c|ù}} more xp for discoveries and performing the water ritual.": "{{c|ù}} 발견 및 물의 의식 수행 시 더 많은 경험치 획득."
     },
     "Daily": {
       "daily": "일일 도전",

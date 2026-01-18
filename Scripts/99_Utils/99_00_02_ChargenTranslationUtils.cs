@@ -86,7 +86,7 @@ namespace QudKRTranslation.Utils
                 if (contentToTranslate.StartsWith("{{c|ù}}")) 
                 {
                     bulletPrefix = "{{c|ù}} ";
-                    contentToTranslate = contentToTranslate.Substring(8).Trim(); // Remove {{c|ù}} properly (8 chars)
+                    contentToTranslate = contentToTranslate.Substring(7).Trim(); // Remove {{c|ù}} properly (7 chars)
                 }
                 else if (contentToTranslate.StartsWith("ù"))
                 {
