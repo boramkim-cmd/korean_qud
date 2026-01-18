@@ -73,7 +73,7 @@ namespace QudKRTranslation.Core
                 return;
             }
 
-            foreach (var file in Directory.GetFiles(locDir, "*.json"))
+            foreach (var file in Directory.GetFiles(locDir, "*.json", SearchOption.AllDirectories))
             {
                 LoadJsonFile(file);
             }
