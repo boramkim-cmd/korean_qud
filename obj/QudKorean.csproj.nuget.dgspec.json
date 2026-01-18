@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "/Users/ben/Desktop/qud_korean/QudKorean.csproj": {}
+    "/home/runner/work/korean_qud/korean_qud/QudKorean.csproj": {}
   },
   "projects": {
-    "/Users/ben/Desktop/qud_korean/QudKorean.csproj": {
+    "/home/runner/work/korean_qud/korean_qud/QudKorean.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/ben/Desktop/qud_korean/QudKorean.csproj",
+        "projectUniqueName": "/home/runner/work/korean_qud/korean_qud/QudKorean.csproj",
         "projectName": "QudKorean",
-        "projectPath": "/Users/ben/Desktop/qud_korean/QudKorean.csproj",
-        "packagesPath": "/Users/ben/.nuget/packages/",
-        "outputPath": "/Users/ben/Desktop/qud_korean/obj/",
+        "projectPath": "/home/runner/work/korean_qud/korean_qud/QudKorean.csproj",
+        "packagesPath": "/home/runner/.nuget/packages/",
+        "outputPath": "/home/runner/work/korean_qud/korean_qud/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "/Users/ben/.nuget/NuGet/NuGet.Config"
+          "/home/runner/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net48"
@@ -51,7 +51,7 @@
               "autoReferenced": true
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/10.0.102/RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/10.0.101/RuntimeIdentifierGraph.json"
         }
       }
     }

@@ -1,6 +1,6 @@
 is_global = true
 build_property.RootNamespace = QudKRTranslation
-build_property.ProjectDir = /Users/ben/Desktop/qud_korean/
+build_property.ProjectDir = /home/runner/work/korean_qud/korean_qud/
 build_property.EnableComHosting = 
 build_property.EnableGeneratedComInterfaceComImportInterop = 
 build_property.CsWinRTUseWindowsUIXamlProjections = false

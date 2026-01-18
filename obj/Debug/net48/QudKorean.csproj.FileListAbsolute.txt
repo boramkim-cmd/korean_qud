@@ -8,3 +8,8 @@
 /Users/ben/Desktop/qud_korean/bin/Debug/net48/QudKorean.pdb
 /Users/ben/Desktop/qud_korean/obj/Debug/net48/QudKorean.dll
 /Users/ben/Desktop/qud_korean/obj/Debug/net48/QudKorean.pdb
+/home/runner/work/korean_qud/korean_qud/obj/Debug/net48/QudKorean.GeneratedMSBuildEditorConfig.editorconfig
+/home/runner/work/korean_qud/korean_qud/obj/Debug/net48/QudKorean.AssemblyInfoInputs.cache
+/home/runner/work/korean_qud/korean_qud/obj/Debug/net48/QudKorean.AssemblyInfo.cs
+/home/runner/work/korean_qud/korean_qud/obj/Debug/net48/QudKorean.csproj.CoreCompileInputs.cache
+/home/runner/work/korean_qud/korean_qud/obj/Debug/net48/QudKorean.sourcelink.json
