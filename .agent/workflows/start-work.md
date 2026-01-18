@@ -6,6 +6,14 @@ description: 한글화 프로젝트 작업 시작 전 필수 문서 읽기 및 �
 
 이 워크플로우는 모든 한글화 작업 전에 실행해야 합니다.
 
+## 0. 현재 상태 빠른 파악 (NEW!)
+
+// turbo
+```bash
+cat CONTEXT.yaml
+```
+> 기계 판독 가능한 현재 상태 - 진행 중 작업, 차단 이슈, 최근 변경 확인
+
 ## 1. 필수 문서 읽기 (순서대로)
 
 // turbo
@@ -22,9 +30,9 @@ cat Docs/02_TODO.md
 
 // turbo
 ```bash
-cat Docs/04_ERROR_LOG.md
+cat Docs/04_ERROR_LOG.md | head -100
 ```
-> 알려진 이슈 및 해결 방법 확인
+> 알려진 이슈 및 해결 방법 확인 (최근 100줄)
 
 ## 2. 프로젝트 상태 검증
 

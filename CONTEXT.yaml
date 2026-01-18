@@ -1,0 +1,86 @@
+# CONTEXT.yaml - 프로젝트 현재 상태 (기계 판독용)
+# 마지막 업데이트: 2026-01-18T15:56:38+09:00
+# 
+# 이 파일은 AI 에이전트가 세션 시작 시 빠르게 현재 상태를 파악하기 위한 것입니다.
+# 인간도 읽기 쉽도록 YAML 형식을 사용합니다.
+
+project:
+  name: "Caves of Qud 한글화"
+  version: "2.0.2"
+  phase: "Phase 1 - 안정화"
+  repository: "https://github.com/boramkim-cmd/korean_qud"
+
+current_work:
+  active_task: null  # 현재 진행 중인 작업 없음
+  # 진행 중 작업이 있을 때 예시:
+  # active_task:
+  #   id: "P2-01"
+  #   name: "메시지 로그 패치 확장"
+  #   started: "2026-01-XX"
+  #   blocker: null
+  #   notes: "XRL.Messages.MessageQueue 분석 중"
+
+blocking_issues: []
+  # 작업 차단 이슈가 있을 때 예시:
+  # - id: "ERR-XXX"
+  #   summary: "이슈 요약"
+  #   severity: "critical"  # critical, high, medium, low
+  #   see: "Docs/ERROR_LOG.md#err-xxx"
+
+recent_changes:
+  - date: "2026-01-18"
+    summary: "루트 디렉토리 정리 (20개 스크립트 → _Legacy/), 문서 시스템 개선"
+    commits: ["c3d117f", "ff68115"]
+  - date: "2026-01-17"
+    summary: "Mutation JSON 표준화, StructureTranslator 도입, 용어집 충돌 분석"
+
+known_issues:
+  - id: "P3-05"
+    summary: "용어집 간 102건 충돌 (Phase 3에서 해결 예정)"
+    see: "LOCALIZATION/integrity_report.md"
+  - id: "TOOL-01"
+    summary: "project_tool.py의 중괄호 파서 오류 (실제 코드는 정상)"
+
+next_recommended:
+  - task: "Phase 2 게임플레이 번역 시작"
+    priority: "medium"
+    see: "Docs/02_TODO.md#phase-2"
+  - task: "게임 내 테스트로 GENOTYPES/SUBTYPES 로딩 확인"
+    priority: "high"
+
+# 빠른 명령어 복사용
+quick_commands:
+  validate: "python3 tools/project_tool.py"
+  deploy: "./tools/deploy-mods.sh"
+  sync_and_deploy: "./tools/sync-and-deploy.sh"
+  git_status: "git status --short"
+  
+# 핵심 경로 (자주 참조)
+key_paths:
+  principles: "Docs/00_PRINCIPLES.md"
+  todo: "Docs/02_TODO.md"
+  error_log: "Docs/04_ERROR_LOG.md"
+  localization: "LOCALIZATION/"
+  scripts: "Scripts/"
+  tools: "tools/"
+
+# 로컬라이제이션 구조 요약
+localization_structure:
+  layer1_files:  # LocalizationManager가 처리
+    - "glossary_ui.json"
+    - "glossary_skills.json"
+    - "glossary_options.json"
+    - "glossary_chargen_*.json"
+    - "glossary_*.json"
+  layer2_directories:  # StructureTranslator가 처리
+    - "MUTATIONS/"
+    - "GENOTYPES/"
+    - "SUBTYPES/"
+
+# 컴포넌트 역할 요약
+component_roles:
+  LocalizationManager: "glossary_*.json 로드, 카테고리별 키-값 검색"
+  TranslationEngine: "태그 보존/복원, 대소문자 무시 번역"
+  StructureTranslator: "MUTATIONS/GENOTYPES/SUBTYPES 구조화된 JSON 처리"
+  ScopeManager: "화면별 번역 스코프 스택 관리"
+  QudKREngine: "한국어 폰트, 조사(은/는, 이/가) 처리"
