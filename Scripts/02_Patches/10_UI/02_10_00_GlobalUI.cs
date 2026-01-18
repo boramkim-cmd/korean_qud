@@ -18,6 +18,7 @@ using XRL.UI.Framework;
 using XRL.CharacterBuilds;
 using QudKRTranslation.Core;
 using QudKRTranslation.Utils;
+using QudKRTranslation; // ScopeManager
 
 namespace QudKRTranslation.Patches
 {

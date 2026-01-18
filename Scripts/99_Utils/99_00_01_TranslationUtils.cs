@@ -9,6 +9,7 @@ using System;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
 using System.Linq;
+using QudKRTranslation;
 
 namespace QudKRTranslation.Utils
 {

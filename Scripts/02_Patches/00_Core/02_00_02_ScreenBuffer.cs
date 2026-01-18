@@ -9,6 +9,7 @@
 using HarmonyLib;
 using ConsoleLib.Console;
 using QudKRTranslation.Utils;
+using QudKRTranslation;
 
 namespace QudKRTranslation.Patches
 {

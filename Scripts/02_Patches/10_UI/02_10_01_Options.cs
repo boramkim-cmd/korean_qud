@@ -14,6 +14,7 @@ using System.Collections.Generic;
 using QudKRTranslation.Core; // LocalizationManager
 using QudKRTranslation.Utils;
 using System;
+using QudKRTranslation;
 
 namespace QudKRTranslation.Patches
 {

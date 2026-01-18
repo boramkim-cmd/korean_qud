@@ -1,8 +1,4 @@
-/*
- * 파일명: 00_03_LocalizationManager.cs
- * 분류: [Core] 로컬라이제이션 데이터 관리자
- * 역할: JSON 번역 파일을 로드하고 카테고리별로 관리하며, 세분화된 카테고리 병합 기능을 제공합니다.
- */
+
 
 using System;
 using System.Collections.Generic;
@@ -39,41 +35,41 @@ namespace QudKRTranslation.Core
             string modDir = GetModDirectory();
             if (string.IsNullOrEmpty(modDir))
             {
-                Debug.LogError("[LocalizationManager] Mod directory not found, cannot load glossary.");
+                Debug.LogError();
                 return;
             }
 
-            // CHARGEN
-            LoadJsonFile(Path.Combine(modDir, "LOCALIZATION/CHARGEN/modes.json"));
-            LoadJsonFile(Path.Combine(modDir, "LOCALIZATION/CHARGEN/stats.json"));
-            LoadJsonFile(Path.Combine(modDir, "LOCALIZATION/CHARGEN/ui.json"));
-            LoadJsonFile(Path.Combine(modDir, "LOCALIZATION/CHARGEN/presets.json"));
-            LoadJsonFile(Path.Combine(modDir, "LOCALIZATION/CHARGEN/locations.json"));
-            LoadJsonFile(Path.Combine(modDir, "LOCALIZATION/CHARGEN/factions.json"));
+            
+            LoadJsonFile(Path.Combine(modDir, ));
+            LoadJsonFile(Path.Combine(modDir, ));
+            LoadJsonFile(Path.Combine(modDir, ));
+            LoadJsonFile(Path.Combine(modDir, ));
+            LoadJsonFile(Path.Combine(modDir, ));
+            LoadJsonFile(Path.Combine(modDir, ));
 
-            // GAMEPLAY
-            LoadJsonFile(Path.Combine(modDir, "LOCALIZATION/GAMEPLAY/skills.json"));
-            LoadJsonFile(Path.Combine(modDir, "LOCALIZATION/GAMEPLAY/cybernetics.json"));
+            
+            LoadJsonFile(Path.Combine(modDir, ));
+            LoadJsonFile(Path.Combine(modDir, ));
 
-            // UI
-            LoadJsonFile(Path.Combine(modDir, "LOCALIZATION/UI/common.json"));
-            LoadJsonFile(Path.Combine(modDir, "LOCALIZATION/UI/options.json"));
-            LoadJsonFile(Path.Combine(modDir, "LOCALIZATION/UI/terms.json"));
+            
+            LoadJsonFile(Path.Combine(modDir, ));
+            LoadJsonFile(Path.Combine(modDir, ));
+            LoadJsonFile(Path.Combine(modDir, ));
 
-            // Load legacy if needed (Deprecated)
-            // LoadJsonFile(Path.Combine(modDir, "LOCALIZATION/_DEPRECATED/glossary_proto.json")); 
+            
+            
         }
 
         private static void LoadAllJsonFiles()
         {
-            string locDir = Path.Combine(GetModDirectory(), "LOCALIZATION");
+            string locDir = Path.Combine(GetModDirectory(), );
             if (!Directory.Exists(locDir))
             {
-                Debug.LogError($"[LocalizationManager] Localization directory not found: {locDir}");
+                Debug.LogError($);
                 return;
             }
 
-            foreach (var file in Directory.GetFiles(locDir, "*.json"))
+            foreach (var file in Directory.GetFiles(locDir, ))
             {
                 LoadJsonFile(file);
             }
@@ -83,16 +79,16 @@ namespace QudKRTranslation.Core
         {
             if (string.IsNullOrEmpty(key)) return key;
             
-            // 0. 색상 태그를 소문자로 통일: {{C|text}} → {{c|text}}
-            string result = Regex.Replace(key, @"\{\{([a-zA-Z])\|", m => $"{{{{{m.Groups[1].Value.ToLower()}|", RegexOptions.IgnoreCase);
             
-            // 1. Qud 색상 태그 제거: {{X|text}} → text
-            result = Regex.Replace(result, @"\{\{[a-zA-Z]\|([^}]+)\}\}", "$1");
+            string result = Regex.Replace(key, , m => $, RegexOptions.IgnoreCase);
             
-            // 2. 특수 bullet 문자 제거 (ù 등 - 색상 태그 내부에서 사용됨)
-            result = Regex.Replace(result, @"^[ùúûü·•◦‣⁃]\s*", "");
             
-            // 3. 소문자 변환 및 앞뒤 공백 제거
+            result = Regex.Replace(result, , );
+            
+            
+            result = Regex.Replace(result, , );
+            
+            
             return result.Trim().ToLowerInvariant();
         }
         
@@ -102,7 +98,7 @@ namespace QudKRTranslation.Core
 
             try
             {
-                var mod = ModManager.GetMod("KoreanLocalization");
+                var mod = ModManager.GetMod();
                 if (mod != null && !string.IsNullOrEmpty(mod.Path))
                 {
                     _modPath = mod.Path;
@@ -111,16 +107,16 @@ namespace QudKRTranslation.Core
             }
             catch { }
 
-            // Fallback for OSX
+            
             if (Application.platform == RuntimePlatform.OSXPlayer)
             {
                 string homeDir = Environment.GetFolderPath(Environment.SpecialFolder.Personal);
-                string modsRoot = Path.Combine(homeDir, "Library/Application Support/com.FreeholdGames.CavesOfQud/Mods");
-                string target = Path.Combine(modsRoot, "KoreanLocalization");
+                string modsRoot = Path.Combine(homeDir, );
+                string target = Path.Combine(modsRoot, );
                 if (Directory.Exists(target)) return target;
             }
 
-            return "";
+            return ;
         }
 
         private static void LoadJsonFile(string path)
@@ -144,8 +140,8 @@ namespace QudKRTranslation.Core
                     {
                         _translationDB[category][termPair.Key] = termPair.Value;
 
-                        // NormalizeKey를 사용하여 정규화된 키도 함께 저장
-                        // 예: "{{c|ù}} most creatures..."와 "most creatures..." 모두 검색 가능하게 함
+                        
+                        
                         string normalized = NormalizeKey(termPair.Key);
                         if (!string.IsNullOrEmpty(normalized) && !normalized.Equals(termPair.Key, StringComparison.OrdinalIgnoreCase))
                         {
@@ -159,28 +155,28 @@ namespace QudKRTranslation.Core
             }
             catch (Exception e)
             {
-                Debug.LogError($"[LocalizationManager] Failed to load {path}: {e.Message}");
+                Debug.LogError($);
             }
         }
 
-        // ========================================================================
-        // 조회 API (서브 카테고리 지원)
-        // ========================================================================
+        
+        
+        
 
         public static Dictionary<string, string> GetCategory(string category)
         {
             if (!_isLoaded) Initialize();
 
-            if (category.EndsWith("*"))
+            if (category.EndsWith())
             {
                 return GetCategoryGroup(category.Substring(0, category.Length - 1));
             }
 
             if (_translationDB.TryGetValue(category, out var dict)) return dict;
 
-            // 자동 병합 (예: "power" 호출 시 "power_*" 병합)
-            var subCats = _translationDB.Keys.Where(k => k.StartsWith(category + "_")).ToList();
-            if (subCats.Count > 0) return GetCategoryGroup(category + "_");
+            
+            var subCats = _translationDB.Keys.Where(k => k.StartsWith(category + )).ToList();
+            if (subCats.Count > 0) return GetCategoryGroup(category + );
 
             return null;
         }
@@ -201,7 +197,7 @@ namespace QudKRTranslation.Core
             return combined.Count > 0 ? combined : null;
         }
 
-        public static string GetTerm(string category, string key, string fallback = "")
+        public static string GetTerm(string category, string key, string fallback = )
         {
             if (!_isLoaded) Initialize();
 
@@ -210,14 +206,14 @@ namespace QudKRTranslation.Core
 
             if (_translationDB.TryGetValue(category, out var dict))
             {
-                // 1. Exact match
+                
                 if (dict.TryGetValue(key, out string val)) return val;
-                // 2. Normalized match
+                
                 if (dict.TryGetValue(normalizedKey, out val)) return val;
             }
 
-            // 3. Auto sub-category search
-            var subCats = _translationDB.Keys.Where(k => k.StartsWith(category + "_"));
+            
+            var subCats = _translationDB.Keys.Where(k => k.StartsWith(category + ));
             foreach (var cat in subCats)
             {
                 var subDict = _translationDB[cat];
@@ -257,8 +253,8 @@ namespace QudKRTranslation.Core
                         if (dict.TryGetValue(normalizedKey, out result)) return true;
                     }
 
-                    // Sub-category search
-                    string prefix = cat + "_";
+                    
+                    string prefix = cat + ;
                     var subCats = _translationDB.Keys.Where(k => k.StartsWith(prefix));
                     foreach (var sc in subCats)
                     {
@@ -289,22 +285,22 @@ namespace QudKRTranslation.Core
             int index = 0;
             SkipWhitespace(json, ref index);
 
-            if (index >= json.Length || json[index] != '{') return result;
-            index++; // skip {
+            if (index >= json.Length || json[index] != ) return result;
+            index++; 
 
             while (index < json.Length)
             {
                 SkipWhitespace(json, ref index);
-                if (index >= json.Length || json[index] == '}') break;
+                if (index >= json.Length || json[index] == ) break;
 
-                // Top Level Key (Category)
+                
                 string category = ParseString(json, ref index);
                 SkipWhitespace(json, ref index);
-                if (index < json.Length && json[index] == ':') index++;
+                if (index < json.Length && json[index] == ) index++;
                 SkipWhitespace(json, ref index);
 
-                // Value must be an object (Category contents)
-                if (index < json.Length && json[index] == '{')
+                
+                if (index < json.Length && json[index] == )
                 {
                     var dict = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase);
                     ParseObjectRecursive(json, ref index, dict);
@@ -312,12 +308,12 @@ namespace QudKRTranslation.Core
                 }
                 else
                 {
-                    // Skip invalid top level value
+                    
                     ParseValue(json, ref index);
                 }
 
                 SkipWhitespace(json, ref index);
-                if (index < json.Length && json[index] == ',') index++;
+                if (index < json.Length && json[index] == ) index++;
             }
 
             return result;
@@ -325,11 +321,11 @@ namespace QudKRTranslation.Core
 
         private static void ParseObjectRecursive(string json, ref int index, Dictionary<string, string> targetDict)
         {
-            index++; // skip {
+            index++; 
             while (index < json.Length)
             {
                 SkipWhitespace(json, ref index);
-                if (index >= json.Length || json[index] == '}')
+                if (index >= json.Length || json[index] == )
                 {
                     index++;
                     return;
@@ -337,55 +333,55 @@ namespace QudKRTranslation.Core
 
                 string key = ParseString(json, ref index);
                 SkipWhitespace(json, ref index);
-                if (index < json.Length && json[index] == ':') index++;
+                if (index < json.Length && json[index] == ) index++;
                 SkipWhitespace(json, ref index);
 
                 if (index < json.Length)
                 {
-                    if (json[index] == '{')
+                    if (json[index] == )
                     {
-                        // Recursive: flatten nested object into current dict
+                        
                         ParseObjectRecursive(json, ref index, targetDict);
                     }
-                    else if (json[index] == '\u0022')
+                    else if (json[index] == )
                     {
-                        // Leaf: String value
+                        
                         string val = ParseString(json, ref index);
                         targetDict[key] = val;
                     }
                     else
                     {
-                        // Primitive/Array (ignore for localization strings)
+                        
                         ParseValue(json, ref index);
                     }
                 }
 
                 SkipWhitespace(json, ref index);
-                if (index < json.Length && json[index] == ',') index++;
+                if (index < json.Length && json[index] == ) index++;
             }
         }
 
         private static string ParseString(string json, ref int index)
         {
             System.Text.StringBuilder sb = new System.Text.StringBuilder();
-            if (index < json.Length && json[index] == '\u0022') index++; // skip starting quote
+            if (index < json.Length && json[index] == ) index++; 
 
             while (index < json.Length)
             {
                 char c = json[index++];
-                if (c == '\u0022') break;
-                if (c == '\\')
+                if (c == ) break;
+                if (c == )
                 {
                     if (index < json.Length)
                     {
                         char next = json[index++];
                         switch (next)
                         {
-                            case '\u0022': sb.Append('\u0022'); break;
-                            case '\\': sb.Append('\\'); break;
-                            case 'n': sb.Append('\n'); break;
-                            case 'r': sb.Append('\r'); break;
-                            case 't': sb.Append('\t'); break;
+                            case : sb.Append(); break;
+                            case : sb.Append(); break;
+                            case : sb.Append(); break;
+                            case : sb.Append(); break;
+                            case : sb.Append(); break;
                             default: sb.Append(next); break;
                         }
                     }
@@ -404,37 +400,37 @@ namespace QudKRTranslation.Core
             if (index >= json.Length) return;
 
             char c = json[index];
-            if (c == '{')
+            if (c == )
             {
-                // Skip object depth
+                
                 int depth = 1;
                 index++;
                 while (index < json.Length && depth > 0)
                 {
-                    if (json[index] == '{') depth++;
-                    else if (json[index] == '}') depth--;
+                    if (json[index] == ) depth++;
+                    else if (json[index] == ) depth--;
                     index++;
                 }
             }
-            else if (c == '[')
+            else if (c == )
             {
-                // Skip array depth
+                
                 int depth = 1;
                 index++;
                 while (index < json.Length && depth > 0)
                 {
-                    if (json[index] == '[') depth++;
-                    else if (json[index] == ']') depth--;
+                    if (json[index] == ) depth++;
+                    else if (json[index] == ) depth--;
                     index++;
                 }
             }
-            else if (c == '\u0022')
+            else if (c == )
             {
                 ParseString(json, ref index);
             }
             else
             {
-                // Number/Bool/Null: read until delimiter
+                
                 while (index < json.Length && !IsDelimiter(json[index]))
                 {
                     index++;
@@ -452,7 +448,7 @@ namespace QudKRTranslation.Core
 
         private static bool IsDelimiter(char c)
         {
-            return c == ',' || c == '}' || c == ']' || char.IsWhiteSpace(c);
+            return c ==  || c ==  || c ==  || char.IsWhiteSpace(c);
         }
     }
 }

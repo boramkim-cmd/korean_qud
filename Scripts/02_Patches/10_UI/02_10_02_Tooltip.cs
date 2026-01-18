@@ -8,6 +8,7 @@ using HarmonyLib;
 using ModelShark;
 using UnityEngine;
 using QudKRTranslation.Utils;
+using QudKRTranslation;
 
 namespace QudKRTranslation.Patches
 {

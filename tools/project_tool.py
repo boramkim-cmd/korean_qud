@@ -48,10 +48,14 @@ def _read_file(path: Path) -> str | None:
         return None
 
 
+# Verbatim string pattern (C# @"...")
+VERBATIM_STRING_PATTERN = re.compile(r'@"[^"]*(?:""[^"]*)*"')
+
 def _strip_code_noise(content: str) -> str:
     """주석 및 문자열 제거하여 구조만 추출"""
     clean = COMMENT_PATTERN.sub('', content)
     clean = BLOCK_COMMENT_PATTERN.sub('', clean)
+    clean = VERBATIM_STRING_PATTERN.sub('', clean) # Remove verbatim strings first
     clean = STRING_PATTERN.sub('', clean)
     return CHAR_PATTERN.sub('', clean)
 
@@ -99,11 +103,18 @@ def verify_code() -> bool:
             errors.append(f"{rel_path}: 중괄호 불일치 ({open_count} vs {close_count})")
 
     # 결과 보고
-    dupes = {n: f for n, f in functions.items() 
-             if len(f) > 1 and n not in HARMONY_FUNCS}
-    
+    dupes = {}
+    for name, paths in functions.items():
+        if name in HARMONY_FUNCS:
+            continue
+        
+        # 유니크한 파일 경로만 카운트 (같은 파일 내 오버로딩 허용)
+        unique_files = set(paths)
+        if len(unique_files) > 1:
+            dupes[name] = unique_files
+
     if dupes:
-        print(f"⚠️  중복 함수 탐지: {len(dupes)}개")
+        print(f"⚠️  중복 함수 탐지: {len(dupes)}개 (서로 다른 파일에 존재)")
         for name, files in list(dupes.items())[:5]:
             print(f"   - {name}: {len(files)}개 파일")
 
@@ -138,6 +149,19 @@ def verify_localization() -> bool:
     empty_count = 0
     dupe_count = 0
 
+    def duplicate_key_checker(pairs):
+        nonlocal dupe_count
+        result = {}
+        seen_keys = set()
+        for key, value in pairs:
+            if key in seen_keys:
+                print(f"⚠️  중복 키 발견: {key}")
+                dupe_count += 1
+            else:
+                seen_keys.add(key)
+                result[key] = value
+        return result
+
     for json_file in LOCALIZATION_DIR.rglob("*.json"):
         content = _read_file(json_file)
         if content is None:
@@ -145,29 +169,35 @@ def verify_localization() -> bool:
             return False
 
         try:
-            data = json.loads(content)
-        except json.JSONDecodeError as e:
-            print(f"❌ [{json_file.name}] JSON 파싱 오류: {e}")
+            # Custom loader to catch duplicates
+            data = json.loads(content, object_pairs_hook=duplicate_key_checker)
+            
+            # 1. 빈 값 체크
+            if isinstance(data, dict):
+                 stack = [data]
+                 while stack:
+                     current = stack.pop()
+                     if isinstance(current, dict):
+                         # items() returns key, value
+                         for k, v in current.items():
+                             if isinstance(v, (dict, list)):
+                                 stack.append(v)
+                             elif isinstance(v, str):
+                                 total_entries += 1
+                                 if not v.strip():
+                                     # print(f"⚠️  [{json_file.name}] 빈 값: {k}")
+                                     empty_count += 1
+                     elif isinstance(current, list):
+                         for item in current:
+                             if isinstance(item, (dict, list)):
+                                 stack.append(item)
+                             elif isinstance(item, str):
+                                 # List strings usually used for leveltext, not key-value
+                                 pass
+
+        except Exception as e:
+            print(f"❌ [{json_file.name}] 데이터 검증 오류: {e}")
             return False
-
-        # 1. 빈 값 체크
-        for entries in data.values():
-            if isinstance(entries, dict):
-                for v in entries.values():
-                    total_entries += 1
-                    if not v or (isinstance(v, str) and not v.strip()):
-                        empty_count += 1
-
-        # 2. 중복 키 체크 (정규식으로 원본 텍스트 검사)
-        cat_blocks = re.findall(r'"([^"]+)":\s*\{([^\}]*)\}', content, re.DOTALL)
-        for cat_name, cat_content in cat_blocks:
-            keys = re.findall(r'"([^"]+)"\s*:', cat_content)
-            seen = set()
-            for k in keys:
-                if k in seen:
-                    print(f"⚠️  [{json_file.name}] '{cat_name}' 카테고리 내 중복 키: {k}")
-                    dupe_count += 1
-                seen.add(k)
 
     print(f"총 번역 항목: {total_entries}개")
     if empty_count:

@@ -11,6 +11,7 @@ using HarmonyLib;
 using Qud.UI;
 using QudKRTranslation.Core;
 using UnityEngine;
+using QudKRTranslation;
 
 namespace QudKRTranslation.Patches.UI
 {

@@ -8,6 +8,7 @@
 using HarmonyLib;
 using XRL.UI;
 using QudKRTranslation.Utils;
+using QudKRTranslation;
 
 namespace QudKRTranslation.Patches
 {

@@ -13,6 +13,7 @@ using XRL.CharacterBuilds;
 using XRL.UI;
 using XRL.UI.Framework;
 using QudKRTranslation.Core;
+using QudKRTranslation;
 
 namespace QudKRTranslation.Utils
 {

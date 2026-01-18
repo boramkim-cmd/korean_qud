@@ -1,5 +1,5 @@
 {
-  "generated": "2026-01-18 18:08:59",
+  "generated": "2026-01-18 19:58:23",
   "scripts": {
     "Scripts/99_Utils/99_00_03_StructureTranslator.cs": {
       "classification": "Util",
@@ -440,7 +440,7 @@
     },
     "project_tool.py": {
       "type": "script",
-      "size": 13213
+      "size": 14444
     },
     "analyze_glossary.py": {
       "type": "script",
@@ -456,10 +456,6 @@
     },
     "HarmonyAnalyzer": {
       "type": "tool_folder"
-    },
-    "merge_proto_to_structured.py": {
-      "type": "script",
-      "size": 3979
     }
   },
   "docs": {
@@ -467,7 +463,7 @@
       "modified": "2026-01-18"
     },
     "03_CHANGELOG.md": {
-      "modified": "2026-01-17"
+      "modified": "2026-01-18"
     },
     "01_DEVELOPMENT_GUIDE.md": {
       "modified": "2026-01-18"
