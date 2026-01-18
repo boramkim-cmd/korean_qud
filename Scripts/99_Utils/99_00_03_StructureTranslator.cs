@@ -89,12 +89,15 @@ namespace QudKRTranslation.Utils
                 return desc + "\n\n" + string.Join("\n", extras);
             }
 
-            private static string Unformat(string text)
-            {
-                // Simple tag stripper: remove {{...}} sequences
-                if (string.IsNullOrEmpty(text)) return "";
-                return System.Text.RegularExpressions.Regex.Replace(text, @"\{\{[^}]+\}\}", "").Trim();
-            }
+
+        }
+
+
+        private static string Unformat(string text)
+        {
+            // Simple tag stripper: remove {{...}} sequences
+            if (string.IsNullOrEmpty(text)) return "";
+            return System.Text.RegularExpressions.Regex.Replace(text, @"\{\{[^}]+\}\}", "").Trim();
         }
 
         private static Dictionary<string, TranslationData> _data = new Dictionary<string, TranslationData>(StringComparer.OrdinalIgnoreCase);
@@ -296,7 +299,16 @@ namespace QudKRTranslation.Utils
         public static bool TryGetData(string englishName, out TranslationData data)
         {
             EnsureInitialized();
-            return _data.TryGetValue(englishName, out data);
+            
+            // 1. Exact match
+            if (_data.TryGetValue(englishName, out data)) return true;
+            
+            // 2. Normalized match (strip tags, trim)
+            string normalized = Unformat(englishName);
+            if (_data.TryGetValue(normalized, out data)) return true;
+            
+            // 3. Recursive check? No, just keys.
+            return false;
         }
 
         public static string TranslateName(string englishName)

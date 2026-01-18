@@ -49,6 +49,24 @@ namespace QudKRTranslation.Patches
     }
 
     // ========================================================================
+    // [0.5] Window Title Patch (Main Header)
+    // ========================================================================
+    [HarmonyPatch(typeof(AbstractBuilderModuleWindowBase))]
+    public static class Patch_AbstractBuilderModuleWindowBase_Title
+    {
+        [HarmonyPatch("Title", MethodType.Getter)]
+        [HarmonyPostfix]
+        static void Title_Postfix(ref string __result)
+        {
+            if (string.IsNullOrEmpty(__result)) return;
+            if (LocalizationManager.TryGetAnyTerm(__result.ToLowerInvariant(), out string translated, "chargen_ui", "ui", "common"))
+            {
+                __result = translated;
+            }
+        }
+    }
+
+    // ========================================================================
     // [1] 게임 모드 선택 (QudGamemodeModuleWindow)
     // ========================================================================
     [HarmonyPatch(typeof(QudGamemodeModuleWindow))]

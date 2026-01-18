@@ -1,5 +1,5 @@
 {
-  "generated": "2026-01-18 20:44:27",
+  "generated": "2026-01-18 21:03:39",
   "scripts": {
     "Scripts/99_Utils/99_00_03_StructureTranslator.cs": {
       "classification": "Util",
@@ -294,6 +294,7 @@
       "namespace": "QudKRTranslation.Patches",
       "classes": [
         "Patch_AbstractBuilderModuleWindowBase",
+        "Patch_AbstractBuilderModuleWindowBase_Title",
         "Patch_QudGamemodeModuleWindow",
         "Patch_QudChartypeModuleWindow",
         "Patch_QudGenotypeModuleWindow",
@@ -420,6 +421,10 @@
     "get_deploy_path.py": {
       "type": "script",
       "size": 663
+    },
+    "verify_structure_data.py": {
+      "type": "script",
+      "size": 2734
     },
     "analyze_glossary.py": {
       "type": "script",
