@@ -1,6 +1,6 @@
 # 📚 프로젝트 완전 인덱스 (자동 생성)
 
-**생성**: 2026-01-18 11:38:16
+**생성**: 2026-01-18 15:22:05
 
 이 문서는 프로젝트의 모든 파일과 메서드 시그니처를 포함합니다. **새로운 기능을 만들기 전, 반드시 여기서 기존 메서드를 검색하십시오.**
 
@@ -144,16 +144,17 @@
 
 ## 📂 [Util]
 
-### `Scripts/99_Utils/99_00_03_MutationTranslator.cs`
-- **역할**: description + leveltext 구조의 mutation JSON을 로드하고 번역 제공
+### `Scripts/99_Utils/99_00_03_StructureTranslator.cs`
+- **역할**: MUTATIONS, GENOTYPES, SUBTYPES 등의 폴더에 있는 구조화된 JSON(이름, 설명, 레벨텍스트)을 로드하고 번역을 제공합니다.
 - **Namespace**: `QudKRTranslation.Utils`
 - **공개 메서드 (Public Methods)**:
   ```csharp
-  string GetCombinedLongDescription()
-  void Initialize(string mutationsDirectory)
-  bool TryGetMutation(string englishName, out MutationData data)
+  string GetCombinedLongDescription(string fallbackOriginal = null)
+  void InitializeDirectory(string directoryPath)
+  bool TryGetData(string englishName, out TranslationData data)
   string TranslateName(string englishName)
-  string TranslateLongDescription(string englishName)
+  string TranslateLongDescription(string englishName, string fallbackOriginal = null)
+  List<string> TranslateLevelText(string englishName)
   ```
 
 ## 📂 [Utils]

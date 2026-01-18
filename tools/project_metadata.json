@@ -1,6 +1,47 @@
 {
-  "generated": "2026-01-18 11:38:16",
+  "generated": "2026-01-18 15:22:05",
   "scripts": {
+    "Scripts/99_Utils/99_00_03_StructureTranslator.cs": {
+      "classification": "Util",
+      "role": "MUTATIONS, GENOTYPES, SUBTYPES 등의 폴더에 있는 구조화된 JSON(이름, 설명, 레벨텍스트)을 로드하고 번역을 제공합니다.",
+      "namespace": "QudKRTranslation.Utils",
+      "classes": [
+        "StructureTranslator",
+        "TranslationData"
+      ],
+      "methods": [
+        {
+          "name": "GetCombinedLongDescription",
+          "return": "string",
+          "params": "string fallbackOriginal = null"
+        },
+        {
+          "name": "InitializeDirectory",
+          "return": "void",
+          "params": "string directoryPath"
+        },
+        {
+          "name": "TryGetData",
+          "return": "bool",
+          "params": "string englishName, out TranslationData data"
+        },
+        {
+          "name": "TranslateName",
+          "return": "string",
+          "params": "string englishName"
+        },
+        {
+          "name": "TranslateLongDescription",
+          "return": "string",
+          "params": "string englishName, string fallbackOriginal = null"
+        },
+        {
+          "name": "TranslateLevelText",
+          "return": "List<string>",
+          "params": "string englishName"
+        }
+      ]
+    },
     "Scripts/99_Utils/99_00_02_ChargenTranslationUtils.cs": {
       "classification": "Utils",
       "role": "캐릭터 생성 화면의 다중 라인 설명 등을 TranslationEngine을 사용해 번역합니다.",
@@ -51,42 +92,6 @@
         }
       ]
     },
-    "Scripts/99_Utils/99_00_03_MutationTranslator.cs": {
-      "classification": "Util",
-      "role": "description + leveltext 구조의 mutation JSON을 로드하고 번역 제공",
-      "namespace": "QudKRTranslation.Utils",
-      "classes": [
-        "MutationTranslator",
-        "MutationData"
-      ],
-      "methods": [
-        {
-          "name": "GetCombinedLongDescription",
-          "return": "string",
-          "params": ""
-        },
-        {
-          "name": "Initialize",
-          "return": "void",
-          "params": "string mutationsDirectory"
-        },
-        {
-          "name": "TryGetMutation",
-          "return": "bool",
-          "params": "string englishName, out MutationData data"
-        },
-        {
-          "name": "TranslateName",
-          "return": "string",
-          "params": "string englishName"
-        },
-        {
-          "name": "TranslateLongDescription",
-          "return": "string",
-          "params": "string englishName"
-        }
-      ]
-    },
     "Scripts/00_Core/00_00_02_ScopeManager.cs": {
       "classification": "Core",
       "role": "Stack 기반으로 현재 활성 번역 범위를 관리합니다.",
@@ -128,7 +133,7 @@
       "namespace": "QudKRTranslation.Core",
       "classes": [
         "LocalizationManager",
-        "SimpleJsonParser"
+        "RecursiveJsonParser"
       ],
       "methods": [
         {
@@ -428,9 +433,21 @@
       "type": "script",
       "size": 34666
     },
+    "generate_subtype_jsons.py": {
+      "type": "script",
+      "size": 3556
+    },
+    "reorder_modes.py": {
+      "type": "script",
+      "size": 1876
+    },
     "fix_json_duplicates.py": {
       "type": "script",
       "size": 3771
+    },
+    "check_untranslated.py": {
+      "type": "script",
+      "size": 1366
     },
     "project_tool.py": {
       "type": "script",
@@ -444,9 +461,17 @@
       "type": "script",
       "size": 2530
     },
+    "split_glossary_chargen.py": {
+      "type": "script",
+      "size": 1806
+    },
     "check_missing_translations.py": {
       "type": "script",
       "size": 3945
+    },
+    "update_subtypes.py": {
+      "type": "script",
+      "size": 3641
     },
     "sort_json.py": {
       "type": "script",
@@ -454,6 +479,10 @@
     },
     "HarmonyAnalyzer": {
       "type": "tool_folder"
+    },
+    "populate_all_subtypes.py": {
+      "type": "script",
+      "size": 7606
     }
   },
   "docs": {
@@ -470,10 +499,10 @@
       "modified": "2026-01-17"
     },
     "01_CORE_PROJECT_INDEX.md": {
-      "modified": "2026-01-17"
+      "modified": "2026-01-18"
     },
     "02_CORE_QUICK_REFERENCE.md": {
-      "modified": "2026-01-17"
+      "modified": "2026-01-18"
     },
     "00_PRINCIPLES.md": {
       "modified": "2026-01-16"
@@ -489,6 +518,12 @@
         "cybernetics_desc"
       ],
       "entries": 54
+    },
+    "glossary_chargen_modes.json": {
+      "categories": [
+        "chargen_mode"
+      ],
+      "entries": 6
     },
     "glossary_ui.json": {
       "categories": [
@@ -509,7 +544,7 @@
       "categories": [
         "chargen_proto"
       ],
-      "entries": 39
+      "entries": 40
     },
     "glossary_location.json": {
       "categories": [
@@ -542,6 +577,18 @@
       ],
       "entries": 362
     },
+    "glossary_chargen_ui.json": {
+      "categories": [
+        "chargen_ui"
+      ],
+      "entries": 4
+    },
+    "glossary_chargen_stats.json": {
+      "categories": [
+        "chargen_stats"
+      ],
+      "entries": 1
+    },
     "glossary_skills.json": {
       "categories": [
         "skill",
@@ -557,30 +604,7 @@
         "skill_desc",
         "powers"
       ],
-      "entries": 218
-    },
-    "glossary_mutations_common.json": {
-      "categories": [
-        "chargen_ui_mutation_labels",
-        "chargen_ui_mutation_system",
-        "mutation_names_physical_breath",
-        "mutation_names_physical_passive",
-        "mutation_biome_adjectives",
-        "mutation_desc_physical_body",
-        "mutation_desc_physical_passive",
-        "mutation_frag_text",
-        "mutation_reputation",
-        "mutation_pass3_extra"
-      ],
-      "entries": 72
-    },
-    "glossary_chargen.json": {
-      "categories": [
-        "chargen_mode",
-        "chargen_stats",
-        "chargen_ui"
-      ],
-      "entries": 173
+      "entries": 223
     }
   }
 }

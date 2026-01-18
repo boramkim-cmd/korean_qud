@@ -98,7 +98,7 @@ namespace QudKRTranslation.Core
             try
             {
                 string json = File.ReadAllText(path);
-                var data = SimpleJsonParser.Parse(json);
+                var data = RecursiveJsonParser.Parse(json);
 
                 foreach (var categoryPair in data)
                 {
