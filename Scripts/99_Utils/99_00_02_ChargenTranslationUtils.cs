@@ -78,7 +78,7 @@ namespace QudKRTranslation.Utils
                     contentToTranslate = contentToTranslate.Substring(0, contentToTranslate.Length - 11);
                 }
 
-                // 1. 불렛 포인트 보존 로직
+                // 1. 불렛 포인트 보존 로직 (수정됨 - 구분점 사라짐 문제 해결)
                 // Qud uses {{c|ù}} or just ù for bullets
                 string bulletPrefix = "";
                 
@@ -86,18 +86,33 @@ namespace QudKRTranslation.Utils
                 if (contentToTranslate.StartsWith("{{c|ù}}")) 
                 {
                     bulletPrefix = "{{c|ù}} ";
-                    contentToTranslate = contentToTranslate.Replace("{{c|ù}}", "").Trim();
+                    contentToTranslate = contentToTranslate.Substring(8).Trim(); // Remove {{c|ù}} properly (8 chars)
                 }
                 else if (contentToTranslate.StartsWith("ù"))
                 {
                     bulletPrefix = "ù ";
-                    contentToTranslate = contentToTranslate.TrimStart('ù', ' ').Trim();
+                    contentToTranslate = contentToTranslate.Substring(1).Trim(); // Remove ù properly
+                }
+                // 추가: 다른 불렛 패턴들도 처리
+                else if (contentToTranslate.StartsWith("•"))
+                {
+                    bulletPrefix = "• ";
+                    contentToTranslate = contentToTranslate.Substring(1).Trim();
                 }
 
                 // 2. 기본 번역 시도
                 if (TranslationEngine.TryTranslate(contentToTranslate, out string translated, scopes))
                 {
                     lines[i] = prefix + uiPrefix + bulletPrefix + translated + uiSuffix;
+                    changed = true;
+                    continue;
+                }
+                
+                // 2.5. Direct reputation lookup from chargen_ui.Reputations (exact match)
+                // Try to find exact match like "+200 reputation with the Issachari tribe"
+                if (LocalizationManager.TryGetAnyTerm(contentToTranslate, out string directRepTrans, "chargen_ui"))
+                {
+                    lines[i] = prefix + uiPrefix + bulletPrefix + directRepTrans + uiSuffix;
                     changed = true;
                     continue;
                 }
@@ -119,8 +134,8 @@ namespace QudKRTranslation.Utils
                      }
                  }
 
-                // 4. Regex 번역 (스탯 등: "+2 Agility", "+200 reputation...")
-                // Pattern: "+<Number> <Text>"
+                // 4. Regex 번역 (스탯 등: "+2 Agility")
+                // Pattern A: "+<Number> <Text>" (e.g., "+2 Toughness")
                 var match = Regex.Match(contentToTranslate, @"^([+-]?\d+)\s+(.+)$");
                 if (match.Success)
                 {
@@ -129,7 +144,22 @@ namespace QudKRTranslation.Utils
                     
                     if (TranslationEngine.TryTranslate(textPart, out string translatedText, scopes))
                     {
-                        lines[i] = prefix + uiPrefix + bulletPrefix + numberPart + " " + translatedText + uiSuffix;
+                        lines[i] = prefix + uiPrefix + bulletPrefix + translatedText + " " + numberPart + uiSuffix;
+                        changed = true;
+                        continue;
+                    }
+                }
+                
+                // 4.5. Reverse stat pattern: "<Text> +<Number>" (e.g., "Toughness +2")
+                var reverseMatch = Regex.Match(contentToTranslate, @"^(.+)\s+([+-]?\d+)$");
+                if (reverseMatch.Success)
+                {
+                    string textPart = reverseMatch.Groups[1].Value;
+                    string numberPart = reverseMatch.Groups[2].Value;
+                    
+                    if (TranslationEngine.TryTranslate(textPart, out string translatedText, scopes))
+                    {
+                        lines[i] = prefix + uiPrefix + bulletPrefix + translatedText + " " + numberPart + uiSuffix;
                         changed = true;
                         continue;
                     }
@@ -167,20 +197,35 @@ namespace QudKRTranslation.Utils
         }
 
         /// <summary>
-        /// UIBreadcrumb의 Title을 번역합니다.
+        /// UIBreadcrumb의 Title과 Subtitle을 번역합니다.
         /// </summary>
         public static void TranslateBreadcrumb(UIBreadcrumb breadcrumb)
         {
-            if (breadcrumb == null || string.IsNullOrEmpty(breadcrumb.Title)) return;
+            if (breadcrumb == null) return;
             
             var scopes = new[] { "chargen_ui", "chargen_proto", "mutation", "skill", "cybernetics", "ui", "common" }
                 .Select(cat => LocalizationManager.GetCategory(cat))
                 .Where(d => d != null)
                 .ToArray();
 
-            if (TranslationEngine.TryTranslate(breadcrumb.Title, out string translated, scopes))
+            // Translate Title (e.g., "character creation")
+            if (!string.IsNullOrEmpty(breadcrumb.Title))
             {
-                breadcrumb.Title = translated;
+                if (TranslationEngine.TryTranslate(breadcrumb.Title, out string translated, scopes))
+                {
+                    breadcrumb.Title = translated;
+                }
+            }
+            
+            // Translate Subtitle (e.g., ":choose game mode:")
+            var tr = Traverse.Create(breadcrumb);
+            string subtitle = tr.Field<string>("Subtitle").Value;
+            if (!string.IsNullOrEmpty(subtitle))
+            {
+                if (TranslationEngine.TryTranslate(subtitle, out string translatedSubtitle, scopes))
+                {
+                    tr.Field<string>("Subtitle").Value = translatedSubtitle;
+                }
             }
         }
     }

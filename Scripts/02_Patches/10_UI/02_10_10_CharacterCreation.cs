@@ -190,53 +190,69 @@ namespace QudKRTranslation.Patches
         static void GetSelections_Postfix(ref IEnumerable<ChoiceWithColorIcon> __result)
         {
             if (__result == null) return;
-            var list = __result.ToList();
             
-            foreach (var choice in list)
+            // 원본 백업 (예외 발생 시 복원용)
+            var originalList = __result.ToList();
+            
+            try 
             {
-                bool handledByStructure = false;
-
-                // Try StructureTranslator first (Subtypes)
-                if (StructureTranslator.TryGetData(choice.Title, out var data))
+                var list = new List<ChoiceWithColorIcon>(originalList);
+                
+                foreach (var choice in list)
                 {
-                    choice.Title = data.KoreanName;
+                    if (choice == null) continue;
                     
-                    var tr = Traverse.Create(choice);
-                    string originalDesc = tr.Field<string>("Description").Value;
-                    
-                    string newDesc = data.GetCombinedLongDescription(originalDesc);
-                    
-                    if (!string.IsNullOrEmpty(newDesc))
-                    {
-                        tr.Field<string>("Description").Value = newDesc;
-                    }
-                    handledByStructure = true;
-                }
+                    bool handledByStructure = false;
 
-                if (!handledByStructure)
-                {
-                    // Title 번역
-                    if (LocalizationManager.TryGetAnyTerm(choice.Title?.ToLowerInvariant(), out string tTitle, "chargen_ui", "chargen_proto", "mutation", "skill"))
+                    // Try StructureTranslator first (Subtypes)
+                    if (!string.IsNullOrEmpty(choice.Title) && StructureTranslator.TryGetData(choice.Title, out var data))
                     {
-                        choice.Title = tTitle;
-                    }
-                    
-                    // Description 번역 (GetFlatChargenInfo()의 결과)
-                    var tr = Traverse.Create(choice);
-                    string desc = tr.Field<string>("Description").Value;
-                    if (!string.IsNullOrEmpty(desc))
-                    {
-                        string translated = ChargenTranslationUtils.TranslateLongDescription(desc, "chargen_proto", "chargen_ui", "mutation", "mutation_desc", "powers", "power", "skill", "skill_desc");
+                        choice.Title = data.KoreanName;
                         
-                        if (translated != desc)
+                        var tr = Traverse.Create(choice);
+                        string originalDesc = tr.Field<string>("Description").Value;
+                        
+                        string newDesc = data.GetCombinedLongDescription(originalDesc);
+                        
+                        if (!string.IsNullOrEmpty(newDesc))
                         {
-                            tr.Field<string>("Description").Value = translated;
+                            tr.Field<string>("Description").Value = newDesc;
+                        }
+                        handledByStructure = true;
+                    }
+
+                    if (!handledByStructure)
+                    {
+                        // Title 번역 - 더 안전하게
+                        string originalTitle = choice.Title;
+                        if (!string.IsNullOrEmpty(originalTitle) && LocalizationManager.TryGetAnyTerm(originalTitle.ToLowerInvariant(), out string tTitle, "chargen_ui", "chargen_proto", "mutation", "skill"))
+                        {
+                            choice.Title = tTitle;
+                        }
+                        
+                        // Description 번역 (GetFlatChargenInfo()의 결과) - 더 안전하게
+                        var tr = Traverse.Create(choice);
+                        string desc = tr.Field<string>("Description").Value;
+                        if (!string.IsNullOrEmpty(desc))
+                        {
+                            string translated = ChargenTranslationUtils.TranslateLongDescription(desc, "chargen_proto", "chargen_ui", "mutation", "mutation_desc", "powers", "power", "skill", "skill_desc");
+                            
+                            if (!string.IsNullOrEmpty(translated) && translated != desc)
+                            {
+                                tr.Field<string>("Description").Value = translated;
+                            }
                         }
                     }
                 }
+                
+                __result = list;
             }
-            
-            __result = list;
+            catch (Exception ex)
+            {
+                // 패치 실패 시 원본 복원
+                UnityEngine.Debug.LogError($"[KoreanLocalization] GetSelections translation failed: {ex.Message}\n{ex.StackTrace}");
+                __result = originalList;
+            }
         }
 
         [HarmonyPatch(nameof(QudSubtypeModule.GetSelectionCategories))]
@@ -283,38 +299,45 @@ namespace QudKRTranslation.Patches
                 {
                      foreach (var choice in cat.Choices)
                     {
-                         // Use StructureTranslator if available
-                         if (StructureTranslator.TryGetData(choice.Title, out var data))
-                         {
-                             choice.Title = data.KoreanName;
-                             
-                             var trStruct = Traverse.Create(choice);
-                             string originalDesc = trStruct.Field<string>("Description").Value;
-                             
-                             string newDesc = data.GetCombinedLongDescription(originalDesc);
-                             if (!string.IsNullOrEmpty(newDesc))
+                         try {
+                             // Use StructureTranslator if available
+                             if (StructureTranslator.TryGetData(choice.Title, out var data))
                              {
-                                 trStruct.Field<string>("Description").Value = newDesc;
+                                 choice.Title = data.KoreanName;
+                                 
+                                 var trStruct = Traverse.Create(choice);
+                                 string originalDesc = trStruct.Field<string>("Description").Value;
+                                 
+                                 string newDesc = data.GetCombinedLongDescription(originalDesc);
+                                 if (!string.IsNullOrEmpty(newDesc))
+                                 {
+                                     trStruct.Field<string>("Description").Value = newDesc;
+                                 }
+                                 continue;
                              }
-                             continue;
-                         }
 
-                         // Fallback
-                          // Translate Choice Title (e.g. "Horticulturist")
-                        if (LocalizationManager.TryGetAnyTerm(choice.Title?.ToLowerInvariant(), out string tChoiceTitle, "chargen_ui", "chargen_proto", "mutation", "skill"))
-                             choice.Title = tChoiceTitle;
+                             // Fallback - 더 안전한 번역 방식
+                              // Translate Choice Title (e.g. "Horticulturist")
+                            string originalTitle = choice.Title;
+                            if (!string.IsNullOrEmpty(originalTitle) && LocalizationManager.TryGetAnyTerm(originalTitle.ToLowerInvariant(), out string tChoiceTitle, "chargen_ui", "chargen_proto", "mutation", "skill"))
+                                 choice.Title = tChoiceTitle;
 
-                         // Translate Description
-                        var trFallback = Traverse.Create(choice);
-
-                        string desc = trFallback.Field<string>("Description").Value;
-                        if (!string.IsNullOrEmpty(desc))
-                        {
-                            string translated = ChargenTranslationUtils.TranslateLongDescription(desc, "chargen_proto", "chargen_ui", "mutation", "mutation_desc", "powers", "power", "skill", "skill_desc");
-                             if (translated != desc)
+                             // Translate Description - 더 안전한 방식
+                            var trFallback = Traverse.Create(choice);
+                            string desc = trFallback.Field<string>("Description").Value;
+                            if (!string.IsNullOrEmpty(desc))
                             {
-                                trFallback.Field<string>("Description").Value = translated;
+                                string translated = ChargenTranslationUtils.TranslateLongDescription(desc, "chargen_proto", "chargen_ui", "mutation", "mutation_desc", "powers", "power", "skill", "skill_desc");
+                                 if (!string.IsNullOrEmpty(translated) && translated != desc)
+                                {
+                                    trFallback.Field<string>("Description").Value = translated;
+                                }
                             }
+                        }
+                        catch (Exception ex)
+                        {
+                            // 패치 실패 시 원본 유지 (선택 로직 손상 방지)
+                            UnityEngine.Debug.LogError($"[KoreanLocalization] GetSelectionCategories choice translation failed: {ex.Message}");
                         }
                     }
                 }

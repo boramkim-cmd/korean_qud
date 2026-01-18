@@ -39,30 +39,46 @@ namespace QudKRTranslation.Utils
                 if (!string.IsNullOrEmpty(Description))
                      return CombineWithLevelText(Description, LevelTextKo);
 
-                // Fallback to original
+                // Fallback to original - but we need to filter out leveltext lines to avoid duplicates
                 string desc = fallbackOriginal ?? "";
                 
-                // Filter out lines from desc that are present in LevelText (to avoid duplicates)
+                // If we have LevelTextKo, filter out matching lines from desc to avoid English+Korean duplication
                 if (!string.IsNullOrEmpty(desc) && LevelText != null && LevelText.Count > 0)
                 {
                     var lines = desc.Split('\n').ToList();
                     var filteredLines = new List<string>();
                     
+                    // Build a set of normalized leveltext entries for comparison
+                    var normalizedLevelTexts = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+                    foreach (var lt in LevelText)
+                    {
+                        if (string.IsNullOrEmpty(lt)) continue;
+                        normalizedLevelTexts.Add(NormalizeLine(lt));
+                    }
+                    
                     foreach (var line in lines)
                     {
-                        bool isDuplicate = false;
-                        string cleanLine = Unformat(line); // Remove color tags/bullets for comparison
-                        
-                        foreach (var matchText in LevelText)
+                        if (string.IsNullOrWhiteSpace(line))
                         {
-                            if (string.IsNullOrEmpty(matchText)) continue;
-                            
-                            // Check if line contains the text (ignoring case? strictly?)
-                            // Line usually has "{{c|ù}} " prefix. Match if the core text is present.
-                            if (cleanLine.IndexOf(matchText, StringComparison.OrdinalIgnoreCase) >= 0)
+                            filteredLines.Add(line);
+                            continue;
+                        }
+                        
+                        string normalizedLine = NormalizeLine(line);
+                        
+                        // Check if this line matches any leveltext entry
+                        bool isDuplicate = normalizedLevelTexts.Contains(normalizedLine);
+                        
+                        // If not found, also try partial match for lines with prefixes like "{{c|ù}}"
+                        if (!isDuplicate)
+                        {
+                            foreach (var nlt in normalizedLevelTexts)
                             {
-                                isDuplicate = true;
-                                break;
+                                if (normalizedLine.Contains(nlt) || nlt.Contains(normalizedLine))
+                                {
+                                    isDuplicate = true;
+                                    break;
+                                }
                             }
                         }
                         
@@ -74,6 +90,46 @@ namespace QudKRTranslation.Utils
                 }
 
                 return CombineWithLevelText(desc, LevelTextKo);
+            }
+            
+            /// <summary>
+            /// Normalize a line for duplicate detection - strips tags, bullets, and normalizes stat format
+            /// </summary>
+            private static string NormalizeLine(string line)
+            {
+                if (string.IsNullOrEmpty(line)) return "";
+                
+                // 1. Strip color tags {{X|...}} -> content
+                string result = System.Text.RegularExpressions.Regex.Replace(line, @"\{\{[a-zA-Z]\|([^}]+)\}\}", "$1");
+                
+                // 2. Remove bullet prefixes
+                result = System.Text.RegularExpressions.Regex.Replace(result, @"^[ùúûü·•◦‣⁃]\s*", "");
+                
+                // 3. Normalize stat format: "+2 Toughness" <-> "Toughness +2"
+                // Convert both to canonical form: "toughness 2" (text then number, no sign)
+                var statMatch = System.Text.RegularExpressions.Regex.Match(result.Trim(), @"^([+-]?\d+)\s+(.+)$");
+                if (statMatch.Success)
+                {
+                    string text = statMatch.Groups[2].Value.Trim().ToLowerInvariant();
+                    string num = statMatch.Groups[1].Value.TrimStart('+');
+                    result = text + " " + num;
+                }
+                else
+                {
+                    var reverseMatch = System.Text.RegularExpressions.Regex.Match(result.Trim(), @"^(.+)\s+([+-]?\d+)$");
+                    if (reverseMatch.Success)
+                    {
+                        string text = reverseMatch.Groups[1].Value.Trim().ToLowerInvariant();
+                        string num = reverseMatch.Groups[2].Value.TrimStart('+');
+                        result = text + " " + num;
+                    }
+                    else
+                    {
+                        result = result.Trim().ToLowerInvariant();
+                    }
+                }
+                
+                return result;
             }
 
             private string CombineWithLevelText(string desc, List<string> levelText)

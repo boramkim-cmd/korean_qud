@@ -2,12 +2,21 @@
   "chargen_ui": {
     "Bottom Bar": {
       "Randomize Selection": "무작위 선택",
+      "randomize selection": "무작위 선택",
+      "Reset Selection": "선택 초기화",
+      "reset selection": "선택 초기화",
       "[Debug] Quickstart": "[디버그] 빠른 시작",
       "[debug] quickstart": "[디버그] 빠른 시작",
-      "reset selection": "선택 초기화",
+      "Debug": "디버그",
+      "debug": "디버그",
+      "Quickstart": "빠른 시작",
+      "quickstart": "빠른 시작",
+      "Delete": "삭제",
+      "delete": "삭제",
       "移動": "이동",
       "이동": "이동",
-      "select": "선택"
+      "select": "선택",
+      "Select": "선택"
     },
     "General UI": {
       ":build library:": "빌드 라이브러리",
@@ -101,7 +110,16 @@
       "+300 reputation with the Wardens of Qud": "쿼드의 파수꾼들(Wardens of Qud) 평판 +300",
       "+200 reputation with the Issachari tribe": "이사카리 부족(Issachari tribe) 평판 +200",
       "+100 reputation with the villagers of Joppa": "조파 마을 주민 평판 +100",
-      "+200 reputation with farmers": "농부 세력 평판 +200"
+      "+200 reputation with farmers": "농부 세력 평판 +200",
+      "+200 reputation with mysterious strangers": "의문의 이방인(Mysterious Strangers) 평판 +200",
+      "+200 reputation with Mysterious Strangers": "의문의 이방인(Mysterious Strangers) 평판 +200",
+      "+100 reputation with bears": "곰 세력 평판 +100",
+      "+200 reputation with the Consortium of Phyta": "피타 협회(Consortium of Phyta) 평판 +200",
+      "+100 reputation with the merchants' guild": "상인 길드 평판 +100",
+      "+200 reputation with the children of Mamon": "마몬의 자녀들 평판 +200",
+      "+100 reputation with Mechanimists": "메카니미스트 평판 +100",
+      "+200 reputation with the cult of the coiled lamb": "감긴 양의 교단 평판 +200",
+      "+100 reputation with newly sentient beings": "새로이 지성을 얻은 존재 평판 +100"
     }
   }
 }
