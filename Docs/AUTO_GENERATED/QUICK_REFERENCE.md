@@ -1,6 +1,6 @@
 # 🚀 프로젝트 빠른 참조 (자동 생성)
 
-**생성**: 2026-01-18 16:43:37
+**생성**: 2026-01-18 15:22:05
 
 ## ⭐ 핵심 경로
 ```
@@ -14,7 +14,6 @@ LOCALIZATION/glossary_*.json              → 용어집 데이터
 - `glossary_chargen_stats.json`: 1개 항목
 - `glossary_chargen_ui.json`: 4개 항목
 - `glossary_cybernetics.json`: 54개 항목
-- `glossary_display.json`: 32개 항목
 - `glossary_factions.json`: 4개 항목
 - `glossary_location.json`: 22개 항목
 - `glossary_options.json`: 362개 항목

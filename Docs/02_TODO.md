@@ -263,9 +263,11 @@ Assets/StreamingAssets/Base/Mutations.xml
 - [x] 파일 정리 (중복 제거, 경로 수정)
 - [x] 샘플 3종 번역 및 검증 (Stinger, Cold-Blooded, Carnivorous)
 - [x] 샘플 3종 번역 및 검증 (Stinger, Cold-Blooded, Carnivorous)
-- [ ] 나머지 79개 변이 **수동 번역** (자동화 금지)
-  - 상세 진행 상황은 `Docs/TEMP_TODO_MUTATIONS.md`에서 별도 추적 중
-  - 작업 완료 후 해당 파일 삭제 및 이곳에 병합 예정
+- [ ] 나머지 변이 **수동 번역** (자동화 금지)
+  - **Physical Mutations**: 31개 중 1개 완료 (Stinger_Poisoning)
+  - **Mental Mutations**: 27개 미완료
+  - **Defects**: 22개 중 2개 완료 (Carnivorous, Cold-Blooded)
+  - **Morphotypes**: 3개 미완료
 - [ ] 오류 검증 및 인게임 테스트
   - [ ] 줄바꿈 배열 분리 확인
   - [ ] 색상 태그 표시 확인

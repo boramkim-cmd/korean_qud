@@ -1,5 +1,5 @@
 {
-  "generated": "2026-01-18 15:22:05",
+  "generated": "2026-01-18 16:43:37",
   "scripts": {
     "Scripts/99_Utils/99_00_03_StructureTranslator.cs": {
       "classification": "Util",
@@ -431,72 +431,40 @@
   "tools": {
     "merge_options.py": {
       "type": "script",
-      "size": 34666
-    },
-    "generate_subtype_jsons.py": {
-      "type": "script",
-      "size": 3556
-    },
-    "reorder_modes.py": {
-      "type": "script",
-      "size": 1876
-    },
-    "fix_json_duplicates.py": {
-      "type": "script",
-      "size": 3771
-    },
-    "check_untranslated.py": {
-      "type": "script",
-      "size": 1366
+      "size": 6712
     },
     "project_tool.py": {
       "type": "script",
-      "size": 12175
+      "size": 13217
     },
-    "extract_keys.py": {
+    "analyze_glossary.py": {
       "type": "script",
-      "size": 1405
-    },
-    "check_logs_for_untranslated.py": {
-      "type": "script",
-      "size": 2530
-    },
-    "split_glossary_chargen.py": {
-      "type": "script",
-      "size": 1806
+      "size": 11503
     },
     "check_missing_translations.py": {
       "type": "script",
-      "size": 3945
-    },
-    "update_subtypes.py": {
-      "type": "script",
-      "size": 3641
+      "size": 4495
     },
     "sort_json.py": {
       "type": "script",
-      "size": 1631
+      "size": 2136
     },
     "HarmonyAnalyzer": {
       "type": "tool_folder"
-    },
-    "populate_all_subtypes.py": {
-      "type": "script",
-      "size": 7606
     }
   },
   "docs": {
+    "07_STYLE_GUIDE.md": {
+      "modified": "2026-01-18"
+    },
     "03_CHANGELOG.md": {
       "modified": "2026-01-17"
     },
     "01_DEVELOPMENT_GUIDE.md": {
       "modified": "2026-01-17"
     },
-    "TEMP_TODO_MUTATIONS.md": {
-      "modified": "2026-01-17"
-    },
     "02_TODO.md": {
-      "modified": "2026-01-17"
+      "modified": "2026-01-18"
     },
     "01_CORE_PROJECT_INDEX.md": {
       "modified": "2026-01-18"
@@ -507,8 +475,14 @@
     "00_PRINCIPLES.md": {
       "modified": "2026-01-16"
     },
+    "05_ARCHITECTURE.md": {
+      "modified": "2026-01-18"
+    },
     "04_ERROR_LOG.md": {
       "modified": "2026-01-17"
+    },
+    "06_WORKFLOW.md": {
+      "modified": "2026-01-18"
     }
   },
   "localization": {
@@ -605,6 +579,12 @@
         "powers"
       ],
       "entries": 223
+    },
+    "glossary_display.json": {
+      "categories": [
+        "display"
+      ],
+      "entries": 32
     }
   }
 }

@@ -6,48 +6,69 @@ JSON 정렬 및 포맷팅 도구
 - 들여쓰기 2칸, 한글 깨짐 방지
 """
 
+from __future__ import annotations
 import json
 import sys
 from pathlib import Path
-from collections import OrderedDict
+from typing import Any
 
-def sort_json(file_path):
+
+def sort_json(file_path: str | Path) -> bool:
+    """JSON 파일을 정렬하여 저장. 성공 시 True 반환."""
     path = Path(file_path)
+    
     if not path.exists():
         print(f"❌ 파일 없음: {file_path}")
-        return
+        return False
 
     try:
-        with open(path, 'r', encoding='utf-8') as f:
-            data = json.load(f, object_pairs_hook=OrderedDict)
+        data: dict[str, Any] = json.loads(path.read_text(encoding='utf-8'))
+    except json.JSONDecodeError as e:
+        print(f"❌ JSON 파싱 오류 ({path.name}): {e}")
+        return False
+    except IOError as e:
+        print(f"❌ 파일 읽기 오류 ({path.name}): {e}")
+        return False
 
-        # 1. 카테고리 정렬
-        sorted_data = OrderedDict()
-        for cat in sorted(data.keys()):
-            items = data[cat]
-            if isinstance(items, dict):
-                # 2. 키 정렬
-                sorted_items = OrderedDict()
-                for key in sorted(items.keys()):
-                    sorted_items[key] = items[key]
-                sorted_data[cat] = sorted_items
-            else:
-                sorted_data[cat] = items
+    # Python 3.7+ dict는 삽입 순서 보장 → OrderedDict 불필요
+    sorted_data: dict[str, Any] = {}
+    
+    for cat in sorted(data.keys()):
+        items = data[cat]
+        if isinstance(items, dict):
+            # 카테고리 내 키 정렬
+            sorted_data[cat] = {k: items[k] for k in sorted(items.keys())}
+        else:
+            sorted_data[cat] = items
 
-        # 저장
-        with open(path, 'w', encoding='utf-8') as f:
-            json.dump(sorted_data, f, ensure_ascii=False, indent=2)
-        
+    try:
+        path.write_text(
+            json.dumps(sorted_data, ensure_ascii=False, indent=2),
+            encoding='utf-8'
+        )
         print(f"✅ 정렬 완료: {path.name}")
-    except Exception as e:
-        print(f"❌ 오류 발생 ({path.name}): {e}")
+        return True
+    except IOError as e:
+        print(f"❌ 파일 저장 오류 ({path.name}): {e}")
+        return False
 
-if __name__ == "__main__":
+
+def main() -> None:
     if len(sys.argv) > 1:
         for arg in sys.argv[1:]:
             sort_json(arg)
     else:
-        # 기본 디렉토리의 모든 glossary 정리
+        # 기본: LOCALIZATION 디렉토리의 모든 glossary 정리
         loc_dir = Path(__file__).parent.parent / "LOCALIZATION"
-        for f in loc_dir.glob("glossary_*.json"):
+        glossary_files = sorted(loc_dir.glob("glossary_*.json"))
+        
+        if not glossary_files:
+            print("⚠️  glossary_*.json 파일이 없습니다.")
+            return
+            
+        for f in glossary_files:
             sort_json(f)
+
+
+if __name__ == "__main__":
+    main()
