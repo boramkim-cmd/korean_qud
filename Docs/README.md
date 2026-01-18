@@ -41,6 +41,7 @@ Docs/
 | `03_TODO.md` | Task tracking |
 | `04_CHANGELOG.md` | Change history |
 | `05_ERROR_LOG.md` | Error tracking & solutions |
+| `12_ISSUE_MANAGEMENT_RULES.md` | Issue tracking system rules |
 
 ### reports/
 | File | Description |
@@ -67,6 +68,7 @@ Docs/
 | `03_TODO_KO.md` | 할일 목록 |
 | `04_CHANGELOG_KO.md` | 변경 기록 |
 | `05_ERROR_LOG_KO.md` | 에러 기록 |
+| `12_ISSUE_MANAGEMENT_RULES.md` | 이슈 추적 시스템 규칙 |
 
 ---
 
@@ -98,6 +100,42 @@ Docs/
 
 ## Issues/
 
-Issue tracking for specific bugs and tasks:
-- `00_INDEX.md` - Issue index
-- `ISSUE_*.md` - Individual issue files
+Standardized issue tracking system with automated status management.
+
+### Issue Status
+
+| Prefix | Status | Description |
+|--------|--------|-------------|
+| None | Active | Currently working on |
+| `WIP_` | In Progress | Multi-session issue |
+| `CLEAR_` | Resolved | Completely fixed |
+| `BLOCKED_` | Blocked | Waiting on dependency |
+| `DEPRECATED_` | Deprecated | No longer relevant |
+
+### Quick Commands
+
+```bash
+# Create new issue
+bash tools/create-issue.sh "Description" [priority] [category]
+
+# Update status
+bash tools/update-issue-status.sh ISSUE_FILE.md clear
+bash tools/update-issue-status.sh ISSUE_FILE.md wip
+
+# List issues
+bash tools/list-issues.sh           # All
+bash tools/list-issues.sh wip       # WIP only
+bash tools/list-issues.sh clear     # Resolved
+```
+
+### VS Code Tasks
+
+`Cmd+Shift+P` → "Run Task" → Select:
+- "List All Issues" - Show all issues with status
+- "Create New Issue" - Interactive issue creation
+
+### Documentation
+
+- [en/reference/12_ISSUE_MANAGEMENT_RULES.md](en/reference/12_ISSUE_MANAGEMENT_RULES.md) - Complete rules
+- [ko/reference/12_ISSUE_MANAGEMENT_RULES.md](ko/reference/12_ISSUE_MANAGEMENT_RULES.md) - 규칙 (한국어)
+- [Issues/00_INDEX.md](Issues/00_INDEX.md) - Issue index

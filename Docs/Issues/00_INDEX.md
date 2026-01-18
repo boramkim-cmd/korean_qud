@@ -1,20 +1,87 @@
 # Issue Resolution Index
-
-> **Purpose**: Summary index of all issue resolution reports  
+> **Purpose**: Standardized issue tracking and documentation  
 > **Location**: `Docs/Issues/`  
-> **Naming Convention**: `ISSUE_YYYYMMDD_SHORT_DESCRIPTION.md`
+> **Naming Convention**: `[STATUS_]ISSUE_YYYYMMDD_SHORT_DESCRIPTION.md`  
+> **Management System**: See [12_ISSUE_MANAGEMENT_RULES.md](../en/reference/12_ISSUE_MANAGEMENT_RULES.md)
 
 ---
 
-## Quick Reference
+## Status Legend
 
-| Date | Report | Issues | Status | Key Lesson |
-|------|--------|--------|--------|------------|
-| 2026-01-19 | [Code Analysis 16 Fixes](ISSUE_20260119_CODE_ANALYSIS_16_FIXES.md) | 16 | ✅ Resolved | Harmony Traverse API: Generic vs non-generic have different methods |
+| Emoji | Status | Description |
+|-------|--------|-------------|
+| 🟡 | Active/WIP | Currently being worked on |
+| 🟢 | CLEAR | Completely resolved |
+| 🔴 | BLOCKED | Waiting on external dependency |
+| ⚫ | DEPRECATED | No longer relevant |
 
 ---
 
-## Report Template
+## Active Issues
+
+| Date | Description | Priority | Category | File |
+|------|-------------|----------|----------|------|
+| - | - | - | - | - |
+
+## Work In Progress
+
+| Date | Description | Priority | Category | File |
+|------|-------------|----------|----------|------|
+| - | - | - | - | - |
+
+## Resolved Issues
+
+| Date | Description | Priority | Category | File |
+|------|-------------|----------|----------|------|
+| 2026-01-19 | Code Analysis 16 Fixes | High | Bug | [CLEAR_ISSUE_20260119_CODE_ANALYSIS_16_FIXES.md](CLEAR_ISSUE_20260119_CODE_ANALYSIS_16_FIXES.md) |
+
+## Blocked Issues
+
+| Date | Description | Priority | Category | File |
+|------|-------------|----------|----------|------|
+| - | - | - | - | - |
+
+---
+
+## Tools & Commands
+
+### Create New Issue
+```bash
+bash tools/create-issue.sh "Short Description" [priority] [category]
+```
+
+### Update Issue Status
+```bash
+bash tools/update-issue-status.sh ISSUE_FILE.md wip
+bash tools/update-issue-status.sh ISSUE_FILE.md clear
+bash tools/update-issue-status.sh ISSUE_FILE.md blocked
+bash tools/update-issue-status.sh ISSUE_FILE.md deprecated
+```
+
+### List Issues
+```bash
+bash tools/list-issues.sh           # All issues
+bash tools/list-issues.sh wip       # WIP only
+bash tools/list-issues.sh clear     # Resolved only
+bash tools/list-issues.sh blocked   # Blocked only
+```
+
+---
+
+## Statistics
+
+| Metric | Value |
+|--------|-------|
+| 🟡 Active | 0 |
+| 🟡 WIP | 0 |
+| 🟢 Resolved | 1 |
+| 🔴 Blocked | 0 |
+| ⚫ Deprecated | 0 |
+| **Total** | **1** |
+
+---
+
+## Issue Document Template
 
 When creating new issue reports, follow this structure:
 
