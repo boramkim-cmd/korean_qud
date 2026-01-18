@@ -125,8 +125,12 @@ namespace QudKRTranslation.Utils
                      string amount = repMatch.Groups[1].Value;
                      string faction = repMatch.Groups[2].Value;
                      
-                     if (TranslationEngine.TryTranslate(faction, out string tFaction, scopes) || 
-                         LocalizationManager.TryGetAnyTerm(faction, out tFaction, "factions", "ui", "common"))
+                     // 색상 태그 제거하여 팩션명 추출 (예: "{{g|the Farmers' Guild}}" -> "the Farmers' Guild")
+                     string cleanFaction = Regex.Replace(faction, @"\{\{[a-zA-Z]\|([^}]+)\}\}", "$1").Trim();
+                     
+                     if (TranslationEngine.TryTranslate(cleanFaction, out string tFaction, scopes) || 
+                         LocalizationManager.TryGetAnyTerm(cleanFaction, out tFaction, "factions", "chargen_ui", "ui", "common") ||
+                         LocalizationManager.TryGetAnyTerm(cleanFaction.ToLowerInvariant(), out tFaction, "factions", "chargen_ui", "ui", "common"))
                      {
                          lines[i] = prefix + uiPrefix + bulletPrefix + $"{tFaction} 평판 {amount}" + uiSuffix;
                          changed = true;

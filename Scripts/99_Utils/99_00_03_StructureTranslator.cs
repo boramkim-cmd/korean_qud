@@ -163,15 +163,38 @@ namespace QudKRTranslation.Utils
 
             private string CombineWithLevelText(string desc, List<string> levelText)
             {
-                List<string> extras = (levelText != null && levelText.Count > 0) ? levelText : null;
+                if (levelText == null || levelText.Count == 0)
+                {
+                    return string.IsNullOrEmpty(desc) ? "" : desc;
+                }
+                
+                // LevelText 각 항목에 불렛 프리픽스 추가 (이미 있으면 스킵)
+                var formattedExtras = new List<string>();
+                foreach (var line in levelText)
+                {
+                    if (string.IsNullOrWhiteSpace(line)) continue;
+                    
+                    // 이미 불렛이 있는지 확인
+                    bool hasBullet = line.StartsWith("{{c|ù}}") || 
+                                     line.StartsWith("ù") || 
+                                     line.StartsWith("•") ||
+                                     line.StartsWith("·");
+                    
+                    if (hasBullet)
+                    {
+                        formattedExtras.Add(line);
+                    }
+                    else
+                    {
+                        // 불렛 추가
+                        formattedExtras.Add("{{c|ù}} " + line);
+                    }
+                }
                 
                 if (string.IsNullOrEmpty(desc))
-                    return extras != null ? string.Join("\n", extras) : "";
+                    return string.Join("\n", formattedExtras);
                 
-                if (extras == null || extras.Count == 0)
-                    return desc;
-                
-                return desc + "\n\n" + string.Join("\n", extras);
+                return desc + "\n\n" + string.Join("\n", formattedExtras);
             }
 
 

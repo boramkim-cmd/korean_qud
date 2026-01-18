@@ -1,6 +1,6 @@
 # Caves of Qud 한글화 프로젝트 - 에러/이슈 로그
 
-> **버전**: 1.1 | **최종 업데이트**: 2026-01-16
+> **버전**: 1.2 | **최종 업데이트**: 2026-01-19
 
 > [!WARNING]
 > **AI 에이전트**: 작업 전 이 문서의 미해결 이슈(🔴 OPEN)를 확인하세요!
@@ -53,6 +53,141 @@
 ---
 
 *현재 미해결된 이슈가 없습니다.*
+
+---
+
+## ERR-008: 캐릭터 생성 속성 화면 크래시 (Substring 인덱스 오류)
+
+### 기본 정보
+| 항목       | 내용                   |
+| ---------- | ---------------------- |
+| **상태**   | 🟢 RESOLVED            |
+| **심각도** | 🔴 Critical            |
+| **발견일** | 2026-01-19             |
+| **해결일** | 2026-01-19             |
+
+### 증상
+1. 캐릭터 생성에서 계급/직업 선택 후 다음 단계로 진행 불가.
+2. Player.log에 `ArgumentOutOfRangeException: Index and length must refer to a location within the string.` 에러 다수 발생.
+3. 속성(Attributes) 화면에서 크래시 발생.
+
+### 원인 분석
+1. 게임 원본 코드 `AttributeSelectionControl.Updated()`에서 속성명의 첫 3글자를 추출: 
+   ```csharp
+   attribute.text = data.Attribute.Substring(0, 3).ToUpper();  // "Strength" → "STR"
+   ```
+2. 한글화 패치에서 `attr.Attribute`를 한글로 번역(예: "힘")하면 3글자 미만이므로 `Substring(0, 3)` 호출 시 `ArgumentOutOfRangeException` 발생.
+3. 이로 인해 `EmbarkBuilder.advance()` 호출이 실패하여 다음 단계로 진행 불가.
+
+### ✅ 최종 해결
+1. **기존 패치 제거**: `Patch_QudAttributesModuleWindow`에서 `attr.Attribute` 직접 번역 삭제.
+2. **새 패치 추가**: `AttributeSelectionControl.Updated()`를 Postfix 패치하여 UI 텍스트(`attribute.text`)만 번역.
+3. **핵심**: 데이터 필드는 원본 영문 유지, UI 표시만 한글로 변경.
+
+### 관련 파일
+- `Scripts/02_Patches/10_UI/02_10_10_CharacterCreation.cs`
+
+### 예방 가이드
+⚠️ **주의**: 게임 원본 코드가 특정 데이터 필드를 가공(Substring, Split 등)하는 경우, 해당 필드를 직접 번역하면 안 됨. 대신 가공 후 UI에 표시되는 시점에서 Postfix 패치로 번역해야 함.
+
+---
+
+## ERR-009: 캐릭터 생성 설명에 불렛(닷) 표시 누락 및 중복
+
+### 기본 정보
+| 항목       | 내용                   |
+| ---------- | ---------------------- |
+| **상태**   | 🟢 RESOLVED            |
+| **심각도** | 🟠 High                |
+| **발견일** | 2026-01-19             |
+| **해결일** | 2026-01-19             |
+
+### 증상
+1. 직업/계급 선택 시 설명 앞에 불렛(`{{c|ù}}`) 표시가 누락됨.
+2. 일부 화면에서 불렛이 중복 표시되는 더블 닷 이슈.
+
+### 원인 분석
+1. `CHARGEN/SUBTYPES/` JSON 파일의 `leveltext_ko` 배열에 불렛 프리픽스 미포함.
+2. `StructureTranslator.CombineWithLevelText()`에서 불렛 자동 추가 로직 부재.
+
+### ✅ 최종 해결
+1. `CombineWithLevelText()` 메서드 개선:
+   - LevelTextKo 각 항목에 불렛(`{{c|ù}} `) 자동 추가
+   - 이미 불렛이 있는 경우 중복 추가 방지
+   
+```csharp
+// 이미 불렛이 있는지 확인
+bool hasBullet = line.StartsWith("{{c|ù}}") || line.StartsWith("ù") || ...;
+if (!hasBullet) formattedExtras.Add("{{c|ù}} " + line);
+```
+
+### 관련 파일
+- `Scripts/99_Utils/99_00_03_StructureTranslator.cs`
+
+---
+
+## ERR-010: 계급명에 영문 괄호 표기 포함
+
+### 기본 정보
+| 항목       | 내용                   |
+| ---------- | ---------------------- |
+| **상태**   | 🟢 RESOLVED            |
+| **심각도** | 🟢 Low                 |
+| **발견일** | 2026-01-19             |
+| **해결일** | 2026-01-19             |
+
+### 증상
+계급 선택 화면에서 `"영사(Consul)"`, `"프라이토리아(Praetorian)"` 등 영문이 괄호 안에 포함되어 UI 폭을 초과.
+
+### 원인 분석
+Castes JSON 파일의 `names` 섹션에 영문 병기 형식으로 작성됨.
+
+### ✅ 최종 해결
+5개 Castes JSON 파일에서 영문 괄호 표기 제거:
+- `Artifex.json`: `"아르티펙스(Artifex)"` → `"아르티펙스"`
+- `Consul.json`: `"영사(Consul)"` → `"영사"`
+- `Eunuch.json`: `"환관(Eunuch)"` → `"환관"`
+- `Praetorian.json`: `"프라이토리아(Praetorian)"` → `"프라이토리아"`
+- `Syzygyrior.json`: `"시지지리어(Syzygyrior)"` → `"시지지리어"`
+
+### 관련 파일
+- `LOCALIZATION/CHARGEN/SUBTYPES/Castes/*.json`
+
+---
+
+## ERR-011: 평판 텍스트 동적 생성으로 인한 번역 누락
+
+### 기본 정보
+| 항목       | 내용                   |
+| ---------- | ---------------------- |
+| **상태**   | 🟢 RESOLVED            |
+| **심각도** | 🟠 High                |
+| **발견일** | 2026-01-19             |
+| **해결일** | 2026-01-19             |
+
+### 증상
+`+200 reputation with the Farmers' Guild` 같은 평판 텍스트가 영어로 표시됨.
+
+### 원인 분석
+1. 게임 원본 `SubtypeEntry.GetChargenInfo()`에서 평판 텍스트를 런타임에 동적 생성:
+   ```csharp
+   list.Add("{{c|ù}} " + reputation.Value.Signed() + " reputation with " + ifExists.GetFormattedName());
+   ```
+2. JSON에 미리 정의할 수 없으므로 Regex 패턴 매칭으로 번역 필요.
+3. 팩션 이름에 색상 태그(`{{g|...}}`)가 포함될 수 있음.
+
+### ✅ 최종 해결
+1. `ChargenTranslationUtils.TranslateLongDescription()` 개선:
+   - 색상 태그 제거 후 팩션명 조회
+   - 대소문자 무관 매칭 추가
+   
+2. `factions.json` 확장:
+   - 다양한 대소문자 변형 추가 (예: `"the Farmers' Guild"`, `"Farmers' Guild"`)
+   - 누락된 팩션 추가
+
+### 관련 파일
+- `Scripts/99_Utils/99_00_02_ChargenTranslationUtils.cs`
+- `LOCALIZATION/CHARGEN/factions.json`
 
 ---
 

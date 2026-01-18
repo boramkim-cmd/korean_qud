@@ -384,21 +384,32 @@ namespace QudKRTranslation.Patches
     // ========================================================================
     // [5] 속성 분배 (QudAttributesModuleWindow)
     // ========================================================================
-    [HarmonyPatch(typeof(QudAttributesModuleWindow))]
-    public static class Patch_QudAttributesModuleWindow
+    // 주의: attr.Attribute를 직접 번역하면 안 됨!
+    // 게임 원본 AttributeSelectionControl.Updated()에서 Substring(0,3)을 사용하므로
+    // 3글자 미만의 한글(예: "힘")로 번역 시 ArgumentOutOfRangeException 발생.
+    // 대신 AttributeSelectionControl.Updated()를 Postfix 패치하여 UI 텍스트만 번역.
+    
+    [HarmonyPatch(typeof(AttributeSelectionControl))]
+    public static class Patch_AttributeSelectionControl
     {
-        [HarmonyPatch(nameof(QudAttributesModuleWindow.UpdateControls))]
-        [HarmonyPrefix]
-        static void UpdateControls_Prefix(QudAttributesModuleWindow __instance)
+        [HarmonyPatch(nameof(AttributeSelectionControl.Updated))]
+        [HarmonyPostfix]
+        static void Updated_Postfix(AttributeSelectionControl __instance)
         {
-            if (__instance.attributes == null) return;
-            foreach (var attr in __instance.attributes)
+            if (__instance.data == null) return;
+            
+            // 원본 Attribute 이름으로 한글 번역 조회 (Substring 이후 UI 텍스트만 변경)
+            string originalAttr = __instance.data.Attribute;
+            if (!string.IsNullOrEmpty(originalAttr))
             {
-                if (!string.IsNullOrEmpty(attr.Attribute) && LocalizationManager.TryGetAnyTerm(attr.Attribute.ToLowerInvariant(), out string tName, "chargen_ui", "chargen_stats", "attributes", "ui"))
-                    attr.Attribute = tName;
-                
-                if (LocalizationManager.TryGetAnyTerm(attr.ShortAttributeName?.ToLowerInvariant(), out string tShort, "chargen_ui", "chargen_stats", "attributes", "ui"))
-                    attr.ShortAttributeName = tShort;
+                // 원본은 "STR", "AGI" 등으로 표시되지만, 우리는 한글로 변경
+                if (LocalizationManager.TryGetAnyTerm(originalAttr.ToLowerInvariant(), out string tName, "chargen_stats", "chargen_ui", "attributes", "ui"))
+                {
+                    // 한글 속성명의 첫 글자만 또는 전체를 표시 (예: "힘", "민", "지" 등)
+                    // UI 공간 제약에 따라 조정 가능
+                    string shortKorean = tName.Length >= 3 ? tName.Substring(0, 3) : tName;
+                    __instance.attribute.text = shortKorean;
+                }
             }
         }
     }
