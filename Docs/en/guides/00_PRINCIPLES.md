@@ -10,24 +10,29 @@
 
 ```
 Docs/
-├── 00_PRINCIPLES.md           ← This document (required, read first)
-├── 01_PROJECT_INDEX.md        ← Project file/method index (auto-generated)
-├── 02_QUICK_REFERENCE.md      ← Quick reference card (auto-generated)
-├── 03_TODO.md                 ← Task tracking (check before work)
-├── 04_CHANGELOG.md            ← Completion log (update on phase complete)
-├── 05_ERROR_LOG.md            ← Error tracking (log/check on errors)
-├── 06_ARCHITECTURE.md         ← System architecture
-├── 07_WORKFLOW.md             ← Work procedures
-├── 08_STYLE_GUIDE.md          ← Translation style guide
-├── 09_TOOLS_AND_BUILD.md      ← Build tools guide
-└── 10_DEVELOPMENT_GUIDE.md    ← Detailed development guide (reference as needed)
+├── README.md                      ← Documentation index
+├── en/                            # English (AI/Developer)
+│   ├── guides/
+│   │   ├── 00_PRINCIPLES.md       ← This document (required, read first)
+│   │   ├── 06_ARCHITECTURE.md     ← System architecture
+│   │   ├── 09_TOOLS_AND_BUILD.md  ← Build tools guide
+│   │   └── 10_DEVELOPMENT_GUIDE.md ← Detailed development guide
+│   ├── reference/
+│   │   ├── 03_TODO.md             ← Task tracking
+│   │   ├── 04_CHANGELOG.md        ← Completion log
+│   │   └── 05_ERROR_LOG.md        ← Error tracking
+│   └── reports/                   ← Bug/analysis reports
+├── ko/                            # Korean (한국어)
+│   ├── guides/                    ← 원칙, 워크플로우, 스타일
+│   └── reference/                 ← TODO, 변경로그, 에러로그
+└── Issues/                        ← Issue tracking
 ```
 
 ### Document Reading Order
 ```
-1. 00_PRINCIPLES.md (this document) → Required, read fully
-2. 03_TODO.md → Check current work in progress
-3. 05_ERROR_LOG.md → Check known issues
+1. en/guides/00_PRINCIPLES.md (this document) → Required, read fully
+2. en/reference/03_TODO.md → Check current work in progress
+3. en/reference/05_ERROR_LOG.md → Check known issues
 4. 10_DEVELOPMENT_GUIDE.md → Reference specific parts as needed
 ```
 

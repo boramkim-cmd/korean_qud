@@ -174,8 +174,9 @@ namespace QudKRTranslation.Utils
                 {
                     if (string.IsNullOrWhiteSpace(line)) continue;
                     
-                    // 이미 불렛이 있는지 확인
-                    bool hasBullet = line.StartsWith("{{c|ù}}") || 
+                    // [FIX Issue 10] 대소문자 무시 불렛 체크 - {{C|ù}}와 {{c|ù}} 모두 처리
+                    bool hasBullet = line.StartsWith("{{c|ù}}", StringComparison.OrdinalIgnoreCase) || 
+                                     line.StartsWith("{{C|ù}}", StringComparison.OrdinalIgnoreCase) ||
                                      line.StartsWith("ù") || 
                                      line.StartsWith("•") ||
                                      line.StartsWith("·");

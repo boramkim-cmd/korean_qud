@@ -390,6 +390,27 @@ namespace QudKRTranslation.Core
                             case 'n': sb.Append('\n'); break;
                             case 'r': sb.Append('\r'); break;
                             case 't': sb.Append('\t'); break;
+                            // [FIX Issue 16] Handle unicode escape sequences \\uXXXX
+                            case 'u':
+                                if (index + 4 <= json.Length)
+                                {
+                                    string hex = json.Substring(index, 4);
+                                    if (int.TryParse(hex, System.Globalization.NumberStyles.HexNumber, null, out int codePoint))
+                                    {
+                                        sb.Append((char)codePoint);
+                                        index += 4;
+                                    }
+                                    else
+                                    {
+                                        // Invalid escape, append as-is
+                                        sb.Append('u');
+                                    }
+                                }
+                                else
+                                {
+                                    sb.Append('u');
+                                }
+                                break;
                             default: sb.Append(next); break;
                         }
                     }

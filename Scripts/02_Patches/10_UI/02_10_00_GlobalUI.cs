@@ -31,10 +31,17 @@ namespace QudKRTranslation.Patches
         static MethodBase TargetMethod()
         {
             var type = AccessTools.TypeByName("Qud.UI.MainMenu") ?? AccessTools.TypeByName("XRL.UI.MainMenu");
-            return type != null ? AccessTools.Method(type, "Show") : null;
+            // [FIX Issue 12] TargetMethod null logging
+            if (type == null)
+            {
+                Debug.LogError("[Qud-KR] MainMenu type not found! Translation will not work.");
+                return null;
+            }
+            return AccessTools.Method(type, "Show");
         }
 
-        private static bool _scopePushed = false;
+        // [FIX Issue 2] internal to allow access from Patch_MainMenu_Hide for proper Pop handling
+        internal static bool _scopePushed = false;
 
         [HarmonyPrefix]
         static void Show_Prefix()
@@ -42,8 +49,12 @@ namespace QudKRTranslation.Patches
             // [Essential] 폰트 로드 보장 (UIManager.Init 시점 문제 해결)
             FontManager.ApplyKoreanFont();
 
-            // 메인 메뉴 진입 시 스택 초기화 (안전장치)
-            ScopeManager.ClearAll();
+            // [FIX Issue 1] 조건부 스택 초기화 - 비정상적으로 깊을 때만 초기화 (복구 메커니즘)
+            if (ScopeManager.GetDepth() > 3)
+            {
+                Debug.LogWarning("[Qud-KR] Scope stack was unexpectedly deep, cleared");
+                ScopeManager.ClearAll();
+            }
             _scopePushed = false;
 
             if (!_scopePushed)
@@ -87,15 +98,18 @@ namespace QudKRTranslation.Patches
             return type != null ? AccessTools.Method(type, "Hide") : null;
         }
 
+        // [FIX Issue 2] _scopePushed 상태 공유를 위한 static 참조
+        private static bool _hideNeedsPop => Patch_MainMenu_Scope._scopePushed;
+        
         [HarmonyPrefix]
         static void Hide_Prefix()
         {
-            // MainMenu는 닫힐 때 명확히 Pop을 하기엔 싱글톤/다중 호출 등의 이슈가 있을 수 있어
-            // ScopeManager의 자동 관리나 명시적 Clear를 기대해야 할 수도 있지만,
-            // 여기서는 일단 PopScope 시도. (하지만 _scopePushed 상태 공유가 안되므로 주의)
-            
-            // ScopeManager.PopScope(); 
-            // -> 메인 메뉴가 최상위이므로 보통 놔둬도 됨. 또는 다른 화면으로 갈 때 덮어씌워짐.
+            // [FIX Issue 2] 메인 메뉴가 닫힐 때 스코프 정리
+            if (Patch_MainMenu_Scope._scopePushed)
+            {
+                ScopeManager.PopScope();
+                Patch_MainMenu_Scope._scopePushed = false;
+            }
         }
     }
 
@@ -242,7 +256,13 @@ namespace QudKRTranslation.Patches
                     }
                 }
             }
-            catch { }
+            // [FIX Issue 11] Log exceptions instead of silent swallowing
+            catch (System.Exception ex)
+            {
+                #if DEBUG
+                Debug.LogWarning($"[Qud-KR TMP_Text Patch] {ex.Message}");
+                #endif
+            }
         }
     }
 

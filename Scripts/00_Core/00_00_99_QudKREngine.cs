@@ -29,6 +29,9 @@ namespace QudKRTranslation.Core
     public static class FontManager
     {
         public static bool IsFontLoaded { get; private set; } = false;
+        
+        // [FIX Issue 14] Feature flag to prevent unnecessary calls and log spam
+        private static bool _hasLoggedDisabled = false;
 
         public static string[] TargetFontNames = { 
             "NeoDunggeunmo-Regular", 
@@ -40,7 +43,12 @@ namespace QudKRTranslation.Core
 
         public static void ApplyKoreanFont()
         {
-            Debug.Log("[Qud-KR] 폰트 적용 로직 비활성화 (UI 깨짐 방지)");
+            // [FIX Issue 14] Only log once to reduce spam
+            if (!_hasLoggedDisabled)
+            {
+                Debug.Log("[Qud-KR] 폰트 적용 로직 비활성화 (UI 깨짐 방지)");
+                _hasLoggedDisabled = true;
+            }
         }
     }
 

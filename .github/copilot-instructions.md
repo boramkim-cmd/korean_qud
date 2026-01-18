@@ -47,8 +47,8 @@
 2. No Guessing: Always verify in actual code (grep -r "keyword" Assets/core_source/)
 3. Reuse First: Search existing code before writing new
 4. Validate Required: Never deploy without project_tool.py
-5. Log Errors: All issues -> Docs/05_ERROR_LOG.md
-6. Log Changes: All changes -> Docs/04_CHANGELOG.md
+5. Log Errors: All issues -> Docs/en/reference/05_ERROR_LOG.md
+6. Log Changes: All changes -> Docs/en/reference/04_CHANGELOG.md
 7. Check Both Namespaces: Most screens have dual implementation (XRL.UI + Qud.UI)
 
 ################################################################################
@@ -62,7 +62,7 @@
 | ERR-011 | Game source `SubtypeEntry... | Game source `SubtypeEntry... | `ChargenTranslationUtils.... |
 | ERR-006 | Stinger Mutation Descript... | `02_10_10_CharacterCreati... | Split into structured for... |
 
-# Full details: Docs/05_ERROR_LOG.md
+# Full details: Docs/en/reference/05_ERROR_LOG.md
 
 ################################################################################
 # LAYER 4: KEY FILE PATHS
@@ -85,11 +85,15 @@
 # LOCALIZATION/GAMEPLAY/  - Gameplay (includes MUTATIONS/)
 # LOCALIZATION/UI/        - Common UI
 
-## Documentation
-# Docs/00_PRINCIPLES.md   - Detailed principles (required reading)
-# Docs/05_ERROR_LOG.md    - Error history
-# Docs/04_CHANGELOG.md    - Change history
-# Docs/06_ARCHITECTURE.md - System architecture
+## Documentation (Reorganized by language/purpose)
+# Docs/en/guides/00_PRINCIPLES.md      - Detailed principles (required reading)
+# Docs/en/guides/06_ARCHITECTURE.md    - System architecture
+# Docs/en/guides/10_DEVELOPMENT_GUIDE.md - Development guide
+# Docs/en/reference/03_TODO.md         - Task tracking
+# Docs/en/reference/04_CHANGELOG.md    - Change history
+# Docs/en/reference/05_ERROR_LOG.md    - Error history
+# Docs/ko/guides/                       - Korean guides (workflow, style)
+# Docs/ko/reference/                    - Korean reference (TODO, changelog)
 
 ################################################################################
 # LAYER 5: ESSENTIAL COMMANDS
@@ -154,6 +158,6 @@
 ################################################################################
 
 # [ ] python3 tools/project_tool.py validation passed
-# [ ] Errors logged in Docs/05_ERROR_LOG.md (if any)
-# [ ] Changes logged in Docs/04_CHANGELOG.md
+# [ ] Errors logged in Docs/en/reference/05_ERROR_LOG.md (if any)
+# [ ] Changes logged in Docs/en/reference/04_CHANGELOG.md
 # [ ] bash tools/sync-and-deploy.sh deployment complete

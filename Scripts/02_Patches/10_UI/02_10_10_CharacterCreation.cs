@@ -64,15 +64,24 @@ namespace QudKRTranslation.Patches
             var list = __result.ToList();
             foreach (var choice in list)
             {
-                if (LocalizationManager.TryGetAnyTerm(choice.Title?.ToLowerInvariant(), out string tTitle, "chargen_mode", "chargen_ui"))
+                if (choice == null) continue;
+                
+                // [FIX Issue 4] CRITICAL: NEVER modify choice.Id - used for selection logic
+                string originalId = choice.Id;
+                
+                // [FIX Issue 8] Null check before ToLowerInvariant()
+                if (!string.IsNullOrEmpty(choice.Title) && 
+                    LocalizationManager.TryGetAnyTerm(choice.Title.ToLowerInvariant(), out string tTitle, "chargen_mode", "chargen_ui"))
                     choice.Title = tTitle;
                 
+                // [FIX Issue 5] Traverse field access
                 var tr = Traverse.Create(choice);
-                string desc = tr.Field<string>("Description").Value;
-                if (!string.IsNullOrEmpty(desc))
-                {
-                    // Daily 모드의 동적 날짜 처리
-                    if (choice.Id == "Daily" && desc.Contains("Currently in day"))
+                var descField = tr.Field<string>("Description");
+                string desc = descField.Value;
+                if (string.IsNullOrEmpty(desc)) continue;
+                
+                // Daily 모드의 동적 날짜 처리
+                if (choice.Id == "Daily" && desc.Contains("Currently in day"))
                     {
                         // 숫자 부분 추출 (예: "Currently in day {{W|16}} of {{W|2026}}.")
                         var match = System.Text.RegularExpressions.Regex.Match(desc, @"day {{W\|(\d+)}} of {{W\|(\d+)}}");
@@ -100,8 +109,10 @@ namespace QudKRTranslation.Patches
                         }
                     }
                     
-                    tr.Field<string>("Description").Value = ChargenTranslationUtils.TranslateLongDescription(desc, "chargen_mode", "chargen_ui");
-                }
+                descField.Value = ChargenTranslationUtils.TranslateLongDescription(desc, "chargen_mode", "chargen_ui");
+                
+                // [FIX Issue 4] Verify Id field was not modified
+                Debug.Assert(choice.Id == originalId, $"[Qud-KR] CRITICAL: Id field was modified from '{originalId}'!");
             }
             __result = list;
         }
@@ -121,15 +132,30 @@ namespace QudKRTranslation.Patches
             var list = __result.ToList();
             foreach (var choice in list)
             {
-                if (LocalizationManager.TryGetAnyTerm(choice.Title?.ToLowerInvariant(), out string tTitle, "chargen_ui", "ui"))
+                if (choice == null) continue;
+                
+                // [FIX Issue 4] CRITICAL: NEVER modify choice.Id
+                string originalId = choice.Id;
+                
+                // [FIX Issue 8] Null check before ToLowerInvariant()
+                if (!string.IsNullOrEmpty(choice.Title) && 
+                    LocalizationManager.TryGetAnyTerm(choice.Title.ToLowerInvariant(), out string tTitle, "chargen_ui", "ui"))
                     choice.Title = tTitle;
 
+                // [FIX Issue 5] Traverse field existence check - use non-generic for FieldExists
                 var tr = Traverse.Create(choice);
-                string desc = tr.Field<string>("Description").Value;
-                if (!string.IsNullOrEmpty(desc))
+                var descTraverse = tr.Field("Description");
+                if (descTraverse.FieldExists())
                 {
-                    tr.Field<string>("Description").Value = ChargenTranslationUtils.TranslateLongDescription(desc, "chargen_ui", "ui");
+                    string descVal = descTraverse.GetValue<string>();
+                    if (!string.IsNullOrEmpty(descVal))
+                    {
+                        descTraverse.SetValue(ChargenTranslationUtils.TranslateLongDescription(descVal, "chargen_ui", "ui"));
+                    }
                 }
+                
+                // [FIX Issue 4] Verify Id field was not modified
+                Debug.Assert(choice.Id == originalId, $"[Qud-KR] CRITICAL: Id field was modified from '{originalId}'!");
             }
             __result = list;
         }
@@ -141,39 +167,64 @@ namespace QudKRTranslation.Patches
     [HarmonyPatch(typeof(QudGenotypeModuleWindow))]
     public static class Patch_QudGenotypeModuleWindow
     {
-        [HarmonyPatch(nameof(QudGenotypeModuleWindow.BeforeShow))]
-        [HarmonyPrefix]
-        static void BeforeShow_Prefix(QudGenotypeModuleWindow __instance)
+        // [FIX Issue 3] BeforeShow_Prefix -> GetSelections_Postfix로 변경
+        // genotype.DisplayName/ExtraInfo (데이터 필드)를 직접 수정하는 대신
+        // ChoiceWithColorIcon (UI 객체)만 수정하여 "UI-Only Postfix Pattern" 원칙 준수
+        
+        [HarmonyPatch(nameof(QudGenotypeModuleWindow.GetSelections))]
+        [HarmonyPostfix]
+        static void GetSelections_Postfix(QudGenotypeModuleWindow __instance, ref IEnumerable<ChoiceWithColorIcon> __result)
         {
-            if (__instance.module?.genotypes == null) return;
-            foreach (var genotype in __instance.module.genotypes)
+            if (__result == null) return;
+            var list = __result.ToList();
+            
+            foreach (var choice in list)
             {
-                if (genotype == null) continue;
-
-                // Use StructureTranslator for Genotypes (Mutated Human, True Kin)
-                if (StructureTranslator.TryGetData(genotype.Name, out var data))
+                if (choice == null) continue;
+                
+                // CRITICAL: NEVER modify choice.Id - used for selection logic (see ERR-008)
+                string originalId = choice.Id;
+                
+                // choice.Id (= genotype.Name)를 사용하여 번역 데이터 조회
+                if (StructureTranslator.TryGetData(originalId, out var data))
                 {
+                    // UI 필드만 수정 (Title = DisplayName에 해당)
                     if (!string.IsNullOrEmpty(data.KoreanName))
-                        genotype.DisplayName = data.KoreanName;
+                        choice.Title = data.KoreanName;
                     
+                    // Description (GetFlatChargenInfo 결과)도 UI 객체 필드
+                    var tr = Traverse.Create(choice);
+                    string originalDesc = tr.Field<string>("Description").Value;
+                    
+                    // LevelText를 Description에 병합
                     if (data.LevelTextKo != null && data.LevelTextKo.Count > 0)
-                        genotype.ExtraInfo = new List<string>(data.LevelTextKo);
-                }
-                else
-                {
-                    // Fallback to old logic
-                    if (LocalizationManager.TryGetAnyTerm(genotype.DisplayName?.ToLowerInvariant(), out string tName, "chargen_proto", "mutation"))
-                        genotype.DisplayName = tName;
-                    
-                    if (genotype.ExtraInfo != null)
                     {
-                        for (int i = 0; i < genotype.ExtraInfo.Count; i++)
+                        string newDesc = data.GetCombinedLongDescription(originalDesc);
+                        if (!string.IsNullOrEmpty(newDesc))
                         {
-                            genotype.ExtraInfo[i] = ChargenTranslationUtils.TranslateLongDescription(genotype.ExtraInfo[i], "chargen_proto", "chargen_ui", "mutation", "mutation_desc", "powers", "power", "skill", "skill_desc");
+                            tr.Field<string>("Description").Value = newDesc;
                         }
                     }
                 }
+                else
+                {
+                    // Fallback: 기존 로직 (UI 필드만 수정)
+                    if (LocalizationManager.TryGetAnyTerm(choice.Title?.ToLowerInvariant(), out string tName, "chargen_proto", "mutation"))
+                        choice.Title = tName;
+                    
+                    var tr = Traverse.Create(choice);
+                    string desc = tr.Field<string>("Description").Value;
+                    if (!string.IsNullOrEmpty(desc))
+                    {
+                        tr.Field<string>("Description").Value = ChargenTranslationUtils.TranslateLongDescription(
+                            desc, "chargen_proto", "chargen_ui", "mutation", "mutation_desc", "powers", "power", "skill", "skill_desc");
+                    }
+                }
+                
+                // Verify Id field was not modified
+                Debug.Assert(choice.Id == originalId, $"[Qud-KR] CRITICAL: Id field was modified from '{originalId}' - this will cause crashes!");
             }
+            __result = list;
         }
     }
 
@@ -529,15 +580,30 @@ namespace QudKRTranslation.Patches
             var list = __result.ToList();
             foreach (var choice in list)
             {
-                if (LocalizationManager.TryGetAnyTerm(choice.Title?.ToLowerInvariant(), out string tTitle, "chargen_pregen", "chargen_proto"))
+                if (choice == null) continue;
+                
+                // [FIX Issue 4] CRITICAL: NEVER modify choice.Id
+                string originalId = choice.Id;
+                
+                // [FIX Issue 8] Null check before ToLowerInvariant()
+                if (!string.IsNullOrEmpty(choice.Title) && 
+                    LocalizationManager.TryGetAnyTerm(choice.Title.ToLowerInvariant(), out string tTitle, "chargen_pregen", "chargen_proto"))
                     choice.Title = tTitle;
                 
+                // [FIX Issue 5] Traverse field existence check - use non-generic for FieldExists
                 var tr = Traverse.Create(choice);
-                string desc = tr.Field<string>("Description").Value;
-                if (!string.IsNullOrEmpty(desc))
+                var descTraverse = tr.Field("Description");
+                if (descTraverse.FieldExists())
                 {
-                    tr.Field<string>("Description").Value = ChargenTranslationUtils.TranslateLongDescription(desc, "chargen_pregen", "chargen_proto");
+                    string descVal = descTraverse.GetValue<string>();
+                    if (!string.IsNullOrEmpty(descVal))
+                    {
+                        descTraverse.SetValue(ChargenTranslationUtils.TranslateLongDescription(descVal, "chargen_pregen", "chargen_proto"));
+                    }
                 }
+                
+                // [FIX Issue 4] Verify Id field was not modified
+                Debug.Assert(choice.Id == originalId, $"[Qud-KR] CRITICAL: Id field was modified from '{originalId}'!");
             }
             __result = list;
         }
@@ -549,24 +615,52 @@ namespace QudKRTranslation.Patches
     [HarmonyPatch(typeof(QudChooseStartingLocationModuleWindow))]
     public static class Patch_QudChooseStartingLocationModuleWindow
     {
-        [HarmonyPatch(nameof(QudChooseStartingLocationModuleWindow.BeforeShow))]
-        [HarmonyPrefix]
-        static void BeforeShow_Prefix(QudChooseStartingLocationModuleWindow __instance)
+        // [FIX Issue 7] BeforeShow_Prefix -> GetSelections_Postfix로 변경
+        // loc.Name (데이터 필드)를 직접 수정하는 대신 StartingLocationData의 UI 필드만 수정
+        
+        [HarmonyPatch(nameof(QudChooseStartingLocationModuleWindow.GetSelections))]
+        [HarmonyPostfix]
+        static void GetSelections_Postfix(ref IEnumerable<StartingLocationData> __result)
         {
-            if (__instance.module?.startingLocations == null) return;
-            foreach (var loc in __instance.module.startingLocations.Values)
+            if (__result == null) return;
+            var list = __result.ToList();
+            
+            foreach (var loc in list)
             {
                 if (loc == null) continue;
-                if (LocalizationManager.TryGetAnyTerm(loc.Name?.ToLowerInvariant(), out string tName, "chargen_location"))
-                    loc.Name = tName;
                 
+                // [FIX Issue 4] Id 필드 보호 - 원본 캐시
+                string originalId = loc.Id;
+                
+                // [FIX Issue 5] Traverse 필드 존재 확인 후 접근 - use non-generic for FieldExists
                 var tr = Traverse.Create(loc);
-                string desc = tr.Field<string>("Description").Value;
-                if (!string.IsNullOrEmpty(desc))
+                
+                // Name 필드 번역 (UI용 표시 이름)
+                var nameTraverse = tr.Field("Name");
+                if (nameTraverse.FieldExists())
                 {
-                    tr.Field<string>("Description").Value = ChargenTranslationUtils.TranslateLongDescription(desc, "chargen_location");
+                    string name = nameTraverse.GetValue<string>();
+                    if (!string.IsNullOrEmpty(name) && LocalizationManager.TryGetAnyTerm(name.ToLowerInvariant(), out string tName, "chargen_location"))
+                    {
+                        nameTraverse.SetValue(tName);
+                    }
                 }
+                
+                // Description 필드 번역
+                var descTraverse = tr.Field("Description");
+                if (descTraverse.FieldExists())
+                {
+                    string descVal = descTraverse.GetValue<string>();
+                    if (!string.IsNullOrEmpty(descVal))
+                    {
+                        descTraverse.SetValue(ChargenTranslationUtils.TranslateLongDescription(descVal, "chargen_location"));
+                    }
+                }
+                
+                // Verify Id field was not modified
+                Debug.Assert(loc.Id == originalId, $"[Qud-KR] CRITICAL: StartingLocation Id was modified from '{originalId}'!");
             }
+            __result = list;
         }
     }
 

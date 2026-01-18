@@ -75,14 +75,18 @@ namespace QudKRTranslation
         
         /// <summary>
         /// 패치 대상 타입 및 메서드를 검증합니다. (선택적)
+        /// [FIX Issue 13] Document hardcoded type names - these may change with game updates.
+        /// When game updates break patches, check these types first.
         /// </summary>
         private static void VerifyPatchTargets()
         {
             // 주요 타겟 타입 존재 여부만 로그로 남김
+            // NOTE: These are version-sensitive. Update if game structure changes.
+            // Last verified: Caves of Qud 2026.1.x
             string[] criticalTypes = { 
-                "ConsoleLib.Console.ScreenBuffer", 
-                "XRL.UI.UITextSkin",
-                "Qud.UI.MainMenu" 
+                "ConsoleLib.Console.ScreenBuffer",  // Console rendering
+                "XRL.UI.UITextSkin",                 // Modern UI text
+                "Qud.UI.MainMenu"                   // Main menu (may also be XRL.UI.MainMenu in older versions)
             };
             
             foreach(var typeName in criticalTypes) {

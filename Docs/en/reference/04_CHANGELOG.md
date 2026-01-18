@@ -1,12 +1,106 @@
 # Caves of Qud Korean Localization - Changelog
 
-> **Version**: 3.0 | **Last Updated**: 2026-01-19
+> **Version**: 3.1 | **Last Updated**: 2026-01-19
 
 > [!NOTE]
 > **AI Agent**: This document is for completion records. Read `00_PRINCIPLES.md` first!
 
 Official changelog for all completed work.
 Completed items from `03_TODO.md` are moved here.
+
+---
+
+## [2026-01-19] - Code Analysis Report Fixes (16 Issues Resolved)
+
+### 🔴 Critical Fixes
+- **[Issue 1] ScopeManager.ClearAll() Conditional**
+  - Changed from unconditional clear to conditional (only if depth > 3)
+  - Prevents scope corruption when transitioning between screens
+  - File: `Scripts/02_Patches/10_UI/02_10_00_GlobalUI.cs`
+
+- **[Issue 2] _scopePushed Pop Handling**
+  - Implemented proper `PopScope()` in `Hide_Prefix` method
+  - Made `_scopePushed` internal for cross-class access
+  - File: `Scripts/02_Patches/10_UI/02_10_00_GlobalUI.cs`
+
+- **[Issue 3] Data Field Modification Pattern**
+  - Changed `QudGenotypeModuleWindow` from `BeforeShow_Prefix` to `GetSelections_Postfix`
+  - Now modifies UI objects (`ChoiceWithColorIcon`) instead of data fields (`genotype.DisplayName`)
+  - Follows "UI-Only Postfix Pattern" principle
+  - File: `Scripts/02_Patches/10_UI/02_10_10_CharacterCreation.cs`
+
+### 🟠 High Priority Fixes
+- **[Issue 4] Id Field Protection**
+  - Added explicit assertions to verify `choice.Id` is never modified
+  - Added cache of originalId for verification
+  - Files: Multiple patches in CharacterCreation.cs
+
+- **[Issue 5] Traverse Field Access Pattern**
+  - Changed from generic `Traverse<T>.Field()` to non-generic `Traverse.Field()` where `FieldExists()` is needed
+  - Use `.Value` property for getting/setting values
+  - Files: Multiple patches in CharacterCreation.cs
+
+- **[Issue 6] Stat Translation Format Documentation**
+  - Documented intentional format change for Korean grammar
+  - English: "+2 Agility" → Korean: "민첩 +2"
+  - Added comment explaining this is display-only and safe
+  - File: `Scripts/99_Utils/99_00_02_ChargenTranslationUtils.cs`
+
+- **[Issue 7] StartingLocation Data Fix**
+  - Changed from `BeforeShow_Prefix` to `GetSelections_Postfix`
+  - Now modifies `StartingLocationData` UI fields instead of data fields
+  - File: `Scripts/02_Patches/10_UI/02_10_10_CharacterCreation.cs`
+
+### 🟡 Medium Priority Fixes
+- **[Issue 8] Null Check Before ToLowerInvariant()**
+  - Added proper null checks: `!string.IsNullOrEmpty(choice.Title) &&`
+  - Prevents null reference when Title is null
+
+- **[Issue 10] Case-Sensitive Bullet Check**
+  - Changed `line.StartsWith("{{c|ù}}")` to use `StringComparison.OrdinalIgnoreCase`
+  - Now handles both `{{c|ù}}` and `{{C|ù}}`
+  - File: `Scripts/99_Utils/99_00_03_StructureTranslator.cs`
+
+- **[Issue 11] Silent Exception Logging**
+  - Replaced `catch { }` with `catch (Exception ex) { Debug.LogWarning(...) }`
+  - Conditional on `#if DEBUG` to avoid production spam
+  - File: `Scripts/02_Patches/10_UI/02_10_00_GlobalUI.cs`
+
+- **[Issue 12] TargetMethod Null Logging**
+  - Added `Debug.LogError()` when MainMenu type is not found
+  - Helps diagnose translation failures
+  - File: `Scripts/02_Patches/10_UI/02_10_00_GlobalUI.cs`
+
+### 🟢 Low Priority Fixes
+- **[Issue 13] Hardcoded Type Names Documentation**
+  - Added version notes and documentation for critical type names
+  - Listed last verified game version
+  - File: `Scripts/00_Core/00_00_00_ModEntry.cs`
+
+- **[Issue 14] FontManager Log Spam Prevention**
+  - Added feature flag `_hasLoggedDisabled` to log only once
+  - Reduces log spam from repeated calls
+  - File: `Scripts/00_Core/00_00_99_QudKREngine.cs`
+
+- **[Issue 15] SteamGalaxyPatch Documentation**
+  - Added documentation explaining this patch is NOT related to localization
+  - Added note about potential separation to utility mod
+  - File: `Scripts/02_Patches/00_Core/02_00_01_SteamGalaxy.cs`
+
+- **[Issue 16] Unicode Escape Handling**
+  - Added `\uXXXX` unicode escape sequence handling to JSON parser
+  - Supports standard JSON unicode escapes
+  - File: `Scripts/00_Core/00_00_03_LocalizationManager.cs`
+
+### Changed Files Summary
+- `Scripts/00_Core/00_00_00_ModEntry.cs`
+- `Scripts/00_Core/00_00_03_LocalizationManager.cs`
+- `Scripts/00_Core/00_00_99_QudKREngine.cs`
+- `Scripts/02_Patches/00_Core/02_00_01_SteamGalaxy.cs`
+- `Scripts/02_Patches/10_UI/02_10_00_GlobalUI.cs`
+- `Scripts/02_Patches/10_UI/02_10_10_CharacterCreation.cs`
+- `Scripts/99_Utils/99_00_02_ChargenTranslationUtils.cs`
+- `Scripts/99_Utils/99_00_03_StructureTranslator.cs`
 
 ---
 

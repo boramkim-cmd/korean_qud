@@ -140,6 +140,10 @@ namespace QudKRTranslation.Utils
 
                 // 4. Regex 번역 (스탯 등: "+2 Agility")
                 // Pattern A: "+<Number> <Text>" (e.g., "+2 Toughness")
+                // [FIX Issue 6] Format intentionally changed for Korean grammar:
+                // English: "+2 Agility" -> Korean: "민첩 +2"
+                // This is safe because stat strings are display-only in chargen context.
+                // Game code does NOT parse these strings - they're generated from actual stat data.
                 var match = Regex.Match(contentToTranslate, @"^([+-]?\d+)\s+(.+)$");
                 if (match.Success)
                 {
@@ -148,6 +152,7 @@ namespace QudKRTranslation.Utils
                     
                     if (TranslationEngine.TryTranslate(textPart, out string translatedText, scopes))
                     {
+                        // Korean grammar: "속성 +숫자" format (attribute name first, then modifier)
                         lines[i] = prefix + uiPrefix + bulletPrefix + translatedText + " " + numberPart + uiSuffix;
                         changed = true;
                         continue;
@@ -155,6 +160,7 @@ namespace QudKRTranslation.Utils
                 }
                 
                 // 4.5. Reverse stat pattern: "<Text> +<Number>" (e.g., "Toughness +2")
+                // Same format transformation for consistency
                 var reverseMatch = Regex.Match(contentToTranslate, @"^(.+)\s+([+-]?\d+)$");
                 if (reverseMatch.Success)
                 {
@@ -163,6 +169,7 @@ namespace QudKRTranslation.Utils
                     
                     if (TranslationEngine.TryTranslate(textPart, out string translatedText, scopes))
                     {
+                        // Korean grammar: maintain "속성 +숫자" format
                         lines[i] = prefix + uiPrefix + bulletPrefix + translatedText + " " + numberPart + uiSuffix;
                         changed = true;
                         continue;
