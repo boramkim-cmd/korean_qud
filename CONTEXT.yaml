@@ -1,12 +1,14 @@
 # CONTEXT.yaml - 프로젝트 현재 상태 (기계 판독용)
-# 마지막 업데이트: 2026-01-18T15:56:38+09:00
+# 마지막 업데이트: 2026-01-18T16:14:02+09:00
 # 
 # 이 파일은 AI 에이전트가 세션 시작 시 빠르게 현재 상태를 파악하기 위한 것입니다.
 # 인간도 읽기 쉽도록 YAML 형식을 사용합니다.
+#
+# 💡 TIP: 상세 작업 가이드는 .agent/skills/localization/SKILL.md 참조
 
 project:
   name: "Caves of Qud 한글화"
-  version: "2.0.2"
+  version: "2.0.3"
   phase: "Phase 1 - 안정화"
   repository: "https://github.com/boramkim-cmd/korean_qud"
 
