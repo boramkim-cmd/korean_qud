@@ -1,0 +1,12 @@
+{
+  "names": {
+    "Burrowing": "굴착"
+  },
+  "bearer_descriptions": {
+    "those who burrow underground": "지하로 굴을 파는 자들"
+  },
+  "mutation_extra": {
+    "Burrowing": "굴착",
+    "You can travel underground by burrowing.": "You can travel underground by burrowing."
+  }
+}

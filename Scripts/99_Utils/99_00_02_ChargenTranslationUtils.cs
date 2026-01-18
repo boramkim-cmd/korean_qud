@@ -5,6 +5,7 @@
  */
 
 using System;
+using System.Text.RegularExpressions;
 using System.Collections.Generic;
 using System.Linq;
 using HarmonyLib;
@@ -40,32 +41,72 @@ namespace QudKRTranslation.Utils
                 var trimmed = lines[i].Trim();
                 if (string.IsNullOrEmpty(trimmed)) continue;
 
+                // 0. UI Artifact Preservation (Prefixes/Suffixes like "[ ] [1] " or " [V]")
+                string uiPrefix = "";
+                string uiSuffix = "";
+                
+                // Handle "[ ] [1] " prefix
+                var uiMatch = Regex.Match(contentToTranslate, @"^(\[[ X*]\]\s+\[[+-]?\d+\]\s+)(.+)$");
+                if (uiMatch.Success)
+                {
+                    uiPrefix = uiMatch.Groups[1].Value;
+                    contentToTranslate = uiMatch.Groups[2].Value;
+                }
+                
+                // Handle " [V]" or " (Selected)" suffix
+                if (contentToTranslate.EndsWith(" [V]"))
+                {
+                    uiSuffix = " [V]";
+                    contentToTranslate = contentToTranslate.Substring(0, contentToTranslate.Length - 4);
+                }
+                else if (contentToTranslate.EndsWith(" (Selected)"))
+                {
+                    uiSuffix = " (Selected)";
+                    contentToTranslate = contentToTranslate.Substring(0, contentToTranslate.Length - 11);
+                }
+
                 // 1. 불렛 포인트 보존 로직
                 // Qud uses {{c|ù}} or just ù for bullets
-                string prefix = "";
-                string contentToTranslate = trimmed;
+                string bulletPrefix = "";
                 
                 // Check for common Qud bullets
-                if (trimmed.StartsWith("{{c|ù}}")) 
+                if (contentToTranslate.StartsWith("{{c|ù}}")) 
                 {
-                    prefix = "{{c|ù}} ";
-                    contentToTranslate = trimmed.Replace("{{c|ù}}", "").Trim();
+                    bulletPrefix = "{{c|ù}} ";
+                    contentToTranslate = contentToTranslate.Replace("{{c|ù}}", "").Trim();
                 }
-                else if (trimmed.StartsWith("ù"))
+                else if (contentToTranslate.StartsWith("ù"))
                 {
-                    prefix = "ù ";
-                    contentToTranslate = trimmed.TrimStart('ù', ' ').Trim();
+                    bulletPrefix = "ù ";
+                    contentToTranslate = contentToTranslate.TrimStart('ù', ' ').Trim();
                 }
 
                 // 2. 기본 번역 시도
                 if (TranslationEngine.TryTranslate(contentToTranslate, out string translated, scopes))
                 {
-                    lines[i] = prefix + translated;
+                    lines[i] = prefix + uiPrefix + bulletPrefix + translated + uiSuffix;
                     changed = true;
                     continue;
                 }
                 
-                // 3. Regex 번역 (스탯 등: "+2 Agility", "+200 reputation...")
+                // 3. Reputation Regex ("+200 reputation with ...")
+                // Pattern: "+<Number> reputation with <Faction>"
+                 var repMatch = Regex.Match(contentToTranslate, @"^([+-]?\d+)\s+reputation with\s+(.+)$", RegexOptions.IgnoreCase);
+                 if (repMatch.Success)
+                 {
+                     string amount = repMatch.Groups[1].Value;
+                     string faction = repMatch.Groups[2].Value;
+                     
+                     if (TranslationEngine.TryTranslate(faction, out string tFaction, scopes) || 
+                         LocalizationManager.TryGetAnyTerm(faction, out tFaction, "factions", "ui", "common"))
+                     {
+                         lines[i] = prefix + uiPrefix + bulletPrefix + $"{tFaction} 평판 {amount}" + uiSuffix;
+                         changed = true;
+                         continue;
+                     }
+                 }
+
+                // 4. Regex 번역 (스탯 등: "+2 Agility", "+200 reputation...")
                 // Pattern: "+<Number> <Text>"
                 var match = Regex.Match(contentToTranslate, @"^([+-]?\d+)\s+(.+)$");
                 if (match.Success)
@@ -75,45 +116,19 @@ namespace QudKRTranslation.Utils
                     
                     if (TranslationEngine.TryTranslate(textPart, out string translatedText, scopes))
                     {
-                        lines[i] = prefix + numberPart + " " + translatedText;
+                        lines[i] = prefix + uiPrefix + bulletPrefix + numberPart + " " + translatedText + uiSuffix;
                         changed = true;
                         continue;
                     }
                 }
-                
-                // 4. Reputation Regex ("+200 reputation with ...")
-                // Pattern: "+<Number> reputation with <Faction>"
-                 var repMatch = Regex.Match(contentToTranslate, @"^([+-]?\d+)\s+reputation with\s+(.+)$", RegexOptions.IgnoreCase);
-                 if (repMatch.Success)
-                 {
-                     string amount = repMatch.Groups[1].Value;
-                     string faction = repMatch.Groups[2].Value;
-                     
-                     // Try translate faction (might need specific scope?)
-                     // Factions usually are not in 'skill' scope, maybe 'factions' scope is needed but let's try available ones
-                     // Or simplify to "파벌 <Faction> 평판 <Amount>"
-                     
-                     if (TranslationEngine.TryTranslate(faction, out string tFaction, scopes) || 
-                         LocalizationManager.TryGetAnyTerm(faction, out tFaction, "factions", "ui", "common"))
-                     {
-                         lines[i] = prefix + $"{tFaction} 평판 {amount}";
-                         changed = true;
-                     }
-                 }
             }
             
             return changed ? string.Join("\n", lines) : original;
         }
 
-        /// <summary>
-        /// MenuOption 리스트를 번역합니다.
-        /// </summary>
-        /// <summary>
-        /// MenuOption 리스트를 번역합니다.
-        /// </summary>
         public static IEnumerable<MenuOption> TranslateMenuOptions(IEnumerable<MenuOption> options)
         {
-            var scopes = new[] { "chargen_ui", "mutation_desc", "powers", "power", "skill", "skill_desc", "ui", "common" }
+            var scopes = new[] { "chargen_ui", "mutation", "mutation_names", "mutation_desc", "powers", "power", "skill", "skill_desc", "ui", "common" }
                 .Select(cat => LocalizationManager.GetCategory(cat))
                 .Where(d => d != null)
                 .ToArray();
@@ -126,7 +141,9 @@ namespace QudKRTranslation.Utils
                     string desc = tr.Field<string>("Description").Value;
                     if (!string.IsNullOrEmpty(desc))
                     {
-                        if (TranslationEngine.TryTranslate(desc, out string translated, scopes))
+                        // Wrap inside TranslateLongDescription logic or similar
+                        string translated = TranslateLongDescription(desc, "mutation", "mutation_names", "mutation_desc", "skill", "ui", "common");
+                        if (translated != desc)
                         {
                             tr.Field<string>("Description").Value = translated;
                         }

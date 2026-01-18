@@ -1,0 +1,12 @@
+{
+  "names": {
+    "Regeneration": "재생"
+  },
+  "bearer_descriptions": {
+    "those who regenerate": "those who regenerate"
+  },
+  "mutation_extra": {
+    "+{{rules|": "+{{rules|",
+    "{{rules|": "{{rules|"
+  }
+}

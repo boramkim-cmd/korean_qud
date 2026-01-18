@@ -1,0 +1,27 @@
+{
+  "names": {
+    "Quills": "가시"
+  },
+  "bearer_descriptions": {
+    "the quilled": "가시가 돋친 자"
+  },
+  "mutation_extra": {
+    " left]": " 남음]",
+    "Quills": "가시",
+    "take": "가져가기",
+    "VariantDescription": "변형 설명",
+    "Hundreds of needle-pointed quills cover your body.": "수백 개의 바늘 같은 가시가 온몸을 덮고 있습니다.",
+    "{{rules|": "{{rules|",
+    "Regenerate ": "재생: ",
+    " at the approximate rate of {{rules|": " (대략 초당 {{rules|",
+    "}} per round\n": "}} 회복)\n",
+    "+{{rules|": "+{{rules|",
+    " (+{{rules|": " 유지 시, 미달 시 +{{rules|",
+    "}} AV otherwise)\n": " AV)\n",
+    "Creatures attacking you in melee may impale themselves on your ": "근접 공격을 하는 생물은 당신의 ",
+    ", breaking roughly 1% of them and reflecting 3% damage per ": "에 찔릴 수 있으며, 약 1%가 부러지고 부러진 개당 3%의 피해를 반사합니다. ",
+    " broken.\n": ".\n",
+    "Cannot wear body armor\n": "갑옷 착용 불가\n",
+    "Immune to other creatures' ": "다른 생물의 다음에 면역: "
+  }
+}

@@ -56,6 +56,92 @@
 
 ---
 
+## ERR-007: 변이 JSON 파일 중복 및 경로 오류 (Duplicate/Wrong Path)
+
+### 기본 정보
+| 항목       | 내용                   |
+| ---------- | ---------------------- |
+| **상태**   | 🟢 RESOLVED            |
+| **심각도** | 🟡 Medium              |
+| **발견일** | 2026-01-17             |
+| **해결일** | 2026-01-17             |
+
+### 증상
+1. `Albino.json`이 `Physical_Mutations`와 `Physical_Defects` 두 곳에 존재.
+2. `Syphon_Vim`-`Life_Drain` 명칭 혼동으로 중복 파일 생성됨.
+3. XML 정의와 다른 폴더에 위치한 파일 존재.
+
+### 원인
+XML 데이터의 `Category`와 실제 게임 내 분류가 미묘하게 다르거나(Defect vs Mutation), 초기 파일 생성 시 자동화 스크립트의 분류 오류.
+
+### ✅ 최종 해결
+1. `Mutations.xml` 기준으로 전수 조사.
+2. `Albino.json`: `Physical_Mutations`에서 삭제 (Defect가 맞음).
+3. `Syphon_Vim.json`: `Mental_Defects`에서 삭제 (`Life_Drain`이란 이름으로 잘못 생성됨).
+4. 모든 83개 파일 경로 재검증 완료.
+
+### 관련 파일
+- `LOCALIZATION/MUTATIONS/**/*.json`
+
+---
+
+## ERR-006: 변이 설명 불일치 및 줄바꿈 처리 오류
+
+### 기본 정보
+| 항목       | 내용                   |
+| ---------- | ---------------------- |
+| **상태**   | 🟢 RESOLVED            |
+| **심각도** | 🟠 High                |
+| **발견일** | 2026-01-17             |
+| **해결일** | 2026-01-17             |
+
+### 증상
+1. `Stinger`: 변이 세부 타입(Venom)에 따라 설명이 달라지는데, 기본 설명만 적용됨.
+2. `Cold-Blooded`, `Carnivorous`: C# 소스에는 `\n`이 포함되어 있으나, 기존 JSON에는 긴 문자열 하나로 들어가 있어 가독성 저하 및 번역 누락 가능성.
+
+### 원인
+1. **Variant 무시**: `Stinger.cs`의 `GetDescription()`이 `StingerProperties.GetDescription()`을 호출하여 동적으로 텍스트를 생성하는 구조를 간과.
+2. **단순화된 추출**: C#의 `\n`을 무시하고 텍스트를 단순 추출함.
+
+### ✅ 최종 해결
+1. **구조 변경**: `description` (핵심 한 줄) + `leveltext` (배열) 구조로 표준화.
+2. **Variant 확인**: `Stinger_(Poisoning_Venom).json`으로 명확히 하고, `StingerPoisonProperties.cs`의 정확한 텍스트 반영.
+3. **배열 분리**: `\n`이 포함된 `Cold-Blooded`, `Carnivorous` 설명을 의미 단위로 배열로 분리.
+
+### 관련 파일
+- `LOCALIZATION/MUTATIONS/Physical_Mutations/Stinger_(Poisoning_Venom).json`
+- `LOCALIZATION/MUTATIONS/Physical_Defects/Cold-Blooded.json`
+
+### 기본 정보
+| 항목       | 내용                   |
+| ---------- | ---------------------- |
+| **상태**   | 🟢 RESOLVED            |
+| **심각도** | 🔴 Critical            |
+| **발견일** | 2026-01-17             |
+| **해결일** | 2026-01-17             |
+
+### 증상
+게임 시작 시 모드 컴파일 에러 발생 (Player.log):
+1. `02_10_10_CharacterCreation.cs(558,2): error CS1513: } expected`
+2. `02_10_10_CharacterCreation.cs(216,26): error CS0136: A local or parameter named 'cat' cannot be declared in this scope...`
+3. `99_00_02_ChargenTranslationUtils.cs(70,29): error CS0103: The name 'Regex' does not exist...`
+
+### 원인 분석
+1. **CS1513/CS0136**: `02_10_10_CharacterCreation.cs`에서 `foreach (var cat in list)` 루프가 실수로 중복되어 중첩됨. 이로 인해 변수명 충돌과 괄호 쌍 불일치가 동시에 발생.
+2. **CS0103**: `99_00_02_ChargenTranslationUtils.cs`에서 `Regex` 클래스를 사용하는데 `using System.Text.RegularExpressions;` 선언이 누락됨.
+
+### ✅ 최종 해결
+1. `02_10_10_CharacterCreation.cs`: 중복된 `foreach` 라인 제거.
+2. `99_00_02_ChargenTranslationUtils.cs`: `using System.Text.RegularExpressions;` 추가.
+
+### 관련 파일
+-Scripts/02_Patches/10_UI/02_10_10_CharacterCreation.cs
+-Scripts/99_Utils/99_00_02_ChargenTranslationUtils.cs
+
+
+
+---
+
 ## 해결된 오류 (Resolved) (공통)
 
 ---

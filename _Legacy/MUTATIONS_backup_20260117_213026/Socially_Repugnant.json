@@ -1,0 +1,11 @@
+{
+  "names": {
+    "Socially Repugnant": "Socially Repugnant"
+  },
+  "bearer_descriptions": {
+    "the socially repugnant": "the socially repugnant"
+  },
+  "mutation_reputation": {
+    "Others find it difficult to tolerate you in social settings.\\n\\n-50 reputation with every faction": "다른 사람들이 사교적인 자리에서 당신을 견디기 힘들어합니다.\\n\\n모든 세력 평판 -50"
+  }
+}

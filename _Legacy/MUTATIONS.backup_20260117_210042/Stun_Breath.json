@@ -1,0 +1,14 @@
+{
+  "names": {
+    "Stun Breath": "기절 숨결"
+  },
+  "bearer_descriptions": {
+    "those with stunning breath": "기절 숨결을 가진 자들"
+  },
+  "mutation_extra": {
+    "Breathe Stun Gas": "Breathe Stun Gas",
+    "You breathe stun gas.": "You breathe stun gas.",
+    "stun gas": "기절 가스",
+    "stun breather": "기절 숨결"
+  }
+}

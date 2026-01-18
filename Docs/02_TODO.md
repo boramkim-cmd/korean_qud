@@ -45,9 +45,9 @@
 | ------------------- | ----- | ------- | ------ | ------ |
 | Phase 1: 안정화     | 4     | 0       | 0      | 100%   |
 | Phase 2: 게임플레이 | 0     | 0       | 4      | 0%     |
-| Phase 3: 최적화     | 0     | 0       | 4      | 0%     |
+| Phase 3: 최적화     | 0     | 0       | 5      | 0%     |
 | Phase 4: 커뮤니티   | 0     | 0       | 3      | 0%     |
-| **합계**            | **4** | **0**   | **11** | **26%** |
+| **합계**            | **4** | **0**   | **12** | **25%** |
 
 ---
 
@@ -238,6 +238,48 @@ private static char? GetLastHangul(string text)
 LOCALIZATION/glossary_mutations.json
 Assets/StreamingAssets/Base/Mutations.xml
 ```
+
+---
+
+## P1-05: 변이 JSON 구조 개편 및 전체 번역 🔴
+
+### 기본 정보
+| 항목          | 내용                                   |
+| ------------- | -------------------------------------- |
+| **상태**      | `[/]` 진행 중                          |
+| **우선순위**  | 🔴 높음                                 |
+| **예상 시간** | 12시간                                 |
+| **담당 파일** | `LOCALIZATION/MUTATIONS/**/*.json`     |
+| **시작일**    | 2026-01-17                             |
+| **완료일**    | -                                      |
+
+### 문제 상세
+기존 변이 데이터의 JSON 구조(`descriptions` 객체 혼합)가 유지보수에 불리하고, C# 소스의 줄바꿈(`\n`) 처리가 미흡함.
+또한 82개 변이 중 79개의 한글 번역이 미완성 상태임.
+
+### 작업 체크리스트
+- [x] MutationTranslator 유틸리티 구현 (자동 초기화, 다국어 지원)
+- [x] JSON 구조 개편 (description + leveltext 배열)
+- [x] 파일 정리 (중복 제거, 경로 수정)
+- [x] 샘플 3종 번역 및 검증 (Stinger, Cold-Blooded, Carnivorous)
+- [x] 샘플 3종 번역 및 검증 (Stinger, Cold-Blooded, Carnivorous)
+- [ ] 나머지 79개 변이 **수동 번역** (자동화 금지)
+  - 상세 진행 상황은 `Docs/TEMP_TODO_MUTATIONS.md`에서 별도 추적 중
+  - 작업 완료 후 해당 파일 삭제 및 이곳에 병합 예정
+- [ ] 오류 검증 및 인게임 테스트
+  - [ ] 줄바꿈 배열 분리 확인
+  - [ ] 색상 태그 표시 확인
+  - [ ] Variant 설명 일치 확인 (Stinger 등)
+- [ ] 게임 내 최종 검증
+
+### 완료 기준
+- [ ] 모든 변이 파일이 표준 JSON 형식을 따름 (검증 완료)
+- [ ] 82개 모든 변이가 한글로 정상 표시됨
+
+### 관련 파일
+- `Scripts/00_Core/00_Utilities/MutationTranslator.cs`
+- `LOCALIZATION/MUTATIONS/**/*.json`
+
 
 ---
 
@@ -469,6 +511,68 @@ LOCALIZATION/glossary_messages.json (신규)
 
 ### 완료 기준
 - [ ] 성능 리포트 작성 완료
+
+---
+
+## P3-05: 글로벌 용어 충돌 해결 (Conflict Resolution) 🔴
+
+### 기본 정보
+| 항목          | 내용                                 |
+| ------------- | ------------------------------------ |
+| **상태**      | `[ ]` 미시작                         |
+| **우선순위**  | 🔴 높음                               |
+| **예상 시간** | 12시간                               |
+| **담당 파일** | `LOCALIZATION/*.json`, `integrity_report.md` |
+| **시작일**    | -                                    |
+| **완료일**    | -                                    |
+
+### 문제 상세
+`integrity_report.md` 결과, 용어집 간 100건 이상의 번역 불일치 발견.
+특히 `glossary_skills.json`과 `glossary_powers.json` 간의 중복이 심각함.
+
+### 작업 체크리스트
+- [ ] `integrity_report.md` 기반 전수 조사
+- [ ] 스킬과 능력 간의 소유권(Ownership) 정리
+  - 명칭(Name)은 `powers`로, 효과 설명(Desc)은 전문화된 카테고리로 통합 고려
+- [ ] 동일 영문 키에 대한 중복 번역 제거 (Deduplication)
+- [ ] 우선순위가 높은 용어집(Engine Core > Patches > Data) 정의 및 적용
+- [ ] 정규화 충돌 해결 (Tagged vs Untagged 일치화)
+
+### 완료 기준
+- [ ] `integrity_report.md`의 "Value Conflicts" 항목 0건 달성
+- [ ] `integrity_report.md`의 "Value Conflicts" 항목 0건 달성
+- [ ] 중복 항목 제거를 통한 메모리 사용량 최적화
+
+---
+
+## P3-06: 개발 도구 정비 및 스크립트 통합 🔴
+
+### 기본 정보
+| 항목          | 내용                                 |
+| ------------- | ------------------------------------ |
+| **상태**      | `[ ]` 미시작                         |
+| **우선순위**  | 🔴 높음                               |
+| **예상 시간** | 4시간                                |
+| **담당 파일** | `tools/**/*.py`, `*.py`              |
+
+### 문제 상세
+루트 디렉토리에 약 20개의 일회성 Python 스크립트가 난립해 있으며, `tools/` 폴더의 기존 유틸리티를 재사용하지 않고 중복 구현함. 이로 인해 유지보수가 어렵고 프로젝트 구조가 지저분해짐.
+
+### 원인 분석
+1. **일회성 접근**: 장기적 유지보수보다 당장의 문제 해결을 위한 "Quick & Dirty" 스크립트 작성
+2. **재사용성 부재**: `tools/` 내의 기존 모듈(JSON 처리 등)을 활용하지 않음
+
+### 작업 체크리스트
+- [ ] 루트 디렉토리의 모든 `.py` 파일 분석
+- [ ] `tools/legacy/` 폴더 생성 및 일회성 스크립트 이동
+- [ ] 유용한 기능(Mutation 변환 등)은 `tools/mutation_utils.py` 등으로 통합
+- [ ] `convert_mutation_json.py`, `add_ko_fields.py` 등을 통합 도구화
+- [ ] `DEVELOPMENT_GUIDE.md`에 스크립트 작성 규칙 명시
+
+### 완료 기준
+- [ ] 루트 디렉토리에 `.py` 파일이 없어야 함 (entry point 제외)
+- [ ] 모든 유틸리티가 `tools/` 내에서 체계적으로 관리됨
+- [ ] 중복된 로직(파일 입출력 등) 제거
 
 ---
 

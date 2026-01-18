@@ -1,0 +1,14 @@
+{
+  "names": {
+    "Psychometry": "Psychometry"
+  },
+  "bearer_descriptions": {
+    "the psychometrically sensitive": "the psychometrically sensitive"
+  },
+  "mutation_extra": {
+    "Psychometry": "Psychometry",
+    "Unerringly identify artifacts up to complexity tier {{rules|": "아티팩트를 복잡도 티어 {{rules|",
+    "Learn how to construct identified artifacts up to complexity tier {{rules|": "식별된 아티팩트의 제작법을 복잡도 티어 {{rules|",
+    "}} (must have the appropriate Tinker skill).": "}}까지 배웁니다(적절한 제작 기술이 필요합니다)."
+  }
+}

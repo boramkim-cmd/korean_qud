@@ -1,0 +1,17 @@
+{
+  "names": {
+    "Electromagnetic Pulse": "전자기 펄스"
+  },
+  "bearer_descriptions": {
+    "those who emit electromagnetic pulses": "전자기 펄스를 방출하는 자들"
+  },
+  "mutation_extra": {
+    "You generate an electromagnetic pulse that disables nearby artifacts and machines.": "전자기 펄스를 발생시켜 주변의 아티팩트와 기계를 무력화합니다.",
+    " rounds": "턴",
+    "You involuntarily release electromagnetic pulses, deactivating robots and artifacts around yourself.": "의지와 상관없이 전자기 펄스를 방출하여 주변의 로보소가 아티팩트를 비활성화합니다."
+  },
+  "mutation_stats": {
+    "Area: {{rules|": "범위: {{rules|",
+    "Duration: {{rules|": "지속 시간: {{rules|"
+  }
+}

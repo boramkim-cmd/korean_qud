@@ -1,0 +1,13 @@
+{
+  "names": {
+    "Multiple Arms": "Multiple Arms"
+  },
+  "description": "You have an extra set of arms.",
+  "leveltext": [
+    "{{rules|10%}} chance for each extra arm to deliver an additional melee attack whenever you make a melee attack"
+  ],
+  "description_ko": "팔 한 쌍이 추가로 생깁니다.",
+  "leveltext_ko": [
+    "근접 공격 시 각 추가 팔이 {{rules|10%}} 확률로 추가 근접 공격을 가합니다"
+  ]
+}

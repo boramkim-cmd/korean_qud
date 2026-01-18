@@ -1,0 +1,29 @@
+{
+  "names": {
+    "Horns": "뿔"
+  },
+  "bearer_descriptions": {
+    "the horned": "뿔이 있는 자"
+  },
+  "mutation_extra": {
+    "Horns jut out of your head.": "머리에 뿔이 솟아나 있습니다.",
+    "Gender": "성별",
+    "plural": "복수",
+    " jut out of your head.": "이(가) 머리에 솟아나 있습니다.",
+    " juts out of your head.": "이(가) 머리에 솟아나 있습니다.",
+    "Damage increment: {{rules|": "피해 증가량: {{rules|",
+    "To-hit bonus: {{rules|": "명중 보너스: {{rules|",
+    "Goring attacks may cause bleeding\\n": "들이받기 공격은 출혈을 일으킬 수 있음\\n",
+    "{{rules|Increased bleeding save difficulty}}\\n": "{{rules|출혈 저항 난이도 증가}}\\n",
+    "{{rules|Increased bleeding save difficulty and intensity}}\\n": "{{rules|출혈 저항 난이도 및 강도 증가}}\\n",
+    "+{{rules|": "+{{rules|",
+    "Cannot wear helmets\\n": "헬멧 착용 불가\\n",
+    "Horns are a short-blade class natural weapon.\n": "뿔은 단검 계열의 자연 무기입니다.\n"
+  },
+  "mutation_reputation": {
+    "+100 reputation with {{w|antelopes}} and {{w|goatfolk}}": "{{w|영양}} 및 {{w|염소인간}} 평판 +100"
+  },
+  "mutation_stats": {
+    "2d\" + (3 + Level / 3);\\n\t}\\n\\n\tpublic override IPart DeepCopy(GameObject Parent, Func<GameObject, GameObject> MapInv)\\n\t{\\n\t\tHorns obj = base.DeepCopy(Parent, MapInv) as Horns;\\n\t\tobj.HornsObject = null;\\n\t\treturn obj;\\n\t}\\n\\n\tpublic override string GetLevelText(int Level)\\n\t{\\n\t\tstring baseDamage = GetBaseDamage(Level);\\n\t\tint aV = GetAV(Level);\\n\t\tstring text = \"20% chance on melee attack to gore your opponent\\n": "2d\" + (3 + Level / 3);\\n\t}\\n\\n\tpublic override IPart DeepCopy(GameObject Parent, Func<GameObject, GameObject> MapInv)\\n\t{\\n\t\tHorns obj = base.DeepCopy(Parent, MapInv) as Horns;\\n\t\tobj.HornsObject = null;\\n\t\treturn obj;\\n\t}\\n\\n\tpublic override string GetLevelText(int Level)\\n\t{\\n\t\tstring baseDamage = GetBaseDamage(Level);\\n\t\tint aV = GetAV(Level);\\n\t\tstring text = \"20% chance on melee attack to gore your opponent\\n"
+  }
+}

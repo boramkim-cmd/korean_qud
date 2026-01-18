@@ -1,0 +1,13 @@
+{
+  "names": {
+    "Light Manipulation": "Light Manipulation"
+  },
+  "bearer_descriptions": {
+    "manipulators of light": "빛의 조작자들"
+  },
+  "mutation_extra": {
+    " rounds": "턴",
+    "{{rules|": "{{rules|",
+    "armor": "방어구"
+  }
+}

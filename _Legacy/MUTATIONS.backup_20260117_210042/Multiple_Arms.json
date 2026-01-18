@@ -1,0 +1,12 @@
+{
+  "names": {
+    "Multiple Arms": "다중 팔"
+  },
+  "bearer_descriptions": {
+    "the many-armed": "the many-armed"
+  },
+  "mutation_extra": {
+    "You have an extra set of arms.": "팔이 한 쌍 더 있습니다.",
+    "{{rules|": "{{rules|"
+  }
+}

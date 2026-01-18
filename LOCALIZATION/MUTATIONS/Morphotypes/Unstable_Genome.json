@@ -1,0 +1,13 @@
+{
+  "names": {
+    "Unstable Genome": "불안정한 게놈"
+  },
+  "description": "You gain one extra mutation each time you buy this, but the mutations don't manifest right away.",
+  "leveltext": [
+    "Whenever you gain a level, there's a 33% chance that your genome destabilizes and you get to choose from 3 random mutations."
+  ],
+  "description_ko": "You gain one extra mutation each time you buy this, but the mutations don't manifest right away.",
+  "leveltext_ko": [
+    "Whenever you gain a level, there's a 33% chance that your genome destabilizes and you get to choose from 3 random mutations."
+  ]
+}

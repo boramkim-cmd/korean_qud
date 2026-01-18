@@ -1,0 +1,17 @@
+{
+  "names": {
+    "Adrenal Control": "아드레날린 제어"
+  },
+  "description": "You regulate your body's release of adrenaline.",
+  "leveltext": [
+    "You can increase your body's adrenaline flow for 20 rounds.",
+    "While it's flowing, you gain +{{C|10}} quickness and other physical mutations gain +{{C|1}} rank.",
+    "Cooldown: 200 rounds"
+  ],
+  "description_ko": "신체의 아드레날린 분비를 조절합니다.",
+  "leveltext_ko": [
+    "신체의 아드레날린 흐름을 20라운드 동안 증가시킬 수 있습니다.",
+    "지속 시간 동안 퀵니스(Quickness)가 +{{C|10}} 증가하며, 다른 육체적 변이의 등급이 +{{C|1}} 증가합니다.",
+    "재사용 대기시간: 200라운드"
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "names": {
+    "Spinnerets": "거미줄 생성기"
+  },
+  "bearer_descriptions": {
+    "web weavers": "web weavers"
+  },
+  "mutation_extra": {
+    "}} move actions": "}} 이동 행동"
+  },
+  "mutation_stats": {
+    "Duration: {{rules|": "지속 시간: {{rules|"
+  }
+}

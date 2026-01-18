@@ -1,0 +1,15 @@
+{
+  "names": {
+    "Domination": "Domination"
+  },
+  "bearer_descriptions": {
+    "those who dominate the wills of others": "those who dominate the wills of others"
+  },
+  "mutation_extra": {
+    "take": "가져가기",
+    "Domination": "Domination"
+  },
+  "mutation_stats": {
+    "Duration: {{rules|": "지속 시간: {{rules|"
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "names": {
+    "Telepathy": "텔레파시"
+  },
+  "bearer_descriptions": {
+    "the telepathic": "텔레파시 능력이 있는 자"
+  },
+  "mutation_extra": {
+    "Telepathy": "텔레파시",
+    "You may communicate with others through the psychic aether.\\n\\n": "사이킥 에테르를 통해 타인과 소통할 수 있습니다.\\n\\n",
+    "Chat with anyone in vision\\nTakes you much less time to issue orders to companions": "시야 내의 누구와도 대화 가능\\n동료에게 명령을 내리는 시간이 훨씬 단축됨",
+    "\\nUseful in many social and psionic Sifrah games.": "\\n다양한 사교 및 사이오닉 시프라 게임에서 유용합니다."
+  }
+}

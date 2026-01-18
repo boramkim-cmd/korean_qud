@@ -1,5 +1,5 @@
 {
-  "generated": "2026-01-16 23:54:57",
+  "generated": "2026-01-17 22:02:56",
   "scripts": {
     "Scripts/99_Utils/99_00_02_ChargenTranslationUtils.cs": {
       "classification": "Utils",
@@ -422,25 +422,25 @@
   },
   "docs": {
     "03_CHANGELOG.md": {
-      "modified": "2026-01-16"
+      "modified": "2026-01-17"
     },
     "01_DEVELOPMENT_GUIDE.md": {
-      "modified": "2026-01-16"
+      "modified": "2026-01-17"
     },
     "02_TODO.md": {
-      "modified": "2026-01-16"
+      "modified": "2026-01-17"
     },
     "01_CORE_PROJECT_INDEX.md": {
-      "modified": "2026-01-16"
+      "modified": "2026-01-17"
     },
     "02_CORE_QUICK_REFERENCE.md": {
-      "modified": "2026-01-16"
+      "modified": "2026-01-17"
     },
     "00_PRINCIPLES.md": {
       "modified": "2026-01-16"
     },
     "04_ERROR_LOG.md": {
-      "modified": "2026-01-16"
+      "modified": "2026-01-17"
     }
   },
   "localization": {
@@ -449,20 +449,7 @@
         "cybernetics",
         "cybernetics_desc"
       ],
-      "entries": 63
-    },
-    "glossary_mutations.json": {
-      "categories": [
-        "mutation_base",
-        "mutation_defect",
-        "mutation_desc_base",
-        "mutation_desc_mental",
-        "mutation_desc_physical",
-        "mutation_desc_defect",
-        "mutation_mental",
-        "mutation_physical"
-      ],
-      "entries": 139
+      "entries": 54
     },
     "glossary_ui.json": {
       "categories": [
@@ -471,25 +458,25 @@
         "status",
         "ui"
       ],
-      "entries": 159
+      "entries": 148
     },
     "glossary_pregen.json": {
       "categories": [
         "chargen_pregen"
       ],
-      "entries": 34
+      "entries": 25
     },
     "glossary_proto.json": {
       "categories": [
         "chargen_proto"
       ],
-      "entries": 40
+      "entries": 39
     },
     "glossary_location.json": {
       "categories": [
         "chargen_location"
       ],
-      "entries": 23
+      "entries": 22
     },
     "glossary_terms.json": {
       "categories": [
@@ -502,17 +489,23 @@
         "weapon",
         "world"
       ],
-      "entries": 39
+      "entries": 35
+    },
+    "glossary_factions.json": {
+      "categories": [
+        "factions"
+      ],
+      "entries": 4
     },
     "glossary_options.json": {
       "categories": [
         "options"
       ],
-      "entries": 403
+      "entries": 362
     },
     "glossary_skills.json": {
       "categories": [
-        "power_axe",
+        "skill",
         "power_axe_desc",
         "power_general",
         "power_general_desc",
@@ -522,11 +515,25 @@
         "power_tinkering_desc",
         "power_wayfaring",
         "power_wayfaring_desc",
-        "skill",
         "skill_desc",
         "powers"
       ],
-      "entries": 240
+      "entries": 218
+    },
+    "glossary_mutations_common.json": {
+      "categories": [
+        "chargen_ui_mutation_labels",
+        "chargen_ui_mutation_system",
+        "mutation_names_physical_breath",
+        "mutation_names_physical_passive",
+        "mutation_biome_adjectives",
+        "mutation_desc_physical_body",
+        "mutation_desc_physical_passive",
+        "mutation_frag_text",
+        "mutation_reputation",
+        "mutation_pass3_extra"
+      ],
+      "entries": 72
     },
     "glossary_chargen.json": {
       "categories": [
@@ -534,7 +541,7 @@
         "chargen_stats",
         "chargen_ui"
       ],
-      "entries": 191
+      "entries": 173
     }
   }
 }

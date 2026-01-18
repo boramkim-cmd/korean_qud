@@ -1,0 +1,11 @@
+{
+  "names": {
+    "Myopic": "Myopic"
+  },
+  "bearer_descriptions": {
+    "the myopic": "the myopic"
+  },
+  "mutation_extra": {
+    "You are nearsighted.\\n\\nYou can only see up to a radius of 10.": "근시가 있습니다.\\n\\n반경 10칸까지만 볼 수 있습니다."
+  }
+}

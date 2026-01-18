@@ -1,0 +1,11 @@
+{
+  "names": {
+    "Electromagnetic Impulse": "전자기 충격"
+  },
+  "bearer_descriptions": {
+    "those who cannot control their electromagnetic pulses": "전자기 펄스를 제어하지 못하는 자들"
+  },
+  "mutation_stats": {
+    "You involuntarily release electromagnetic pulses, deactivating robots and artifacts around yourself.\\n\\nSmall chance each round you're in combat that you release an electromagnetic pulse with radius 3, deactivating robots and artifacts (including those you carry) for 11-20 rounds.": "의지와 상관없이 전자기 펄스를 방출하여 주변의 로봇과 아티팩트를 비활성화합니다.\\n\\n전투 중 매 턴마다 약간의 확률로 반경 3칸 내에 전자기 펄스를 방출하여 로봇과 아티팩트(소지품 포함)를 11~20턴 동안 비활성화합니다."
+  }
+}

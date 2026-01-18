@@ -1,0 +1,11 @@
+{
+  "names": {
+    "Spontaneous Combustion": "Spontaneous Combustion"
+  },
+  "bearer_descriptions": {
+    "those who spontaneously combust": "those who spontaneously combust"
+  },
+  "mutation_stats": {
+    "You spontaneously erupt into flames.\\n\\nSmall chance each round you're in combat that you spontaneously erupt into flames.": "저절로 불길에 휩싸입니다.\\n\\n전투 중 매 턴마다 약간의 확률로 자연 발화합니다."
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "names": {
+    "Spider Webs": "거미줄"
+  },
+  "bearer_descriptions": {
+    "web weavers": "web weavers"
+  },
+  "mutation_extra": {
+    "You bear two spinnerets with which you spin a sticky silk.\\n": "You bear two spinnerets with which you spin a sticky silk.\\n"
+  }
+}

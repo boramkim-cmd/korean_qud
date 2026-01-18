@@ -1,0 +1,11 @@
+{
+  "names": {
+    "Heat Absorption": "열 흡수"
+  },
+  "bearer_descriptions": {
+    "those who absorb heat": "열을 흡수하는 자들"
+  },
+  "mutation_extra": {
+    "You regenerate by absorbing heat.": "열을 흡수하여 재생합니다."
+  }
+}

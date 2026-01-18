@@ -1,0 +1,18 @@
+{
+  "names": {
+    "Slime Glands": "점액선"
+  },
+  "bearer_descriptions": {
+    "slime spitters": "점액 뱉는 자들"
+  },
+  "mutation_extra": {
+    "You produce a viscous slime that you can spit at things.\\n\\n": "끈적한 점액을 생성하여 뱉을 수 있습니다.\\n\\n",
+    "Covers an area with slime\\n": "해당 지역을 점액으로 뒤덮음\\n",
+    "You can walk over slime without slipping.": "미끄러지지 않고 점액 위를 걸을 수 있습니다."
+  },
+  "mutation_stats": {
+    "Range: 8\\n": "사거리: 8\\n",
+    "Area: 3x3\\n": "범위: 3x3\\n",
+    "Cooldown: 40 rounds\\n": "재사용 대기시간: 40턴\\n"
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "names": {
+    "Night Vision": "야간 시야"
+  },
+  "bearer_descriptions": {
+    "the darksighted": "the darksighted"
+  },
+  "mutation_extra": {
+    "You see in the dark.": "어둠 속에서도 볼 수 있습니다.",
+    "night vision eyes": "어둠 속에서도 선명하게 볼 수 있는 강화 의안입니다.",
+    "starts with night vision": "야간 시야 소지"
+  }
+}

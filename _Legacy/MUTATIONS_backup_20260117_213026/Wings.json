@@ -1,0 +1,30 @@
+{
+  "names": {
+    "Wings": "날개"
+  },
+  "bearer_descriptions": {
+    "the winged": "날개가 있는 자"
+  },
+  "mutation_extra": {
+    "Wings": "날개",
+    "VariantDescription": "변형 설명",
+    "You fly.": "당신은 비행합니다.",
+    "You travel on the world map at {{rules|": "월드 맵 이동 속도가 {{rules|",
+    "x}} speed.\n": "배 증가합니다.\n",
+    "{{rules|": "{{rules|",
+    "While outside, you may fly. You cannot be hit in melee by grounded creatures while flying.\n": "야외에서는 비행할 수 있습니다. 비행 중에는 지상 생물에게 근접 공격을 받지 않습니다.\n",
+    "%}} move speed while sprinting\n": "%}} 질주 시 이동 속도 증가\n",
+    "You can jump {{rules|": "점프 거리가 {{rules|",
+    "}} square": "}}칸",
+    "}} squares": "}}칸",
+    " farther.\n": " 더 늘어납니다.\n",
+    "You can charge {{rules|": "돌진 거리가 {{rules|"
+  },
+  "mutation_stats": {
+    "%}} reduced chance of becoming lost\n": "%}} 확률로 길을 잃을 확률이 감소합니다.\n",
+    "%}} chance of falling clumsily to the ground\n": "%}} 확률로 서투르게 땅으로 추락합니다.\n"
+  },
+  "mutation_reputation": {
+    "+300 reputation with {{w|birds}} and {{w|winged mammals}}": "{{w|새}} 및 {{w|날개 달린 포유류}} 평판 +300"
+  }
+}

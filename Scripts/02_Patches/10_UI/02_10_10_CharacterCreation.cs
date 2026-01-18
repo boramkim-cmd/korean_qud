@@ -6,6 +6,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using HarmonyLib;
 using UnityEngine;
@@ -213,8 +214,7 @@ namespace QudKRTranslation.Patches
             
             foreach (var cat in list)
             {
-            foreach (var cat in list)
-            {
+
                 // Category Title Translation (e.g. "The Toxic Arboreta...")
                 // Normalize key (remove color tags) for lookup
                 string rawTitle = cat.Title;
@@ -307,7 +307,7 @@ namespace QudKRTranslation.Patches
             if (__instance.attributes == null) return;
             foreach (var attr in __instance.attributes)
             {
-                if (LocalizationManager.TryGetAnyTerm(attr.Attribute?.ToLowerInvariant(), out string tName, "chargen_ui", "chargen_stats", "attributes", "ui"))
+                if (!string.IsNullOrEmpty(attr.Attribute) && LocalizationManager.TryGetAnyTerm(attr.Attribute.ToLowerInvariant(), out string tName, "chargen_ui", "chargen_stats", "attributes", "ui"))
                     attr.Attribute = tName;
                 
                 if (LocalizationManager.TryGetAnyTerm(attr.ShortAttributeName?.ToLowerInvariant(), out string tShort, "chargen_ui", "chargen_stats", "attributes", "ui"))
@@ -339,16 +339,35 @@ namespace QudKRTranslation.Patches
                     {
                         foreach (var opt in cat.menuOptions)
                         {
-                            var tr = Traverse.Create(opt);
-                            string desc = tr.Field<string>("Description").Value;
-                            if (LocalizationManager.TryGetAnyTerm(desc?.ToLowerInvariant(), out string tDesc, "mutation", "mutation_desc", "skill", "skill_desc"))
+                            // Translate mutation name using MutationTranslator
+                            string translatedName = MutationTranslator.TranslateName(opt.Id);
+                            if (!string.IsNullOrEmpty(translatedName))
                             {
-                                tr.Field<string>("Description").Value = tDesc;
+                                var tr = Traverse.Create(opt);
+                                string desc = tr.Field<string>("Description").Value;
+                                
+                                // Update description (keep UI suffix like " [V]")
+                                if (!string.IsNullOrEmpty(desc))
+                                {
+                                    string suffix = "";
+                                    if (desc.EndsWith(" [{{W|V}}]"))
+                                    {
+                                        suffix = " [{{W|V}}]";
+                                        desc = desc.Substring(0, desc.Length - suffix.Length);
+                                    }
+                                    
+                                    tr.Field<string>("Description").Value = translatedName + suffix;
+                                }
                             }
 
-                            if (!string.IsNullOrEmpty(opt.LongDescription))
+                            // Translate LongDescription using MutationTranslator
+                            if (!string.IsNullOrEmpty(opt.LongDescription) && !string.IsNullOrEmpty(opt.Id))
                             {
-                                opt.LongDescription = ChargenTranslationUtils.TranslateLongDescription(opt.LongDescription, "mutation_desc", "skill_desc", "ui");
+                                string translatedLong = MutationTranslator.TranslateLongDescription(opt.Id);
+                                if (!string.IsNullOrEmpty(translatedLong))
+                                {
+                                    opt.LongDescription = translatedLong;
+                                }
                             }
                         }
                     }

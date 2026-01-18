@@ -1,0 +1,15 @@
+{
+  "names": {
+    "Force Wall": "Force Wall"
+  },
+  "bearer_descriptions": {
+    "architects of force walls": "architects of force walls"
+  },
+  "mutation_extra": {
+    "You generate a wall of force that protects you from your enemies.": "적을 막아주는 포스 월을 생성합니다.",
+    "Force Wall": "Force Wall"
+  },
+  "mutation_stats": {
+    "Duration: {{rules|": "지속 시간: {{rules|"
+  }
+}

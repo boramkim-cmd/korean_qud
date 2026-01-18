@@ -1,0 +1,15 @@
+{
+  "names": {
+    "Spacetime Vortex": "Spacetime Vortex"
+  },
+  "bearer_descriptions": {
+    "spacefolders": "spacefolders"
+  },
+  "mutation_extra": {
+    " rounds": "턴",
+    "Spacetime Vortex": "Spacetime Vortex"
+  },
+  "mutation_stats": {
+    "Cooldown: {{rules|": "재사용 대기시간: {{rules|"
+  }
+}

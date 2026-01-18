@@ -1,6 +1,6 @@
 # 🚀 프로젝트 빠른 참조 (자동 생성)
 
-**생성**: 2026-01-16 23:54:57
+**생성**: 2026-01-17 22:02:56
 
 ## ⭐ 핵심 경로
 ```
@@ -10,16 +10,17 @@ LOCALIZATION/glossary_*.json              → 용어집 데이터
 ```
 
 ## 📚 용어집 현황
-- `glossary_chargen.json`: 191개 항목
-- `glossary_cybernetics.json`: 63개 항목
-- `glossary_location.json`: 23개 항목
-- `glossary_mutations.json`: 139개 항목
-- `glossary_options.json`: 403개 항목
-- `glossary_pregen.json`: 34개 항목
-- `glossary_proto.json`: 40개 항목
-- `glossary_skills.json`: 240개 항목
-- `glossary_terms.json`: 39개 항목
-- `glossary_ui.json`: 159개 항목
+- `glossary_chargen.json`: 173개 항목
+- `glossary_cybernetics.json`: 54개 항목
+- `glossary_factions.json`: 4개 항목
+- `glossary_location.json`: 22개 항목
+- `glossary_mutations_common.json`: 72개 항목
+- `glossary_options.json`: 362개 항목
+- `glossary_pregen.json`: 25개 항목
+- `glossary_proto.json`: 39개 항목
+- `glossary_skills.json`: 218개 항목
+- `glossary_terms.json`: 35개 항목
+- `glossary_ui.json`: 148개 항목
 
 ## ⛔ 절대 금지 (DO NOT)
 ```

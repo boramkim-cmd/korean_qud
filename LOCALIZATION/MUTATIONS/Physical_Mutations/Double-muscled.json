@@ -1,0 +1,15 @@
+{
+  "names": {
+    "Double-muscled": "이중 근육"
+  },
+  "description": "You are possessed of hulking strength.",
+  "leveltext": [
+    "+{{C|2}} Strength",
+    "{{C|15%}} chance to daze your opponent on a successful melee attack for 2-3 rounds"
+  ],
+  "description_ko": "거대한 힘을 소유하게 됩니다.",
+  "leveltext_ko": [
+    "+{{C|2}} 힘(Strength)",
+    "근접 공격 성공 시 {{C|15%}} 확률로 상대를 2-3라운드 동안 멍함(daze) 상태로 만듭니다"
+  ]
+}

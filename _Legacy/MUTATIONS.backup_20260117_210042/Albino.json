@@ -1,0 +1,11 @@
+{
+  "names": {
+    "Albino": "Albino"
+  },
+  "bearer_descriptions": {
+    "albinos": "albinos"
+  },
+  "mutation_extra": {
+    "Your skin, hair, and eyes are absent of pigment.\\n\\nYou regenerate hit points at one-fifth the usual rate in the daylight.": "피부, 머리카락, 눈에 색소가 없습니다.\\n\\n낮에는 체력 재생 속도가 평소의 1/5로 감소합니다."
+  }
+}

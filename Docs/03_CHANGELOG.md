@@ -14,7 +14,64 @@
 
 ---
 
-## [Unreleased]
+## [2026-01-17] - 변이 글로설리 개편 및 시스템 무결성 점검
+
+### ✨ Added
+- **변이 글로설리 전면 개편 (`glossary_mutations.json`)**
+  - **세분화**: 기존 통합 카테고리를 `names`, `desc`, `frag`, `ui` 등으로 분리하여 관리 효율성 증대
+  - **분류 체계**: 육체적 변이(신체/호흡/패시브), 정신적 변이, 결함 등으로 정교한 분류 적용
+  - **정렬**: 항목들을 한국어 번역어 기준 가나다순으로 정렬하여 가시성 개선
+- **시스템 무결성 보고서 (`integrity_report.md`)**
+  - 프로젝트 전체 용어집 스캔 및 102건의 번역 충돌(Value Conflict) 식별
+  - 향후 스킬(`skills`)과 능력(`powers`) 간의 중복 해결을 위한 데이터 기반 가이드라인 제시
+
+### 🔧 Changed
+- **코드 의존성 정렬 (Dependency Alignment)**
+  - 카테고리 접두사를 C# 코드의 명시적 호출 규약에 맞게 수정
+  - `mutation_descriptions_` → `mutation_desc_` (코드 내 `mutation_desc` 스코프 호환)
+  - `mutation_ui_` → `chargen_ui_mutation_` (캐릭터 생성 UI 통합 스코프 포함)
+- **용어 최적화 및 통일 (Sanitization)**
+  - "Physical" 번역을 문맥에 따라 '육체적'(변이)과 '신체적'(결함)으로 구별하여 통일
+  - 중복된 정규화 키(태그 유무 차이) 제거로 엔진 부하 최적화
+
+### 📝 Technical Details
+- **자동 서브 카테고리 병합 지원**: `LocalizationManager`의 접두사 매칭 기능을 활용하여 세분화된 카테고리가 기존 `mutation` 스코프에서도 자동 로드되도록 설계함
+
+---
+
+## [2026-01-17] - 변이 JSON 구조 표준화 및 샘플 번역 검증
+
+### 🔧 Changed
+- **Mutation JSON 구조 전면 개편**
+  - **기존**: `descriptions` 객체에 영문/한글 혼합, `\n\n` 하드코딩 의존
+  - **변경**: `description` (1줄) + `leveltext` (배열) 구조로 분리
+  - **효과**: 가독성 향상, 번역 시스템이 자동으로 `\n\n` 조합 처리
+  - **다국어 지원**: `description_ko`, `leveltext_ko` 필드 추가로 원본/번역 분리
+
+- **Stinger 변이명 및 데이터 수정**
+  - `Stinger.json` → `Stinger_(Poisoning_Venom).json` 파일명 변경 (명확성)
+  - C# `StingerPoisonProperties` 클래스에서 누락된 독성 지속시간 텍스트 복구
+
+### 🐛 Fixed
+- **[Medium] 변이 파일 중복 및 경로 오류 수정 (ERR-007)**
+  - `Albino.json` 중복 삭제 (Physical_Defects만 유지)
+  - `Syphon_Vim` 중복 삭제 (`Life_Drain.json` 오생성 수정)
+  - 총 82개 변이 파일 위치 검증 완료 (`Mutations.xml` 기준)
+
+- **[High] 줄바꿈 처리 로직 표준화 (ERR-006)**
+  - `Cold-Blooded`, `Carnivorous` 등 장문 설명이 포함된 변이들을 `leveltext` 배열 구조로 변환
+  - C# 소스의 `\n` 줄바꿈을 JSON 배열로 1:1 매핑하여 가독성 확보
+
+### ✨ Added
+- **MutationTranslator 유틸리티**
+  - 자동 초기화(Lazy Loading) 지원
+  - `GetCombinedLongDescription()`: Description과 LevelText 자동 조합
+
+### 📝 Technical Details
+- **교훈**: Mutation 번역 시 BaseClass(`Stinger.cs`)뿐만 아니라 Variant별 Properties(`StingerPoisonProperties.cs`)까지 확인해야 정확한 텍스트 추출 가능.
+
+
+---
 
 ## [2026-01-16] - 색상 태그 정규화 및 이중 Bullet 수정
 

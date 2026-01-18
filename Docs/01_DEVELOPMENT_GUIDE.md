@@ -422,7 +422,7 @@ python3 tools/project_tool.py
 | `glossary_ui.json`          | ~170    | 100%   | 공통 UI       |
 | `glossary_chargen.json`     | ~130    | 100%   | 캐릭터 생성   |
 | `glossary_skills.json`      | ~280    | 100%   | 스킬          |
-| `glossary_mutations.json`   | ~150    | 96.5%  | 변이          |
+| `glossary_mutations.json`   | ~250    | 100%   | 변이          |
 | `glossary_cybernetics.json` | ~190    | 100%   | 사이버네틱스  |
 | `glossary_options.json`     | ~800    | 94%    | 설정 화면     |
 | `glossary_pregen.json`      | ~50     | 100%   | 프리셋 캐릭터 |
@@ -749,12 +749,158 @@ string term = LocalizationManager.GetTerm("ui", "newGame", "새 게임");
 {"item": {"milk": "생수"}}
 ```
 
-## G.4 주의사항
+## G.4 Mutation JSON 구조 (특수)
+
+### 기본 원칙
+Mutation JSON은 다른 용어집과 달리 **C# 소스 코드의 `GetDescription()` + `GetLevelText()` 메서드를 정확히 반영**해야 합니다.
+
+### 표준 JSON 형식
+```json
+{
+  "names": {
+    "Stinger (Poisoning Venom)": "독침 (독성 맹독)"
+  },
+  "description": "You bear a tail with a stinger that delivers poisonous venom to your enemies.",
+  "leveltext": [
+    "20% chance on melee attack to sting your opponent",
+    "Stinger is a long blade and can only penetrate once.",
+    "Always sting on charge or lunge."
+  ],
+  "description_ko": "적에게 독성 맹독을 전달하는 침이 달린 꼬리를 가지고 있습니다.",
+  "leveltext_ko": [
+    "근접 공격 시 20% 확률로 상대를 쏩니다",
+    "독침은 긴 칼날이며 한 번만 관통할 수 있습니다.",
+    "돌진이나 돌격 시 항상 찌릅니다."
+  ]
+}
+```
+
+### 필드 설명
+| 필드 | 설명 | 출처 |
+|------|------|------|
+| `names` | Mutation 이름 (영문 → 한글) | XML 또는 C# |
+| `description` | 핵심 설명 (짧은 문장 1개) | C# `GetDescription()` |
+| `leveltext` | 세부 내용 배열 (여러 줄) | C# `GetLevelText()` 줄바꿈 분리 |
+| `description_ko` | description 한글 번역 | - |
+| `leveltext_ko` | leveltext 한글 번역 배열 | - |
+
+### 중요: C# 소스에서 정확히 추출
+
+> [!CAUTION]
+> **반드시 C# 소스 코드를 직접 확인하세요!**
+> 
+> ❌ 잘못된 방법:
+> - 게임 화면 스크린샷만 보고 작성
+> - 추측으로 텍스트 작성
+> - Mutation XML만 확인
+> 
+> ✅ 올바른 방법:
+> ```bash
+> # 1. C# 파일 찾기
+> find Assets/core_source -name "Stinger.cs"
+> 
+> # 2. GetDescription() 확인
+> grep -A 5 "GetDescription" Stinger.cs
+> 
+> # 3. GetLevelText() 확인 (variant일 경우)
+> grep -A 10 "GetLevelText" Stinger.cs
+> ```
+
+### Variant Mutation 특별 처리
+
+Variant mutation (예: Stinger의 Poisoning/Paralyzing/Confusing)은 **Properties 클래스**를 사용합니다:
+
+```csharp
+// Stinger.cs (Base)
+public override string GetDescription()
+{
+    return StingerProperties.GetDescription();  // ← Properties 위임!
+}
+
+// StingerPoisonProperties.cs (Variant)
+public string GetDescription()
+{
+    return "You bear a tail with a stinger that delivers " + GetAdjective() + " venom...";
+}
+```
+
+**교훈 3가지 (필수 실천 사항):**
+1. ✅ Variant는 별도 Properties 클래스 확인 필수
+2. ✅ 각 variant 개별 메서드 검증
+3. ✅ BaseClass만 보지 말고 실제 구현까지 추적
+
+### 전체 수동 작업 원칙 (Strict Manual Workflow)
+
+> [!CAUTION]
+> **자동화 스크립트 사용 금지!**
+> 
+> Mutation 데이터는 구조가 너무 다양하고 복잡하여 자동 스크립트로는 정확한 추출이 불가능합니다.
+> 반드시 **하나씩 수동으로** C# 소스와 대조하여 작업해야 합니다.
+> 
+> **작업 절차 (SOP):**
+> 1. JSON 파일 오픈 (Stinger 등 기존 샘플 참조)
+> 2. 해당 Mutation의 C# 소스 파일 찾기 (`find`, `grep` 활용)
+> 3. `GetDescription()` 및 `GetLevelText()` 메서드 로직 분석
+>    - `Properties` 클래스로 위임하는지 확인 (필수!)
+> 4. `_ko` 필드에 한글 번역 직접 작성
+> 5. JSON 포맷 검증 (description 1줄, leveltext 배열 구조 확인)
+> 6. 인게임 테스트로 줄바꿈 및 색상 태그 표시 확인
+
+### \n\n 처리 규칙
+
+### \n\n 처리 규칙
+
+C#에서 `\n\n`으로 구분된 텍스트는 **배열로 분리**하세요:
+
+```csharp
+// C# GetDescription()
+return "You eat meat exclusively.\n\nYou get no satiation from foods that aren't meat.\nYou don't get ill when you eat raw meat.";
+```
+
+❌ **잘못된 JSON** (그대로 복사):
+```json
+{
+  "description": "You eat meat exclusively.\\n\\nYou get no satiation...",
+  "leveltext": []
+}
+```
+
+✅ **올바른 JSON** (분리):
+```json
+{
+  "description": "You eat meat exclusively.",
+  "leveltext": [
+    "You get no satiation from foods that aren't meat.",
+    "You don't get ill when you eat raw meat."
+  ]
+}
+```
+
+**이유:** `MutationTranslator`가 자동으로 `description + "\n\n" + leveltext.join("\n")`로 조합합니다.
+
+### 검증 방법
+
+```bash
+# 1. JSON 구조 확인
+jq '.description, .leveltext' mutation.json
+
+# 2. 게임 테스트
+# - 캐릭터 생성 화면 → 변이 선택
+# - LongDescription에 줄바꿈이 정확히 표시되는지 확인
+```
+
+---
+
+## G.5 주의사항
 
 1. **JSON 구문**: 큰따옴표(`"`) 사용, 마지막 항목 뒤 쉼표 제거
 2. **키명**: 영문 소문자, camelCase 사용
 3. **플레이스홀더**: `[[category.key]]` 형식
 4. **게임 명령어**: `{{ }}`, `=...=` 는 건드리지 마세요
+5. **변이 카테고리 접두사**:
+   - `mutation_names_...`: 변이 명칭
+   - `mutation_desc_...`: 변이 상세 설명 (C# 코드 호환용)
+   - `chargen_ui_mutation_...`: 캐릭터 생성 UI 텍스트
 
 ---
 
@@ -855,6 +1001,22 @@ python3 tools/check_logs_for_untranslated.py
 # 로그 실시간 확인
 tail -f ~/Library/Logs/Freehold\ Games/CavesOfQud/Player.log
 ```
+
+## E.2 Python 스크립트 작성 규칙 (Strict Policy)
+
+> [!CAUTION]
+> **루트 디렉토리 오염 금지!**
+> 
+> 모든 유틸리티 스크립트는 반드시 `tools/` 디렉토리 내에 생성해야 합니다.
+> 루트 디렉토리(`/`)에 일회성 `.py` 파일을 생성하지 마세요.
+>
+> **올바른 위치:**
+> - `tools/utility_name.py`: 일반 도구
+> - `tools/scripts/temp_script.py`: 임시 스크립트
+> 
+> **기존 모듈 활용:**
+> 스크립트 작성 시 `tools/project_tool.py` 등의 기존 모듈을 import하여 사용하세요.
+> (JSON 로딩, 로깅, 경로 처리 등 중복 구현 금지)
 
 ## I.2 기능 테스트 체크리스트
 

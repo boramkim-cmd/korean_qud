@@ -1,0 +1,19 @@
+{
+  "names": {
+    "Flaming Ray": "화염 광선"
+  },
+  "description": "You emit a ray of flame from your hands.",
+  "leveltext": [
+    "Emits a 9-square ray of flame in the direction of your choice.",
+    "Damage: {{rules|1d4+1}}",
+    "Cooldown: 10 rounds",
+    "Melee attacks heat opponents by {{rules|2d8}} degrees"
+  ],
+  "description_ko": "손에서 화염 광선을 내뿜습니다.",
+  "leveltext_ko": [
+    "선택한 방향으로 {{rules|9}}칸의 화염 광선을 발사합니다.",
+    "피해량: {{rules|1d4+1}}",
+    "재사용 대기시간: 10라운드",
+    "근접 공격이 상대를 {{rules|2d8}}도만큼 가열시킵니다"
+  ]
+}

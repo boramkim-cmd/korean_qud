@@ -1,0 +1,10 @@
+{
+  "names": {
+    "BaseMutation": "BaseMutation"
+  },
+  "mutation_extra": {
+    "mutation": "돌연변이",
+    "Choose variant": "변형 선택",
+    "BaseMutation": "BaseMutation"
+  }
+}

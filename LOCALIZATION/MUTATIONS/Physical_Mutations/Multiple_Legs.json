@@ -1,0 +1,15 @@
+{
+  "names": {
+    "Multiple Legs": "Multiple Legs"
+  },
+  "description": "You have an extra set of legs.",
+  "leveltext": [
+    "+{{rules|20}} move speed",
+    "+{{rules|6%}} carry capacity"
+  ],
+  "description_ko": "다리 한 쌍이 추가로 생깁니다.",
+  "leveltext_ko": [
+    "+{{rules|20}} 이동 속도",
+    "+{{rules|6%}} 운반 무게"
+  ]
+}

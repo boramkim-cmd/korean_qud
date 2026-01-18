@@ -1,0 +1,14 @@
+{
+  "names": {
+    "Sunder Mind": "Sunder Mind"
+  },
+  "bearer_descriptions": {
+    "mind sunderers": "정신 파괴자들"
+  },
+  "mutation_extra": {
+    "Damage increment: {{rules|": "피해 증가량: {{rules|",
+    " rounds": "턴",
+    "head": "머리",
+    "Sunder Mind": "Sunder Mind"
+  }
+}

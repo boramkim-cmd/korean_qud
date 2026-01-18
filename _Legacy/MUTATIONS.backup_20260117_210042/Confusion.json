@@ -1,0 +1,17 @@
+{
+  "names": {
+    "Confusion": "Confusion"
+  },
+  "bearer_descriptions": {
+    "riddlers": "riddlers"
+  },
+  "mutation_extra": {
+    "Confusion": "Confusion",
+    " rounds": "턴",
+    "confusion breather": "혼란 숨결"
+  },
+  "mutation_stats": {
+    "Duration: {{rules|": "지속 시간: {{rules|",
+    "You can't act while scintillating.\\nConfuses nearby hostile creatures per Confusion rank \" + Level + \".\\nDuration: 5 rounds\\nCooldown: 200 rounds": "You can't act while scintillating.\\nConfuses nearby hostile creatures per Confusion rank \" + Level + \".\\nDuration: 5 rounds\\nCooldown: 200 rounds"
+  }
+}

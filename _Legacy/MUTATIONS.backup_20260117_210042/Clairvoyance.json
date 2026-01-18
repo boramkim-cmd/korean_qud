@@ -1,0 +1,14 @@
+{
+  "names": {
+    "Clairvoyance": "천안통"
+  },
+  "bearer_descriptions": {
+    "the clairvoyant": "천안통이 있는 자"
+  },
+  "descriptions": {
+    "You briefly gain vision of a nearby area.": "잠시 동안 주변 지역의 시야를 확보합니다."
+  },
+  "mutation_extra": {
+    "Clairvoyance": "천안통"
+  }
+}

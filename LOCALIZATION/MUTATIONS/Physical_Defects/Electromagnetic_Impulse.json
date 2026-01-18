@@ -1,0 +1,8 @@
+{
+  "names": {
+    "Electromagnetic Impulse": "전자기 충동"
+  },
+  "description": "You involuntarily release electromagnetic pulses, deactivating robots and artifacts around yourself.\\n\\nSmall chance each round you're in combat that you release an electromagnetic pulse with radius 3, deactivating robots and artifacts (including those you carry) for 11-20 rounds.",
+  "leveltext": [],
+  "description_ko": "You involuntarily release electromagnetic pulses, deactivating robots and artifacts around yourself.\\n\\nSmall chance each round you're in combat that you release an electromagnetic pulse with radius 3, deactivating robots and artifacts (including those you carry) for 11-20 rounds."
+}

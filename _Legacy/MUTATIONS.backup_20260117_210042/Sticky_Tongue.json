@@ -1,0 +1,12 @@
+{
+  "names": {
+    "Sticky Tongue": "끈적한 혀"
+  },
+  "bearer_descriptions": {
+    "those with sticky tongues": "끈적한 혀를 가진 자들"
+  },
+  "mutation_extra": {
+    "You capture prey with your sticky tongue.": "끈적한 혀로 먹잇감을 낚아챕니다.",
+    " rounds": "턴"
+  }
+}

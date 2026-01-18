@@ -1,0 +1,15 @@
+{
+  "names": {
+    "Two-hearted": "Two-hearted"
+  },
+  "bearer_descriptions": {
+    "the two-hearted": "the two-hearted"
+  },
+  "mutation_extra": {
+    "You have two hearts.": "심장이 두 개입니다.",
+    "+{{rules|": "+{{rules|",
+    "}} Toughness\n": "}} 건강\n",
+    "You can sprint for {{rules|": "질주 지속 시간이 {{rules|",
+    "%}} longer.": "%}} 증가합니다."
+  }
+}

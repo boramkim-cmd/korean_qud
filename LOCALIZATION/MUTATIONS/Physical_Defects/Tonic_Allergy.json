@@ -1,0 +1,8 @@
+{
+  "names": {
+    "Tonic Allergy": "강장제 알레르기"
+  },
+  "description": "You are allergic to tonics.\\n\\nThe chance your mutant physiology reacts adversely to a tonic is increased to 33%.\\nIf you react adversely this way to a salve or ubernostrum tonic, the adverse reaction effect is chosen randomly from among other tonic effects. You will still heal.",
+  "leveltext": [],
+  "description_ko": "You are allergic to tonics.\\n\\nThe chance your mutant physiology reacts adversely to a tonic is increased to 33%.\\nIf you react adversely this way to a salve or ubernostrum tonic, the adverse reaction effect is chosen randomly from among other tonic effects. You will still heal."
+}

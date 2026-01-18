@@ -1,0 +1,11 @@
+{
+  "names": {
+    "Dark Vision": "암흑 시야"
+  },
+  "bearer_descriptions": {
+    "the darksighted": "the darksighted"
+  },
+  "mutation_extra": {
+    "You see in the dark.\\n": "You see in the dark.\\n"
+  }
+}

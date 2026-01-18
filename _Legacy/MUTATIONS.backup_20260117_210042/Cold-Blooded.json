@@ -1,0 +1,11 @@
+{
+  "names": {
+    "Cold-Blooded": "Cold-Blooded"
+  },
+  "bearer_descriptions": {
+    "the cold-blooded": "the cold-blooded"
+  },
+  "mutation_reputation": {
+    "Your vitality depends on your temperature; at higher temperatures, you are more lively. At lower temperatures, you are more torpid.\\n\\nYour base quickness score is reduced by 10.\\nYour quickness increases as your temperature increases and decreases as your temperature decreases.\\n+100 reputation with {{w|unshelled reptiles}}": "당신의 활력은 체온에 달려 있습니다. 온도가 높을수록 활기차고, 낮을수록 둔해집니다.\\n\\n기본 신속성 수치가 10 감소합니다.\\n체온이 오르면 신속성이 증가하고, 체온이 내려가면 신속성이 감소합니다.\\n{{w|껍질 없는 파충류}} 평판 +100"
+  }
+}

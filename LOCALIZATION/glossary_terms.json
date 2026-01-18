@@ -11,13 +11,10 @@
     "attribute": "능력치",
     "calling": "소명",
     "genotype": "유전형",
-    "mutation": "돌연변이",
     "skill": "스킬"
   },
   "faction": {
     "barathrumites": "바라스럼추종자",
-    "consortiumOfPhyta": "식물연합",
-    "crystalism": "크리스탈리즘",
     "mechanimists": "메카니카신자",
     "putusTemplar": "푸투스템플러"
   },
@@ -31,8 +28,7 @@
     "bread": "빵",
     "relic": "성유물",
     "schematic": "스케매틱",
-    "trinket": "장신구",
-    "water": "물"
+    "trinket": "장신구"
   },
   "phrase": {
     "farewell": "안녕히 가세요",

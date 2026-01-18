@@ -1,0 +1,13 @@
+{
+  "names": {
+    "Triple-jointed": "Triple-jointed"
+  },
+  "bearer_descriptions": {
+    "the triple-jointed": "the triple-jointed"
+  },
+  "mutation_extra": {
+    "Your joints stretch much further than usual.": "관절이 평소보다 훨씬 더 유연하게 늘어납니다.",
+    "+{{rules|": "+{{rules|",
+    "{{rules|": "{{rules|"
+  }
+}

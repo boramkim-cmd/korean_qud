@@ -1,0 +1,12 @@
+{
+  "names": {
+    "Adrenal Control": "아드레날린 조절"
+  },
+  "bearer_descriptions": {
+    "those with control over their adrenal glands": "those with control over their adrenal glands"
+  },
+  "mutation_extra": {
+    "You regulate your body's release of adrenaline.": "신체의 아드레날린 분비를 조절합니다.",
+    " rounds": "턴"
+  }
+}

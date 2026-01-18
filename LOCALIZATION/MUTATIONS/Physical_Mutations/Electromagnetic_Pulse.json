@@ -1,0 +1,17 @@
+{
+  "names": {
+    "Electromagnetic Pulse": "전자기 펄스"
+  },
+  "description": "You generate an electromagnetic pulse that disables nearby artifacts and machines.",
+  "leveltext": [
+    "Area: {{rules|5x5}} centered around yourself",
+    "Duration: {{rules|6-15}} rounds",
+    "Cooldown: 200 rounds"
+  ],
+  "description_ko": "주변의 유물과 기계를 무력화하는 전자기 펄스를 생성합니다.",
+  "leveltext_ko": [
+    "범위: 자신을 중심으로 {{rules|5x5}}",
+    "지속 시간: {{rules|6-15}}라운드",
+    "재사용 대기시간: 200라운드"
+  ]
+}

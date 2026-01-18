@@ -1,0 +1,12 @@
+{
+  "names": {
+    "Magnetic Pulse": "자기 펄스"
+  },
+  "bearer_descriptions": {
+    "those who emit magnetic pulses": "자기 펄스를 방출하는 자들"
+  },
+  "mutation_extra": {
+    "You emit powerful magnetic pulses.": "You emit powerful magnetic pulses.",
+    "Magnetic Pulse": "자기 펄스"
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "names": {
+    "Sense Psychic": "사이킥 감지"
+  },
+  "bearer_descriptions": {
+    "the psychically sensitive": "사이킥에 예민한 자"
+  },
+  "mutation_extra": {
+    "You can sense other mental mutants through the psychic aether.\\n\\n": "사이킥 에테르를 통해 다른 정신적 변이자를 감지할 수 있습니다.\\n\\n",
+    "You detect the presence of psychic enemies within a radius of ": "반경 "
+  },
+  "mutation_stats": {
+    ".\\nThere's a chance you identify detected enemies.": " 내의 사이킥 적을 감지합니다.\\n감지된 적을 식별할 확률이 있습니다."
+  }
+}

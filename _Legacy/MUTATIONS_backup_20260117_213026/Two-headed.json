@@ -1,0 +1,12 @@
+{
+  "names": {
+    "Two-headed": "Two-headed"
+  },
+  "bearer_descriptions": {
+    "the two-headed": "the two-headed"
+  },
+  "mutation_extra": {
+    "You have two heads.": "머리가 두 개입니다.",
+    "{{rules|": "{{rules|"
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "names": {
+    "Dystechnia": "기술 난해증"
+  },
+  "description": "You're befuddled by technological complexity.",
+  "leveltext": [
+    "-50% move speed on the world map",
+    "You can't have artifacts identified for you because you don't understand their explanations.",
+    "You can't tinker with artifacts or machines.",
+    "Excludes: Psychometry"
+  ],
+  "description_ko": "You're befuddled by technological complexity.",
+  "leveltext_ko": [
+    "-50% move speed on the world map",
+    "You can't have artifacts identified for you because you don't understand their explanations.",
+    "You can't tinker with artifacts or machines.",
+    "Excludes: Psychometry"
+  ]
+}

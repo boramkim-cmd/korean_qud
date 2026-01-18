@@ -1,0 +1,13 @@
+{
+  "names": {
+    "Infiltrate": "침투"
+  },
+  "bearer_descriptions": {
+    "those who infiltrate": "침투하는 자들"
+  },
+  "mutation_extra": {
+    "Infiltrate": "침투",
+    "You teleport and bring creatures along with you.": "순간이동 시 다른 생물들도 함께 데려갑니다.",
+    " rounds": "턴"
+  }
+}

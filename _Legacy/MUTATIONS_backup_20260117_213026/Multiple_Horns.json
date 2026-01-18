@@ -1,0 +1,17 @@
+{
+  "names": {
+    "Multiple Horns": "다중 뿔"
+  },
+  "bearer_descriptions": {
+    "those with multiple horns": "다중 뿔을 가진 자들"
+  },
+  "mutation_extra": {
+    "charge": "돌격",
+    "Several horns jut out of your head.": "머리에 여러 개의 뿔이 솟아나 있습니다.",
+    "{{rules|Increased bleeding save difficulty and intensity}}\\n": "{{rules|출혈 저항 난이도 및 강도 증가}}\\n",
+    "Goring attacks may cause bleeding\\n": "들이받기 공격은 출혈을 일으킬 수 있음\\n",
+    " AV\n": " AV\n",
+    "Cannot wear helmets\\n": "헬멧 착용 불가\\n",
+    "Horns": "뿔"
+  }
+}

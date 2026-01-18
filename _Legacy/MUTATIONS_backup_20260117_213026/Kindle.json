@@ -1,0 +1,16 @@
+{
+  "names": {
+    "Kindle": "발화"
+  },
+  "bearer_descriptions": {
+    "kindlers": "불 지피는 자들"
+  },
+  "mutation_extra": {
+    "You ignite a small fire with your mind.\\n\\n": "정신력으로 작은 불을 붙입니다.\\n\\n",
+    "Kindle": "발화"
+  },
+  "mutation_stats": {
+    "Range: 12\\n": "사거리: 12\\n",
+    "Cooldown: 50": "재사용 대기시간: 50"
+  }
+}

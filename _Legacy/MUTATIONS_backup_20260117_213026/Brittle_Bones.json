@@ -1,0 +1,11 @@
+{
+  "names": {
+    "Brittle Bones": "Brittle Bones"
+  },
+  "bearer_descriptions": {
+    "the brittle-boned": "the brittle-boned"
+  },
+  "mutation_extra": {
+    "Your bones are brittle.\\n\\nYou suffer 50% more damage from bludgeoning attacks, falling, and other sources of concussive damage.": "뼈가 약합니다.\\n\\n둔기 공격, 낙하 및 기타 충격으로 인한 피해를 50% 더 받습니다."
+  }
+}

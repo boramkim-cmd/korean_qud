@@ -1,0 +1,11 @@
+{
+  "names": {
+    "Decarbonizer": "탈탄소기"
+  },
+  "bearer_descriptions": {
+    "those who extract carbon": "탄소를 추출하는 자들"
+  },
+  "mutation_extra": {
+    " rounds": "턴"
+  }
+}
