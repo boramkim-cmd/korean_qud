@@ -86,6 +86,35 @@ namespace QudKRTranslation.Utils
                             filteredLines.Add(line);
                     }
                     
+                    // 필터링된 라인들을 번역 시도 (평판 텍스트 등)
+                    for (int i = 0; i < filteredLines.Count; i++)
+                    {
+                        string line = filteredLines[i];
+                        if (string.IsNullOrWhiteSpace(line)) continue;
+                        
+                        // LocalizationManager를 통해 번역 시도
+                        if (QudKRTranslation.Core.LocalizationManager.TryGetAnyTerm(line, out string translated, "chargen_ui"))
+                        {
+                            filteredLines[i] = translated;
+                        }
+                        else
+                        {
+                            // 불렛 제거 후 다시 시도
+                            string stripped = System.Text.RegularExpressions.Regex.Replace(line, @"^\{\{[a-zA-Z]\|[ùúûü]\}\}\s*", "");
+                            stripped = System.Text.RegularExpressions.Regex.Replace(stripped, @"^[ùúûü·•]\s*", "");
+                            if (!string.IsNullOrEmpty(stripped) && QudKRTranslation.Core.LocalizationManager.TryGetAnyTerm(stripped, out translated, "chargen_ui"))
+                            {
+                                // 불렛 복원
+                                if (line.StartsWith("{{c|ù}}"))
+                                    filteredLines[i] = "{{c|ù}} " + translated;
+                                else if (line.StartsWith("ù"))
+                                    filteredLines[i] = "ù " + translated;
+                                else
+                                    filteredLines[i] = translated;
+                            }
+                        }
+                    }
+                    
                     desc = string.Join("\n", filteredLines);
                 }
 
