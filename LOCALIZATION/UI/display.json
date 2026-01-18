@@ -1,6 +1,6 @@
 {
   "display": {
-    "_source": "glossary_options.json에서 분리된 display 관련 옵션",
+    "_note": "Display settings - migrated from glossary_options.json to UI/display.json",
     "Brightness": "밝기",
     "BRIGHTNESS": "밝기",
     "Contrast": "대비",

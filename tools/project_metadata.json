@@ -1,94 +1,35 @@
 {
-  "generated": "2026-01-18 22:01:53",
+  "generated": "2026-01-18 13:56:14",
   "scripts": {
-    "Scripts/99_Utils/99_00_03_StructureTranslator.cs": {
-      "classification": "Util",
-      "role": "MUTATIONS, GENOTYPES, SUBTYPES 등의 폴더에 있는 구조화된 JSON(이름, 설명, 레벨텍스트)을 로드하고 번역을 제공합니다.",
-      "namespace": "QudKRTranslation.Utils",
+    "Scripts/00_Core/00_00_99_QudKREngine.cs": {
+      "classification": "Core",
+      "role": "한국어 폰트 강제 적용, 조사(Josa) 처리 로직 등 엔진 레벨의 기능을 제공합니다.",
+      "namespace": "QudKRTranslation.Core",
       "classes": [
-        "StructureTranslator",
-        "TranslationData"
+        "FontManager",
+        "UILoadPatch",
+        "MessageLogPatch",
+        "ArticleKillerPatch",
+        "PluralizeKillerPatch",
+        "NameOrderPatch",
+        "DescriptionPatch",
+        "KoreanTextHelper"
       ],
       "methods": [
         {
-          "name": "GetCombinedLongDescription",
-          "return": "string",
-          "params": "string fallbackOriginal = null"
-        },
-        {
-          "name": "InitializeDirectory",
+          "name": "ApplyKoreanFont",
           "return": "void",
-          "params": "string directoryPath"
+          "params": ""
         },
         {
-          "name": "TryGetData",
+          "name": "HasJongsung",
           "return": "bool",
-          "params": "string englishName, out TranslationData data"
+          "params": "char c"
         },
         {
-          "name": "TranslateName",
+          "name": "ResolveJosa",
           "return": "string",
-          "params": "string englishName"
-        },
-        {
-          "name": "TranslateLongDescription",
-          "return": "string",
-          "params": "string englishName, string fallbackOriginal = null"
-        },
-        {
-          "name": "TranslateLevelText",
-          "return": "List<string>",
-          "params": "string englishName"
-        }
-      ]
-    },
-    "Scripts/99_Utils/99_00_02_ChargenTranslationUtils.cs": {
-      "classification": "Utils",
-      "role": "캐릭터 생성 화면의 다중 라인 설명 등을 TranslationEngine을 사용해 번역합니다.",
-      "namespace": "QudKRTranslation.Utils",
-      "classes": [
-        "ChargenTranslationUtils"
-      ],
-      "methods": [
-        {
-          "name": "TranslateLongDescription",
-          "return": "string",
-          "params": "string original, params string[] categories"
-        },
-        {
-          "name": "TranslateMenuOptions",
-          "return": "IEnumerable<MenuOption>",
-          "params": "IEnumerable<MenuOption> options"
-        },
-        {
-          "name": "TranslateBreadcrumb",
-          "return": "void",
-          "params": "UIBreadcrumb breadcrumb"
-        }
-      ]
-    },
-    "Scripts/99_Utils/99_00_01_TranslationUtils.cs": {
-      "classification": "Utils",
-      "role": "UI 태그(<...>, {{...}})를 보존하고, 숫구나 제어값을 번역에서 제외합니다.",
-      "namespace": "QudKRTranslation.Utils",
-      "classes": [
-        "TranslationUtils"
-      ],
-      "methods": [
-        {
-          "name": "TryTranslatePreservingTags",
-          "return": "bool",
-          "params": "string input, out string output, Dictionary<string, string> scope"
-        },
-        {
-          "name": "TryTranslatePreservingTags",
-          "return": "bool",
-          "params": "string input, out string output, Dictionary<string, string>[] scopes"
-        },
-        {
-          "name": "IsControlValue",
-          "return": "bool",
-          "params": "string s"
+          "params": "string text"
         }
       ]
     },
@@ -127,42 +68,6 @@
         }
       ]
     },
-    "Scripts/00_Core/00_00_03_LocalizationManager.cs": {
-      "classification": "Core",
-      "role": "JSON 번역 파일을 로드하고 카테고리별로 관리하며, 세분화된 카테고리 병합 기능을 제공합니다.",
-      "namespace": "QudKRTranslation.Core",
-      "classes": [
-        "LocalizationManager",
-        "RecursiveJsonParser"
-      ],
-      "methods": [
-        {
-          "name": "Initialize",
-          "return": "void",
-          "params": ""
-        },
-        {
-          "name": "Reload",
-          "return": "void",
-          "params": ""
-        },
-        {
-          "name": "GetTerm",
-          "return": "string",
-          "params": "string category, string key, string fallback = \"\""
-        },
-        {
-          "name": "TryGetAnyTerm",
-          "return": "bool",
-          "params": "string key, out string result, params string[] categories"
-        },
-        {
-          "name": "HasTerm",
-          "return": "bool",
-          "params": "string category, string key"
-        }
-      ]
-    },
     "Scripts/00_Core/00_00_01_TranslationEngine.cs": {
       "classification": "Core",
       "role": "색상 태그, 체크박스, 대소문자를 무시하고 번역을 찾아주는 핵심 로직",
@@ -180,36 +85,6 @@
           "name": "TryTranslate",
           "return": "bool",
           "params": "string text, out string translated, Dictionary<string, string>[] scopes"
-        }
-      ]
-    },
-    "Scripts/00_Core/00_00_04_GlossaryLoader.cs": {
-      "classification": "Core",
-      "role": "기존 코드가 LocalizationManager를 사용할 수 있도록 연결해줍니다.",
-      "namespace": "QudKRTranslation.Core",
-      "classes": [
-        "GlossaryLoader"
-      ],
-      "methods": [
-        {
-          "name": "LoadGlossary",
-          "return": "void",
-          "params": ""
-        },
-        {
-          "name": "GetTerm",
-          "return": "string",
-          "params": "string category, string key, string fallback = \"\""
-        },
-        {
-          "name": "HasTerm",
-          "return": "bool",
-          "params": "string category, string key"
-        },
-        {
-          "name": "ReloadGlossary",
-          "return": "void",
-          "params": ""
         }
       ]
     },
@@ -243,6 +118,52 @@
         }
       ]
     },
+    "Scripts/00_Core/00_00_03_LocalizationManager.cs": {
+      "classification": "Core",
+      "role": "JSON 번역 파일을 로드하고 카테고리별로 관리하며, 세분화된 카테고리 병합 기능을 제공합니다.",
+      "namespace": "QudKRTranslation.Core",
+      "classes": [
+        "LocalizationManager",
+        "RecursiveJsonParser"
+      ],
+      "methods": [
+        {
+          "name": "Initialize",
+          "return": "void",
+          "params": ""
+        },
+        {
+          "name": "Reload",
+          "return": "void",
+          "params": ""
+        },
+        {
+          "name": "LoadGlossary",
+          "return": "void",
+          "params": ""
+        },
+        {
+          "name": "GetModDirectory",
+          "return": "string",
+          "params": ""
+        },
+        {
+          "name": "GetTerm",
+          "return": "string",
+          "params": "string category, string key, string fallback = \"\""
+        },
+        {
+          "name": "TryGetAnyTerm",
+          "return": "bool",
+          "params": "string key, out string result, params string[] categories"
+        },
+        {
+          "name": "HasTerm",
+          "return": "bool",
+          "params": "string category, string key"
+        }
+      ]
+    },
     "Scripts/00_Core/00_00_00_ModEntry.cs": {
       "classification": "Core",
       "role": "모드 로드 시 LocalizationManager를 초기화하고 모든 Harmony 패치를 어셈블리에서 찾아 실행합니다.",
@@ -258,37 +179,155 @@
         }
       ]
     },
-    "Scripts/00_Core/00_00_99_QudKREngine.cs": {
-      "classification": "Core",
-      "role": "한국어 폰트 강제 적용, 조사(Josa) 처리 로직 등 엔진 레벨의 기능을 제공합니다.",
-      "namespace": "QudKRTranslation.Core",
+    "Scripts/99_Utils/99_00_01_TranslationUtils.cs": {
+      "classification": "Utils",
+      "role": "UI 태그(<...>, {{...}})를 보존하고, 숫구나 제어값을 번역에서 제외합니다.",
+      "namespace": "QudKRTranslation.Utils",
       "classes": [
-        "FontManager",
-        "UILoadPatch",
-        "MessageLogPatch",
-        "ArticleKillerPatch",
-        "PluralizeKillerPatch",
-        "NameOrderPatch",
-        "DescriptionPatch",
-        "KoreanTextHelper"
+        "TranslationUtils"
       ],
       "methods": [
         {
-          "name": "ApplyKoreanFont",
-          "return": "void",
-          "params": ""
-        },
-        {
-          "name": "HasJongsung",
+          "name": "TryTranslatePreservingTags",
           "return": "bool",
-          "params": "char c"
+          "params": "string input, out string output, Dictionary<string, string> scope"
         },
         {
-          "name": "ResolveJosa",
-          "return": "string",
-          "params": "string text"
+          "name": "TryTranslatePreservingTags",
+          "return": "bool",
+          "params": "string input, out string output, Dictionary<string, string>[] scopes"
+        },
+        {
+          "name": "IsControlValue",
+          "return": "bool",
+          "params": "string s"
         }
       ]
+    },
+    "Scripts/99_Utils/99_00_02_ChargenTranslationUtils.cs": {
+      "classification": "Utils",
+      "role": "캐릭터 생성 화면의 다중 라인 설명 등을 TranslationEngine을 사용해 번역합니다.",
+      "namespace": "QudKRTranslation.Utils",
+      "classes": [
+        "ChargenTranslationUtils"
+      ],
+      "methods": [
+        {
+          "name": "TranslateLongDescription",
+          "return": "string",
+          "params": "string original, params string[] categories"
+        },
+        {
+          "name": "TranslateMenuOptions",
+          "return": "IEnumerable<MenuOption>",
+          "params": "IEnumerable<MenuOption> options"
+        },
+        {
+          "name": "TranslateBreadcrumb",
+          "return": "void",
+          "params": "UIBreadcrumb breadcrumb"
+        }
+      ]
+    },
+    "Scripts/99_Utils/99_00_03_StructureTranslator.cs": {
+      "classification": "Util",
+      "role": "MUTATIONS, GENOTYPES, SUBTYPES 등의 폴더에 있는 구조화된 JSON(이름, 설명, 레벨텍스트)을 로드하고 번역을 제공합니다.",
+      "namespace": "QudKRTranslation.Utils",
+      "classes": [
+        "StructureTranslator",
+        "TranslationData"
+      ],
+      "methods": [
+        {
+          "name": "GetCombinedLongDescription",
+          "return": "string",
+          "params": "string fallbackOriginal = null"
+        },
+        {
+          "name": "InitializeDirectory",
+          "return": "void",
+          "params": "string directoryPath"
+        },
+        {
+          "name": "TryGetData",
+          "return": "bool",
+          "params": "string englishName, out TranslationData data"
+        },
+        {
+          "name": "TranslateName",
+          "return": "string",
+          "params": "string englishName"
+        },
+        {
+          "name": "GetLongDescription",
+          "return": "string",
+          "params": "string englishName, string fallbackOriginal = null"
+        },
+        {
+          "name": "TranslateLevelText",
+          "return": "List<string>",
+          "params": "string englishName"
+        }
+      ]
+    },
+    "Scripts/02_Patches/10_UI/02_10_08_Status.cs": {
+      "classification": "UI Patch",
+      "role": "상태창(인벤토리, 장비, 캐릭터 시트 등 포함)이 열릴 때",
+      "namespace": "QudKRTranslation.Patches.UI",
+      "classes": [
+        "Patch_StatusScreensScreen_Scope"
+      ],
+      "methods": []
+    },
+    "Scripts/02_Patches/10_UI/02_10_00_GlobalUI.cs": {
+      "classification": "UI Patch",
+      "role": "메인 메뉴, 팝업 메시지, 네비게이션 바, 공용 버튼 등 전반적인 UI 번역을 담당합니다.",
+      "namespace": "QudKRTranslation.Patches",
+      "classes": [
+        "Patch_MainMenu_Scope",
+        "Patch_MainMenu_Hide",
+        "Patch_MainMenu_Data",
+        "Patch_TMP_Text_Setter",
+        "Patch_PopupMessage_Buttons",
+        "Patch_Popup_ShowYesNoAsync",
+        "Patch_FrameworkScroller_BeforeShow"
+      ],
+      "methods": [
+        {
+          "name": "TranslateMenuData",
+          "return": "void",
+          "params": ""
+        }
+      ]
+    },
+    "Scripts/02_Patches/10_UI/02_10_15_EmbarkOverlay.cs": {
+      "classification": "UI Patch",
+      "role": "캐릭터 생성 화면 하단의 'Back', 'Next' 공통 버튼 텍스트를 번역합니다.",
+      "namespace": "QudKRTranslation.Patches",
+      "classes": [
+        "Patch_EmbarkBuilderOverlayWindow"
+      ],
+      "methods": []
+    },
+    "Scripts/02_Patches/10_UI/02_10_07_Inventory.cs": {
+      "classification": "UI Patch",
+      "role": "인벤토리 화면의 메뉴, 카테고리, 도움말 텍스트를 번역합니다.",
+      "namespace": "QudKRTranslation.Patches.UI",
+      "classes": [
+        "Patch_GameObject_GetInventoryCategory",
+        "Patch_InventoryScreen_ShowScreen",
+        "Patch_InventoryScreen_UpdateView"
+      ],
+      "methods": []
+    },
+    "Scripts/02_Patches/10_UI/02_10_02_Tooltip.cs": {
+      "classification": "UI Patch",
+      "role": "ModelShark Tooltip 시스템의 텍스트를 번역합니다.",
+      "namespace": "QudKRTranslation.Patches",
+      "classes": [
+        "Tooltip_Patch"
+      ],
+      "methods": []
     },
     "Scripts/02_Patches/10_UI/02_10_01_Options.cs": {
       "classification": "UI Patch",
@@ -307,6 +346,15 @@
           "params": "GameOption opt"
         }
       ]
+    },
+    "Scripts/02_Patches/10_UI/02_10_03_UITextSkin.cs": {
+      "classification": "UI Patch",
+      "role": "UITextSkin.Apply 메서드를 패치하여 TMPro 기반 UI 텍스트를 번역합니다.",
+      "namespace": "QudKRTranslation.Patches",
+      "classes": [
+        "UITextSkin_Patch"
+      ],
+      "methods": []
     },
     "Scripts/02_Patches/10_UI/02_10_10_CharacterCreation.cs": {
       "classification": "UI Patch",
@@ -339,76 +387,6 @@
       ],
       "methods": []
     },
-    "Scripts/02_Patches/10_UI/02_10_15_EmbarkOverlay.cs": {
-      "classification": "UI Patch",
-      "role": "캐릭터 생성 화면 하단의 'Back', 'Next' 공통 버튼 텍스트를 번역합니다.",
-      "namespace": "QudKRTranslation.Patches",
-      "classes": [
-        "Patch_EmbarkBuilderOverlayWindow"
-      ],
-      "methods": []
-    },
-    "Scripts/02_Patches/10_UI/02_10_07_Inventory.cs": {
-      "classification": "UI Patch",
-      "role": "인벤토리 화면의 메뉴, 카테고리, 도움말 텍스트를 번역합니다.",
-      "namespace": "QudKRTranslation.Patches.UI",
-      "classes": [
-        "Patch_GameObject_GetInventoryCategory",
-        "Patch_InventoryScreen_ShowScreen",
-        "Patch_InventoryScreen_UpdateView"
-      ],
-      "methods": []
-    },
-    "Scripts/02_Patches/10_UI/02_10_02_Tooltip.cs": {
-      "classification": "UI Patch",
-      "role": "ModelShark Tooltip 시스템의 텍스트를 번역합니다.",
-      "namespace": "QudKRTranslation.Patches",
-      "classes": [
-        "Tooltip_Patch"
-      ],
-      "methods": []
-    },
-    "Scripts/02_Patches/10_UI/02_10_03_UITextSkin.cs": {
-      "classification": "UI Patch",
-      "role": "UITextSkin.Apply 메서드를 패치하여 TMPro 기반 UI 텍스트를 번역합니다.",
-      "namespace": "QudKRTranslation.Patches",
-      "classes": [
-        "UITextSkin_Patch"
-      ],
-      "methods": []
-    },
-    "Scripts/02_Patches/10_UI/02_10_08_Status.cs": {
-      "classification": "UI Patch",
-      "role": "상태창(인벤토리, 장비, 캐릭터 시트 등 포함)이 열릴 때",
-      "namespace": "QudKRTranslation.Patches.UI",
-      "classes": [
-        "Patch_StatusScreensScreen_Scope"
-      ],
-      "methods": []
-    },
-    "Scripts/02_Patches/10_UI/02_10_00_GlobalUI.cs": {
-      "classification": "UI Patch",
-      "role": "메인 메뉴, 팝업 메시지, 네비게이션 바, 공용 버튼 등 전반적인 UI 번역을 담당합니다.",
-      "namespace": "QudKRTranslation.Patches",
-      "classes": [
-        "Patch_MainMenu_Scope",
-        "Patch_MainMenu_Hide",
-        "Patch_MainMenu_Data",
-        "Patch_TMP_Text_Setter",
-        "Patch_PopupMessage_Buttons",
-        "Patch_Popup_ShowYesNoAsync",
-        "Patch_AbstractBuilder_GetKeyLegend",
-        "Patch_AbstractBuilder_GetKeyMenuBar",
-        "Patch_FrameworkScroller_BeforeShow"
-      ],
-      "methods": [
-        {
-          "name": "TranslateMenuData",
-          "return": "void",
-          "params": ""
-        }
-      ]
-    },
     "Scripts/02_Patches/00_Core/02_00_02_ScreenBuffer.cs": {
       "classification": "Core Patch",
       "role": "ScreenBuffer.Write 메서드를 패치하여 모든 화면의 텍스트를 번역합니다.",
@@ -431,94 +409,1238 @@
   "tools": {
     "merge_options.py": {
       "type": "script",
-      "size": 34666
+      "size": 6712
     },
-    "generate_subtype_jsons.py": {
+    "analyze_glossary.py": {
       "type": "script",
-      "size": 3556
-    },
-    "reorder_modes.py": {
-      "type": "script",
-      "size": 1876
-    },
-    "fix_json_duplicates.py": {
-      "type": "script",
-      "size": 3771
-    },
-    "check_untranslated.py": {
-      "type": "script",
-      "size": 1366
+      "size": 11503
     },
     "project_tool.py": {
       "type": "script",
-      "size": 12175
+      "size": 15763
     },
-    "extract_keys.py": {
+    "get_deploy_path.py": {
       "type": "script",
-      "size": 1405
+      "size": 663
     },
-    "check_logs_for_untranslated.py": {
+    "verify_structure_data.py": {
       "type": "script",
-      "size": 2530
-    },
-    "split_glossary_chargen.py": {
-      "type": "script",
-      "size": 1806
-    },
-    "check_missing_translations.py": {
-      "type": "script",
-      "size": 3945
-    },
-    "update_subtypes.py": {
-      "type": "script",
-      "size": 3641
+      "size": 2734
     },
     "sort_json.py": {
       "type": "script",
-      "size": 1631
+      "size": 2136
     },
-    "populate_all_subtypes.py": {
+    "check_missing_translations.py": {
       "type": "script",
-      "size": 7606
+      "size": 4495
     },
-    "HarmonyAnalyzer": {
-      "type": "tool_folder"
+    "generate_csproj.py": {
+      "type": "script",
+      "size": 1699
     }
   },
   "docs": {
-    "07_STYLE_GUIDE.md": {
-      "modified": "2026-01-18"
-    },
-    "03_CHANGELOG.md": {
-      "modified": "2026-01-18"
-    },
     "01_DEVELOPMENT_GUIDE.md": {
-      "modified": "2026-01-18"
-    },
-    "TEMP_TODO_MUTATIONS.md": {
-      "modified": "2026-01-18"
-    },
-    "02_TODO.md": {
-      "modified": "2026-01-18"
-    },
-    "01_CORE_PROJECT_INDEX.md": {
-      "modified": "2026-01-18"
-    },
-    "02_CORE_QUICK_REFERENCE.md": {
       "modified": "2026-01-18"
     },
     "00_PRINCIPLES.md": {
       "modified": "2026-01-18"
     },
-    "05_ARCHITECTURE.md": {
+    "06_WORKFLOW.md": {
+      "modified": "2026-01-18"
+    },
+    "02_CORE_QUICK_REFERENCE.md": {
+      "modified": "2026-01-18"
+    },
+    "03_CHANGELOG.md": {
+      "modified": "2026-01-18"
+    },
+    "02_TODO.md": {
+      "modified": "2026-01-18"
+    },
+    "08_TOOLS_AND_BUILD.md": {
       "modified": "2026-01-18"
     },
     "04_ERROR_LOG.md": {
       "modified": "2026-01-18"
     },
-    "06_WORKFLOW.md": {
+    "07_STYLE_GUIDE.md": {
+      "modified": "2026-01-18"
+    },
+    "01_CORE_PROJECT_INDEX.md": {
+      "modified": "2026-01-18"
+    },
+    "05_ARCHITECTURE.md": {
       "modified": "2026-01-18"
     }
   },
-  "localization": {}
+  "localization": {
+    "glossary_proto.json": {
+      "categories": [
+        "chargen_proto"
+      ],
+      "entries": 40
+    },
+    "presets.json": {
+      "categories": [
+        "chargen_pregen"
+      ],
+      "entries": 25
+    },
+    "locations.json": {
+      "categories": [
+        "chargen_location"
+      ],
+      "entries": 22
+    },
+    "stats.json": {
+      "categories": [
+        "chargen_stats"
+      ],
+      "entries": 1
+    },
+    "factions.json": {
+      "categories": [
+        "factions"
+      ],
+      "entries": 4
+    },
+    "modes.json": {
+      "categories": [
+        "chargen_mode"
+      ],
+      "entries": 6
+    },
+    "ui.json": {
+      "categories": [
+        "chargen_ui"
+      ],
+      "entries": 4
+    },
+    "terms.json": {
+      "categories": [
+        "attribute",
+        "character",
+        "faction",
+        "genotype",
+        "item",
+        "phrase",
+        "weapon",
+        "world"
+      ],
+      "entries": 35
+    },
+    "display.json": {
+      "categories": [
+        "display"
+      ],
+      "entries": 32
+    },
+    "common.json": {
+      "categories": [
+        "common",
+        "inventory",
+        "status",
+        "ui"
+      ],
+      "entries": 148
+    },
+    "options.json": {
+      "categories": [
+        "options"
+      ],
+      "entries": 362
+    },
+    "skills.json": {
+      "categories": [
+        "skill",
+        "power_axe_desc",
+        "power_general",
+        "power_general_desc",
+        "power_pistol",
+        "power_pistol_desc",
+        "power_tinkering",
+        "power_tinkering_desc",
+        "power_wayfaring",
+        "power_wayfaring_desc",
+        "skill_desc",
+        "powers"
+      ],
+      "entries": 223
+    },
+    "cybernetics.json": {
+      "categories": [
+        "cybernetics",
+        "cybernetics_desc"
+      ],
+      "entries": 54
+    },
+    "Mutated_Human.json": {
+      "categories": [
+        "names",
+        "leveltext",
+        "leveltext_ko"
+      ],
+      "entries": 1
+    },
+    "True_Kin.json": {
+      "categories": [
+        "names",
+        "leveltext",
+        "leveltext_ko"
+      ],
+      "entries": 1
+    },
+    "Fuming_God-Child.json": {
+      "categories": [
+        "names",
+        "description",
+        "description_ko",
+        "leveltext",
+        "leveltext_ko"
+      ],
+      "entries": 1
+    },
+    "Artifex.json": {
+      "categories": [
+        "names",
+        "description",
+        "description_ko",
+        "leveltext",
+        "leveltext_ko"
+      ],
+      "entries": 1
+    },
+    "Child_of_the_Deep.json": {
+      "categories": [
+        "names",
+        "description",
+        "description_ko",
+        "leveltext",
+        "leveltext_ko"
+      ],
+      "entries": 1
+    },
+    "Child_of_the_Wheel.json": {
+      "categories": [
+        "names",
+        "description",
+        "description_ko",
+        "leveltext",
+        "leveltext_ko"
+      ],
+      "entries": 1
+    },
+    "Eunuch.json": {
+      "categories": [
+        "names",
+        "description",
+        "description_ko",
+        "leveltext",
+        "leveltext_ko"
+      ],
+      "entries": 1
+    },
+    "Syzygyrior.json": {
+      "categories": [
+        "names",
+        "description",
+        "description_ko",
+        "leveltext",
+        "leveltext_ko"
+      ],
+      "entries": 1
+    },
+    "Priest_of_All_Suns.json": {
+      "categories": [
+        "names",
+        "description",
+        "description_ko",
+        "leveltext",
+        "leveltext_ko"
+      ],
+      "entries": 1
+    },
+    "Priest_of_All_Moons.json": {
+      "categories": [
+        "names",
+        "description",
+        "description_ko",
+        "leveltext",
+        "leveltext_ko"
+      ],
+      "entries": 1
+    },
+    "Consul.json": {
+      "categories": [
+        "names",
+        "description",
+        "description_ko",
+        "leveltext",
+        "leveltext_ko"
+      ],
+      "entries": 1
+    },
+    "Child_of_the_Hearth.json": {
+      "categories": [
+        "names",
+        "description",
+        "description_ko",
+        "leveltext",
+        "leveltext_ko"
+      ],
+      "entries": 1
+    },
+    "Horticulturist.json": {
+      "categories": [
+        "names",
+        "description",
+        "description_ko",
+        "leveltext",
+        "leveltext_ko"
+      ],
+      "entries": 1
+    },
+    "Praetorian.json": {
+      "categories": [
+        "names",
+        "description",
+        "description_ko",
+        "leveltext",
+        "leveltext_ko"
+      ],
+      "entries": 1
+    },
+    "Scholar.json": {
+      "categories": [
+        "names",
+        "description",
+        "description_ko",
+        "leveltext",
+        "leveltext_ko"
+      ],
+      "entries": 1
+    },
+    "Nomad.json": {
+      "categories": [
+        "names",
+        "description",
+        "description_ko",
+        "leveltext",
+        "leveltext_ko"
+      ],
+      "entries": 1
+    },
+    "Arconaut.json": {
+      "categories": [
+        "names",
+        "description",
+        "description_ko",
+        "leveltext",
+        "leveltext_ko"
+      ],
+      "entries": 1
+    },
+    "Marauder.json": {
+      "categories": [
+        "names",
+        "description",
+        "description_ko",
+        "leveltext",
+        "leveltext_ko"
+      ],
+      "entries": 1
+    },
+    "Greybeard.json": {
+      "categories": [
+        "names",
+        "description",
+        "description_ko",
+        "leveltext",
+        "leveltext_ko"
+      ],
+      "entries": 1
+    },
+    "Watervine_Farmer.json": {
+      "categories": [
+        "names",
+        "description",
+        "description_ko",
+        "leveltext",
+        "leveltext_ko"
+      ],
+      "entries": 1
+    },
+    "Water_Merchant.json": {
+      "categories": [
+        "names",
+        "description",
+        "description_ko",
+        "leveltext",
+        "leveltext_ko"
+      ],
+      "entries": 1
+    },
+    "Pilgrim.json": {
+      "categories": [
+        "names",
+        "description",
+        "description_ko",
+        "leveltext",
+        "leveltext_ko"
+      ],
+      "entries": 1
+    },
+    "Tinker.json": {
+      "categories": [
+        "names",
+        "description",
+        "description_ko",
+        "leveltext",
+        "leveltext_ko"
+      ],
+      "entries": 1
+    },
+    "Apostle.json": {
+      "categories": [
+        "names",
+        "description",
+        "description_ko",
+        "leveltext",
+        "leveltext_ko",
+        "extrainfo",
+        "extrainfo_ko"
+      ],
+      "entries": 1
+    },
+    "Gunslinger.json": {
+      "categories": [
+        "names",
+        "description",
+        "description_ko",
+        "leveltext",
+        "leveltext_ko"
+      ],
+      "entries": 1
+    },
+    "Warden.json": {
+      "categories": [
+        "names",
+        "description",
+        "description_ko",
+        "leveltext",
+        "leveltext_ko"
+      ],
+      "entries": 1
+    },
+    "Brittle_Bones.json": {
+      "categories": [
+        "names",
+        "description",
+        "leveltext",
+        "description_ko",
+        "leveltext_ko"
+      ],
+      "entries": 1
+    },
+    "Cold-Blooded.json": {
+      "categories": [
+        "names",
+        "description",
+        "leveltext",
+        "description_ko",
+        "leveltext_ko"
+      ],
+      "entries": 1
+    },
+    "Carnivorous.json": {
+      "categories": [
+        "names",
+        "description",
+        "leveltext",
+        "description_ko",
+        "leveltext_ko"
+      ],
+      "entries": 1
+    },
+    "Irritable_Genome.json": {
+      "categories": [
+        "names",
+        "description",
+        "leveltext",
+        "description_ko",
+        "leveltext_ko"
+      ],
+      "entries": 1
+    },
+    "Tonic_Allergy.json": {
+      "categories": [
+        "names",
+        "description",
+        "leveltext",
+        "description_ko",
+        "leveltext_ko"
+      ],
+      "entries": 1
+    },
+    "Spontaneous_Combustion.json": {
+      "categories": [
+        "names",
+        "description",
+        "leveltext",
+        "description_ko",
+        "leveltext_ko"
+      ],
+      "entries": 1
+    },
+    "Myopic.json": {
+      "categories": [
+        "names",
+        "description",
+        "leveltext",
+        "description_ko",
+        "leveltext_ko"
+      ],
+      "entries": 1
+    },
+    "Amphibious.json": {
+      "categories": [
+        "names",
+        "description",
+        "leveltext",
+        "description_ko",
+        "leveltext_ko"
+      ],
+      "entries": 1
+    },
+    "Nerve_Poppy.json": {
+      "categories": [
+        "names",
+        "description",
+        "leveltext",
+        "description_ko",
+        "leveltext_ko"
+      ],
+      "entries": 1
+    },
+    "Hooks_for_Feet.json": {
+      "categories": [
+        "names",
+        "description",
+        "leveltext",
+        "description_ko",
+        "leveltext_ko"
+      ],
+      "entries": 1
+    },
+    "Electromagnetic_Impulse.json": {
+      "categories": [
+        "names",
+        "description",
+        "leveltext",
+        "description_ko",
+        "leveltext_ko"
+      ],
+      "entries": 1
+    },
+    "Albino.json": {
+      "categories": [
+        "names",
+        "description",
+        "leveltext",
+        "description_ko",
+        "leveltext_ko"
+      ],
+      "entries": 1
+    },
+    "Socially_Repugnant.json": {
+      "categories": [
+        "names",
+        "description",
+        "leveltext",
+        "description_ko",
+        "leveltext_ko"
+      ],
+      "entries": 1
+    },
+    "Amnesia.json": {
+      "categories": [
+        "names",
+        "description",
+        "leveltext",
+        "description_ko",
+        "leveltext_ko"
+      ],
+      "entries": 1
+    },
+    "Dystechnia.json": {
+      "categories": [
+        "names",
+        "description",
+        "leveltext",
+        "description_ko",
+        "leveltext_ko"
+      ],
+      "entries": 1
+    },
+    "Evil_Twin.json": {
+      "categories": [
+        "names",
+        "description",
+        "leveltext",
+        "description_ko",
+        "leveltext_ko"
+      ],
+      "entries": 1
+    },
+    "Psionic_Migraines.json": {
+      "categories": [
+        "names",
+        "description",
+        "leveltext",
+        "description_ko",
+        "leveltext_ko"
+      ],
+      "entries": 1
+    },
+    "Quantum_Jitters.json": {
+      "categories": [
+        "names",
+        "description",
+        "leveltext",
+        "description_ko",
+        "leveltext_ko"
+      ],
+      "entries": 1
+    },
+    "Blinking_Tic.json": {
+      "categories": [
+        "names",
+        "description",
+        "leveltext",
+        "description_ko",
+        "leveltext_ko"
+      ],
+      "entries": 1
+    },
+    "Narcolepsy.json": {
+      "categories": [
+        "names",
+        "description",
+        "leveltext",
+        "description_ko",
+        "leveltext_ko"
+      ],
+      "entries": 1
+    },
+    "Unstable_Genome.json": {
+      "categories": [
+        "names",
+        "description",
+        "leveltext",
+        "description_ko",
+        "leveltext_ko"
+      ],
+      "entries": 1
+    },
+    "Chimera.json": {
+      "categories": [
+        "names",
+        "description",
+        "leveltext",
+        "description_ko"
+      ],
+      "entries": 1
+    },
+    "Esper.json": {
+      "categories": [
+        "names",
+        "description",
+        "leveltext",
+        "description_ko"
+      ],
+      "entries": 1
+    },
+    "Clairvoyance.json": {
+      "categories": [
+        "names",
+        "description",
+        "leveltext",
+        "description_ko",
+        "leveltext_ko"
+      ],
+      "entries": 1
+    },
+    "Stunning_Force.json": {
+      "categories": [
+        "names",
+        "description",
+        "leveltext",
+        "description_ko",
+        "leveltext_ko"
+      ],
+      "entries": 1
+    },
+    "Spacetime_Vortex.json": {
+      "categories": [
+        "names",
+        "description",
+        "leveltext",
+        "description_ko",
+        "leveltext_ko"
+      ],
+      "entries": 1
+    },
+    "Teleportation.json": {
+      "categories": [
+        "names",
+        "description",
+        "leveltext",
+        "description_ko",
+        "leveltext_ko"
+      ],
+      "entries": 1
+    },
+    "Beguiling.json": {
+      "categories": [
+        "names",
+        "description",
+        "leveltext",
+        "description_ko",
+        "leveltext_ko"
+      ],
+      "entries": 1
+    },
+    "Domination.json": {
+      "categories": [
+        "names",
+        "description",
+        "leveltext",
+        "description_ko",
+        "leveltext_ko"
+      ],
+      "entries": 1
+    },
+    "Ego_Projection.json": {
+      "categories": [
+        "names",
+        "description",
+        "leveltext",
+        "description_ko",
+        "leveltext_ko"
+      ],
+      "entries": 1
+    },
+    "Burgeoning.json": {
+      "categories": [
+        "names",
+        "description",
+        "leveltext",
+        "description_ko",
+        "leveltext_ko"
+      ],
+      "entries": 1
+    },
+    "Psychometry.json": {
+      "categories": [
+        "names",
+        "description",
+        "leveltext",
+        "description_ko",
+        "leveltext_ko"
+      ],
+      "entries": 1
+    },
+    "Temporal_Fugue.json": {
+      "categories": [
+        "names",
+        "description",
+        "leveltext",
+        "description_ko",
+        "leveltext_ko"
+      ],
+      "entries": 1
+    },
+    "Time_Dilation.json": {
+      "categories": [
+        "names",
+        "description",
+        "leveltext",
+        "description_ko",
+        "leveltext_ko"
+      ],
+      "entries": 1
+    },
+    "Syphon_Vim.json": {
+      "categories": [
+        "names",
+        "description",
+        "leveltext",
+        "description_ko",
+        "leveltext_ko"
+      ],
+      "entries": 1
+    },
+    "Disintegration.json": {
+      "categories": [
+        "names",
+        "description",
+        "leveltext",
+        "description_ko",
+        "leveltext_ko"
+      ],
+      "entries": 1
+    },
+    "Mass_Mind.json": {
+      "categories": [
+        "names",
+        "description",
+        "leveltext",
+        "description_ko",
+        "leveltext_ko"
+      ],
+      "entries": 1
+    },
+    "Pyrokinesis.json": {
+      "categories": [
+        "names",
+        "description",
+        "leveltext",
+        "description_ko",
+        "leveltext_ko"
+      ],
+      "entries": 1
+    },
+    "Sunder_Mind.json": {
+      "categories": [
+        "names",
+        "description",
+        "leveltext",
+        "description_ko",
+        "leveltext_ko"
+      ],
+      "entries": 1
+    },
+    "Cryokinesis.json": {
+      "categories": [
+        "names",
+        "description",
+        "leveltext",
+        "description_ko",
+        "leveltext_ko"
+      ],
+      "entries": 1
+    },
+    "Kindle.json": {
+      "categories": [
+        "names",
+        "description",
+        "leveltext",
+        "description_ko",
+        "leveltext_ko"
+      ],
+      "entries": 1
+    },
+    "Teleport_Other.json": {
+      "categories": [
+        "names",
+        "description",
+        "leveltext",
+        "description_ko",
+        "leveltext_ko"
+      ],
+      "entries": 1
+    },
+    "Force_Bubble.json": {
+      "categories": [
+        "names",
+        "description",
+        "leveltext",
+        "description_ko",
+        "leveltext_ko"
+      ],
+      "entries": 1
+    },
+    "Mental_Mirror.json": {
+      "categories": [
+        "names",
+        "description",
+        "leveltext",
+        "description_ko",
+        "leveltext_ko"
+      ],
+      "entries": 1
+    },
+    "Telepathy.json": {
+      "categories": [
+        "names",
+        "description",
+        "leveltext",
+        "description_ko",
+        "leveltext_ko"
+      ],
+      "entries": 1
+    },
+    "Light_Manipulation.json": {
+      "categories": [
+        "names",
+        "description",
+        "leveltext",
+        "description_ko",
+        "leveltext_ko"
+      ],
+      "entries": 1
+    },
+    "Precognition.json": {
+      "categories": [
+        "names",
+        "description",
+        "leveltext",
+        "description_ko",
+        "leveltext_ko"
+      ],
+      "entries": 1
+    },
+    "Confusion.json": {
+      "categories": [
+        "names",
+        "description",
+        "leveltext",
+        "description_ko",
+        "leveltext_ko"
+      ],
+      "entries": 1
+    },
+    "Force_Wall.json": {
+      "categories": [
+        "names",
+        "description",
+        "leveltext",
+        "description_ko",
+        "leveltext_ko"
+      ],
+      "entries": 1
+    },
+    "Sense_Psychic.json": {
+      "categories": [
+        "names",
+        "description",
+        "leveltext",
+        "description_ko",
+        "leveltext_ko"
+      ],
+      "entries": 1
+    },
+    "Stinger_(Paralyzing_Venom).json": {
+      "categories": [
+        "names",
+        "description",
+        "leveltext",
+        "description_ko",
+        "leveltext_ko"
+      ],
+      "entries": 1
+    },
+    "Double-muscled.json": {
+      "categories": [
+        "names",
+        "description",
+        "leveltext",
+        "description_ko",
+        "leveltext_ko"
+      ],
+      "entries": 1
+    },
+    "Wings.json": {
+      "categories": [
+        "names",
+        "description",
+        "leveltext",
+        "description_ko",
+        "leveltext_ko"
+      ],
+      "entries": 1
+    },
+    "Sleep_Gas_Generation.json": {
+      "categories": [
+        "names",
+        "description",
+        "leveltext",
+        "description_ko",
+        "leveltext_ko"
+      ],
+      "entries": 1
+    },
+    "Phasing.json": {
+      "categories": [
+        "names",
+        "description",
+        "leveltext",
+        "description_ko",
+        "leveltext_ko"
+      ],
+      "entries": 1
+    },
+    "Horns.json": {
+      "categories": [
+        "names",
+        "description",
+        "leveltext",
+        "description_ko",
+        "leveltext_ko"
+      ],
+      "entries": 1
+    },
+    "Corrosive_Gas_Generation.json": {
+      "categories": [
+        "names",
+        "description",
+        "leveltext",
+        "description_ko",
+        "leveltext_ko"
+      ],
+      "entries": 1
+    },
+    "Electrical_Generation.json": {
+      "categories": [
+        "names",
+        "description",
+        "leveltext",
+        "description_ko",
+        "leveltext_ko"
+      ],
+      "entries": 1
+    },
+    "Electromagnetic_Pulse.json": {
+      "categories": [
+        "names",
+        "description",
+        "leveltext",
+        "description_ko",
+        "leveltext_ko"
+      ],
+      "entries": 1
+    },
+    "Night_Vision.json": {
+      "categories": [
+        "names",
+        "description",
+        "leveltext",
+        "description_ko",
+        "leveltext_ko"
+      ],
+      "entries": 1
+    },
+    "Heightened_Hearing.json": {
+      "categories": [
+        "names",
+        "description",
+        "leveltext",
+        "description_ko",
+        "leveltext_ko"
+      ],
+      "entries": 1
+    },
+    "Carapace.json": {
+      "categories": [
+        "names",
+        "description",
+        "leveltext",
+        "description_ko",
+        "leveltext_ko"
+      ],
+      "entries": 1
+    },
+    "Photosynthetic_Skin.json": {
+      "categories": [
+        "names",
+        "description",
+        "leveltext",
+        "description_ko",
+        "leveltext_ko"
+      ],
+      "entries": 1
+    },
+    "Triple-jointed.json": {
+      "categories": [
+        "names",
+        "description",
+        "leveltext",
+        "description_ko",
+        "leveltext_ko"
+      ],
+      "entries": 1
+    },
+    "Stinger_(Confusing_Venom).json": {
+      "categories": [
+        "names",
+        "description",
+        "leveltext",
+        "description_ko",
+        "leveltext_ko"
+      ],
+      "entries": 1
+    },
+    "Multiple_Legs.json": {
+      "categories": [
+        "names",
+        "description",
+        "leveltext",
+        "description_ko",
+        "leveltext_ko"
+      ],
+      "entries": 1
+    },
+    "Spinnerets.json": {
+      "categories": [
+        "names",
+        "description",
+        "leveltext",
+        "description_ko",
+        "leveltext_ko"
+      ],
+      "entries": 1
+    },
+    "Regeneration.json": {
+      "categories": [
+        "names",
+        "description",
+        "leveltext",
+        "description_ko",
+        "leveltext_ko"
+      ],
+      "entries": 1
+    },
+    "Slime_Glands.json": {
+      "categories": [
+        "names",
+        "description",
+        "leveltext",
+        "description_ko",
+        "leveltext_ko"
+      ],
+      "entries": 1
+    },
+    "Freezing_Ray.json": {
+      "categories": [
+        "names",
+        "description",
+        "leveltext",
+        "description_ko",
+        "leveltext_ko"
+      ],
+      "entries": 1
+    },
+    "Stinger_(Poisoning_Venom).json": {
+      "categories": [
+        "names",
+        "description",
+        "leveltext",
+        "description_ko",
+        "leveltext_ko"
+      ],
+      "entries": 1
+    },
+    "Two-Hearted.json": {
+      "categories": [
+        "names",
+        "description",
+        "leveltext",
+        "description_ko",
+        "leveltext_ko"
+      ],
+      "entries": 1
+    },
+    "Beak.json": {
+      "categories": [
+        "names",
+        "description",
+        "leveltext",
+        "description_ko",
+        "leveltext_ko"
+      ],
+      "entries": 1
+    },
+    "Burrowing_Claws.json": {
+      "categories": [
+        "names",
+        "description",
+        "leveltext",
+        "description_ko",
+        "leveltext_ko"
+      ],
+      "entries": 1
+    },
+    "Two-Headed.json": {
+      "categories": [
+        "names",
+        "description",
+        "leveltext",
+        "description_ko",
+        "leveltext_ko"
+      ],
+      "entries": 1
+    },
+    "Thick_Fur.json": {
+      "categories": [
+        "names",
+        "description",
+        "leveltext",
+        "description_ko",
+        "leveltext_ko"
+      ],
+      "entries": 1
+    },
+    "Heightened_Speed.json": {
+      "categories": [
+        "names",
+        "description",
+        "leveltext",
+        "description_ko",
+        "leveltext_ko"
+      ],
+      "entries": 1
+    },
+    "Flaming_Ray.json": {
+      "categories": [
+        "names",
+        "description",
+        "leveltext",
+        "description_ko",
+        "leveltext_ko"
+      ],
+      "entries": 1
+    },
+    "Multiple_Arms.json": {
+      "categories": [
+        "names",
+        "description",
+        "leveltext",
+        "description_ko",
+        "leveltext_ko"
+      ],
+      "entries": 1
+    },
+    "Quills.json": {
+      "categories": [
+        "names",
+        "description",
+        "leveltext",
+        "description_ko",
+        "leveltext_ko"
+      ],
+      "entries": 1
+    },
+    "Adrenal_Control.json": {
+      "categories": [
+        "names",
+        "description",
+        "leveltext",
+        "description_ko",
+        "leveltext_ko"
+      ],
+      "entries": 1
+    }
+  }
 }

@@ -17,6 +17,8 @@ Logs/*.log
 *.dll
 *.pdb
 *.mdb
+obj/
+bin/
 
 # IDE
 .vscode/

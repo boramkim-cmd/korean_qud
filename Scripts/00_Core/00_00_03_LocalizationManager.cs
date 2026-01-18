@@ -59,6 +59,7 @@ namespace QudKRTranslation.Core
             LoadJsonFile(Path.Combine(modDir, "LOCALIZATION/UI/common.json"));
             LoadJsonFile(Path.Combine(modDir, "LOCALIZATION/UI/options.json"));
             LoadJsonFile(Path.Combine(modDir, "LOCALIZATION/UI/terms.json"));
+            LoadJsonFile(Path.Combine(modDir, "LOCALIZATION/UI/display.json"));
 
             // Load legacy if needed (Deprecated)
             // LoadJsonFile(Path.Combine(modDir, "LOCALIZATION/_DEPRECATED/glossary_proto.json")); 
