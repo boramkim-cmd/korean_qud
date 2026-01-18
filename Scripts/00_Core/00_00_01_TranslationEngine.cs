@@ -74,17 +74,37 @@ namespace QudKRTranslation
         }
         
         /// <summary>
-        /// 체크박스 등의 접두사를 추출하고 제거합니다.
+        /// 체크박스, 핫키 등 접두사를 추출하고 제거합니다.
         /// </summary>
         private static string ExtractPrefix(ref string text)
         {
-            string[] prefixes = { 
-                "[■] ", "[ ] ", "[*] ", "[X] ", "[x] ", 
-                "[Space] ", "[-] ", "[+] ", 
-                "( ) ", "(X) ", "(x) ", "(*) ", "(-) ", "(+) " 
-            };
-            
-            foreach (var p in prefixes)
+            // 1. Common Checkboxes
+            string[] checkboxes = { "[■] ", "[ ] ", "[*] ", "[X] ", "[x] ", "( ) ", "(X) ", "(x) ", "(*) " };
+            foreach (var p in checkboxes)
+            {
+                if (text.StartsWith(p))
+                {
+                    text = text.Substring(p.Length).TrimStart();
+                    return p;
+                }
+            }
+
+            // 2. Hotkeys: [A], [9], [Esc], [Tab], [Delete], [~], [Space]
+            // Pattern: Starts with [ ... ] followed by space
+            var match = Regex.Match(text, @"^(\[[A-Za-z0-9~\+\-\.]+\]\s+)");
+            if (match.Success)
+            {
+                string p = match.Groups[1].Value;
+                // Avoid stripping [c]olor tags if they somehow leaked here (unlikely due to {{}} usage in Qud)
+                // But Qud sometimes uses [P] for something?
+                
+                text = text.Substring(p.Length).TrimStart();
+                return p;
+            }
+
+            // 3. Parenthesis keys: (-) (+)
+            string[] parens = { "(-) ", "(+) " };
+            foreach (var p in parens)
             {
                 if (text.StartsWith(p))
                 {
