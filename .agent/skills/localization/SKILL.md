@@ -18,9 +18,9 @@ cat CONTEXT.yaml
 
 # 2. 필요시 상세 문서 참조
 cat Docs/00_PRINCIPLES.md      # 대원칙
-cat Docs/05_ARCHITECTURE.md    # 시스템 구조
-cat Docs/06_WORKFLOW.md        # 작업 절차
-cat Docs/07_STYLE_GUIDE.md     # 번역 스타일
+cat Docs/06_ARCHITECTURE.md    # 시스템 구조
+cat Docs/07_WORKFLOW.md        # 작업 절차
+cat Docs/08_STYLE_GUIDE.md     # 번역 스타일
 ```
 
 ## 핵심 규칙 (반드시 준수)
@@ -54,14 +54,14 @@ find Assets/core_source -name "MutationName.cs"
 # Scripts/02_Patches/10_UI/ 에 패치 추가
 # 스코프 Push/Pop 균형 필수
 ```
-→ 상세: `Docs/06_WORKFLOW.md`
+→ 상세: `Docs/07_WORKFLOW.md`
 
 ### 4. 버그 수정
 ```bash
 # 로그 확인
 tail -f ~/Library/Logs/Freehold\ Games/CavesOfQud/Player.log | grep "Qud-KR"
 ```
-→ 상세: `Docs/04_ERROR_LOG.md`
+→ 상세: `Docs/05_ERROR_LOG.md`
 
 ## 검증 명령어
 

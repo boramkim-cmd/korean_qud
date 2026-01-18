@@ -11,24 +11,24 @@
 ```
 Docs/
 ├── 00_PRINCIPLES.md           ← 지금 읽는 문서 (필수, 먼저 읽기)
-├── 01_CORE_PROJECT_INDEX.md   ← 프로젝트 파일/메서드 인덱스 (자동생성)
-├── 02_CORE_QUICK_REFERENCE.md ← 빠른 참조 카드 (자동생성)
-├── 02_TODO.md                 ← 작업 추적 (작업 전 확인)
-├── 03_CHANGELOG.md            ← 완료 기록 (Phase 완료 시 업데이트)
-├── 04_ERROR_LOG.md            ← 에러 추적 (에러 발생 시 기록/확인)
-├── 05_ARCHITECTURE.md         ← 시스템 아키텍처
-├── 06_WORKFLOW.md             ← 작업 절차
-├── 07_STYLE_GUIDE.md          ← 번역 스타일 가이드
-├── 08_TOOLS_AND_BUILD.md      ← 빌드 도구 가이드
-└── 09_DEVELOPMENT_GUIDE.md    ← 상세 개발 가이드 (필요 시 참조)
+├── 01_PROJECT_INDEX.md        ← 프로젝트 파일/메서드 인덱스 (자동생성)
+├── 02_QUICK_REFERENCE.md      ← 빠른 참조 카드 (자동생성)
+├── 03_TODO.md                 ← 작업 추적 (작업 전 확인)
+├── 04_CHANGELOG.md            ← 완료 기록 (Phase 완료 시 업데이트)
+├── 05_ERROR_LOG.md            ← 에러 추적 (에러 발생 시 기록/확인)
+├── 06_ARCHITECTURE.md         ← 시스템 아키텍처
+├── 07_WORKFLOW.md             ← 작업 절차
+├── 08_STYLE_GUIDE.md          ← 번역 스타일 가이드
+├── 09_TOOLS_AND_BUILD.md      ← 빌드 도구 가이드
+└── 10_DEVELOPMENT_GUIDE.md    ← 상세 개발 가이드 (필요 시 참조)
 ```
 
 ### 문서 읽기 순서
 ```
 1. 00_PRINCIPLES.md (이 문서) → 필수, 전체 읽기
-2. 02_TODO.md → 현재 진행 중인 작업 확인
-3. 04_ERROR_LOG.md → 알려진 이슈 확인
-4. 09_DEVELOPMENT_GUIDE.md → 필요한 Part만 참조
+2. 03_TODO.md → 현재 진행 중인 작업 확인
+3. 05_ERROR_LOG.md → 알려진 이슈 확인
+4. 10_DEVELOPMENT_GUIDE.md → 필요한 Part만 참조
 ```
 
 ---
@@ -149,4 +149,4 @@ python3 tools/project_tool.py
 
 ---
 
-> **다음 단계**: 구체적인 작업 내용은 `09_DEVELOPMENT_GUIDE.md`의 해당 Part 참조
+> **다음 단계**: 구체적인 작업 내용은 `10_DEVELOPMENT_GUIDE.md`의 해당 Part 참조

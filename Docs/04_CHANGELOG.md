@@ -186,13 +186,13 @@
 
 ### 연동 구조
 ```
-09_DEVELOPMENT_GUIDE.md (불변 참조)
+10_DEVELOPMENT_GUIDE.md (불변 참조)
           ↓
-02_TODO.md (동적 추적)
+03_TODO.md (동적 추적)
           ↓
-03_CHANGELOG.md (이 문서 - 완료 기록)
+04_CHANGELOG.md (이 문서 - 완료 기록)
           ↓
-04_ERROR_LOG.md (에러/이슈 추적)
+05_ERROR_LOG.md (에러/이슈 추적)
 ```
 
 ### 버전 규칙

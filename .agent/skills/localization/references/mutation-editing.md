@@ -127,4 +127,4 @@ grep -r "Properties" Assets/core_source/ | grep MutationName
 - `ERR-006`: 변이 설명 불일치 및 줄바꿈 처리 오류
 - `ERR-007`: 변이 JSON 파일 중복 및 경로 오류
 
-→ 상세: `Docs/04_ERROR_LOG.md`
+→ 상세: `Docs/05_ERROR_LOG.md`

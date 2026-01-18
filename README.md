@@ -6,16 +6,16 @@
 qud_korean/
 ├── Docs/                    📖 모든 가이드 문서
 │   ├── 00_PRINCIPLES.md            ⭐ AI 에이전트 필독 - 개발 대원칙
-│   ├── 01_CORE_PROJECT_INDEX.md    📚 전체 메서드 시그니처 (자동생성)
-│   ├── 02_CORE_QUICK_REFERENCE.md  🔍 빠른 참조 (자동생성)
-│   ├── 02_TODO.md                  📝 작업 추적
-│   ├── 03_CHANGELOG.md             📋 변경 이력
-│   ├── 04_ERROR_LOG.md             ⚠️ 에러/이슈 추적
-│   ├── 05_ARCHITECTURE.md          🏗️ 아키텍처 문서
-│   ├── 06_WORKFLOW.md              🔄 워크플로우
-│   ├── 07_STYLE_GUIDE.md           🎨 스타일 가이드
-│   ├── 08_TOOLS_AND_BUILD.md       🛠️ 도구 및 빌드 가이드
-│   └── 09_DEVELOPMENT_GUIDE.md     📘 상세 개발 가이드
+│   ├── 01_PROJECT_INDEX.md         📚 전체 메서드 시그니처 (자동생성)
+│   ├── 02_QUICK_REFERENCE.md       🔍 빠른 참조 (자동생성)
+│   ├── 03_TODO.md                  📝 작업 추적
+│   ├── 04_CHANGELOG.md             📋 변경 이력
+│   ├── 05_ERROR_LOG.md             ⚠️ 에러/이슈 추적
+│   ├── 06_ARCHITECTURE.md          🏗️ 아키텍처 문서
+│   ├── 07_WORKFLOW.md              🔄 워크플로우
+│   ├── 08_STYLE_GUIDE.md           🎨 스타일 가이드
+│   ├── 09_TOOLS_AND_BUILD.md       🛠️ 도구 및 빌드 가이드
+│   └── 10_DEVELOPMENT_GUIDE.md     📘 상세 개발 가이드
 │
 ├── tools/                   🔧 도구 모음
 │   ├── HarmonyAnalyzer/    🔧 게임 DLL API 추출 도구 (C#)
@@ -87,15 +87,15 @@ python3 tools/check_missing_translations.py  # 미번역 정밀 탐색
 ## 📚 핵심 문서
 
 1. **Docs/00_PRINCIPLES.md** - AI 에이전트 필독 대원칙
-2. **Docs/01_CORE_PROJECT_INDEX.md** - 모든 메서드 시그니처
-3. **Docs/02_CORE_QUICK_REFERENCE.md** - 프로젝트 구조
+2. **Docs/01_PROJECT_INDEX.md** - 모든 메서드 시그니처
+3. **Docs/02_QUICK_REFERENCE.md** - 프로젝트 구조
 
 ## ⚡ 워크플로우
 
 ```
 1. cat Docs/00_PRINCIPLES.md
    ↓
-2. 메서드 확인 (01_CORE_PROJECT_INDEX.md)
+2. 메서드 확인 (01_PROJECT_INDEX.md)
    ↓
 3. 코드 작성
    ↓

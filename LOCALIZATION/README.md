@@ -232,4 +232,4 @@ grep -A 10 "GetLevelText" Assets/core_source/.../Stinger.cs
 
 ---
 
-> **다음 단계**: 번역 규칙과 스타일은 `Docs/07_STYLE_GUIDE.md` 참조
+> **다음 단계**: 번역 규칙과 스타일은 `Docs/08_STYLE_GUIDE.md` 참조

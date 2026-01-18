@@ -24,13 +24,13 @@ cat Docs/00_PRINCIPLES.md
 
 // turbo
 ```bash
-cat Docs/02_TODO.md
+cat Docs/03_TODO.md
 ```
 > 현재 진행 중인 작업 확인
 
 // turbo
 ```bash
-cat Docs/04_ERROR_LOG.md | head -100
+cat Docs/05_ERROR_LOG.md | head -100
 ```
 > 알려진 이슈 및 해결 방법 확인 (최근 100줄)
 
@@ -44,13 +44,13 @@ python3 tools/project_tool.py
 
 ## 3. 작업 선택
 
-`02_TODO.md`에서 진행할 작업 선택 후:
+`03_TODO.md`에서 진행할 작업 선택 후:
 - 해당 항목 상태를 `[ ]` → `[/]`로 변경
 - 시작일 기록
 
 ## 4. 상세 가이드 참조 (필요 시)
 
-작업 유형에 따라 `01_DEVELOPMENT_GUIDE.md`의 해당 Part 참조:
+작업 유형에 따라 `10_DEVELOPMENT_GUIDE.md`의 해당 Part 참조:
 - 새 화면 번역: Part L (AI 에이전트 가이드)
 - API 참조: Part C
 - 스타일 가이드: Part H
@@ -71,5 +71,5 @@ python3 tools/project_tool.py
 > 게임 모드 폴더로 자동 배포 (작업 완료 시 필수!)
 
 1. 게임 재시작하여 테스트
-2. `02_TODO.md` 상태 업데이트 (`[/]` → `[x]`)
-3. 에러 발생 시 `04_ERROR_LOG.md` 기록
+2. `03_TODO.md` 상태 업데이트 (`[/]` → `[x]`)
+3. 에러 발생 시 `05_ERROR_LOG.md` 기록

@@ -46,7 +46,7 @@ known_issues:
 next_recommended:
   - task: "Phase 2 게임플레이 번역 시작"
     priority: "medium"
-    see: "Docs/02_TODO.md#phase-2"
+    see: "Docs/03_TODO.md#phase-2"
   - task: "게임 내 테스트로 GENOTYPES/SUBTYPES 로딩 확인"
     priority: "high"
 
@@ -60,8 +60,8 @@ quick_commands:
 # 핵심 경로 (자주 참조)
 key_paths:
   principles: "Docs/00_PRINCIPLES.md"
-  todo: "Docs/02_TODO.md"
-  error_log: "Docs/04_ERROR_LOG.md"
+  todo: "Docs/03_TODO.md"
+  error_log: "Docs/05_ERROR_LOG.md"
   localization: "LOCALIZATION/"
   scripts: "Scripts/"
   tools: "tools/"
