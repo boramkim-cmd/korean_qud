@@ -322,42 +322,7 @@ namespace QudKRTranslation.Patches
         }
     }
 
-    // ========================================================================
-    // 6. 네비게이션 바 (캐릭터 생성 및 메인 메뉴)
-    // ========================================================================
-    [HarmonyPatch(typeof(AbstractBuilderModuleWindowBase), "GetKeyLegend")]
-    public static class Patch_AbstractBuilder_GetKeyLegend
-    {
-        [HarmonyPostfix]
-        static IEnumerable<MenuOption> Postfix(IEnumerable<MenuOption> __result)
-        {
-            foreach (var option in __result)
-            {
-                var tr = Traverse.Create(option);
-                string desc = tr.Field<string>("Description").Value;
-                if (LocalizationManager.TryGetAnyTerm(desc?.ToLowerInvariant(), out string translated, "ui", "common"))
-                    tr.Field<string>("Description").Value = translated;
-                yield return option;
-            }
-        }
-    }
-
-    [HarmonyPatch(typeof(AbstractBuilderModuleWindowBase), "GetKeyMenuBar")]
-    public static class Patch_AbstractBuilder_GetKeyMenuBar
-    {
-        [HarmonyPostfix]
-        static IEnumerable<MenuOption> Postfix(IEnumerable<MenuOption> __result)
-        {
-            foreach (var option in __result)
-            {
-                var tr = Traverse.Create(option);
-                string desc = tr.Field<string>("Description").Value;
-                if (LocalizationManager.TryGetAnyTerm(desc?.ToLowerInvariant(), out string translated, "ui", "common"))
-                    tr.Field<string>("Description").Value = translated;
-                yield return option;
-            }
-        }
-    }
+    // [REMOVED] Redundant GetKeyLegend and GetKeyMenuBar patches (Already handled in 02_10_10_CharacterCreation.cs)
 
     [HarmonyPatch(typeof(FrameworkScroller), "BeforeShow", new Type[] { typeof(EmbarkBuilderModuleWindowDescriptor), typeof(IEnumerable<FrameworkDataElement>) })]
     public static class Patch_FrameworkScroller_BeforeShow

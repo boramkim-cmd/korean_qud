@@ -1,5 +1,5 @@
 {
-  "generated": "2026-01-18 21:03:39",
+  "generated": "2026-01-18 22:01:53",
   "scripts": {
     "Scripts/99_Utils/99_00_03_StructureTranslator.cs": {
       "classification": "Util",
@@ -294,7 +294,6 @@
       "namespace": "QudKRTranslation.Patches",
       "classes": [
         "Patch_AbstractBuilderModuleWindowBase",
-        "Patch_AbstractBuilderModuleWindowBase_Title",
         "Patch_QudGamemodeModuleWindow",
         "Patch_QudChartypeModuleWindow",
         "Patch_QudGenotypeModuleWindow",
@@ -378,8 +377,6 @@
         "Patch_TMP_Text_Setter",
         "Patch_PopupMessage_Buttons",
         "Patch_Popup_ShowYesNoAsync",
-        "Patch_AbstractBuilder_GetKeyLegend",
-        "Patch_AbstractBuilder_GetKeyMenuBar",
         "Patch_FrameworkScroller_BeforeShow"
       ],
       "methods": [

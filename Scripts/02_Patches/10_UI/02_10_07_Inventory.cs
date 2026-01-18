@@ -99,22 +99,20 @@ namespace QudKRTranslation.Patches.UI
                 if (filterBar != null)
                 {
                     var barTr = Traverse.Create(filterBar);
-                    var buttons = barTr.Field("buttons").GetValue<System.Collections.IList>();
+                    var buttons = barTr.Field("categoryButtons").GetValue<System.Collections.IList>();
                     
                     if (buttons != null)
                     {
                         foreach (var btn in buttons)
                         {
+                            if (btn == null) continue;
                             var btnTr = Traverse.Create(btn);
                             
-                            // 텍스트 필드 접근 (FilterBarButton 내부의 TextMeshProUGUI 등)
-                            // 보통 Text 속성이나 필드가 있을 것임.
-                            // FilterBarButton 구조: public string text; 혹은 public TextMeshProUGUI textComponent;
-                            
-                            string rawText = btnTr.Property<string>("Text").Value; // 대소문자 주의
-                            if (string.IsNullOrEmpty(rawText)) 
-                                rawText = btnTr.Field<string>("text").Value;
+                            // FilterBarCategoryButton has a 'public UITextSkin text;' field
+                            var textSkin = btnTr.Field("text").GetValue() as XRL.UI.UITextSkin;
+                            if (textSkin == null) continue;
 
+                            string rawText = textSkin.text;
                             if (!string.IsNullOrEmpty(rawText))
                             {
                                 // "*All" -> "전체"
@@ -123,16 +121,12 @@ namespace QudKRTranslation.Patches.UI
                                 {
                                     if (LocalizationManager.TryGetAnyTerm("*all", out string tAll, "inventory", "ui"))
                                     {
-                                        // 텍스트 설정 시도
-                                        // Traverse<T>.Value setter does nothing if the field/property is missing.
-                                        btnTr.Property<string>("Text").Value = tAll;
-                                        btnTr.Field<string>("text").Value = tAll;
+                                        textSkin.SetText(tAll);
                                     }
                                 }
                                 else if (LocalizationManager.TryGetAnyTerm(rawText.ToLowerInvariant(), out string translated, "inventory"))
                                 {
-                                    btnTr.Property<string>("Text").Value = translated;
-                                    btnTr.Field<string>("text").Value = translated;
+                                    textSkin.SetText(translated);
                                 }
                             }
                         }
