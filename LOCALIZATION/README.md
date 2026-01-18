@@ -6,38 +6,36 @@
 
 ## 📁 디렉토리 구조
 
-```
 LOCALIZATION/
-├── CHARGEN/                  # 캐릭터 생성 (Character Generation)
-│   ├── modes.json            → 게임 모드
-│   ├── stats.json            → 스탯 (Strength, Agility 등)
-│   ├── ui.json               → 캐릭터 생성 UI
-│   ├── presets.json          → 프리셋 캐릭터
-│   ├── locations.json        → 시작 위치
-│   ├── factions.json         → 팩션
-│   ├── GENOTYPES/            # [Layer 2] 종족 데이터 (Mutated Human, True Kin)
-│   └── SUBTYPES/             # [Layer 2] 하위 타입 (Callings, Castes)
+├── CHARGEN/                  # 캐릭터 생성 (Character Creation Context)
+│   ├── modes.json            → Game modes (Classic, Roleplay, Wander, etc.)
+│   ├── stats.json            → Attribute descriptions (Strength, Agility, etc.)
+│   ├── ui.json               → Character creation UI text
+│   ├── presets.json          → Preset character descriptions
+│   ├── locations.json        → Starting location names
+│   ├── factions.json         → Faction names
+│   ├── GENOTYPES/            # [Layer 2] Mutated Human, True Kin (with descriptions)
+│   └── SUBTYPES/             # [Layer 2] Callings and Castes (with skill lists)
 │
-├── GAMEPLAY/                 # 인게임 플레이 (Gameplay)
-│   ├── skills.json           → 스킬 이름/설명
-│   ├── cybernetics.json      → 사이버네틱스
-│   └── MUTATIONS/            # [Layer 2] 변이 및 결함
+├── GAMEPLAY/                 # 인게임 플레이 (Gameplay Features Context)
+│   ├── skills.json           → Skill and power names/descriptions
+│   ├── cybernetics.json      → Cybernetic implant translations
+│   └── MUTATIONS/            # [Layer 2] Physical/Mental mutations and defects (81 files)
 │       ├── Physical_Mutations/
 │       ├── Mental_Mutations/
 │       ├── Physical_Defects/
 │       ├── Mental_Defects/
 │       └── Morphotypes/
 │
-├── UI/                       # 사용자 인터페이스 (User Interface)
-│   ├── common.json           → UI 공통 용어 (버튼, 메뉴 등)
-│   ├── options.json          → 설정 화면 텍스트
-│   └── terms.json            → 일반 용어
+├── UI/                       # 사용자 인터페이스 (User Interface Context)
+│   ├── common.json           → Buttons, menus, common UI text
+│   ├── options.json          → Settings screen (362 entries)
+│   └── terms.json            → General game terminology
 │
 ├── _DEPRECATED/              # 보관소 (Archived)
-│   └── glossary_proto.json   → (구) 레거시 파일
+│   └── glossary_proto.json   → Legacy file. (Merged into GENOTYPES/SUBTYPES)
 │
 └── integrity_report.md       # 번역 무결성 리포트
-```
 
 ---
 
