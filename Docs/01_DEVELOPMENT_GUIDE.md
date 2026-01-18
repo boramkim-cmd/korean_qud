@@ -95,7 +95,7 @@
 "인벤토리 화면(`02_10_07_Inventory.cs`) 패치:
 - 대상: `InventoryAndEquipmentStatusScreen` 클래스
 - 패치 메서드: `UpdateViewFromData()` (Postfix)
-- 번역 항목: 15개 (glossary_ui.json inventory 카테고리)
+- 번역 항목: 15개 (UI/common.json inventory 카테고리)
 - 미완성: FilterBar '*All' 필터 (컴포넌트 접근 방법 조사 필요)
 - 테스트: 인벤토리 열기 → 카테고리 헤더 한글 확인"
 ```
@@ -353,7 +353,7 @@ python3 tools/project_tool.py
 | 번역 엔진    | `Scripts/00_Core/00_01_TranslationEngine.cs`   |
 | 데이터 관리  | `Scripts/00_Core/00_03_LocalizationManager.cs` |
 | 전역 UI 패치 | `Scripts/02_Patches/UI/02_10_00_GlobalUI.cs`   |
-| 공통 UI 용어 | `LOCALIZATION/UI/common.json`                |
+| 공통 UI 용어 | `LOCALIZATION/UI/common.json`                  |
 
 ## A.4 핵심 규칙 (암기!)
 
@@ -419,16 +419,16 @@ python3 tools/project_tool.py
 
 | 파일                        | 항목 수 | 완성도 | 용도          |
 | --------------------------- | ------- | ------ | ------------- |
-| `UI/common.json`            | ~170    | 100%   | 공통 UI       |
-| `CHARGEN/*.json`            | ~130    | 100%   | 캐릭터 생성   |
-| `GAMEPLAY/skills.json`      | ~280    | 100%   | 스킬          |
-| `GAMEPLAY/MUTATIONS/`       | ~250    | 100%   | 변이 (폴더)   |
-| `GAMEPLAY/cybernetics.json` | ~190    | 100%   | 사이버네틱스  |
-| `UI/options.json`           | ~800    | 94%    | 설정 화면     |
-| `CHARGEN/presets.json`      | ~50     | 100%   | 프리셋 캐릭터 |
-| `CHARGEN/GENOTYPES/`        | ~20     | 100%   | 종족/유형     |
-| `CHARGEN/locations.json`    | ~50     | 100%   | 시작 위치     |
-| `UI/terms.json`             | ~35     | 100%   | 일반 용어     |
+| `glossary_ui.json`          | ~170    | 100%   | 공통 UI       |
+| `glossary_chargen.json`     | ~130    | 100%   | 캐릭터 생성   |
+| `glossary_skills.json`      | ~280    | 100%   | 스킬          |
+| `glossary_mutations.json`   | ~250    | 100%   | 변이          |
+| `glossary_cybernetics.json` | ~190    | 100%   | 사이버네틱스  |
+| `glossary_options.json`     | ~800    | 94%    | 설정 화면     |
+| `glossary_pregen.json`      | ~50     | 100%   | 프리셋 캐릭터 |
+| `glossary_proto.json`       | ~60     | 100%   | 종족/유형     |
+| `glossary_location.json`    | ~50     | 100%   | 시작 위치     |
+| `glossary_terms.json`       | ~35     | 100%   | 일반 용어     |
 
 ---
 
@@ -669,11 +669,12 @@ python3 tools/check_logs_for_untranslated.py
 
 ## F.2 파일 위치
 
-| 번역 대상        | 파일 위치                                                      |
-| ---------------- | -------------------------------------------------------------- |
-| UI 및 공통 용어  | `LOCALIZATION/UI/common.json`, `options.json` 등               |
-| 스킬 및 돌연변이 | `LOCALIZATION/GAMEPLAY/skills.json`, `MUTATIONS/`              |
-| 대화 및 퀘스트   | `Assets/StreamingAssets/Base/Conversations.xml`, `Quests.xml`  |
+| 번역 대상        | 파일 위치                                                |
+| ---------------- | -------------------------------------------------------- |
+| UI 및 공통 용어  | `LOCALIZATION/UI/common.json`, `UI/options.json`         |
+| 스킬 및 변이     | `LOCALIZATION/GAMEPLAY/skills.json`, `GAMEPLAY/MUTATIONS/` |
+| 캐릭터 생성      | `LOCALIZATION/CHARGEN/` (modes, ui, GENOTYPES, SUBTYPES)   |
+| 대화 및 퀘스트   | `Assets/StreamingAssets/Base/Conversations.xml`, `Quests.xml` |
 
 ## F.3 번역 우선순위
 
@@ -702,7 +703,7 @@ python3 tools/check_logs_for_untranslated.py
 ## G.1 JSON 용어집 구조
 
 ```json
-// glossary_ui.json 예시
+// UI/common.json 예시
 {
   "ui": {
     "newGame": "새 게임",
@@ -1071,7 +1072,7 @@ flowchart TB
     end
 
     subgraph "Data Layer"
-        J1[glossary_*.json<br/>10개 번역 파일]
+        J1[CHARGEN/<br/>GAMEPLAY/<br/>UI/<br/>번역 파일]
     end
 
     G --> H --> ME

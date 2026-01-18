@@ -1,6 +1,6 @@
 # Caves of Qud 한글화 프로젝트 - 변경 이력 (Changelog)
 
-> **버전**: 2.1 | **최종 업데이트**: 2026-01-16
+> **버전**: 2.2 | **최종 업데이트**: 2026-01-18
 
 > [!NOTE]
 > **AI 에이전트**: 이 문서는 완료 기록용입니다. 먼저 `00_PRINCIPLES.md`를 읽으세요!
@@ -14,28 +14,39 @@
 
 ---
 
-## [2026-01-18] - Localization Folder Reorganization
+## [2026-01-18] - LOCALIZATION 폴더 구조 재정리
 
-### ♻️ Refactoring
-- **LOCALIZATION 폴더 구조 전면 개편**
-  - **기존**: 모든 glossary 파일이 루트에 혼재되어 관리가 어려움
-  - **변경**: 컨텍스트별 하위 폴더로 분류 (`CHARGEN`, `GAMEPLAY`, `UI`)
-  - **이점**: 관련 파일 응집도 향상 및 향후 확장성(COMBAT, WORLD 등) 확보
+### 🏗️ Refactored
+- **번역 파일 구조 전면 재편**
+  - 컨텍스트 기반 계층 구조 도입 (CHARGEN/, GAMEPLAY/, UI/)
+  - Layer 1 파일 12개 이동 및 이름 변경
+  - Layer 2 폴더 3개 재배치 (MUTATIONS, GENOTYPES, SUBTYPES)
+  - `glossary_proto.json`을 GENOTYPES/SUBTYPES에 통합 후 deprecated 처리
 
-- **Glossary 데이터 통합**
-  - `glossary_proto.json` (레거시) 데이터를 `GENOTYPES` 및 `SUBTYPES` 구조화 데이터로 병합
-  - 중복된 이름("mutated human", "apostle" 등) 제거
-  - 누락된 `leveltext` 및 `extrainfo`("may rebuke robots" 등)를 구조화된 파일에 통합
-  - 원본 `glossary_proto.json`은 `_DEPRECATED` 폴더로 이동 (보존용)
+- **코드 업데이트**
+  - `LocalizationManager.cs`: 재귀적 JSON 로딩 지원 (`SearchOption.AllDirectories`)
+  - `StructureTranslator.cs`: 새 폴더 경로 반영
 
-- **문서 통합**
-  - 파편화된 하위 폴더 README들을 `LOCALIZATION/README.md` 하나로 통합하여 유지보수성 향상
-  - `Docs/01_DEVELOPMENT_GUIDE.md` 업데이트 완료
+- **문서화 개선**
+  - `LOCALIZATION/README.md`: 전면 개편
+  - 각 서브폴더에 `README.md` 추가 (CHARGEN, GAMEPLAY, UI)
+  - `Docs/01_DEVELOPMENT_GUIDE.md`: 파일 경로 업데이트
+  - `LOCALIZATION_REORGANIZATION_SUMMARY.md`: 상세 마이그레이션 문서 생성
+
+### ✨ Added
+- **새 폴더 구조**:
+  - `CHARGEN/`: 캐릭터 생성 관련 (modes, stats, ui, presets, locations, factions + GENOTYPES, SUBTYPES)
+  - `GAMEPLAY/`: 게임플레이 기능 (skills, cybernetics + MUTATIONS)
+  - `UI/`: 사용자 인터페이스 (common, options, terms)
+  - `_DEPRECATED/`: 구 버전 보관
 
 ### 🔧 Changed
-- **코드 경로 업데이트**:
-  - `LocalizationManager.cs`: `LoadGlossary()`에서 변경된 JSON 경로 로드
-  - `StructureTranslator.cs`: `TargetDirectories`에 `GAMEPLAY/MUTATIONS`, `CHARGEN/GENOTYPES` 등 반영
+- **번역 일관성 개선**: 7개 SUBTYPES 파일의 번역 업데이트 (Artifex, Consul, Praetorian 등)
+
+### 📊 Impact
+- **파일 이동**: 12개 glossary + 3개 폴더
+- **총 번역 항목**: ~560개 (유지, 재구성만)
+- **효과**: 관리 효율성 향상, 확장성 개선, 중복 제거
 
 ---
 

@@ -31,7 +31,7 @@
           "params": "string englishName"
         },
         {
-          "name": "GetLongDescription",
+          "name": "TranslateLongDescription",
           "return": "string",
           "params": "string englishName, string fallbackOriginal = null"
         },
@@ -147,16 +147,6 @@
           "params": ""
         },
         {
-          "name": "LoadGlossary",
-          "return": "void",
-          "params": ""
-        },
-        {
-          "name": "GetModDirectory",
-          "return": "string",
-          "params": ""
-        },
-        {
           "name": "GetTerm",
           "return": "string",
           "params": "string category, string key, string fallback = \"\""
@@ -190,6 +180,36 @@
           "name": "TryTranslate",
           "return": "bool",
           "params": "string text, out string translated, Dictionary<string, string>[] scopes"
+        }
+      ]
+    },
+    "Scripts/00_Core/00_00_04_GlossaryLoader.cs": {
+      "classification": "Core",
+      "role": "기존 코드가 LocalizationManager를 사용할 수 있도록 연결해줍니다.",
+      "namespace": "QudKRTranslation.Core",
+      "classes": [
+        "GlossaryLoader"
+      ],
+      "methods": [
+        {
+          "name": "LoadGlossary",
+          "return": "void",
+          "params": ""
+        },
+        {
+          "name": "GetTerm",
+          "return": "string",
+          "params": "string category, string key, string fallback = \"\""
+        },
+        {
+          "name": "HasTerm",
+          "return": "bool",
+          "params": "string category, string key"
+        },
+        {
+          "name": "ReloadGlossary",
+          "return": "void",
+          "params": ""
         }
       ]
     },
@@ -377,6 +397,8 @@
         "Patch_TMP_Text_Setter",
         "Patch_PopupMessage_Buttons",
         "Patch_Popup_ShowYesNoAsync",
+        "Patch_AbstractBuilder_GetKeyLegend",
+        "Patch_AbstractBuilder_GetKeyMenuBar",
         "Patch_FrameworkScroller_BeforeShow"
       ],
       "methods": [
@@ -409,38 +431,58 @@
   "tools": {
     "merge_options.py": {
       "type": "script",
-      "size": 6712
+      "size": 34666
+    },
+    "generate_subtype_jsons.py": {
+      "type": "script",
+      "size": 3556
+    },
+    "reorder_modes.py": {
+      "type": "script",
+      "size": 1876
+    },
+    "fix_json_duplicates.py": {
+      "type": "script",
+      "size": 3771
+    },
+    "check_untranslated.py": {
+      "type": "script",
+      "size": 1366
     },
     "project_tool.py": {
       "type": "script",
-      "size": 15763
+      "size": 12175
     },
-    "get_deploy_path.py": {
+    "extract_keys.py": {
       "type": "script",
-      "size": 663
+      "size": 1405
     },
-    "verify_structure_data.py": {
+    "check_logs_for_untranslated.py": {
       "type": "script",
-      "size": 2734
+      "size": 2530
     },
-    "analyze_glossary.py": {
+    "split_glossary_chargen.py": {
       "type": "script",
-      "size": 11503
+      "size": 1806
     },
     "check_missing_translations.py": {
       "type": "script",
-      "size": 4495
+      "size": 3945
+    },
+    "update_subtypes.py": {
+      "type": "script",
+      "size": 3641
     },
     "sort_json.py": {
       "type": "script",
-      "size": 2136
+      "size": 1631
+    },
+    "populate_all_subtypes.py": {
+      "type": "script",
+      "size": 7606
     },
     "HarmonyAnalyzer": {
       "type": "tool_folder"
-    },
-    "generate_csproj.py": {
-      "type": "script",
-      "size": 1699
     }
   },
   "docs": {
@@ -453,6 +495,9 @@
     "01_DEVELOPMENT_GUIDE.md": {
       "modified": "2026-01-18"
     },
+    "TEMP_TODO_MUTATIONS.md": {
+      "modified": "2026-01-18"
+    },
     "02_TODO.md": {
       "modified": "2026-01-18"
     },
@@ -463,1187 +508,17 @@
       "modified": "2026-01-18"
     },
     "00_PRINCIPLES.md": {
-      "modified": "2026-01-16"
+      "modified": "2026-01-18"
     },
     "05_ARCHITECTURE.md": {
       "modified": "2026-01-18"
     },
-    "08_TOOLS_AND_BUILD.md": {
-      "modified": "2026-01-18"
-    },
     "04_ERROR_LOG.md": {
-      "modified": "2026-01-17"
+      "modified": "2026-01-18"
     },
     "06_WORKFLOW.md": {
       "modified": "2026-01-18"
     }
   },
-  "localization": {
-    "glossary_display.json": {
-      "categories": [
-        "display"
-      ],
-      "entries": 32
-    },
-    "options.json": {
-      "categories": [
-        "options"
-      ],
-      "entries": 362
-    },
-    "common.json": {
-      "categories": [
-        "common",
-        "inventory",
-        "status",
-        "ui"
-      ],
-      "entries": 148
-    },
-    "terms.json": {
-      "categories": [
-        "attribute",
-        "character",
-        "faction",
-        "genotype",
-        "item",
-        "phrase",
-        "weapon",
-        "world"
-      ],
-      "entries": 35
-    },
-    "locations.json": {
-      "categories": [
-        "chargen_location"
-      ],
-      "entries": 22
-    },
-    "modes.json": {
-      "categories": [
-        "chargen_mode"
-      ],
-      "entries": 6
-    },
-    "factions.json": {
-      "categories": [
-        "factions"
-      ],
-      "entries": 4
-    },
-    "presets.json": {
-      "categories": [
-        "chargen_pregen"
-      ],
-      "entries": 25
-    },
-    "ui.json": {
-      "categories": [
-        "chargen_ui"
-      ],
-      "entries": 4
-    },
-    "stats.json": {
-      "categories": [
-        "chargen_stats"
-      ],
-      "entries": 1
-    },
-    "cybernetics.json": {
-      "categories": [
-        "cybernetics",
-        "cybernetics_desc"
-      ],
-      "entries": 54
-    },
-    "skills.json": {
-      "categories": [
-        "skill",
-        "power_axe_desc",
-        "power_general",
-        "power_general_desc",
-        "power_pistol",
-        "power_pistol_desc",
-        "power_tinkering",
-        "power_tinkering_desc",
-        "power_wayfaring",
-        "power_wayfaring_desc",
-        "skill_desc",
-        "powers"
-      ],
-      "entries": 223
-    },
-    "glossary_proto.json": {
-      "categories": [
-        "chargen_proto"
-      ],
-      "entries": 40
-    },
-    "Clairvoyance.json": {
-      "categories": [
-        "names",
-        "description",
-        "leveltext",
-        "description_ko",
-        "leveltext_ko"
-      ],
-      "entries": 1
-    },
-    "Mental_Mirror.json": {
-      "categories": [
-        "names",
-        "description",
-        "leveltext",
-        "description_ko",
-        "leveltext_ko"
-      ],
-      "entries": 1
-    },
-    "Cryokinesis.json": {
-      "categories": [
-        "names",
-        "description",
-        "leveltext",
-        "description_ko",
-        "leveltext_ko"
-      ],
-      "entries": 1
-    },
-    "Beguiling.json": {
-      "categories": [
-        "names",
-        "description",
-        "leveltext",
-        "description_ko",
-        "leveltext_ko"
-      ],
-      "entries": 1
-    },
-    "Teleportation.json": {
-      "categories": [
-        "names",
-        "description",
-        "leveltext",
-        "description_ko",
-        "leveltext_ko"
-      ],
-      "entries": 1
-    },
-    "Pyrokinesis.json": {
-      "categories": [
-        "names",
-        "description",
-        "leveltext",
-        "description_ko",
-        "leveltext_ko"
-      ],
-      "entries": 1
-    },
-    "Spacetime_Vortex.json": {
-      "categories": [
-        "names",
-        "description",
-        "leveltext",
-        "description_ko",
-        "leveltext_ko"
-      ],
-      "entries": 1
-    },
-    "Temporal_Fugue.json": {
-      "categories": [
-        "names",
-        "description",
-        "leveltext",
-        "description_ko",
-        "leveltext_ko"
-      ],
-      "entries": 1
-    },
-    "Kindle.json": {
-      "categories": [
-        "names",
-        "description",
-        "leveltext",
-        "description_ko",
-        "leveltext_ko"
-      ],
-      "entries": 1
-    },
-    "Ego_Projection.json": {
-      "categories": [
-        "names",
-        "description",
-        "leveltext",
-        "description_ko",
-        "leveltext_ko"
-      ],
-      "entries": 1
-    },
-    "Mass_Mind.json": {
-      "categories": [
-        "names",
-        "description",
-        "leveltext",
-        "description_ko",
-        "leveltext_ko"
-      ],
-      "entries": 1
-    },
-    "Time_Dilation.json": {
-      "categories": [
-        "names",
-        "description",
-        "leveltext",
-        "description_ko",
-        "leveltext_ko"
-      ],
-      "entries": 1
-    },
-    "Stunning_Force.json": {
-      "categories": [
-        "names",
-        "description",
-        "leveltext",
-        "description_ko",
-        "leveltext_ko"
-      ],
-      "entries": 1
-    },
-    "Disintegration.json": {
-      "categories": [
-        "names",
-        "description",
-        "leveltext",
-        "description_ko",
-        "leveltext_ko"
-      ],
-      "entries": 1
-    },
-    "Teleport_Other.json": {
-      "categories": [
-        "names",
-        "description",
-        "leveltext",
-        "description_ko",
-        "leveltext_ko"
-      ],
-      "entries": 1
-    },
-    "Burgeoning.json": {
-      "categories": [
-        "names",
-        "description",
-        "leveltext",
-        "description_ko",
-        "leveltext_ko"
-      ],
-      "entries": 1
-    },
-    "Light_Manipulation.json": {
-      "categories": [
-        "names",
-        "description",
-        "leveltext",
-        "description_ko",
-        "leveltext_ko"
-      ],
-      "entries": 1
-    },
-    "Telepathy.json": {
-      "categories": [
-        "names",
-        "description",
-        "leveltext",
-        "description_ko",
-        "leveltext_ko"
-      ],
-      "entries": 1
-    },
-    "Force_Wall.json": {
-      "categories": [
-        "names",
-        "description",
-        "leveltext",
-        "description_ko",
-        "leveltext_ko"
-      ],
-      "entries": 1
-    },
-    "Sense_Psychic.json": {
-      "categories": [
-        "names",
-        "description",
-        "leveltext",
-        "description_ko",
-        "leveltext_ko"
-      ],
-      "entries": 1
-    },
-    "Precognition.json": {
-      "categories": [
-        "names",
-        "description",
-        "leveltext",
-        "description_ko",
-        "leveltext_ko"
-      ],
-      "entries": 1
-    },
-    "Psychometry.json": {
-      "categories": [
-        "names",
-        "description",
-        "leveltext",
-        "description_ko",
-        "leveltext_ko"
-      ],
-      "entries": 1
-    },
-    "Confusion.json": {
-      "categories": [
-        "names",
-        "description",
-        "leveltext",
-        "description_ko",
-        "leveltext_ko"
-      ],
-      "entries": 1
-    },
-    "Syphon_Vim.json": {
-      "categories": [
-        "names",
-        "description",
-        "leveltext",
-        "description_ko",
-        "leveltext_ko"
-      ],
-      "entries": 1
-    },
-    "Sunder_Mind.json": {
-      "categories": [
-        "names",
-        "description",
-        "leveltext",
-        "description_ko",
-        "leveltext_ko"
-      ],
-      "entries": 1
-    },
-    "Force_Bubble.json": {
-      "categories": [
-        "names",
-        "description",
-        "leveltext",
-        "description_ko",
-        "leveltext_ko"
-      ],
-      "entries": 1
-    },
-    "Domination.json": {
-      "categories": [
-        "names",
-        "description",
-        "leveltext",
-        "description_ko",
-        "leveltext_ko"
-      ],
-      "entries": 1
-    },
-    "Evil_Twin.json": {
-      "categories": [
-        "names",
-        "description",
-        "leveltext",
-        "description_ko",
-        "leveltext_ko"
-      ],
-      "entries": 1
-    },
-    "Amnesia.json": {
-      "categories": [
-        "names",
-        "description",
-        "leveltext",
-        "description_ko",
-        "leveltext_ko"
-      ],
-      "entries": 1
-    },
-    "Blinking_Tic.json": {
-      "categories": [
-        "names",
-        "description",
-        "leveltext",
-        "description_ko",
-        "leveltext_ko"
-      ],
-      "entries": 1
-    },
-    "Narcolepsy.json": {
-      "categories": [
-        "names",
-        "description",
-        "leveltext",
-        "description_ko",
-        "leveltext_ko"
-      ],
-      "entries": 1
-    },
-    "Dystechnia.json": {
-      "categories": [
-        "names",
-        "description",
-        "leveltext",
-        "description_ko",
-        "leveltext_ko"
-      ],
-      "entries": 1
-    },
-    "Quantum_Jitters.json": {
-      "categories": [
-        "names",
-        "description",
-        "leveltext",
-        "description_ko",
-        "leveltext_ko"
-      ],
-      "entries": 1
-    },
-    "Socially_Repugnant.json": {
-      "categories": [
-        "names",
-        "description",
-        "leveltext",
-        "description_ko",
-        "leveltext_ko"
-      ],
-      "entries": 1
-    },
-    "Psionic_Migraines.json": {
-      "categories": [
-        "names",
-        "description",
-        "leveltext",
-        "description_ko",
-        "leveltext_ko"
-      ],
-      "entries": 1
-    },
-    "Unstable_Genome.json": {
-      "categories": [
-        "names",
-        "description",
-        "leveltext",
-        "description_ko",
-        "leveltext_ko"
-      ],
-      "entries": 1
-    },
-    "Chimera.json": {
-      "categories": [
-        "names",
-        "description",
-        "leveltext",
-        "description_ko"
-      ],
-      "entries": 1
-    },
-    "Esper.json": {
-      "categories": [
-        "names",
-        "description",
-        "leveltext",
-        "description_ko"
-      ],
-      "entries": 1
-    },
-    "Electromagnetic_Pulse.json": {
-      "categories": [
-        "names",
-        "description",
-        "leveltext",
-        "description_ko",
-        "leveltext_ko"
-      ],
-      "entries": 1
-    },
-    "Corrosive_Gas_Generation.json": {
-      "categories": [
-        "names",
-        "description",
-        "leveltext",
-        "description_ko",
-        "leveltext_ko"
-      ],
-      "entries": 1
-    },
-    "Freezing_Ray.json": {
-      "categories": [
-        "names",
-        "description",
-        "leveltext",
-        "description_ko",
-        "leveltext_ko"
-      ],
-      "entries": 1
-    },
-    "Stinger_(Poisoning_Venom).json": {
-      "categories": [
-        "names",
-        "description",
-        "leveltext",
-        "description_ko",
-        "leveltext_ko"
-      ],
-      "entries": 1
-    },
-    "Horns.json": {
-      "categories": [
-        "names",
-        "description",
-        "leveltext",
-        "description_ko",
-        "leveltext_ko"
-      ],
-      "entries": 1
-    },
-    "Spinnerets.json": {
-      "categories": [
-        "names",
-        "description",
-        "leveltext",
-        "description_ko",
-        "leveltext_ko"
-      ],
-      "entries": 1
-    },
-    "Heightened_Hearing.json": {
-      "categories": [
-        "names",
-        "description",
-        "leveltext",
-        "description_ko",
-        "leveltext_ko"
-      ],
-      "entries": 1
-    },
-    "Multiple_Legs.json": {
-      "categories": [
-        "names",
-        "description",
-        "leveltext",
-        "description_ko",
-        "leveltext_ko"
-      ],
-      "entries": 1
-    },
-    "Two-Hearted.json": {
-      "categories": [
-        "names",
-        "description",
-        "leveltext",
-        "description_ko",
-        "leveltext_ko"
-      ],
-      "entries": 1
-    },
-    "Electrical_Generation.json": {
-      "categories": [
-        "names",
-        "description",
-        "leveltext",
-        "description_ko",
-        "leveltext_ko"
-      ],
-      "entries": 1
-    },
-    "Wings.json": {
-      "categories": [
-        "names",
-        "description",
-        "leveltext",
-        "description_ko",
-        "leveltext_ko"
-      ],
-      "entries": 1
-    },
-    "Heightened_Speed.json": {
-      "categories": [
-        "names",
-        "description",
-        "leveltext",
-        "description_ko",
-        "leveltext_ko"
-      ],
-      "entries": 1
-    },
-    "Adrenal_Control.json": {
-      "categories": [
-        "names",
-        "description",
-        "leveltext",
-        "description_ko",
-        "leveltext_ko"
-      ],
-      "entries": 1
-    },
-    "Quills.json": {
-      "categories": [
-        "names",
-        "description",
-        "leveltext",
-        "description_ko",
-        "leveltext_ko"
-      ],
-      "entries": 1
-    },
-    "Burrowing_Claws.json": {
-      "categories": [
-        "names",
-        "description",
-        "leveltext",
-        "description_ko",
-        "leveltext_ko"
-      ],
-      "entries": 1
-    },
-    "Thick_Fur.json": {
-      "categories": [
-        "names",
-        "description",
-        "leveltext",
-        "description_ko",
-        "leveltext_ko"
-      ],
-      "entries": 1
-    },
-    "Carapace.json": {
-      "categories": [
-        "names",
-        "description",
-        "leveltext",
-        "description_ko",
-        "leveltext_ko"
-      ],
-      "entries": 1
-    },
-    "Phasing.json": {
-      "categories": [
-        "names",
-        "description",
-        "leveltext",
-        "description_ko",
-        "leveltext_ko"
-      ],
-      "entries": 1
-    },
-    "Stinger_(Paralyzing_Venom).json": {
-      "categories": [
-        "names",
-        "description",
-        "leveltext",
-        "description_ko",
-        "leveltext_ko"
-      ],
-      "entries": 1
-    },
-    "Multiple_Arms.json": {
-      "categories": [
-        "names",
-        "description",
-        "leveltext",
-        "description_ko",
-        "leveltext_ko"
-      ],
-      "entries": 1
-    },
-    "Regeneration.json": {
-      "categories": [
-        "names",
-        "description",
-        "leveltext",
-        "description_ko",
-        "leveltext_ko"
-      ],
-      "entries": 1
-    },
-    "Night_Vision.json": {
-      "categories": [
-        "names",
-        "description",
-        "leveltext",
-        "description_ko",
-        "leveltext_ko"
-      ],
-      "entries": 1
-    },
-    "Double-muscled.json": {
-      "categories": [
-        "names",
-        "description",
-        "leveltext",
-        "description_ko",
-        "leveltext_ko"
-      ],
-      "entries": 1
-    },
-    "Two-Headed.json": {
-      "categories": [
-        "names",
-        "description",
-        "leveltext",
-        "description_ko",
-        "leveltext_ko"
-      ],
-      "entries": 1
-    },
-    "Slime_Glands.json": {
-      "categories": [
-        "names",
-        "description",
-        "leveltext",
-        "description_ko",
-        "leveltext_ko"
-      ],
-      "entries": 1
-    },
-    "Sleep_Gas_Generation.json": {
-      "categories": [
-        "names",
-        "description",
-        "leveltext",
-        "description_ko",
-        "leveltext_ko"
-      ],
-      "entries": 1
-    },
-    "Triple-jointed.json": {
-      "categories": [
-        "names",
-        "description",
-        "leveltext",
-        "description_ko",
-        "leveltext_ko"
-      ],
-      "entries": 1
-    },
-    "Stinger_(Confusing_Venom).json": {
-      "categories": [
-        "names",
-        "description",
-        "leveltext",
-        "description_ko",
-        "leveltext_ko"
-      ],
-      "entries": 1
-    },
-    "Photosynthetic_Skin.json": {
-      "categories": [
-        "names",
-        "description",
-        "leveltext",
-        "description_ko",
-        "leveltext_ko"
-      ],
-      "entries": 1
-    },
-    "Beak.json": {
-      "categories": [
-        "names",
-        "description",
-        "leveltext",
-        "description_ko",
-        "leveltext_ko"
-      ],
-      "entries": 1
-    },
-    "Flaming_Ray.json": {
-      "categories": [
-        "names",
-        "description",
-        "leveltext",
-        "description_ko",
-        "leveltext_ko"
-      ],
-      "entries": 1
-    },
-    "Electromagnetic_Impulse.json": {
-      "categories": [
-        "names",
-        "description",
-        "leveltext",
-        "description_ko",
-        "leveltext_ko"
-      ],
-      "entries": 1
-    },
-    "Brittle_Bones.json": {
-      "categories": [
-        "names",
-        "description",
-        "leveltext",
-        "description_ko",
-        "leveltext_ko"
-      ],
-      "entries": 1
-    },
-    "Spontaneous_Combustion.json": {
-      "categories": [
-        "names",
-        "description",
-        "leveltext",
-        "description_ko",
-        "leveltext_ko"
-      ],
-      "entries": 1
-    },
-    "Cold-Blooded.json": {
-      "categories": [
-        "names",
-        "description",
-        "leveltext",
-        "description_ko",
-        "leveltext_ko"
-      ],
-      "entries": 1
-    },
-    "Carnivorous.json": {
-      "categories": [
-        "names",
-        "description",
-        "leveltext",
-        "description_ko",
-        "leveltext_ko"
-      ],
-      "entries": 1
-    },
-    "Tonic_Allergy.json": {
-      "categories": [
-        "names",
-        "description",
-        "leveltext",
-        "description_ko",
-        "leveltext_ko"
-      ],
-      "entries": 1
-    },
-    "Irritable_Genome.json": {
-      "categories": [
-        "names",
-        "description",
-        "leveltext",
-        "description_ko",
-        "leveltext_ko"
-      ],
-      "entries": 1
-    },
-    "Myopic.json": {
-      "categories": [
-        "names",
-        "description",
-        "leveltext",
-        "description_ko",
-        "leveltext_ko"
-      ],
-      "entries": 1
-    },
-    "Hooks_for_Feet.json": {
-      "categories": [
-        "names",
-        "description",
-        "leveltext",
-        "description_ko",
-        "leveltext_ko"
-      ],
-      "entries": 1
-    },
-    "Nerve_Poppy.json": {
-      "categories": [
-        "names",
-        "description",
-        "leveltext",
-        "description_ko",
-        "leveltext_ko"
-      ],
-      "entries": 1
-    },
-    "Albino.json": {
-      "categories": [
-        "names",
-        "description",
-        "leveltext",
-        "description_ko",
-        "leveltext_ko"
-      ],
-      "entries": 1
-    },
-    "Amphibious.json": {
-      "categories": [
-        "names",
-        "description",
-        "leveltext",
-        "description_ko",
-        "leveltext_ko"
-      ],
-      "entries": 1
-    },
-    "Mutated_Human.json": {
-      "categories": [
-        "names",
-        "leveltext",
-        "leveltext_ko"
-      ],
-      "entries": 1
-    },
-    "True_Kin.json": {
-      "categories": [
-        "names",
-        "leveltext",
-        "leveltext_ko"
-      ],
-      "entries": 1
-    },
-    "Syzygyrior.json": {
-      "categories": [
-        "names",
-        "description",
-        "description_ko",
-        "leveltext",
-        "leveltext_ko"
-      ],
-      "entries": 1
-    },
-    "Artifex.json": {
-      "categories": [
-        "names",
-        "description",
-        "description_ko",
-        "leveltext",
-        "leveltext_ko"
-      ],
-      "entries": 1
-    },
-    "Child_of_the_Hearth.json": {
-      "categories": [
-        "names",
-        "description",
-        "description_ko",
-        "leveltext",
-        "leveltext_ko"
-      ],
-      "entries": 1
-    },
-    "Fuming_God-Child.json": {
-      "categories": [
-        "names",
-        "description",
-        "description_ko",
-        "leveltext",
-        "leveltext_ko"
-      ],
-      "entries": 1
-    },
-    "Praetorian.json": {
-      "categories": [
-        "names",
-        "description",
-        "description_ko",
-        "leveltext",
-        "leveltext_ko"
-      ],
-      "entries": 1
-    },
-    "Eunuch.json": {
-      "categories": [
-        "names",
-        "description",
-        "description_ko",
-        "leveltext",
-        "leveltext_ko"
-      ],
-      "entries": 1
-    },
-    "Horticulturist.json": {
-      "categories": [
-        "names",
-        "description",
-        "description_ko",
-        "leveltext",
-        "leveltext_ko"
-      ],
-      "entries": 1
-    },
-    "Child_of_the_Deep.json": {
-      "categories": [
-        "names",
-        "description",
-        "description_ko",
-        "leveltext",
-        "leveltext_ko"
-      ],
-      "entries": 1
-    },
-    "Priest_of_All_Moons.json": {
-      "categories": [
-        "names",
-        "description",
-        "description_ko",
-        "leveltext",
-        "leveltext_ko"
-      ],
-      "entries": 1
-    },
-    "Priest_of_All_Suns.json": {
-      "categories": [
-        "names",
-        "description",
-        "description_ko",
-        "leveltext",
-        "leveltext_ko"
-      ],
-      "entries": 1
-    },
-    "Consul.json": {
-      "categories": [
-        "names",
-        "description",
-        "description_ko",
-        "leveltext",
-        "leveltext_ko"
-      ],
-      "entries": 1
-    },
-    "Child_of_the_Wheel.json": {
-      "categories": [
-        "names",
-        "description",
-        "description_ko",
-        "leveltext",
-        "leveltext_ko"
-      ],
-      "entries": 1
-    },
-    "Gunslinger.json": {
-      "categories": [
-        "names",
-        "description",
-        "description_ko",
-        "leveltext",
-        "leveltext_ko"
-      ],
-      "entries": 1
-    },
-    "Water_Merchant.json": {
-      "categories": [
-        "names",
-        "description",
-        "description_ko",
-        "leveltext",
-        "leveltext_ko"
-      ],
-      "entries": 1
-    },
-    "Scholar.json": {
-      "categories": [
-        "names",
-        "description",
-        "description_ko",
-        "leveltext",
-        "leveltext_ko"
-      ],
-      "entries": 1
-    },
-    "Marauder.json": {
-      "categories": [
-        "names",
-        "description",
-        "description_ko",
-        "leveltext",
-        "leveltext_ko"
-      ],
-      "entries": 1
-    },
-    "Arconaut.json": {
-      "categories": [
-        "names",
-        "description",
-        "description_ko",
-        "leveltext",
-        "leveltext_ko"
-      ],
-      "entries": 1
-    },
-    "Greybeard.json": {
-      "categories": [
-        "names",
-        "description",
-        "description_ko",
-        "leveltext",
-        "leveltext_ko"
-      ],
-      "entries": 1
-    },
-    "Warden.json": {
-      "categories": [
-        "names",
-        "description",
-        "description_ko",
-        "leveltext",
-        "leveltext_ko"
-      ],
-      "entries": 1
-    },
-    "Tinker.json": {
-      "categories": [
-        "names",
-        "description",
-        "description_ko",
-        "leveltext",
-        "leveltext_ko"
-      ],
-      "entries": 1
-    },
-    "Apostle.json": {
-      "categories": [
-        "names",
-        "description",
-        "description_ko",
-        "leveltext",
-        "leveltext_ko",
-        "extrainfo",
-        "extrainfo_ko"
-      ],
-      "entries": 1
-    },
-    "Pilgrim.json": {
-      "categories": [
-        "names",
-        "description",
-        "description_ko",
-        "leveltext",
-        "leveltext_ko"
-      ],
-      "entries": 1
-    },
-    "Nomad.json": {
-      "categories": [
-        "names",
-        "description",
-        "description_ko",
-        "leveltext",
-        "leveltext_ko"
-      ],
-      "entries": 1
-    },
-    "Watervine_Farmer.json": {
-      "categories": [
-        "names",
-        "description",
-        "description_ko",
-        "leveltext",
-        "leveltext_ko"
-      ],
-      "entries": 1
-    }
-  }
+  "localization": {}
 }

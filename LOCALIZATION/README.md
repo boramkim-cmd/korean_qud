@@ -6,42 +6,52 @@
 
 ## 📁 디렉토리 구조
 
+```
 LOCALIZATION/
-├── CHARGEN/                  # 캐릭터 생성 (Character Creation Context)
-│   ├── modes.json            → Game modes (Classic, Roleplay, Wander, etc.)
-│   ├── stats.json            → Attribute descriptions (Strength, Agility, etc.)
-│   ├── ui.json               → Character creation UI text
-│   ├── presets.json          → Preset character descriptions
-│   ├── locations.json        → Starting location names
-│   ├── factions.json         → Faction names
-│   ├── GENOTYPES/            # [Layer 2] Mutated Human, True Kin (with descriptions)
-│   └── SUBTYPES/             # [Layer 2] Callings and Castes (with skill lists)
+├── README.md                    # 이 파일
+├── integrity_report.md          # 자동 생성 보고서
 │
-├── GAMEPLAY/                 # 인게임 플레이 (Gameplay Features Context)
-│   ├── skills.json           → Skill and power names/descriptions
-│   ├── cybernetics.json      → Cybernetic implant translations
-│   └── MUTATIONS/            # [Layer 2] Physical/Mental mutations and defects (81 files)
-│       ├── Physical_Mutations/
-│       ├── Mental_Mutations/
-│       ├── Physical_Defects/
-│       ├── Mental_Defects/
-│       └── Morphotypes/
+├── CHARGEN/                     # 캐릭터 생성 컨텍스트
+│   ├── README.md                # 하위 폴더 가이드
+│   ├── modes.json               # 게임 모드 (Classic, Roleplay, Wander 등)
+│   ├── stats.json               # 스탯 설명 (Strength, Agility 등)
+│   ├── ui.json                  # 캐릭터 생성 UI 텍스트
+│   ├── presets.json             # 프리셋 캐릭터 설명
+│   ├── locations.json           # 시작 위치 이름
+│   ├── factions.json            # 팩션 이름
+│   ├── GENOTYPES/               # 종족 (Layer 2)
+│   │   ├── Mutated_Human.json
+│   │   └── True_Kin.json
+│   └── SUBTYPES/                # 직업/계급 (Layer 2)
+│       ├── Callings/            # 변이 인간 직업 (12개)
+│       └── Castes/              # 순수 인간 계급 (12개)
 │
-├── UI/                       # 사용자 인터페이스 (User Interface Context)
-│   ├── common.json           → Buttons, menus, common UI text
-│   ├── options.json          → Settings screen (362 entries)
-│   └── terms.json            → General game terminology
+├── GAMEPLAY/                    # 게임플레이 기능
+│   ├── README.md
+│   ├── skills.json              # 스킬 및 권능
+│   ├── cybernetics.json         # 사이버네틱스 이식물
+│   └── MUTATIONS/               # 변이 (Layer 2)
+│       ├── Physical_Mutations/  # 육체 변이 (31개)
+│       ├── Mental_Mutations/    # 정신 변이 (27개)
+│       ├── Physical_Defects/    # 육체 결함 (12개)
+│       ├── Mental_Defects/      # 정신 결함 (8개)
+│       └── Morphotypes/         # 형태형 (3개)
 │
-├── _DEPRECATED/              # 보관소 (Archived)
-│   └── glossary_proto.json   → Legacy file. (Merged into GENOTYPES/SUBTYPES)
+├── UI/                          # 사용자 인터페이스
+│   ├── README.md
+│   ├── common.json              # 공통 UI 요소 (버튼, 메뉴 등)
+│   ├── options.json             # 설정 화면 (362개 항목)
+│   └── terms.json               # 일반 게임 용어
 │
-└── integrity_report.md       # 번역 무결성 리포트
+└── _DEPRECATED/                 # 구 버전 파일 보관
+    └── glossary_proto.json      # 더 이상 사용 안 함
+```
 
 ---
 
 ## 📊 Layer 1 vs Layer 2 선택 기준
 
-### Layer 1: glossary_*.json (단일 파일 용어집)
+### Layer 1: 단일 파일 용어집 (*.json)
 
 **사용 시점**:
 - 단순한 key:value 쌍
@@ -80,11 +90,6 @@ LOCALIZATION/
 - C# 소스에서 동적으로 생성되는 텍스트
 
 **담당 컴포넌트**: `StructureTranslator`
-
-**파일 위치**:
-- `CHARGEN/GENOTYPES/`
-- `CHARGEN/SUBTYPES/`
-- `GAMEPLAY/MUTATIONS/`
 
 **JSON 스키마**:
 ```json
@@ -152,7 +157,7 @@ LOCALIZATION/
 
 ### 3. 새 카테고리 추가 시
 
-1. **먼저 Layer 1 검토**: 단순한 구조면 적절한 폴더(GAMEPLAY/UI/CHARGEN) 내에 `filename.json` 생성
+1. **먼저 Layer 1 검토**: 단순한 구조면 `glossary_{category}.json` 생성
 2. **복잡하면 Layer 2**: 디렉토리 생성 후 개별 JSON 파일
 3. **LocalizationManager vs StructureTranslator**: 담당 컴포넌트 확인
 
@@ -177,7 +182,7 @@ grep -A 10 "GetLevelText" Assets/core_source/.../Stinger.cs
 
 | 컴포넌트 | 담당 | API |
 |----------|------|-----|
-| `LocalizationManager` | Layer 1 (단일 JSON) | `GetTerm(category, key)` |
+| `LocalizationManager` | Layer 1 (glossary_*.json) | `GetTerm(category, key)` |
 | `StructureTranslator` | Layer 2 (디렉토리) | `TranslateName(englishName)` |
 | `TranslationEngine` | 전체 번역 (태그 처리 포함) | `TryTranslate(text, out translated)` |
 
@@ -200,14 +205,30 @@ grep -A 10 "GetLevelText" Assets/core_source/.../Stinger.cs
 
 | 파일/폴더 | 항목 수 | 완성도 | 비고 |
 |-----------|---------|--------|------|
-| `UI/common.json` | 148 | 100% | UI 공통 |
-| `GAMEPLAY/skills.json` | 218 | 100% | 스킬 |
-| `UI/options.json` | 362 | 94% | 설정 |
-| `CHARGEN/*.json` | 150+ | 100% | 캐릭터 생성 |
-| `GAMEPLAY/MUTATIONS/` | 81 | 60% | 변이 |
-| `CHARGEN/GENOTYPES/` | 2 | 100% | 종족 |
-| `CHARGEN/SUBTYPES/` | 24 | 100% | 직업/계급 |
+| `glossary_ui.json` | 148 | 100% | UI 공통 |
+| `glossary_skills.json` | 218 | 100% | 스킬 |
+| `glossary_options.json` | 362 | 94% | 설정 |
+| `glossary_chargen_*.json` | 150+ | 100% | 캐릭터 생성 |
+| `MUTATIONS/` | 81 | 60% | 변이 |
+| `GENOTYPES/` | 2 | 100% | 종족 |
+| `SUBTYPES/` | 24 | 50% | 직업/계급 |
 
 ---
 
-> **다음 단계**: 번역 규칙과 스타일은 `Docs/STYLE_GUIDE.md` 참조
+## 🔄 변경 이력
+
+### 2026-01-18: 폴더 구조 재정리
+- 컨텍스트 기반 구조로 재편성 (CHARGEN, GAMEPLAY, UI)
+- Layer 1 파일을 서브폴더로 이동 및 이름 변경
+  - `glossary_ui.json` → `UI/common.json`
+  - `glossary_chargen_modes.json` → `CHARGEN/modes.json` 등
+- Layer 2 폴더를 컨텍스트별로 재배치
+  - `MUTATIONS/` → `GAMEPLAY/MUTATIONS/`
+  - `GENOTYPES/` → `CHARGEN/GENOTYPES/`
+  - `SUBTYPES/` → `CHARGEN/SUBTYPES/`
+- `glossary_proto.json`을 GENOTYPES/SUBTYPES에 통합 후 deprecated 처리
+- LocalizationManager 및 StructureTranslator 경로 업데이트
+
+---
+
+> **다음 단계**: 번역 규칙과 스타일은 `Docs/07_STYLE_GUIDE.md` 참조

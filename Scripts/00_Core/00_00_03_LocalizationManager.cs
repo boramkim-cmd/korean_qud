@@ -73,8 +73,11 @@ namespace QudKRTranslation.Core
                 return;
             }
 
+            // Load JSON files recursively from all subdirectories (CHARGEN/, GAMEPLAY/, UI/, etc.)
             foreach (var file in Directory.GetFiles(locDir, "*.json", SearchOption.AllDirectories))
             {
+                // Skip deprecated folder
+                if (file.Contains("_DEPRECATED")) continue;
                 LoadJsonFile(file);
             }
         }
