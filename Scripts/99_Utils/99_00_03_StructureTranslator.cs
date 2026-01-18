@@ -99,7 +99,11 @@ namespace QudKRTranslation.Utils
 
         private static Dictionary<string, TranslationData> _data = new Dictionary<string, TranslationData>(StringComparer.OrdinalIgnoreCase);
         private static bool _isLoaded = false;
-        private static readonly string[] TargetDirectories = { "MUTATIONS", "GENOTYPES", "SUBTYPES" };
+        private static readonly string[] TargetDirectories = { 
+            "GAMEPLAY/MUTATIONS", 
+            "CHARGEN/GENOTYPES", 
+            "CHARGEN/SUBTYPES" 
+        };
 
         /// <summary>
         /// Lazy initialization - automatically finds and loads JSON files from target directories

@@ -1,6 +1,6 @@
 # 📚 프로젝트 완전 인덱스 (자동 생성)
 
-**생성**: 2026-01-18 16:43:37
+**생성**: 2026-01-18 18:08:59
 
 이 문서는 프로젝트의 모든 파일과 메서드 시그니처를 포함합니다. **새로운 기능을 만들기 전, 반드시 여기서 기존 메서드를 검색하십시오.**
 
@@ -44,6 +44,7 @@
   ```csharp
   void Initialize()
   void Reload()
+  void LoadGlossary()
   string GetTerm(string category, string key, string fallback = "")
   bool TryGetAnyTerm(string key, out string result, params string[] categories)
   bool HasTerm(string category, string key)

@@ -138,7 +138,7 @@ def verify_localization() -> bool:
     empty_count = 0
     dupe_count = 0
 
-    for json_file in LOCALIZATION_DIR.glob("*.json"):
+    for json_file in LOCALIZATION_DIR.rglob("*.json"):
         content = _read_file(json_file)
         if content is None:
             print(f"❌ [{json_file.name}] 파일 읽기 오류")
@@ -247,7 +247,7 @@ def build_project_references() -> None:
         db["docs"][md_file.name] = {"modified": mtime.strftime("%Y-%m-%d")}
 
     # 로컬라이제이션 스캔
-    for json_file in LOCALIZATION_DIR.glob("*.json"):
+    for json_file in LOCALIZATION_DIR.rglob("*.json"):
         content = _read_file(json_file)
         if content is None:
             continue
@@ -317,7 +317,7 @@ def _generate_quick_reference(db: dict[str, Any]) -> None:
         "```",
         "Scripts/00_Core/00_00_01_TranslationEngine.cs  → 핵심 엔진",
         "Scripts/00_Core/00_00_03_LocalizationManager.cs → 데이터 관리",
-        "LOCALIZATION/glossary_*.json              → 용어집 데이터",
+        "LOCALIZATION/**/*.json              → 용어집 데이터",
         "```",
         "\n## 📚 용어집 현황"
     ]

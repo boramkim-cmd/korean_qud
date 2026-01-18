@@ -34,6 +34,36 @@ namespace QudKRTranslation.Core
             Initialize();
         }
 
+        public static void LoadGlossary()
+        {
+            string modDir = GetModDirectory();
+            if (string.IsNullOrEmpty(modDir))
+            {
+                Debug.LogError("[LocalizationManager] Mod directory not found, cannot load glossary.");
+                return;
+            }
+
+            // CHARGEN
+            LoadJsonFile(Path.Combine(modDir, "LOCALIZATION/CHARGEN/modes.json"));
+            LoadJsonFile(Path.Combine(modDir, "LOCALIZATION/CHARGEN/stats.json"));
+            LoadJsonFile(Path.Combine(modDir, "LOCALIZATION/CHARGEN/ui.json"));
+            LoadJsonFile(Path.Combine(modDir, "LOCALIZATION/CHARGEN/presets.json"));
+            LoadJsonFile(Path.Combine(modDir, "LOCALIZATION/CHARGEN/locations.json"));
+            LoadJsonFile(Path.Combine(modDir, "LOCALIZATION/CHARGEN/factions.json"));
+
+            // GAMEPLAY
+            LoadJsonFile(Path.Combine(modDir, "LOCALIZATION/GAMEPLAY/skills.json"));
+            LoadJsonFile(Path.Combine(modDir, "LOCALIZATION/GAMEPLAY/cybernetics.json"));
+
+            // UI
+            LoadJsonFile(Path.Combine(modDir, "LOCALIZATION/UI/common.json"));
+            LoadJsonFile(Path.Combine(modDir, "LOCALIZATION/UI/options.json"));
+            LoadJsonFile(Path.Combine(modDir, "LOCALIZATION/UI/terms.json"));
+
+            // Load legacy if needed (Deprecated)
+            // LoadJsonFile(Path.Combine(modDir, "LOCALIZATION/_DEPRECATED/glossary_proto.json")); 
+        }
+
         private static void LoadAllJsonFiles()
         {
             string locDir = Path.Combine(GetModDirectory(), "LOCALIZATION");

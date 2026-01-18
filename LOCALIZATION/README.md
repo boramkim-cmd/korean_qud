@@ -8,40 +8,35 @@
 
 ```
 LOCALIZATION/
-├── glossary_*.json          # Layer 1: 단일 파일 용어집
-│   ├── glossary_ui.json           → UI 공통 용어 (버튼, 메뉴 등)
-│   ├── glossary_skills.json       → 스킬 이름/설명
-│   ├── glossary_options.json      → 설정 화면 텍스트
-│   ├── glossary_chargen_modes.json → 게임 모드 (Classic, Wander 등)
-│   ├── glossary_chargen_stats.json → 스탯 (Strength, Agility 등)
-│   ├── glossary_chargen_ui.json   → 캐릭터 생성 UI
-│   ├── glossary_proto.json        → 종족 유형
-│   ├── glossary_pregen.json       → 프리셋 캐릭터
-│   ├── glossary_cybernetics.json  → 사이버네틱스
-│   ├── glossary_factions.json     → 팩션
-│   ├── glossary_location.json     → 지역
-│   └── glossary_terms.json        → 일반 용어
+├── CHARGEN/                  # 캐릭터 생성 (Character Generation)
+│   ├── modes.json            → 게임 모드
+│   ├── stats.json            → 스탯 (Strength, Agility 등)
+│   ├── ui.json               → 캐릭터 생성 UI
+│   ├── presets.json          → 프리셋 캐릭터
+│   ├── locations.json        → 시작 위치
+│   ├── factions.json         → 팩션
+│   ├── GENOTYPES/            # [Layer 2] 종족 데이터 (Mutated Human, True Kin)
+│   └── SUBTYPES/             # [Layer 2] 하위 타입 (Callings, Castes)
 │
-├── MUTATIONS/               # Layer 2: 구조화된 데이터
-│   ├── Physical_Mutations/        → 육체적 변이 (Stinger 등)
-│   ├── Mental_Mutations/          → 정신적 변이 (Telepathy 등)
-│   ├── Physical_Defects/          → 육체적 결함 (Albino 등)
-│   ├── Mental_Defects/            → 정신적 결함 (Amnesia 등)
-│   └── Morphotypes/               → 형태 (Chimera, Esper 등)
+├── GAMEPLAY/                 # 인게임 플레이 (Gameplay)
+│   ├── skills.json           → 스킬 이름/설명
+│   ├── cybernetics.json      → 사이버네틱스
+│   └── MUTATIONS/            # [Layer 2] 변이 및 결함
+│       ├── Physical_Mutations/
+│       ├── Mental_Mutations/
+│       ├── Physical_Defects/
+│       ├── Mental_Defects/
+│       └── Morphotypes/
 │
-├── GENOTYPES/               # Layer 2: 종족 데이터
-│   ├── Mutated_Human.json
-│   └── True_Kin.json
+├── UI/                       # 사용자 인터페이스 (User Interface)
+│   ├── common.json           → UI 공통 용어 (버튼, 메뉴 등)
+│   ├── options.json          → 설정 화면 텍스트
+│   └── terms.json            → 일반 용어
 │
-└── SUBTYPES/                # Layer 2: 하위 타입
-    ├── Callings/                  → 변이 인간 직업
-    │   ├── Apostle.json
-    │   ├── Marauder.json
-    │   └── ...
-    └── Castes/                    → 순수 인간 계급
-        ├── Artifex.json
-        ├── Consul.json
-        └── ...
+├── _DEPRECATED/              # 보관소 (Archived)
+│   └── glossary_proto.json   → (구) 레거시 파일
+│
+└── integrity_report.md       # 번역 무결성 리포트
 ```
 
 ---
@@ -68,7 +63,7 @@ LOCALIZATION/
 }
 ```
 
-**예시** (`glossary_ui.json`):
+**예시** (`UI/common.json`):
 ```json
 {
   "ui": {
@@ -87,6 +82,11 @@ LOCALIZATION/
 - C# 소스에서 동적으로 생성되는 텍스트
 
 **담당 컴포넌트**: `StructureTranslator`
+
+**파일 위치**:
+- `CHARGEN/GENOTYPES/`
+- `CHARGEN/SUBTYPES/`
+- `GAMEPLAY/MUTATIONS/`
 
 **JSON 스키마**:
 ```json
@@ -107,7 +107,7 @@ LOCALIZATION/
 }
 ```
 
-**예시** (`MUTATIONS/Physical_Mutations/Stinger_(Poisoning_Venom).json`):
+**예시** (`GAMEPLAY/MUTATIONS/Physical_Mutations/Stinger_(Poisoning_Venom).json`):
 ```json
 {
   "names": {
@@ -154,7 +154,7 @@ LOCALIZATION/
 
 ### 3. 새 카테고리 추가 시
 
-1. **먼저 Layer 1 검토**: 단순한 구조면 `glossary_{category}.json` 생성
+1. **먼저 Layer 1 검토**: 단순한 구조면 적절한 폴더(GAMEPLAY/UI/CHARGEN) 내에 `filename.json` 생성
 2. **복잡하면 Layer 2**: 디렉토리 생성 후 개별 JSON 파일
 3. **LocalizationManager vs StructureTranslator**: 담당 컴포넌트 확인
 
@@ -179,7 +179,7 @@ grep -A 10 "GetLevelText" Assets/core_source/.../Stinger.cs
 
 | 컴포넌트 | 담당 | API |
 |----------|------|-----|
-| `LocalizationManager` | Layer 1 (glossary_*.json) | `GetTerm(category, key)` |
+| `LocalizationManager` | Layer 1 (단일 JSON) | `GetTerm(category, key)` |
 | `StructureTranslator` | Layer 2 (디렉토리) | `TranslateName(englishName)` |
 | `TranslationEngine` | 전체 번역 (태그 처리 포함) | `TryTranslate(text, out translated)` |
 
@@ -202,13 +202,13 @@ grep -A 10 "GetLevelText" Assets/core_source/.../Stinger.cs
 
 | 파일/폴더 | 항목 수 | 완성도 | 비고 |
 |-----------|---------|--------|------|
-| `glossary_ui.json` | 148 | 100% | UI 공통 |
-| `glossary_skills.json` | 218 | 100% | 스킬 |
-| `glossary_options.json` | 362 | 94% | 설정 |
-| `glossary_chargen_*.json` | 150+ | 100% | 캐릭터 생성 |
-| `MUTATIONS/` | 81 | 60% | 변이 |
-| `GENOTYPES/` | 2 | 100% | 종족 |
-| `SUBTYPES/` | 24 | 50% | 직업/계급 |
+| `UI/common.json` | 148 | 100% | UI 공통 |
+| `GAMEPLAY/skills.json` | 218 | 100% | 스킬 |
+| `UI/options.json` | 362 | 94% | 설정 |
+| `CHARGEN/*.json` | 150+ | 100% | 캐릭터 생성 |
+| `GAMEPLAY/MUTATIONS/` | 81 | 60% | 변이 |
+| `CHARGEN/GENOTYPES/` | 2 | 100% | 종족 |
+| `CHARGEN/SUBTYPES/` | 24 | 100% | 직업/계급 |
 
 ---
 
