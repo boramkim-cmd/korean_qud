@@ -2,7 +2,20 @@
   "names": {
     "Syphon Vim": "생명력 흡수"
   },
-  "description": "You syphon health from nearby creatures.",
-  "leveltext": [],
-  "description_ko": "You syphon health from nearby creatures."
+  "description": "You bond with a nearby organic creature and leech its life force.",
+  "leveltext": [
+    "Mental attack versus an organic creature",
+    "Drains {{rules|Level}} hit point(s) per round",
+    "Target gets a mental save to resist damage each round",
+    "Duration: 20 rounds",
+    "Cooldown: 200 rounds"
+  ],
+  "description_ko": "유기체 생명체와 연결되어 생명력을 흡수합니다.",
+  "leveltext_ko": [
+    "유기체 생명체에 대한 정신 공격",
+    "라운드당 {{rules|Level}}의 체력 흡수",
+    "대상은 매 라운드 피해에 저항하기 위해 정신 내성 굴림을 수행합니다.",
+    "지속시간: 20라운드",
+    "재사용 대기시간: 200라운드"
+  ]
 }

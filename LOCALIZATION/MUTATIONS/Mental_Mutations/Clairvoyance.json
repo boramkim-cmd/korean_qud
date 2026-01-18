@@ -3,6 +3,15 @@
     "Clairvoyance": "투시"
   },
   "description": "You briefly gain vision of a nearby area.",
-  "leveltext": [],
-  "description_ko": "You briefly gain vision of a nearby area."
+  "leveltext": [
+    "Vision Radius: {{rules|3 + Level}} (Whole map at level 15)",
+    "Vision Duration: {{rules|19 + Level}} rounds",
+    "Cooldown: 100 rounds"
+  ],
+  "description_ko": "주변 지역의 시야를 잠시 확보합니다.",
+  "leveltext_ko": [
+    "시야 반경: {{rules|3 + Level}} (레벨 15에서 전체 지도)",
+    "시야 지속 시간: {{rules|19 + Level}}라운드",
+    "재사용 대기시간: 100라운드"
+  ]
 }

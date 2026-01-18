@@ -147,14 +147,28 @@ namespace QudKRTranslation.Patches
             foreach (var genotype in __instance.module.genotypes)
             {
                 if (genotype == null) continue;
-                if (LocalizationManager.TryGetAnyTerm(genotype.DisplayName?.ToLowerInvariant(), out string tName, "chargen_proto", "mutation"))
-                    genotype.DisplayName = tName;
-                
-                if (genotype.ExtraInfo != null)
+
+                // Use StructureTranslator for Genotypes (Mutated Human, True Kin)
+                if (StructureTranslator.TryGetData(genotype.Name, out var data))
                 {
-                    for (int i = 0; i < genotype.ExtraInfo.Count; i++)
+                    if (!string.IsNullOrEmpty(data.KoreanName))
+                        genotype.DisplayName = data.KoreanName;
+                    
+                    if (data.LevelTextKo != null && data.LevelTextKo.Count > 0)
+                        genotype.ExtraInfo = new List<string>(data.LevelTextKo);
+                }
+                else
+                {
+                    // Fallback to old logic
+                    if (LocalizationManager.TryGetAnyTerm(genotype.DisplayName?.ToLowerInvariant(), out string tName, "chargen_proto", "mutation"))
+                        genotype.DisplayName = tName;
+                    
+                    if (genotype.ExtraInfo != null)
                     {
-                        genotype.ExtraInfo[i] = ChargenTranslationUtils.TranslateLongDescription(genotype.ExtraInfo[i], "chargen_proto", "chargen_ui", "mutation", "mutation_desc", "powers", "power", "skill", "skill_desc");
+                        for (int i = 0; i < genotype.ExtraInfo.Count; i++)
+                        {
+                            genotype.ExtraInfo[i] = ChargenTranslationUtils.TranslateLongDescription(genotype.ExtraInfo[i], "chargen_proto", "chargen_ui", "mutation", "mutation_desc", "powers", "power", "skill", "skill_desc");
+                        }
                     }
                 }
             }
@@ -178,26 +192,44 @@ namespace QudKRTranslation.Patches
             
             foreach (var choice in list)
             {
-                // Title 번역
-                if (LocalizationManager.TryGetAnyTerm(choice.Title?.ToLowerInvariant(), out string tTitle, "chargen_ui", "chargen_proto", "mutation", "skill"))
+                bool handledByStructure = false;
+
+                // Try StructureTranslator first (Subtypes)
+                if (StructureTranslator.TryGetData(choice.Title, out var data))
                 {
-                    UnityEngine.Debug.Log($"[Subtype] Title 번역: {choice.Title} → {tTitle}");
-                    choice.Title = tTitle;
-                }
-                
-                // Description 번역 (GetFlatChargenInfo()의 결과)
-                var tr = Traverse.Create(choice);
-                string desc = tr.Field<string>("Description").Value;
-                if (!string.IsNullOrEmpty(desc))
-                {
-                    UnityEngine.Debug.Log($"[Subtype] Description 원본 [{choice.Title}]: {desc}");
+                    choice.Title = data.KoreanName;
                     
-                    string translated = ChargenTranslationUtils.TranslateLongDescription(desc, "chargen_proto", "chargen_ui", "mutation", "mutation_desc", "powers", "power", "skill", "skill_desc");
+                    var tr = Traverse.Create(choice);
+                    string originalDesc = tr.Field<string>("Description").Value;
                     
-                    if (translated != desc)
+                    string newDesc = data.GetCombinedLongDescription(originalDesc);
+                    
+                    if (!string.IsNullOrEmpty(newDesc))
                     {
-                        tr.Field<string>("Description").Value = translated;
-                        UnityEngine.Debug.Log($"[Subtype] Description 번역됨: {translated}");
+                        tr.Field<string>("Description").Value = newDesc;
+                    }
+                    handledByStructure = true;
+                }
+
+                if (!handledByStructure)
+                {
+                    // Title 번역
+                    if (LocalizationManager.TryGetAnyTerm(choice.Title?.ToLowerInvariant(), out string tTitle, "chargen_ui", "chargen_proto", "mutation", "skill"))
+                    {
+                        choice.Title = tTitle;
+                    }
+                    
+                    // Description 번역 (GetFlatChargenInfo()의 결과)
+                    var tr = Traverse.Create(choice);
+                    string desc = tr.Field<string>("Description").Value;
+                    if (!string.IsNullOrEmpty(desc))
+                    {
+                        string translated = ChargenTranslationUtils.TranslateLongDescription(desc, "chargen_proto", "chargen_ui", "mutation", "mutation_desc", "powers", "power", "skill", "skill_desc");
+                        
+                        if (translated != desc)
+                        {
+                            tr.Field<string>("Description").Value = translated;
+                        }
                     }
                 }
             }
@@ -247,9 +279,26 @@ namespace QudKRTranslation.Patches
 
                 if (cat.Choices != null)
                 {
-                    foreach (var choice in cat.Choices)
+                     foreach (var choice in cat.Choices)
                     {
-                         // Translate Choice Title (e.g. "Horticulturist")
+                         // Use StructureTranslator if available
+                         if (StructureTranslator.TryGetData(choice.Title, out var data))
+                         {
+                             choice.Title = data.KoreanName;
+                             
+                             var tr = Traverse.Create(choice);
+                             string originalDesc = tr.Field<string>("Description").Value;
+                             
+                             string newDesc = data.GetCombinedLongDescription(originalDesc);
+                             if (!string.IsNullOrEmpty(newDesc))
+                             {
+                                 tr.Field<string>("Description").Value = newDesc;
+                             }
+                             continue;
+                         }
+
+                         // Fallback
+                          // Translate Choice Title (e.g. "Horticulturist")
                         if (LocalizationManager.TryGetAnyTerm(choice.Title?.ToLowerInvariant(), out string tChoiceTitle, "chargen_ui", "chargen_proto", "mutation", "skill"))
                              choice.Title = tChoiceTitle;
 
@@ -339,8 +388,8 @@ namespace QudKRTranslation.Patches
                     {
                         foreach (var opt in cat.menuOptions)
                         {
-                            // Translate mutation name using MutationTranslator
-                            string translatedName = MutationTranslator.TranslateName(opt.Id);
+                            // Translate mutation name using StructureTranslator
+                            string translatedName = StructureTranslator.TranslateName(opt.Id);
                             if (!string.IsNullOrEmpty(translatedName))
                             {
                                 var tr = Traverse.Create(opt);
@@ -360,10 +409,10 @@ namespace QudKRTranslation.Patches
                                 }
                             }
 
-                            // Translate LongDescription using MutationTranslator
+                            // Translate LongDescription using StructureTranslator
                             if (!string.IsNullOrEmpty(opt.LongDescription) && !string.IsNullOrEmpty(opt.Id))
                             {
-                                string translatedLong = MutationTranslator.TranslateLongDescription(opt.Id);
+                                string translatedLong = StructureTranslator.TranslateLongDescription(opt.Id);
                                 if (!string.IsNullOrEmpty(translatedLong))
                                 {
                                     opt.LongDescription = translatedLong;

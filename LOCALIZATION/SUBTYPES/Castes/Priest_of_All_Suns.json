@@ -1,0 +1,27 @@
+{
+  "names": {
+    "Priest of All Suns": "모든 태양의 사제"
+  },
+  "description": "",
+  "description_ko": "",
+  "leveltext": [
+    "Ego +3",
+    "Cudgel",
+    "Physic",
+    "Nostrums",
+    "Persuasion",
+    "Snake Oiler",
+    "Intimidate",
+    "Wilderness Lore: Jungles"
+  ],
+  "leveltext_ko": [
+    "자아 +3",
+    "곤봉",
+    "의술",
+    "비방(Nostrums)",
+    "설득",
+    "가짜 약장수(Snake Oiler)",
+    "위협",
+    "야생 지식: 정글"
+  ]
+}

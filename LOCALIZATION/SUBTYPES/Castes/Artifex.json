@@ -1,0 +1,27 @@
+{
+  "names": {
+    "Artifex": "아티펙스"
+  },
+  "description": "",
+  "description_ko": "",
+  "leveltext": [
+    "Intelligence +3",
+    "ColdResistance +15",
+    "Tinkering",
+    "Repair",
+    "Disassemble",
+    "Deploy Turret",
+    "Tinker I",
+    "Tinker II"
+  ],
+  "leveltext_ko": [
+    "지능 +3",
+    "냉기 저항 +15",
+    "팅커링",
+    "수리",
+    "분해",
+    "포탑 배치",
+    "팅커 I",
+    "팅커 II"
+  ]
+}

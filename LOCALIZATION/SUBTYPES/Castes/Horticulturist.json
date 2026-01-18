@@ -1,0 +1,23 @@
+{
+  "names": {
+    "Horticulturist": "원예가"
+  },
+  "description": "",
+  "description_ko": "",
+  "leveltext": [
+    "Intelligence +3",
+    "Cooking and Gathering",
+    "Harvestry",
+    "Axe",
+    "Bow and Rifle",
+    "Wilderness Lore: Jungles"
+  ],
+  "leveltext_ko": [
+    "지능 +3",
+    "요리 및 채집",
+    "수확",
+    "도끼",
+    "활과 소총",
+    "야생 지식: 정글"
+  ]
+}

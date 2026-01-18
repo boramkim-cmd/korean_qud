@@ -2,7 +2,20 @@
   "names": {
     "Burgeoning": "무성(茂盛)"
   },
-  "description": "You spasmodically engender wild plant growth around yourself for a short period.\\n\\nDuring this time, there is a 25% chance each round that you summon several hostile plants nearby.",
-  "leveltext": [],
-  "description_ko": "You spasmodically engender wild plant growth around yourself for a short period.\\n\\nDuring this time, there is a 25% chance each round that you summon several hostile plants nearby."
+  "description": "You cause plants to spontaneously grow in a nearby area, hindering your enemies.",
+  "leveltext": [
+    "Range: 8",
+    "Area: 3x3 + growth into adjacent tiles",
+    "Cooldown: {{rules|115 - 10 * Level}} rounds (min 5)",
+    "More powerful plants summoned",
+    "+200 reputation with {{w|the Consortium of Phyta}}"
+  ],
+  "description_ko": "인근 지역에 식물이 자라나게 하여 적을 방해합니다.",
+  "leveltext_ko": [
+    "사거리: 8",
+    "범위: 3x3 + 인접 타일로 성장",
+    "재사용 대기시간: {{rules|115 - 10 * Level}}라운드 (최소 5)",
+    "더 강력한 식물 소환",
+    "{{w|식물 연합(the Consortium of Phyta)}} 평판 +200"
+  ]
 }

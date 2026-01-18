@@ -2,7 +2,7 @@
   "names": {
     "Chimera": "키메라"
   },
-  "description": "You only manifest physical mutations, and all of your mutation choices when manifesting a new mutation are physical.\\n\\nWhenever you manifest a new mutation, one of your choices will also cause you to grow a new limb at random.",
+  "description": "You only manifest physical mutations, and all of your mutation choices when manifesting a new mutation are physical.\n\nWhenever you manifest a new mutation, one of your choices will also cause you to grow a new limb at random.",
   "leveltext": [],
-  "description_ko": "You only manifest physical mutations, and all of your mutation choices when manifesting a new mutation are physical.\\n\\nWhenever you manifest a new mutation, one of your choices will also cause you to grow a new limb at random."
+  "description_ko": "오직 신체적 변이만 발현하며, 새로운 변이를 발현할 때 선택지가 모두 신체적 변이가 됩니다.\n\n새로운 변이를 발현할 때마다, 선택지 중 하나는 무작위로 새로운 신체 부위를 생성하게 합니다."
 }

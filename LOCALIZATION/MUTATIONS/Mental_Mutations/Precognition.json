@@ -2,7 +2,16 @@
   "names": {
     "Precognition": "예지"
   },
-  "description": "You see into the future.",
-  "leveltext": [],
-  "description_ko": "You see into the future."
+  "description": "You peer into your near future.",
+  "leveltext": [
+    "You may activate this power and then later revert to the point in time when you activated it.",
+    "Duration between use and reversion: {{rules|4 * Level + 12}} rounds",
+    "Cooldown: {{rules|500}} rounds"
+  ],
+  "description_ko": "가까운 미래를 엿봅니다.",
+  "leveltext_ko": [
+    "이 능력을 활성화한 후, 나중에 활성화했던 시점으로 되돌아갈 수 있습니다.",
+    "사용 후 되돌아갈 수 있는 기간: {{rules|4 * Level + 12}}라운드",
+    "재사용 대기시간: {{rules|500}}라운드"
+  ]
 }

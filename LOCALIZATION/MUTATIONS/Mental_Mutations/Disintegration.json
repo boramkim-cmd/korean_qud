@@ -2,7 +2,20 @@
   "names": {
     "Disintegration": "분해"
   },
-  "description": "You release a burst of mental energy that disintegrates an adjacent object.",
-  "leveltext": [],
-  "description_ko": "You release a burst of mental energy that disintegrates an adjacent object."
+  "description": "You disintegrate nearby matter.",
+  "leveltext": [
+    "Area: 7x7 around self",
+    "Damage to non-structural objects: {{rules|Level}}d10+{{rules|2 * Level}}",
+    "Damage to structural objects: {{rules|Level}}d100+20",
+    "You are exhausted for 3 rounds after using this power.",
+    "Cooldown: 75 rounds"
+  ],
+  "description_ko": "주변의 물질을 분해합니다.",
+  "leveltext_ko": [
+    "범위: 자신 주변 7x7",
+    "비생체 물체 피해: {{rules|Level}}d10+{{rules|2 * Level}}",
+    "구조물 피해: {{rules|Level}}d100+20",
+    "사용 후 3라운드 동안 탈진 상태가 됩니다.",
+    "재사용 대기시간: 75라운드"
+  ]
 }

@@ -1,0 +1,23 @@
+{
+  "names": {
+    "Warden": "워든"
+  },
+  "description": "",
+  "description_ko": "",
+  "leveltext": [
+    "Strength +2",
+    "Long Blade",
+    "Shield",
+    "Shield Slam",
+    "Bow and Rifle",
+    "Pistol"
+  ],
+  "leveltext_ko": [
+    "힘 +2",
+    "롱 블레이드",
+    "방패",
+    "방패 슬램",
+    "활과 소총",
+    "권총"
+  ]
+}

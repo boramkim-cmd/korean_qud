@@ -1,0 +1,25 @@
+{
+  "names": {
+    "Priest of All Moons": "모든 달의 사제"
+  },
+  "description": "",
+  "description_ko": "",
+  "leveltext": [
+    "Willpower +2",
+    "Toughness +2",
+    "Axe",
+    "Butchery",
+    "Lionheart",
+    "Poison Tolerance",
+    "Wilderness Lore: Jungles"
+  ],
+  "leveltext_ko": [
+    "의지력 +2",
+    "지구력 +2",
+    "도끼",
+    "도축",
+    "사자 심장",
+    "독 내성",
+    "야생 지식: 정글"
+  ]
+}

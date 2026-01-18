@@ -2,7 +2,18 @@
   "names": {
     "Force Bubble": "포스 방울"
   },
-  "description": "You generate a force bubble around yourself.",
-  "leveltext": [],
-  "description_ko": "You generate a force bubble around yourself."
+  "description": "You generate a forcefield around yourself.",
+  "leveltext": [
+    "Creates a 3x3 forcefield centered on yourself",
+    "Duration: {{rules|9 + Level * 3 + 1}} rounds",
+    "Cooldown: 100 rounds",
+    "You may fire missile weapons through the forcefield."
+  ],
+  "description_ko": "자신을 중심으로 역장(Forcefield)을 생성합니다.",
+  "leveltext_ko": [
+    "자신을 중심으로 3x3 역장 생성",
+    "지속 시간: {{rules|9 + Level * 3 + 1}}라운드",
+    "재사용 대기시간: 100라운드",
+    "역장 내부에서 원거리 무기를 발사할 수 있습니다."
+  ]
 }

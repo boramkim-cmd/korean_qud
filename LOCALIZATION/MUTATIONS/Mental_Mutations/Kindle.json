@@ -2,7 +2,14 @@
   "names": {
     "Kindle": "점화"
   },
-  "description": "You ignite a flammable object in the nearby area.",
-  "leveltext": [],
-  "description_ko": "You ignite a flammable object in the nearby area."
+  "description": "You ignite a small fire with your mind.",
+  "leveltext": [
+    "Range: 12",
+    "Cooldown: 50 rounds"
+  ],
+  "description_ko": "정신력으로 작은 불을 피웁니다.",
+  "leveltext_ko": [
+    "사거리: 12",
+    "재사용 대기시간: 50라운드"
+  ]
 }

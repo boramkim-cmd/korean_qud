@@ -2,7 +2,20 @@
   "names": {
     "Time Dilation": "시간 확장"
   },
-  "description": "You slow time around yourself.",
-  "leveltext": [],
-  "description_ko": "You slow time around yourself."
+  "description": "You distort time around your person in order to slow down your enemies.",
+  "leveltext": [
+    "Creatures within 9 tiles are slowed according to how close they are to you.",
+    "Distance 1: creatures receive a {{rules|(Math.Pow(9 - 1.0, 2.0) * (0.0005 * Level + 0.0085) * 100)}}% Quickness penalty",
+    "Distance 4: creatures receive a {{rules|(Math.Pow(9 - 4.0, 2.0) * (0.0005 * Level + 0.0085) * 100)}}% Quickness penalty",
+    "Distance 7: creatures receive a {{rules|(Math.Pow(9 - 7.0, 2.0) * (0.0005 * Level + 0.0085) * 100)}}% Quickness penalty",
+    "Duration: 15 rounds",
+    "Cooldown: 150 rounds"
+  ],
+  "description_ko": "자신 주변의 시간을 왜곡하여 적들을 느리게 만듭니다.",
+  "leveltext_ko": [
+    "9타일 내의 생명체는 당신과의 거리에 따라 느려집니다.",
+    "거리가 가까울수록, 레벨이 높을수록 퀵니스 페널티가 증가합니다.",
+    "지속시간: 15라운드",
+    "재사용 대기시간: 150라운드"
+  ]
 }

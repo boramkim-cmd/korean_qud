@@ -2,7 +2,18 @@
   "names": {
     "Spacetime Vortex": "시공간 소용돌이"
   },
-  "description": "You invoke a destructive force within spacetime.",
-  "leveltext": [],
-  "description_ko": "You invoke a destructive force within spacetime."
+  "description": "You sunder spacetime, sending things nearby careening through a tear in the cosmic fabric.",
+  "leveltext": [
+    "Summons a vortex that swallows everything in its path.",
+    "Cooldown: {{rules|max(5, 550 - 50 * Level)}} rounds",
+    "You may enter the vortex to teleport to a random location in Qud.",
+    "+200 reputation with {{w|highly entropic beings}}"
+  ],
+  "description_ko": "시공간을 찢어 가까운 물체들을 우주의 틈새로 날려버립니다.",
+  "leveltext_ko": [
+    "경로상의 모든 것을 삼키는 소용돌이를 소환합니다.",
+    "재사용 대기시간: {{rules|max(5, 550 - 50 * Level)}}라운드",
+    "소용돌이에 들어가 쿠드(Qud)의 무작위 위치로 순간이동할 수 있습니다.",
+    "{{w|고도로 엔트로피적인 존재들(highly entropic beings)}} 평판 +200"
+  ]
 }

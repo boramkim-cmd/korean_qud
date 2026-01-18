@@ -3,6 +3,23 @@
     "Cryokinesis": "냉기 조작"
   },
   "description": "You chill a nearby area with your mind.",
-  "leveltext": [],
-  "description_ko": "You chill a nearby area with your mind."
+  "leveltext": [
+    "Chills affected area over {{rules|3}} rounds, dealing damage and freezing things",
+    "Range: {{rules|8}}",
+    "Area: {{rules|3}}x{{rules|3}}",
+    "Round 1 damage: {{rules|Level}}d2 divided by 2",
+    "Round 2 damage: {{rules|Level}}d3 divided by 2",
+    "Round 3 damage: {{rules|Level}}d4 divided by 2",
+    "Cooldown: 50 rounds"
+  ],
+  "description_ko": "정신력으로 주변 지역을 차갑게 만듭니다.",
+  "leveltext_ko": [
+    "{{rules|3}}라운드 동안 해당 지역을 냉각시켜 피해를 입히고 얼어붙게 만듭니다",
+    "사거리: {{rules|8}}",
+    "범위: {{rules|3}}x{{rules|3}}",
+    "1라운드 피해: {{rules|Level}}d2 / 2",
+    "2라운드 피해: {{rules|Level}}d3 / 2",
+    "3라운드 피해: {{rules|Level}}d4 / 2",
+    "재사용 대기시간: 50라운드"
+  ]
 }

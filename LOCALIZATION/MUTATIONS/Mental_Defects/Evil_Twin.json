@@ -2,7 +2,12 @@
   "names": {
     "Evil Twin": "Evil Twin"
   },
-  "description": "Acting on some inscrutable impulse, a parallel version of yourself travels through space and time to destroy you.\\n\\nEach time you embark on a new location, there's a small chance your evil twin has tracked you there and attempts to kill you.",
-  "leveltext": [],
-  "description_ko": "Acting on some inscrutable impulse, a parallel version of yourself travels through space and time to destroy you.\\n\\nEach time you embark on a new location, there's a small chance your evil twin has tracked you there and attempts to kill you."
+  "description": "Acting on some inscrutable impulse, a parallel version of yourself travels through space and time to destroy you.",
+  "leveltext": [
+    "Each time you embark on a new location, there's a small chance your evil twin has tracked you there and attempts to kill you."
+  ],
+  "description_ko": "알 수 없는 충동에 이끌려, 평행 세계의 당신이 시공간을 넘어 당신을 파괴하러 옵니다.",
+  "leveltext_ko": [
+    "새로운 지역에 진입할 때마다, 적은 확률로 사악한 쌍둥이가 당신을 추적하여 죽이려 듭니다."
+  ]
 }

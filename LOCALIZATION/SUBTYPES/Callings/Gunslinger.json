@@ -1,0 +1,17 @@
+{
+  "names": {
+    "Gunslinger": "총잡이"
+  },
+  "description": "",
+  "description_ko": "",
+  "leveltext": [
+    "Agility +2",
+    "Pistol",
+    "Akimbo"
+  ],
+  "leveltext_ko": [
+    "민첩성 +2",
+    "권총",
+    "아킴보"
+  ]
+}

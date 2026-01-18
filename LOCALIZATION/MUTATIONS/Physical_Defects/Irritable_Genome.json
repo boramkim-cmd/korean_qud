@@ -2,7 +2,14 @@
   "names": {
     "Irritable Genome": "과민성 게놈"
   },
-  "description": "Your genome is irritable and unpredictable.\\n\\nWhenever you spend a mutation point, the next mutation point you gain will be spent randomly.\\nWhenever you buy a new mutation, you get a random one instead of a choice of three.",
-  "leveltext": [],
-  "description_ko": "Your genome is irritable and unpredictable.\\n\\nWhenever you spend a mutation point, the next mutation point you gain will be spent randomly.\\nWhenever you buy a new mutation, you get a random one instead of a choice of three."
+  "description": "Your genome is irritable and unpredictable.",
+  "leveltext": [
+    "Whenever you spend a mutation point, the next mutation point you gain will be spent randomly.",
+    "Whenever you buy a new mutation, you get a random one instead of a choice of three."
+  ],
+  "description_ko": "당신의 게놈은 과민하고 예측 불가능합니다.",
+  "leveltext_ko": [
+    "변이 포인트를 사용하면, 다음에 얻는 변이 포인트는 무작위로 사용됩니다.",
+    "새로운 변이를 구매할 때, 3가지를 선택하는 대신 무작위 변이를 얻습니다."
+  ]
 }

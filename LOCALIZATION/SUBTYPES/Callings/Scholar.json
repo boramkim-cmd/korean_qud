@@ -1,0 +1,27 @@
+{
+  "names": {
+    "Scholar": "학자"
+  },
+  "description": "",
+  "description_ko": "",
+  "leveltext": [
+    "Intelligence +2",
+    "Tinkering",
+    "Physic",
+    "Nostrums",
+    "Harvestry",
+    "Tactics",
+    "Customs and Folklore",
+    "Wilderness Lore: Random"
+  ],
+  "leveltext_ko": [
+    "지능 +2",
+    "팅커링",
+    "의술",
+    "비방(Nostrums)",
+    "수확",
+    "전술",
+    "풍습 및 민속",
+    "야생 지식: 무작위"
+  ]
+}

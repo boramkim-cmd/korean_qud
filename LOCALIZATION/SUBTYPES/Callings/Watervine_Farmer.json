@@ -1,0 +1,23 @@
+{
+  "names": {
+    "Watervine Farmer": "워터바인 농부"
+  },
+  "description": "",
+  "description_ko": "",
+  "leveltext": [
+    "Toughness +2",
+    "Cooking and Gathering",
+    "Harvestry",
+    "Axe",
+    "Wilderness Lore: Marshes",
+    "Starts with random cooking ingredients"
+  ],
+  "leveltext_ko": [
+    "지구력 +2",
+    "요리 및 채집",
+    "수확",
+    "도끼",
+    "야생 지식: 늪지",
+    "무작위 요리 재료를 가지고 시작"
+  ]
+}

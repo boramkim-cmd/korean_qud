@@ -2,7 +2,16 @@
   "names": {
     "Telepathy": "텔레파시"
   },
-  "description": "You read the minds and thoughts of other creatures over short distances.",
-  "leveltext": [],
-  "description_ko": "You read the minds and thoughts of other creatures over short distances."
+  "description": "You may communicate with others through the psychic aether.",
+  "leveltext": [
+    "Chat with anyone in vision",
+    "Takes you much less time to issue orders to companions",
+    "Useful in many social and psionic Sifrah games."
+  ],
+  "description_ko": "사이킥 에테르를 통해 타인과 소통할 수 있습니다.",
+  "leveltext_ko": [
+    "시야 내의 누구와도 대화 가능",
+    "동료에게 명령을 내리는 데 걸리는 시간 대폭 감소",
+    "많은 사교 및 사이킥 시프라(Sifrah) 게임에서 유용함"
+  ]
 }

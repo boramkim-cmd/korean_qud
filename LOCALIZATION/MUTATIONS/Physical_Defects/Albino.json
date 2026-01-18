@@ -2,7 +2,12 @@
   "names": {
     "Albino": "알비노"
   },
-  "description": "Your skin, hair, and eyes are absent of pigment.\\n\\nYou regenerate hit points at one-fifth the usual rate in the daylight.",
-  "leveltext": [],
-  "description_ko": "Your skin, hair, and eyes are absent of pigment.\\n\\nYou regenerate hit points at one-fifth the usual rate in the daylight."
+  "description": "Your skin, hair, and eyes are absent of pigment.",
+  "leveltext": [
+    "You regenerate hit points at one-fifth the usual rate in the daylight."
+  ],
+  "description_ko": "피부, 모발, 눈에 색소가 없습니다.",
+  "leveltext_ko": [
+    "햇빛 아래에서는 체력 재생 속도가 평소의 5분의 1로 감소합니다."
+  ]
 }

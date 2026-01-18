@@ -38,8 +38,20 @@ namespace QudKRTranslation.Utils
             
             for (int i = 0; i < lines.Length; i++)
             {
-                var trimmed = lines[i].Trim();
-                if (string.IsNullOrEmpty(trimmed)) continue;
+                if (string.IsNullOrWhiteSpace(lines[i])) continue;
+
+                // Capture indentation
+                string originalLine = lines[i];
+                string prefix = "";
+                string contentToTranslate = originalLine.Trim();
+                
+                if (originalLine.Length > contentToTranslate.Length)
+                {
+                    int idx = originalLine.IndexOf(contentToTranslate);
+                    if (idx > 0) prefix = originalLine.Substring(0, idx);
+                }
+
+                if (string.IsNullOrEmpty(contentToTranslate)) continue;
 
                 // 0. UI Artifact Preservation (Prefixes/Suffixes like "[ ] [1] " or " [V]")
                 string uiPrefix = "";

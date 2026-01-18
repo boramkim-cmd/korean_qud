@@ -1,0 +1,19 @@
+{
+  "names": {
+    "True Kin": "순수 인간"
+  },
+  "leveltext": [
+    "High starting attributes",
+    "Access to cybernetics",
+    "20 bonus skill points each level",
+    "Bonus resistances based on arcology of origin",
+    "May rebuke robots"
+  ],
+  "leveltext_ko": [
+    "높은 수준의 능력치로 시작",
+    "사이버네틱스 사용 가능",
+    "레벨업 시 {{c|20}} 보너스 기술 포인트",
+    "출신 아르콜로지에 따른 보너스 저항력",
+    "로봇을 꾸짖을 수 있음(Rebuke)"
+  ]
+}

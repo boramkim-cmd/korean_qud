@@ -2,7 +2,12 @@
   "names": {
     "Blinking Tic": "Blinking Tic"
   },
-  "description": "You teleport about uncontrollably.\\n\\nSmall chance each round you're in combat that you randomly teleport to a nearby location.",
-  "leveltext": [],
-  "description_ko": "You teleport about uncontrollably.\\n\\nSmall chance each round you're in combat that you randomly teleport to a nearby location."
+  "description": "You teleport about uncontrollably.",
+  "leveltext": [
+    "Small chance each round you're in combat that you randomly teleport to a nearby location."
+  ],
+  "description_ko": "통제할 수 없이 순간이동합니다.",
+  "leveltext_ko": [
+    "전투 중 매 라운드 적은 확률로 인근 위치로 무작위 순간이동합니다."
+  ]
 }

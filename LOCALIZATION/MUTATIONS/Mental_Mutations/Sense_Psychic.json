@@ -2,7 +2,14 @@
   "names": {
     "Sense Psychic": "초능력 감지"
   },
-  "description": "You sense psychic creatures within a radius.",
-  "leveltext": [],
-  "description_ko": "You sense psychic creatures within a radius."
+  "description": "You can sense other mental mutants through the psychic aether.",
+  "leveltext": [
+    "You detect the presence of psychic enemies within a radius of {{rules|9 + Level}}.",
+    "There's a chance you identify detected enemies."
+  ],
+  "description_ko": "사이킥 에테르를 통해 다른 정신 돌연변이를 감지할 수 있습니다.",
+  "leveltext_ko": [
+    "반경 {{rules|9 + Level}} 내의 사이킥 적의 존재를 감지합니다.",
+    "감지된 적을 식별할 확률이 존재합니다."
+  ]
 }

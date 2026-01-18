@@ -175,15 +175,24 @@ namespace QudKRTranslation.Core
         {
             if (!_isLoaded) Initialize();
 
-            // 1. 정확한 매칭
-            if (_translationDB.TryGetValue(category, out var dict) && dict.TryGetValue(key, out string val))
-                return val;
+            if (string.IsNullOrEmpty(key)) return fallback;
+            string normalizedKey = NormalizeKey(key);
 
-            // 2. 자동 서브 검색
+            if (_translationDB.TryGetValue(category, out var dict))
+            {
+                // 1. Exact match
+                if (dict.TryGetValue(key, out string val)) return val;
+                // 2. Normalized match
+                if (dict.TryGetValue(normalizedKey, out val)) return val;
+            }
+
+            // 3. Auto sub-category search
             var subCats = _translationDB.Keys.Where(k => k.StartsWith(category + "_"));
             foreach (var cat in subCats)
             {
-                if (_translationDB[cat].TryGetValue(key, out val)) return val;
+                var subDict = _translationDB[cat];
+                if (subDict.TryGetValue(key, out string val)) return val;
+                if (subDict.TryGetValue(normalizedKey, out val)) return val;
             }
 
             return string.IsNullOrEmpty(fallback) ? key : fallback;
@@ -193,26 +202,39 @@ namespace QudKRTranslation.Core
         {
             if (!_isLoaded) Initialize();
 
+            if (string.IsNullOrEmpty(key))
+            {
+                result = null;
+                return false;
+            }
+            string normalizedKey = NormalizeKey(key);
+
             if (categories == null || categories.Length == 0)
             {
                 foreach (var dict in _translationDB.Values)
                 {
                     if (dict.TryGetValue(key, out result)) return true;
+                    if (dict.TryGetValue(normalizedKey, out result)) return true;
                 }
             }
             else
             {
                 foreach (var cat in categories)
                 {
-                    if (_translationDB.TryGetValue(cat, out var dict) && dict.TryGetValue(key, out result))
-                        return true;
+                    if (_translationDB.TryGetValue(cat, out var dict))
+                    {
+                        if (dict.TryGetValue(key, out result)) return true;
+                        if (dict.TryGetValue(normalizedKey, out result)) return true;
+                    }
 
-                    // 서브 카테고리 검색
+                    // Sub-category search
                     string prefix = cat + "_";
                     var subCats = _translationDB.Keys.Where(k => k.StartsWith(prefix));
                     foreach (var sc in subCats)
                     {
-                        if (_translationDB[sc].TryGetValue(key, out result)) return true;
+                        var subDict = _translationDB[sc];
+                        if (subDict.TryGetValue(key, out result)) return true;
+                        if (subDict.TryGetValue(normalizedKey, out result)) return true;
                     }
                 }
             }
@@ -227,51 +249,180 @@ namespace QudKRTranslation.Core
         }
     }
 
-    internal static class SimpleJsonParser
+    internal static class RecursiveJsonParser
     {
         public static Dictionary<string, Dictionary<string, string>> Parse(string json)
         {
             var result = new Dictionary<string, Dictionary<string, string>>(StringComparer.OrdinalIgnoreCase);
-            try
+            if (string.IsNullOrEmpty(json)) return result;
+
+            int index = 0;
+            SkipWhitespace(json, ref index);
+
+            if (index >= json.Length || json[index] != '{') return result;
+            index++; // skip {
+
+            while (index < json.Length)
             {
-                // 매우 단순한 형태의 JSON 파서 (카테고리 기반)
-                string[] lines = json.Split('\n');
-                string currentCategory = null;
-                var currentDict = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase);
+                SkipWhitespace(json, ref index);
+                if (index >= json.Length || json[index] == '}') break;
 
-                foreach (var line in lines)
+                // Top Level Key (Category)
+                string category = ParseString(json, ref index);
+                SkipWhitespace(json, ref index);
+                if (index < json.Length && json[index] == ':') index++;
+                SkipWhitespace(json, ref index);
+
+                // Value must be an object (Category contents)
+                if (index < json.Length && json[index] == '{')
                 {
-                    string trimmed = line.Trim();
-                    if (trimmed.EndsWith("{"))
-                    {
-                        int quote1 = trimmed.IndexOf('"');
-                        int quote2 = trimmed.IndexOf('"', quote1 + 1);
-                        if (quote1 >= 0 && quote2 > quote1)
-                        {
-                            currentCategory = trimmed.Substring(quote1 + 1, quote2 - quote1 - 1);
-                            currentDict = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase);
-                            result[currentCategory] = currentDict;
-                        }
-                    }
-                    else if (trimmed.Contains("\":"))
-                    {
-                        int q1 = trimmed.IndexOf('"');
-                        int q2 = trimmed.IndexOf('"', q1 + 1);
-                        int q3 = trimmed.IndexOf('"', q2 + 1);
-                        int q4 = trimmed.LastIndexOf('"');
+                    var dict = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase);
+                    ParseObjectRecursive(json, ref index, dict);
+                    result[category] = dict;
+                }
+                else
+                {
+                    // Skip invalid top level value
+                    ParseValue(json, ref index);
+                }
 
-                        if (q1 >= 0 && q2 > q1 && q3 > q2 && q4 > q3)
+                SkipWhitespace(json, ref index);
+                if (index < json.Length && json[index] == ',') index++;
+            }
+
+            return result;
+        }
+
+        private static void ParseObjectRecursive(string json, ref int index, Dictionary<string, string> targetDict)
+        {
+            index++; // skip {
+            while (index < json.Length)
+            {
+                SkipWhitespace(json, ref index);
+                if (index >= json.Length || json[index] == '}')
+                {
+                    index++;
+                    return;
+                }
+
+                string key = ParseString(json, ref index);
+                SkipWhitespace(json, ref index);
+                if (index < json.Length && json[index] == ':') index++;
+                SkipWhitespace(json, ref index);
+
+                if (index < json.Length)
+                {
+                    if (json[index] == '{')
+                    {
+                        // Recursive: flatten nested object into current dict
+                        ParseObjectRecursive(json, ref index, targetDict);
+                    }
+                    else if (json[index] == '"')
+                    {
+                        // Leaf: String value
+                        string val = ParseString(json, ref index);
+                        targetDict[key] = val;
+                    }
+                    else
+                    {
+                        // Primitive/Array (ignore for localization strings)
+                        ParseValue(json, ref index);
+                    }
+                }
+
+                SkipWhitespace(json, ref index);
+                if (index < json.Length && json[index] == ',') index++;
+            }
+        }
+
+        private static string ParseString(string json, ref int index)
+        {
+            System.Text.StringBuilder sb = new System.Text.StringBuilder();
+            if (index < json.Length && json[index] == '"') index++; // skip starting quote
+
+            while (index < json.Length)
+            {
+                char c = json[index++];
+                if (c == '"') break;
+                if (c == '\\')
+                {
+                    if (index < json.Length)
+                    {
+                        char next = json[index++];
+                        switch (next)
                         {
-                            string key = trimmed.Substring(q1 + 1, q2 - q1 - 1);
-                            string val = trimmed.Substring(q3 + 1, q4 - q3 - 1);
-                            val = val.Replace("\\\"", "\"").Replace("\\\\", "\\");
-                            if (currentCategory != null) result[currentCategory][key] = val;
+                            case '"': sb.Append('"'); break;
+                            case '\\': sb.Append('\\'); break;
+                            case 'n': sb.Append('\n'); break;
+                            case 'r': sb.Append('\r'); break;
+                            case 't': sb.Append('\t'); break;
+                            default: sb.Append(next); break;
                         }
                     }
                 }
+                else
+                {
+                    sb.Append(c);
+                }
             }
-            catch { }
-            return result;
+            return sb.ToString();
+        }
+
+        private static void ParseValue(string json, ref int index)
+        {
+            SkipWhitespace(json, ref index);
+            if (index >= json.Length) return;
+
+            char c = json[index];
+            if (c == '{')
+            {
+                // Skip object depth
+                int depth = 1;
+                index++;
+                while (index < json.Length && depth > 0)
+                {
+                    if (json[index] == '{') depth++;
+                    else if (json[index] == '}') depth--;
+                    index++;
+                }
+            }
+            else if (c == '[')
+            {
+                // Skip array depth
+                int depth = 1;
+                index++;
+                while (index < json.Length && depth > 0)
+                {
+                    if (json[index] == '[') depth++;
+                    else if (json[index] == ']') depth--;
+                    index++;
+                }
+            }
+            else if (c == '"')
+            {
+                ParseString(json, ref index);
+            }
+            else
+            {
+                // Number/Bool/Null: read until delimiter
+                while (index < json.Length && !IsDelimiter(json[index]))
+                {
+                    index++;
+                }
+            }
+        }
+
+        private static void SkipWhitespace(string json, ref int index)
+        {
+            while (index < json.Length && char.IsWhiteSpace(json[index]))
+            {
+                index++;
+            }
+        }
+
+        private static bool IsDelimiter(char c)
+        {
+            return c == ',' || c == '}' || c == ']' || char.IsWhiteSpace(c);
         }
     }
 }

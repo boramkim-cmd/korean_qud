@@ -1,5 +1,5 @@
 {
-  "generated": "2026-01-17 22:02:56",
+  "generated": "2026-01-18 11:38:16",
   "scripts": {
     "Scripts/99_Utils/99_00_02_ChargenTranslationUtils.cs": {
       "classification": "Utils",
@@ -48,6 +48,42 @@
           "name": "IsControlValue",
           "return": "bool",
           "params": "string s"
+        }
+      ]
+    },
+    "Scripts/99_Utils/99_00_03_MutationTranslator.cs": {
+      "classification": "Util",
+      "role": "description + leveltext 구조의 mutation JSON을 로드하고 번역 제공",
+      "namespace": "QudKRTranslation.Utils",
+      "classes": [
+        "MutationTranslator",
+        "MutationData"
+      ],
+      "methods": [
+        {
+          "name": "GetCombinedLongDescription",
+          "return": "string",
+          "params": ""
+        },
+        {
+          "name": "Initialize",
+          "return": "void",
+          "params": "string mutationsDirectory"
+        },
+        {
+          "name": "TryGetMutation",
+          "return": "bool",
+          "params": "string englishName, out MutationData data"
+        },
+        {
+          "name": "TranslateName",
+          "return": "string",
+          "params": "string englishName"
+        },
+        {
+          "name": "TranslateLongDescription",
+          "return": "string",
+          "params": "string englishName"
         }
       ]
     },
@@ -425,6 +461,9 @@
       "modified": "2026-01-17"
     },
     "01_DEVELOPMENT_GUIDE.md": {
+      "modified": "2026-01-17"
+    },
+    "TEMP_TODO_MUTATIONS.md": {
       "modified": "2026-01-17"
     },
     "02_TODO.md": {

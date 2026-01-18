@@ -2,7 +2,20 @@
   "names": {
     "Stunning Force": "기절 역장"
   },
-  "description": "You knock back and stun nearby creatures with a force of will.",
-  "leveltext": [],
-  "description_ko": "You knock back and stun nearby creatures with a force of will."
+  "description": "You invoke a concussive force in a nearby area, throwing enemies back and stunning them.",
+  "leveltext": [
+    "Range: 8",
+    "Area: 7x7",
+    "Creatures are pushed away from center of blast, stunned, and dealt crushing damage in up to 3 increments.",
+    "Damage increment: {{rules|1d3 + (Level - 1) / 2}}",
+    "Cooldown: 50 rounds"
+  ],
+  "description_ko": "가까운 지역에 충격파를 일으켜 적들을 뒤로 밀어내고 기절시킵니다.",
+  "leveltext_ko": [
+    "사거리: 8",
+    "범위: 7x7",
+    "생명체들은 폭발 중심에서 밀려나고, 기절하며, 최대 3회의 분쇄 피해를 입습니다.",
+    "피해 증가량: {{rules|1d3 + (Level - 1) / 2}}",
+    "재사용 대기시간: 50라운드"
+  ]
 }

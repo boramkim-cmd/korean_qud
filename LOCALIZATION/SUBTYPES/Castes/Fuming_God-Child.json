@@ -1,0 +1,27 @@
+{
+  "names": {
+    "Fuming God-Child": "분노하는 신의 아이"
+  },
+  "description": "",
+  "description_ko": "",
+  "leveltext": [
+    "Willpower +4",
+    "HeatResistance +15",
+    "Self-discipline",
+    "Fasting Way",
+    "Lionheart",
+    "Poison Tolerance",
+    "Persuasion",
+    "Intimidate"
+  ],
+  "leveltext_ko": [
+    "의지력 +4",
+    "열 저항 +15",
+    "자기 수양",
+    "단식의 길",
+    "사자 심장",
+    "독 내성",
+    "설득",
+    "위협"
+  ]
+}

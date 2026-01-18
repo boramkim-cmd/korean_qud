@@ -1,6 +1,5 @@
 {
   "skill": {
-    "wilderness lore: random": "야생 지식: 무작위",
     "acrobatics": "곡예",
     "axe": "도끼",
     "bow and rifle": "활과 소총",
@@ -19,7 +18,13 @@
     "single weapon fighting": "단일 무기 전투",
     "tactics": "전술",
     "tinkering": "팅커링",
-    "wayfaring": "여행술"
+    "wayfaring": "여행술",
+    "multiweapon fighting": "다중 무기 전투",
+    "multiweapon proficiency": "다중 무기 숙련",
+    "multiweapon expertise": "다중 무기 전문화",
+    "charge": "돌격",
+    "fasting way": "단식의 길",
+    "poison tolerance": "독 내성"
   },
   "power_axe_desc": {
     "axe proficiency": "도끼 공격 시 명중 보너스를 받습니다.",

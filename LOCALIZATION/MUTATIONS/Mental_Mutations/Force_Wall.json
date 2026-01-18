@@ -2,7 +2,18 @@
   "names": {
     "Force Wall": "포스 벽"
   },
-  "description": "You create a wall of force.",
-  "leveltext": [],
-  "description_ko": "You create a wall of force."
+  "description": "You generate a wall of force that protects you from your enemies.",
+  "leveltext": [
+    "Creates 9 contiguous squares of immobile forcefield.",
+    "Duration: {{rules|14 + Level * 2}} rounds",
+    "Cooldown: 100 rounds",
+    "You may fire missile weapons through the forcefield."
+  ],
+  "description_ko": "적들로부터 당신을 보호하는 역장(Force) 벽을 생성합니다.",
+  "leveltext_ko": [
+    "9칸의 연속된 고정 역장 생성",
+    "지속 시간: {{rules|14 + Level * 2}}라운드",
+    "재사용 대기시간: 100라운드",
+    "역장을 통과하여 원거리 무기를 발사할 수 있습니다."
+  ]
 }

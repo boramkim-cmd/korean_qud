@@ -2,7 +2,16 @@
   "names": {
     "Teleportation": "순간이동"
   },
-  "description": "You teleport yourself.",
-  "leveltext": [],
-  "description_ko": "You teleport yourself."
+  "description": "You teleport to a nearby location.",
+  "leveltext": [
+    "Teleport to a random location within a designated area.",
+    "Uncertainty radius: {{rules|max(13 - Level, 2)}}",
+    "Cooldown: {{rules|max(103 - 3 * Level, 5)}} rounds"
+  ],
+  "description_ko": "가까운 위치로 순간이동합니다.",
+  "leveltext_ko": [
+    "지정된 구역 내의 무작위 위치로 순간이동",
+    "불확실성 반경: {{rules|max(13 - Level, 2)}}",
+    "재사용 대기시간: {{rules|max(103 - 3 * Level, 5)}}라운드"
+  ]
 }

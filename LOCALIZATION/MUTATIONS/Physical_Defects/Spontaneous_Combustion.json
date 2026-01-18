@@ -2,7 +2,12 @@
   "names": {
     "Spontaneous Combustion": "자연 발화"
   },
-  "description": "You spontaneously erupt into flames.\\n\\nSmall chance each round you're in combat that you spontaneously erupt into flames.",
-  "leveltext": [],
-  "description_ko": "You spontaneously erupt into flames.\\n\\nSmall chance each round you're in combat that you spontaneously erupt into flames."
+  "description": "You spontaneously erupt into flames.",
+  "leveltext": [
+    "Small chance each round you're in combat that you spontaneously erupt into flames."
+  ],
+  "description_ko": "자연적으로 불이 붙습니다.",
+  "leveltext_ko": [
+    "전투 중 매 라운드 적은 확률로 자연 발화하여 불길에 휩싸입니다."
+  ]
 }

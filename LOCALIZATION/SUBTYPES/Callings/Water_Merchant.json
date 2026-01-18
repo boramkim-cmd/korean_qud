@@ -1,0 +1,21 @@
+{
+  "names": {
+    "Water Merchant": "생수 상인"
+  },
+  "description": "",
+  "description_ko": "",
+  "leveltext": [
+    "Ego +2",
+    "Short Blade",
+    "Snake Oiler",
+    "Allowed entrance to many settlements for purposes of trade",
+    "Starts with trade goods"
+  ],
+  "leveltext_ko": [
+    "자아 +2",
+    "숏 블레이드",
+    "가짜 약장수(Snake Oiler)",
+    "무역 목적으로 많은 정착지 출입이 허용됨",
+    "무역 등급 상품을 가지고 시작"
+  ]
+}
