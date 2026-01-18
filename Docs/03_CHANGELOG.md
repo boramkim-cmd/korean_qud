@@ -14,6 +14,31 @@
 
 ---
 
+## [2026-01-18] - Localization Folder Reorganization
+
+### ♻️ Refactoring
+- **LOCALIZATION 폴더 구조 전면 개편**
+  - **기존**: 모든 glossary 파일이 루트에 혼재되어 관리가 어려움
+  - **변경**: 컨텍스트별 하위 폴더로 분류 (`CHARGEN`, `GAMEPLAY`, `UI`)
+  - **이점**: 관련 파일 응집도 향상 및 향후 확장성(COMBAT, WORLD 등) 확보
+
+- **Glossary 데이터 통합**
+  - `glossary_proto.json` (레거시) 데이터를 `GENOTYPES` 및 `SUBTYPES` 구조화 데이터로 병합
+  - 중복된 이름("mutated human", "apostle" 등) 제거
+  - 누락된 `leveltext` 및 `extrainfo`("may rebuke robots" 등)를 구조화된 파일에 통합
+  - 원본 `glossary_proto.json`은 `_DEPRECATED` 폴더로 이동 (보존용)
+
+- **문서 통합**
+  - 파편화된 하위 폴더 README들을 `LOCALIZATION/README.md` 하나로 통합하여 유지보수성 향상
+  - `Docs/01_DEVELOPMENT_GUIDE.md` 업데이트 완료
+
+### 🔧 Changed
+- **코드 경로 업데이트**:
+  - `LocalizationManager.cs`: `LoadGlossary()`에서 변경된 JSON 경로 로드
+  - `StructureTranslator.cs`: `TargetDirectories`에 `GAMEPLAY/MUTATIONS`, `CHARGEN/GENOTYPES` 등 반영
+
+---
+
 ## [2026-01-17] - 변이 글로설리 개편 및 시스템 무결성 점검
 
 ### ✨ Added
