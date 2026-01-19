@@ -58,9 +58,10 @@
 | ID | Symptom | Root Cause | Resolution |
 |----|---------|------------|------------|
 | ERR-008 | Cannot proceed to next st... | Game source code `Attribu... | Deleted direct `attr.Attr... |
-| ERR-009 | Bullet (`{{c|ù}}`) prefix... | `CHARGEN/SUBTYPES/` JSON ... | Improved `CombineWithLeve... |
+| ERR-009 | Bullet (`{{c|ù}}`) prefix... | Unknown | See error log |
 | ERR-011 | Game source `SubtypeEntry... | Game source `SubtypeEntry... | `ChargenTranslationUtils.... |
 | ERR-006 | Stinger Mutation Descript... | `02_10_10_CharacterCreati... | Split into structured for... |
+| ERR-012 | Options screen: "Interfac... | Unknown | See error log |
 
 # Full details: Docs/05_ERROR_LOG.md
 

@@ -97,32 +97,57 @@ This document records errors encountered during development and their solutions.
 ### Basic Info
 | Item | Content |
 |------|---------|
-| **Status** | 🟢 RESOLVED |
+| **Status** | 🟢 RESOLVED (Updated 2026-01-19) |
 | **Severity** | 🟠 High |
 | **Discovered** | 2026-01-19 |
-| **Resolved** | 2026-01-19 |
+| **Resolved** | 2026-01-19 (re-fixed) |
 
 ### Symptoms
 1. Bullet (`{{c|ù}}`) prefix missing in calling/caste selection descriptions.
-2. Double dot issue where bullets appear duplicated on some screens.
+2. **Double dot issue** (e.g., `힘 +2..`) in skill/stat entries.
+3. English and Korean descriptions appearing duplicated (separated by newlines).
 
-### Root Cause Analysis
-1. `CHARGEN/SUBTYPES/` JSON files' `leveltext_ko` arrays missing bullet prefixes.
-2. No auto-add bullet logic in `StructureTranslator.CombineWithLevelText()`.
+### Root Cause Analysis (Updated)
+1. **Original Issue**: `leveltext_ko` arrays missing bullet prefixes → Fixed by auto-add logic.
+2. **NEW: Double dot source**: `leveltext_ko` entries had trailing periods (`.`) while English `leveltext` did not.
+   - English: `"Strength +2"` (no dot)
+   - Korean: `"힘 +2."` (has dot)
+   - When game adds its own formatting, double dots appeared.
+3. **Inconsistency in JSON data**: Some translators added periods, others didn't.
 
-### ✅ Final Resolution
-1. Improved `CombineWithLevelText()` method:
-   - Auto-add bullet (`{{c|ù}} `) to each LevelTextKo item
-   - Prevent duplicate addition if bullet already exists
+### Why Previous "Fix" Failed
+The 2026-01-19 initial fix only addressed:
+- Missing bullet prefix auto-addition in `CombineWithLevelText()`
+- Case-insensitive bullet detection
+
+But it did NOT address:
+- **Data-level inconsistency**: Periods in `leveltext_ko` that shouldn't exist
+- Translation data validation was not enforced
+
+### ✅ Final Resolution (Re-fixed 2026-01-19)
+1. **Removed trailing periods from simple entries** in all 12 Callings JSON files:
+   - Skill/stat entries: `"힘 +2."` → `"힘 +2"`
+   - Simple nouns: `"도끼."` → `"도끼"`
    
-```csharp
-// Check if bullet already exists
-bool hasBullet = line.StartsWith("{{c|ù}}") || line.StartsWith("ù") || ...;
-if (!hasBullet) formattedExtras.Add("{{c|ù}} " + line);
-```
+2. **Kept periods for complete sentences**:
+   - `"{{b|재활용 슈트}}를 착용한 상태로 시작합니다."` (verb ending → keep period)
+   
+3. **Rule established**:
+   | Type | Example EN | Example KO | Period? |
+   |------|-----------|-----------|---------|
+   | Stat modifier | `Strength +2` | `힘 +2` | ❌ No |
+   | Skill name | `Long Blade` | `롱 블레이드` | ❌ No |
+   | Complete sentence | `Starts with...` | `~시작합니다` | ✅ Yes |
 
 ### Related Files
+- `LOCALIZATION/CHARGEN/SUBTYPES/Callings/*.json` (12 files modified)
 - `Scripts/99_Utils/99_00_03_StructureTranslator.cs`
+
+### Prevention Guide
+⚠️ **RULE**: Match punctuation style with English source.
+- If English has no trailing period → Korean should not have one either
+- Always verify both `leveltext` and `leveltext_ko` arrays for consistency
+- Run `tools/verify_structure_data.py` before deployment
 
 ---
 
@@ -236,6 +261,71 @@ Translation JSON included color tags, but `TranslationEngine` also auto-restores
 
 ### Prevention Guide
 ⚠️ **NEVER include color tags in translation JSON values** - the engine restores them automatically.
+
+---
+
+## ERR-012: Persistent Translation Issues Due to Code vs Data Confusion
+
+### Basic Info
+| Item | Content |
+|------|---------|
+| **Status** | 🟢 RESOLVED (Meta-Analysis) |
+| **Severity** | 🟠 High (Process Issue) |
+| **Discovered** | 2026-01-19 |
+| **Resolved** | 2026-01-19 |
+
+### Symptoms
+Issues marked as "RESOLVED" kept reappearing:
+1. Options screen: "Interface sounds", "Fire crackling sounds" still in English
+2. Character creation: Double dots, separated lines in callings/castes
+3. AI models reporting "fix complete" but no actual change visible
+
+### Root Cause Analysis: Why "Fixed" Issues Persisted
+
+#### Problem 1: Code vs Data Confusion
+| Aspect | What AI Fixed | What Actually Needed Fixing |
+|--------|---------------|----------------------------|
+| Options | Harmony patch logic (C#) | **Translation JSON data missing entries** |
+| Callings | `CombineWithLevelText()` algorithm | **`leveltext_ko` data had inconsistent periods** |
+
+**Lesson**: Code patches are useless if translation data doesn't exist or is malformed.
+
+#### Problem 2: Validation Gap
+- `project_tool.py` validates JSON syntax, not **semantic correctness**
+- No tool verified that `leveltext` and `leveltext_ko` had matching formats
+- No tool checked if options.json covered all game options
+
+#### Problem 3: Scope Mismatch
+- Previous session analyzed `CODE_ANALYSIS_REPORT.md` (code issues)
+- But user's screenshots showed **data issues** (missing translations)
+- AI focused on wrong problem domain
+
+### ✅ Resolution: Process Improvements
+
+1. **Always check BOTH code AND data**:
+   ```bash
+   # Before claiming "fix complete":
+   grep -r "English text" LOCALIZATION/  # Check if translation exists
+   grep -r "TranslateMethod" Scripts/     # Check if patch exists
+   ```
+
+2. **Match source vs translation formatting**:
+   - Compare `leveltext` array (EN) with `leveltext_ko` (KO)
+   - Periods, bullets, color tags must match
+
+3. **Screenshot-driven debugging**:
+   - When user provides screenshot with English text, search for that EXACT text
+   - Don't assume code fix will resolve data issue
+
+### Checklist for Future Sessions
+
+- [ ] Does the translation JSON contain the exact English key shown in screenshot?
+- [ ] Does the patch code actually load and use that JSON category?
+- [ ] Are there formatting differences between EN/KO that could cause display issues?
+- [ ] Did you TEST in game after deploying?
+
+### Related Files
+- This is a meta-analysis, applies to all translation files
 
 ---
 
