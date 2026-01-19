@@ -51,6 +51,23 @@
 6. Log Changes: All changes -> Docs/en/reference/04_CHANGELOG.md
 7. Check Both Namespaces: Most screens have dual implementation (XRL.UI + Qud.UI)
 
+## UI FRAGMENTATION PRINCIPLE (Critical for UI Patches)
+# UI elements are often fragmented across multiple files and hardcoded in unexpected places.
+# Never assume a single patch point covers all UI elements on a screen.
+#
+# Example: Options Screen has FOUR separate rendering paths:
+#   - OptionsScreen.cs          -> Main panel options
+#   - OptionsCategoryControl.cs -> Right panel category rows  
+#   - LeftSideCategory.cs       -> LEFT panel category names (separate class!)
+#   - MenuOption / overlay      -> Bottom action buttons
+#
+# ALWAYS:
+# 1. Search for ALL classes that touch the target UI element
+# 2. Check both XRL.UI and Qud.UI namespaces
+# 3. Look for: SetText(), text.text, Title, DisplayText, Description
+# 4. Verify each rendering path is patched independently
+# 5. Test each UI area separately after patching
+
 ################################################################################
 # LAYER 3: PAST CRITICAL ERRORS (Never Repeat!)
 ################################################################################

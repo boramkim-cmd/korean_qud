@@ -341,4 +341,145 @@ namespace QudKRTranslation.Patches
             }
         }
     }
+
+    /// <summary>
+    /// [5] KeyMenuOption 패치: 하단 바 버튼들(Collapse All, Expand All, Select, Help 등)을 번역합니다.
+    /// 게임 원본: KeyMenuOption.setDataMenuOption()에서 data.Description을 직접 렌더링
+    /// 해결: Render() 호출 후 textSkin의 텍스트를 번역
+    /// </summary>
+    [HarmonyPatch(typeof(XRL.UI.Framework.KeyMenuOption))]
+    public static class Patch_KeyMenuOption
+    {
+        private static Dictionary<string, string>[] _scopeArray = null;
+
+        private static Dictionary<string, string>[] GetScopes()
+        {
+            if (_scopeArray == null)
+            {
+                var optionsDict = LocalizationManager.GetCategory("options");
+                var commonDict = LocalizationManager.GetCategory("common");
+                var scopes = new List<Dictionary<string, string>>();
+                if (optionsDict != null) scopes.Add(optionsDict);
+                if (commonDict != null) scopes.Add(commonDict);
+                _scopeArray = scopes.ToArray();
+            }
+            return _scopeArray;
+        }
+
+        [HarmonyPatch("setDataMenuOption")]
+        [HarmonyPostfix]
+        static void setDataMenuOption_Postfix(XRL.UI.Framework.KeyMenuOption __instance, XRL.UI.Framework.MenuOption data)
+        {
+            try
+            {
+                if (__instance == null || __instance.textSkin == null) return;
+                if (data == null || string.IsNullOrEmpty(data.Description)) return;
+
+                var scopes = GetScopes();
+                if (scopes == null || scopes.Length == 0) return;
+
+                // Description 번역 (예: "Collapse All" -> "모두 접기")
+                if (TranslationUtils.TryTranslatePreservingTags(data.Description, out string translated, scopes))
+                {
+                    __instance.textSkin.SetText(translated);
+                }
+            }
+            catch (Exception ex)
+            {
+                Debug.LogWarning($"[Qud-KR] KeyMenuOption.setDataMenuOption_Postfix 오류: {ex.Message}");
+            }
+        }
+
+        [HarmonyPatch("setDataPrefixMenuOption")]
+        [HarmonyPostfix]
+        static void setDataPrefixMenuOption_Postfix(XRL.UI.Framework.KeyMenuOption __instance, XRL.UI.Framework.PrefixMenuOption data)
+        {
+            try
+            {
+                if (__instance == null || __instance.textSkin == null) return;
+                if (data == null || string.IsNullOrEmpty(data.Description)) return;
+
+                var scopes = GetScopes();
+                if (scopes == null || scopes.Length == 0) return;
+
+                if (TranslationUtils.TryTranslatePreservingTags(data.Description, out string translated, scopes))
+                {
+                    __instance.textSkin.SetText(translated);
+                }
+            }
+            catch (Exception ex)
+            {
+                Debug.LogWarning($"[Qud-KR] KeyMenuOption.setDataPrefixMenuOption_Postfix 오류: {ex.Message}");
+            }
+        }
+    }
+
+    /// <summary>
+    /// [6] EmbarkBuilderModuleBackButton 패치: Back 버튼을 번역합니다.
+    /// 게임 원본: EmbarkBuilderModuleBackButton.Update()에서 menuOption.getMenuText()를 렌더링
+    /// 해결: Update() 호출 후 TextSkin.text를 번역
+    /// </summary>
+    [HarmonyPatch(typeof(XRL.CharacterBuilds.UI.EmbarkBuilderModuleBackButton))]
+    public static class Patch_EmbarkBuilderModuleBackButton
+    {
+        private static Dictionary<string, string>[] _scopeArray = null;
+
+        private static Dictionary<string, string>[] GetScopes()
+        {
+            if (_scopeArray == null)
+            {
+                var optionsDict = LocalizationManager.GetCategory("options");
+                var commonDict = LocalizationManager.GetCategory("common");
+                var scopes = new List<Dictionary<string, string>>();
+                if (optionsDict != null) scopes.Add(optionsDict);
+                if (commonDict != null) scopes.Add(commonDict);
+                _scopeArray = scopes.ToArray();
+            }
+            return _scopeArray;
+        }
+
+        [HarmonyPatch("Update")]
+        [HarmonyPostfix]
+        static void Update_Postfix(XRL.CharacterBuilds.UI.EmbarkBuilderModuleBackButton __instance)
+        {
+            try
+            {
+                if (__instance == null || __instance.TextSkin == null) return;
+                if (__instance.menuOption == null) return;
+
+                string description = __instance.menuOption.Description;
+                if (string.IsNullOrEmpty(description)) return;
+
+                var scopes = GetScopes();
+                if (scopes == null || scopes.Length == 0) return;
+
+                // Description 번역 (예: "Back" -> "뒤로")
+                if (TranslationUtils.TryTranslatePreservingTags(description, out string translated, scopes))
+                {
+                    // getMenuText() 형식 유지: "[{{W|Esc}}] Back" -> "[{{W|Esc}}] 뒤로"
+                    string keyDesc = __instance.menuOption.getKeyDescription();
+                    string newText;
+                    if (!string.IsNullOrEmpty(keyDesc))
+                    {
+                        newText = "[{{W|" + keyDesc + "}}] " + translated;
+                    }
+                    else
+                    {
+                        newText = translated;
+                    }
+                    
+                    // 현재 텍스트와 다른 경우에만 업데이트 (무한 루프 방지)
+                    if (__instance.TextSkin.text != newText)
+                    {
+                        __instance.TextSkin.text = newText;
+                        __instance.TextSkin.Apply();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Debug.LogWarning($"[Qud-KR] EmbarkBuilderModuleBackButton.Update_Postfix 오류: {ex.Message}");
+            }
+        }
+    }
 }
