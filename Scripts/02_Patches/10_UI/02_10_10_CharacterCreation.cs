@@ -657,6 +657,7 @@ namespace QudKRTranslation.Patches
             {
                 ApplyTooltipFont(__instance.tooltip);
                 string translated = TranslateBonusSource(bonusSource);
+                UnityEngine.Debug.Log($"[KR-Bonus] Original: '{bonusSource}' -> Translated: '{translated}'");
                 __instance.tooltip.SetText("BodyText", Sidebar.FormatToRTF(translated));
             }
         }
@@ -694,6 +695,8 @@ namespace QudKRTranslation.Patches
         {
             if (string.IsNullOrEmpty(line)) return line;
             
+            UnityEngine.Debug.Log($"[KR-BonusLine] Input: '{line}'");
+            
             // BonusSource format: "+2 from {{important|Priest of All Moons}} caste"
             // Pattern: "{+/-N} from {source} [caste/calling/genotype/subtype]"
             // Note: source may include Qud color tags
@@ -711,6 +714,7 @@ namespace QudKRTranslation.Patches
                 bonus = typedMatch.Groups[1].Value;
                 rawSource = typedMatch.Groups[2].Value.Trim();
                 sourceType = typedMatch.Groups[3].Value?.Trim();
+                UnityEngine.Debug.Log($"[KR-BonusLine] TypedMatch: bonus='{bonus}', rawSource='{rawSource}', sourceType='{sourceType}'");
             }
             else
             {
@@ -723,6 +727,7 @@ namespace QudKRTranslation.Patches
                 {
                     bonus = basicMatch.Groups[1].Value;
                     rawSource = basicMatch.Groups[2].Value.Trim();
+                    UnityEngine.Debug.Log($"[KR-BonusLine] BasicMatch: bonus='{bonus}', rawSource='{rawSource}'");
                 }
                 else
                 {
@@ -733,19 +738,23 @@ namespace QudKRTranslation.Patches
 
                     if (!trailingBonusMatch.Success)
                     {
+                        UnityEngine.Debug.Log($"[KR-BonusLine] No match, returning original line");
                         return line;
                     }
 
                     rawSource = trailingBonusMatch.Groups[1].Value.Trim();
                     bonus = trailingBonusMatch.Groups[2].Value.Trim();
+                    UnityEngine.Debug.Log($"[KR-BonusLine] TrailingMatch: rawSource='{rawSource}', bonus='{bonus}'");
                 }
             }
 
             // 색상 태그 제거: {{important|Priest of All Moons}} -> Priest of All Moons
             string source = StripQudTags(rawSource);
+            UnityEngine.Debug.Log($"[KR-BonusLine] StripQudTags: '{rawSource}' -> '{source}'");
 
             if (string.IsNullOrEmpty(source))
             {
+                UnityEngine.Debug.Log($"[KR-BonusLine] Source is empty, returning original line");
                 return line;
             }
 
@@ -756,26 +765,41 @@ namespace QudKRTranslation.Patches
             if (CasteShortNames.TryGetValue(source, out string casteName))
             {
                 translatedSource = casteName;
+                UnityEngine.Debug.Log($"[KR-BonusLine] CasteShortNames found: '{source}' -> '{casteName}'");
             }
             // 2. StructureTranslator에서 찾기 (Calling 포함)
             else if (StructureTranslator.TryGetData(source, out var data) && !string.IsNullOrEmpty(data.KoreanName))
             {
                 translatedSource = data.KoreanName;
+                UnityEngine.Debug.Log($"[KR-BonusLine] StructureTranslator found: '{source}' -> '{data.KoreanName}'");
             }
             // 3. LocalizationManager에서 찾기
             else if (LocalizationManager.TryGetAnyTerm(source, out string tSource, "chargen_attributes", "chargen_ui", "ui", "common") ||
                      LocalizationManager.TryGetAnyTerm(source.ToLowerInvariant(), out tSource, "chargen_attributes", "chargen_ui", "ui", "common"))
             {
                 translatedSource = tSource;
+                UnityEngine.Debug.Log($"[KR-BonusLine] LocalizationManager found: '{source}' -> '{tSource}'");
+            }
+            else
+            {
+                UnityEngine.Debug.Log($"[KR-BonusLine] No translation found for '{source}'");
             }
 
             string translatedType = TranslateBonusSourceType(sourceType, source);
+            UnityEngine.Debug.Log($"[KR-BonusLine] TranslatedType: '{sourceType}' -> '{translatedType}'");
+            
+            string result;
             if (!string.IsNullOrEmpty(translatedType))
             {
-                return $"{translatedSource} {translatedType} {bonus}";
+                result = $"{translatedSource} {translatedType} {bonus}";
             }
-
-            return $"{translatedSource} {bonus}";
+            else
+            {
+                result = $"{translatedSource} {bonus}";
+            }
+            
+            UnityEngine.Debug.Log($"[KR-BonusLine] Result: '{result}'");
+            return result;
         }
 
         private static string StripQudTags(string input)
