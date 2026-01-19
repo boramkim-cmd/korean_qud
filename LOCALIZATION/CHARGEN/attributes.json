@@ -1,0 +1,65 @@
+{
+  "chargen_attributes": {
+    "_comment": "속성 분배 화면 (QudAttributesModuleWindow) 번역 데이터",
+    
+    "Attribute Names Short": {
+      "_comment": "1~2글자 축약 속성명 (UI 표시용)",
+      "Strength": "힘",
+      "Agility": "민첩",
+      "Toughness": "건강",
+      "Intelligence": "지능",
+      "Willpower": "의지",
+      "Ego": "자아"
+    },
+    
+    "Attribute Names Full": {
+      "_comment": "전체 속성명 (설명 등에서 사용)",
+      "Strength": "힘",
+      "Agility": "민첩",
+      "Toughness": "건강",
+      "Intelligence": "지능",
+      "Willpower": "의지",
+      "Ego": "자아"
+    },
+    
+    "Attribute Descriptions": {
+      "_comment": "속성 선택 시 하단에 표시되는 설명 (ChargenDescription)",
+      "Your {{W|Strength}} score determines how effectively you penetrate armor with melee attacks.": "{{W|힘}} 수치는 근접 공격 시 적의 방어구를 얼마나 효과적으로 관통하는지 결정합니다.",
+      "Your {{W|Agility}} score determines your accuracy with both melee and ranged weapons and your ability to dodge attacks.": "{{W|민첩}} 수치는 근접 및 원거리 무기의 명중률과 공격을 회피하는 능력을 결정합니다.",
+      "Your {{W|Toughness}} score determines your number of hit points, your natural healing rate, and your ability to resist poison and disease.": "{{W|건강}} 수치는 체력, 자연 회복 속도, 독과 질병에 대한 저항력을 결정합니다.",
+      "Your {{W|Intelligence}} score determines your number of skill points and your ability to examine artifacts.": "{{W|지능}} 수치는 스킬 포인트 획득량과 유물을 감정하는 능력을 결정합니다.",
+      "Your {{W|Willpower}} score determines how effectively your mind shields you from effects that target it.": "{{W|의지}} 수치는 정신 공격에 대한 방어력을 결정합니다.",
+      "Your {{W|Ego}} score determines the potency of your ability to haggle with merchants, and your ability to dominate the wills of other living creatures.": "{{W|자아}} 수치는 상인과의 거래 능력과 다른 생명체의 의지를 지배하는 능력을 결정합니다."
+    },
+    
+    "Caste Short Names": {
+      "_comment": "계급명 6자 이내 (BonusSource 툴팁용, 띄어쓰기 없음)",
+      "Priest of All Moons": "달의사제",
+      "Priest of All Suns": "태양사제",
+      "Horticulturist": "원예가",
+      "Child of the Deep": "심연의자녀",
+      "Child of the Hearth": "화로의자녀",
+      "Child of the Wheel": "수레의자녀",
+      "Fuming God-Child": "연신의자녀",
+      "Artifex": "기술자",
+      "Consul": "영사",
+      "Eunuch": "환관",
+      "Praetorian": "근위병",
+      "Syzygyrior": "합위전사"
+    },
+    
+    "UI Templates": {
+      "_comment": "UI 요소 번역 템플릿",
+      "Points Remaining:": "남은 포인트:",
+      "pts": "점",
+      "from": "계급",
+      "caste": "계급"
+    },
+    
+    "BonusSource Patterns": {
+      "_comment": "BonusSource 툴팁 패턴 (정규식용 참조)",
+      "_pattern_original": "{bonus:+#;-#;0} from {CasteName} caste",
+      "_pattern_translated": "{CasteShortName} 계급 {bonus:+#;-#;0}"
+    }
+  }
+}

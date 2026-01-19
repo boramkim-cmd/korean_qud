@@ -443,25 +443,163 @@ namespace QudKRTranslation.Patches
     [HarmonyPatch(typeof(AttributeSelectionControl))]
     public static class Patch_AttributeSelectionControl
     {
+        // 계급명 영문 -> 한글 매핑 (6자 이내, 띄어쓰기 없음)
+        private static readonly Dictionary<string, string> CasteShortNames = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase)
+        {
+            { "Priest of All Moons", "달의사제" },
+            { "Priest of All Suns", "태양사제" },
+            { "Horticulturist", "원예가" },
+            { "Child of the Deep", "심연의자녀" },
+            { "Child of the Hearth", "화로의자녀" },
+            { "Child of the Wheel", "수레의자녀" },
+            { "Fuming God-Child", "연신의자녀" },
+            { "Artifex", "기술자" },
+            { "Consul", "영사" },
+            { "Eunuch", "환관" },
+            { "Praetorian", "근위병" },
+            { "Syzygyrior", "합위전사" }
+        };
+        
+        // 속성명 영문 -> 한글 매핑 (1~2글자)
+        private static readonly Dictionary<string, string> AttributeShortNames = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase)
+        {
+            { "Strength", "힘" },
+            { "Agility", "민첩" },
+            { "Toughness", "건강" },
+            { "Intelligence", "지능" },
+            { "Willpower", "의지" },
+            { "Ego", "자아" }
+        };
+
         [HarmonyPatch(nameof(AttributeSelectionControl.Updated))]
         [HarmonyPostfix]
         static void Updated_Postfix(AttributeSelectionControl __instance)
         {
             if (__instance.data == null) return;
             
-            // 원본 Attribute 이름으로 한글 번역 조회 (Substring 이후 UI 텍스트만 변경)
             string originalAttr = __instance.data.Attribute;
             if (!string.IsNullOrEmpty(originalAttr))
             {
-                // 원본은 "STR", "AGI" 등으로 표시되지만, 우리는 한글로 변경
-                if (LocalizationManager.TryGetAnyTerm(originalAttr.ToLowerInvariant(), out string tName, "chargen_stats", "chargen_ui", "attributes", "ui"))
+                // 1. 속성명 번역 (1~2글자)
+                if (AttributeShortNames.TryGetValue(originalAttr, out string shortName))
                 {
-                    // 한글 속성명의 첫 글자만 또는 전체를 표시 (예: "힘", "민", "지" 등)
-                    // UI 공간 제약에 따라 조정 가능
-                    string shortKorean = tName.Length >= 3 ? tName.Substring(0, 3) : tName;
-                    __instance.attribute.text = shortKorean;
+                    __instance.attribute.text = shortName;
+                }
+                
+                // 2. 포인트 비용 번역: "[1pts]" -> "[1점]"
+                var titledButton = __instance.GetComponent<TitledIconButton>();
+                if (titledButton != null)
+                {
+                    int apToRaise = __instance.data.APToRaise;
+                    titledButton.SetTitle($"[{apToRaise}점]");
                 }
             }
+            
+            // 3. 툴팁 BonusSource 번역: "+2 from Priest of All Moons caste" -> "달의사제 계급 +2"
+            string bonusSource = __instance.data.BonusSource;
+            if (!string.IsNullOrEmpty(bonusSource) && __instance.tooltip != null)
+            {
+                string translated = TranslateBonusSource(bonusSource);
+                __instance.tooltip.SetText("BodyText", Sidebar.FormatToRTF(translated));
+            }
+        }
+        
+        /// <summary>
+        /// BonusSource 문자열 번역
+        /// 원본 형식: "+2 from Priest of All Moons caste\n+1 from calling\n"
+        /// 번역 형식: "달의사제 계급 +2\n소명 +1\n"
+        /// </summary>
+        private static string TranslateBonusSource(string bonusSource)
+        {
+            if (string.IsNullOrEmpty(bonusSource)) return bonusSource;
+            
+            var lines = bonusSource.Split(new[] { '\n' }, StringSplitOptions.RemoveEmptyEntries);
+            var translatedLines = new List<string>();
+            
+            foreach (var line in lines)
+            {
+                string translatedLine = TranslateBonusLine(line.Trim());
+                if (!string.IsNullOrEmpty(translatedLine))
+                {
+                    translatedLines.Add(translatedLine);
+                }
+            }
+            
+            return string.Join("\n", translatedLines);
+        }
+        
+        /// <summary>
+        /// 단일 보너스 라인 번역
+        /// 예: "+2 from Priest of All Moons caste" -> "달의사제 계급 +2"
+        /// 예: "+1 from calling" -> "소명 +1"
+        /// </summary>
+        private static string TranslateBonusLine(string line)
+        {
+            if (string.IsNullOrEmpty(line)) return line;
+            
+            // 패턴: "{+/-N} from {source} [caste]"
+            // 정규식으로 파싱
+            var match = System.Text.RegularExpressions.Regex.Match(
+                line, 
+                @"^([+-]?\d+)\s+from\s+(.+?)(?:\s+caste)?$",
+                System.Text.RegularExpressions.RegexOptions.IgnoreCase);
+            
+            if (match.Success)
+            {
+                string bonus = match.Groups[1].Value;
+                string source = match.Groups[2].Value.Trim();
+                
+                // 계급명 번역 시도
+                if (CasteShortNames.TryGetValue(source, out string casteName))
+                {
+                    return $"{casteName} 계급 {bonus}";
+                }
+                
+                // "calling" -> "소명"
+                if (source.Equals("calling", StringComparison.OrdinalIgnoreCase))
+                {
+                    return $"소명 {bonus}";
+                }
+                
+                // 기타 소스는 원문 유지
+                return $"{source} {bonus}";
+            }
+            
+            // 패턴 불일치 시 원문 반환
+            return line;
+        }
+    }
+    
+    // QudAttributesModuleWindow 패치 - 하단 메뉴 번역
+    [HarmonyPatch(typeof(QudAttributesModuleWindow))]
+    public static class Patch_QudAttributesModuleWindow
+    {
+        [HarmonyPatch(nameof(QudAttributesModuleWindow.GetKeyMenuBar))]
+        [HarmonyPostfix]
+        static void GetKeyMenuBar_Postfix(QudAttributesModuleWindow __instance, ref IEnumerable<MenuOption> __result)
+        {
+            if (__result == null) return;
+            
+            var list = __result.ToList();
+            foreach (var opt in list)
+            {
+                if (opt.Description != null && opt.Description.Contains("Points Remaining"))
+                {
+                    // "Points Remaining: X" -> "남은 포인트: X"
+                    var match = System.Text.RegularExpressions.Regex.Match(
+                        opt.Description, 
+                        @"Points Remaining:\s*(-?\d+)");
+                    
+                    if (match.Success)
+                    {
+                        string pts = match.Groups[1].Value;
+                        opt.Description = opt.Description.Replace(
+                            $"Points Remaining: {pts}",
+                            $"남은 포인트: {pts}");
+                    }
+                }
+            }
+            __result = list;
         }
     }
 

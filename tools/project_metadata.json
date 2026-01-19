@@ -1,5 +1,5 @@
 {
-  "generated": "2026-01-19 14:14:12",
+  "generated": "2026-01-19 14:55:23",
   "scripts": {
     "Scripts/99_Utils/99_00_03_StructureTranslator.cs": {
       "classification": "Util",
@@ -304,7 +304,9 @@
         "Patch_QudSubtypeModule",
         "Patch_QudSubtypeModuleWindow",
         "Patch_AttributeSelectionControl",
+        "Patch_QudAttributesModuleWindow",
         "Patch_QudMutationsModuleWindow",
+        "Patch_KeyMenuOption_MutationNames",
         "Patch_QudCyberneticsModuleWindow",
         "Patch_QudPregenModuleWindow",
         "Patch_QudChooseStartingLocationModuleWindow",
@@ -536,6 +538,12 @@
         "chargen_stats"
       ],
       "entries": 2
+    },
+    "attributes.json": {
+      "categories": [
+        "chargen_attributes"
+      ],
+      "entries": 7
     },
     "cybernetics.json": {
       "categories": [

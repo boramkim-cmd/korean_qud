@@ -2,15 +2,19 @@
   "chargen_stats": {
     "Attribute Names": {
       "Strength": "힘",
-      "Agility": "민첩성",
-      "Toughness": "지구력",
+      "Agility": "민첩",
+      "Toughness": "건강",
       "Intelligence": "지능",
-      "Willpower": "의지력",
+      "Willpower": "의지",
       "Ego": "자아"
     },
     "Attribute Descriptions": {
-      "your {{w|agility}} score determines your accuracy with both melee and ranged weapons and your ability to dodge attacks.": "{{w|민첩(Agility)}} 수치는 근접 및 원거리 무기의 명중률과 공격을 회피하는 능력을 결정합니다.",
-      "your {{w|intelligence}} score determines your number of skill points and your ability to examine artifacts.": "{{w|지능(Intelligence)}} 수치는 기술 포인트 획득량과 고대 유물을 식별하는 능력을 결정합니다."
+      "your {{w|agility}} score determines your accuracy with both melee and ranged weapons and your ability to dodge attacks.": "{{w|민첩}} 수치는 근접 및 원거리 무기의 명중률과 공격을 회피하는 능력을 결정합니다.",
+      "your {{w|intelligence}} score determines your number of skill points and your ability to examine artifacts.": "{{w|지능}} 수치는 기술 포인트 획득량과 고대 유물을 식별하는 능력을 결정합니다.",
+      "your {{w|strength}} score determines how effectively you penetrate armor with melee attacks.": "{{w|힘}} 수치는 근접 공격 시 적의 방어구를 얼마나 효과적으로 관통하는지 결정합니다.",
+      "your {{w|toughness}} score determines your number of hit points, your natural healing rate, and your ability to resist poison and disease.": "{{w|건강}} 수치는 체력, 자연 회복 속도, 독과 질병에 대한 저항력을 결정합니다.",
+      "your {{w|willpower}} score determines how effectively your mind shields you from effects that target it.": "{{w|의지}} 수치는 정신 공격에 대한 방어력을 결정합니다.",
+      "your {{w|ego}} score determines the potency of your ability to haggle with merchants, and your ability to dominate the wills of other living creatures.": "{{w|자아}} 수치는 상인과의 거래 능력과 다른 생명체의 의지를 지배하는 능력을 결정합니다."
     }
   }
 }
