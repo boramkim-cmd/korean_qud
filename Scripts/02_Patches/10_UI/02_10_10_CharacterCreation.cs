@@ -542,32 +542,76 @@ namespace QudKRTranslation.Patches
             // 정규식으로 파싱
             var match = System.Text.RegularExpressions.Regex.Match(
                 line, 
-                @"^([+-]?\d+)\s+from\s+(.+?)(?:\s+caste)?$",
+                @"^([+-]?\d+)\s+from\s+(.+?)(?:\s+(caste|calling|genotype|subtype))?\s*$",
                 System.Text.RegularExpressions.RegexOptions.IgnoreCase);
             
             if (match.Success)
             {
                 string bonus = match.Groups[1].Value;
-                string source = match.Groups[2].Value.Trim();
+                string source = StripQudTags(match.Groups[2].Value.Trim());
+                string sourceType = match.Groups[3].Value?.Trim();
+                
+                if (string.IsNullOrEmpty(source))
+                {
+                    return line;
+                }
                 
                 // 계급명 번역 시도
+                string translatedSource = source;
                 if (CasteShortNames.TryGetValue(source, out string casteName))
                 {
-                    return $"{casteName} 계급 {bonus}";
+                    translatedSource = casteName;
                 }
-                
-                // "calling" -> "소명"
-                if (source.Equals("calling", StringComparison.OrdinalIgnoreCase))
+                else if (LocalizationManager.TryGetAnyTerm(source, out string tSource, "chargen_attributes", "chargen_ui", "ui", "common") ||
+                         LocalizationManager.TryGetAnyTerm(source.ToLowerInvariant(), out tSource, "chargen_attributes", "chargen_ui", "ui", "common"))
                 {
-                    return $"소명 {bonus}";
+                    translatedSource = tSource;
                 }
                 
-                // 기타 소스는 원문 유지
-                return $"{source} {bonus}";
+                string translatedType = TranslateBonusSourceType(sourceType, source);
+                if (!string.IsNullOrEmpty(translatedType))
+                {
+                    return $"{translatedSource} {translatedType} {bonus}";
+                }
+                
+                return $"{translatedSource} {bonus}";
             }
             
             // 패턴 불일치 시 원문 반환
             return line;
+        }
+
+        private static string StripQudTags(string input)
+        {
+            if (string.IsNullOrEmpty(input)) return input;
+            return System.Text.RegularExpressions.Regex.Replace(input, @"\{\{[^|}]+\|([^}]+)\}\}", "$1").Trim();
+        }
+
+        private static string TranslateBonusSourceType(string sourceType, string source)
+        {
+            if (string.IsNullOrEmpty(sourceType))
+            {
+                if (source.Equals("calling", StringComparison.OrdinalIgnoreCase))
+                {
+                    return "직업";
+                }
+                return null;
+            }
+            
+            string key = sourceType.ToLowerInvariant();
+            if (LocalizationManager.TryGetAnyTerm(key, out string translated, "chargen_ui", "ui", "common", "chargen_attributes"))
+            {
+                return translated;
+            }
+            
+            return key switch
+            {
+                "caste" => "계급",
+                "calling" => "직업",
+                "genotype" => "유전자형",
+                "subtype" => "하위 유형",
+                _ => sourceType
+            };
         }
     }
     
@@ -575,6 +619,30 @@ namespace QudKRTranslation.Patches
     [HarmonyPatch(typeof(QudAttributesModuleWindow))]
     public static class Patch_QudAttributesModuleWindow
     {
+        [HarmonyPatch(nameof(QudAttributesModuleWindow.UpdateControls))]
+        [HarmonyPostfix]
+        static void UpdateControls_Postfix(QudAttributesModuleWindow __instance)
+        {
+            if (__instance?.attributes == null) return;
+            
+            foreach (var attr in __instance.attributes)
+            {
+                if (attr == null || string.IsNullOrEmpty(attr.Description)) continue;
+                
+                string translated = ChargenTranslationUtils.TranslateLongDescription(
+                    attr.Description,
+                    "chargen_attributes",
+                    "chargen_ui",
+                    "ui",
+                    "common");
+                
+                if (!string.IsNullOrEmpty(translated))
+                {
+                    attr.Description = translated;
+                }
+            }
+        }
+
         [HarmonyPatch(nameof(QudAttributesModuleWindow.GetKeyMenuBar))]
         [HarmonyPostfix]
         static void GetKeyMenuBar_Postfix(QudAttributesModuleWindow __instance, ref IEnumerable<MenuOption> __result)

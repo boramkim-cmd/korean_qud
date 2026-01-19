@@ -27,6 +27,24 @@ Fixed untranslated "character creation" header in the character creation overlay
 
 ---
 
+## [2026-01-19] - Attribute Screen Tooltip/Description Localization (ERR-016)
+
+### Summary
+Fixed untranslated attribute descriptions and caste bonus tooltips in the attribute distribution screen, and ensured layout height is recalculated after translation.
+
+### ✅ Changes
+- Translate `AttributeDataElement.Description` during `QudAttributesModuleWindow.UpdateControls()` using `chargen_attributes` scope.
+- Strip Qud color tags from `BonusSource` and map source types (caste/calling/genotype/subtype) to Korean labels.
+- Apply localized bonus source lines to the attribute tooltip.
+
+### Files Modified
+- `Scripts/02_Patches/10_UI/02_10_10_CharacterCreation.cs`
+
+### Related
+- Error Log: `05_ERROR_LOG.md` → ERR-016
+
+---
+
 ## [2026-01-19] - Toughness Translation Consistency Fix (ERR-014)
 
 ### Summary

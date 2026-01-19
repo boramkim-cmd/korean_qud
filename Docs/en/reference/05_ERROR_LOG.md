@@ -86,6 +86,39 @@ Chargen overlay windows did not push a chargen scope, so UITextSkin.Apply did no
 
 ---
 
+## ERR-016: Attribute Screen Tooltip/Description Not Localized
+
+### Basic Info
+| Item | Content |
+|------|---------|
+| **Status** | 🟢 RESOLVED |
+| **Severity** | 🟡 Medium |
+| **Discovered** | 2026-01-19 |
+| **Resolved** | 2026-01-19 |
+
+### Symptoms
+1. Attribute description text at the bottom remained in English.
+2. Caste bonus tooltips showed English sources (e.g., "Priest of All Suns +3").
+3. Description block height was not recalculated for translated text, causing overlap with score text in some layouts.
+
+### Root Cause Analysis
+- Attribute descriptions come from `AttributeDataElement.Description` and were never translated before `HorizontalScroller` calculated the description height.
+- Bonus source parsing failed because `BonusSource` included Qud color tags (e.g., `{{important|...}}`) and subtype suffixes (caste/calling), which were not stripped or mapped.
+
+### ✅ Final Resolution
+1. Translate `AttributeDataElement.Description` during `QudAttributesModuleWindow.UpdateControls()` using `ChargenTranslationUtils.TranslateLongDescription()` with `chargen_attributes` scope.
+2. Strip Qud color tags in bonus sources and map source types (caste/calling/genotype/subtype) to Korean labels.
+3. Ensure translated descriptions are available before `HorizontalScroller` calculates layout height.
+
+### Related Files
+- `Scripts/02_Patches/10_UI/02_10_10_CharacterCreation.cs`
+
+### Prevention Guide
+- Translate UI-facing `FrameworkDataElement.Description` values before any layout measurement (e.g., `BeforeShow` or `UpdateControls`).
+- Normalize or strip Qud tags before parsing BonusSource strings.
+
+---
+
 ## ERR-014: Toughness Attribute Translation Inconsistency
 
 ### Basic Info
