@@ -27,7 +27,7 @@
 
 | Date | Description | Priority | Category | File |
 |------|-------------|----------|----------|------|
-| - | - | - | - | - |
+| 2026-01-19 | Options Panel Left Side & Partial Translation | High | UI | [WIP_ISSUE_20260119_OPTIONS_PANEL_TRANSLATION.md](WIP_ISSUE_20260119_OPTIONS_PANEL_TRANSLATION.md) |
 
 ## Resolved Issues
 
