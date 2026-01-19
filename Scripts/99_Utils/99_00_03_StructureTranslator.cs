@@ -53,7 +53,9 @@ namespace QudKRTranslation.Utils
                     foreach (var lt in LevelText)
                     {
                         if (string.IsNullOrEmpty(lt)) continue;
-                        normalizedLevelTexts.Add(NormalizeLine(lt));
+                        string normalized = NormalizeLine(lt);
+                        normalizedLevelTexts.Add(normalized);
+                        Debug.Log($"[StructureTranslator] LevelText normalized: '{lt}' -> '{normalized}'");
                     }
                     
                     foreach (var line in lines)
@@ -65,6 +67,7 @@ namespace QudKRTranslation.Utils
                         }
                         
                         string normalizedLine = NormalizeLine(line);
+                        Debug.Log($"[StructureTranslator] Checking line: '{line}' -> normalized: '{normalizedLine}'");
                         
                         // Check if this line matches any leveltext entry
                         bool isDuplicate = normalizedLevelTexts.Contains(normalizedLine);
@@ -77,13 +80,25 @@ namespace QudKRTranslation.Utils
                                 if (normalizedLine.Contains(nlt) || nlt.Contains(normalizedLine))
                                 {
                                     isDuplicate = true;
+                                    Debug.Log($"[StructureTranslator] Partial match found: '{normalizedLine}' ~ '{nlt}'");
                                     break;
                                 }
                             }
                         }
+                        else
+                        {
+                            Debug.Log($"[StructureTranslator] Exact match found: '{normalizedLine}'");
+                        }
                         
                         if (!isDuplicate)
+                        {
                             filteredLines.Add(line);
+                            Debug.Log($"[StructureTranslator] NOT filtered (kept): '{line}'");
+                        }
+                        else
+                        {
+                            Debug.Log($"[StructureTranslator] FILTERED (removed): '{line}'");
+                        }
                     }
                     
                     // 필터링된 라인들을 번역 시도 (평판 텍스트 등)
