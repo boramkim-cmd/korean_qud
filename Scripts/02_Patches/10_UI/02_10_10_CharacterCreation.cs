@@ -659,9 +659,6 @@ namespace QudKRTranslation.Patches
         private static readonly Dictionary<AttributeSelectionControl, float> _tooltipShowTimes = 
             new Dictionary<AttributeSelectionControl, float>();
         private const float MIN_TOOLTIP_DURATION = 2.0f; // 최소 2초 유지
-        
-        // Track which tooltips have had fonts applied
-        private static readonly HashSet<TooltipTrigger> _fontAppliedTooltips = new HashSet<TooltipTrigger>();
 
         /// <summary>
         /// Update 메서드 Postfix - 툴팁이 너무 빨리 숨겨지는 것을 방지
@@ -679,16 +676,14 @@ namespace QudKRTranslation.Patches
             bool isDisplayed = __instance.tooltip.IsDisplayed();
             bool isActive = __instance.navContext.IsActive();
             
-            // Apply font and re-set text when tooltip is displayed
+            // Apply font and text whenever tooltip is displayed
+            // (The same tooltip instance is reused for different attributes)
             if (isDisplayed)
             {
-                if (!_fontAppliedTooltips.Contains(__instance.tooltip))
-                {
-                    ApplyTooltipFont(__instance.tooltip);
-                    _fontAppliedTooltips.Add(__instance.tooltip);
-                }
+                // Apply Korean font to tooltip TMP components
+                ApplyTooltipFont(__instance.tooltip);
                 
-                // Re-apply translated text after font is set (font change can reset text)
+                // Apply translated text
                 string translated = TranslateBonusSource(__instance.data.BonusSource);
                 string rtf = Sidebar.FormatToRTF(translated);
                 __instance.tooltip.SetText("BodyText", rtf);
