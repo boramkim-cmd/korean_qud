@@ -554,13 +554,39 @@ namespace QudKRTranslation.Patches
                     );
                 }
                 
+                if (_koreanTMPFont == null)
+                {
+                    // Method 3: Try to find Korean font from loaded TMP assets
+                    UnityEngine.Debug.Log("[KR-Font] Searching for Korean-capable TMP font in loaded resources...");
+                    var allTMPFonts = Resources.FindObjectsOfTypeAll<TMP_FontAsset>();
+                    foreach (var tmpFont in allTMPFonts)
+                    {
+                        if (tmpFont == null) continue;
+                        // Check if this font can render Korean
+                        if (tmpFont.HasCharacter('가'))
+                        {
+                            _koreanTMPFont = tmpFont;
+                            UnityEngine.Debug.Log($"[KR-Font] Found Korean-capable TMP font: {tmpFont.name}");
+                            break;
+                        }
+                    }
+                }
+                
                 if (_koreanTMPFont == null) 
                 {
-                    UnityEngine.Debug.Log("[KR-Font] TMP_FontAsset.CreateFontAsset still returned null");
+                    UnityEngine.Debug.Log("[KR-Font] No Korean-capable TMP font found");
                     return null;
                 }
-                _koreanTMPFont.name = "QudKR_Tooltip_Fallback";
-                UnityEngine.Debug.Log($"[KR-Font] TMP font created successfully: {_koreanTMPFont.name}");
+                
+                if (!_koreanTMPFont.name.Contains("QudKR"))
+                {
+                    UnityEngine.Debug.Log($"[KR-Font] Using existing TMP font: {_koreanTMPFont.name}");
+                }
+                else
+                {
+                    _koreanTMPFont.name = "QudKR_Tooltip_Fallback";
+                    UnityEngine.Debug.Log($"[KR-Font] TMP font created successfully: {_koreanTMPFont.name}");
+                }
             }
             catch (Exception ex)
             {
