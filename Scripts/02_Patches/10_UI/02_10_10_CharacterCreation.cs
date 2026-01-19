@@ -547,9 +547,7 @@ namespace QudKRTranslation.Patches
             string bonusSource = __instance.data.BonusSource;
             if (!string.IsNullOrEmpty(bonusSource) && __instance.tooltip != null)
             {
-                Debug.Log($"[KR-Attr] Raw BonusSource: '{bonusSource.Replace("\n", "\\n")}'");
                 string translated = TranslateBonusSource(bonusSource);
-                Debug.Log($"[KR-Attr] Translated: '{translated}'");
                 __instance.tooltip.SetText("BodyText", Sidebar.FormatToRTF(translated));
             }
         }
