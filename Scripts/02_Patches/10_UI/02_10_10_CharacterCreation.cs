@@ -679,11 +679,19 @@ namespace QudKRTranslation.Patches
             bool isDisplayed = __instance.tooltip.IsDisplayed();
             bool isActive = __instance.navContext.IsActive();
             
-            // Apply font when tooltip is displayed for the first time
-            if (isDisplayed && !_fontAppliedTooltips.Contains(__instance.tooltip))
+            // Apply font and re-set text when tooltip is displayed
+            if (isDisplayed)
             {
-                ApplyTooltipFont(__instance.tooltip);
-                _fontAppliedTooltips.Add(__instance.tooltip);
+                if (!_fontAppliedTooltips.Contains(__instance.tooltip))
+                {
+                    ApplyTooltipFont(__instance.tooltip);
+                    _fontAppliedTooltips.Add(__instance.tooltip);
+                }
+                
+                // Re-apply translated text after font is set (font change can reset text)
+                string translated = TranslateBonusSource(__instance.data.BonusSource);
+                string rtf = Sidebar.FormatToRTF(translated);
+                __instance.tooltip.SetText("BodyText", rtf);
             }
             
             // 툴팁이 표시되기 시작하면 시간 기록
