@@ -535,11 +535,28 @@ namespace QudKRTranslation.Patches
 
             try
             {
+                // Method 1: Try TMP_FontAsset.CreateFontAsset
                 UnityEngine.Debug.Log($"[KR-Font] Attempting TMP_FontAsset.CreateFontAsset with font: {font.name}");
                 _koreanTMPFont = TMP_FontAsset.CreateFontAsset(font);
+                
+                if (_koreanTMPFont == null)
+                {
+                    UnityEngine.Debug.Log("[KR-Font] TMP_FontAsset.CreateFontAsset returned null, trying alternative method");
+                    
+                    // Method 2: Try with explicit settings
+                    _koreanTMPFont = TMP_FontAsset.CreateFontAsset(
+                        font,
+                        90,                // samplingPointSize
+                        9,                 // atlasPadding  
+                        UnityEngine.TextCore.LowLevel.GlyphRenderMode.SDFAA,
+                        1024,              // atlasWidth
+                        1024               // atlasHeight
+                    );
+                }
+                
                 if (_koreanTMPFont == null) 
                 {
-                    UnityEngine.Debug.Log("[KR-Font] TMP_FontAsset.CreateFontAsset returned null");
+                    UnityEngine.Debug.Log("[KR-Font] TMP_FontAsset.CreateFontAsset still returned null");
                     return null;
                 }
                 _koreanTMPFont.name = "QudKR_Tooltip_Fallback";
