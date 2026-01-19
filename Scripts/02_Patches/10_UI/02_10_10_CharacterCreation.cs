@@ -595,14 +595,18 @@ namespace QudKRTranslation.Patches
                 @"^([+-]?\d+)\s+from\s+(.+)\s+(caste|calling|genotype|subtype)\s*$",
                 System.Text.RegularExpressions.RegexOptions.IgnoreCase);
             
+            Debug.Log($"[KR-Attr] TranslateBonusLine input: '{line}' match.Success: {match.Success}");
+            
             if (match.Success)
             {
                 string bonus = match.Groups[1].Value;
                 string rawSource = match.Groups[2].Value.Trim();
                 string sourceType = match.Groups[3].Value?.Trim();
+                Debug.Log($"[KR-Attr] Parsed: bonus={bonus}, rawSource={rawSource}, sourceType={sourceType}");
                 
                 // 색상 태그 제거: {{important|Priest of All Moons}} -> Priest of All Moons
                 string source = StripQudTags(rawSource);
+                Debug.Log($"[KR-Attr] Stripped source: '{source}'");
                 
                 if (string.IsNullOrEmpty(source))
                 {
