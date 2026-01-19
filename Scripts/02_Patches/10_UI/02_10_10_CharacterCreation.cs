@@ -659,6 +659,9 @@ namespace QudKRTranslation.Patches
         private static readonly Dictionary<AttributeSelectionControl, float> _tooltipShowTimes = 
             new Dictionary<AttributeSelectionControl, float>();
         private const float MIN_TOOLTIP_DURATION = 2.0f; // 최소 2초 유지
+        
+        // Track which tooltips have had fonts applied
+        private static readonly HashSet<TooltipTrigger> _fontAppliedTooltips = new HashSet<TooltipTrigger>();
 
         /// <summary>
         /// Update 메서드 Postfix - 툴팁이 너무 빨리 숨겨지는 것을 방지
@@ -675,6 +678,13 @@ namespace QudKRTranslation.Patches
             
             bool isDisplayed = __instance.tooltip.IsDisplayed();
             bool isActive = __instance.navContext.IsActive();
+            
+            // Apply font when tooltip is displayed for the first time
+            if (isDisplayed && !_fontAppliedTooltips.Contains(__instance.tooltip))
+            {
+                ApplyTooltipFont(__instance.tooltip);
+                _fontAppliedTooltips.Add(__instance.tooltip);
+            }
             
             // 툴팁이 표시되기 시작하면 시간 기록
             if (isDisplayed && !_tooltipShowTimes.ContainsKey(__instance))
@@ -730,7 +740,7 @@ namespace QudKRTranslation.Patches
             string bonusSource = __instance.data.BonusSource;
             if (!string.IsNullOrEmpty(bonusSource) && __instance.tooltip != null)
             {
-                ApplyTooltipFont(__instance.tooltip);
+                // Font is now applied in Update_Postfix when tooltip is actually displayed
                 string translated = TranslateBonusSource(bonusSource);
                 string rtf = Sidebar.FormatToRTF(translated);
                 UnityEngine.Debug.Log($"[KR-Bonus] Original: '{bonusSource}' -> Translated: '{translated}' -> RTF: '{rtf}'");
