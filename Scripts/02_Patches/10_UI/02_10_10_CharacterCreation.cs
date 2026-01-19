@@ -503,6 +503,7 @@ namespace QudKRTranslation.Patches
             if (font == null) return null;
 
             _koreanTMPFont = TMP_FontAsset.CreateFontAsset(font);
+            if (_koreanTMPFont == null) return null;
             _koreanTMPFont.name = "QudKR_Tooltip_Fallback";
             return _koreanTMPFont;
         }
