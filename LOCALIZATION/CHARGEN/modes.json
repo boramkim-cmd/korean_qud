@@ -16,14 +16,14 @@
     },
     "Wander": {
       "wander": "방랑",
-      "{{c|ù}} most creatures begin neutral to you.": "{{c|ù}} 대부분의 생물이 당신에게 중립입니다.",
-      "{{c|ù}} no xp for killing.": "{{c|ù}} 처치 경험치 없음.",
-      "{{c|ù}} more xp for discoveries and performing the water ritual.": "{{c|ù}} 발견 및 물의 의식 수행 시 더 많은 경험치 획득."
+      "{{c|ù}} most creatures begin neutral to you.": "대부분의 생물이 당신에게 중립입니다.",
+      "{{c|ù}} no xp for killing.": "처치 경험치 없음.",
+      "{{c|ù}} more xp for discoveries and performing the water ritual.": "발견 및 물의 의식 수행 시 더 많은 경험치 획득."
     },
     "Daily": {
       "daily": "일일 도전",
-      "{{c|ù}} currently in day {{w|{day_of_year}}} of {{w|{year}}}.": "{{c|ù}} 현재 {{w|{year}}}년 {{w|{day_of_year}}}일차 진행 중",
-      "{{c|ù}} one chance with a fixed character and world seed.": "{{c|ù}} 고정된 캐릭터와 시드로 단 한 번의 기회 제공"
+      "{{c|ù}} currently in day {{w|{day_of_year}}} of {{w|{year}}}.": "현재 {{w|{year}}}년 {{w|{day_of_year}}}일차 진행 중",
+      "{{c|ù}} one chance with a fixed character and world seed.": "고정된 캐릭터와 시드로 단 한 번의 기회 제공"
     },
     "Quickstart": {
       "quickstart": "빠른 시작",
