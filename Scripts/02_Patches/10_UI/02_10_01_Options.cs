@@ -230,7 +230,7 @@ namespace QudKRTranslation.Patches
     }
 
     /// <summary>
-    /// [3] OptionsCategoryControl 패치: 왼쪽 패널의 카테고리 이름(Sound, Display 등)을 번역합니다.
+    /// [3] OptionsCategoryControl 패치: 오른쪽 패널의 카테고리 행(Sound, Display 등)을 번역합니다.
     /// </summary>
     [HarmonyPatch(typeof(OptionsCategoryControl))]
     public static class Patch_OptionsCategoryControl
@@ -277,6 +277,67 @@ namespace QudKRTranslation.Patches
             catch (Exception ex)
             {
                 Debug.LogWarning($"[Qud-KR] OptionsCategoryControl.Render_Postfix 오류: {ex.Message}");
+            }
+        }
+    }
+
+    /// <summary>
+    /// [4] LeftSideCategory 패치: 왼쪽 패널의 카테고리 이름(Sound, Display 등)을 번역합니다.
+    /// 게임 원본: LeftSideCategory.setData()에서 optionsCategoryRow.CategoryId를 직접 텍스트로 설정
+    /// 문제점: CategoryId는 XML Options.xml의 Category 속성에서 직접 가져온 영문 문자열
+    /// 해결: setData Postfix에서 text.SetText() 호출 후 번역 적용
+    /// </summary>
+    [HarmonyPatch(typeof(LeftSideCategory))]
+    public static class Patch_LeftSideCategory
+    {
+        private static Dictionary<string, string>[] _scopeArray = null;
+
+        private static Dictionary<string, string>[] GetScopes()
+        {
+            if (_scopeArray == null)
+            {
+                var optionsDict = LocalizationManager.GetCategory("options");
+                var commonDict = LocalizationManager.GetCategory("common");
+                var scopes = new List<Dictionary<string, string>>();
+                if (optionsDict != null) scopes.Add(optionsDict);
+                if (commonDict != null) scopes.Add(commonDict);
+                _scopeArray = scopes.ToArray();
+            }
+            return _scopeArray;
+        }
+
+        /// <summary>
+        /// setData Postfix: 원본 메서드가 text.SetText("{{C|CategoryId}}")를 호출한 후
+        /// 해당 텍스트를 번역된 텍스트로 교체합니다.
+        /// </summary>
+        [HarmonyPatch("setData")]
+        [HarmonyPostfix]
+        static void setData_Postfix(LeftSideCategory __instance, XRL.UI.Framework.FrameworkDataElement data)
+        {
+            try
+            {
+                if (__instance == null || __instance.text == null) return;
+
+                // OptionsCategoryRow인 경우만 처리 (왼쪽 패널의 옵션 카테고리)
+                if (data is OptionsCategoryRow optionsCategoryRow)
+                {
+                    string categoryId = optionsCategoryRow.CategoryId;
+                    if (string.IsNullOrEmpty(categoryId)) return;
+
+                    var scopes = GetScopes();
+                    if (scopes == null || scopes.Length == 0) return;
+
+                    // CategoryId 번역 시도 (예: "Sound" -> "사운드")
+                    if (TranslationUtils.TryTranslatePreservingTags(categoryId, out string translated, scopes))
+                    {
+                        // 원본과 동일한 형식 유지: {{C|번역된텍스트}}
+                        __instance.text.SetText("{{C|" + translated + "}}");
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Debug.LogWarning($"[Qud-KR] LeftSideCategory.setData_Postfix 오류: {ex.Message}");
             }
         }
     }
