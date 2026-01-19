@@ -471,50 +471,6 @@ namespace QudKRTranslation.Patches
             { "Willpower", "의지" },
             { "Ego", "자아" }
         };
-        
-        // 디버그용 필드 제거, 실제 해결책 구현
-        // 문제: navContext.IsActive()가 순간적으로 true→false가 되어 Show→Hide가 바로 발생
-        // 해결: Update에서 HidePopup 호출을 지연시키거나 조건 추가
-        private static readonly Dictionary<AttributeSelectionControl, float> _showTimes = 
-            new Dictionary<AttributeSelectionControl, float>();
-        private const float MIN_TOOLTIP_DISPLAY_TIME = 0.5f; // 최소 0.5초 유지
-
-        [HarmonyPatch(nameof(AttributeSelectionControl.Update))]
-        [HarmonyPrefix]
-        static bool Update_Prefix(AttributeSelectionControl __instance)
-        {
-            if (__instance.data == null) return true;
-            
-            bool flag = __instance.navContext.IsActive();
-            
-            // 활성화 상태 변경 감지
-            if (__instance.isActive != flag)
-            {
-                // 비활성화될 때 (flag = false)
-                if (!flag && __instance.tooltip != null && __instance.tooltip.IsDisplayed())
-                {
-                    // 툴팁이 표시된 지 최소 시간이 지났는지 확인
-                    if (_showTimes.TryGetValue(__instance, out float showTime))
-                    {
-                        if (Time.unscaledTime - showTime < MIN_TOOLTIP_DISPLAY_TIME)
-                        {
-                            // 아직 최소 표시 시간이 지나지 않음 - Hide하지 않음
-                            return false; // 원본 Update 건너뜀
-                        }
-                        _showTimes.Remove(__instance);
-                    }
-                }
-            }
-            
-            // 활성화될 때 (flag = true) 표시 시간 기록
-            if (flag && !string.IsNullOrEmpty(__instance.data?.BonusSource) && 
-                __instance.tooltip != null && !__instance.tooltip.IsDisplayed())
-            {
-                _showTimes[__instance] = Time.unscaledTime;
-            }
-            
-            return true; // 원본 Update 실행
-        }
 
         [HarmonyPatch(nameof(AttributeSelectionControl.Updated))]
         [HarmonyPostfix]
