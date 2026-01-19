@@ -1,0 +1,9 @@
+{
+  "ID": "KoreanLocalization",
+  "Title": "Korean Localization (한글화)",
+  "Author": "boram",
+  "Description": "Complete Korean (Hangul) localization for Caves of Qud.",
+  "Version": "1.0.0",
+  "Tags": [ "Translation", "Localization", "Korean" ],
+  "EntryDLL": "QudKorean.dll"
+}

@@ -46,98 +46,31 @@ namespace QudKRTranslation.Core
         public static void ApplyKoreanFont()
         {
             if (_patched) return;
-            
-            // 1. Find Korean-capable OS font
-            Font osFont = null;
-            string loadedName = null;
-            
-            foreach (string fontName in TargetFontNames)
-            {
-                try
-                {
-                    Font tempFont = Font.CreateDynamicFontFromOSFont(fontName, 32);
-                    if (tempFont == null || tempFont.fontNames == null || tempFont.fontNames.Length == 0)
-                        continue;
-                    
-                    if (!tempFont.HasCharacter('가'))
-                        continue;
-                    
-                    osFont = tempFont;
-                    loadedName = fontName;
-                    Debug.Log($"[Qud-KR] Found Korean font: '{fontName}'");
-                    break;
-                }
-                catch
-                {
-                    continue;
-                }
-            }
-
-            if (osFont == null)
-            {
-                Debug.LogWarning("[Qud-KR] No Korean font found. Korean text may not display correctly.");
-                _patched = true;
-                return;
-            }
-
-            // 2. Create TMP font asset
-            try
-            {
-                _koreanTMPFont = TMP_FontAsset.CreateFontAsset(osFont);
-                if (_koreanTMPFont == null)
-                {
-                    // Try with explicit parameters
-                    _koreanTMPFont = TMP_FontAsset.CreateFontAsset(
-                        osFont,
-                        90, 9,
-                        UnityEngine.TextCore.LowLevel.GlyphRenderMode.SDFAA,
-                        1024, 1024
-                    );
-                }
-            }
-            catch (Exception ex)
-            {
-                Debug.LogWarning($"[Qud-KR] Failed to create TMP font: {ex.Message}");
-            }
-            
-            if (_koreanTMPFont == null)
-            {
-                Debug.LogWarning("[Qud-KR] Could not create TMP font asset.");
-                _patched = true;
-                return;
-            }
-            
-            _koreanTMPFont.name = "QudKR_Fallback_" + loadedName;
-            
-            // 3. Add as fallback to all existing TMP fonts
+            // 1. 모든 TMP 폰트 이름, 한글 지원 여부, fallback 목록을 로그로 출력
             var allTMPFonts = Resources.FindObjectsOfTypeAll<TMP_FontAsset>();
-            int count = 0;
+            int fontIdx = 0;
             foreach (var fontAsset in allTMPFonts)
             {
-                if (fontAsset == null || fontAsset.name.Contains("QudKR_Fallback")) continue;
-                
-                if (fontAsset.fallbackFontAssetTable == null)
-                    fontAsset.fallbackFontAssetTable = new List<TMP_FontAsset>();
-
-                bool alreadyHas = false;
-                foreach (var fb in fontAsset.fallbackFontAssetTable)
+                if (fontAsset == null) continue;
+                bool hasKorean = false;
+                try { hasKorean = fontAsset.HasCharacter('가'); } catch { }
+                Debug.Log($"[Qud-KR][TMPFont] #{fontIdx}: '{fontAsset.name}' (Korean: {hasKorean})" );
+                fontIdx++;
+            }
+            // 2. TMP_Settings.fallbackFontAssets 목록 출력
+            if (TMP_Settings.fallbackFontAssets != null)
+            {
+                int fbIdx = 0;
+                foreach (var fb in TMP_Settings.fallbackFontAssets)
                 {
-                    if (fb != null && fb.name.Contains("QudKR_Fallback")) 
-                    { 
-                        alreadyHas = true; 
-                        break; 
-                    }
-                }
-
-                if (!alreadyHas)
-                {
-                    fontAsset.fallbackFontAssetTable.Add(_koreanTMPFont);
-                    count++;
+                    if (fb == null) continue;
+                    bool hasKorean = false;
+                    try { hasKorean = fb.HasCharacter('가'); } catch { }
+                    Debug.Log($"[Qud-KR][Fallback] #{fbIdx}: '{fb.name}' (Korean: {hasKorean})");
+                    fbIdx++;
                 }
             }
-            
-            Debug.Log($"[Qud-KR] Added Korean font fallback to {count} TMP fonts.");
-            IsFontLoaded = true;
+            Debug.Log($"[Qud-KR] Font diagnostic complete. (총 TMP 폰트: {fontIdx})");
             _patched = true;
         }
         
