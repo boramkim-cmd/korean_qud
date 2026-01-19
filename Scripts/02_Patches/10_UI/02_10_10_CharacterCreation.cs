@@ -286,7 +286,7 @@ namespace QudKRTranslation.Patches
                         string desc = tr.Field<string>("Description").Value;
                         if (!string.IsNullOrEmpty(desc))
                         {
-                            string translated = ChargenTranslationUtils.TranslateLongDescription(desc, "chargen_proto", "chargen_ui", "mutation", "mutation_desc", "powers", "power", "skill", "skill_desc");
+                            string translated = ChargenTranslationUtils.TranslateLongDescription(desc, "chargen_proto", "chargen_ui", "factions", "mutation", "mutation_desc", "powers", "power", "skill", "skill_desc", "common");
                             
                             if (!string.IsNullOrEmpty(translated) && translated != desc)
                             {
