@@ -471,6 +471,10 @@ namespace QudKRTranslation.Patches
             { "Willpower", "의지" },
             { "Ego", "자아" }
         };
+        
+        // 디버그용: Update에서 Show가 발생하는지 확인
+        private static bool _debugLogNextFrame = false;
+        private static string _debugAttrName = "";
 
         [HarmonyPatch(nameof(AttributeSelectionControl.Updated))]
         [HarmonyPostfix]
@@ -503,7 +507,10 @@ namespace QudKRTranslation.Patches
             {
                 string translated = TranslateBonusSource(bonusSource);
                 Debug.Log($"[KR-Attr] Translated BonusSource: '{translated}'");
-                __instance.tooltip.SetText("BodyText", Sidebar.FormatToRTF(translated));
+                // 디버그: RTF 변환 결과도 로그
+                string rtfText = Sidebar.FormatToRTF(translated);
+                Debug.Log($"[KR-Attr] RTF text length: {rtfText?.Length ?? 0}");
+                __instance.tooltip.SetText("BodyText", rtfText);
             }
         }
         
