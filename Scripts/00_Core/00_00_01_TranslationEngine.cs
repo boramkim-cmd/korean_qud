@@ -165,6 +165,7 @@ namespace QudKRTranslation
         
         /// <summary>
         /// 지정된 Scope 배열에서 번역을 찾습니다.
+        /// 공백 정규화(trailing space 등)도 시도합니다.
         /// </summary>
         private static bool FindInScopes(string key, out string val, Dictionary<string, string>[] scopes)
         {
@@ -173,13 +174,26 @@ namespace QudKRTranslation
                 // 우선순위 순서대로 검색
                 foreach (var dict in scopes)
                 {
-                    if (dict != null && dict.TryGetValue(key, out val))
+                    if (dict == null) continue;
+                    
+                    // 1) 원본 키 그대로
+                    if (dict.TryGetValue(key, out val) && !string.IsNullOrEmpty(val))
                     {
-                        // [중요] 빈 문자열이면 번역하지 않은 것으로 간주하고 계속 검색하거나 실패 처리
-                        if (!string.IsNullOrEmpty(val))
-                        {
-                            return true;
-                        }
+                        return true;
+                    }
+                    
+                    // 2) 공백 정규화: trim 시도
+                    string trimmedKey = key.Trim();
+                    if (trimmedKey != key && dict.TryGetValue(trimmedKey, out val) && !string.IsNullOrEmpty(val))
+                    {
+                        return true;
+                    }
+                    
+                    // 3) 다중 공백을 단일 공백으로 정규화
+                    string normalizedKey = System.Text.RegularExpressions.Regex.Replace(trimmedKey, @"\s+", " ");
+                    if (normalizedKey != trimmedKey && dict.TryGetValue(normalizedKey, out val) && !string.IsNullOrEmpty(val))
+                    {
+                        return true;
                     }
                 }
             }

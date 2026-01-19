@@ -1,5 +1,5 @@
 {
-  "generated": "2026-01-19 12:40:27",
+  "generated": "2026-01-19 13:05:27",
   "scripts": {
     "Scripts/99_Utils/99_00_03_StructureTranslator.cs": {
       "classification": "Util",
@@ -278,7 +278,8 @@
         "Patch_OptionsData",
         "LoadOptionNode_Patch",
         "LoadAllOptions_Patch",
-        "Patch_OptionsUI"
+        "Patch_OptionsUI",
+        "Patch_OptionsCategoryControl"
       ],
       "methods": [
         {
@@ -415,6 +416,10 @@
       "type": "script",
       "size": 6530
     },
+    "sync_options_translations.py": {
+      "type": "script",
+      "size": 4334
+    },
     "project_tool.py": {
       "type": "script",
       "size": 15763
@@ -463,7 +468,7 @@
       "categories": [
         "options"
       ],
-      "entries": 374
+      "entries": 442
     },
     "common.json": {
       "categories": [
