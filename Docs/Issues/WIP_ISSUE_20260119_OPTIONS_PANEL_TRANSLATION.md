@@ -1,6 +1,6 @@
 # Options Screen Left Panel & Partial Translation Issue
 
-> **Status**: � CLEAR  
+> **Status**: ✅ RESOLVED  
 > **Priority**: High  
 > **Category**: UI Translation  
 > **Created**: 2026-01-19  
@@ -58,9 +58,26 @@ Options 화면에서 두 가지 문제:
 ### 3. Deployed ✅
 - `sync-and-deploy.sh` executed successfully
 
+### 4. Bottom Menu Options Added ✅
+- Missing translations for footer menu buttons:
+  - `"Change Value": "값 변경"` - Slider control
+  - `"Save": "저장"` - Slider save action
+- Existing translations verified:
+  - `"Cancel": "취소"` ✅
+  - `"Collapse All": "모두 접기"` ✅
+  - `"Expand All": "모두 펼치기"` ✅
+  - `"Help": "도움말"` ✅
+  - `"navigate": "이동"` ✅
+  - `"Select": "선택"` ✅
+
 ---
 
-## Remaining Issue
+## All Issues Resolved ✅
+
+The following problems have been fixed:
+1. ✅ Left panel categories now translated (Sound → 사운드, etc.)
+2. ✅ Options with trailing spaces now matched
+3. ✅ Bottom menu options now translated (`[Space] Change Value` → `[Space] 값 변경`)
 
 **일부 옵션이 JSON에 번역이 있음에도 영어로 표시되는 문제**
 
