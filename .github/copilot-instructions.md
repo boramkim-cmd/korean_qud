@@ -62,7 +62,7 @@
 | ERR-011 | Game source `SubtypeEntry... | Game source `SubtypeEntry... | `ChargenTranslationUtils.... |
 | ERR-006 | Stinger Mutation Descript... | `02_10_10_CharacterCreati... | Split into structured for... |
 
-# Full details: Docs/en/reference/05_ERROR_LOG.md
+# Full details: Docs/05_ERROR_LOG.md
 
 ################################################################################
 # LAYER 4: KEY FILE PATHS

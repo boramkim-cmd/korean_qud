@@ -11,15 +11,15 @@
     "Customs and Folklore"
   ],
   "leveltext_ko": [
-    "자아 +2",
-    "위협",
-    "개종",
-    "풍습 및 민속"
+    "자아 +2.",
+    "위협.",
+    "개종.",
+    "풍습 및 민속."
   ],
   "extrainfo": [
     "may rebuke robots"
   ],
   "extrainfo_ko": [
-    "로봇을 꾸짖을 수 있음(Rebuke)"
+    "로봇을 꾸짖을 수 있음(Rebuke)."
   ]
 }

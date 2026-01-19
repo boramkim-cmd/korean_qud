@@ -1,5 +1,5 @@
 {
-  "generated": "2026-01-19 07:40:51",
+  "generated": "2026-01-19 12:24:20",
   "scripts": {
     "Scripts/99_Utils/99_00_03_StructureTranslator.cs": {
       "classification": "Util",
@@ -448,64 +448,7 @@
     }
   },
   "docs": {
-    "06_ARCHITECTURE.md": {
-      "modified": "2026-01-19"
-    },
-    "02_QUICK_REFERENCE.md": {
-      "modified": "2026-01-18"
-    },
-    "04_CHANGELOG_KO.md": {
-      "modified": "2026-01-19"
-    },
-    "09_TOOLS_AND_BUILD.md": {
-      "modified": "2026-01-18"
-    },
-    "06_ARCHITECTURE_KO.md": {
-      "modified": "2026-01-19"
-    },
-    "08_STYLE_GUIDE.md": {
-      "modified": "2026-01-18"
-    },
-    "04_CHANGELOG.md": {
-      "modified": "2026-01-19"
-    },
-    "03_TODO.md": {
-      "modified": "2026-01-19"
-    },
-    "07_WORKFLOW.md": {
-      "modified": "2026-01-18"
-    },
-    "05_ERROR_LOG_KO.md": {
-      "modified": "2026-01-19"
-    },
-    "01_PROJECT_INDEX.md": {
-      "modified": "2026-01-18"
-    },
-    "01_CORE_PROJECT_INDEX.md": {
-      "modified": "2026-01-19"
-    },
-    "10_DEVELOPMENT_GUIDE.md": {
-      "modified": "2026-01-18"
-    },
-    "02_CORE_QUICK_REFERENCE.md": {
-      "modified": "2026-01-19"
-    },
-    "03_TODO_KO.md": {
-      "modified": "2026-01-19"
-    },
-    "00_PRINCIPLES.md": {
-      "modified": "2026-01-19"
-    },
-    "BUGFIX_REPORT_20260119_CHARGEN.md": {
-      "modified": "2026-01-19"
-    },
-    "00_PRINCIPLES_KO.md": {
-      "modified": "2026-01-19"
-    },
-    "CODE_ANALYSIS_REPORT_20260119.md": {
-      "modified": "2026-01-19"
-    },
-    "05_ERROR_LOG.md": {
+    "README.md": {
       "modified": "2026-01-19"
     }
   },
