@@ -105,9 +105,11 @@
     },
     "Reputations": {
       "-600 reputation with {{c|the putus templar}}": "{{c|푸투스 템플러(the Putus Templar)}} 평판 -600",
+      "-600 reputation with {{C|the Putus Templar}}": "{{C|푸투스 템플러(the Putus Templar)}} 평판 -600",
       "+200 reputation with strangers": "이방인(Strangers) 평판 +200",
       "+100 reputation with the Barathrumites": "바라트룸의 후예들(Barathrumites) 평판 +100",
       "+300 reputation with the Wardens of Qud": "쿼드의 파수꾼들(Wardens of Qud) 평판 +300",
+      "+300 reputation with the Fellowship of Wardens": "워든 연합(Fellowship of Wardens) 평판 +300",
       "+200 reputation with the Issachari tribe": "이사카리 부족(Issachari tribe) 평판 +200",
       "+100 reputation with the villagers of Joppa": "조파 마을 주민 평판 +100",
       "+200 reputation with farmers": "농부 세력 평판 +200",
@@ -117,9 +119,13 @@
       "+100 reputation with bears": "곰 세력 평판 +100",
       "+200 reputation with the Consortium of Phyta": "피타 협회(Consortium of Phyta) 평판 +200",
       "+100 reputation with the merchants' guild": "상인 길드 평판 +100",
+      "+100 reputation with the Merchants' Guild": "상인 길드(Merchants' Guild) 평판 +100",
       "+200 reputation with the children of Mamon": "마몬의 자녀들 평판 +200",
+      "+200 reputation with the Children of Mamon": "마몬의 자녀들(Children of Mamon) 평판 +200",
       "+100 reputation with Mechanimists": "메카니미스트 평판 +100",
+      "+100 reputation with the Mechanimists": "메카니미스트 평판 +100",
       "+200 reputation with the cult of the coiled lamb": "감긴 양의 교단 평판 +200",
+      "+200 reputation with the Cult of the Coiled Lamb": "감긴 양의 교단(Cult of the Coiled Lamb) 평판 +200",
       "+100 reputation with newly sentient beings": "새로이 지성을 얻은 존재 평판 +100"
     }
   }
