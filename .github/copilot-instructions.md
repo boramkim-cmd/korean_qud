@@ -4,7 +4,20 @@
 # SSOT (Single Source of Truth) - AI_SESSION_START.md is deprecated
 
 ################################################################################
-# LAYER 0: LANGUAGE RULES (Highest Priority)
+# LAYER 0: SESSION START CHECKLIST (Read First!)
+################################################################################
+
+## 🚨 BEFORE STARTING ANY WORK, DO THIS:
+# 1. Read TODO for pending tasks and test requirements:
+#    cat Docs/en/reference/03_TODO.md | head -150
+# 2. Read CHANGELOG for recent changes:
+#    cat Docs/en/reference/04_CHANGELOG.md | head -100
+# 3. Read ERROR_LOG for known issues:
+#    cat Docs/en/reference/05_ERROR_LOG.md | head -100
+# 4. Check if previous session has UNTESTED changes that need verification
+
+################################################################################
+# LAYER 0.5: LANGUAGE RULES (Highest Priority)
 ################################################################################
 
 ## ALL DOCUMENTATION AND CODE IN ENGLISH

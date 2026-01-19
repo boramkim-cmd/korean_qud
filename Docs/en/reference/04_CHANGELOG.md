@@ -1,12 +1,67 @@
 # Caves of Qud Korean Localization - Changelog
 
-> **Version**: 3.1 | **Last Updated**: 2026-01-19
+> **Version**: 3.2 | **Last Updated**: 2026-01-19
 
 > [!NOTE]
 > **AI Agent**: This document is for completion records. Read `00_PRINCIPLES.md` first!
 
 Official changelog for all completed work.
 Completed items from `03_TODO.md` are moved here.
+
+---
+
+## [2026-01-19] - Attribute Selection Screen Full Translation
+
+### Summary
+Complete translation of the attribute/stat selection screen in character creation:
+- Attribute names shortened to 1-2 characters (Korean gaming standard)
+- Caste bonus tooltips translated
+- Point cost display translated
+- Bottom menu bar translated
+
+### 🟢 Attribute Names (1-2 characters)
+| English | Korean |
+|---------|--------|
+| Strength | 힘 |
+| Agility | 민첩 |
+| Toughness | 건강 |
+| Intelligence | 지능 |
+| Willpower | 의지 |
+| Ego | 자아 |
+
+### 🟢 Caste Short Names (≤6 characters, no spaces)
+| English | Korean |
+|---------|--------|
+| Priest of All Moons | 달의사제 |
+| Priest of All Suns | 태양사제 |
+| Horticulturist | 원예가 |
+| Child of the Deep | 심연의자녀 |
+| Child of the Hearth | 화로의자녀 |
+| Child of the Wheel | 수레의자녀 |
+| Fuming God-Child | 연신의자녀 |
+| Artifex | 기술자 |
+| Consul | 영사 |
+| Eunuch | 환관 |
+| Praetorian | 근위병 |
+| Syzygyrior | 합위전사 |
+
+### 🟢 UI Elements
+- `[1pts]` → `[1점]`
+- `Points Remaining: 38` → `남은 포인트: 38`
+- `+2 from Priest of All Moons caste` → `달의사제 계급 +2`
+
+### Files Created
+- `LOCALIZATION/CHARGEN/attributes.json` - Attribute translation data
+
+### Files Modified
+- `Scripts/02_Patches/10_UI/02_10_10_CharacterCreation.cs` - Extended `Patch_AttributeSelectionControl`, added `Patch_QudAttributesModuleWindow`
+- `LOCALIZATION/CHARGEN/stats.json` - Updated attribute names
+
+### Technical Details
+- Added `CasteShortNames` dictionary for tooltip translation
+- Added `AttributeShortNames` dictionary for 1-2 char names
+- Added `TranslateBonusSource()` helper with regex parsing
+- Added `GetKeyMenuBar` Postfix for "Points Remaining" translation
 
 ---
 
