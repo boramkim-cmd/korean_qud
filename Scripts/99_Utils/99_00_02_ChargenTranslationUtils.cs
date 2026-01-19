@@ -214,15 +214,26 @@ namespace QudKRTranslation.Utils
         {
             if (breadcrumb == null) return;
             
-            var scopes = new[] { "chargen_ui", "chargen_proto", "mutation", "skill", "cybernetics", "ui", "common" }
+            var scopes = new[] { "chargen_ui", "chargen_proto", "chargen_attributes", "mutation", "skill", "cybernetics", "ui", "common" }
                 .Select(cat => LocalizationManager.GetCategory(cat))
                 .Where(d => d != null)
                 .ToArray();
 
-            // Translate Title (e.g., "character creation")
+            // Translate Title (e.g., "character creation", or subtype names like "Priest of All Moons")
             if (!string.IsNullOrEmpty(breadcrumb.Title))
             {
-                if (TranslationEngine.TryTranslate(breadcrumb.Title, out string translated, scopes))
+                // 1. Try StructureTranslator first (for subtype/caste/calling names)
+                if (StructureTranslator.TryGetData(breadcrumb.Title, out var data) && !string.IsNullOrEmpty(data.KoreanName))
+                {
+                    breadcrumb.Title = data.KoreanName;
+                }
+                // 2. Try direct translation from scopes
+                else if (TranslationEngine.TryTranslate(breadcrumb.Title, out string translated, scopes))
+                {
+                    breadcrumb.Title = translated;
+                }
+                // 3. Try lowercase lookup
+                else if (TranslationEngine.TryTranslate(breadcrumb.Title.ToLowerInvariant(), out translated, scopes))
                 {
                     breadcrumb.Title = translated;
                 }
@@ -234,6 +245,10 @@ namespace QudKRTranslation.Utils
             if (!string.IsNullOrEmpty(subtitle))
             {
                 if (TranslationEngine.TryTranslate(subtitle, out string translatedSubtitle, scopes))
+                {
+                    tr.Field<string>("Subtitle").Value = translatedSubtitle;
+                }
+                else if (TranslationEngine.TryTranslate(subtitle.ToLowerInvariant(), out translatedSubtitle, scopes))
                 {
                     tr.Field<string>("Subtitle").Value = translatedSubtitle;
                 }

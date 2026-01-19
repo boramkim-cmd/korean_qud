@@ -1,6 +1,6 @@
 # Caves of Qud Korean Localization - Error/Issue Log
 
-> **Version**: 2.2 | **Last Updated**: 2026-01-19
+> **Version**: 2.3 | **Last Updated**: 2026-01-19
 
 > [!WARNING]
 > **AI Agent**: Check unresolved issues (🔴 OPEN) before starting work!
@@ -49,6 +49,57 @@ This document records errors encountered during development and their solutions.
 | 🟠 **High** | Major feature not working | Translation not showing |
 | 🟡 **Medium** | Partial function issue | Specific screen translation missing |
 | 🟢 **Low** | Minor problem | Typo, style inconsistency |
+
+---
+
+## ERR-017: Attribute Screen Multiple Issues (Batch Fix)
+
+### Basic Info
+| Item | Content |
+|------|---------|
+| **Status** | 🟢 RESOLVED |
+| **Severity** | 🟡 Medium |
+| **Discovered** | 2026-01-19 |
+| **Resolved** | 2026-01-19 |
+
+### Symptoms
+1. **Caste name not applied**: Breadcrumb (top bar) shows English caste name like "Priest of All Moons"
+2. **Partial English in top bar**: Selected caste/calling shows in English
+3. **Empty tooltip**: Bonus source tooltip (e.g., "달의사제 계급 +2") shows empty
+4. **Point display overlap**: `[1점]` text overlaps with description text (WONTFIX - UI layout issue)
+5. **Attribute description in English**: Strength/Willpower description remains in English
+
+### Root Cause Analysis
+1. **Breadcrumb caste name**: `TranslateBreadcrumb()` only tried generic translation, not StructureTranslator for subtype names
+2. **Empty tooltip**: BonusSource format includes Qud color tags `{{important|...}}` that were not handled correctly by regex
+3. **English description**: JSON keys in `attributes.json` didn't match actual XML ChargenDescription (full version vs abbreviated)
+
+### ✅ Final Resolution
+1. **Breadcrumb translation enhanced** (`ChargenTranslationUtils.TranslateBreadcrumb()`):
+   - Added StructureTranslator lookup for subtype/caste/calling names
+   - Added lowercase fallback for translation lookup
+   
+2. **BonusSource regex fixed** (`Patch_AttributeSelectionControl.TranslateBonusLine()`):
+   - Changed non-greedy `(.+?)` to greedy `(.+)` to properly capture source with color tags
+   - Added StructureTranslator lookup for calling names
+   
+3. **Attribute descriptions JSON updated** (`attributes.json`):
+   - Added full ChargenDescription strings from Genotypes.xml
+   - Fixed Willpower descriptions (both Mutant and True Kin versions)
+   - Added Ego variations (with/without mental mutation potency)
+
+### Point Display Overlap (WONTFIX)
+The `[1점]` text overlapping with description text is a UI prefab layout issue. This cannot be fixed through code patches - would require modifying Unity prefab or forcing layout recalculation at specific timing, which may cause other issues.
+
+### Related Files
+- `Scripts/02_Patches/10_UI/02_10_10_CharacterCreation.cs`
+- `Scripts/99_Utils/99_00_02_ChargenTranslationUtils.cs`
+- `LOCALIZATION/CHARGEN/attributes.json`
+
+### Prevention Guide
+1. **Breadcrumb translation**: Always use StructureTranslator first for UI elements that may contain subtype names
+2. **Regex patterns**: When parsing Qud strings, always account for color tags like `{{X|content}}`
+3. **JSON keys**: Always verify JSON translation keys match actual game source strings exactly
 
 ---
 

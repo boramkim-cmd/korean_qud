@@ -538,30 +538,42 @@ namespace QudKRTranslation.Patches
         {
             if (string.IsNullOrEmpty(line)) return line;
             
-            // 패턴: "{+/-N} from {source} [caste]"
-            // 정규식으로 파싱
+            // BonusSource 형식: "+2 from {{important|Priest of All Moons}} caste"
+            // 패턴: "{+/-N} from {source} [caste/calling/genotype/subtype]"
+            // 주의: source에 Qud 색상 태그가 포함될 수 있음
             var match = System.Text.RegularExpressions.Regex.Match(
                 line, 
-                @"^([+-]?\d+)\s+from\s+(.+?)(?:\s+(caste|calling|genotype|subtype))?\s*$",
+                @"^([+-]?\d+)\s+from\s+(.+)\s+(caste|calling|genotype|subtype)\s*$",
                 System.Text.RegularExpressions.RegexOptions.IgnoreCase);
             
             if (match.Success)
             {
                 string bonus = match.Groups[1].Value;
-                string source = StripQudTags(match.Groups[2].Value.Trim());
+                string rawSource = match.Groups[2].Value.Trim();
                 string sourceType = match.Groups[3].Value?.Trim();
+                
+                // 색상 태그 제거: {{important|Priest of All Moons}} -> Priest of All Moons
+                string source = StripQudTags(rawSource);
                 
                 if (string.IsNullOrEmpty(source))
                 {
                     return line;
                 }
                 
-                // 계급명 번역 시도
+                // 계급명/직업명 번역 시도
                 string translatedSource = source;
+                
+                // 1. 하드코딩된 CasteShortNames 딕셔너리에서 찾기
                 if (CasteShortNames.TryGetValue(source, out string casteName))
                 {
                     translatedSource = casteName;
                 }
+                // 2. StructureTranslator에서 찾기 (Calling 포함)
+                else if (StructureTranslator.TryGetData(source, out var data) && !string.IsNullOrEmpty(data.KoreanName))
+                {
+                    translatedSource = data.KoreanName;
+                }
+                // 3. LocalizationManager에서 찾기
                 else if (LocalizationManager.TryGetAnyTerm(source, out string tSource, "chargen_attributes", "chargen_ui", "ui", "common") ||
                          LocalizationManager.TryGetAnyTerm(source.ToLowerInvariant(), out tSource, "chargen_attributes", "chargen_ui", "ui", "common"))
                 {

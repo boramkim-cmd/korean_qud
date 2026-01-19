@@ -1,12 +1,51 @@
 # Caves of Qud Korean Localization - Changelog
 
-> **Version**: 3.4 | **Last Updated**: 2026-01-19
+> **Version**: 3.5 | **Last Updated**: 2026-01-19
 
 > [!NOTE]
 > **AI Agent**: This document is for completion records. Read `00_PRINCIPLES.md` first!
 
 Official changelog for all completed work.
 Completed items from `03_TODO.md` are moved here.
+
+---
+
+## [2026-01-19] - Attribute Screen Multi-Issue Fix (ERR-017)
+
+### Summary
+Fixed multiple issues in the attribute distribution screen:
+1. Breadcrumb (top bar) showing English caste/calling names
+2. Empty bonus source tooltips
+3. Attribute descriptions remaining in English
+
+### ✅ Changes
+
+**Breadcrumb Translation Enhancement**
+- `ChargenTranslationUtils.TranslateBreadcrumb()` now uses StructureTranslator first for subtype names
+- Added lowercase fallback for translation lookup
+- Added `chargen_attributes` scope for better coverage
+
+**BonusSource Tooltip Fix**
+- Fixed regex pattern to properly capture source names with Qud color tags `{{important|...}}`
+- Added StructureTranslator lookup for calling names (not just castes)
+- Changed non-greedy `(.+?)` to greedy `(.+)` to capture full source string
+
+**Attribute Description JSON Update**
+- Added full ChargenDescription strings from Genotypes.xml to `attributes.json`
+- Previous JSON had abbreviated versions that didn't match actual game strings
+- Added Willpower descriptions for both Mutant and True Kin (different descriptions)
+- Added Ego variations (with/without mental mutation potency mention)
+
+### Files Modified
+- `Scripts/02_Patches/10_UI/02_10_10_CharacterCreation.cs`
+- `Scripts/99_Utils/99_00_02_ChargenTranslationUtils.cs`
+- `LOCALIZATION/CHARGEN/attributes.json`
+
+### Known Issue (WONTFIX)
+Point display overlap (`[1점]` with description) is a UI prefab layout issue, cannot be fixed via code patches.
+
+### Related
+- Error Log: `05_ERROR_LOG.md` → ERR-017
 
 ---
 
