@@ -548,6 +548,7 @@ namespace QudKRTranslation.Patches
             if (tooltip == null) return;
 
             Font font = GetKoreanFont();
+            UnityEngine.Debug.Log($"[KR-Font] GetKoreanFont returned: {(font != null ? font.name : "null")}");
             if (font != null)
             {
                 foreach (var text in tooltip.GetComponentsInChildren<UnityEngine.UI.Text>(true))
@@ -560,11 +561,13 @@ namespace QudKRTranslation.Patches
             }
 
             TMP_FontAsset tmpFont = GetKoreanTMPFont();
+            UnityEngine.Debug.Log($"[KR-Font] GetKoreanTMPFont returned: {(tmpFont != null ? tmpFont.name : "null")}");
             if (tmpFont != null)
             {
                 foreach (var tmp in tooltip.GetComponentsInChildren<TMP_Text>(true))
                 {
                     if (tmp == null) continue;
+                    UnityEngine.Debug.Log($"[KR-Font] Setting TMP font on: {tmp.name}, text: '{tmp.text}'");
 
                     // Force tooltip TMP to use Korean-capable font
                     tmp.font = tmpFont;
