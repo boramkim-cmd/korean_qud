@@ -92,10 +92,21 @@ namespace QudKRTranslation.Utils
                         string line = filteredLines[i];
                         if (string.IsNullOrWhiteSpace(line)) continue;
                         
+                        // [FIX] 먼저 불렛 여부 확인 (대소문자 무시)
+                        bool hadBullet = line.StartsWith("{{c|ù}}", StringComparison.OrdinalIgnoreCase) ||
+                                         line.StartsWith("{{C|ù}}", StringComparison.OrdinalIgnoreCase) ||
+                                         line.TrimStart().StartsWith("ù") ||
+                                         line.TrimStart().StartsWith("·") ||
+                                         line.TrimStart().StartsWith("•");
+                        
                         // LocalizationManager를 통해 번역 시도
                         if (QudKRTranslation.Core.LocalizationManager.TryGetAnyTerm(line, out string translated, "chargen_ui"))
                         {
-                            filteredLines[i] = translated;
+                            // 불렛이 있었으면 번역에도 불렛 추가 (번역값에 없을 경우)
+                            if (hadBullet && !translated.StartsWith("{{c|ù}}", StringComparison.OrdinalIgnoreCase) && !translated.StartsWith("·"))
+                                filteredLines[i] = "{{c|ù}} " + translated;
+                            else
+                                filteredLines[i] = translated;
                         }
                         else
                         {
@@ -104,13 +115,16 @@ namespace QudKRTranslation.Utils
                             stripped = System.Text.RegularExpressions.Regex.Replace(stripped, @"^[ùúûü·•]\s*", "");
                             if (!string.IsNullOrEmpty(stripped) && QudKRTranslation.Core.LocalizationManager.TryGetAnyTerm(stripped, out translated, "chargen_ui"))
                             {
-                                // 불렛 복원
-                                if (line.StartsWith("{{c|ù}}"))
+                                // [FIX] 불렛 복원 - 항상 불렛 추가 (원본에 불렛이 있었으므로)
+                                if (hadBullet && !translated.StartsWith("{{c|ù}}", StringComparison.OrdinalIgnoreCase) && !translated.StartsWith("·"))
                                     filteredLines[i] = "{{c|ù}} " + translated;
-                                else if (line.StartsWith("ù"))
-                                    filteredLines[i] = "ù " + translated;
                                 else
                                     filteredLines[i] = translated;
+                            }
+                            else if (hadBullet)
+                            {
+                                // 번역 실패해도 원본 유지 (불렛 포함)
+                                // 아무것도 안 함 - 원본 유지
                             }
                         }
                     }
@@ -195,7 +209,13 @@ namespace QudKRTranslation.Utils
                 if (string.IsNullOrEmpty(desc))
                     return string.Join("\n", formattedExtras);
                 
-                return desc + "\n\n" + string.Join("\n", formattedExtras);
+                // [FIX] 평판 등 추가 라인이 있으면 빈 줄 없이 바로 연결 (항목들이 분리되지 않도록)
+                // desc에 이미 불렛이 있는 라인들이 포함되어 있으면, 하나의 목록으로 합침
+                string trimmedDesc = desc.Trim();
+                if (string.IsNullOrEmpty(trimmedDesc))
+                    return string.Join("\n", formattedExtras);
+                
+                return trimmedDesc + "\n" + string.Join("\n", formattedExtras);
             }
 
 
