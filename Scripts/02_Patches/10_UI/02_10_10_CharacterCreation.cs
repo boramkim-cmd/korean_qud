@@ -597,35 +597,53 @@ namespace QudKRTranslation.Patches
             return _koreanTMPFont;
         }
 
-        private static void ApplyTooltipFont(TooltipTrigger tooltip)
+        private static void ApplyTooltipFont(TooltipTrigger tooltipTrigger)
         {
-            if (tooltip == null) return;
-
-            Font font = GetKoreanFont();
-            UnityEngine.Debug.Log($"[KR-Font] GetKoreanFont returned: {(font != null ? font.name : "null")}");
-            if (font != null)
-            {
-                foreach (var text in tooltip.GetComponentsInChildren<UnityEngine.UI.Text>(true))
-                {
-                    if (text != null && text.font != font)
-                    {
-                        text.font = font;
-                    }
-                }
-            }
+            if (tooltipTrigger == null) return;
 
             TMP_FontAsset tmpFont = GetKoreanTMPFont();
             UnityEngine.Debug.Log($"[KR-Font] GetKoreanTMPFont returned: {(tmpFont != null ? tmpFont.name : "null")}");
-            if (tmpFont != null)
+            
+            if (tmpFont == null) return;
+            
+            // Get the actual Tooltip object (the UI panel)
+            var tooltip = tooltipTrigger.Tooltip;
+            if (tooltip == null)
             {
-                foreach (var tmp in tooltip.GetComponentsInChildren<TMP_Text>(true))
+                UnityEngine.Debug.Log("[KR-Font] TooltipTrigger.Tooltip is null, tooltip may not be displayed yet");
+                return;
+            }
+            
+            // Apply font to TMPFields in the actual tooltip
+            if (tooltip.TMPFields != null)
+            {
+                foreach (var tmpField in tooltip.TMPFields)
+                {
+                    if (tmpField?.Text == null) continue;
+                    UnityEngine.Debug.Log($"[KR-Font] Setting TMP font on TMPField: {tmpField.Text.name}, text: '{tmpField.Text.text}'");
+                    
+                    tmpField.Text.font = tmpFont;
+                    
+                    if (tmpField.Text.font.fallbackFontAssetTable == null)
+                        tmpField.Text.font.fallbackFontAssetTable = new List<TMP_FontAsset>();
+
+                    if (!tmpField.Text.font.fallbackFontAssetTable.Contains(tmpFont))
+                    {
+                        tmpField.Text.font.fallbackFontAssetTable.Add(tmpFont);
+                    }
+                }
+            }
+            
+            // Also try to get TMP components directly from the tooltip GameObject
+            if (tooltip.GameObject != null)
+            {
+                foreach (var tmp in tooltip.GameObject.GetComponentsInChildren<TMP_Text>(true))
                 {
                     if (tmp == null) continue;
-                    UnityEngine.Debug.Log($"[KR-Font] Setting TMP font on: {tmp.name}, text: '{tmp.text}'");
-
-                    // Force tooltip TMP to use Korean-capable font
+                    UnityEngine.Debug.Log($"[KR-Font] Setting TMP font on tooltip child: {tmp.name}, text: '{tmp.text}'");
+                    
                     tmp.font = tmpFont;
-
+                    
                     if (tmp.font.fallbackFontAssetTable == null)
                         tmp.font.fallbackFontAssetTable = new List<TMP_FontAsset>();
 
