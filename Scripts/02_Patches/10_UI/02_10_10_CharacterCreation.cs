@@ -545,14 +545,19 @@ namespace QudKRTranslation.Patches
             string translatedName = StructureTranslator.TranslateName(data.Id);
             if (!string.IsNullOrEmpty(translatedName) && translatedName != data.Id)
             {
-                // Get current description and preserve suffix like " [V]"
+                // Get current description and preserve ALL suffixes
+                // Examples: "Albino (D)", "Flaming Ray [V]", "Horns [{{W|V}}]"
                 string desc = data.Description;
                 if (!string.IsNullOrEmpty(desc))
                 {
+                    // Find suffix by locating where the mutation name ends
+                    // data.Id is the English mutation name, find it in desc and extract suffix
                     string suffix = "";
-                    if (desc.EndsWith(" [{{W|V}}]"))
+                    int idIndex = desc.IndexOf(data.Id);
+                    if (idIndex >= 0)
                     {
-                        suffix = " [{{W|V}}]";
+                        // Everything after the mutation name is the suffix
+                        suffix = desc.Substring(idIndex + data.Id.Length);
                     }
                     data.Description = translatedName + suffix;
                 }
