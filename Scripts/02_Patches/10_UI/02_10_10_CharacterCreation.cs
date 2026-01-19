@@ -740,43 +740,42 @@ namespace QudKRTranslation.Patches
                     bonus = trailingBonusMatch.Groups[2].Value.Trim();
                 }
             }
-                
-                // 색상 태그 제거: {{important|Priest of All Moons}} -> Priest of All Moons
-                string source = StripQudTags(rawSource);
-                
-                if (string.IsNullOrEmpty(source))
-                {
-                    return line;
-                }
-                
-                // 계급명/직업명 번역 시도
-                string translatedSource = source;
-                
-                // 1. 하드코딩된 CasteShortNames 딕셔너리에서 찾기
-                if (CasteShortNames.TryGetValue(source, out string casteName))
-                {
-                    translatedSource = casteName;
-                }
-                // 2. StructureTranslator에서 찾기 (Calling 포함)
-                else if (StructureTranslator.TryGetData(source, out var data) && !string.IsNullOrEmpty(data.KoreanName))
-                {
-                    translatedSource = data.KoreanName;
-                }
-                // 3. LocalizationManager에서 찾기
-                else if (LocalizationManager.TryGetAnyTerm(source, out string tSource, "chargen_attributes", "chargen_ui", "ui", "common") ||
-                         LocalizationManager.TryGetAnyTerm(source.ToLowerInvariant(), out tSource, "chargen_attributes", "chargen_ui", "ui", "common"))
-                {
-                    translatedSource = tSource;
-                }
-                
-                string translatedType = TranslateBonusSourceType(sourceType, source);
-                if (!string.IsNullOrEmpty(translatedType))
-                {
-                    return $"{translatedSource} {translatedType} {bonus}";
-                }
-                
-                return $"{translatedSource} {bonus}";
+
+            // 색상 태그 제거: {{important|Priest of All Moons}} -> Priest of All Moons
+            string source = StripQudTags(rawSource);
+
+            if (string.IsNullOrEmpty(source))
+            {
+                return line;
             }
+
+            // 계급명/직업명 번역 시도
+            string translatedSource = source;
+
+            // 1. 하드코딩된 CasteShortNames 딕셔너리에서 찾기
+            if (CasteShortNames.TryGetValue(source, out string casteName))
+            {
+                translatedSource = casteName;
+            }
+            // 2. StructureTranslator에서 찾기 (Calling 포함)
+            else if (StructureTranslator.TryGetData(source, out var data) && !string.IsNullOrEmpty(data.KoreanName))
+            {
+                translatedSource = data.KoreanName;
+            }
+            // 3. LocalizationManager에서 찾기
+            else if (LocalizationManager.TryGetAnyTerm(source, out string tSource, "chargen_attributes", "chargen_ui", "ui", "common") ||
+                     LocalizationManager.TryGetAnyTerm(source.ToLowerInvariant(), out tSource, "chargen_attributes", "chargen_ui", "ui", "common"))
+            {
+                translatedSource = tSource;
+            }
+
+            string translatedType = TranslateBonusSourceType(sourceType, source);
+            if (!string.IsNullOrEmpty(translatedType))
+            {
+                return $"{translatedSource} {translatedType} {bonus}";
+            }
+
+            return $"{translatedSource} {bonus}";
         }
 
         private static string StripQudTags(string input)
