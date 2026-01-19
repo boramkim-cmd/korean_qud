@@ -10,6 +10,9 @@ using System.IO;
 using System.Linq;
 using HarmonyLib;
 using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
+using ModelShark;
 using XRL.CharacterBuilds;
 using XRL.CharacterBuilds.Qud;
 using XRL.CharacterBuilds.Qud.UI;
@@ -472,6 +475,71 @@ namespace QudKRTranslation.Patches
             { "Ego", "자아" }
         };
 
+        private static Font _koreanFont;
+        private static TMP_FontAsset _koreanTMPFont;
+
+        private static Font GetKoreanFont()
+        {
+            if (_koreanFont != null) return _koreanFont;
+
+            foreach (string fontName in FontManager.TargetFontNames)
+            {
+                Font tempFont = Font.CreateDynamicFontFromOSFont(fontName, 32);
+                if (tempFont != null && tempFont.fontNames != null && tempFont.fontNames.Length > 0)
+                {
+                    _koreanFont = tempFont;
+                    break;
+                }
+            }
+
+            return _koreanFont;
+        }
+
+        private static TMP_FontAsset GetKoreanTMPFont()
+        {
+            if (_koreanTMPFont != null) return _koreanTMPFont;
+
+            Font font = GetKoreanFont();
+            if (font == null) return null;
+
+            _koreanTMPFont = TMP_FontAsset.CreateFontAsset(font);
+            _koreanTMPFont.name = "QudKR_Tooltip_Fallback";
+            return _koreanTMPFont;
+        }
+
+        private static void ApplyTooltipFont(TooltipTrigger tooltip)
+        {
+            if (tooltip == null) return;
+
+            Font font = GetKoreanFont();
+            if (font != null)
+            {
+                foreach (var text in tooltip.GetComponentsInChildren<UnityEngine.UI.Text>(true))
+                {
+                    if (text != null && text.font != font)
+                    {
+                        text.font = font;
+                    }
+                }
+            }
+
+            TMP_FontAsset tmpFont = GetKoreanTMPFont();
+            if (tmpFont != null)
+            {
+                foreach (var tmp in tooltip.GetComponentsInChildren<TMP_Text>(true))
+                {
+                    if (tmp?.font == null) continue;
+                    if (tmp.font.fallbackFontAssetTable == null)
+                        tmp.font.fallbackFontAssetTable = new List<TMP_FontAsset>();
+
+                    if (!tmp.font.fallbackFontAssetTable.Contains(tmpFont))
+                    {
+                        tmp.font.fallbackFontAssetTable.Add(tmpFont);
+                    }
+                }
+            }
+        }
+
         // 툴팁 표시 시간 추적 - Show→Hide 즉시 발생 방지
         private static readonly Dictionary<AttributeSelectionControl, float> _tooltipShowTimes = 
             new Dictionary<AttributeSelectionControl, float>();
@@ -547,9 +615,8 @@ namespace QudKRTranslation.Patches
             string bonusSource = __instance.data.BonusSource;
             if (!string.IsNullOrEmpty(bonusSource) && __instance.tooltip != null)
             {
-                Debug.Log($"[KR-Attr] Raw: '{bonusSource.Replace("\n", "\\n")}' Attr: {__instance.data.Attribute}");
+                ApplyTooltipFont(__instance.tooltip);
                 string translated = TranslateBonusSource(bonusSource);
-                Debug.Log($"[KR-Attr] Result: '{translated}'");
                 __instance.tooltip.SetText("BodyText", Sidebar.FormatToRTF(translated));
             }
         }
@@ -595,18 +662,14 @@ namespace QudKRTranslation.Patches
                 @"^([+-]?\d+)\s+from\s+(.+)\s+(caste|calling|genotype|subtype)\s*$",
                 System.Text.RegularExpressions.RegexOptions.IgnoreCase);
             
-            Debug.Log($"[KR-Attr] TranslateBonusLine input: '{line}' match.Success: {match.Success}");
-            
             if (match.Success)
             {
                 string bonus = match.Groups[1].Value;
                 string rawSource = match.Groups[2].Value.Trim();
                 string sourceType = match.Groups[3].Value?.Trim();
-                Debug.Log($"[KR-Attr] Parsed: bonus={bonus}, rawSource={rawSource}, sourceType={sourceType}");
                 
                 // 색상 태그 제거: {{important|Priest of All Moons}} -> Priest of All Moons
                 string source = StripQudTags(rawSource);
-                Debug.Log($"[KR-Attr] Stripped source: '{source}'");
                 
                 if (string.IsNullOrEmpty(source))
                 {
