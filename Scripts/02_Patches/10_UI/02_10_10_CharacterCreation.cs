@@ -526,6 +526,41 @@ namespace QudKRTranslation.Patches
     }
 
     // ========================================================================
+    // [6.5] 변이 선택 왼쪽 리스트 UI 렌더링 패치 (KeyMenuOption)
+    // 문제: UpdateControls_Postfix는 BeforeShow() 호출 이후에 실행되어
+    //       데이터를 수정해도 이미 UI에 전달된 상태임.
+    // 해결: KeyMenuOption.setDataPrefixMenuOption()을 패치하여 
+    //       UI 렌더링 시점에 번역을 적용.
+    // ========================================================================
+    [HarmonyPatch(typeof(KeyMenuOption))]
+    public static class Patch_KeyMenuOption_MutationNames
+    {
+        [HarmonyPatch(nameof(KeyMenuOption.setDataPrefixMenuOption))]
+        [HarmonyPrefix]
+        static void setDataPrefixMenuOption_Prefix(PrefixMenuOption data)
+        {
+            if (data == null || string.IsNullOrEmpty(data.Id)) return;
+            
+            // Check if this is a mutation (has translation in StructureTranslator)
+            string translatedName = StructureTranslator.TranslateName(data.Id);
+            if (!string.IsNullOrEmpty(translatedName) && translatedName != data.Id)
+            {
+                // Get current description and preserve suffix like " [V]"
+                string desc = data.Description;
+                if (!string.IsNullOrEmpty(desc))
+                {
+                    string suffix = "";
+                    if (desc.EndsWith(" [{{W|V}}]"))
+                    {
+                        suffix = " [{{W|V}}]";
+                    }
+                    data.Description = translatedName + suffix;
+                }
+            }
+        }
+    }
+
+    // ========================================================================
     // [7] 사이버네틱스 선택 (QudCyberneticsModuleWindow)
     // ========================================================================
     [HarmonyPatch(typeof(QudCyberneticsModuleWindow))]
