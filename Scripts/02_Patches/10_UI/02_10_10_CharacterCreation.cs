@@ -482,7 +482,17 @@ namespace QudKRTranslation.Patches
         {
             if (_koreanFont != null) return _koreanFont;
 
-            foreach (string fontName in FontManager.TargetFontNames)
+            var candidates = new List<string>(FontManager.TargetFontNames)
+            {
+                "Apple SD Gothic Neo",
+                "AppleSDGothicNeo-Regular",
+                "Noto Sans CJK KR",
+                "Noto Sans KR",
+                "NanumGothic",
+                "Nanum Gothic"
+            };
+
+            foreach (string fontName in candidates)
             {
                 try
                 {
@@ -552,7 +562,11 @@ namespace QudKRTranslation.Patches
             {
                 foreach (var tmp in tooltip.GetComponentsInChildren<TMP_Text>(true))
                 {
-                    if (tmp?.font == null) continue;
+                    if (tmp == null) continue;
+
+                    // Force tooltip TMP to use Korean-capable font
+                    tmp.font = tmpFont;
+
                     if (tmp.font.fallbackFontAssetTable == null)
                         tmp.font.fallbackFontAssetTable = new List<TMP_FontAsset>();
 
