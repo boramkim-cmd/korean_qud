@@ -1,6 +1,6 @@
 # Caves of Qud Korean Localization - Error/Issue Log
 
-> **Version**: 2.0 | **Last Updated**: 2026-01-19
+> **Version**: 2.1 | **Last Updated**: 2026-01-19
 
 > [!WARNING]
 > **AI Agent**: Check unresolved issues (🔴 OPEN) before starting work!
@@ -49,6 +49,70 @@ This document records errors encountered during development and their solutions.
 | 🟠 **High** | Major feature not working | Translation not showing |
 | 🟡 **Medium** | Partial function issue | Specific screen translation missing |
 | 🟢 **Low** | Minor problem | Typo, style inconsistency |
+
+---
+
+## ERR-014: Toughness Attribute Translation Inconsistency
+
+### Basic Info
+| Item | Content |
+|------|---------|
+| **Status** | 🟢 RESOLVED |
+| **Severity** | 🟡 Medium |
+| **Discovered** | 2026-01-19 |
+| **Resolved** | 2026-01-19 |
+
+### Symptoms
+1. Attribute screen shows "지구력" instead of expected "건강" for Toughness attribute
+2. Three different translations used across codebase:
+   - Code patch: "건강" (correct)
+   - JSON files: "지구력" (incorrect - mixed with Endurance skill)
+   - terms.json: "강인함" (incorrect)
+3. Screenshots confirm "지구력 +2" showing in-game instead of "건강 +2"
+
+### Root Cause Analysis
+**Translation Term Confusion**: 
+- **Toughness (Attribute)** and **Endurance (Skill)** are DIFFERENT game concepts
+- Both were incorrectly translated as "지구력" in some files
+- Caused mixed display in character creation screens
+
+**Files with Wrong Translations**:
+| File | Wrong Translation | Correct |
+|------|------------------|---------|
+| `Callings/Nomad.json` | "지구력 +2" | "건강 +2" |
+| `Callings/Watervine_Farmer.json` | "지구력 +2" | "건강 +2" |
+| `Castes/Priest_of_All_Moons.json` | "지구력 +2" | "건강 +2" |
+| `Castes/Child_of_the_Deep.json` | "지구력 +3" | "건강 +3" |
+| `Castes/Praetorian.json` | "지구력 +1" | "건강 +1" |
+| `MUTATIONS/Two-Hearted.json` | "+2 지구력(Toughness)" | "+2 건강(Toughness)" |
+| `UI/terms.json` | "toughness": "강인함" | "toughness": "건강" |
+| `UI/common.json` | "toughness": "강인함" | "toughness": "건강" |
+
+### ✅ Final Resolution
+Established clear translation rules:
+- **Toughness (Attribute)** → "건강" (health/constitution)
+- **Endurance (Skill)** → "지구력" (endurance/stamina)
+
+Updated 8 JSON files to use correct translation:
+1. Fixed all "지구력 +N" to "건강 +N" in Caste/Calling files
+2. Updated `terms.json` and `common.json`
+3. Fixed mutation leveltext
+
+### Related Files
+- `LOCALIZATION/CHARGEN/SUBTYPES/Callings/Nomad.json`
+- `LOCALIZATION/CHARGEN/SUBTYPES/Callings/Watervine_Farmer.json`
+- `LOCALIZATION/CHARGEN/SUBTYPES/Castes/Priest_of_All_Moons.json`
+- `LOCALIZATION/CHARGEN/SUBTYPES/Castes/Child_of_the_Deep.json`
+- `LOCALIZATION/CHARGEN/SUBTYPES/Castes/Praetorian.json`
+- `LOCALIZATION/GAMEPLAY/MUTATIONS/Physical_Mutations/Two-Hearted.json`
+- `LOCALIZATION/UI/terms.json`
+- `LOCALIZATION/UI/common.json`
+
+### Prevention Guide
+⚠️ **RULE**: Always distinguish between Attribute names and Skill names in translation glossary.
+1. Maintain consistent terminology: Create a translation glossary for attributes vs skills
+2. Use English parenthetical notation when ambiguous (e.g., "건강(Toughness)" vs "지구력(Endurance)")
+3. Cross-reference code patch dictionaries with JSON data before deployment
 
 ---
 

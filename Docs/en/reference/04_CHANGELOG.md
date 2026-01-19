@@ -1,12 +1,51 @@
 # Caves of Qud Korean Localization - Changelog
 
-> **Version**: 3.2 | **Last Updated**: 2026-01-19
+> **Version**: 3.3 | **Last Updated**: 2026-01-19
 
 > [!NOTE]
 > **AI Agent**: This document is for completion records. Read `00_PRINCIPLES.md` first!
 
 Official changelog for all completed work.
 Completed items from `03_TODO.md` are moved here.
+
+---
+
+## [2026-01-19] - Toughness Translation Consistency Fix (ERR-014)
+
+### Summary
+Fixed inconsistent translation of "Toughness" attribute across codebase. The attribute was incorrectly translated as "지구력" (endurance) instead of "건강" (health), causing confusion with the "Endurance" skill.
+
+### 🔴 Critical Issue: Term Confusion
+- **Problem**: "Toughness" (attribute) and "Endurance" (skill) are different concepts
+  - Toughness = HP, healing rate, poison/disease resistance
+  - Endurance = Skill for stamina-related abilities
+- Both were translated as "지구력" in some files, causing mixed display
+
+### ✅ Translation Rules Established
+| English | Korean | Context |
+|---------|--------|---------|
+| Toughness | 건강 | Attribute (character stat) |
+| Endurance | 지구력 | Skill name |
+
+### Files Modified (8 files)
+**Callings:**
+- `Nomad.json`: "지구력 +2" → "건강 +2"
+- `Watervine_Farmer.json`: "지구력 +2" → "건강 +2"
+
+**Castes:**
+- `Priest_of_All_Moons.json`: "지구력 +2" → "건강 +2"
+- `Child_of_the_Deep.json`: "지구력 +3" → "건강 +3" (Endurance skill kept as "지구력")
+- `Praetorian.json`: "지구력 +1" → "건강 +1"
+
+**Mutations:**
+- `Two-Hearted.json`: "+2 지구력(Toughness)" → "+2 건강(Toughness)"
+
+**UI Terms:**
+- `terms.json`: "toughness": "강인함" → "건강"
+- `common.json`: "toughness": "강인함" → "건강"
+
+### Related
+- Error Log: `05_ERROR_LOG.md` → ERR-014
 
 ---
 
