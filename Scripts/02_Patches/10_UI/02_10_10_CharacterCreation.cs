@@ -484,11 +484,26 @@ namespace QudKRTranslation.Patches
 
             foreach (string fontName in FontManager.TargetFontNames)
             {
-                Font tempFont = Font.CreateDynamicFontFromOSFont(fontName, 32);
-                if (tempFont != null && tempFont.fontNames != null && tempFont.fontNames.Length > 0)
+                try
                 {
+                    Font tempFont = Font.CreateDynamicFontFromOSFont(fontName, 32);
+                    if (tempFont == null || tempFont.fontNames == null || tempFont.fontNames.Length == 0)
+                    {
+                        continue;
+                    }
+
+                    // Ensure the font can render Korean glyphs.
+                    if (!tempFont.HasCharacter('가'))
+                    {
+                        continue;
+                    }
+
                     _koreanFont = tempFont;
                     break;
+                }
+                catch
+                {
+                    // Ignore and try next font.
                 }
             }
 
@@ -502,9 +517,17 @@ namespace QudKRTranslation.Patches
             Font font = GetKoreanFont();
             if (font == null) return null;
 
-            _koreanTMPFont = TMP_FontAsset.CreateFontAsset(font);
-            if (_koreanTMPFont == null) return null;
-            _koreanTMPFont.name = "QudKR_Tooltip_Fallback";
+            try
+            {
+                _koreanTMPFont = TMP_FontAsset.CreateFontAsset(font);
+                if (_koreanTMPFont == null) return null;
+                _koreanTMPFont.name = "QudKR_Tooltip_Fallback";
+            }
+            catch
+            {
+                _koreanTMPFont = null;
+            }
+
             return _koreanTMPFont;
         }
 
