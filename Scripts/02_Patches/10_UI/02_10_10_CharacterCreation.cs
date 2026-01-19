@@ -472,6 +472,53 @@ namespace QudKRTranslation.Patches
             { "Ego", "자아" }
         };
 
+        // 툴팁 표시 시간 추적 - Show→Hide 즉시 발생 방지
+        private static readonly Dictionary<AttributeSelectionControl, float> _tooltipShowTimes = 
+            new Dictionary<AttributeSelectionControl, float>();
+        private const float MIN_TOOLTIP_DURATION = 2.0f; // 최소 2초 유지
+
+        /// <summary>
+        /// Update 메서드 Postfix - 툴팁이 너무 빨리 숨겨지는 것을 방지
+        /// 원본 Update()가 HidePopup()을 호출해도, 최소 표시 시간이 지나지 않았으면 다시 표시
+        /// </summary>
+        [HarmonyPatch(nameof(AttributeSelectionControl.Update))]
+        [HarmonyPostfix]
+        static void Update_Postfix(AttributeSelectionControl __instance)
+        {
+            if (__instance?.data == null || __instance.tooltip == null) return;
+            
+            bool hasBonus = !string.IsNullOrEmpty(__instance.data.BonusSource);
+            if (!hasBonus) return;
+            
+            bool isDisplayed = __instance.tooltip.IsDisplayed();
+            bool isActive = __instance.navContext.IsActive();
+            
+            // 툴팁이 표시되기 시작하면 시간 기록
+            if (isDisplayed && !_tooltipShowTimes.ContainsKey(__instance))
+            {
+                _tooltipShowTimes[__instance] = Time.unscaledTime;
+            }
+            
+            // 툴팁이 숨겨졌지만 최소 시간이 지나지 않았고 여전히 활성 상태이면 다시 표시
+            if (!isDisplayed && isActive && _tooltipShowTimes.TryGetValue(__instance, out float showTime))
+            {
+                if (Time.unscaledTime - showTime < MIN_TOOLTIP_DURATION)
+                {
+                    __instance.tooltip.ShowManually(true);
+                }
+                else
+                {
+                    _tooltipShowTimes.Remove(__instance);
+                }
+            }
+            
+            // 비활성화되면 기록 제거
+            if (!isActive && _tooltipShowTimes.ContainsKey(__instance))
+            {
+                _tooltipShowTimes.Remove(__instance);
+            }
+        }
+
         [HarmonyPatch(nameof(AttributeSelectionControl.Updated))]
         [HarmonyPostfix]
         static void Updated_Postfix(AttributeSelectionControl __instance)
