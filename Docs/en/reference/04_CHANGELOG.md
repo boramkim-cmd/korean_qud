@@ -10,6 +10,47 @@ Completed items from `03_TODO.md` are moved here.
 
 ---
 
+## [2026-01-19] - UI Translation Consistency Fixes
+
+### Summary
+Fixed three major UI translation issues:
+1. Missing colons in subtitle translations (double dot issue)
+2. Missing periods in calling descriptions
+3. Fixed sync script path error
+
+### 🟢 UI Translation Fixes
+- **Subtitle Format Fixed**
+  - Fixed all subtitle translations to include proper colons on both sides
+  - Example: `:choose game mode:` → `:게임 모드 선택:` (was `게임 모드 선택`)
+  - Example: `:choose calling:` → `:직업 선택:` (was `직업 선택`)
+  - Affected: All 14 subtitle translations in `LOCALIZATION/CHARGEN/ui.json`
+  - This fixes the "double dot issue" where colons were appearing from English original + Korean translation without colons
+
+- **Calling Descriptions Consistency**
+  - Added periods to all bullet points in all 12 calling leveltext_ko entries
+  - Ensures consistent punctuation across all callings
+  - Files affected:
+    - `LOCALIZATION/CHARGEN/SUBTYPES/Callings/Warden.json`
+    - `LOCALIZATION/CHARGEN/SUBTYPES/Callings/Gunslinger.json`
+    - `LOCALIZATION/CHARGEN/SUBTYPES/Callings/Scholar.json`
+    - `LOCALIZATION/CHARGEN/SUBTYPES/Callings/Marauder.json`
+    - `LOCALIZATION/CHARGEN/SUBTYPES/Callings/Arconaut.json`
+    - `LOCALIZATION/CHARGEN/SUBTYPES/Callings/Nomad.json`
+    - `LOCALIZATION/CHARGEN/SUBTYPES/Callings/Watervine_Farmer.json`
+    - `LOCALIZATION/CHARGEN/SUBTYPES/Callings/Water_Merchant.json`
+    - `LOCALIZATION/CHARGEN/SUBTYPES/Callings/Apostle.json`
+    - `LOCALIZATION/CHARGEN/SUBTYPES/Callings/Pilgrim.json`
+    - `LOCALIZATION/CHARGEN/SUBTYPES/Callings/Tinker.json`
+    - `LOCALIZATION/CHARGEN/SUBTYPES/Callings/Greybeard.json`
+
+### 🔧 Tool Fixes
+- **Sync Script Path Update**
+  - Fixed `sync_copilot_instructions.py` to use correct ERROR_LOG path
+  - Changed from `Docs/05_ERROR_LOG.md` to `Docs/en/reference/05_ERROR_LOG.md`
+  - File: `tools/sync_copilot_instructions.py`
+
+---
+
 ## [2026-01-19] - Code Analysis Report Fixes (16 Issues Resolved)
 
 ### 🔴 Critical Fixes
