@@ -498,9 +498,11 @@ namespace QudKRTranslation.Patches
             
             // 3. 툴팁 BonusSource 번역: "+2 from Priest of All Moons caste" -> "달의사제 계급 +2"
             string bonusSource = __instance.data.BonusSource;
+            Debug.Log($"[KR-Attr] BonusSource for {__instance.data.Attribute}: '{bonusSource}' (Bonus={__instance.data.Bonus})");
             if (!string.IsNullOrEmpty(bonusSource) && __instance.tooltip != null)
             {
                 string translated = TranslateBonusSource(bonusSource);
+                Debug.Log($"[KR-Attr] Translated BonusSource: '{translated}'");
                 __instance.tooltip.SetText("BodyText", Sidebar.FormatToRTF(translated));
             }
         }
