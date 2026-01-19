@@ -688,8 +688,9 @@ namespace QudKRTranslation.Patches
             {
                 ApplyTooltipFont(__instance.tooltip);
                 string translated = TranslateBonusSource(bonusSource);
-                UnityEngine.Debug.Log($"[KR-Bonus] Original: '{bonusSource}' -> Translated: '{translated}'");
-                __instance.tooltip.SetText("BodyText", Sidebar.FormatToRTF(translated));
+                string rtf = Sidebar.FormatToRTF(translated);
+                UnityEngine.Debug.Log($"[KR-Bonus] Original: '{bonusSource}' -> Translated: '{translated}' -> RTF: '{rtf}'");
+                __instance.tooltip.SetText("BodyText", rtf);
             }
         }
         
