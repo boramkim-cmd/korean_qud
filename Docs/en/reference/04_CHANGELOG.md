@@ -10,6 +10,48 @@ Completed items from `03_TODO.md` are moved here.
 
 ---
 
+## [2026-01-19] - True Kin Caste Stat Translation Fix (ERR-013)
+
+### Summary
+Fixed untranslated stat modifiers and save bonuses in True Kin caste selection screen.
+
+### 🔴 Critical Fix: Stat/Save Modifier Translation
+- **Problem**: 3 types of text appearing in English:
+  - `"+15 heat resistance"` / `"+15 cold resistance"`
+  - `"+2 to saves vs. bleeding"`
+
+- **Root Cause**: 
+  - JSON `leveltext` format (`"HeatResistance +15"`) didn't match game's output format (`"+15 heat resistance"`)
+  - `NormalizeLine()` couldn't convert CamelCase to space-separated
+  - Save modifiers completely missing from JSON files
+
+- **Resolution**:
+  1. Added CamelCase→space conversion to `StructureTranslator.NormalizeLine()`
+  2. Updated 8 Caste JSON files to use game's stat format
+  3. Added save modifier entries to 4 Castes with bleeding resistance
+  4. Added fallback translations to `chargen_ui.json`
+
+### Files Modified
+- `Scripts/99_Utils/99_00_03_StructureTranslator.cs`
+- `LOCALIZATION/CHARGEN/ui.json`
+- `LOCALIZATION/CHARGEN/SUBTYPES/Castes/Child_of_the_Deep.json`
+- `LOCALIZATION/CHARGEN/SUBTYPES/Castes/Child_of_the_Wheel.json`
+- `LOCALIZATION/CHARGEN/SUBTYPES/Castes/Child_of_the_Hearth.json`
+- `LOCALIZATION/CHARGEN/SUBTYPES/Castes/Fuming_God-Child.json`
+- `LOCALIZATION/CHARGEN/SUBTYPES/Castes/Consul.json`
+- `LOCALIZATION/CHARGEN/SUBTYPES/Castes/Artifex.json`
+- `LOCALIZATION/CHARGEN/SUBTYPES/Castes/Praetorian.json`
+- `LOCALIZATION/CHARGEN/SUBTYPES/Castes/Eunuch.json`
+- `LOCALIZATION/CHARGEN/SUBTYPES/Castes/Horticulturist.json`
+- `LOCALIZATION/CHARGEN/SUBTYPES/Castes/Priest_of_All_Suns.json`
+- `LOCALIZATION/CHARGEN/SUBTYPES/Castes/Priest_of_All_Moons.json`
+- `LOCALIZATION/CHARGEN/SUBTYPES/Castes/Syzygyrior.json`
+
+### Related
+- Error Log: `05_ERROR_LOG.md` → ERR-013
+
+---
+
 ## [2026-01-19] - UI Translation Consistency Fixes
 
 ### Summary

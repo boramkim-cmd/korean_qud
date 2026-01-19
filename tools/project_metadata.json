@@ -1,5 +1,5 @@
 {
-  "generated": "2026-01-19 13:05:27",
+  "generated": "2026-01-19 13:59:42",
   "scripts": {
     "Scripts/99_Utils/99_00_03_StructureTranslator.cs": {
       "classification": "Util",
@@ -279,7 +279,10 @@
         "LoadOptionNode_Patch",
         "LoadAllOptions_Patch",
         "Patch_OptionsUI",
-        "Patch_OptionsCategoryControl"
+        "Patch_OptionsCategoryControl",
+        "Patch_LeftSideCategory",
+        "Patch_KeyMenuOption",
+        "Patch_EmbarkBuilderModuleBackButton"
       ],
       "methods": [
         {
@@ -468,7 +471,7 @@
       "categories": [
         "options"
       ],
-      "entries": 442
+      "entries": 454
     },
     "common.json": {
       "categories": [
@@ -514,7 +517,7 @@
       "categories": [
         "factions"
       ],
-      "entries": 51
+      "entries": 53
     },
     "presets.json": {
       "categories": [
@@ -526,7 +529,7 @@
       "categories": [
         "chargen_ui"
       ],
-      "entries": 4
+      "entries": 6
     },
     "stats.json": {
       "categories": [

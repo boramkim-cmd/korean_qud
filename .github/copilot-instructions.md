@@ -74,6 +74,7 @@
 
 | ID | Symptom | Root Cause | Resolution |
 |----|---------|------------|------------|
+| ERR-013 | True Kin caste selection ... |  | #### 1. NormalizeLine() E... |
 | ERR-008 | Cannot proceed to next st... | Game source code `Attribu... | Deleted direct `attr.Attr... |
 | ERR-009 | Bullet (`{{c|ù}}`) prefix... | Unknown | See error log |
 | ERR-011 | Game source `SubtypeEntry... | Game source `SubtypeEntry... | `ChargenTranslationUtils.... |

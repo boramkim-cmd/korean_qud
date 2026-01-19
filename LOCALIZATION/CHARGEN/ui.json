@@ -103,6 +103,29 @@
       "The Ice-Sheathed Arcology of Ibul": "{{C|이불의 얼음으로 덮인 아콜로지}}",
       "The Crustal Mortars of Yawningmoon": "{{R|요닝문의 지각 절구}}"
     },
+    "Resistance Stats": {
+      "+15 heat resistance": "열 저항 +15",
+      "+15 cold resistance": "냉기 저항 +15",
+      "+10 heat resistance": "열 저항 +10",
+      "+10 cold resistance": "냉기 저항 +10",
+      "+5 heat resistance": "열 저항 +5",
+      "+5 cold resistance": "냉기 저항 +5",
+      "+10 acid resistance": "산 저항 +10",
+      "+10 electric resistance": "전기 저항 +10",
+      "heat resistance": "열 저항",
+      "cold resistance": "냉기 저항",
+      "acid resistance": "산 저항",
+      "electric resistance": "전기 저항"
+    },
+    "Save Bonuses": {
+      "+2 to saves vs. bleeding": "출혈 저항 +2",
+      "+3 to saves vs. bleeding": "출혈 저항 +3",
+      "+1 to saves vs. bleeding": "출혈 저항 +1",
+      "+2 to saves": "내성 굴림 +2",
+      "+1 to saves": "내성 굴림 +1",
+      "to saves vs. bleeding": "출혈 저항",
+      "to saves": "내성 굴림"
+    },
     "Reputations": {
       "-600 reputation with {{c|the putus templar}}": "{{c|푸투스 템플러(the Putus Templar)}} 평판 -600",
       "-600 reputation with {{C|the Putus Templar}}": "{{C|푸투스 템플러(the Putus Templar)}} 평판 -600",

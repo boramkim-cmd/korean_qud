@@ -52,6 +52,90 @@ This document records errors encountered during development and their solutions.
 
 ---
 
+## ERR-013: Caste Stat/Save Modifiers Not Translated
+
+### Basic Info
+| Item | Content |
+|------|---------|
+| **Status** | 🟢 RESOLVED |
+| **Severity** | 🟠 High |
+| **Discovered** | 2026-01-19 |
+| **Resolved** | 2026-01-19 |
+
+### Symptoms
+1. True Kin caste selection screen shows untranslated stat modifiers:
+   - `"+15 heat resistance"` (should be `"열 저항 +15"`)
+   - `"+15 cold resistance"` (should be `"냉기 저항 +15"`)
+   - `"+2 to saves vs. bleeding"` (should be `"출혈 저항 +2"`)
+2. These appear alongside properly translated Korean items, creating mixed-language display.
+
+### Root Cause Analysis
+1. **Stat Format Mismatch**:
+   - JSON `leveltext`: `"HeatResistance +15"` (CamelCase, stat first)
+   - Game output: `"+15 heat resistance"` (lowercase, number first)
+   - `StructureTranslator.NormalizeLine()` couldn't match these as duplicates
+
+2. **CamelCase Not Handled**:
+   - `NormalizeLine()` converts `"+15 heat resistance"` → `"heat resistance 15"`
+   - But `"HeatResistance +15"` → `"heatresistance 15"` (no space between words)
+   - These don't match, so Korean leveltext not applied
+
+3. **Missing Save Modifiers**:
+   - XML: `<savemodifier Vs="Bleeding" Amount="2" />`
+   - Game generates: `"+2 to saves vs. bleeding"`
+   - This wasn't in JSON `leveltext`, so no Korean translation existed
+
+### ✅ Final Resolution
+
+#### 1. NormalizeLine() Enhancement
+Added CamelCase to space-separated conversion:
+```csharp
+// In StructureTranslator.NormalizeLine()
+// 3. Normalize CamelCase to space-separated (e.g., "HeatResistance" -> "Heat Resistance")
+result = Regex.Replace(result, @"([a-z])([A-Z])", "$1 $2");
+```
+
+#### 2. JSON leveltext Format Updated
+Changed to match game's output format:
+- `"HeatResistance +15"` → `"+15 heat resistance"`
+- `"ColdResistance +15"` → `"+15 cold resistance"`
+
+Files modified (8 Castes):
+- `Child_of_the_Deep.json`, `Child_of_the_Wheel.json`
+- `Child_of_the_Hearth.json`, `Fuming_God-Child.json`
+- `Consul.json`, `Artifex.json`, `Praetorian.json`, `Eunuch.json`
+
+#### 3. Added Save Modifier Translations
+Added `"+2 to saves vs. bleeding"` to JSON for 4 Castes:
+- `Horticulturist.json`, `Priest_of_All_Suns.json`
+- `Priest_of_All_Moons.json`, `Syzygyrior.json`
+
+#### 4. chargen_ui.json Fallback Translations
+Added common patterns to handle any edge cases:
+```json
+"Resistance Stats": {
+  "+15 heat resistance": "열 저항 +15",
+  "+15 cold resistance": "냉기 저항 +15"
+},
+"Save Bonuses": {
+  "+2 to saves vs. bleeding": "출혈 저항 +2"
+}
+```
+
+### Related Files
+- `Scripts/99_Utils/99_00_03_StructureTranslator.cs`
+- `LOCALIZATION/CHARGEN/ui.json`
+- `LOCALIZATION/CHARGEN/SUBTYPES/Castes/*.json` (12 files)
+
+### Prevention Guide
+⚠️ **RULE**: JSON `leveltext` must match game's runtime output format exactly.
+1. Check game source for how stats are displayed (e.g., `Statistic.GetStatDisplayName()`)
+2. Use game's format in JSON: `"+N stat_name"` not `"StatName +N"`
+3. Include ALL dynamic content in JSON (stats, save modifiers, reputation)
+4. Test with actual game to verify string matching
+
+---
+
 *No unresolved issues at this time.*
 
 ---

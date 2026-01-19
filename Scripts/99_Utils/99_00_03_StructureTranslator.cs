@@ -148,7 +148,10 @@ namespace QudKRTranslation.Utils
                 // 2. Remove bullet prefixes
                 result = System.Text.RegularExpressions.Regex.Replace(result, @"^[ùúûü·•◦‣⁃]\s*", "");
                 
-                // 3. Normalize stat format: "+2 Toughness" <-> "Toughness +2"
+                // 3. Normalize CamelCase to space-separated (e.g., "HeatResistance" -> "Heat Resistance")
+                result = System.Text.RegularExpressions.Regex.Replace(result, @"([a-z])([A-Z])", "$1 $2");
+                
+                // 4. Normalize stat format: "+2 Toughness" <-> "Toughness +2"
                 // Convert both to canonical form: "toughness 2" (text then number, no sign)
                 var statMatch = System.Text.RegularExpressions.Regex.Match(result.Trim(), @"^([+-]?\d+)\s+(.+)$");
                 if (statMatch.Success)
