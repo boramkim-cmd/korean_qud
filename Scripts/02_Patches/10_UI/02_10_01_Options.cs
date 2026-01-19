@@ -228,4 +228,56 @@ namespace QudKRTranslation.Patches
             }
         }
     }
+
+    /// <summary>
+    /// [3] OptionsCategoryControl 패치: 왼쪽 패널의 카테고리 이름(Sound, Display 등)을 번역합니다.
+    /// </summary>
+    [HarmonyPatch(typeof(OptionsCategoryControl))]
+    public static class Patch_OptionsCategoryControl
+    {
+        private static Dictionary<string, string>[] _scopeArray = null;
+
+        private static Dictionary<string, string>[] GetScopes()
+        {
+            if (_scopeArray == null)
+            {
+                var optionsDict = LocalizationManager.GetCategory("options");
+                var commonDict = LocalizationManager.GetCategory("common");
+                var scopes = new List<Dictionary<string, string>>();
+                if (optionsDict != null) scopes.Add(optionsDict);
+                if (commonDict != null) scopes.Add(commonDict);
+                _scopeArray = scopes.ToArray();
+            }
+            return _scopeArray;
+        }
+
+        [HarmonyPatch(nameof(OptionsCategoryControl.Render))]
+        [HarmonyPostfix]
+        static void Render_Postfix(OptionsCategoryControl __instance)
+        {
+            try
+            {
+                if (__instance == null || __instance.data == null) return;
+                if (__instance.title == null) return;
+
+                // 원본 카테고리 이름 가져오기
+                string originalTitle = __instance.data.Title;
+                if (string.IsNullOrEmpty(originalTitle)) return;
+
+                // 번역 시도
+                var scopes = GetScopes();
+                if (scopes == null || scopes.Length == 0) return;
+
+                if (TranslationUtils.TryTranslatePreservingTags(originalTitle, out string translated, scopes))
+                {
+                    // 원본 Render는 "{{C|TITLE}}" 형식으로 설정하므로 동일하게 적용
+                    __instance.title.SetText("{{C|" + translated.ToUpper() + "}}");
+                }
+            }
+            catch (Exception ex)
+            {
+                Debug.LogWarning($"[Qud-KR] OptionsCategoryControl.Render_Postfix 오류: {ex.Message}");
+            }
+        }
+    }
 }
