@@ -1,5 +1,5 @@
 {
-  "generated": "2026-01-19 12:24:20",
+  "generated": "2026-01-19 12:40:27",
   "scripts": {
     "Scripts/99_Utils/99_00_03_StructureTranslator.cs": {
       "classification": "Util",
@@ -413,7 +413,7 @@
     },
     "sync_copilot_instructions.py": {
       "type": "script",
-      "size": 6509
+      "size": 6530
     },
     "project_tool.py": {
       "type": "script",
@@ -450,6 +450,12 @@
   "docs": {
     "README.md": {
       "modified": "2026-01-19"
+    },
+    "01_CORE_PROJECT_INDEX.md": {
+      "modified": "2026-01-19"
+    },
+    "02_CORE_QUICK_REFERENCE.md": {
+      "modified": "2026-01-19"
     }
   },
   "localization": {
@@ -457,7 +463,7 @@
       "categories": [
         "options"
       ],
-      "entries": 362
+      "entries": 374
     },
     "common.json": {
       "categories": [
