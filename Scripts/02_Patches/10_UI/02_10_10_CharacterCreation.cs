@@ -482,7 +482,9 @@ namespace QudKRTranslation.Patches
         {
             if (_koreanFont != null) return _koreanFont;
 
-            var candidates = new List<string>(FontManager.TargetFontNames)
+            var candidates = new List<string> { "AppleGothic" };
+            candidates.AddRange(FontManager.TargetFontNames);
+            candidates.AddRange(new[]
             {
                 "Apple SD Gothic Neo",
                 "AppleSDGothicNeo-Regular",
@@ -490,7 +492,7 @@ namespace QudKRTranslation.Patches
                 "Noto Sans KR",
                 "NanumGothic",
                 "Nanum Gothic"
-            };
+            });
 
             foreach (string fontName in candidates)
             {
@@ -692,19 +694,52 @@ namespace QudKRTranslation.Patches
         {
             if (string.IsNullOrEmpty(line)) return line;
             
-            // BonusSource 형식: "+2 from {{important|Priest of All Moons}} caste"
-            // 패턴: "{+/-N} from {source} [caste/calling/genotype/subtype]"
-            // 주의: source에 Qud 색상 태그가 포함될 수 있음
-            var match = System.Text.RegularExpressions.Regex.Match(
-                line, 
+            // BonusSource format: "+2 from {{important|Priest of All Moons}} caste"
+            // Pattern: "{+/-N} from {source} [caste/calling/genotype/subtype]"
+            // Note: source may include Qud color tags
+            var typedMatch = System.Text.RegularExpressions.Regex.Match(
+                line,
                 @"^([+-]?\d+)\s+from\s+(.+)\s+(caste|calling|genotype|subtype)\s*$",
                 System.Text.RegularExpressions.RegexOptions.IgnoreCase);
-            
-            if (match.Success)
+
+            string bonus;
+            string rawSource;
+            string sourceType = null;
+
+            if (typedMatch.Success)
             {
-                string bonus = match.Groups[1].Value;
-                string rawSource = match.Groups[2].Value.Trim();
-                string sourceType = match.Groups[3].Value?.Trim();
+                bonus = typedMatch.Groups[1].Value;
+                rawSource = typedMatch.Groups[2].Value.Trim();
+                sourceType = typedMatch.Groups[3].Value?.Trim();
+            }
+            else
+            {
+                var basicMatch = System.Text.RegularExpressions.Regex.Match(
+                    line,
+                    @"^([+-]?\d+)\s+from\s+(.+)\s*$",
+                    System.Text.RegularExpressions.RegexOptions.IgnoreCase);
+
+                if (basicMatch.Success)
+                {
+                    bonus = basicMatch.Groups[1].Value;
+                    rawSource = basicMatch.Groups[2].Value.Trim();
+                }
+                else
+                {
+                    var trailingBonusMatch = System.Text.RegularExpressions.Regex.Match(
+                        line,
+                        @"^(.+?)\s+([+-]?\d+)\s*$",
+                        System.Text.RegularExpressions.RegexOptions.IgnoreCase);
+
+                    if (!trailingBonusMatch.Success)
+                    {
+                        return line;
+                    }
+
+                    rawSource = trailingBonusMatch.Groups[1].Value.Trim();
+                    bonus = trailingBonusMatch.Groups[2].Value.Trim();
+                }
+            }
                 
                 // 색상 태그 제거: {{important|Priest of All Moons}} -> Priest of All Moons
                 string source = StripQudTags(rawSource);
@@ -742,9 +777,6 @@ namespace QudKRTranslation.Patches
                 
                 return $"{translatedSource} {bonus}";
             }
-            
-            // 패턴 불일치 시 원문 반환
-            return line;
         }
 
         private static string StripQudTags(string input)

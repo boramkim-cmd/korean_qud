@@ -49,6 +49,20 @@ Point display overlap (`[1점]` with description) is a UI prefab layout issue, c
 
 ---
 
+## [2026-01-19] - Attribute Tooltip BonusSource Fallback
+
+### Summary
+Improved attribute bonus tooltips to handle BonusSource lines without explicit type tokens and prioritized AppleGothic for tooltip fonts on macOS.
+
+### ✅ Changes
+- Added fallback parsing for BonusSource lines that omit `caste/calling/genotype/subtype`.
+- Prioritized AppleGothic in tooltip font selection for Korean glyph coverage.
+
+### Files Modified
+- `Scripts/02_Patches/10_UI/02_10_10_CharacterCreation.cs`
+
+---
+
 ## [2026-01-19] - Chargen Overlay Scope Fix (ERR-015)
 
 ### Summary
