@@ -1,12 +1,29 @@
 # Caves of Qud Korean Localization - Changelog
 
-> **Version**: 3.3 | **Last Updated**: 2026-01-19
+> **Version**: 3.4 | **Last Updated**: 2026-01-19
 
 > [!NOTE]
 > **AI Agent**: This document is for completion records. Read `00_PRINCIPLES.md` first!
 
 Official changelog for all completed work.
 Completed items from `03_TODO.md` are moved here.
+
+---
+
+## [2026-01-19] - Chargen Overlay Scope Fix (ERR-015)
+
+### Summary
+Fixed untranslated "character creation" header in the character creation overlay by ensuring UITextSkin has the proper localization scope.
+
+### ✅ Changes
+- Added scope management for EmbarkBuilder overlay (`BeforeShowWithWindow` push, `Hide` pop)
+- Ensured Back/Next static labels translate under chargen scopes
+
+### Files Modified
+- `Scripts/02_Patches/10_UI/02_10_10_CharacterCreation.cs`
+
+### Related
+- Error Log: `05_ERROR_LOG.md` → ERR-015
 
 ---
 

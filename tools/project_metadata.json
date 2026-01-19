@@ -1,5 +1,5 @@
 {
-  "generated": "2026-01-19 15:03:35",
+  "generated": "2026-01-19 15:15:10",
   "scripts": {
     "Scripts/99_Utils/99_00_03_StructureTranslator.cs": {
       "classification": "Util",
@@ -312,7 +312,9 @@
         "Patch_QudChooseStartingLocationModuleWindow",
         "Patch_QudCustomizeCharacterModuleWindow",
         "Patch_QudBuildSummaryModuleWindow",
-        "Patch_GenericBreadcrumbs"
+        "Patch_GenericBreadcrumbs",
+        "Patch_EmbarkBuilderOverlayWindow_Scope",
+        "Patch_EmbarkBuilderOverlayWindow_Hide"
       ],
       "methods": []
     },

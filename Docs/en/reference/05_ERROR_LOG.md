@@ -1,6 +1,6 @@
 # Caves of Qud Korean Localization - Error/Issue Log
 
-> **Version**: 2.1 | **Last Updated**: 2026-01-19
+> **Version**: 2.2 | **Last Updated**: 2026-01-19
 
 > [!WARNING]
 > **AI Agent**: Check unresolved issues (🔴 OPEN) before starting work!
@@ -49,6 +49,40 @@ This document records errors encountered during development and their solutions.
 | 🟠 **High** | Major feature not working | Translation not showing |
 | 🟡 **Medium** | Partial function issue | Specific screen translation missing |
 | 🟢 **Low** | Minor problem | Typo, style inconsistency |
+
+---
+
+## ERR-015: Chargen Overlay Title Not Translated
+
+### Basic Info
+| Item | Content |
+|------|---------|
+| **Status** | 🟢 RESOLVED |
+| **Severity** | 🟡 Medium |
+| **Discovered** | 2026-01-19 |
+| **Resolved** | 2026-01-19 |
+
+### Symptoms
+1. Character creation header shows "character creation" in English on the attributes screen.
+2. Subtitle (e.g., ":choose attributes:") is translated, but the main header remains English.
+
+### Root Cause Analysis
+UITextSkin translation depends on the current ScopeManager scope.
+Chargen overlay windows did not push a chargen scope, so UITextSkin.Apply did not translate overlay header text.
+
+### ✅ Final Resolution
+1. Added scope management for EmbarkBuilder overlay:
+   - Pushes chargen-related scopes on `EmbarkBuilderOverlayWindow.BeforeShowWithWindow`.
+   - Pops scope on `WindowBase.Hide` when the overlay window is hidden.
+2. Ensured Back/Next static menu labels use chargen scopes.
+
+### Related Files
+- `Scripts/02_Patches/10_UI/02_10_10_CharacterCreation.cs`
+
+### Prevention Guide
+⚠️ **RULE**: Any UI that relies on UITextSkin must push a localization scope before showing.
+1. Add scope management in `BeforeShow`/`Show` hooks for new UI screens.
+2. Always pop scope on hide to avoid scope leakage.
 
 ---
 

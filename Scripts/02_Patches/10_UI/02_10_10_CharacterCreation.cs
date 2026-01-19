@@ -16,6 +16,7 @@ using XRL.CharacterBuilds.Qud.UI;
 using XRL.CharacterBuilds.UI;
 using XRL.UI;
 using XRL.UI.Framework;
+using Qud.UI;
 using QudKRTranslation.Core;
 using QudKRTranslation.Utils;
 
@@ -942,6 +943,65 @@ namespace QudKRTranslation.Patches
         static void Postfix(ref UIBreadcrumb __result)
         {
             ChargenTranslationUtils.TranslateBreadcrumb(__result);
+        }
+    }
+
+    // ========================================================================
+    // [8] Chargen Overlay Scope Management (UITextSkin translation)
+    // ========================================================================
+    [HarmonyPatch(typeof(EmbarkBuilderOverlayWindow))]
+    public static class Patch_EmbarkBuilderOverlayWindow_Scope
+    {
+        internal static bool _scopePushed;
+
+        [HarmonyPatch(nameof(EmbarkBuilderOverlayWindow.BeforeShowWithWindow))]
+        [HarmonyPrefix]
+        static void BeforeShowWithWindow_Prefix()
+        {
+            if (!_scopePushed)
+            {
+                var scopes = new List<Dictionary<string, string>>
+                {
+                    LocalizationManager.GetCategory("chargen_ui"),
+                    LocalizationManager.GetCategory("chargen_proto"),
+                    LocalizationManager.GetCategory("mutation"),
+                    LocalizationManager.GetCategory("skill"),
+                    LocalizationManager.GetCategory("ui"),
+                    LocalizationManager.GetCategory("common")
+                };
+
+                scopes = scopes.Where(s => s != null).ToList();
+                if (scopes.Count > 0)
+                {
+                    ScopeManager.PushScope(scopes.ToArray());
+                    _scopePushed = true;
+                }
+            }
+
+            // Translate static menu options
+            if (LocalizationManager.TryGetAnyTerm("back", out string backText, "chargen_ui", "common", "ui"))
+            {
+                EmbarkBuilderOverlayWindow.BackMenuOption.Description = backText;
+            }
+
+            if (LocalizationManager.TryGetAnyTerm("next", out string nextText, "chargen_ui", "common", "ui"))
+            {
+                EmbarkBuilderOverlayWindow.NextMenuOption.Description = nextText;
+            }
+        }
+    }
+
+    [HarmonyPatch(typeof(WindowBase), nameof(WindowBase.Hide))]
+    public static class Patch_EmbarkBuilderOverlayWindow_Hide
+    {
+        [HarmonyPostfix]
+        static void Hide_Postfix(WindowBase __instance)
+        {
+            if (__instance is EmbarkBuilderOverlayWindow && Patch_EmbarkBuilderOverlayWindow_Scope._scopePushed)
+            {
+                ScopeManager.PopScope();
+                Patch_EmbarkBuilderOverlayWindow_Scope._scopePushed = false;
+            }
         }
     }
 }
