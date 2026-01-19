@@ -27,12 +27,13 @@
 
 | Date | Description | Priority | Category | File |
 |------|-------------|----------|----------|------|
-| 2026-01-19 | Options Panel Left Side & Partial Translation | High | UI | [WIP_ISSUE_20260119_OPTIONS_PANEL_TRANSLATION.md](WIP_ISSUE_20260119_OPTIONS_PANEL_TRANSLATION.md) |
+| - | - | - | - | - |
 
 ## Resolved Issues
 
 | Date | Description | Priority | Category | File |
 |------|-------------|----------|----------|------|
+| 2026-01-19 | Options Panel Translation (Root Fix) | High | UI | [CLEAR_ISSUE_20260119_OPTIONS_PANEL_TRANSLATION.md](CLEAR_ISSUE_20260119_OPTIONS_PANEL_TRANSLATION.md) |
 | 2026-01-19 | Code Analysis 16 Fixes | High | Bug | [CLEAR_ISSUE_20260119_CODE_ANALYSIS_16_FIXES.md](CLEAR_ISSUE_20260119_CODE_ANALYSIS_16_FIXES.md) |
 
 ## Blocked Issues
@@ -74,10 +75,10 @@ bash tools/list-issues.sh blocked   # Blocked only
 |--------|-------|
 | 🟡 Active | 0 |
 | 🟡 WIP | 0 |
-| 🟢 Resolved | 1 |
+| 🟢 Resolved | 2 |
 | 🔴 Blocked | 0 |
 | ⚫ Deprecated | 0 |
-| **Total** | **1** |
+| **Total** | **2** |
 
 ---
 
