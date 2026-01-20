@@ -198,6 +198,14 @@ namespace QudKRTranslation.Core
                         Debug.Log($"[Qud-KR] Inserted '{_koreanTMPFont.name}' into TMP_Settings.fallbackFontAssets.");
                     }
 
+                    // 0. Set as Default Font Asset (User Request)
+                    // This ensures any text without a specific font assigned uses this one
+                    if (TMP_Settings.defaultFontAsset != _koreanTMPFont)
+                    {
+                        Debug.Log($"[Qud-KR] Changing default font from '{TMP_Settings.defaultFontAsset?.name}' to '{_koreanTMPFont.name}'");
+                        TMP_Settings.defaultFontAsset = _koreanTMPFont;
+                    }
+
                     // Add as fallback to all existing TMP font assets
                     // AND add existing fonts as fallback to Korean font (Bi-directional)
                     if (_koreanTMPFont.fallbackFontAssetTable == null)
