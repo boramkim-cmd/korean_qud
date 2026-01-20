@@ -310,9 +310,9 @@ namespace QudKRTranslation.Patches
         private static void EnsureFontFallback(TMP_Text tmp)
         {
             if (tmp == null) return;
-            if (!QudKREngine.IsFontLoaded) return;
+            if (!FontManager.IsFontLoaded) return;
             
-            var koreanFont = QudKREngine.GetKoreanFont();
+            var koreanFont = FontManager.GetKoreanFont();
             if (koreanFont == null) return;
             
             // 현재 폰트에 한글 fallback이 없으면 추가
