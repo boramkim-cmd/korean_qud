@@ -174,18 +174,7 @@ namespace QudKRTranslation.Core
                     }
 
                     // Force refresh of existing TMP components so fallback takes effect immediately
-                    var allTMPTexts = Resources.FindObjectsOfTypeAll<TMPro.TextMeshProUGUI>();
-                    foreach (var txt in allTMPTexts)
-                    {
-                        if (txt == null) continue;
-                        try
-                        {
-                            // reassign font to trigger internal updates
-                            txt.font = txt.font;
-                            txt.SetAllDirty();
-                        }
-                        catch { }
-                    }
+                    ApplyFallbackToAllTMPComponents();
 
                     IsFontLoaded = true;
                     Debug.Log("[Qud-KR] Korean font successfully loaded and applied.");
@@ -212,6 +201,54 @@ namespace QudKRTranslation.Core
             }
 
             Debug.Log($"[Qud-KR] Font diagnostic complete. (총 TMP 폰트: {fontIdx})");
+        }
+
+        // Apply fallback to a single TMP text component
+        public static void ApplyFallbackToTMPComponent(TMPro.TMP_Text txt)
+        {
+            if (txt == null) return;
+            var k = _koreanTMPFont;
+            if (k == null) return;
+
+            try
+            {
+                var fontAsset = txt.font;
+                if (fontAsset != null)
+                {
+                    if (fontAsset.fallbackFontAssetTable == null)
+                        fontAsset.fallbackFontAssetTable = new System.Collections.Generic.List<TMP_FontAsset>();
+                    if (!fontAsset.fallbackFontAssetTable.Contains(k))
+                        fontAsset.fallbackFontAssetTable.Add(k);
+                }
+                else
+                {
+                    txt.font = k;
+                }
+
+                // Trigger internal refresh
+                txt.font = txt.font;
+                txt.SetAllDirty();
+            }
+            catch (Exception ex)
+            {
+                Debug.LogWarning($"[Qud-KR] ApplyFallbackToTMPComponent exception: {ex.Message}");
+            }
+        }
+
+        // Apply fallback to all TMP components currently loaded
+        public static void ApplyFallbackToAllTMPComponents()
+        {
+            var uguis = Resources.FindObjectsOfTypeAll<TMPro.TextMeshProUGUI>();
+            foreach (var t in uguis)
+            {
+                ApplyFallbackToTMPComponent(t);
+            }
+
+            var texts = Resources.FindObjectsOfTypeAll<TMPro.TextMeshPro>();
+            foreach (var t in texts)
+            {
+                ApplyFallbackToTMPComponent(t);
+            }
         }
         
         public static TMP_FontAsset GetKoreanTMPFont()
@@ -306,6 +343,35 @@ namespace QudKRTranslation.Core
                 string content = __result.Substring(8).TrimEnd('.');
                 __result = KoreanTextHelper.ResolveJosa(content + "{을/를} 본다.");
             }
+        }
+    }
+
+    // =================================================================
+    // 4. TextMeshPro 글로벌 폰트 적용 패치
+    // =================================================================
+    [HarmonyPatch(typeof(TMPro.TextMeshProUGUI), "OnEnable")]
+    public static class TMPUGUIOnEnablePatch
+    {
+        static void Postfix(TMPro.TextMeshProUGUI __instance)
+        {
+            try
+            {
+                QudKRTranslation.Core.FontManager.ApplyFallbackToTMPComponent(__instance);
+            }
+            catch { }
+        }
+    }
+
+    [HarmonyPatch(typeof(TMPro.TextMeshPro), "OnEnable")]
+    public static class TMPOnEnablePatch
+    {
+        static void Postfix(TMPro.TextMeshPro __instance)
+        {
+            try
+            {
+                QudKRTranslation.Core.FontManager.ApplyFallbackToTMPComponent(__instance);
+            }
+            catch { }
         }
     }
 
