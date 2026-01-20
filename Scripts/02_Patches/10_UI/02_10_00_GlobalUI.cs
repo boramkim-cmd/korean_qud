@@ -325,6 +325,8 @@ namespace QudKRTranslation.Patches
                 if (!currentFont.fallbackFontAssetTable.Contains(koreanFont))
                 {
                     currentFont.fallbackFontAssetTable.Insert(0, koreanFont);
+                    // 새로 추가되었을 때만 dirty 플래그 설정
+                    tmp.SetAllDirty();
                 }
             }
         }
