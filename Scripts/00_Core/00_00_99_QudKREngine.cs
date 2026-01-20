@@ -231,7 +231,62 @@ namespace QudKRTranslation.Core
 
                     IsFontLoaded = true;
                     Debug.Log("[Qud-KR] Korean font successfully loaded and applied (Bi-directional fallback).");
-                    
+
+                    // --- 진단 로그: 로드된 폰트 글리프 커버리지 확인 ---
+                    try
+                    {
+                        var kf = _koreanTMPFont;
+                        if (kf != null)
+                        {
+                            bool hasKorean = false, hasA = false, has0 = false, hasBang = false;
+                            try { hasKorean = kf.HasCharacter('가'); } catch { }
+                            try { hasA = kf.HasCharacter('A'); } catch { }
+                            try { has0 = kf.HasCharacter('0'); } catch { }
+                            try { hasBang = kf.HasCharacter('!'); } catch { }
+
+                            Debug.Log($"[Qud-KR][Diag] Loaded TMP_FontAsset: '{kf.name}' (가: {hasKorean}, A: {hasA}, 0: {has0}, !: {hasBang})");
+                        }
+
+                        // TMP_Settings.fallbackFontAssets 상태 출력
+                        if (TMP_Settings.fallbackFontAssets != null)
+                        {
+                            int idx = 0;
+                            foreach (var fb in TMP_Settings.fallbackFontAssets)
+                            {
+                                if (fb == null) continue;
+                                bool hasK = false;
+                                try { hasK = fb.HasCharacter('가'); } catch { }
+                                Debug.Log($"[Qud-KR][Diag][Fallback] #{idx}: '{fb.name}' (가: {hasK})");
+                                idx++;
+                            }
+                        }
+
+                        // Legacy UnityEngine.UI.Text 검사
+                        try
+                        {
+                            var legacyTexts = Resources.FindObjectsOfTypeAll<UnityEngine.UI.Text>();
+                            int totalLegacy = legacyTexts?.Length ?? 0;
+                            int missingKorean = 0;
+                            foreach (var lt in legacyTexts)
+                            {
+                                try
+                                {
+                                    if (lt?.font == null || !lt.font.HasCharacter('가')) missingKorean++;
+                                }
+                                catch { missingKorean++; }
+                            }
+                            Debug.Log($"[Qud-KR][Diag] Legacy UnityEngine.UI.Text total: {totalLegacy}, missing Korean glyphs: {missingKorean}");
+                        }
+                        catch (Exception ex)
+                        {
+                            Debug.LogWarning($"[Qud-KR][Diag] Failed to scan legacy Text components: {ex.Message}");
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        Debug.LogWarning($"[Qud-KR][Diag] Font diagnostics exception: {ex.Message}");
+                    }
+
                     // 메인 메뉴 텍스트 번역 시도
                     MainMenu_Show_Patch.TranslateMainMenuOptions();
                 }

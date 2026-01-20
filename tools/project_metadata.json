@@ -1,5 +1,5 @@
 {
-  "generated": "2026-01-20 16:13:29",
+  "generated": "2026-01-20 18:43:09",
   "scripts": {
     "Scripts/99_Utils/99_00_03_StructureTranslator.cs": {
       "classification": "Util",
@@ -245,11 +245,18 @@
       "classes": [
         "FontManager",
         "UILoadPatch",
+        "MainMenu_Show_Patch",
+        "XRLCore_Start_Patch",
+        "TextMeshProUGUI_OnEnable_Patch",
+        "TextMeshPro_OnEnable_Patch",
+        "TextMeshProUGUI_Awake_Patch",
         "MessageLogPatch",
         "ArticleKillerPatch",
         "PluralizeKillerPatch",
         "NameOrderPatch",
         "DescriptionPatch",
+        "TMPUGUIOnEnablePatch",
+        "TMPOnEnablePatch",
         "KoreanTextHelper"
       ],
       "methods": [
@@ -259,8 +266,23 @@
           "params": ""
         },
         {
+          "name": "ApplyFallbackToTMPComponent",
+          "return": "void",
+          "params": "TMPro.TMP_Text txt"
+        },
+        {
+          "name": "ApplyFallbackToAllTMPComponents",
+          "return": "void",
+          "params": ""
+        },
+        {
           "name": "GetKoreanTMPFont",
           "return": "TMP_FontAsset",
+          "params": ""
+        },
+        {
+          "name": "TranslateMainMenuOptions",
+          "return": "void",
           "params": ""
         },
         {
@@ -469,10 +491,10 @@
       "modified": "2026-01-19"
     },
     "01_CORE_PROJECT_INDEX.md": {
-      "modified": "2026-01-19"
+      "modified": "2026-01-20"
     },
     "02_CORE_QUICK_REFERENCE.md": {
-      "modified": "2026-01-19"
+      "modified": "2026-01-20"
     }
   },
   "localization": {
