@@ -199,20 +199,30 @@ namespace QudKRTranslation.Core
                     }
 
                     // Add as fallback to all existing TMP font assets
+                    // AND add existing fonts as fallback to Korean font (Bi-directional)
+                    if (_koreanTMPFont.fallbackFontAssetTable == null)
+                        _koreanTMPFont.fallbackFontAssetTable = new System.Collections.Generic.List<TMP_FontAsset>();
+
                     foreach (var fontAsset in allTMPFonts)
                     {
                         if (fontAsset == null || fontAsset == _koreanTMPFont) continue;
+                        
+                        // 1. Existing -> Korean
                         if (fontAsset.fallbackFontAssetTable == null)
                             fontAsset.fallbackFontAssetTable = new System.Collections.Generic.List<TMP_FontAsset>();
                         if (!fontAsset.fallbackFontAssetTable.Contains(_koreanTMPFont))
                             fontAsset.fallbackFontAssetTable.Add(_koreanTMPFont);
+
+                        // 2. Korean -> Existing (for English chars in Korean font context)
+                        if (!_koreanTMPFont.fallbackFontAssetTable.Contains(fontAsset))
+                            _koreanTMPFont.fallbackFontAssetTable.Add(fontAsset);
                     }
 
                     // Force refresh of existing TMP components so fallback takes effect immediately
                     ApplyFallbackToAllTMPComponents();
 
                     IsFontLoaded = true;
-                    Debug.Log("[Qud-KR] Korean font successfully loaded and applied.");
+                    Debug.Log("[Qud-KR] Korean font successfully loaded and applied (Bi-directional fallback).");
                     
                     // 메인 메뉴 텍스트 번역 시도
                     MainMenu_Show_Patch.TranslateMainMenuOptions();
@@ -331,8 +341,32 @@ namespace QudKRTranslation.Core
             if (!FontManager.IsFontLoaded)
                 FontManager.ApplyKoreanFont();
             
-            // 메인 메뉴 컴포넌트들에 폰트 적용
+            // 메인 메뉴 컴포넌트들에 폰트 적용 (모든 컴포넌트 대상)
             FontManager.ApplyFallbackToAllTMPComponents();
+
+            // 메인 메뉴 Scroller 아이템 폰트 강제 교체 (Material 문제 회피용)
+            if (FontManager.IsFontLoaded && Qud.UI.MainMenu.instance != null)
+            {
+                ApplyFontToScroller(Qud.UI.MainMenu.instance.leftScroller);
+                ApplyFontToScroller(Qud.UI.MainMenu.instance.rightScroller);
+            }
+        }
+
+        static void ApplyFontToScroller(XRL.UI.Framework.FrameworkScroller scroller)
+        {
+            if (scroller == null || scroller.childRoot == null) return;
+            
+            var tmps = scroller.childRoot.GetComponentsInChildren<TMPro.TextMeshProUGUI>(true);
+            var krFont = FontManager.GetKoreanTMPFont();
+            if (krFont == null) return;
+
+            foreach (var tmp in tmps)
+            {
+                // 폰트 강제 교체
+                tmp.font = krFont;
+                tmp.SetAllDirty();
+            }
+            Debug.Log($"[Qud-KR] Forced Korean font on {tmps.Length} items in scroller.");
         }
 
         public static void TranslateMainMenuOptions()
