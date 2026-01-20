@@ -245,6 +245,20 @@ namespace QudKRTranslation.Core
                             try { hasBang = kf.HasCharacter('!'); } catch { }
 
                             Debug.Log($"[Qud-KR][Diag] Loaded TMP_FontAsset: '{kf.name}' (가: {hasKorean}, A: {hasA}, 0: {has0}, !: {hasBang})");
+                            
+                            // Extended lowercase test for "character creation" issue
+                            string testChars = "characterion";
+                            var missing = new System.Collections.Generic.List<char>();
+                            foreach (char c in testChars)
+                            {
+                                bool has = false;
+                                try { has = kf.HasCharacter(c); } catch { }
+                                if (!has) missing.Add(c);
+                            }
+                            if (missing.Count > 0)
+                                Debug.LogWarning($"[Qud-KR][Diag] MISSING lowercase glyphs in font: [{string.Join(", ", missing)}]");
+                            else
+                                Debug.Log($"[Qud-KR][Diag] All lowercase glyphs for 'character creation' present in font.");
                         }
 
                         // TMP_Settings.fallbackFontAssets 상태 출력
