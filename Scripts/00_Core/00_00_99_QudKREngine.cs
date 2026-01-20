@@ -307,10 +307,21 @@ namespace QudKRTranslation.Core
 
     // 모든 TMP 컴포넌트가 활성화될 때 한글 폰트 fallback 적용
     // 메인 메뉴, 동적 생성 UI 등 모든 영역에 적용됨
-    [HarmonyPatch(typeof(TMPro.TMP_Text), "OnEnable")]
-    public static class TMP_Text_OnEnable_Patch
+    [HarmonyPatch(typeof(TMPro.TextMeshProUGUI), "OnEnable")]
+    public static class TextMeshProUGUI_OnEnable_Patch
     {
-        static void Postfix(TMPro.TMP_Text __instance)
+        static void Postfix(TMPro.TextMeshProUGUI __instance)
+        {
+            if (!FontManager.IsFontLoaded) return;
+            FontManager.ApplyFallbackToTMPComponent(__instance);
+        }
+    }
+
+    // TextMeshPro (3D) 패치도 추가
+    [HarmonyPatch(typeof(TMPro.TextMeshPro), "OnEnable")]
+    public static class TextMeshPro_OnEnable_Patch
+    {
+        static void Postfix(TMPro.TextMeshPro __instance)
         {
             if (!FontManager.IsFontLoaded) return;
             FontManager.ApplyFallbackToTMPComponent(__instance);
