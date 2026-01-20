@@ -334,21 +334,55 @@ namespace QudKRTranslation.Core
             TranslateMainMenuOptions();
         }
 
-        // 2. 메뉴 표시 후: 폰트 적용 (UI가 생성된 상태)
+        // 2. 메뉴 표시 후: 폰트 적용 및 이벤트 등록
         static void Postfix()
         {
             // 폰트가 로드되지 않았으면 로드 시도
             if (!FontManager.IsFontLoaded)
                 FontManager.ApplyKoreanFont();
             
-            // 메인 메뉴 컴포넌트들에 폰트 적용 (모든 컴포넌트 대상)
+            // 전역 Fallback 적용
             FontManager.ApplyFallbackToAllTMPComponents();
 
-            // 메인 메뉴 Scroller 아이템 폰트 강제 교체 (Material 문제 회피용)
+            // 메인 메뉴 Scroller 아이템 폰트 강제 적용 (이벤트 훅)
             if (FontManager.IsFontLoaded && Qud.UI.MainMenu.instance != null)
             {
-                ApplyFontToScroller(Qud.UI.MainMenu.instance.leftScroller);
-                ApplyFontToScroller(Qud.UI.MainMenu.instance.rightScroller);
+                var menu = Qud.UI.MainMenu.instance;
+                RegisterFontHook(menu.leftScroller);
+                RegisterFontHook(menu.rightScroller);
+                
+                // 이미 생성된 아이템들에 대해서도 즉시 적용
+                ApplyFontToScroller(menu.leftScroller);
+                ApplyFontToScroller(menu.rightScroller);
+            }
+        }
+
+        static void RegisterFontHook(XRL.UI.Framework.FrameworkScroller scroller)
+        {
+            if (scroller == null) return;
+            
+            // 기존 리스너 제거 (중복 방지)
+            scroller.PostSetup.RemoveListener(OnPostSetup);
+            // 새 리스너 등록
+            scroller.PostSetup.AddListener(OnPostSetup);
+            Debug.Log("[Qud-KR] Registered PostSetup hook for scroller.");
+        }
+
+        static void OnPostSetup(XRL.UI.Framework.FrameworkUnityScrollChild child, XRL.UI.Framework.ScrollChildContext context, XRL.UI.Framework.FrameworkDataElement data, int index)
+        {
+            if (child == null) return;
+            var tmps = child.GetComponentsInChildren<TMPro.TextMeshProUGUI>(true);
+            var krFont = FontManager.GetKoreanTMPFont();
+            if (krFont == null) return;
+
+            foreach (var tmp in tmps)
+            {
+                // 폰트 강제 교체
+                if (tmp.font != krFont)
+                {
+                    tmp.font = krFont;
+                    tmp.SetAllDirty();
+                }
             }
         }
 
@@ -362,11 +396,9 @@ namespace QudKRTranslation.Core
 
             foreach (var tmp in tmps)
             {
-                // 폰트 강제 교체
                 tmp.font = krFont;
                 tmp.SetAllDirty();
             }
-            Debug.Log($"[Qud-KR] Forced Korean font on {tmps.Length} items in scroller.");
         }
 
         public static void TranslateMainMenuOptions()
