@@ -260,6 +260,7 @@ namespace QudKRTranslation.Core
         }
 
         // Apply fallback to a single TMP text component
+        // MODIFIED: Force replace font if it's one of the standard text fonts
         public static void ApplyFallbackToTMPComponent(TMPro.TMP_Text txt)
         {
             if (txt == null) return;
@@ -268,22 +269,57 @@ namespace QudKRTranslation.Core
 
             try
             {
-                var fontAsset = txt.font;
-                if (fontAsset != null)
+                var currentFont = txt.font;
+                
+                // 1. If no font is assigned, use Korean font
+                if (currentFont == null)
                 {
-                    if (fontAsset.fallbackFontAssetTable == null)
-                        fontAsset.fallbackFontAssetTable = new System.Collections.Generic.List<TMP_FontAsset>();
-                    if (!fontAsset.fallbackFontAssetTable.Contains(k))
-                        fontAsset.fallbackFontAssetTable.Add(k);
+                    txt.font = k;
+                    txt.SetAllDirty();
+                    return;
+                }
+
+                // 2. Check if current font is one of the target fonts to replace
+                // (Replacing standard fonts with Cafe24, but keeping icon fonts)
+                bool shouldReplace = false;
+                
+                // Check exact match with target names
+                foreach (var target in TargetFontNames)
+                {
+                    if (currentFont.name.StartsWith(target, StringComparison.OrdinalIgnoreCase))
+                    {
+                        shouldReplace = true;
+                        break;
+                    }
+                }
+                
+                // Also check for standard Unity fonts or likely text fonts
+                if (!shouldReplace)
+                {
+                    string fname = currentFont.name.ToLower();
+                    if (fname.Contains("liberation") || fname.Contains("sourcecodepro") || fname.Contains("arial") || fname.Contains("fallout"))
+                    {
+                        shouldReplace = true;
+                    }
+                }
+
+                if (shouldReplace)
+                {
+                    if (txt.font != k)
+                    {
+                        txt.font = k;
+                        txt.SetAllDirty();
+                    }
                 }
                 else
                 {
-                    txt.font = k;
+                    // For non-replaced fonts (likely icons), still add fallback just in case
+                    if (currentFont.fallbackFontAssetTable == null)
+                        currentFont.fallbackFontAssetTable = new System.Collections.Generic.List<TMP_FontAsset>();
+                    
+                    if (!currentFont.fallbackFontAssetTable.Contains(k))
+                        currentFont.fallbackFontAssetTable.Insert(0, k);
                 }
-
-                // Trigger internal refresh
-                txt.font = txt.font;
-                txt.SetAllDirty();
             }
             catch (Exception ex)
             {
