@@ -87,13 +87,22 @@ namespace QudKRTranslation.Patches
         {
             if (string.IsNullOrEmpty(message)) return;
             
+            // Ensure localization is loaded
+            LocalizationManager.Initialize();
+            
+            string originalMessage = message;
             string key = message.Trim().TrimEnd('.').ToLowerInvariant();
+            
+            Debug.Log($"[Qud-KR WorldGen] _AddMessage called with: '{originalMessage}', key='{key}'");
+            
             if (LocalizationManager.TryGetAnyTerm(key, out string translated, "worldgen", "ui"))
             {
                 message = translated;
-                #if DEBUG
                 Debug.Log($"[Qud-KR WorldGen] Translated: '{key}' -> '{translated}'");
-                #endif
+            }
+            else
+            {
+                Debug.Log($"[Qud-KR WorldGen] No translation found for key: '{key}'");
             }
         }
     }
@@ -204,10 +213,17 @@ namespace QudKRTranslation.Patches
         {
             if (string.IsNullOrEmpty(Text)) return;
             
+            LocalizationManager.Initialize();
+            
+            string originalText = Text;
             string key = Text.Trim().TrimEnd('.').ToLowerInvariant();
+            
+            Debug.Log($"[Qud-KR WorldGen] NextStep called with: '{originalText}', key='{key}'");
+            
             if (LocalizationManager.TryGetAnyTerm(key, out string translated, "worldgen", "ui"))
             {
                 Text = translated;
+                Debug.Log($"[Qud-KR WorldGen] NextStep translated: '{key}' -> '{translated}'");
             }
         }
     }
@@ -230,10 +246,17 @@ namespace QudKRTranslation.Patches
         {
             if (string.IsNullOrEmpty(StepText) || StepText.Trim().Length == 0) return;
             
+            LocalizationManager.Initialize();
+            
+            string originalText = StepText;
             string key = StepText.Trim().TrimEnd('.').ToLowerInvariant();
+            
+            Debug.Log($"[Qud-KR WorldGen] StepProgress called with: '{originalText}', key='{key}'");
+            
             if (LocalizationManager.TryGetAnyTerm(key, out string translated, "worldgen", "ui"))
             {
                 StepText = translated;
+                Debug.Log($"[Qud-KR WorldGen] StepProgress translated: '{key}' -> '{translated}'");
             }
         }
     }
