@@ -274,16 +274,22 @@ namespace QudKRTranslation.Core
         public static void ApplyFallbackToAllTMPComponents()
         {
             var uguis = Resources.FindObjectsOfTypeAll<TMPro.TextMeshProUGUI>();
+            int uiCount = 0;
             foreach (var t in uguis)
             {
                 ApplyFallbackToTMPComponent(t);
+                uiCount++;
             }
 
             var texts = Resources.FindObjectsOfTypeAll<TMPro.TextMeshPro>();
+            int textCount = 0;
             foreach (var t in texts)
             {
                 ApplyFallbackToTMPComponent(t);
+                textCount++;
             }
+            
+            Debug.Log($"[Qud-KR] Applied fallback to {uiCount} UGUIs and {textCount} 3D TMPs.");
         }
         
         public static TMP_FontAsset GetKoreanTMPFont()
@@ -302,6 +308,35 @@ namespace QudKRTranslation.Core
         static void Postfix()
         {
             FontManager.ApplyKoreanFont();
+        }
+    }
+
+    // 메인 메뉴 표시 시 강제 적용
+    [HarmonyPatch(typeof(Qud.UI.MainMenu), "Show")]
+    public static class MainMenu_Show_Patch
+    {
+        static void Postfix()
+        {
+            // 폰트가 로드되지 않았으면 로드 시도
+            if (!FontManager.IsFontLoaded)
+            {
+                FontManager.ApplyKoreanFont();
+            }
+            // 이미 로드되었어도 메인 메뉴 컴포넌트들에 적용
+            FontManager.ApplyFallbackToAllTMPComponents();
+        }
+    }
+
+    // 게임 코어 시작 시 폰트 로드 시도 (가장 빠른 시점)
+    [HarmonyPatch(typeof(XRL.Core.XRLCore), "Start")]
+    public static class XRLCore_Start_Patch
+    {
+        static void Postfix()
+        {
+            if (!FontManager.IsFontLoaded)
+            {
+                FontManager.ApplyKoreanFont();
+            }
         }
     }
 
