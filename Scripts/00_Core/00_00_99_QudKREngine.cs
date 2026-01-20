@@ -818,4 +818,5 @@ namespace QudKRTranslation.Core
                 str = sb.ToString();
                 offset = idx + replacement.Length;
             }
-        }
+        }    }
+}
