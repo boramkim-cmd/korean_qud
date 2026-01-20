@@ -351,7 +351,7 @@ namespace QudKRTranslation.Core
 
         // Apply fallback to a single TMP text component
         // MODIFIED: Force replace font if it's one of the standard text fonts
-        public static void ApplyFallbackToTMPComponent(TMPro.TMP_Text txt)
+        public static void ApplyFallbackToTMPComponent(TMPro.TMP_Text txt, bool forceLog = false)
         {
             if (txt == null) return;
             var k = _koreanTMPFont;
@@ -366,6 +366,8 @@ namespace QudKRTranslation.Core
                 {
                     txt.font = k;
                     txt.SetAllDirty();
+                    txt.ForceMeshUpdate();
+                    if (forceLog) Debug.Log($"[Qud-KR][FontApply] Set Korean font on {txt.gameObject.name}");
                     return;
                 }
 
@@ -390,6 +392,8 @@ namespace QudKRTranslation.Core
                     {
                         txt.font = k;
                         txt.SetAllDirty();
+                        txt.ForceMeshUpdate();
+                        if (forceLog) Debug.Log($"[Qud-KR][FontApply] {fname} -> {k.name} on {txt.gameObject.name}");
                     }
                 }
                 else
@@ -815,5 +819,3 @@ namespace QudKRTranslation.Core
                 offset = idx + replacement.Length;
             }
         }
-    }
-}

@@ -1,6 +1,6 @@
 # 📚 프로젝트 완전 인덱스 (자동 생성)
 
-**생성**: 2026-01-20 18:43:09
+**생성**: 2026-01-20 20:31:10
 
 이 문서는 프로젝트의 모든 파일과 메서드 시그니처를 포함합니다. **새로운 기능을 만들기 전, 반드시 여기서 기존 메서드를 검색하십시오.**
 
@@ -73,7 +73,7 @@
 - **공개 메서드 (Public Methods)**:
   ```csharp
   void ApplyKoreanFont()
-  void ApplyFallbackToTMPComponent(TMPro.TMP_Text txt)
+  void ApplyFallbackToTMPComponent(TMPro.TMP_Text txt, bool forceLog = false)
   void ApplyFallbackToAllTMPComponents()
   TMP_FontAsset GetKoreanTMPFont()
   void TranslateMainMenuOptions()

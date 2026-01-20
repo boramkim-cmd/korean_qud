@@ -483,7 +483,7 @@ namespace QudKRTranslation.Patches
             var koreanFont = FontManager.GetKoreanTMPFont();
             if (koreanFont == null) 
             {
-                Debug.Log("[Qud-KR] ApplyTooltipFont: Korean font not loaded yet.");
+                Debug.LogWarning("[Qud-KR][Tooltip] Korean font not loaded yet.");
                 return;
             }
             
@@ -493,7 +493,7 @@ namespace QudKRTranslation.Patches
                 var tooltip = tooltipTrigger.Tooltip;
                 if (tooltip == null || tooltip.GameObject == null) 
                 {
-                    Debug.Log("[Qud-KR] ApplyTooltipFont: Tooltip or GameObject is null.");
+                    Debug.LogWarning("[Qud-KR][Tooltip] Tooltip or GameObject is null.");
                     return;
                 }
                 
@@ -507,23 +507,10 @@ namespace QudKRTranslation.Patches
                         if (tmpField?.Text == null) continue;
                         
                         var tmp = tmpField.Text;
-                        if (tmp.font != null)
-                        {
-                            if (tmp.font.fallbackFontAssetTable == null)
-                                tmp.font.fallbackFontAssetTable = new System.Collections.Generic.List<TMPro.TMP_FontAsset>();
-                            if (!tmp.font.fallbackFontAssetTable.Contains(koreanFont))
-                            {
-                                tmp.font.fallbackFontAssetTable.Insert(0, koreanFont);
-                                applied++;
-                            }
-                        }
-                        else
-                        {
-                            tmp.font = koreanFont;
-                            applied++;
-                        }
+                        tmp.font = koreanFont;  // FORCE REPLACE
                         tmp.SetAllDirty();
                         tmp.ForceMeshUpdate();
+                        applied++;
                     }
                 }
                 
@@ -532,31 +519,17 @@ namespace QudKRTranslation.Patches
                 foreach (var tmp in allTmps)
                 {
                     if (tmp == null) continue;
-                    
-                    if (tmp.font != null)
-                    {
-                        if (tmp.font.fallbackFontAssetTable == null)
-                            tmp.font.fallbackFontAssetTable = new System.Collections.Generic.List<TMPro.TMP_FontAsset>();
-                        if (!tmp.font.fallbackFontAssetTable.Contains(koreanFont))
-                        {
-                            tmp.font.fallbackFontAssetTable.Insert(0, koreanFont);
-                            applied++;
-                        }
-                    }
-                    else
-                    {
-                        tmp.font = koreanFont;
-                        applied++;
-                    }
+                    tmp.font = koreanFont;  // FORCE REPLACE
                     tmp.SetAllDirty();
                     tmp.ForceMeshUpdate();
+                    applied++;
                 }
                 
-                Debug.Log($"[Qud-KR] ApplyTooltipFont: Applied Korean font to {applied} TMP components.");
+                Debug.Log($"[Qud-KR][Tooltip] Applied Korean font to {applied} TMP components.");
             }
             catch (System.Exception ex)
             {
-                Debug.LogWarning($"[Qud-KR] ApplyTooltipFont error: {ex.Message}");
+                Debug.LogWarning($"[Qud-KR][Tooltip] Error: {ex.Message}");
             }
         }
 
@@ -586,7 +559,7 @@ namespace QudKRTranslation.Patches
             if (isDisplayed)
             {
                 // Apply Korean font to tooltip TMP components
-                Debug.Log("[Qud-KR] AttributeSelection tooltip displayed; applying tooltip font and text.");
+                Debug.Log($"[Qud-KR][AttributeUpdate] Tooltip displayed for {__instance.data.Attribute}, applying font...");
                 ApplyTooltipFont(__instance.tooltip);
                 
                 // Apply translated text
@@ -836,6 +809,25 @@ namespace QudKRTranslation.Patches
     [HarmonyPatch(typeof(QudAttributesModuleWindow))]
     public static class Patch_QudAttributesModuleWindow
     {
+        [HarmonyPatch(nameof(QudAttributesModuleWindow.Show))]
+        [HarmonyPostfix]
+        static void Show_Postfix(QudAttributesModuleWindow __instance)
+        {
+            // Force apply Korean font to ALL TMP components in attributes screen
+            Debug.Log("[Qud-KR][AttributesWindow] Show called, applying fonts to all TMP components...");
+            FontManager.ApplyKoreanFont();
+            
+            var allTmps = __instance.GetComponentsInChildren<TMPro.TextMeshProUGUI>(true);
+            int applied = 0;
+            foreach (var tmp in allTmps)
+            {
+                if (tmp == null) continue;
+                FontManager.ApplyFallbackToTMPComponent(tmp, forceLog: false);
+                applied++;
+            }
+            Debug.Log($"[Qud-KR][AttributesWindow] Applied Korean font to {applied} TMP components");
+        }
+        
         [HarmonyPatch(nameof(QudAttributesModuleWindow.UpdateControls))]
         [HarmonyPostfix]
         static void UpdateControls_Postfix(QudAttributesModuleWindow __instance)
