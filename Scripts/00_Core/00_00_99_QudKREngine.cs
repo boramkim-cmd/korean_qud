@@ -388,9 +388,6 @@ namespace QudKRTranslation.Core
 
             try
             {
-                // 비활성 또는 파괴된 오브젝트는 스킵
-                if (txt.gameObject == null || !txt.gameObject.activeInHierarchy) return;
-                
                 var currentFont = txt.font;
                 
                 // 아이콘/심볼 폰트는 교체하지 않음
@@ -417,13 +414,11 @@ namespace QudKRTranslation.Core
                 if (txt.font != k)
                 {
                     txt.font = k;
-                    if (forceLog) Debug.Log($"[Qud-KR][FontApply] {currentFont?.name ?? "null"} -> {k.name} on {txt.gameObject.name}");
                 }
             }
-            catch (Exception ex)
+            catch
             {
-                // 크래시 방지: 예외 발생 시 조용히 무시
-                if (forceLog) Debug.LogWarning($"[Qud-KR] ApplyFallbackToTMPComponent exception: {ex.Message}");
+                // 크래시 방지: 모든 예외 무시
             }
         }
 
