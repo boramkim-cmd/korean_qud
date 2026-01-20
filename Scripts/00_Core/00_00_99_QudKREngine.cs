@@ -414,11 +414,14 @@ namespace QudKRTranslation.Core
                 if (txt.font != k)
                 {
                     txt.font = k;
+                    txt.SetAllDirty();
+                    txt.ForceMeshUpdate();
+                    if (forceLog) Debug.Log($"[Qud-KR][FontApply] {currentFont?.name ?? "null"} -> {k.name} on {txt.gameObject.name}");
                 }
             }
-            catch
+            catch (Exception ex)
             {
-                // 크래시 방지: 모든 예외 무시
+                Debug.LogWarning($"[Qud-KR] ApplyFallbackToTMPComponent exception: {ex.Message}");
             }
         }
 
