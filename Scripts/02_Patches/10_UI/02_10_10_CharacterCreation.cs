@@ -1234,6 +1234,9 @@ namespace QudKRTranslation.Patches
     public static class Patch_EmbarkBuilderOverlayWindow_Scope
     {
         internal static bool _scopePushed;
+        
+        // Cache for already translated canvases to avoid repeated work
+        private static HashSet<int> _translatedCanvasIds = new HashSet<int>();
 
         [HarmonyPatch(nameof(EmbarkBuilderOverlayWindow.BeforeShowWithWindow))]
         [HarmonyPrefix]
@@ -1269,6 +1272,54 @@ namespace QudKRTranslation.Patches
             {
                 EmbarkBuilderOverlayWindow.NextMenuOption.Description = nextText;
             }
+        }
+        
+        [HarmonyPatch(nameof(EmbarkBuilderOverlayWindow.BeforeShowWithWindow))]
+        [HarmonyPostfix]
+        static void BeforeShowWithWindow_Postfix(EmbarkBuilderOverlayWindow __instance)
+        {
+            // Find and translate hardcoded "character creation" text in Unity Canvas
+            try
+            {
+                // Get the parent canvas
+                var canvas = __instance.GetComponentInParent<Canvas>();
+                if (canvas == null) return;
+                
+                int canvasId = canvas.GetInstanceID();
+                if (_translatedCanvasIds.Contains(canvasId)) return;
+                
+                // Find all TextMeshProUGUI components in the canvas hierarchy
+                var allTexts = canvas.GetComponentsInChildren<TMPro.TextMeshProUGUI>(true);
+                foreach (var tmp in allTexts)
+                {
+                    if (tmp == null) continue;
+                    
+                    string text = tmp.text?.Trim();
+                    if (string.IsNullOrEmpty(text)) continue;
+                    
+                    // Check for "character creation" (case insensitive)
+                    if (text.Equals("character creation", StringComparison.OrdinalIgnoreCase))
+                    {
+                        if (LocalizationManager.TryGetAnyTerm("character creation", out string translated, "chargen_ui", "ui"))
+                        {
+                            tmp.text = translated;
+                            Debug.Log($"[Qud-KR] Translated Canvas text: 'character creation' -> '{translated}'");
+                        }
+                    }
+                }
+                
+                _translatedCanvasIds.Add(canvasId);
+            }
+            catch (Exception ex)
+            {
+                Debug.LogWarning($"[Qud-KR] Failed to translate Canvas texts: {ex.Message}");
+            }
+        }
+        
+        // Clear cache when overlay is hidden
+        public static void ClearTranslatedCanvasCache()
+        {
+            _translatedCanvasIds.Clear();
         }
     }
 
