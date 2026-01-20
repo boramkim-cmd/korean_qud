@@ -426,22 +426,7 @@ namespace QudKRTranslation.Core
                 // 1. Extra Padding 활성화: 글리프 경계 바깥에 추가 여백 생성
                 txt.extraPadding = true;
                 
-                // 2. LineSpacing 조정: 기본값이 0이면 약간의 여유 추가 (한글 높이 보정)
-                //    이미 음수가 아닌 경우에만 최소값 보장
-                if (txt.lineSpacing < 8f)
-                {
-                    txt.lineSpacing = 8f;  // 한글 높이에 맞는 최소 줄간격 (18 -> 8)
-                }
-                
-                // 3. Margin 상하 여백 확보 (기존 좌우 margin은 유지)
-                //    클리핑이 발생하는 텍스트 영역에 추가 여백 제공
-                var currentMargin = txt.margin;
-                float minVerticalMargin = 4f;  // 최소 상하 여백 (10 -> 4 픽셀)
-                if (currentMargin.y < minVerticalMargin) currentMargin.y = minVerticalMargin;  // Top
-                if (currentMargin.w < minVerticalMargin) currentMargin.w = minVerticalMargin;  // Bottom
-                txt.margin = currentMargin;
-                
-                // 4. 변경사항 적용
+                // 2. 변경사항 적용
                 txt.SetAllDirty();
                 txt.ForceMeshUpdate();
             }
