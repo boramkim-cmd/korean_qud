@@ -507,8 +507,10 @@ namespace QudKRTranslation.Patches
                         if (tmpField?.Text == null) continue;
                         
                         var tmp = tmpField.Text;
-                        // fallback 방식으로 변경 (폰트 강제 교체 안 함)
-                        FontManager.ApplyFallbackToTMPComponent(tmp);
+                        // ERR-012: 툴팁은 반드시 폰트 강제 교체 필요 (fallback 방식은 공백 표시됨)
+                        tmp.font = koreanFont;
+                        tmp.SetAllDirty();
+                        tmp.ForceMeshUpdate();
                         applied++;
                     }
                 }
@@ -518,12 +520,14 @@ namespace QudKRTranslation.Patches
                 foreach (var tmp in allTmps)
                 {
                     if (tmp == null) continue;
-                    // fallback 방식으로 변경 (폰트 강제 교체 안 함)
-                    FontManager.ApplyFallbackToTMPComponent(tmp);
+                    // ERR-012: 툴팁은 반드시 폰트 강제 교체 필요
+                    tmp.font = koreanFont;
+                    tmp.SetAllDirty();
+                    tmp.ForceMeshUpdate();
                     applied++;
                 }
                 
-                Debug.Log($"[Qud-KR][Tooltip] Applied Korean fallback to {applied} TMP components.");
+                Debug.Log($"[Qud-KR][Tooltip] Applied Korean font to {applied} TMP components.");
             }
             catch (System.Exception ex)
             {

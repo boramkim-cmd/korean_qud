@@ -607,6 +607,32 @@ namespace QudKRTranslation.Core
         }
     }
 
+    // UITextSkin.Apply() 패치 - 모든 UI 텍스트에 한국어 폰트 강제 적용
+    // UITextSkin은 TextMeshProUGUI를 감싸는 래퍼로, 대부분의 게임 UI 텍스트에 사용됨
+    [HarmonyPatch(typeof(XRL.UI.UITextSkin), "Apply")]
+    public static class UITextSkin_Apply_Patch
+    {
+        static void Postfix(XRL.UI.UITextSkin __instance)
+        {
+            if (!FontManager.IsFontLoaded) return;
+            
+            var krFont = FontManager.GetKoreanTMPFont();
+            if (krFont == null) return;
+            
+            try
+            {
+                // UITextSkin 내부의 TMP 컴포넌트에 접근
+                var tmp = __instance.GetComponent<TMPro.TextMeshProUGUI>();
+                if (tmp != null && tmp.font != krFont)
+                {
+                    tmp.font = krFont;
+                    tmp.SetAllDirty();
+                }
+            }
+            catch { }
+        }
+    }
+
     // 모든 TMP 컴포넌트가 활성화될 때 한글 폰트 fallback 적용
     // 메인 메뉴, 동적 생성 UI 등 모든 영역에 적용됨
     [HarmonyPatch(typeof(TMPro.TextMeshProUGUI), "OnEnable")]
