@@ -315,15 +315,54 @@ namespace QudKRTranslation.Core
     [HarmonyPatch(typeof(Qud.UI.MainMenu), "Show")]
     public static class MainMenu_Show_Patch
     {
+        // 1. 메뉴 표시 전: 텍스트 번역 (Show 메서드가 이 리스트를 사용함)
+        static void Prefix()
+        {
+            TranslateMainMenuOptions();
+        }
+
+        // 2. 메뉴 표시 후: 폰트 적용 (UI가 생성된 상태)
         static void Postfix()
         {
             // 폰트가 로드되지 않았으면 로드 시도
             if (!FontManager.IsFontLoaded)
-            {
                 FontManager.ApplyKoreanFont();
-            }
-            // 이미 로드되었어도 메인 메뉴 컴포넌트들에 적용
+            
+            // 메인 메뉴 컴포넌트들에 폰트 적용
             FontManager.ApplyFallbackToAllTMPComponents();
+        }
+
+        static void TranslateMainMenuOptions()
+        {
+            var krMap = new Dictionary<string, string>
+            {
+                { "New Game", "새로 시작" },
+                { "Continue", "이어하기" },
+                { "Records", "기록" },
+                { "Options", "설정" },
+                { "Mods", "모드" },
+                { "Redeem Code", "코드 입력" },
+                { "Modding Toolkit", "모딩 툴킷" },
+                { "Credits", "크레딧" },
+                { "Help", "도움말" },
+                { "Quit", "종료" }
+            };
+
+            if (Qud.UI.MainMenu.LeftOptions != null)
+            {
+                foreach (var opt in Qud.UI.MainMenu.LeftOptions)
+                {
+                    if (krMap.ContainsKey(opt.Text)) opt.Text = krMap[opt.Text];
+                }
+            }
+
+            if (Qud.UI.MainMenu.RightOptions != null)
+            {
+                foreach (var opt in Qud.UI.MainMenu.RightOptions)
+                {
+                    if (krMap.ContainsKey(opt.Text)) opt.Text = krMap[opt.Text];
+                }
+            }
         }
     }
 
