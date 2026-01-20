@@ -233,6 +233,13 @@ namespace QudKRTranslation.Patches
                 string stripped = UnityTagPattern.Replace(value, "").Trim();
                 if (string.IsNullOrEmpty(stripped)) return;
                 
+                // Debug: Log specific texts
+                if (stripped.IndexOf("Creating", StringComparison.OrdinalIgnoreCase) >= 0 ||
+                    stripped.IndexOf("World", StringComparison.OrdinalIgnoreCase) >= 0)
+                {
+                    Debug.Log($"[Qud-KR][TMP] Detected: '{stripped}' (original: '{value}')");
+                }
+                
                 // 1. hardcoded 텍스트 매칭 (태그 제거된 텍스트로)
                 if (Patch_UITextSkin_SetText.TryGetHardcodedTranslation(stripped, out string hardcodedTranslation))
                 {
