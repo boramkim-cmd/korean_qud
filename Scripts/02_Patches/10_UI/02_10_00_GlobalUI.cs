@@ -225,15 +225,41 @@ namespace QudKRTranslation.Patches
             {
                 if (string.IsNullOrEmpty(value)) return;
                 
-                // 0. Check hardcoded texts first (for Unity Prefab texts like "character creation")
-                string trimmed = value.Trim();
-                if (Patch_UITextSkin_SetText.TryGetHardcodedTranslation(trimmed, out string hardcodedTranslation))
+                // 0. Check for "character creation" with color tags (highest priority)
+                // Actual text: "<color=#CFC041FF>character creation </color>"
+                if (value.IndexOf("character creation", StringComparison.OrdinalIgnoreCase) >= 0)
                 {
-                    value = hardcodedTranslation;
+                    if (LocalizationManager.TryGetAnyTerm("character creation", out string ccTranslated, "chargen_ui", "ui"))
+                    {
+                        value = System.Text.RegularExpressions.Regex.Replace(
+                            value, 
+                            @"character creation\s*", 
+                            ccTranslated + " ", 
+                            System.Text.RegularExpressions.RegexOptions.IgnoreCase);
+                        return;
+                    }
+                }
+                
+                // 1. Check hardcoded texts (strip color tags for matching)
+                string stripped = System.Text.RegularExpressions.Regex.Replace(value, @"<[^>]+>", "").Trim();
+                if (Patch_UITextSkin_SetText.TryGetHardcodedTranslation(stripped, out string hardcodedTranslation))
+                {
+                    if (value.Contains("<color"))
+                    {
+                        value = System.Text.RegularExpressions.Regex.Replace(
+                            value,
+                            System.Text.RegularExpressions.Regex.Escape(stripped) + @"\s*",
+                            hardcodedTranslation + " ",
+                            System.Text.RegularExpressions.RegexOptions.IgnoreCase);
+                    }
+                    else
+                    {
+                        value = hardcodedTranslation;
+                    }
                     return;
                 }
                 
-                // 1. 활성 스코프 우선
+                // 2. 활성 스코프 우선
                 var scope = ScopeManager.GetCurrentScope();
                 if (scope != null)
                 {
@@ -247,9 +273,7 @@ namespace QudKRTranslation.Patches
                     }
                 }
 
-                // 2. 기본 UI/Common 딕셔너리에서 검색 (Fallback)
-                // 활성 스코프가 없거나 거기서 못 찾았을 때
-                // 매번 GetCategory 호출은 오버헤드가 있으므로 캐싱 고려 가능하지만 일단 직접 호출
+                // 3. 기본 UI/Common 딕셔너리에서 검색 (Fallback)
                 var uiDict = LocalizationManager.GetCategory("ui");
                 var commonDict = LocalizationManager.GetCategory("common");
                 
@@ -265,7 +289,6 @@ namespace QudKRTranslation.Patches
                     }
                 }
             }
-            // [FIX Issue 11] Log exceptions instead of silent swallowing
             catch (System.Exception ex)
             {
                 #if DEBUG
