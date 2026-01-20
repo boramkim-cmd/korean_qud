@@ -81,9 +81,20 @@ else
 fi
 
 # ========================================
+# Step 3.5: StreamingAssets 배포 (폰트 번들)
+# ========================================
+echo -e "\n${YELLOW}[3.5/5] StreamingAssets 배포...${NC}"
+if [ -d "$SOURCE_DIR/StreamingAssets" ]; then
+    rsync -a --delete "$SOURCE_DIR/StreamingAssets/" "$GAME_MOD/StreamingAssets/"
+    echo -e "${GREEN}✓ StreamingAssets (폰트 번들 포함)${NC}"
+else
+    echo -e "${YELLOW}⚠ StreamingAssets 폴더 없음 (건너뜀)${NC}"
+fi
+
+# ========================================
 # Step 4: 메타 파일 복사
 # ========================================
-echo -e "\n${YELLOW}[4/4] 메타 파일 복사...${NC}"
+echo -e "\n${YELLOW}[4/5] 메타 파일 복사...${NC}"
 
 meta_files=("manifest.json" "preview.png" "workshop.json")
 for file in "${meta_files[@]}"; do
