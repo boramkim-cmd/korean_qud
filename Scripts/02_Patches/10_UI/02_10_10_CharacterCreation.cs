@@ -481,22 +481,55 @@ namespace QudKRTranslation.Patches
             FontManager.ApplyKoreanFont();
             
             var koreanFont = FontManager.GetKoreanTMPFont();
-            if (koreanFont == null) return;
+            if (koreanFont == null) 
+            {
+                Debug.Log("[Qud-KR] ApplyTooltipFont: Korean font not loaded yet.");
+                return;
+            }
             
             try
             {
-                // Get the tooltip popup object via reflection (Tooltip property)
-                var tooltipProp = typeof(TooltipTrigger).GetProperty("Tooltip", 
-                    System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Public);
-                if (tooltipProp == null) return;
+                // Access Tooltip object directly (public property)
+                var tooltip = tooltipTrigger.Tooltip;
+                if (tooltip == null || tooltip.GameObject == null) 
+                {
+                    Debug.Log("[Qud-KR] ApplyTooltipFont: Tooltip or GameObject is null.");
+                    return;
+                }
                 
-                var tooltipObj = tooltipProp.GetValue(tooltipTrigger) as UnityEngine.Component;
-                if (tooltipObj == null) return;
-                
-                // Find all TMP components in the tooltip popup
-                var tmps = tooltipObj.GetComponentsInChildren<TMPro.TextMeshProUGUI>(true);
                 int applied = 0;
-                foreach (var tmp in tmps)
+                
+                // Method 1: Use TMPFields list from Tooltip
+                if (tooltip.TMPFields != null)
+                {
+                    foreach (var tmpField in tooltip.TMPFields)
+                    {
+                        if (tmpField?.Text == null) continue;
+                        
+                        var tmp = tmpField.Text;
+                        if (tmp.font != null)
+                        {
+                            if (tmp.font.fallbackFontAssetTable == null)
+                                tmp.font.fallbackFontAssetTable = new System.Collections.Generic.List<TMPro.TMP_FontAsset>();
+                            if (!tmp.font.fallbackFontAssetTable.Contains(koreanFont))
+                            {
+                                tmp.font.fallbackFontAssetTable.Insert(0, koreanFont);
+                                applied++;
+                            }
+                        }
+                        else
+                        {
+                            tmp.font = koreanFont;
+                            applied++;
+                        }
+                        tmp.SetAllDirty();
+                        tmp.ForceMeshUpdate();
+                    }
+                }
+                
+                // Method 2: Also scan GameObject for any additional TMP components
+                var allTmps = tooltip.GameObject.GetComponentsInChildren<TMPro.TextMeshProUGUI>(true);
+                foreach (var tmp in allTmps)
                 {
                     if (tmp == null) continue;
                     
@@ -515,16 +548,11 @@ namespace QudKRTranslation.Patches
                         tmp.font = koreanFont;
                         applied++;
                     }
-                    
-                    // Force refresh
                     tmp.SetAllDirty();
                     tmp.ForceMeshUpdate();
                 }
                 
-                if (applied > 0)
-                {
-                    Debug.Log($"[Qud-KR] Applied Korean font to {applied} TMP components in tooltip popup.");
-                }
+                Debug.Log($"[Qud-KR] ApplyTooltipFont: Applied Korean font to {applied} TMP components.");
             }
             catch (System.Exception ex)
             {
