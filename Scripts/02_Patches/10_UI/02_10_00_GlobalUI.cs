@@ -350,6 +350,16 @@ namespace QudKRTranslation.Patches
         [HarmonyPrefix]
         static void Prefix(EmbarkBuilderModuleWindowDescriptor descriptor, IEnumerable<FrameworkDataElement> selections)
         {
+            // Translate descriptor.title (e.g., "character creation" -> "캐릭터 생성")
+            // This title is displayed by titleText.SetText(descriptor.title) in FrameworkScroller.BeforeShow
+            if (descriptor != null && !string.IsNullOrEmpty(descriptor.title))
+            {
+                if (LocalizationManager.TryGetAnyTerm(descriptor.title.ToLowerInvariant(), out string translatedTitle, "chargen_ui", "ui", "common"))
+                {
+                    descriptor.title = translatedTitle;
+                }
+            }
+            
             if (selections == null) return;
             
             foreach (var item in selections)
