@@ -372,9 +372,9 @@ namespace QudKRTranslation.Core
             Debug.Log($"[Qud-KR] Font diagnostic complete. (총 TMP 폰트: {fontIdx})");
         }
 
-        // Apply fallback to a single TMP text component
-        // MODIFIED: Only ADD Korean font as fallback, do NOT replace the original font
-        // This keeps English text in original game font, Korean text uses fallback
+        // Apply Korean font to a single TMP text component
+        // FORCE REPLACE: 모든 TMP 컴포넌트의 폰트를 한국어 폰트로 강제 교체
+        // 이렇게 해야 영어 텍스트도 Cafe24 폰트로 표시됨
         public static void ApplyFallbackToTMPComponent(TMPro.TMP_Text txt, bool forceLog = false)
         {
             if (txt == null) return;
@@ -385,25 +385,33 @@ namespace QudKRTranslation.Core
             {
                 var currentFont = txt.font;
                 
-                // 1. If no font is assigned, use Korean font
-                if (currentFont == null)
+                // 아이콘/심볼 폰트는 교체하지 않음
+                if (currentFont != null)
+                {
+                    string fname = currentFont.name;
+                    if (fname.Contains("Filled") || 
+                        fname.Contains("Outlined") || 
+                        fname.Contains("Icons") ||
+                        fname.Contains("Cursor") ||
+                        fname.Contains("Dingbats") ||
+                        fname.Contains("PC-"))  // 컨트롤러 아이콘 폰트
+                    {
+                        // 아이콘 폰트는 fallback만 추가
+                        if (currentFont.fallbackFontAssetTable == null)
+                            currentFont.fallbackFontAssetTable = new System.Collections.Generic.List<TMP_FontAsset>();
+                        if (!currentFont.fallbackFontAssetTable.Contains(k))
+                            currentFont.fallbackFontAssetTable.Insert(0, k);
+                        return;
+                    }
+                }
+                
+                // 폰트 강제 교체 (영어 + 한글 모두 Cafe24로 통일)
+                if (txt.font != k)
                 {
                     txt.font = k;
                     txt.SetAllDirty();
                     txt.ForceMeshUpdate();
-                    if (forceLog) Debug.Log($"[Qud-KR][FontApply] Set Korean font on {txt.gameObject.name} (no font was assigned)");
-                    return;
-                }
-
-                // 2. Add Korean font as fallback (do NOT replace the original font)
-                // This way: English text → original font, Korean text → fallback to Cafe24
-                if (currentFont.fallbackFontAssetTable == null)
-                    currentFont.fallbackFontAssetTable = new System.Collections.Generic.List<TMP_FontAsset>();
-                
-                if (!currentFont.fallbackFontAssetTable.Contains(k))
-                {
-                    currentFont.fallbackFontAssetTable.Insert(0, k);
-                    if (forceLog) Debug.Log($"[Qud-KR][FontApply] Added Korean fallback to {currentFont.name} on {txt.gameObject.name}");
+                    if (forceLog) Debug.Log($"[Qud-KR][FontApply] {currentFont?.name ?? "null"} -> {k.name} on {txt.gameObject.name}");
                 }
             }
             catch (Exception ex)
