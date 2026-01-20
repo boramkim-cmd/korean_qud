@@ -1,0 +1,64 @@
+{
+  "_comment": "World Generation / 월드 생성 화면 번역",
+  "_updated": "2026-01-21",
+  
+  "creating world": "세계 생성 중",
+  "[ creating world ]": "[ 세계 생성 중 ]",
+  
+  "initializing protocols": "프로토콜 초기화 중",
+  "initializing protocols...": "프로토콜 초기화 중...",
+  
+  "hardening math": "수학 연산 강화 중",
+  "hardening math...": "수학 연산 강화 중...",
+  
+  "planting world seeds": "세계 시드 심는 중",
+  "planting world seeds...": "세계 시드 심는 중...",
+  
+  "generating topography": "지형 생성 중",
+  "generating topography...": "지형 생성 중...",
+  
+  "resolving faction relationships": "세력 관계 정리 중",
+  "resolving faction relationships...": "세력 관계 정리 중...",
+  
+  "adding player to world": "플레이어를 세계에 추가 중",
+  "adding player to world...": "플레이어를 세계에 추가 중...",
+  
+  "starting game": "게임 시작",
+  "starting game!": "게임 시작!",
+  
+  "generating lairs": "은신처 생성 중",
+  "generating lairs...": "은신처 생성 중...",
+  
+  "building forts": "요새 건설 중",
+  "building forts...": "요새 건설 중...",
+  
+  "building farms": "농장 건설 중",
+  "building farms...": "농장 건설 중...",
+  
+  "generating village history": "마을 역사 생성 중",
+  "generating village history...": "마을 역사 생성 중...",
+  
+  "generating deep history": "심층 역사 생성 중",
+  "generating deep history...": "심층 역사 생성 중...",
+  
+  "generating historical sites": "역사적 장소 생성 중",
+  "generating historical sites...": "역사적 장소 생성 중...",
+  
+  "generating rivers": "강 생성 중",
+  "generating rivers...": "강 생성 중...",
+  
+  "generating canyons": "협곡 생성 중",
+  "generating canyons...": "협곡 생성 중...",
+  
+  "generating surface": "지표면 생성 중",
+  "generating surface...": "지표면 생성 중...",
+  
+  "generating ruins": "폐허 생성 중",
+  "generating ruins...": "폐허 생성 중...",
+  
+  "populating world": "세계에 생명체 배치 중",
+  "populating world...": "세계에 생명체 배치 중...",
+  
+  "finishing up": "마무리 중",
+  "finishing up...": "마무리 중..."
+}
