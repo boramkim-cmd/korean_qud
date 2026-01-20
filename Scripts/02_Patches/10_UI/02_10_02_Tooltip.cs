@@ -4,6 +4,7 @@
  * 역할: ModelShark Tooltip 시스템의 텍스트를 번역합니다.
  */
 
+using System;
 using HarmonyLib;
 using ModelShark;
 using UnityEngine;
