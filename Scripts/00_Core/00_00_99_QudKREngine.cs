@@ -368,7 +368,8 @@ namespace QudKRTranslation.Core
         }
 
         // Apply fallback to a single TMP text component
-        // MODIFIED: Force replace font if it's one of the standard text fonts
+        // MODIFIED: Only ADD Korean font as fallback, do NOT replace the original font
+        // This keeps English text in original game font, Korean text uses fallback
         public static void ApplyFallbackToTMPComponent(TMPro.TMP_Text txt, bool forceLog = false)
         {
             if (txt == null) return;
@@ -385,43 +386,19 @@ namespace QudKRTranslation.Core
                     txt.font = k;
                     txt.SetAllDirty();
                     txt.ForceMeshUpdate();
-                    if (forceLog) Debug.Log($"[Qud-KR][FontApply] Set Korean font on {txt.gameObject.name}");
+                    if (forceLog) Debug.Log($"[Qud-KR][FontApply] Set Korean font on {txt.gameObject.name} (no font was assigned)");
                     return;
                 }
 
-                // 2. Check if current font should be replaced
-                // STRATEGY: Replace ALL fonts except known Icon fonts
-                bool shouldReplace = true;
-                string fname = currentFont.name;
-
-                // Blacklist: Do NOT replace these fonts (Icons, Symbols)
-                if (fname.Contains("Filled") || 
-                    fname.Contains("Outlined") || 
-                    fname.Contains("Icons") ||
-                    fname.Contains("Cursor") ||
-                    fname.Contains("Dingbats"))
+                // 2. Add Korean font as fallback (do NOT replace the original font)
+                // This way: English text → original font, Korean text → fallback to Cafe24
+                if (currentFont.fallbackFontAssetTable == null)
+                    currentFont.fallbackFontAssetTable = new System.Collections.Generic.List<TMP_FontAsset>();
+                
+                if (!currentFont.fallbackFontAssetTable.Contains(k))
                 {
-                    shouldReplace = false;
-                }
-
-                if (shouldReplace)
-                {
-                    if (txt.font != k)
-                    {
-                        txt.font = k;
-                        txt.SetAllDirty();
-                        txt.ForceMeshUpdate();
-                        if (forceLog) Debug.Log($"[Qud-KR][FontApply] {fname} -> {k.name} on {txt.gameObject.name}");
-                    }
-                }
-                else
-                {
-                    // For non-replaced fonts (icons), add fallback
-                    if (currentFont.fallbackFontAssetTable == null)
-                        currentFont.fallbackFontAssetTable = new System.Collections.Generic.List<TMP_FontAsset>();
-                    
-                    if (!currentFont.fallbackFontAssetTable.Contains(k))
-                        currentFont.fallbackFontAssetTable.Insert(0, k);
+                    currentFont.fallbackFontAssetTable.Insert(0, k);
+                    if (forceLog) Debug.Log($"[Qud-KR][FontApply] Added Korean fallback to {currentFont.name} on {txt.gameObject.name}");
                 }
             }
             catch (Exception ex)
