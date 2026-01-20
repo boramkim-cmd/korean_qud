@@ -225,6 +225,14 @@ namespace QudKRTranslation.Patches
             {
                 if (string.IsNullOrEmpty(value)) return;
                 
+                // 0. Check hardcoded texts first (for Unity Prefab texts like "character creation")
+                string trimmed = value.Trim();
+                if (Patch_UITextSkin_SetText.TryGetHardcodedTranslation(trimmed, out string hardcodedTranslation))
+                {
+                    value = hardcodedTranslation;
+                    return;
+                }
+                
                 // 1. 활성 스코프 우선
                 var scope = ScopeManager.GetCurrentScope();
                 if (scope != null)
@@ -424,16 +432,28 @@ namespace QudKRTranslation.Patches
             
             Debug.Log($"[Qud-KR] UITextSkin patch initialized with {HardcodedTexts.Count(kv => kv.Value != null)} translations");
         }
+        
+        // Public method for other patches to use
+        public static bool TryGetHardcodedTranslation(string text, out string translated)
+        {
+            translated = null;
+            if (string.IsNullOrEmpty(text)) return false;
+            
+            InitializeTranslations();
+            
+            if (HardcodedTexts.TryGetValue(text, out translated) && !string.IsNullOrEmpty(translated))
+            {
+                return true;
+            }
+            return false;
+        }
 
         [HarmonyPrefix]
         static void Prefix(ref string text)
         {
             if (string.IsNullOrEmpty(text)) return;
             
-            InitializeTranslations();
-            
-            string trimmed = text.Trim();
-            if (HardcodedTexts.TryGetValue(trimmed, out string translated) && !string.IsNullOrEmpty(translated))
+            if (TryGetHardcodedTranslation(text.Trim(), out string translated))
             {
                 text = translated;
             }
