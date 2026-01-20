@@ -214,7 +214,7 @@ namespace QudKRTranslation.Patches
     }
 
     // ========================================================================
-    // 3. TMP_Text Setter 전역 패치 - Unity 리치 텍스트 태그 지원
+    // 3. TMP_Text Setter 전역 패치 - Unity 리치 텍스트 태그 지원 + 폰트 적용
     // ========================================================================
     [HarmonyPatch(typeof(TMP_Text), "text", MethodType.Setter)]
     public static class Patch_TMP_Text_Setter
@@ -227,18 +227,14 @@ namespace QudKRTranslation.Patches
         {
             try
             {
+                // ★ 폰트 fallback 항상 적용 (번역 여부와 관계없이)
+                EnsureFontFallback(__instance);
+                
                 if (string.IsNullOrEmpty(value)) return;
                 
                 // 0. Unity 리치 텍스트 태그 strip하여 순수 텍스트 추출
                 string stripped = UnityTagPattern.Replace(value, "").Trim();
                 if (string.IsNullOrEmpty(stripped)) return;
-                
-                // Debug: Log specific texts
-                if (stripped.IndexOf("Creating", StringComparison.OrdinalIgnoreCase) >= 0 ||
-                    stripped.IndexOf("World", StringComparison.OrdinalIgnoreCase) >= 0)
-                {
-                    Debug.Log($"[Qud-KR][TMP] Detected: '{stripped}' (original: '{value}')");
-                }
                 
                 // 1. hardcoded 텍스트 매칭 (태그 제거된 텍스트로)
                 if (Patch_UITextSkin_SetText.TryGetHardcodedTranslation(stripped, out string hardcodedTranslation))
@@ -305,6 +301,31 @@ namespace QudKRTranslation.Patches
                 #if DEBUG
                 Debug.LogWarning($"[Qud-KR TMP_Text Patch] {ex.Message}");
                 #endif
+            }
+        }
+        
+        /// <summary>
+        /// TMP 컴포넌트에 한글 폰트 fallback이 적용되어 있는지 확인하고, 없으면 적용
+        /// </summary>
+        private static void EnsureFontFallback(TMP_Text tmp)
+        {
+            if (tmp == null) return;
+            if (!QudKREngine.IsFontLoaded) return;
+            
+            var koreanFont = QudKREngine.GetKoreanFont();
+            if (koreanFont == null) return;
+            
+            // 현재 폰트에 한글 fallback이 없으면 추가
+            var currentFont = tmp.font;
+            if (currentFont != null && currentFont != koreanFont)
+            {
+                if (currentFont.fallbackFontAssetTable == null)
+                    currentFont.fallbackFontAssetTable = new System.Collections.Generic.List<TMP_FontAsset>();
+                
+                if (!currentFont.fallbackFontAssetTable.Contains(koreanFont))
+                {
+                    currentFont.fallbackFontAssetTable.Insert(0, koreanFont);
+                }
             }
         }
     }

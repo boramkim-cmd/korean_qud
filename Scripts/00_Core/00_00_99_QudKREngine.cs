@@ -33,6 +33,11 @@ namespace QudKRTranslation.Core
         private static bool _patched = false;
         private static TMP_FontAsset _koreanTMPFont = null;
 
+        /// <summary>
+        /// 한글 TMP 폰트 에셋 반환 (외부에서 접근용)
+        /// </summary>
+        public static TMP_FontAsset GetKoreanFont() => _koreanTMPFont;
+
         // 시스템 폰트 검색 우선순위 (TMP fallback용)
         public static string[] TargetFontNames = { 
             "Cafe24PROSlimMax SDF",  // TMP 번들 폰트
