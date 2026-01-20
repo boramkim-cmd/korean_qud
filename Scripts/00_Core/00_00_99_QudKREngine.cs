@@ -289,7 +289,42 @@ namespace QudKRTranslation.Core
 
                     // 메인 메뉴 텍스트 번역 시도
                     MainMenu_Show_Patch.TranslateMainMenuOptions();
-                }
+
+                    // --- Legacy UnityEngine.UI.Text 자동 한글 폰트 적용 ---
+                    try
+                    {
+                        var legacyTexts = Resources.FindObjectsOfTypeAll<UnityEngine.UI.Text>();
+                        int patched = 0;
+                        foreach (var lt in legacyTexts)
+                        {
+                            if (lt == null) continue;
+                            var f = lt.font;
+                            bool needPatch = false;
+                            try { if (f == null || !f.HasCharacter('가')) needPatch = true; } catch { needPatch = true; }
+                            if (needPatch)
+                            {
+                                // TMP_FontAsset을 Font로 변환 불가하므로, 시스템 폰트 중 한글 지원 폰트 우선 적용
+                                // macOS: Apple SD Gothic Neo, AppleGothic, Arial 등
+                                Font fallback = null;
+                                string[] candidates = { "Apple SD Gothic Neo", "AppleGothic", "Arial" };
+                                foreach (var cname in candidates)
+                                {
+                                    try { fallback = Font.CreateDynamicFontFromOSFont(cname, lt.fontSize > 0 ? lt.fontSize : 14); } catch { }
+                                    if (fallback != null && fallback.HasCharacter('가')) break;
+                                }
+                                if (fallback != null)
+                                {
+                                    lt.font = fallback;
+                                    patched++;
+                                }
+                            }
+                        }
+                        Debug.Log($"[Qud-KR][LegacyPatch] Patched {patched} legacy UI.Text components to Korean system font.");
+                    }
+                    catch (Exception ex)
+                    {
+                        Debug.LogWarning($"[Qud-KR][LegacyPatch] Exception: {ex.Message}");
+                    }
             }
             catch (Exception e)
             {
