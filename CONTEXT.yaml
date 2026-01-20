@@ -41,6 +41,9 @@ blocking_issues: []
   #   see: "Docs/ERROR_LOG.md#err-xxx"
 
 recent_changes:
+  - date: "2026-01-20"
+    summary: "ERR-012 해결: 툴팁 한글 폰트 문제 (StreamingAssets 배포, 폰트 경로, TMP 적용)"
+    commits: ["025274f", "10be02d", "48a47bd"]
   - date: "2026-01-18"
     summary: "루트 디렉토리 정리 (20개 스크립트 → _Legacy/), 문서 시스템 개선"
     commits: ["c3d117f", "ff68115"]
@@ -48,6 +51,9 @@ recent_changes:
     summary: "Mutation JSON 표준화, StructureTranslator 도입, 용어집 충돌 분석"
 
 known_issues:
+  - id: "ERR-012"
+    summary: "✅ 해결됨 - 툴팁 한글 폰트 미표시 (ModelShark 구조 미분석)"
+    see: "ISSUES/ERR-012_Tooltip_Font_Display.md"
   - id: "P3-05"
     summary: "용어집 간 102건 충돌 (Phase 3에서 해결 예정)"
     see: "LOCALIZATION/integrity_report.md"

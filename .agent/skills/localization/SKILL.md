@@ -32,6 +32,18 @@ cat Docs/08_STYLE_GUIDE.md     # 번역 스타일
 | 🔴 **태그 보존** | `{{tag}}`, `%var%` 번역 금지 |
 | 🟢 **문서 우선** | 변경 시 관련 문서 업데이트 |
 
+## 과거 교훈 (피해야 할 실수)
+
+> **ERR-012**: ModelShark 툴팁 시스템을 분석하지 않고 일반적인 Unity 접근법 적용
+
+| 실수 | 올바른 접근 |
+|------|-------------|
+| `TooltipTrigger`에서 직접 TMP 검색 | `tooltipTrigger.Tooltip.GameObject`에서 검색 |
+| `as Component` 캐스팅 후 null 체크 생략 | 캐스팅 후 항상 디버그 로그 |
+| 리플렉션으로 public 프로퍼티 접근 | 리플렉션 전 public API 확인 |
+
+→ 상세: `ISSUES/ERR-012_Tooltip_Font_Display.md`
+
 ## 작업 유형별 가이드
 
 ### 1. 용어집 수정 (Layer 1)
