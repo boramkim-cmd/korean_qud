@@ -33,7 +33,11 @@ namespace QudKRTranslation.Core
         private static bool _patched = false;
         private static TMP_FontAsset _koreanTMPFont = null;
 
+        // 시스템 폰트 검색 우선순위 (TMP fallback용)
         public static string[] TargetFontNames = { 
+            "Cafe24PROSlimMax SDF",  // TMP 번들 폰트
+            "Cafe24PROSlimMax",      // 시스템 설치 폰트
+            "Cafe24 PRO SlimMax",    // 대체 이름
             "AppleGothic",
             "NeoDunggeunmo-Regular", 
             "NeoDunggeunmo",         
@@ -316,10 +320,15 @@ namespace QudKRTranslation.Core
                             try { if (f == null || !f.HasCharacter('가')) needPatch = true; } catch { needPatch = true; }
                             if (needPatch)
                             {
-                                // TMP_FontAsset을 Font로 변환 불가하므로, 시스템 폰트 중 한글 지원 폰트 우선 적용
-                                // macOS: Apple SD Gothic Neo, AppleGothic, Arial 등
+                                // 시스템 설치된 Cafe24PROSlimMax 우선 사용 (TMP 번들과 동일한 폰트)
                                 Font fallback = null;
-                                string[] candidates = { "Apple SD Gothic Neo", "AppleGothic", "Arial" };
+                                string[] candidates = { 
+                                    "Cafe24PROSlimMax",      // 설치된 한글 폰트 (TMP와 동일)
+                                    "Cafe24 PRO SlimMax",    // 대체 이름
+                                    "Apple SD Gothic Neo", 
+                                    "AppleGothic", 
+                                    "Arial" 
+                                };
                                 foreach (var cname in candidates)
                                 {
                                     try { fallback = Font.CreateDynamicFontFromOSFont(cname, lt.fontSize > 0 ? lt.fontSize : 14); } catch { }
