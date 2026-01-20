@@ -1,4 +1,4 @@
-폰트 이슈는 아닐건데 appleGothic 사용 해 # Caves of Qud Korean Localization - AI Instructions
+폰트 이슈는 아닐건데 appleGothic 사용 해# Caves of Qud Korean Localization - AI Instructions
 # Version: 2.1 | Updated: 2026-01-20
 # This file is automatically read by GitHub Copilot at every session.
 # SSOT (Single Source of Truth) - AI_SESSION_START.md is deprecated

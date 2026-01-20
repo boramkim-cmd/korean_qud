@@ -809,12 +809,14 @@ namespace QudKRTranslation.Patches
     [HarmonyPatch(typeof(QudAttributesModuleWindow))]
     public static class Patch_QudAttributesModuleWindow
     {
-        [HarmonyPatch(nameof(QudAttributesModuleWindow.Show))]
+        // NOTE: Show() is defined in base class WindowBase, not overridden in QudAttributesModuleWindow.
+        // Use BeforeShow() which IS overridden in QudAttributesModuleWindow.
+        [HarmonyPatch(nameof(QudAttributesModuleWindow.BeforeShow))]
         [HarmonyPostfix]
-        static void Show_Postfix(QudAttributesModuleWindow __instance)
+        static void BeforeShow_Postfix(QudAttributesModuleWindow __instance)
         {
             // Force apply Korean font to ALL TMP components in attributes screen
-            Debug.Log("[Qud-KR][AttributesWindow] Show called, applying fonts to all TMP components...");
+            Debug.Log("[Qud-KR][AttributesWindow] BeforeShow called, applying fonts to all TMP components...");
             FontManager.ApplyKoreanFont();
             
             var allTmps = __instance.GetComponentsInChildren<TMPro.TextMeshProUGUI>(true);
