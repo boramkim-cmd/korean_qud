@@ -1289,49 +1289,33 @@ namespace QudKRTranslation.Patches
                     return;
                 }
                 
-                Debug.Log($"[Qud-KR][Debug] Canvas found: '{canvas.name}' (ID: {canvas.GetInstanceID()})");
-                
-                int canvasId = canvas.GetInstanceID();
-                // REMOVED: Skip cache check to allow re-scanning
-                // if (_translatedCanvasIds.Contains(canvasId)) return;
-                
                 // Find all TextMeshProUGUI components in the canvas hierarchy
                 var allTexts = canvas.GetComponentsInChildren<TMPro.TextMeshProUGUI>(true);
-                Debug.Log($"[Qud-KR][Debug] Found {allTexts.Length} TMP components in canvas");
                 
-                int foundCount = 0;
                 foreach (var tmp in allTexts)
                 {
                     if (tmp == null) continue;
                     
-                    string text = tmp.text?.Trim();
+                    string text = tmp.text;
                     if (string.IsNullOrEmpty(text)) continue;
                     
-                    // Log all non-empty texts for debugging
-                    if (foundCount < 20) // Limit to first 20
-                    {
-                        Debug.Log($"[Qud-KR][Debug] TMP[{foundCount}]: '{text}' (GO: {tmp.gameObject.name})");
-                    }
-                    foundCount++;
-                    
-                    // Check for "character creation" (case insensitive)
-                    if (text.Equals("character creation", StringComparison.OrdinalIgnoreCase))
+                    // Check for "character creation" with or without color tags
+                    // Actual text: "<color=#CFC041FF>character creation </color>"
+                    if (text.IndexOf("character creation", StringComparison.OrdinalIgnoreCase) >= 0)
                     {
                         if (LocalizationManager.TryGetAnyTerm("character creation", out string translated, "chargen_ui", "ui"))
                         {
-                            tmp.text = translated;
-                            Debug.Log($"[Qud-KR] Translated Canvas text: 'character creation' -> '{translated}'");
-                        }
-                        else
-                        {
-                            Debug.LogWarning("[Qud-KR][Debug] Translation not found for 'character creation'");
+                            // Replace the text content while preserving color tags
+                            string newText = System.Text.RegularExpressions.Regex.Replace(
+                                text, 
+                                @"character creation\s*", 
+                                translated + " ", 
+                                System.Text.RegularExpressions.RegexOptions.IgnoreCase);
+                            tmp.text = newText;
+                            Debug.Log($"[Qud-KR] Translated 'character creation': '{text}' -> '{newText}'");
                         }
                     }
                 }
-                
-                Debug.Log($"[Qud-KR][Debug] Total non-empty TMP texts found: {foundCount}");
-                
-                _translatedCanvasIds.Add(canvasId);
             }
             catch (Exception ex)
             {

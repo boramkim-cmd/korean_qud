@@ -453,18 +453,24 @@ namespace QudKRTranslation.Patches
         {
             if (string.IsNullOrEmpty(text)) return;
             
-            string trimmed = text.Trim();
+            // Strip color/rich text tags for matching, but preserve in replacement
+            string stripped = System.Text.RegularExpressions.Regex.Replace(text, @"<[^>]+>", "").Trim();
             
-            // Debug: Log all SetText calls that might be "character creation"
-            if (trimmed.ToLowerInvariant().Contains("character") || trimmed.ToLowerInvariant().Contains("creation"))
+            if (TryGetHardcodedTranslation(stripped, out string translated))
             {
-                Debug.Log($"[Qud-KR][UITextSkin.SetText] Input: '{trimmed}'");
-            }
-            
-            if (TryGetHardcodedTranslation(trimmed, out string translated))
-            {
-                Debug.Log($"[Qud-KR][UITextSkin.SetText] Translated: '{trimmed}' -> '{translated}'");
-                text = translated;
+                // If text has color tags, replace only the content
+                if (text.Contains("<color"))
+                {
+                    text = System.Text.RegularExpressions.Regex.Replace(
+                        text,
+                        System.Text.RegularExpressions.Regex.Escape(stripped) + @"\s*",
+                        translated + " ",
+                        System.Text.RegularExpressions.RegexOptions.IgnoreCase);
+                }
+                else
+                {
+                    text = translated;
+                }
             }
         }
     }
