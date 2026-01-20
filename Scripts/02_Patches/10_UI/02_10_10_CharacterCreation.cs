@@ -508,12 +508,14 @@ namespace QudKRTranslation.Patches
             if (isDisplayed)
             {
                 // Apply Korean font to tooltip TMP components
+                Debug.Log("[Qud-KR] AttributeSelection tooltip displayed; applying tooltip font and text.");
                 ApplyTooltipFont(__instance.tooltip);
                 
                 // Apply translated text
                 string translated = TranslateBonusSource(__instance.data.BonusSource);
                 string rtf = Sidebar.FormatToRTF(translated);
                 __instance.tooltip.SetText("BodyText", rtf);
+                Debug.Log($"[Qud-KR] AttributeSelection tooltip text set: {translated}");
             }
             
             // 툴팁이 표시되기 시작하면 시간 기록
