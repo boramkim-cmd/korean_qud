@@ -183,6 +183,20 @@ namespace QudKRTranslation.Patches
         [HarmonyPostfix]
         static void Postfix()
         {
+            // DISABLED: TMP overlay creation causes crash when Graphics device is null
+            // The crash occurs because Draw() is called from a worker thread where
+            // Unity's graphics context is not available.
+            // 
+            // Error: "Graphics device is null" -> AddComponent fails
+            // See: Player.log stack trace pointing to this line
+            //
+            // TODO: Move overlay creation to main thread using Unity's main thread dispatcher
+            // For now, translation still works for Modern UI (WorldGenerationScreen._AddMessage)
+            
+            // Legacy UI "Creating World" title remains in English, but this prevents crash
+            return;
+            
+            /* ORIGINAL CODE - DISABLED
             // TMP 오버레이가 없으면 생성
             if (_overlayCanvas == null)
             {
@@ -202,6 +216,7 @@ namespace QudKRTranslation.Patches
                     _titleText.text = "세계 생성 중";
                 }
             }
+            */
         }
         
         private static void CreateOverlay()
