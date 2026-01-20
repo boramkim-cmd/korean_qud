@@ -10,6 +10,22 @@ Completed items from `03_TODO.md` are moved here.
 
 ---
 
+## [2026-01-20] - Korean Font Bundle Loading & Tooltip Font Fallback
+
+### Summary
+Added runtime loading of the `qudkoreanfont` AssetBundle from `StreamingAssets/Mods/*/Fonts` and registered its `TMP_FontAsset` as a global fallback so Korean glyphs render in UI (including tooltips).
+
+### ✅ Changes
+- Load `qudkoreanfont` AssetBundle at UI initialization and extract `TMP_FontAsset`.
+- Insert the loaded font into `TMP_Settings.fallbackFontAssets` (front) and add it as a fallback to existing `TMP_FontAsset` instances.
+- Ensure `TooltipTrigger.SetText` applies the fallback to its internal `TextMeshProUGUI` components so tooltips display Korean characters.
+
+### Files Modified
+- `Scripts/00_Core/00_00_99_QudKREngine.cs` (Font loading + fallback registration)
+- `Scripts/02_Patches/10_UI/02_10_02_Tooltip.cs` (Tooltip Postfix: apply fallback to internal TMP components)
+
+---
+
 ## [2026-01-19] - Attribute Screen Multi-Issue Fix (ERR-017)
 
 ### Summary

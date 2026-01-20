@@ -31,5 +31,40 @@ namespace QudKRTranslation.Patches
                 text = translated;
             }
         }
+
+        // Postfix: SetText 호출 이후 툴팁 내부 텍스트에 한글 폰트가 적용되도록 함
+        [HarmonyPostfix]
+        static void SetText_Postfix(TooltipTrigger __instance)
+        {
+            try
+            {
+                var k = QudKRTranslation.Core.FontManager.GetKoreanTMPFont();
+                if (k == null) return;
+
+                var tmps = __instance.GetComponentsInChildren<TMPro.TextMeshProUGUI>(true);
+                foreach (var t in tmps)
+                {
+                    if (t == null) continue;
+                    try
+                    {
+                        if (t.font != null)
+                        {
+                            if (t.font.fallbackFontAssetTable == null)
+                                t.font.fallbackFontAssetTable = new System.Collections.Generic.List<TMPro.TMP_FontAsset>();
+                            if (!t.font.fallbackFontAssetTable.Contains(k))
+                                t.font.fallbackFontAssetTable.Add(k);
+                        }
+                        else
+                        {
+                            t.font = k;
+                        }
+                        t.font = t.font; // trigger refresh
+                        t.SetAllDirty();
+                    }
+                    catch { }
+                }
+            }
+            catch { }
+        }
     }
 }

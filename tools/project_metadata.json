@@ -1,5 +1,5 @@
 {
-  "generated": "2026-01-19 15:52:29",
+  "generated": "2026-01-20 16:13:29",
   "scripts": {
     "Scripts/99_Utils/99_00_03_StructureTranslator.cs": {
       "classification": "Util",
@@ -256,6 +256,11 @@
         {
           "name": "ApplyKoreanFont",
           "return": "void",
+          "params": ""
+        },
+        {
+          "name": "GetKoreanTMPFont",
+          "return": "TMP_FontAsset",
           "params": ""
         },
         {
