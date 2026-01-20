@@ -214,43 +214,32 @@ namespace QudKRTranslation.Patches
     }
 
     // ========================================================================
-    // 3. TMP_Text Setter 전역 패치
+    // 3. TMP_Text Setter 전역 패치 - Unity 리치 텍스트 태그 지원
     // ========================================================================
     [HarmonyPatch(typeof(TMP_Text), "text", MethodType.Setter)]
     public static class Patch_TMP_Text_Setter
     {
+        // Unity 리치 텍스트 태그 패턴
+        private static readonly System.Text.RegularExpressions.Regex UnityTagPattern = 
+            new System.Text.RegularExpressions.Regex(@"<[^>]+>", System.Text.RegularExpressions.RegexOptions.Compiled);
+        
         static void Prefix(TMP_Text __instance, ref string value)
         {
             try
             {
                 if (string.IsNullOrEmpty(value)) return;
                 
-                // 0. Check for "character creation" with color tags (highest priority)
-                // Actual text: "<color=#CFC041FF>character creation </color>"
-                if (value.IndexOf("character creation", StringComparison.OrdinalIgnoreCase) >= 0)
-                {
-                    if (LocalizationManager.TryGetAnyTerm("character creation", out string ccTranslated, "chargen_ui", "ui"))
-                    {
-                        value = System.Text.RegularExpressions.Regex.Replace(
-                            value, 
-                            @"character creation\s*", 
-                            ccTranslated + " ", 
-                            System.Text.RegularExpressions.RegexOptions.IgnoreCase);
-                        return;
-                    }
-                }
+                // 0. Unity 리치 텍스트 태그 strip하여 순수 텍스트 추출
+                string stripped = UnityTagPattern.Replace(value, "").Trim();
+                if (string.IsNullOrEmpty(stripped)) return;
                 
-                // 1. Check hardcoded texts (strip color tags for matching)
-                string stripped = System.Text.RegularExpressions.Regex.Replace(value, @"<[^>]+>", "").Trim();
+                // 1. hardcoded 텍스트 매칭 (태그 제거된 텍스트로)
                 if (Patch_UITextSkin_SetText.TryGetHardcodedTranslation(stripped, out string hardcodedTranslation))
                 {
-                    if (value.Contains("<color"))
+                    // 원본에 태그가 있으면 태그 구조 보존
+                    if (value != stripped)
                     {
-                        value = System.Text.RegularExpressions.Regex.Replace(
-                            value,
-                            System.Text.RegularExpressions.Regex.Escape(stripped) + @"\s*",
-                            hardcodedTranslation + " ",
-                            System.Text.RegularExpressions.RegexOptions.IgnoreCase);
+                        value = value.Replace(stripped, hardcodedTranslation);
                     }
                     else
                     {
@@ -259,21 +248,36 @@ namespace QudKRTranslation.Patches
                     return;
                 }
                 
-                // 2. 활성 스코프 우선
+                // 2. LocalizationManager로 직접 검색 (태그 제거된 텍스트로)
+                string lowerStripped = stripped.ToLowerInvariant();
+                if (LocalizationManager.TryGetAnyTerm(lowerStripped, out string translated, "chargen_ui", "ui", "common"))
+                {
+                    if (value != stripped)
+                    {
+                        value = value.Replace(stripped, translated);
+                    }
+                    else
+                    {
+                        value = translated;
+                    }
+                    return;
+                }
+                
+                // 3. TranslationEngine 사용 (Qud 태그 + 대소문자 변형 지원)
                 var scope = ScopeManager.GetCurrentScope();
                 if (scope != null)
                 {
-                    if (TranslationUtils.TryTranslatePreservingTags(value, out string translated, scope))
+                    if (TranslationUtils.TryTranslatePreservingTags(value, out string t1, scope))
                     {
-                        if (value != translated) 
+                        if (value != t1) 
                         {
-                            value = translated;
-                            return; // 스코프에서 찾았으면 종료
+                            value = t1;
+                            return;
                         }
                     }
                 }
 
-                // 3. 기본 UI/Common 딕셔너리에서 검색 (Fallback)
+                // 4. Fallback: UI/Common 카테고리
                 var uiDict = LocalizationManager.GetCategory("ui");
                 var commonDict = LocalizationManager.GetCategory("common");
                 
