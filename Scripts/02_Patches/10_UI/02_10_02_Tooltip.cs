@@ -39,9 +39,14 @@ namespace QudKRTranslation.Patches
             try
             {
                 var k = QudKRTranslation.Core.FontManager.GetKoreanTMPFont();
-                if (k == null) return;
+                if (k == null)
+                {
+                    Debug.Log("[Qud-KR] Tooltip postfix: No Korean TMP font available yet.");
+                    return;
+                }
 
                 var tmps = __instance.GetComponentsInChildren<TMPro.TextMeshProUGUI>(true);
+                int applied = 0;
                 foreach (var t in tmps)
                 {
                     if (t == null) continue;
@@ -52,19 +57,28 @@ namespace QudKRTranslation.Patches
                             if (t.font.fallbackFontAssetTable == null)
                                 t.font.fallbackFontAssetTable = new System.Collections.Generic.List<TMPro.TMP_FontAsset>();
                             if (!t.font.fallbackFontAssetTable.Contains(k))
+                            {
                                 t.font.fallbackFontAssetTable.Add(k);
+                                applied++;
+                            }
                         }
                         else
                         {
                             t.font = k;
+                            applied++;
                         }
                         t.font = t.font; // trigger refresh
                         t.SetAllDirty();
                     }
                     catch { }
                 }
+
+                Debug.Log($"[Qud-KR] Tooltip postfix applied Korean fallback '{k.name}' to {applied} TMP components.");
             }
-            catch { }
+            catch (Exception ex)
+            {
+                Debug.LogWarning($"[Qud-KR] Tooltip postfix exception: {ex.Message}");
+            }
         }
     }
 }

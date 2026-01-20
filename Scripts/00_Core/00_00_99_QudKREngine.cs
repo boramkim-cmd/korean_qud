@@ -45,9 +45,11 @@ namespace QudKRTranslation.Core
 
         public static void ApplyKoreanFont()
         {
-            if (_patched) return;
+            // If we've already successfully loaded the font, nothing to do
+            if (IsFontLoaded) return;
 
-            // Prevent re-entry
+            // prevent re-entrancy during a load attempt
+            if (_patched) return;
             _patched = true;
 
             // 1. 모든 TMP 폰트 이름, 한글 지원 여부, fallback 목록을 로그로 출력
@@ -71,6 +73,7 @@ namespace QudKRTranslation.Core
 
                 if (System.IO.Directory.Exists(modsPath))
                 {
+                    // Look specifically in Fonts folders first for convenience
                     var candidates = System.IO.Directory.GetFiles(modsPath, "qudkoreanfont*", System.IO.SearchOption.AllDirectories);
                     foreach (var candidate in candidates)
                     {
@@ -101,7 +104,55 @@ namespace QudKRTranslation.Core
                 if (loadedFont != null)
                 {
                     _koreanTMPFont = loadedFont;
+                }
+                else
+                {
+                    // No bundle; try to find an existing TMP font asset that contains Korean glyphs
+                    foreach (var targetName in TargetFontNames)
+                    {
+                        foreach (var fontAsset in allTMPFonts)
+                        {
+                            if (fontAsset == null) continue;
+                            if (!fontAsset.name.Equals(targetName, StringComparison.OrdinalIgnoreCase)) continue;
+                            bool hasKorean = false;
+                            try { hasKorean = fontAsset.HasCharacter('가'); } catch { }
+                            if (hasKorean)
+                            {
+                                _koreanTMPFont = fontAsset;
+                                Debug.Log($"[Qud-KR] Selected existing TMP_FontAsset '{fontAsset.name}' as fallback (matched preferred name '{targetName}').");
+                                break;
+                            }
+                        }
+                        if (_koreanTMPFont != null) break;
+                    }
 
+                    // If still nothing, pick any font that has Korean
+                    if (_koreanTMPFont == null)
+                    {
+                        foreach (var fontAsset in allTMPFonts)
+                        {
+                            if (fontAsset == null) continue;
+                            bool hasKorean = false;
+                            try { hasKorean = fontAsset.HasCharacter('가'); } catch { }
+                            if (hasKorean)
+                            {
+                                _koreanTMPFont = fontAsset;
+                                Debug.Log($"[Qud-KR] Selected existing TMP_FontAsset '{fontAsset.name}' as fallback (first available Korean-supporting font).");
+                                break;
+                            }
+                        }
+                    }
+
+                    if (_koreanTMPFont == null)
+                    {
+                        // Reset _patched so future attempts (e.g., after bundle copy) can retry
+                        _patched = false;
+                        Debug.LogWarning("[Qud-KR] Korean font bundle not found and no existing TMP_FontAsset with Korean glyphs was detected. Will retry on next ApplyKoreanFont() call.");
+                    }
+                }
+
+                if (_koreanTMPFont != null)
+                {
                     // Ensure TMP_Settings fallback list exists and contains our font (insert at front)
                     if (TMP_Settings.fallbackFontAssets == null)
                         TMP_Settings.fallbackFontAssets = new System.Collections.Generic.List<TMP_FontAsset>();
@@ -137,14 +188,12 @@ namespace QudKRTranslation.Core
                     }
 
                     IsFontLoaded = true;
-                }
-                else
-                {
-                    Debug.LogWarning("[Qud-KR] Korean font bundle not found under StreamingAssets/Mods/*/Fonts or it contained no TMP_FontAsset.");
+                    Debug.Log("[Qud-KR] Korean font successfully loaded and applied.");
                 }
             }
             catch (Exception e)
             {
+                _patched = false;
                 Debug.LogWarning($"[Qud-KR] Exception while loading font bundle: {e.Message}");
             }
 

@@ -18,6 +18,7 @@ Added runtime loading of the `qudkoreanfont` AssetBundle from `StreamingAssets/M
 ### ✅ Changes
 - Load `qudkoreanfont` AssetBundle at UI initialization and extract `TMP_FontAsset`.
 - Insert the loaded font into `TMP_Settings.fallbackFontAssets` (front) and add it as a fallback to existing `TMP_FontAsset` instances.
+- If the bundle is not present or contains no usable font, detect an existing `TMP_FontAsset` that supports Korean and use it as a fallback (preferred target order defined by `TargetFontNames`).
 - Ensure `TooltipTrigger.SetText` applies the fallback to its internal `TextMeshProUGUI` components so tooltips display Korean characters.
 
 ### Files Modified
