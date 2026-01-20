@@ -34,6 +34,7 @@ namespace QudKRTranslation.Patches
         }
 
         // Postfix: SetText 호출 이후 툴팁 내부 텍스트에 한글 폰트가 적용되도록 함
+        [HarmonyPatch(nameof(TooltipTrigger.SetText), new System.Type[] { typeof(string), typeof(string) })]
         [HarmonyPostfix]
         static void SetText_Postfix(TooltipTrigger __instance)
         {

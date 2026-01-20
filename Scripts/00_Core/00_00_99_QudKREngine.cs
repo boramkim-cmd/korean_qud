@@ -64,22 +64,57 @@ namespace QudKRTranslation.Core
                 fontIdx++;
             }
 
-            // Try to find and load our AssetBundle (qudkoreanfont) under StreamingAssets/Mods/*/Fonts
+            // Try to find and load our AssetBundle (qudkoreanfont) 
+            // First try mod folder's StreamingAssets, then game's StreamingAssets/Mods
             try
             {
-                string streaming = Application.streamingAssetsPath;
-                string modsPath = System.IO.Path.Combine(streaming, "Mods");
                 TMP_FontAsset loadedFont = null;
+                var searchPaths = new System.Collections.Generic.List<string>();
 
-                if (System.IO.Directory.Exists(modsPath))
+                // 1. Try mod folder's StreamingAssets first
+                try
                 {
-                    // Look specifically in Fonts folders first for convenience
+                    var mod = XRL.ModManager.GetMod("KoreanLocalization");
+                    if (mod != null && !string.IsNullOrEmpty(mod.Path))
+                    {
+                        string modStreamingAssets = System.IO.Path.Combine(mod.Path, "StreamingAssets", "Mods");
+                        if (System.IO.Directory.Exists(modStreamingAssets))
+                        {
+                            searchPaths.Add(modStreamingAssets);
+                            Debug.Log($"[Qud-KR] Added mod StreamingAssets to search: {modStreamingAssets}");
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Debug.LogWarning($"[Qud-KR] Error getting mod path: {ex.Message}");
+                }
+
+                // 2. Also try game's StreamingAssets/Mods as fallback
+                string gameStreamingMods = System.IO.Path.Combine(Application.streamingAssetsPath, "Mods");
+                if (System.IO.Directory.Exists(gameStreamingMods))
+                {
+                    searchPaths.Add(gameStreamingMods);
+                }
+
+                foreach (var modsPath in searchPaths)
+                {
+                    if (loadedFont != null) break;
+                    
+                    // Look for qudkoreanfont in any subfolder
                     var candidates = System.IO.Directory.GetFiles(modsPath, "qudkoreanfont*", System.IO.SearchOption.AllDirectories);
                     foreach (var candidate in candidates)
                     {
+                        // Skip manifest files
+                        if (candidate.EndsWith(".manifest") || candidate.EndsWith(".meta")) continue;
+                        
                         Debug.Log($"[Qud-KR] Attempting to load font bundle: {candidate}");
                         var bundle = AssetBundle.LoadFromFile(candidate);
-                        if (bundle == null) continue;
+                        if (bundle == null) 
+                        {
+                            Debug.LogWarning($"[Qud-KR] Failed to load bundle from: {candidate}");
+                            continue;
+                        }
 
                         try
                         {
