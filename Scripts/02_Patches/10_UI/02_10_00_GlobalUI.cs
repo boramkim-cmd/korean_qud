@@ -453,8 +453,17 @@ namespace QudKRTranslation.Patches
         {
             if (string.IsNullOrEmpty(text)) return;
             
-            if (TryGetHardcodedTranslation(text.Trim(), out string translated))
+            string trimmed = text.Trim();
+            
+            // Debug: Log all SetText calls that might be "character creation"
+            if (trimmed.ToLowerInvariant().Contains("character") || trimmed.ToLowerInvariant().Contains("creation"))
             {
+                Debug.Log($"[Qud-KR][UITextSkin.SetText] Input: '{trimmed}'");
+            }
+            
+            if (TryGetHardcodedTranslation(trimmed, out string translated))
+            {
+                Debug.Log($"[Qud-KR][UITextSkin.SetText] Translated: '{trimmed}' -> '{translated}'");
                 text = translated;
             }
         }
