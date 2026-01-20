@@ -67,49 +67,13 @@ namespace QudKRTranslation.Patches
         }
     }
     
-    /// <summary>
-    /// WorldGenerationScreen.SetQuote 패치 - 인용문 번역
-    /// </summary>
-    [HarmonyPatch]
-    public static class Patch_WorldGenerationScreen_SetQuote
-    {
-        static MethodBase TargetMethod()
-        {
-            var type = AccessTools.TypeByName("Qud.UI.WorldGenerationScreen");
-            if (type == null) return null;
-            return AccessTools.Method(type, "SetQuote");
-        }
-        
-        [HarmonyPrefix]
-        static void Prefix(ref string quote, ref string source)
-        {
-            // Quote 번역
-            if (!string.IsNullOrEmpty(quote))
-            {
-                if (LocalizationManager.TryGetAnyTerm(quote, out string translatedQuote, "worldgen", "quotes"))
-                {
-                    quote = translatedQuote;
-                }
-            }
-            
-            // Source 번역 (예: "-Ekuemekiyyen inscription")
-            if (!string.IsNullOrEmpty(source))
-            {
-                if (LocalizationManager.TryGetAnyTerm(source, out string translatedSource, "worldgen", "quotes"))
-                {
-                    source = translatedSource;
-                }
-            }
-        }
-    }
-    
     // ========================================================================
-    // STEP 3: Legacy UI (XRL.UI.WorldCreationProgress) 패치 + TMP 오버레이
+    // STEP 2: Legacy UI (XRL.UI.WorldCreationProgress) 패치 + TMP 오버레이
     // 스프라이트 기반이므로 TMP 오버레이를 생성하여 한글 표시
     // ========================================================================
     
     /// <summary>
-    /// WorldCreationProgress.Begin 패치 - 시작 시 ModernUI 강제 활성화
+    /// WorldCreationProgress.Begin 패치 - 시작 시 로그
     /// </summary>
     [HarmonyPatch]
     public static class Patch_WorldCreationProgress_Begin
@@ -122,33 +86,13 @@ namespace QudKRTranslation.Patches
                 Debug.LogWarning("[Qud-KR] WorldCreationProgress type not found");
                 return null;
             }
-            return AccessTools.Method(type, "Begin");
+            return AccessTools.Method(type, "Begin", new Type[] { typeof(int) });
         }
         
         [HarmonyPrefix]
         static void Prefix()
         {
             Debug.Log("[Qud-KR] WorldCreation: Begin called");
-        }
-    }
-    
-    /// <summary>
-    /// WorldCreationProgress.End 패치 - 종료 시 ModernUI 강제 해제
-    /// </summary>
-    [HarmonyPatch]
-    public static class Patch_WorldCreationProgress_End
-    {
-        static MethodBase TargetMethod()
-        {
-            var type = AccessTools.TypeByName("XRL.UI.WorldCreationProgress");
-            if (type == null) return null;
-            return AccessTools.Method(type, "End");
-        }
-        
-        [HarmonyPostfix]
-        static void Postfix()
-        {
-            Debug.Log("[Qud-KR] WorldCreation: End called");
         }
     }
     
@@ -162,7 +106,7 @@ namespace QudKRTranslation.Patches
         {
             var type = AccessTools.TypeByName("XRL.UI.WorldCreationProgress");
             if (type == null) return null;
-            return AccessTools.Method(type, "NextStep");
+            return AccessTools.Method(type, "NextStep", new Type[] { typeof(string), typeof(int) });
         }
         
         [HarmonyPrefix]
@@ -195,7 +139,7 @@ namespace QudKRTranslation.Patches
         {
             var type = AccessTools.TypeByName("XRL.UI.WorldCreationProgress");
             if (type == null) return null;
-            return AccessTools.Method(type, "StepProgress");
+            return AccessTools.Method(type, "StepProgress", new Type[] { typeof(string), typeof(bool) });
         }
         
         [HarmonyPrefix]
@@ -326,26 +270,6 @@ namespace QudKRTranslation.Patches
                 _titleText = null;
                 _progressText = null;
             }
-        }
-    }
-    
-    /// <summary>
-    /// 월드 생성 완료 시 오버레이 정리
-    /// </summary>
-    [HarmonyPatch]
-    public static class Patch_WorldCreationProgress_Cleanup
-    {
-        static MethodBase TargetMethod()
-        {
-            var type = AccessTools.TypeByName("XRL.UI.WorldCreationProgress");
-            if (type == null) return null;
-            return AccessTools.Method(type, "End");
-        }
-        
-        [HarmonyPostfix]
-        static void Postfix_Cleanup()
-        {
-            Patch_WorldCreationProgress_Draw.DestroyOverlay();
         }
     }
 }
