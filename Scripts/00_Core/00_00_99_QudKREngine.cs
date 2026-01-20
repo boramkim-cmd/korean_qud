@@ -213,6 +213,9 @@ namespace QudKRTranslation.Core
 
                     IsFontLoaded = true;
                     Debug.Log("[Qud-KR] Korean font successfully loaded and applied.");
+                    
+                    // 메인 메뉴 텍스트 번역 시도
+                    MainMenu_Show_Patch.TranslateMainMenuOptions();
                 }
             }
             catch (Exception e)
@@ -332,8 +335,9 @@ namespace QudKRTranslation.Core
             FontManager.ApplyFallbackToAllTMPComponents();
         }
 
-        static void TranslateMainMenuOptions()
+        public static void TranslateMainMenuOptions()
         {
+            Debug.Log("[Qud-KR] TranslateMainMenuOptions called.");
             var krMap = new Dictionary<string, string>
             {
                 { "New Game", "새로 시작" },
@@ -348,11 +352,17 @@ namespace QudKRTranslation.Core
                 { "Quit", "종료" }
             };
 
+            bool changed = false;
+
             if (Qud.UI.MainMenu.LeftOptions != null)
             {
                 foreach (var opt in Qud.UI.MainMenu.LeftOptions)
                 {
-                    if (krMap.ContainsKey(opt.Text)) opt.Text = krMap[opt.Text];
+                    if (krMap.ContainsKey(opt.Text)) 
+                    {
+                        opt.Text = krMap[opt.Text];
+                        changed = true;
+                    }
                 }
             }
 
@@ -360,8 +370,35 @@ namespace QudKRTranslation.Core
             {
                 foreach (var opt in Qud.UI.MainMenu.RightOptions)
                 {
-                    if (krMap.ContainsKey(opt.Text)) opt.Text = krMap[opt.Text];
+                    if (krMap.ContainsKey(opt.Text)) 
+                    {
+                        opt.Text = krMap[opt.Text];
+                        changed = true;
+                    }
                 }
+            }
+            
+            if (changed) Debug.Log("[Qud-KR] MainMenu options translated.");
+
+            // 이미 메인 메뉴가 떠 있다면 강제 갱신
+            try
+            {
+                if (Qud.UI.MainMenu.instance != null && Qud.UI.MainMenu.instance.gameObject.activeInHierarchy)
+                {
+                    Debug.Log("[Qud-KR] Refeshing active MainMenu instance...");
+                    var menu = Qud.UI.MainMenu.instance;
+                    if (menu.leftScroller != null)
+                        menu.leftScroller.BeforeShow(null, Qud.UI.MainMenu.LeftOptions);
+                    if (menu.rightScroller != null)
+                        menu.rightScroller.BeforeShow(null, Qud.UI.MainMenu.RightOptions);
+                    
+                    // Force refresh layout?
+                    menu.UpdateMenuBars();
+                }
+            }
+            catch (Exception ex)
+            {
+                Debug.LogWarning($"[Qud-KR] Failed to refresh MainMenu: {ex.Message}");
             }
         }
     }
