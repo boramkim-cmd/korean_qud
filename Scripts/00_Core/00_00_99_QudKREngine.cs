@@ -279,28 +279,19 @@ namespace QudKRTranslation.Core
                     return;
                 }
 
-                // 2. Check if current font is one of the target fonts to replace
-                // (Replacing standard fonts with Cafe24, but keeping icon fonts)
-                bool shouldReplace = false;
-                
-                // Check exact match with target names
-                foreach (var target in TargetFontNames)
+                // 2. Check if current font should be replaced
+                // STRATEGY: Replace ALL fonts except known Icon fonts
+                bool shouldReplace = true;
+                string fname = currentFont.name;
+
+                // Blacklist: Do NOT replace these fonts (Icons, Symbols)
+                if (fname.Contains("Filled") || 
+                    fname.Contains("Outlined") || 
+                    fname.Contains("Icons") ||
+                    fname.Contains("Cursor") ||
+                    fname.Contains("Dingbats"))
                 {
-                    if (currentFont.name.StartsWith(target, StringComparison.OrdinalIgnoreCase))
-                    {
-                        shouldReplace = true;
-                        break;
-                    }
-                }
-                
-                // Also check for standard Unity fonts or likely text fonts
-                if (!shouldReplace)
-                {
-                    string fname = currentFont.name.ToLower();
-                    if (fname.Contains("liberation") || fname.Contains("sourcecodepro") || fname.Contains("arial") || fname.Contains("fallout"))
-                    {
-                        shouldReplace = true;
-                    }
+                    shouldReplace = false;
                 }
 
                 if (shouldReplace)
@@ -313,7 +304,7 @@ namespace QudKRTranslation.Core
                 }
                 else
                 {
-                    // For non-replaced fonts (likely icons), still add fallback just in case
+                    // For non-replaced fonts (icons), add fallback
                     if (currentFont.fallbackFontAssetTable == null)
                         currentFont.fallbackFontAssetTable = new System.Collections.Generic.List<TMP_FontAsset>();
                     
