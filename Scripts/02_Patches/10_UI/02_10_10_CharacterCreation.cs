@@ -477,9 +477,59 @@ namespace QudKRTranslation.Patches
 
         private static void ApplyTooltipFont(TooltipTrigger tooltipTrigger)
         {
-            // FontManager handles global TMP font fallback now
-            // Just ensure it's been called
+            // Ensure Korean font is loaded
             FontManager.ApplyKoreanFont();
+            
+            var koreanFont = FontManager.GetKoreanTMPFont();
+            if (koreanFont == null) return;
+            
+            try
+            {
+                // Get the tooltip popup object via reflection (Tooltip property)
+                var tooltipProp = typeof(TooltipTrigger).GetProperty("Tooltip", 
+                    System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Public);
+                if (tooltipProp == null) return;
+                
+                var tooltipObj = tooltipProp.GetValue(tooltipTrigger) as UnityEngine.Component;
+                if (tooltipObj == null) return;
+                
+                // Find all TMP components in the tooltip popup
+                var tmps = tooltipObj.GetComponentsInChildren<TMPro.TextMeshProUGUI>(true);
+                int applied = 0;
+                foreach (var tmp in tmps)
+                {
+                    if (tmp == null) continue;
+                    
+                    if (tmp.font != null)
+                    {
+                        if (tmp.font.fallbackFontAssetTable == null)
+                            tmp.font.fallbackFontAssetTable = new System.Collections.Generic.List<TMPro.TMP_FontAsset>();
+                        if (!tmp.font.fallbackFontAssetTable.Contains(koreanFont))
+                        {
+                            tmp.font.fallbackFontAssetTable.Insert(0, koreanFont);
+                            applied++;
+                        }
+                    }
+                    else
+                    {
+                        tmp.font = koreanFont;
+                        applied++;
+                    }
+                    
+                    // Force refresh
+                    tmp.SetAllDirty();
+                    tmp.ForceMeshUpdate();
+                }
+                
+                if (applied > 0)
+                {
+                    Debug.Log($"[Qud-KR] Applied Korean font to {applied} TMP components in tooltip popup.");
+                }
+            }
+            catch (System.Exception ex)
+            {
+                Debug.LogWarning($"[Qud-KR] ApplyTooltipFont error: {ex.Message}");
+            }
         }
 
         // 툴팁 표시 시간 추적 - Show→Hide 즉시 발생 방지
