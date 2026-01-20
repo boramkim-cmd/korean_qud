@@ -8,6 +8,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using System.Reflection;
 using HarmonyLib;
 using UnityEngine;
@@ -376,6 +377,65 @@ namespace QudKRTranslation.Patches
                         }
                     }
                 }
+            }
+        }
+    }
+
+    // ========================================================================
+    // UITextSkin.SetText Patch - Translate hardcoded prefab texts
+    // ========================================================================
+    [HarmonyPatch(typeof(UITextSkin), nameof(UITextSkin.SetText))]
+    public static class Patch_UITextSkin_SetText
+    {
+        // Known hardcoded texts in Unity Prefabs that need translation
+        private static readonly Dictionary<string, string> HardcodedTexts = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase)
+        {
+            { "character creation", null },  // Will be loaded from localization
+            { "build library", null },
+            { "build summary", null },
+            { "choose game mode", null },
+            { "choose genotype", null },
+            { "choose subtype", null },
+            { "choose mutations", null },
+            { "choose attributes", null },
+            { "choose cybernetic implant", null },
+            { "customize character", null },
+            { "choose starting location", null },
+            { "choose preset", null },
+            { "choose character type", null }
+        };
+        
+        private static bool _initialized = false;
+        
+        private static void InitializeTranslations()
+        {
+            if (_initialized) return;
+            _initialized = true;
+            
+            // Load translations for all hardcoded texts
+            var keys = new List<string>(HardcodedTexts.Keys);
+            foreach (var key in keys)
+            {
+                if (LocalizationManager.TryGetAnyTerm(key.ToLowerInvariant(), out string translated, "chargen_ui", "ui", "common"))
+                {
+                    HardcodedTexts[key] = translated;
+                }
+            }
+            
+            Debug.Log($"[Qud-KR] UITextSkin patch initialized with {HardcodedTexts.Count(kv => kv.Value != null)} translations");
+        }
+
+        [HarmonyPrefix]
+        static void Prefix(ref string text)
+        {
+            if (string.IsNullOrEmpty(text)) return;
+            
+            InitializeTranslations();
+            
+            string trimmed = text.Trim();
+            if (HardcodedTexts.TryGetValue(trimmed, out string translated) && !string.IsNullOrEmpty(translated))
+            {
+                text = translated;
             }
         }
     }
