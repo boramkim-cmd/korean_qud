@@ -414,9 +414,14 @@ namespace QudKRTranslation.Core
                 if (txt.font != k)
                 {
                     txt.font = k;
-                    txt.SetAllDirty();
-                    txt.ForceMeshUpdate();
                     if (forceLog) Debug.Log($"[Qud-KR][FontApply] {currentFont?.name ?? "null"} -> {k.name} on {txt.gameObject.name}");
+                }
+                
+                // 한글 폰트 클리핑 방지: extraPadding 활성화
+                // 한글 글리프가 위아래로 잘리는 문제 해결
+                if (!txt.extraPadding)
+                {
+                    txt.extraPadding = true;
                 }
             }
             catch (Exception ex)
