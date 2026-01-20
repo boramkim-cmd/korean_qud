@@ -5,9 +5,8 @@
  * 작성일: 2026-01-21
  * 
  * 구조:
- * 1. Options.ModernUI 강제 활성화 (TMP 기반 UI 사용)
- * 2. Modern UI (WorldGenerationScreen) 메시지 번역
- * 3. Legacy UI (WorldCreationProgress) 메시지 번역 + TMP 오버레이
+ * 1. Modern UI (WorldGenerationScreen) 메시지 번역
+ * 2. Legacy UI (WorldCreationProgress) 메시지 번역 + TMP 오버레이
  */
 
 using System;
@@ -22,46 +21,7 @@ using QudKRTranslation.Core;
 namespace QudKRTranslation.Patches
 {
     // ========================================================================
-    // STEP 1: Options.ModernUI 강제 활성화
-    // Modern UI를 사용하면 TMP 기반 WorldGenerationScreen이 표시됨
-    // ========================================================================
-    
-    /// <summary>
-    /// ModernUI 옵션 getter를 패치하여 월드 생성 중에는 true를 반환하도록 함
-    /// </summary>
-    [HarmonyPatch]
-    public static class Patch_Options_ModernUI
-    {
-        private static bool _forceModernUI = false;
-        
-        public static void EnableForceModernUI() => _forceModernUI = true;
-        public static void DisableForceModernUI() => _forceModernUI = false;
-        
-        static MethodBase TargetMethod()
-        {
-            // Options.ModernUI property getter
-            var optionsType = AccessTools.TypeByName("XRL.UI.Options");
-            if (optionsType == null)
-            {
-                Debug.LogWarning("[Qud-KR] Options type not found");
-                return null;
-            }
-            var prop = optionsType.GetProperty("ModernUI", BindingFlags.Public | BindingFlags.Static);
-            return prop?.GetGetMethod();
-        }
-        
-        [HarmonyPostfix]
-        static void Postfix(ref bool __result)
-        {
-            if (_forceModernUI)
-            {
-                __result = true;
-            }
-        }
-    }
-    
-    // ========================================================================
-    // STEP 2: Modern UI (Qud.UI.WorldGenerationScreen) 메시지 번역
+    // STEP 1: Modern UI (Qud.UI.WorldGenerationScreen) 메시지 번역
     // TMP_Text를 사용하므로 기존 폰트 패치가 자동 적용됨
     // ========================================================================
     
@@ -168,9 +128,7 @@ namespace QudKRTranslation.Patches
         [HarmonyPrefix]
         static void Prefix()
         {
-            // 월드 생성 시작 시 ModernUI 강제 활성화
-            Patch_Options_ModernUI.EnableForceModernUI();
-            Debug.Log("[Qud-KR] WorldCreation: Forcing ModernUI for Korean font support");
+            Debug.Log("[Qud-KR] WorldCreation: Begin called");
         }
     }
     
@@ -190,8 +148,7 @@ namespace QudKRTranslation.Patches
         [HarmonyPostfix]
         static void Postfix()
         {
-            Patch_Options_ModernUI.DisableForceModernUI();
-            Debug.Log("[Qud-KR] WorldCreation: ModernUI force disabled");
+            Debug.Log("[Qud-KR] WorldCreation: End called");
         }
     }
     
