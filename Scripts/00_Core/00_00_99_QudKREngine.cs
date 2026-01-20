@@ -380,11 +380,6 @@ namespace QudKRTranslation.Core
         // Apply Korean font to a single TMP text component
         // FORCE REPLACE: 모든 TMP 컴포넌트의 폰트를 한국어 폰트로 강제 교체
         // 이렇게 해야 영어 텍스트도 Cafe24 폰트로 표시됨
-        // 
-        // [2026-01-21] 한글 폰트 위아래 클리핑 문제 해결:
-        // - extraPadding: 글리프 렌더링 여백 추가 (클리핑 방지)
-        // - lineSpacing 조정: 한글이 라틴 문자보다 높으므로 줄 간격 증가
-        // - margin 조정: 텍스트 영역 상하 여백 확보
         public static void ApplyFallbackToTMPComponent(TMPro.TMP_Text txt, bool forceLog = false)
         {
             if (txt == null) return;
@@ -393,6 +388,9 @@ namespace QudKRTranslation.Core
 
             try
             {
+                // 비활성 또는 파괴된 오브젝트는 스킵
+                if (txt.gameObject == null || !txt.gameObject.activeInHierarchy) return;
+                
                 var currentFont = txt.font;
                 
                 // 아이콘/심볼 폰트는 교체하지 않음
@@ -421,18 +419,11 @@ namespace QudKRTranslation.Core
                     txt.font = k;
                     if (forceLog) Debug.Log($"[Qud-KR][FontApply] {currentFont?.name ?? "null"} -> {k.name} on {txt.gameObject.name}");
                 }
-                
-                // === 한글 폰트 클리핑 방지 (전역 적용) ===
-                // 1. Extra Padding 활성화: 글리프 경계 바깥에 추가 여백 생성
-                txt.extraPadding = true;
-                
-                // 2. 변경사항 적용
-                txt.SetAllDirty();
-                txt.ForceMeshUpdate();
             }
             catch (Exception ex)
             {
-                Debug.LogWarning($"[Qud-KR] ApplyFallbackToTMPComponent exception: {ex.Message}");
+                // 크래시 방지: 예외 발생 시 조용히 무시
+                if (forceLog) Debug.LogWarning($"[Qud-KR] ApplyFallbackToTMPComponent exception: {ex.Message}");
             }
         }
 
