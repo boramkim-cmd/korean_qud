@@ -198,16 +198,12 @@ namespace QudKRTranslation.Core
                         Debug.Log($"[Qud-KR] Inserted '{_koreanTMPFont.name}' into TMP_Settings.fallbackFontAssets.");
                     }
 
-                    // [DISABLED] Setting Korean font as default causes mixed font rendering for English text
-                    // because Cafe24 font has inconsistent glyph weights for some English characters.
-                    // Instead, we only use it as fallback for Korean characters.
-                    // 
-                    // if (TMP_Settings.defaultFontAsset != _koreanTMPFont)
-                    // {
-                    //     Debug.Log($"[Qud-KR] Changing default font from '{TMP_Settings.defaultFontAsset?.name}' to '{_koreanTMPFont.name}'");
-                    //     TMP_Settings.defaultFontAsset = _koreanTMPFont;
-                    // }
-                    Debug.Log($"[Qud-KR] Keeping default font as '{TMP_Settings.defaultFontAsset?.name}', Korean font is fallback only.");
+                    // Set Korean font as default for consistent rendering
+                    if (TMP_Settings.defaultFontAsset != _koreanTMPFont)
+                    {
+                        Debug.Log($"[Qud-KR] Changing default font from '{TMP_Settings.defaultFontAsset?.name}' to '{_koreanTMPFont.name}'");
+                        TMP_Settings.defaultFontAsset = _koreanTMPFont;
+                    }
 
                     // Add as fallback to all existing TMP font assets
                     // AND add existing fonts as fallback to Korean font (Bi-directional)
