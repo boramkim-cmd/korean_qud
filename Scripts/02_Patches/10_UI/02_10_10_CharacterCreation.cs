@@ -1283,19 +1283,36 @@ namespace QudKRTranslation.Patches
             {
                 // Get the parent canvas
                 var canvas = __instance.GetComponentInParent<Canvas>();
-                if (canvas == null) return;
+                if (canvas == null)
+                {
+                    Debug.Log("[Qud-KR][Debug] Canvas is null in BeforeShowWithWindow_Postfix");
+                    return;
+                }
+                
+                Debug.Log($"[Qud-KR][Debug] Canvas found: '{canvas.name}' (ID: {canvas.GetInstanceID()})");
                 
                 int canvasId = canvas.GetInstanceID();
-                if (_translatedCanvasIds.Contains(canvasId)) return;
+                // REMOVED: Skip cache check to allow re-scanning
+                // if (_translatedCanvasIds.Contains(canvasId)) return;
                 
                 // Find all TextMeshProUGUI components in the canvas hierarchy
                 var allTexts = canvas.GetComponentsInChildren<TMPro.TextMeshProUGUI>(true);
+                Debug.Log($"[Qud-KR][Debug] Found {allTexts.Length} TMP components in canvas");
+                
+                int foundCount = 0;
                 foreach (var tmp in allTexts)
                 {
                     if (tmp == null) continue;
                     
                     string text = tmp.text?.Trim();
                     if (string.IsNullOrEmpty(text)) continue;
+                    
+                    // Log all non-empty texts for debugging
+                    if (foundCount < 20) // Limit to first 20
+                    {
+                        Debug.Log($"[Qud-KR][Debug] TMP[{foundCount}]: '{text}' (GO: {tmp.gameObject.name})");
+                    }
+                    foundCount++;
                     
                     // Check for "character creation" (case insensitive)
                     if (text.Equals("character creation", StringComparison.OrdinalIgnoreCase))
@@ -1305,8 +1322,14 @@ namespace QudKRTranslation.Patches
                             tmp.text = translated;
                             Debug.Log($"[Qud-KR] Translated Canvas text: 'character creation' -> '{translated}'");
                         }
+                        else
+                        {
+                            Debug.LogWarning("[Qud-KR][Debug] Translation not found for 'character creation'");
+                        }
                     }
                 }
+                
+                Debug.Log($"[Qud-KR][Debug] Total non-empty TMP texts found: {foundCount}");
                 
                 _translatedCanvasIds.Add(canvasId);
             }
