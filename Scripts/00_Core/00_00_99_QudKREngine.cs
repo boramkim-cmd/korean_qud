@@ -325,6 +325,7 @@ namespace QudKRTranslation.Core
                     {
                         Debug.LogWarning($"[Qud-KR][LegacyPatch] Exception: {ex.Message}");
                     }
+                }
             }
             catch (Exception e)
             {
@@ -818,5 +819,6 @@ namespace QudKRTranslation.Core
                 str = sb.ToString();
                 offset = idx + replacement.Length;
             }
-        }    }
+        }
+    }
 }
