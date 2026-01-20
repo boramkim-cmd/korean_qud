@@ -506,12 +506,8 @@ namespace QudKRTranslation.Core
 
             foreach (var tmp in tmps)
             {
-                // 폰트 강제 교체
-                if (tmp.font != krFont)
-                {
-                    tmp.font = krFont;
-                    tmp.SetAllDirty();
-                }
+                // fallback 추가 방식 (폰트 강제 교체 안 함)
+                FontManager.ApplyFallbackToTMPComponent(tmp);
             }
         }
 
@@ -525,8 +521,8 @@ namespace QudKRTranslation.Core
 
             foreach (var tmp in tmps)
             {
-                tmp.font = krFont;
-                tmp.SetAllDirty();
+                // fallback 추가 방식 (폰트 강제 교체 안 함)
+                FontManager.ApplyFallbackToTMPComponent(tmp);
             }
         }
 
