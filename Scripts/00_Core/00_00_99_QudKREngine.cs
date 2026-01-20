@@ -380,6 +380,11 @@ namespace QudKRTranslation.Core
         // Apply Korean font to a single TMP text component
         // FORCE REPLACE: 모든 TMP 컴포넌트의 폰트를 한국어 폰트로 강제 교체
         // 이렇게 해야 영어 텍스트도 Cafe24 폰트로 표시됨
+        // 
+        // [2026-01-21] 한글 폰트 위아래 클리핑 문제 해결:
+        // - extraPadding: 글리프 렌더링 여백 추가 (클리핑 방지)
+        // - lineSpacing 조정: 한글이 라틴 문자보다 높으므로 줄 간격 증가
+        // - margin 조정: 텍스트 영역 상하 여백 확보
         public static void ApplyFallbackToTMPComponent(TMPro.TMP_Text txt, bool forceLog = false)
         {
             if (txt == null) return;
@@ -414,10 +419,31 @@ namespace QudKRTranslation.Core
                 if (txt.font != k)
                 {
                     txt.font = k;
-                    txt.SetAllDirty();
-                    txt.ForceMeshUpdate();
                     if (forceLog) Debug.Log($"[Qud-KR][FontApply] {currentFont?.name ?? "null"} -> {k.name} on {txt.gameObject.name}");
                 }
+                
+                // === 한글 폰트 클리핑 방지 (전역 적용) ===
+                // 1. Extra Padding 활성화: 글리프 경계 바깥에 추가 여백 생성
+                txt.extraPadding = true;
+                
+                // 2. LineSpacing 조정: 기본값이 0이면 약간의 여유 추가 (한글 높이 보정)
+                //    이미 음수가 아닌 경우에만 최소값 보장
+                if (txt.lineSpacing < 5f)
+                {
+                    txt.lineSpacing = 5f;  // 한글 높이에 맞는 최소 줄간격
+                }
+                
+                // 3. Margin 상하 여백 확보 (기존 좌우 margin은 유지)
+                //    클리핑이 발생하는 텍스트 영역에 추가 여백 제공
+                var currentMargin = txt.margin;
+                float minVerticalMargin = 2f;  // 최소 상하 여백 (픽셀)
+                if (currentMargin.y < minVerticalMargin) currentMargin.y = minVerticalMargin;  // Top
+                if (currentMargin.w < minVerticalMargin) currentMargin.w = minVerticalMargin;  // Bottom
+                txt.margin = currentMargin;
+                
+                // 4. 변경사항 적용
+                txt.SetAllDirty();
+                txt.ForceMeshUpdate();
             }
             catch (Exception ex)
             {
