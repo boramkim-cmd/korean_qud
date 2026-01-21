@@ -1,16 +1,16 @@
 ManifestFileVersion: 0
 UnityVersion: 6000.3.4f1
-CRC: 3475039249
+CRC: 1589856411
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 2b9b0ca1fc7d62f790f004a05c6b0615
+    Hash: 19a1283fb87ab34a6b8909d23f2e9e58
   TypeTreeHash:
     serializedVersion: 2
     Hash: fa8951d7deeedc7d251cf1e02d8cfb9f
   IncrementalBuildHash:
     serializedVersion: 2
-    Hash: 0e23e8a4ac6938127843afed545bac7e
+    Hash: 38de87941d6057ce81084113f5618b38
 HashAppended: 0
 ClassTypes:
 - Class: 21
@@ -45,5 +45,6 @@ SerializeReferenceClassIdentifiers:
 - AssemblyName: UnityEngine.TextCoreFontEngineModule
   ClassName: UnityEngine.TextCore.GlyphRect
 Assets:
+- Assets/TextMesh Pro/Fonts/PretendardGOVVariable SDF.asset
 - Assets/TextMesh Pro/Fonts/Cafe24PROSlimMax SDF.asset
 Dependencies: []
