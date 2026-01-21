@@ -79,11 +79,22 @@ namespace QudKRTranslation.Utils
                 }
 
                 // 1. 불렛 포인트 보존 로직 (수정됨 - 구분점 사라짐 문제 해결)
-                // Qud uses {{c|ù}} or just ù for bullets
+                // Qud uses {{c|ù}} or just ù for bullets, and legacy &cù&y format
                 string bulletPrefix = "";
                 
+                // Check for legacy Qud color tag format: &cù&y (cyan bullet, yellow text)
+                // Pattern: &[color]ù&[color] or just &[color]ù
+                var legacyBulletMatch = Regex.Match(contentToTranslate, @"^(&[a-zA-Z]ù)(&[a-zA-Z])?\s*(.*)$");
+                if (legacyBulletMatch.Success)
+                {
+                    // Preserve the entire bullet+color prefix: "&cù&y "
+                    string bulletPart = legacyBulletMatch.Groups[1].Value; // &cù
+                    string colorPart = legacyBulletMatch.Groups[2].Success ? legacyBulletMatch.Groups[2].Value : ""; // &y
+                    bulletPrefix = bulletPart + colorPart + " ";
+                    contentToTranslate = legacyBulletMatch.Groups[3].Value.Trim();
+                }
                 // Check for common Qud bullets
-                if (contentToTranslate.StartsWith("{{c|ù}}")) 
+                else if (contentToTranslate.StartsWith("{{c|ù}}")) 
                 {
                     bulletPrefix = "{{c|ù}} ";
                     contentToTranslate = contentToTranslate.Substring(7).Trim(); // Remove {{c|ù}} properly (7 chars)
