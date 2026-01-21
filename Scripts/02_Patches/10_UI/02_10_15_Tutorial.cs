@@ -41,7 +41,7 @@ namespace QudKRTranslation.Patches
             
             // LocalizationManager에서 "tutorial" 카테고리의 딕셔너리를 가져옴
             LocalizationManager.Initialize();
-            var tutorialScope = LocalizationManager.GetGlossary("tutorial");
+            var tutorialScope = LocalizationManager.GetCategory("tutorial");
             
             if (tutorialScope == null)
             {
