@@ -38,7 +38,14 @@ namespace QudKRTranslation.Patches
             // 1. CRLF -> LF 정규화 (게임 소스는 \r\n, JSON은 \n 사용)
             string normalized = text.Replace("\r\n", "\n");
             
-            // 2. 태그 형식 정규화: {{~Tag}} -> ~Tag (일부 소스 파일 차이)
+            // 2. 색상 태그 제거: {{y|text}} -> text, {{C|text}} -> text 등
+            normalized = System.Text.RegularExpressions.Regex.Replace(
+                normalized, 
+                @"\{\{[a-zA-Z]\|([^}]*)\}\}", 
+                "$1"
+            );
+            
+            // 3. 핫키 태그 형식 정규화: {{~Tag}} -> ~Tag (일부 소스 파일 차이)
             normalized = System.Text.RegularExpressions.Regex.Replace(
                 normalized, 
                 @"\{\{(~[^}]+)\}\}", 
