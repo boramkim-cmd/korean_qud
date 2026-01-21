@@ -1,6 +1,6 @@
 # 📚 프로젝트 완전 인덱스 (자동 생성)
 
-**생성**: 2026-01-21 23:19:20
+**생성**: 2026-01-22 08:05:08
 
 이 문서는 프로젝트의 모든 파일과 메서드 시그니처를 포함합니다. **새로운 기능을 만들기 전, 반드시 여기서 기존 메서드를 검색하십시오.**
 
@@ -91,6 +91,47 @@
 ### `Scripts/02_Patches/00_Core/02_00_02_ScreenBuffer.cs`
 - **역할**: ScreenBuffer.Write 메서드를 패치하여 모든 화면의 텍스트를 번역합니다.
 - **Namespace**: `QudKRTranslation.Patches`
+
+## 📂 [N/A]
+
+### `Scripts/02_Patches/20_Objects/02_20_00_ObjectTranslator.cs`
+- **역할**: N/A
+- **Namespace**: `QudKorean.Objects`
+- **공개 메서드 (Public Methods)**:
+  ```csharp
+  void EnsureInitialized()
+  void ReloadJson()
+  void ClearCache()
+  bool TryGetDisplayName(string blueprint, string originalName, out string translated)
+  bool TryGetDescription(string blueprint, out string translated)
+  bool HasTranslation(string blueprint)
+  string GetStats()
+  ```
+
+### `Scripts/02_Patches/20_Objects/02_20_01_DisplayNamePatch.cs`
+- **역할**: N/A
+- **Namespace**: `QudKorean.Objects`
+- **공개 메서드 (Public Methods)**:
+  ```csharp
+  void ClearCache()
+  void ReloadAndClear()
+  ```
+
+### `Scripts/02_Patches/20_Objects/02_20_02_DescriptionPatch.cs`
+- **역할**: N/A
+- **Namespace**: `QudKorean.Objects`
+
+### `Scripts/02_Patches/20_Objects/02_20_99_DebugWishes.cs`
+- **역할**: N/A
+- **Namespace**: `QudKorean.Objects`
+- **공개 메서드 (Public Methods)**:
+  ```csharp
+  void ReloadTranslations()
+  void CheckTranslation(string blueprint)
+  void ListUntranslated()
+  void ShowStats()
+  void ClearCache()
+  ```
 
 ## 📂 [UI Patch]
 

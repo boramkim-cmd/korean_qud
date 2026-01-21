@@ -1,5 +1,5 @@
 {
-  "generated": "2026-01-21 23:19:20",
+  "generated": "2026-01-22 08:05:08",
   "scripts": {
     "Scripts/99_Utils/99_00_03_StructureTranslator.cs": {
       "classification": "Util",
@@ -488,6 +488,117 @@
         }
       ]
     },
+    "Scripts/02_Patches/20_Objects/02_20_99_DebugWishes.cs": {
+      "classification": "N/A",
+      "role": "N/A",
+      "namespace": "QudKorean.Objects",
+      "classes": [
+        "ObjectDebugWishes"
+      ],
+      "methods": [
+        {
+          "name": "ReloadTranslations",
+          "return": "void",
+          "params": ""
+        },
+        {
+          "name": "CheckTranslation",
+          "return": "void",
+          "params": "string blueprint"
+        },
+        {
+          "name": "ListUntranslated",
+          "return": "void",
+          "params": ""
+        },
+        {
+          "name": "ShowStats",
+          "return": "void",
+          "params": ""
+        },
+        {
+          "name": "ClearCache",
+          "return": "void",
+          "params": ""
+        }
+      ]
+    },
+    "Scripts/02_Patches/20_Objects/02_20_02_DescriptionPatch.cs": {
+      "classification": "N/A",
+      "role": "N/A",
+      "namespace": "QudKorean.Objects",
+      "classes": [
+        "Patch_ObjectDescription"
+      ],
+      "methods": []
+    },
+    "Scripts/02_Patches/20_Objects/02_20_00_ObjectTranslator.cs": {
+      "classification": "N/A",
+      "role": "N/A",
+      "namespace": "QudKorean.Objects",
+      "classes": [
+        "ObjectTranslator",
+        "ObjectData"
+      ],
+      "methods": [
+        {
+          "name": "EnsureInitialized",
+          "return": "void",
+          "params": ""
+        },
+        {
+          "name": "ReloadJson",
+          "return": "void",
+          "params": ""
+        },
+        {
+          "name": "ClearCache",
+          "return": "void",
+          "params": ""
+        },
+        {
+          "name": "TryGetDisplayName",
+          "return": "bool",
+          "params": "string blueprint, string originalName, out string translated"
+        },
+        {
+          "name": "TryGetDescription",
+          "return": "bool",
+          "params": "string blueprint, out string translated"
+        },
+        {
+          "name": "HasTranslation",
+          "return": "bool",
+          "params": "string blueprint"
+        },
+        {
+          "name": "GetStats",
+          "return": "string",
+          "params": ""
+        }
+      ]
+    },
+    "Scripts/02_Patches/20_Objects/02_20_01_DisplayNamePatch.cs": {
+      "classification": "N/A",
+      "role": "N/A",
+      "namespace": "QudKorean.Objects",
+      "classes": [
+        "Patch_ObjectDisplayName",
+        "Patch_CacheInvalidation"
+      ],
+      "methods": [
+        {
+          "name": "ClearCache",
+          "return": "void",
+          "params": ""
+        },
+        {
+          "name": "ReloadAndClear",
+          "return": "void",
+          "params": ""
+        }
+      ]
+    },
     "Scripts/02_Patches/00_Core/02_00_02_ScreenBuffer.cs": {
       "classification": "Core Patch",
       "role": "ScreenBuffer.Write 메서드를 패치하여 모든 화면의 텍스트를 번역합니다.",
@@ -684,9 +795,12 @@
     },
     "_common.json": {
       "categories": [
-        "tutorial_common"
+        "_meta",
+        "common_terms",
+        "species",
+        "creature_classes"
       ],
-      "entries": 5
+      "entries": 23
     },
     "01_chest.json": {
       "categories": [
@@ -2385,6 +2499,18 @@
         "behaviorDescription_ko"
       ],
       "entries": 1
+    },
+    "tutorial.json": {
+      "categories": [
+        "_meta",
+        "TutorialSnapjaw",
+        "TutorialBear",
+        "TutorialClockworkBeetlePariah",
+        "Snapjaw Scavenger",
+        "Bear",
+        "ClockworkBeetle"
+      ],
+      "entries": 21
     },
     "descriptions.json": {
       "categories": [

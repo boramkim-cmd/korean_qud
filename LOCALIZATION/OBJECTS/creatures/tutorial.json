@@ -1,0 +1,55 @@
+{
+  "_meta": {
+    "description": "Tutorial creatures - Phase 1",
+    "version": "1.0",
+    "created": "2026-01-22"
+  },
+  
+  "TutorialSnapjaw": {
+    "names": {
+      "snapjaw scavenger": "스냅조 청소부"
+    },
+    "description": "Tussocks of fur dress skin stretched over taut muscle. Upright =pronouns.subjective= =verb:stand:afterpronoun=, but =pronouns.subjective= =verb:look:afterpronoun= ready to drop onto fours. =pronouns.Possessive= snout snarls and =pronouns.possessive= ears twitch. =pronouns.Subjective= =verb:bark:afterpronoun=, and =pronouns.possessive= hyena tribeskin answer.",
+    "description_ko": "촘촘한 털 다발이 팽팽한 근육 위에 펼쳐진 피부를 덮고 있다. 직립해 있지만, 언제든 네 발로 달릴 준비가 되어 있어 보인다. 주둥이가 으르렁거리고 귀가 실룩인다. 짖어대면, 하이에나 부족민들이 응답한다."
+  },
+  
+  "TutorialBear": {
+    "names": {
+      "bear": "곰"
+    },
+    "description": "\"The Grizzly Bear is huge and wild; =pronouns.Subjective= =verb:have:afterpronoun= devoured the infant child. The infant child is unaware =pronouns.Subjective= =verb:have:afterpronoun= been eaten by the bear.\" -A.E. Housman",
+    "description_ko": "\"회색곰은 거대하고 야생적이라; 어린아이를 삼켜버렸다. 어린아이는 곰에게 잡아먹힌 것도 모른다.\" -A.E. 하우스만"
+  },
+  
+  "TutorialClockworkBeetlePariah": {
+    "names": {
+      "clockwork beetle and pariah to its people": "클락워크 비틀 - 동족의 패리아"
+    },
+    "description": "Shining black elytra flitter on the back of a goat-sized bug. There is sharp, persistent ticking emanating outward.",
+    "description_ko": "염소만 한 크기의 벌레 등에서 반짝이는 검은 딱지날개가 파르르 떨린다. 날카롭고 끈질긴 똑딱거리는 소리가 밖으로 새어나온다."
+  },
+
+  "Snapjaw Scavenger": {
+    "names": {
+      "snapjaw scavenger": "스냅조 청소부"
+    },
+    "description": "Tussocks of fur dress skin stretched over taut muscle. Upright =pronouns.subjective= =verb:stand:afterpronoun=, but =pronouns.subjective= =verb:look:afterpronoun= ready to drop onto fours. =pronouns.Possessive= snout snarls and =pronouns.possessive= ears twitch. =pronouns.Subjective= =verb:bark:afterpronoun=, and =pronouns.possessive= hyena tribeskin answer.",
+    "description_ko": "촘촘한 털 다발이 팽팽한 근육 위에 펼쳐진 피부를 덮고 있다. 직립해 있지만, 언제든 네 발로 달릴 준비가 되어 있어 보인다. 주둥이가 으르렁거리고 귀가 실룩인다. 짖어대면, 하이에나 부족민들이 응답한다."
+  },
+
+  "Bear": {
+    "names": {
+      "bear": "곰"
+    },
+    "description": "\"The Grizzly Bear is huge and wild; =pronouns.Subjective= =verb:have:afterpronoun= devoured the infant child. The infant child is unaware =pronouns.Subjective= =verb:have:afterpronoun= been eaten by the bear.\" -A.E. Housman",
+    "description_ko": "\"회색곰은 거대하고 야생적이라; 어린아이를 삼켜버렸다. 어린아이는 곰에게 잡아먹힌 것도 모른다.\" -A.E. 하우스만"
+  },
+
+  "ClockworkBeetle": {
+    "names": {
+      "clockwork beetle": "클락워크 비틀"
+    },
+    "description": "Shining black elytra flitter on the back of a goat-sized bug.",
+    "description_ko": "염소만 한 크기의 벌레 등에서 반짝이는 검은 딱지날개가 파르르 떨린다."
+  }
+}

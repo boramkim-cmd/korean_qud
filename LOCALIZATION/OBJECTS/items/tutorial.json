@@ -1,0 +1,121 @@
+{
+  "_meta": {
+    "description": "Tutorial items - Phase 1",
+    "version": "1.0",
+    "created": "2026-01-22"
+  },
+
+  "TutorialDagger": {
+    "names": {
+      "{{w|bronze}} dagger": "{{w|청동}} 단검",
+      "bronze dagger": "청동 단검",
+      "dagger": "단검"
+    },
+    "description": "Bell bronze is shaped to a point and its handle wrapped in leather.",
+    "description_ko": "벨 청동이 뾰족하게 다듬어지고 손잡이는 가죽으로 감싸져 있다."
+  },
+
+  "TutorialTorch": {
+    "names": {
+      "torch": "횃불"
+    },
+    "description": "A length of brinestalk is wrapped in oil-sodden cloth.",
+    "description_ko": "브라인스톡 막대기가 기름에 흠뻑 젖은 천으로 감싸져 있다."
+  },
+
+  "TutorialLeatherArmor": {
+    "names": {
+      "leather armor": "가죽 갑옷"
+    },
+    "description": "Boiled goat leather was cut to a cuirass and fit with straps and iron buckles. It smells of beeswax.",
+    "description_ko": "삶은 염소 가죽을 흉갑 형태로 자르고 끈과 철제 버클로 고정했다. 밀랍 냄새가 난다."
+  },
+
+  "TutorialChemCell": {
+    "names": {
+      "{{c|chem cell}}": "{{c|화학 전지}}",
+      "chem cell": "화학 전지"
+    },
+    "description": "Inside the small cask, liquid salt transfers ions to the cathode and produces spark.",
+    "description_ko": "작은 통 안에서 액체 소금이 이온을 음극으로 전달하고 스파크를 만들어낸다."
+  },
+
+  "TutorialBattleAxe": {
+    "names": {
+      "{{w|bronze}} battle axe": "{{w|청동}} 전투 도끼",
+      "bronze battle axe": "청동 전투 도끼",
+      "battle axe": "전투 도끼"
+    },
+    "description": "Damp leather wraps the wood haft up to a sharpened bit of bell bronze.",
+    "description_ko": "축축한 가죽이 나무 자루를 감아 올라가 날카롭게 다듬어진 벨 청동 날에 연결된다."
+  },
+
+  "TutorialHalfFullWaterskin": {
+    "names": {
+      "waterskin": "물주머니"
+    },
+    "description": "A goat's bladder is knotted at the bottom and suspended by a strap of intestine.",
+    "description_ko": "염소의 방광이 아래쪽에서 묶여 있고 창자로 만든 끈으로 매달려 있다."
+  },
+
+  "Dagger": {
+    "names": {
+      "{{w|bronze}} dagger": "{{w|청동}} 단검",
+      "bronze dagger": "청동 단검",
+      "dagger": "단검"
+    },
+    "description": "Bell bronze is shaped to a point and its handle wrapped in leather.",
+    "description_ko": "벨 청동이 뾰족하게 다듬어지고 손잡이는 가죽으로 감싸져 있다."
+  },
+
+  "Torch": {
+    "names": {
+      "torch": "횃불"
+    },
+    "description": "A length of brinestalk is wrapped in oil-sodden cloth.",
+    "description_ko": "브라인스톡 막대기가 기름에 흠뻑 젖은 천으로 감싸져 있다."
+  },
+
+  "Leather Armor": {
+    "names": {
+      "leather armor": "가죽 갑옷"
+    },
+    "description": "Boiled goat leather was cut to a cuirass and fit with straps and iron buckles. It smells of beeswax.",
+    "description_ko": "삶은 염소 가죽을 흉갑 형태로 자르고 끈과 철제 버클로 고정했다. 밀랍 냄새가 난다."
+  },
+
+  "Chem Cell": {
+    "names": {
+      "{{c|chem cell}}": "{{c|화학 전지}}",
+      "chem cell": "화학 전지"
+    },
+    "description": "Inside the small cask, liquid salt transfers ions to the cathode and produces spark.",
+    "description_ko": "작은 통 안에서 액체 소금이 이온을 음극으로 전달하고 스파크를 만들어낸다."
+  },
+
+  "Battle Axe": {
+    "names": {
+      "{{w|bronze}} battle axe": "{{w|청동}} 전투 도끼",
+      "bronze battle axe": "청동 전투 도끼",
+      "battle axe": "전투 도끼"
+    },
+    "description": "Damp leather wraps the wood haft up to a sharpened bit of bell bronze.",
+    "description_ko": "축축한 가죽이 나무 자루를 감아 올라가 날카롭게 다듬어진 벨 청동 날에 연결된다."
+  },
+
+  "Waterskin": {
+    "names": {
+      "waterskin": "물주머니"
+    },
+    "description": "A goat's bladder is knotted at the bottom and suspended by a strap of intestine.",
+    "description_ko": "염소의 방광이 아래쪽에서 묶여 있고 창자로 만든 끈으로 매달려 있다."
+  },
+
+  "HalfFullWaterskin": {
+    "names": {
+      "waterskin": "물주머니"
+    },
+    "description": "A goat's bladder is knotted at the bottom and suspended by a strap of intestine.",
+    "description_ko": "염소의 방광이 아래쪽에서 묶여 있고 창자로 만든 끈으로 매달려 있다."
+  }
+}

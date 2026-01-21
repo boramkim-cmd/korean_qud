@@ -6,6 +6,7 @@
 using System;
 using System.Collections.Generic;
 using HarmonyLib;
+using XRL;
 using XRL.World;
 
 namespace QudKorean.Objects
@@ -76,7 +77,7 @@ namespace QudKorean.Objects
     /// <summary>
     /// Invalidates cache on game load to ensure fresh translations.
     /// </summary>
-    [HarmonyPatch(typeof(XRLCore))]
+    [HarmonyPatch(typeof(XRL.Core.XRLCore))]
     public static class Patch_CacheInvalidation
     {
         [HarmonyPatch("LoadGame")]

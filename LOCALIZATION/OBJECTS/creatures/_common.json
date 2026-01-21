@@ -1,0 +1,36 @@
+{
+  "_meta": {
+    "description": "Common creature terms - species names, corpse terms, etc.",
+    "version": "1.0",
+    "created": "2026-01-22"
+  },
+
+  "common_terms": {
+    "corpse": "시체",
+    "remains": "잔해",
+    "husk": "껍데기",
+    "hostile": "적대적",
+    "friendly": "우호적",
+    "neutral": "중립"
+  },
+
+  "species": {
+    "snapjaw": "스냅조",
+    "goatfolk": "염소인",
+    "bear": "곰",
+    "beetle": "딱정벌레",
+    "bat": "박쥐",
+    "boar": "멧돼지",
+    "pig": "돼지",
+    "antelope": "영양"
+  },
+
+  "creature_classes": {
+    "animal": "동물",
+    "humanoid": "휴머노이드",
+    "insect": "곤충",
+    "robot": "로봇",
+    "plant": "식물",
+    "fungus": "균류"
+  }
+}

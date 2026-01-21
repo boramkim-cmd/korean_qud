@@ -1,0 +1,63 @@
+{
+  "_meta": {
+    "description": "Common item terms - materials, prefixes, modifiers",
+    "version": "1.0",
+    "created": "2026-01-22"
+  },
+
+  "materials": {
+    "bronze": "청동",
+    "iron": "철",
+    "steel": "강철",
+    "carbide": "카바이드",
+    "fullerite": "풀러라이트",
+    "crysteel": "크리스틸",
+    "zetachrome": "제타크롬",
+    "flawless crysteel": "완벽한 크리스틸",
+    "leather": "가죽",
+    "wood": "나무",
+    "bone": "뼈",
+    "stone": "돌",
+    "copper": "구리",
+    "silver": "은",
+    "gold": "금"
+  },
+
+  "prefixes": {
+    "rusty": "녹슨",
+    "masterwork": "명품",
+    "worn": "낡은",
+    "flawless": "완벽한",
+    "serrated": "톱니 달린",
+    "electrified": "전기가 흐르는",
+    "cracked": "금간",
+    "broken": "부서진",
+    "pristine": "완전한",
+    "legendary": "전설적인"
+  },
+
+  "suffixes": {
+    "of fire": "화염의",
+    "of ice": "냉기의",
+    "of lightning": "번개의",
+    "of poison": "독의"
+  },
+
+  "item_types": {
+    "dagger": "단검",
+    "sword": "검",
+    "axe": "도끼",
+    "mace": "메이스",
+    "hammer": "망치",
+    "bow": "활",
+    "rifle": "소총",
+    "pistol": "권총",
+    "armor": "갑옷",
+    "shield": "방패",
+    "helmet": "투구",
+    "gloves": "장갑",
+    "boots": "부츠",
+    "torch": "횃불",
+    "cell": "전지"
+  }
+}
