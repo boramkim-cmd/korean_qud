@@ -79,16 +79,43 @@ The system uses Harmony Postfix patches on `GetDisplayNameEvent.GetFor()` to tra
 
 ## 2. Architecture
 
-### 2.1 Data Flow
+### 2.1 Hybrid Isolation Strategy
+
+**CRITICAL**: This system is completely isolated from existing translation infrastructure.
+
+| Component | Reuse? | Reason |
+|-----------|--------|--------|
+| `LocalizationManager.GetModDirectory()` | ✅ Read-only | Path lookup only, no modification |
+| `TranslationEngine` | ❌ No | Risk of breaking CharacterCreation |
+| `StructureTranslator` | ❌ No | Cache collision with Mutations |
+| `ScopeManager` | ❌ No | Not needed for Objects |
+
+### 2.2 Safety Verification
+
+| Existing System | Impact from Object System |
+|-----------------|---------------------------|
+| CharacterCreation patches | 🟢 **None** - completely separate |
+| Mutation translations | 🟢 **None** - separate cache |
+| UI translations | 🟢 **None** - separate JSON folder |
+| Options/Inventory patches | 🟢 **None** - different events |
+
+**Rollback**: If issues occur, delete these folders to restore:
+- `Scripts/02_Patches/20_Objects/`
+- `LOCALIZATION/OBJECTS/`
+
+### 2.3 Data Flow
 
 ```
 [Game Engine]
      │
      ▼
-GetDisplayNameEvent.GetFor(Object, Base)
+GetDisplayNameEvent.GetFor(Object, Base, ...14 more params)
+     │
+     ├─── ForSort=true? ──► SKIP (return unchanged)
+     ├─── ColorOnly=true? ─► SKIP (return unchanged)
      │
      ▼
-[Harmony Postfix Patch] ◄─── ObjectTranslator
+[Harmony Postfix Patch] ◄─── ObjectTranslator (ISOLATED)
      │                            │
      │                    ┌───────┴───────┐
      │                    ▼               ▼
@@ -103,38 +130,40 @@ GetDisplayNameEvent.GetFor(Object, Base)
 [UI Rendering]
 ```
 
-### 2.2 Key Components
+### 2.4 Key Components (Isolated)
 
 | Component | File | Responsibility |
 |-----------|------|----------------|
-| ObjectTranslator | `Scripts/99_Utils/99_00_04_ObjectTranslator.cs` | Load JSON, cache management, translation lookup |
-| DisplayNamePatch | `Scripts/02_Patches/20_Objects/02_20_01_ObjectDisplayNamePatch.cs` | Patch GetDisplayNameEvent.GetFor() |
-| DescriptionPatch | `Scripts/02_Patches/20_Objects/02_20_02_ObjectDescriptionPatch.cs` | Patch Description.GetShortDescription() |
-| JSON Data | `LOCALIZATION/GAMEPLAY/CREATURES/`, `ITEMS/` | Translation data storage |
+| ObjectTranslator | `Scripts/02_Patches/20_Objects/02_20_00_ObjectTranslator.cs` | **Isolated** JSON loading, cache, lookup |
+| DisplayNamePatch | `Scripts/02_Patches/20_Objects/02_20_01_DisplayNamePatch.cs` | Patch GetDisplayNameEvent.GetFor() |
+| DescriptionPatch | `Scripts/02_Patches/20_Objects/02_20_02_DescriptionPatch.cs` | Patch Description.GetShortDescription() |
+| DebugWishes | `Scripts/02_Patches/20_Objects/02_20_99_DebugWishes.cs` | kr:reload, kr:check commands |
+| JSON Data | `LOCALIZATION/OBJECTS/creatures/`, `items/` | Translation data storage |
 
-### 2.3 Class Diagram
+### 2.5 Class Diagram
 
 ```
 ┌─────────────────────────────────────────────────────┐
-│                  ObjectTranslator                    │
+│           ObjectTranslator (ISOLATED)                │
 ├─────────────────────────────────────────────────────┤
-│ - _creatureData: Dictionary<string, TranslationEntry>│
-│ - _itemData: Dictionary<string, TranslationEntry>    │
-│ - _cache: Dictionary<string, string>                 │
-│ - _materials: Dictionary<string, string>             │
-│ - _prefixes: Dictionary<string, string>              │
+│ - _creatureCache: Dictionary<string, ObjectData>     │  ◄─ Separate from StructureTranslator
+│ - _itemCache: Dictionary<string, ObjectData>         │  ◄─ No collision possible
+│ - _displayNameCache: Dictionary<string, string>      │
+│ - _initialized: bool                                 │
 ├─────────────────────────────────────────────────────┤
 │ + Initialize()                                       │
 │ + TryGetDisplayName(blueprint, original, out result) │
 │ + TryGetDescription(blueprint, out result)           │
+│ + ReloadJson()  ◄─ For debugging (kr:reload)         │
 │ + ClearCache()                                       │
 │ - LoadJsonFiles()                                    │
-│ - TranslateWithMaterials(name)                       │
+│ - StripColorTags(text)  ◄─ Own copy, not shared      │
 └─────────────────────────────────────────────────────┘
 
 ┌─────────────────────────────────────────────────────┐
-│                  TranslationEntry                    │
+│                    ObjectData                        │
 ├─────────────────────────────────────────────────────┤
+│ + BlueprintId: string                                │
 │ + Names: Dictionary<string, string>                  │
 │ + Description: string                                │
 │ + DescriptionKo: string                              │
@@ -143,52 +172,56 @@ GetDisplayNameEvent.GetFor(Object, Base)
 
 ---
 
-## 3. Folder Structure
+## 3. Folder Structure (Isolated)
 
-### 3.1 Localization Data
+### 3.1 New Folders (Completely Separate)
 
 ```
 LOCALIZATION/
-├── GAMEPLAY/
-│   ├── CREATURES/
-│   │   ├── _common.json              # Common terms (corpse, hostile, etc.)
-│   │   ├── tutorial.json             # Tutorial creatures (Phase 1)
-│   │   ├── tier1_animals.json        # Tier 1 animals (Phase 3)
-│   │   ├── tier1_humanoids.json      # Snapjaws, etc. (Phase 3)
-│   │   ├── tier2_creatures.json      # Phase 4+
-│   │   ├── npcs_joppa.json           # Joppa NPCs (Phase 3)
-│   │   ├── npcs_merchants.json       # Merchants (Phase 4+)
-│   │   └── unique_bosses.json        # Unique creatures (Phase 4+)
+├── OBJECTS/                              # 🆕 NEW - Isolated from GAMEPLAY/
+│   ├── creatures/
+│   │   ├── _common.json                  # Common terms (corpse, species)
+│   │   ├── tutorial.json                 # Phase 1
+│   │   ├── tier1_humanoids.json          # Phase 3 (Snapjaws)
+│   │   ├── tier1_animals.json            # Phase 3
+│   │   └── npcs_joppa.json               # Phase 3
 │   │
-│   ├── ITEMS/
-│   │   ├── _common.json              # Materials, prefixes, suffixes
-│   │   ├── tutorial.json             # Tutorial items (Phase 1)
-│   │   ├── melee_weapons.json        # Melee weapons (Phase 2)
-│   │   ├── missile_weapons.json      # Ranged weapons (Phase 4+)
-│   │   ├── armor_body.json           # Body armor (Phase 2)
-│   │   ├── armor_head.json           # Helmets (Phase 4+)
-│   │   ├── tools.json                # Torches, etc. (Phase 2)
-│   │   ├── consumables.json          # Food, meds (Phase 4+)
-│   │   ├── books.json                # Books (Phase 4+)
-│   │   └── unknown_items.json        # Unidentified items (Phase 4)
-│   │
-│   └── TUTORIAL/                     # Existing tutorial UI text (keep)
+│   └── items/
+│       ├── _common.json                  # Materials, prefixes, modifiers
+│       ├── tutorial.json                 # Phase 1
+│       ├── melee_weapons.json            # Phase 2
+│       ├── armor.json                    # Phase 2
+│       └── tools.json                    # Phase 2
 │
-└── ... (existing folders)
+├── GAMEPLAY/                             # ⚠️ EXISTING - DO NOT MODIFY
+│   ├── MUTATIONS/                        # Used by StructureTranslator
+│   ├── CYBERNETICS/
+│   └── TUTORIAL/
+│
+├── CHARGEN/                              # ⚠️ EXISTING - DO NOT MODIFY
+└── UI/                                   # ⚠️ EXISTING - DO NOT MODIFY
 ```
 
-### 3.2 Source Code
+### 3.2 Source Code Structure (Isolated)
 
 ```
 Scripts/
+├── 00_Core/                              # ⚠️ EXISTING - DO NOT MODIFY
+│   ├── 00_00_00_ModEntry.cs              # Auto-registers new patches ✅
+│   ├── 00_00_01_TranslationEngine.cs     # DO NOT MODIFY
+│   └── 00_00_03_LocalizationManager.cs   # Only use GetModDirectory() ✅
+│
 ├── 99_Utils/
-│   ├── 99_00_03_StructureTranslator.cs    # Existing (MUTATIONS)
-│   └── 99_00_04_ObjectTranslator.cs       # NEW - Creatures/Items
+│   └── 99_00_03_StructureTranslator.cs   # ⚠️ DO NOT MODIFY
 │
 └── 02_Patches/
-    └── 20_Objects/                         # NEW folder
-        ├── 02_20_01_ObjectDisplayNamePatch.cs
-        └── 02_20_02_ObjectDescriptionPatch.cs
+    ├── 10_UI/                            # ⚠️ EXISTING - DO NOT MODIFY
+    │
+    └── 20_Objects/                       # 🆕 NEW - Isolated folder
+        ├── 02_20_00_ObjectTranslator.cs  # Isolated cache + JSON loading
+        ├── 02_20_01_DisplayNamePatch.cs  # GetDisplayNameEvent patch
+        ├── 02_20_02_DescriptionPatch.cs  # Description patch
+        └── 02_20_99_DebugWishes.cs       # kr:reload, kr:check commands
 ```
 
 ---
