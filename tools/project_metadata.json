@@ -1,5 +1,5 @@
 {
-  "generated": "2026-01-21 16:11:54",
+  "generated": "2026-01-21 16:58:55",
   "scripts": {
     "Scripts/99_Utils/99_00_03_StructureTranslator.cs": {
       "classification": "Util",
@@ -465,6 +465,15 @@
         }
       ]
     },
+    "Scripts/02_Patches/10_UI/02_10_15_Tutorial.cs": {
+      "classification": "UI Patch",
+      "role": "TutorialManager의 텍스트를 번역합니다.",
+      "namespace": "QudKRTranslation.Patches",
+      "classes": [
+        "Patch_TutorialManager"
+      ],
+      "methods": []
+    },
     "Scripts/02_Patches/00_Core/02_00_02_ScreenBuffer.cs": {
       "classification": "Core Patch",
       "role": "ScreenBuffer.Write 메서드를 패치하여 모든 화면의 텍스트를 번역합니다.",
@@ -554,7 +563,7 @@
         "status",
         "ui"
       ],
-      "entries": 169
+      "entries": 188
     },
     "display.json": {
       "categories": [
@@ -623,6 +632,12 @@
         "cybernetics_desc"
       ],
       "entries": 54
+    },
+    "tutorial.json": {
+      "categories": [
+        "tutorial"
+      ],
+      "entries": 8
     },
     "skills.json": {
       "categories": [

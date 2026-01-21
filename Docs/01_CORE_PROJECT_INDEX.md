@@ -1,6 +1,6 @@
 # 📚 프로젝트 완전 인덱스 (자동 생성)
 
-**생성**: 2026-01-21 16:11:54
+**생성**: 2026-01-21 16:58:55
 
 이 문서는 프로젝트의 모든 파일과 메서드 시그니처를 포함합니다. **새로운 기능을 만들기 전, 반드시 여기서 기존 메서드를 검색하십시오.**
 
@@ -149,6 +149,10 @@
 
 ### `Scripts/02_Patches/10_UI/02_10_15_EmbarkOverlay.cs`
 - **역할**: 캐릭터 생성 화면 하단의 'Back', 'Next' 공통 버튼 텍스트를 번역합니다.
+- **Namespace**: `QudKRTranslation.Patches`
+
+### `Scripts/02_Patches/10_UI/02_10_15_Tutorial.cs`
+- **역할**: TutorialManager의 텍스트를 번역합니다.
 - **Namespace**: `QudKRTranslation.Patches`
 
 ## 📂 [Util]
