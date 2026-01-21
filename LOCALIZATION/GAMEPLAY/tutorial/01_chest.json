@@ -1,5 +1,12 @@
 {
   "tutorial_chest": {
+    "It's leather armor. This time, get it instead of equipping it.": "가죽 갑옷입니다. 이번에는 장착하는 대신 집기만 하세요.",
+    
+    "Let's equip it.": "장착합시다.",
+    
+    "Let's look at the leather armor you picked up.": "방금 집은 가죽 갑옷을 살펴봅시다.",
+    
+    "You can also equip items by dragging them from your inventory to your equipment.": "인벤토리에서 장비 슬롯으로 드래그하여 아이템을 장착할 수도 있습니다.",
     "This is the main gameplay stage. At the top of the screen are your attributes, HP, and XP.\n\nOn the right are action buttons, minimap, and the message log.\n\nAt the bottom is your ability hotbar.": "이것이 메인 게임플레이 화면입니다. 화면 상단에는 속성, HP, XP가 있습니다.\n\n오른쪽에는 액션 버튼, 미니맵, 메시지 로그가 있습니다.\n\n하단에는 능력 단축키가 있습니다.",
     
     "Let's explore this cave we've found ourselves in.": "우리가 발견한 이 동굴을 탐험해 봅시다.",

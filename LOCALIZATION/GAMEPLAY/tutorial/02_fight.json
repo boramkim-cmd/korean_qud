@@ -1,5 +1,12 @@
 {
   "tutorial_fight": {
+    "All actions are turn-based, meaning you take a turn, then other creatures take a turn.": "모든 행동은 턴 기반입니다. 즉, 당신이 행동하면 다른 생물들이 행동합니다.",
+
+    "Mouse over the battle axe and hover or press {{W|Alt}} to view its tooltip.": "전투 도끼 위에 마우스를 올리거나 {{W|Alt}}를 눌러 툴팁을 확인하세요.",
+
+    "This time you hit, but you failed to penetrate the bear's armor.": "이번에는 명중했지만 곰의 갑옷을 뚫지 못했습니다.",
+
+    "Inspect the snapjaw.": "스냅조를 조사하세요.",
     "Looks like there was some sort of battle to the north. Let's grab the gear that was left behind.": "북쪽에서 어떤 전투가 있었던 것 같습니다. 남겨진 장비를 집어듭시다.",
     
     "Walk down the passage.": "통로를 따라 걸어가세요.",
