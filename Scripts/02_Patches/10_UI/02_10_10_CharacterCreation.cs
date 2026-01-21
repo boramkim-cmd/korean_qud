@@ -990,21 +990,45 @@ namespace QudKRTranslation.Patches
             
             // === CYBERNETICS (no Id, uses "name (slot)" format in Description) ===
             string cyberDesc = data.Description;
-            if (string.IsNullOrEmpty(cyberDesc) || cyberDesc == "<none>") return;
+            if (string.IsNullOrEmpty(cyberDesc)) return;
+            
+            // Handle "<none>" option
+            if (cyberDesc == "<none>")
+            {
+                if (LocalizationManager.TryGetAnyTerm("<none>", out string tNone, "chargen_ui", "ui"))
+                    data.Description = tNone;
+                // Translate LongDescription for <none> option
+                if (!string.IsNullOrEmpty(data.LongDescription))
+                {
+                    data.LongDescription = ChargenTranslationUtils.TranslateLongDescription(data.LongDescription, "chargen_ui", "ui");
+                }
+                return;
+            }
             
             // Check if this looks like a cybernetic: "name (slot)" format
             int parenIdx = cyberDesc.LastIndexOf(" (");
             if (parenIdx <= 0) return; // Not cybernetics format
             
-            string cyberName = cyberDesc.Substring(0, parenIdx);
+            string cyberNameRaw = cyberDesc.Substring(0, parenIdx);
             string slotSuffix = cyberDesc.Substring(parenIdx); // " (Face)" etc.
+            
+            // Strip color tags: {{Y|name}} -> name
+            string cyberName = System.Text.RegularExpressions.Regex.Replace(cyberNameRaw, @"\{\{[a-zA-Z]\|([^}]+)\}\}", "$1");
+            
+            // Translate slot name
+            string slotName = slotSuffix.Trim();
+            if (slotName.StartsWith("(") && slotName.EndsWith(")"))
+                slotName = slotName.Substring(1, slotName.Length - 2);
+            string translatedSlot = slotName;
+            if (Patch_QudCyberneticsModuleWindow.SlotTranslations.TryGetValue(slotName, out string tSlot))
+                translatedSlot = tSlot;
             
             // Try to find translation using StructureTranslator
             if (StructureTranslator.TryGetData(cyberName, out var cyberData))
             {
                 if (!string.IsNullOrEmpty(cyberData.KoreanName))
                 {
-                    data.Description = cyberData.KoreanName + slotSuffix;
+                    data.Description = $"{cyberData.KoreanName} ({translatedSlot})";
                 }
                 
                 // Translate LongDescription
@@ -1017,6 +1041,14 @@ namespace QudKRTranslation.Patches
                     }
                 }
             }
+            else
+            {
+                // Fallback: try LocalizationManager
+                if (LocalizationManager.TryGetAnyTerm(cyberName.ToLowerInvariant(), out string tName, "cybernetics", "chargen_ui", "ui"))
+                {
+                    data.Description = $"{tName} ({translatedSlot})";
+                }
+            }
         }
     }
 
@@ -1026,8 +1058,8 @@ namespace QudKRTranslation.Patches
     [HarmonyPatch(typeof(QudCyberneticsModuleWindow))]
     public static class Patch_QudCyberneticsModuleWindow
     {
-        // Slot name translations
-        private static readonly Dictionary<string, string> SlotTranslations = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase)
+        // Slot name translations (public for access from Patch_KeyMenuOption)
+        public static readonly Dictionary<string, string> SlotTranslations = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase)
         {
             { "Face", "얼굴" },
             { "Head", "머리" },
