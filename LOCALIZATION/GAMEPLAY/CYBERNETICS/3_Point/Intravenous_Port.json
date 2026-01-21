@@ -1,0 +1,11 @@
+{
+  "names": {
+    "intravenous port": "정맥 포트"
+  },
+  "slot": "Hands,Feet,Body,Back,Face,Arm,Head",
+  "cost": 3,
+  "description": "Three catheters imprint the skin from underneath.",
+  "behaviorDescription": "The effects of tonics last twice as long.",
+  "description_ko": "세 개의 카테터가 아래에서 피부에 자국을 남깁니다.",
+  "behaviorDescription_ko": "강장제의 효과가 두 배로 오래 지속됩니다."
+}

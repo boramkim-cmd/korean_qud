@@ -1,0 +1,11 @@
+{
+  "names": {
+    "high-grade dermal insulation": "고급 피부 단열재"
+  },
+  "slot": "Body,Head,Back",
+  "cost": 3,
+  "description": "Pillowy neutrofoam scales tense around a supporting axis. Once installed, they'll unwind and inflate under the skin.",
+  "behaviorDescription": "+9 heat resistance\n+9 cold resistance\n+9 electrical resistance\n+9 acid resistance",
+  "description_ko": "베개처럼 부드러운 뉴트로폼 비늘이 지지축 주위로 긴장합니다. 설치되면 피부 아래에서 풀려 부풀어 오릅니다.",
+  "behaviorDescription_ko": "+9 열 저항\n+9 냉기 저항\n+9 전기 저항\n+9 산성 저항"
+}

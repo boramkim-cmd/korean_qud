@@ -1,0 +1,11 @@
+{
+  "names": {
+    "skin glitter": "스킨 글리터"
+  },
+  "slot": "Face,Arm,Head,Hands,Feet",
+  "cost": 1,
+  "description": "A fractal lattice of dermal applique conducts the inner glow to the outer world.",
+  "behaviorDescription": "+8% chance to refract light-based attacks",
+  "description_ko": "피부 부착물의 프랙탈 격자가 내면의 빛을 외부 세계로 전도합니다.",
+  "behaviorDescription_ko": "빛 기반 공격을 굴절시킬 확률 +8%"
+}

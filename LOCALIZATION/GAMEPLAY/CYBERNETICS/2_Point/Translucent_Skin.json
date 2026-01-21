@@ -1,0 +1,11 @@
+{
+  "names": {
+    "translucent skin": "반투명 피부"
+  },
+  "slot": "Body,Back",
+  "cost": 2,
+  "description": "The diaphanous dermis throws the circulatory, muscular, and nervous networks into silhouetted relief.",
+  "behaviorDescription": "+2 DV",
+  "description_ko": "투명한 진피가 순환계, 근육계, 신경계를 실루엣처럼 드러냅니다.",
+  "behaviorDescription_ko": "+2 DV"
+}

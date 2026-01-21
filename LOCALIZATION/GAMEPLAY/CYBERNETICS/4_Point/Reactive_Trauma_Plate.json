@@ -1,0 +1,11 @@
+{
+  "names": {
+    "reactive trauma plate": "반응형 외상 보호판"
+  },
+  "slot": "Body",
+  "cost": 4,
+  "description": "A contoured, plasteel body-plate absorbs impact shock and disintegrates into the bloodstream.",
+  "behaviorDescription": "Neutralizes one damage source that would cause a lethal amount of damage or deal at least 50% of your max HP. This implant is destroyed in the process.",
+  "description_ko": "윤곽이 있는 플라스틸 보디 플레이트가 충격을 흡수하고 혈류로 분해됩니다.",
+  "behaviorDescription_ko": "치명적인 양의 피해를 입히거나 최대 HP의 50% 이상을 입히는 피해원 하나를 무효화합니다. 이 과정에서 임플란트가 파괴됩니다."
+}

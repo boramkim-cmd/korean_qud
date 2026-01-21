@@ -1,0 +1,11 @@
+{
+  "names": {
+    "bionic heart": "바이오닉 심장"
+  },
+  "slot": "Body",
+  "cost": 3,
+  "description": "An apparatus-in-chromium that pumps blood in smooth waves rather than the frantic beating of carcass-grown muscle tissue.",
+  "behaviorDescription": "+2 Toughness",
+  "description_ko": "시체에서 자란 근육 조직의 격렬한 박동 대신 부드러운 파동으로 혈액을 펌프질하는 크롬 장치입니다.",
+  "behaviorDescription_ko": "+2 건강"
+}

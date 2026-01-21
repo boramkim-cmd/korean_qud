@@ -1,0 +1,11 @@
+{
+  "names": {
+    "cathedra with ruby tracery": "루비 세공 카테드라"
+  },
+  "slot": "Back",
+  "cost": 12,
+  "description": "Wavecrests of slag interrupt the plane geometry of the gigantic seat, scars of index to the moment when the mystai rolled the ruby boulder it was carved from out of the hoggish earth. The splats and claw feet are burned and disarranged; the ritual of transformation never ends.",
+  "behaviorDescription": "+100 move speed\n+50 hitpoints\n+100 carry capacity\n+3 Ego\nYou gain the ability to fly.\n\nActivated. Cooldown 100.\nYou generate a pyrokinesis field around your person.\n\nYou cannot wear equipment on your back.\nThis implant can't be uninstalled.",
+  "description_ko": "슬래그의 파도 정점이 거대한 좌석의 평면 기하학을 방해하며, 이는 신비 입문자들이 탐욕스러운 대지에서 그것이 조각된 루비 바위를 굴려냈던 순간의 흉터 지표입니다. 스플랫과 발톱 발은 타고 흐트러져 있습니다; 변환의 의식은 끝나지 않습니다.",
+  "behaviorDescription_ko": "+100 이동 속도\n+50 히트포인트\n+100 운반 능력\n+3 자아\n비행 능력을 얻습니다.\n\n활성화. 재사용 대기시간 100.\n자신 주위에 염동력 화염장을 생성합니다.\n\n등에 장비를 착용할 수 없습니다.\n이 임플란트는 제거할 수 없습니다."
+}

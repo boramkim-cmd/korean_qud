@@ -1,0 +1,11 @@
+{
+  "names": {
+    "stasis projector": "정지장 투영기"
+  },
+  "slot": "Head,Arm,Hands,Body,Back",
+  "cost": 6,
+  "description": "Crystals involute along angles of stillness.",
+  "behaviorDescription": "Activated. Cooldown 100.\nCreates up to 6 contiguous squares of stasis field that last for about 5 rounds.",
+  "description_ko": "결정이 고요의 각도를 따라 안으로 말립니다.",
+  "behaviorDescription_ko": "활성화. 재사용 대기시간 100.\n약 5라운드 동안 지속되는 최대 6개의 연속된 정지장 칸을 생성합니다."
+}

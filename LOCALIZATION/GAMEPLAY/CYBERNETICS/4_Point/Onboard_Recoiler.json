@@ -1,0 +1,11 @@
+{
+  "names": {
+    "onboard recoiler": "내장형 리코일러"
+  },
+  "slot": "Hands,Feet,Body,Back,Face,Arm,Head",
+  "cost": 4,
+  "description": "A geospatial core is fitted with a bionic tether.",
+  "behaviorDescription": "You can imprint this implant with a location (cooldown 100) and recoil back to it (cooldown 50).",
+  "description_ko": "지리공간 코어에 바이오닉 테더가 장착되어 있습니다.",
+  "behaviorDescription_ko": "이 임플란트에 위치를 기록(재사용 대기시간 100)하고 그곳으로 리코일(재사용 대기시간 50)할 수 있습니다."
+}

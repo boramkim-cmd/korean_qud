@@ -1,0 +1,11 @@
+{
+  "names": {
+    "phase harmonic modulator": "위상 조화 변조기"
+  },
+  "slot": "Hands,Feet,Body,Back,Face,Arm,Head",
+  "cost": 2,
+  "description": "Inverted tops balance the microstructure of a control unit housed in a bionic disk. Inside, the phases of reality are overlayed and projected outward.",
+  "behaviorDescription": "You can interact with both in-phase and out-of-phase objects and creatures.",
+  "description_ko": "뒤집힌 팽이가 바이오닉 디스크에 수용된 제어 장치의 미세 구조의 균형을 잡습니다. 내부에서는 현실의 위상이 중첩되어 외부로 투사됩니다.",
+  "behaviorDescription_ko": "위상 내 및 위상 외 물체와 생명체 모두와 상호작용할 수 있습니다."
+}

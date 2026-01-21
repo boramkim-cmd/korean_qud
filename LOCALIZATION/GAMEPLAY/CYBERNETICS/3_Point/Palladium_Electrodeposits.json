@@ -1,0 +1,11 @@
+{
+  "names": {
+    "palladium electrodeposits": "팔라듐 전착"
+  },
+  "slot": "Head,Body,Back,Arm",
+  "cost": 3,
+  "description": "Ionic dust dissolved from palladium facilitates the transfer of computing current.",
+  "behaviorDescription": "Provides 20 units of compute power on the local lattice.\n+2 Intelligence if implanted in a head.",
+  "description_ko": "팔라듐에서 용해된 이온 먼지가 컴퓨팅 전류의 전송을 촉진합니다.",
+  "behaviorDescription_ko": "로컬 격자에 20단위의 연산 능력을 제공합니다.\n머리에 이식하면 +2 지능."
+}

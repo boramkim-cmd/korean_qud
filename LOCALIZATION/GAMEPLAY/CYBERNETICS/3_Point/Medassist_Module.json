@@ -1,0 +1,11 @@
+{
+  "names": {
+    "medassist module": "메다시스트 모듈"
+  },
+  "slot": "Body,Back,Arm",
+  "cost": 3,
+  "description": "Stents and pneumatic applicators are hardwired to an intelligent control unit that dictates the injection of protean dyes into the veins.",
+  "behaviorDescription": "Reduces the action cost of applying injectors by 80%.\nCan be loaded with up to 8 injectors, which the medassist module AI will automatically apply when appropriate (at its own discretion) for no action cost.",
+  "description_ko": "스텐트와 공압 도포기가 정맥에 프로테안 염료를 주입하도록 지시하는 지능형 제어 장치에 하드와이어드되어 있습니다.",
+  "behaviorDescription_ko": "인젝터 사용 행동 비용이 80% 감소합니다.\n최대 8개의 인젝터를 장착할 수 있으며, 메다시스트 모듈 AI가 적절할 때 자동으로 (자체 재량으로) 행동 비용 없이 적용합니다."
+}

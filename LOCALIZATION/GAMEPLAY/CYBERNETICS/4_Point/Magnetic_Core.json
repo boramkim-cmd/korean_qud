@@ -1,0 +1,11 @@
+{
+  "names": {
+    "magnetic core": "자기 코어"
+  },
+  "slot": "Body",
+  "cost": 4,
+  "description": "Laminated metal is bound as concentric spheres, softening magnetic eddies and powering near-field orbits.",
+  "behaviorDescription": "You gain an additional Floating Nearby equipment slot.",
+  "description_ko": "적층 금속이 동심원 구체로 묶여 자기 소용돌이를 완화하고 근거리 궤도에 동력을 공급합니다.",
+  "behaviorDescription_ko": "부유(Floating Nearby) 장비 슬롯이 추가로 생깁니다."
+}

@@ -1,0 +1,11 @@
+{
+  "names": {
+    "fire suppression system": "화재 진압 시스템"
+  },
+  "slot": "Head,Body,Back",
+  "cost": 2,
+  "description": "Heat-activated gel is stored in a bionic capsule and dispensed through subcutaneous rubber hoses.",
+  "behaviorDescription": "Automatically discharges flame-retardant gel every turn you're on fire.",
+  "description_ko": "열 활성화 젤이 바이오닉 캡슐에 저장되어 피하 고무 호스를 통해 분사됩니다.",
+  "behaviorDescription_ko": "불이 붙었을 때 매 턴 자동으로 방염 젤을 분사합니다."
+}

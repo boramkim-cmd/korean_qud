@@ -1,0 +1,11 @@
+{
+  "names": {
+    "crysteel hand bones": "크리스틸 손뼈"
+  },
+  "slot": "Hands",
+  "cost": 8,
+  "description": "Dappled crysteel merely dents where weak collagen would be smashed to bits.",
+  "behaviorDescription": "Your fists deal 3d4 damage.",
+  "description_ko": "약한 콜라겐은 산산조각 날 곳에서 얼룩덜룩한 크리스틸은 단지 움푹 들어갈 뿐입니다.",
+  "behaviorDescription_ko": "주먹이 3d4의 피해를 입힙니다."
+}

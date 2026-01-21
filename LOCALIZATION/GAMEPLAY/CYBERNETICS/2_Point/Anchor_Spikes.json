@@ -1,0 +1,11 @@
+{
+  "names": {
+    "anchor spikes": "앵커 스파이크"
+  },
+  "slot": "Feet",
+  "cost": 2,
+  "description": "Spikes tipped with crysteel are sutured to the skeleton and shoot through the skin and ground when tensed.",
+  "behaviorDescription": "You cannot be forced to move by physical means.",
+  "description_ko": "크리스틸로 끝이 뾰족한 스파이크가 골격에 봉합되어 긴장 시 피부와 지면을 관통합니다.",
+  "behaviorDescription_ko": "물리적 수단으로 강제 이동당하지 않습니다."
+}

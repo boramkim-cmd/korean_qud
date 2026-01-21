@@ -1,0 +1,11 @@
+{
+  "names": {
+    "grafted mirror arm": "이식된 거울 팔"
+  },
+  "slot": "Arm",
+  "cost": 5,
+  "description": "A plastifer arm forks from the scapula and copies instructions issued from nerve to muscle in its grown twin.",
+  "behaviorDescription": "You gain an extra thrown weapon slot.\nWhen you perform a throw, you throw from all your thrown weapon slots at once.",
+  "description_ko": "플라스티퍼 팔이 견갑골에서 갈라져 나와 성장한 쌍둥이에게 신경에서 근육으로 전달되는 명령을 복사합니다.",
+  "behaviorDescription_ko": "추가 투척 무기 슬롯을 얻습니다.\n투척할 때 모든 투척 무기 슬롯에서 동시에 던집니다."
+}

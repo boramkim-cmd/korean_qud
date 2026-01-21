@@ -24,6 +24,11 @@ namespace QudKRTranslation.Utils
             public string DescriptionKo { get; set; }
             public List<string> LevelText { get; set; }
             public List<string> LevelTextKo { get; set; }
+            // Cybernetics-specific fields
+            public string BehaviorDescription { get; set; }
+            public string BehaviorDescriptionKo { get; set; }
+            public string Slot { get; set; }
+            public int Cost { get; set; }
 
             /// <summary>
             /// GetDescription() + "\n\n" + GetLevelText() 형식으로 조합 (한글 우선)
@@ -236,6 +241,25 @@ namespace QudKRTranslation.Utils
                 return trimmedDesc + "\n" + string.Join("\n", formattedExtras);
             }
 
+            /// <summary>
+            /// GetDescriptionKo + "\n\n" + GetBehaviorDescriptionKo for cybernetics
+            /// </summary>
+            public string GetCombinedCyberneticDescription()
+            {
+                string desc = !string.IsNullOrEmpty(DescriptionKo) ? DescriptionKo : Description;
+                string behavior = !string.IsNullOrEmpty(BehaviorDescriptionKo) ? BehaviorDescriptionKo : BehaviorDescription;
+                
+                if (string.IsNullOrEmpty(desc) && string.IsNullOrEmpty(behavior))
+                    return "";
+                    
+                if (string.IsNullOrEmpty(desc))
+                    return behavior ?? "";
+                    
+                if (string.IsNullOrEmpty(behavior))
+                    return desc;
+                    
+                return desc + "\n\n" + behavior;
+            }
 
         }
 
@@ -251,6 +275,7 @@ namespace QudKRTranslation.Utils
         private static bool _isLoaded = false;
         private static readonly string[] TargetDirectories = { 
             "GAMEPLAY/MUTATIONS", 
+            "GAMEPLAY/CYBERNETICS",
             "CHARGEN/GENOTYPES", 
             "CHARGEN/SUBTYPES" 
         };
@@ -350,6 +375,26 @@ namespace QudKRTranslation.Utils
                     {
                         currentSection = "description";
                         data.Description = ExtractStringValue(trimmed);
+                    }
+                    else if (trimmed.Contains("\"behaviorDescription_ko\":"))
+                    {
+                        currentSection = "behaviorDescription_ko";
+                        data.BehaviorDescriptionKo = ExtractStringValue(trimmed);
+                    }
+                    else if (trimmed.Contains("\"behaviorDescription\":"))
+                    {
+                        currentSection = "behaviorDescription";
+                        data.BehaviorDescription = ExtractStringValue(trimmed);
+                    }
+                    else if (trimmed.Contains("\"slot\":"))
+                    {
+                        data.Slot = ExtractStringValue(trimmed);
+                    }
+                    else if (trimmed.Contains("\"cost\":"))
+                    {
+                        string costStr = ExtractStringValue(trimmed);
+                        if (int.TryParse(costStr, out int cost))
+                            data.Cost = cost;
                     }
                     else if (trimmed.Contains("\"leveltext_ko\":"))
                     {

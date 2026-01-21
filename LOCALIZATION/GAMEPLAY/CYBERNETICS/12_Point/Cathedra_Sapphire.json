@@ -1,0 +1,11 @@
+{
+  "names": {
+    "cathedra with sapphire tracery": "사파이어 세공 카테드라"
+  },
+  "slot": "Back",
+  "cost": 12,
+  "description": "Reticulated around the quatrefoil of an elephantine splat are the filed glyphs of sightlessness, messages from the fellowed mysterion across the Gulf. Wings and banisters are ordered in the perfect dimensions of some type of strange hierarchy.",
+  "behaviorDescription": "+100 move speed\n+50 hitpoints\n+100 carry capacity\n+3 Ego\nYou gain the ability to fly.\n\nActivated. Cooldown 100.\nYou invoke a concussive force in the surrounding area, throwing enemies back and stunning them.\n\nYou cannot wear equipment on your back.\nThis implant can't be uninstalled.",
+  "description_ko": "코끼리 같은 스플랫의 네잎 무늬 주위에 눈먼 자의 글리프가 새겨져 있으며, 만(Gulf)을 건너온 신비로운 동료들의 메시지입니다. 날개와 난간은 어떤 이상한 계층 구조의 완벽한 치수로 정렬되어 있습니다.",
+  "behaviorDescription_ko": "+100 이동 속도\n+50 히트포인트\n+100 운반 능력\n+3 자아\n비행 능력을 얻습니다.\n\n활성화. 재사용 대기시간 100.\n주변 지역에 충격파를 발동하여 적들을 밀어내고 기절시킵니다.\n\n등에 장비를 착용할 수 없습니다.\n이 임플란트는 제거할 수 없습니다."
+}

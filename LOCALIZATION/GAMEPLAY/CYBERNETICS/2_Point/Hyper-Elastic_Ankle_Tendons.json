@@ -1,0 +1,11 @@
+{
+  "names": {
+    "hyper-elastic ankle tendons": "초탄성 발목 힘줄"
+  },
+  "slot": "Feet",
+  "cost": 2,
+  "description": "Banded ropes of hydrogel are bundled into one.",
+  "behaviorDescription": "+6 movespeed",
+  "description_ko": "띠 모양의 하이드로겔 로프가 하나로 묶여 있습니다.",
+  "behaviorDescription_ko": "+6 이동 속도"
+}

@@ -1,0 +1,11 @@
+{
+  "names": {
+    "holographic visage": "홀로그래픽 용모"
+  },
+  "slot": "Face",
+  "cost": 6,
+  "description": "Emulsion slicks on the cheek and laser light evokes pareidolic warmth.",
+  "behaviorDescription": "+200 reputation with a faction you choose when you install this implant\nYou can activate this implant to change the chosen faction.",
+  "description_ko": "에멀젼이 뺨에 매끄럽게 바르고 레이저 빛이 파레이돌리아적 따뜻함을 불러일으킵니다.",
+  "behaviorDescription_ko": "이 임플란트 설치 시 선택한 세력과의 평판 +200\n이 임플란트를 활성화하여 선택한 세력을 변경할 수 있습니다."
+}

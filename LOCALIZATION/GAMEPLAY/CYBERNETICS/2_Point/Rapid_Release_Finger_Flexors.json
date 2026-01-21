@@ -1,0 +1,11 @@
+{
+  "names": {
+    "rapid release finger flexors": "빠른 해제 손가락 굴근"
+  },
+  "slot": "Hands",
+  "cost": 2,
+  "description": "Neuronically charged tissue sheaths transmit the will faster than what cell biology had achieved.",
+  "behaviorDescription": "You fire pistols 25% faster.",
+  "description_ko": "신경적으로 충전된 조직 외피가 세포 생물학이 달성한 것보다 더 빨리 의지를 전달합니다.",
+  "behaviorDescription_ko": "권총을 25% 더 빨리 발사합니다."
+}

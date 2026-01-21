@@ -1,0 +1,11 @@
+{
+  "names": {
+    "motorized treads": "동력 무한궤도"
+  },
+  "slot": "Feet",
+  "cost": 4,
+  "description": "Triangular treads swathe the teeth of giant gears that turn to locomote. Their human has escaped the confines of bipedal motion.",
+  "behaviorDescription": "+150 movespeed\n+4 to saves vs. forced movement, knockdown, and being restrained\nYou cannot wear shoes.\nThis implant can't be uninstalled.",
+  "description_ko": "삼각형 무한궤도가 이동을 위해 회전하는 거대 기어의 톱니를 감쌉니다. 그들의 인간은 이족 운동의 한계를 벗어났습니다.",
+  "behaviorDescription_ko": "+150 이동 속도\n강제 이동, 넘어짐, 속박에 대한 저항 +4\n신발을 신을 수 없습니다.\n이 임플란트는 제거할 수 없습니다."
+}

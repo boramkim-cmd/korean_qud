@@ -1,0 +1,11 @@
+{
+  "names": {
+    "pneumatic pistons": "공압 피스톤"
+  },
+  "slot": "Feet",
+  "cost": 2,
+  "description": "Compressed gas drives piston rods into musculature powdered with graphite dust and sends the jumper soaring.",
+  "behaviorDescription": "Your Jump range is increased by 4 spaces.",
+  "description_ko": "압축 가스가 흑연 가루가 뿌려진 근육 조직에 피스톤 로드를 밀어 넣어 점프하는 자를 솟아오르게 합니다.",
+  "behaviorDescription_ko": "점프 사거리가 4칸 증가합니다."
+}

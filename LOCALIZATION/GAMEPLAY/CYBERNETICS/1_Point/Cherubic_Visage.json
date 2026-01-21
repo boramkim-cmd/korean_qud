@@ -1,0 +1,11 @@
+{
+  "names": {
+    "cherubic visage": "천사의 용모"
+  },
+  "slot": "Face",
+  "cost": 1,
+  "description": "Carnal instructions dictate the reformation of the face's bone structure and plump tissue mass into a soft and angelic countenance. Through such thaumaturgy, the people of hoary Ibul, cradled in the breast of a collapsed ice shelf, wander its lamplighted streets in rosy-cheeked disinterest.",
+  "behaviorDescription": "+1 Ego",
+  "description_ko": "육체적 명령에 따라 얼굴의 골격과 풍만한 조직이 부드럽고 천사 같은 표정으로 재구성됩니다. 이러한 기적술을 통해, 무너진 빙붕의 품에 안긴 고대 이불(Ibul)의 주민들은 장밋빛 뺨으로 무관심하게 등불 거리를 거닙니다.",
+  "behaviorDescription_ko": "+1 자아"
+}

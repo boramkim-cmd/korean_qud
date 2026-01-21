@@ -1,0 +1,11 @@
+{
+  "names": {
+    "night vision": "야간 투시"
+  },
+  "slot": "Face",
+  "cost": 2,
+  "description": "Nerve-packed retina scatters incoming radiation and bends light so the irises turn jade.",
+  "behaviorDescription": "You gain the ability to see in the dark.",
+  "description_ko": "신경이 밀집된 망막이 들어오는 방사선을 산란시키고 빛을 굴절시켜 홍채가 비취색으로 변합니다.",
+  "behaviorDescription_ko": "어둠 속에서 볼 수 있게 됩니다."
+}

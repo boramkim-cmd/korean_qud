@@ -1,0 +1,11 @@
+{
+  "names": {
+    "fullerite hand bones": "풀러라이트 손뼈"
+  },
+  "slot": "Hands",
+  "cost": 4,
+  "description": "Black fullerite merely dents where weak collagen would be smashed to bits.",
+  "behaviorDescription": "Your fists deal 2d4+1 damage.",
+  "description_ko": "약한 콜라겐은 산산조각 날 곳에서 검은 풀러라이트는 단지 움푹 들어갈 뿐입니다.",
+  "behaviorDescription_ko": "주먹이 2d4+1의 피해를 입힙니다."
+}

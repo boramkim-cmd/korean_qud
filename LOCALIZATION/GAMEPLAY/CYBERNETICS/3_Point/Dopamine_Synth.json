@@ -1,0 +1,11 @@
+{
+  "names": {
+    "dopamine synth": "도파민 신스"
+  },
+  "slot": "Head",
+  "cost": 3,
+  "description": "The microscopic cartridge synthesizes dopamine at a rapid rate and floods the neural pathways in motivational bliss.",
+  "behaviorDescription": "+2 Willpower",
+  "description_ko": "미세한 카트리지가 빠른 속도로 도파민을 합성하고 신경 경로를 동기 부여의 행복으로 넘치게 합니다.",
+  "behaviorDescription_ko": "+2 의지"
+}

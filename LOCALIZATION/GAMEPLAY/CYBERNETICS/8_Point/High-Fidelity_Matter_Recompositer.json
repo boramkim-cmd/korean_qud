@@ -1,0 +1,11 @@
+{
+  "names": {
+    "high-fidelity matter recompositer": "고충실도 물질 재구성기"
+  },
+  "slot": "Body",
+  "cost": 8,
+  "description": "The flux inside this milliscopic cask can fold space on just a large enough scale to shunt a human chassis nearby. Nonlinear circuitry calculates all possible outcomes and discards those that land the host outside the target area.",
+  "behaviorDescription": "Activated. Cooldown 50.\nYou teleport to any explored space on the map.",
+  "description_ko": "이 밀리스코픽 통 안의 플럭스는 인간 몸체를 근처로 분로할 만큼 충분히 큰 규모로 공간을 접을 수 있습니다. 비선형 회로가 모든 가능한 결과를 계산하고 숙주가 목표 영역 외부에 착지하는 것들을 버립니다.",
+  "behaviorDescription_ko": "활성화. 재사용 대기시간 50.\n탐험한 지도의 어느 공간으로든 순간이동합니다."
+}

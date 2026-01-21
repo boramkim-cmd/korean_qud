@@ -1,0 +1,11 @@
+{
+  "names": {
+    "inflatable axons": "팽창 축삭"
+  },
+  "slot": "Head",
+  "cost": 2,
+  "description": "Nanoscopic stents inflate the gossamer brain-threads that restrict the conduction of the will.",
+  "behaviorDescription": "Activated. Cooldown 100.\nYou gain +40 quickness for 10 rounds, then you become sluggish for 10 rounds (-10 quickness).",
+  "description_ko": "나노 스텐트가 의지의 전도를 제한하는 거미줄 같은 뇌 실을 팽창시킵니다.",
+  "behaviorDescription_ko": "활성화. 재사용 대기시간 100.\n10라운드 동안 민첩성 +40을 얻고, 이후 10라운드 동안 느려집니다 (민첩성 -10)."
+}

@@ -1,0 +1,11 @@
+{
+  "names": {
+    "precision force lathe": "정밀 역장 선반"
+  },
+  "slot": "Head,Arm,Body,Back",
+  "cost": 4,
+  "description": "A magnetically-shielded headstock holds space in kinetic suspension while a force spindle spins and sharpens it to a point.",
+  "behaviorDescription": "You fabricate force knives in unoccupied hand or thrown weapon slots.\nIf you throw a force knife, another one immediately materializes in your thrown weapon slot.\nForce knives deal 1d8 damage, have penetration value equal to their target's armor value, and have +6 throwing range.\nForce knives disappear after losing contact with you or becoming unequipped.\nIf you have a force modulator implant installed, force knives can be thrown through forcefields.",
+  "description_ko": "자기 차폐된 헤드스톡이 운동 현수 상태로 공간을 유지하는 동안 역장 스핀들이 그것을 회전시키고 끝을 날카롭게 갈아냅니다.",
+  "behaviorDescription_ko": "빈 손 또는 투척 무기 슬롯에 역장 칼을 제작합니다.\n역장 칼을 던지면 즉시 투척 무기 슬롯에 다른 하나가 나타납니다.\n역장 칼은 1d8 피해를 입히고, 관통력이 대상의 방어력과 같으며, 투척 사거리가 +6입니다.\n역장 칼은 당신과의 접촉을 잃거나 장착 해제되면 사라집니다.\n역장 변조기 임플란트가 설치되어 있으면 역장 칼을 역장을 통해 던질 수 있습니다."
+}

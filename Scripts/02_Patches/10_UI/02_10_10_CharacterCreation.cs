@@ -1010,14 +1010,31 @@ namespace QudKRTranslation.Patches
                         {
                             var tr = Traverse.Create(opt);
                             string desc = tr.Field<string>("Description").Value;
-                            if (LocalizationManager.TryGetAnyTerm(desc?.ToLowerInvariant(), out string tDesc, "cybernetics", "ui"))
+                            
+                            // Try StructureTranslator for cybernetics (uses names key matching)
+                            if (!string.IsNullOrEmpty(desc) && StructureTranslator.TryGetData(desc, out var cyberData))
                             {
-                                tr.Field<string>("Description").Value = tDesc;
+                                // Translate name (Description field is actually the cybernetic name)
+                                if (!string.IsNullOrEmpty(cyberData.KoreanName))
+                                    tr.Field<string>("Description").Value = cyberData.KoreanName;
+                                
+                                // Translate LongDescription using combined cybernetic description
+                                string combinedDesc = cyberData.GetCombinedCyberneticDescription();
+                                if (!string.IsNullOrEmpty(combinedDesc))
+                                    opt.LongDescription = combinedDesc;
                             }
-
-                            if (!string.IsNullOrEmpty(opt.LongDescription))
+                            else
                             {
-                                opt.LongDescription = ChargenTranslationUtils.TranslateLongDescription(opt.LongDescription, "cybernetics_desc", "ui");
+                                // Fallback to old method
+                                if (LocalizationManager.TryGetAnyTerm(desc?.ToLowerInvariant(), out string tDesc, "cybernetics", "ui"))
+                                {
+                                    tr.Field<string>("Description").Value = tDesc;
+                                }
+
+                                if (!string.IsNullOrEmpty(opt.LongDescription))
+                                {
+                                    opt.LongDescription = ChargenTranslationUtils.TranslateLongDescription(opt.LongDescription, "cybernetics_desc", "ui");
+                                }
                             }
                         }
                     }

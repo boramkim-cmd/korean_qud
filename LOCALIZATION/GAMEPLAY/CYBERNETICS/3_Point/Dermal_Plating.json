@@ -1,0 +1,11 @@
+{
+  "names": {
+    "dermal plating": "피부 장갑판"
+  },
+  "slot": "Body,Head,Back",
+  "cost": 3,
+  "description": "Interlinked plates of wafery carbide tessellate into a subcutaneous sheet.",
+  "behaviorDescription": "+1 AV",
+  "description_ko": "얇은 카바이드 판들이 서로 연결되어 피하 시트로 모자이크를 이룹니다.",
+  "behaviorDescription_ko": "+1 AV"
+}

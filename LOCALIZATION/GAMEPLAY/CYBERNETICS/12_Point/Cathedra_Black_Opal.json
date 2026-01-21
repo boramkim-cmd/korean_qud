@@ -1,0 +1,11 @@
+{
+  "names": {
+    "cathedra with black opal tracery": "흑오팔 세공 카테드라"
+  },
+  "slot": "Back",
+  "cost": 12,
+  "description": "Across the whole of its wide splat and planar armrests, hairlines partition the chair and its vibrant stones into clusters of galaxies. Their fractal patterns at microscale put them beyond the skillwork of now-fossilized carpenters; they must be the scars of leylines.",
+  "behaviorDescription": "+100 move speed\n+50 hitpoints\n+100 carry capacity\n+3 Ego\nYou gain the ability to fly.\n\nActivated. Cooldown 100.\nYou sunder spacetime, teleporting to a random location in Qud.\n\nYou cannot wear equipment on your back.\nThis implant can't be uninstalled.",
+  "description_ko": "넓은 스플랫과 평면 팔걸이 전체에 걸쳐, 가는 선이 의자와 그 생생한 돌들을 은하의 집단으로 분할합니다. 미세 규모의 프랙탈 패턴은 이제 화석화된 목수들의 솜씨를 넘어섭니다; 그것들은 지맥의 흉터여야 합니다.",
+  "behaviorDescription_ko": "+100 이동 속도\n+50 히트포인트\n+100 운반 능력\n+3 자아\n비행 능력을 얻습니다.\n\n활성화. 재사용 대기시간 100.\n시공간을 분리하여 쿠드의 무작위 위치로 순간이동합니다.\n\n등에 장비를 착용할 수 없습니다.\n이 임플란트는 제거할 수 없습니다."
+}

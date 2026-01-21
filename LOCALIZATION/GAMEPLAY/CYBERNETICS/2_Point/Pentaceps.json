@@ -1,0 +1,11 @@
+{
+  "names": {
+    "pentaceps": "펜타셉스"
+  },
+  "slot": "Feet",
+  "cost": 2,
+  "description": "The quartet of knee joint extensors gain the assistance of a synthetic fifth.",
+  "behaviorDescription": "Your Charge range is increased by 4 spaces.",
+  "description_ko": "무릎 관절 신전근 4개가 합성된 5번째의 도움을 받습니다.",
+  "behaviorDescription_ko": "돌진(Charge) 사거리가 4칸 증가합니다."
+}

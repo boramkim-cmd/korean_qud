@@ -1,0 +1,11 @@
+{
+  "names": {
+    "biodynamic power plant": "생체역학 발전소"
+  },
+  "slot": "Body",
+  "cost": 6,
+  "description": "A microturbine skims hemopower off the circulation of blood and the chemical reactions therein.",
+  "behaviorDescription": "Provides a continuous 5000 units of charge per turn to equipped items that can access onboard power systems, such as items with the Jacked mod.",
+  "description_ko": "마이크로 터빈이 혈액 순환과 그 안의 화학 반응에서 혈액 동력을 걷어냅니다.",
+  "behaviorDescription_ko": "Jacked 모드가 있는 아이템과 같이 온보드 전력 시스템에 접근할 수 있는 장착 아이템에 매 턴 지속적으로 5000 단위의 충전을 제공합니다."
+}

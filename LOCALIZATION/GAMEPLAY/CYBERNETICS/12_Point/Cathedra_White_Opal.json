@@ -1,0 +1,11 @@
+{
+  "names": {
+    "cathedra with white opal tracery": "백오팔 세공 카테드라"
+  },
+  "slot": "Back",
+  "cost": 12,
+  "description": "Chiliads of glitz are stuck to the naked folk carved in relief of the aureate seat. They people that gilded hill, their bodies conjugate to each other in every way geometry allows, spilling out from the crest and down the scroll arms that once upheld the quivering limbs of a high priest to lust.",
+  "behaviorDescription": "+100 move speed\n+50 hitpoints\n+100 carry capacity\n+3 Ego\nYou gain the ability to fly.\n\nActivated. Cooldown 100.\nYou release a burst of glitter dust around yourself.\n\nYou cannot wear equipment on your back.\nThis implant can't be uninstalled.",
+  "description_ko": "수천의 화려함이 황금빛 좌석의 부조로 조각된 벌거벗은 사람들에게 붙어 있습니다. 그들은 금박 입힌 언덕에 사람들을 채우고, 그들의 몸은 기하학이 허용하는 모든 방식으로 서로 결합하며, 정상에서 쏟아져 내려와 한때 욕정의 대제사장의 떨리는 팔다리를 받쳤던 두루마리 팔을 따라 내려갑니다.",
+  "behaviorDescription_ko": "+100 이동 속도\n+50 히트포인트\n+100 운반 능력\n+3 자아\n비행 능력을 얻습니다.\n\n활성화. 재사용 대기시간 100.\n자신 주위에 반짝이 가루를 방출합니다.\n\n등에 장비를 착용할 수 없습니다.\n이 임플란트는 제거할 수 없습니다."
+}

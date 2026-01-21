@@ -1,0 +1,11 @@
+{
+  "names": {
+    "bionic arm": "바이오닉 팔"
+  },
+  "slot": "Arm",
+  "cost": 3,
+  "description": "A whole new arm fabricated from graphene and neutrafoam. Its pylon awaits engagement.",
+  "behaviorDescription": "+2 Strength",
+  "description_ko": "그래핀과 뉴트라폼으로 제작된 완전히 새로운 팔입니다. 그 파일론이 연결을 기다립니다.",
+  "behaviorDescription_ko": "+2 힘"
+}

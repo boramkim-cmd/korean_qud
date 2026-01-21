@@ -1,0 +1,11 @@
+{
+  "names": {
+    "optical technoscanner": "광학 테크노스캐너"
+  },
+  "slot": "Face",
+  "cost": 1,
+  "description": "A minuscule graphene array that processes optical data against a repository of robotic lifeforms and artifacts.",
+  "behaviorDescription": "You gain access to the precise hit point, armor, and dodge values of robotic creatures and you automatically identify artifacts.",
+  "description_ko": "로봇 생명체와 유물에 대한 광학 데이터를 처리하는 초소형 그래핀 어레이입니다.",
+  "behaviorDescription_ko": "로봇 생명체의 정확한 히트 포인트, 방어력, 회피치를 파악할 수 있으며 유물을 자동으로 식별합니다."
+}

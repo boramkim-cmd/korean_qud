@@ -1,0 +1,11 @@
+{
+  "names": {
+    "navigation system": "내비게이션 시스템"
+  },
+  "slot": "Head,Arm,Hands,Body,Back",
+  "cost": 1,
+  "description": "Geosocial location data is painted across the glass lune and is underlaid with representations of the living loam that has shifted over earth to take its place.",
+  "behaviorDescription": "Your chance of becoming lost in ruins is reduced by 30%.\nYour chance of becoming lost in other terrain is reduced by 10%.\nThese effects do not stack with the bonuses of a compass bracelet.",
+  "description_ko": "유리 반월 위에 지리사회적 위치 데이터가 표시되며, 그 아래에는 대지를 대신해 이동한 살아있는 토양의 표현이 깔려 있습니다.",
+  "behaviorDescription_ko": "폐허에서 길을 잃을 확률이 30% 감소합니다.\n다른 지형에서 길을 잃을 확률이 10% 감소합니다.\n이 효과는 나침반 팔찌의 보너스와 중첩되지 않습니다."
+}

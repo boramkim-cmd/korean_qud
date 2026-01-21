@@ -1,0 +1,11 @@
+{
+  "names": {
+    "matter recompositer": "물질 재구성기"
+  },
+  "slot": "Body",
+  "cost": 3,
+  "description": "The flux inside this milliscopic cask can fold space on just a large enough scale to shunt a human chassis nearby.",
+  "behaviorDescription": "Activated. Cooldown 100.\nYou teleport to a random, explored space on the map.",
+  "description_ko": "이 밀리스코픽 통 안의 플럭스는 인간 몸체를 근처로 분로할 만큼 충분히 큰 규모로 공간을 접을 수 있습니다.",
+  "behaviorDescription_ko": "활성화. 재사용 대기시간 100.\n탐험한 지도의 무작위 공간으로 순간이동합니다."
+}

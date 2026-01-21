@@ -1,0 +1,11 @@
+{
+  "names": {
+    "skillsoft": "스킬소프트"
+  },
+  "slot": "Head",
+  "cost": 2,
+  "description": "Encoded on this chip are the neural patterns of a particular skill.",
+  "behaviorDescription": "You gain a skill whose cost is between 51 and 150 SP.",
+  "description_ko": "이 칩에는 특정 기술의 신경 패턴이 인코딩되어 있습니다.",
+  "behaviorDescription_ko": "비용이 51~150 SP인 기술을 얻습니다."
+}

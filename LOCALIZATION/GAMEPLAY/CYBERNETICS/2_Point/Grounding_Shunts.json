@@ -1,0 +1,11 @@
+{
+  "names": {
+    "grounding shunts": "접지 션트"
+  },
+  "slot": "Feet",
+  "cost": 2,
+  "description": "Carbon fiber shoots out of two electrodermal contact pads.",
+  "behaviorDescription": "+50 electric resistance",
+  "description_ko": "탄소 섬유가 두 개의 전기피부 접촉 패드에서 뻗어나갑니다.",
+  "behaviorDescription_ko": "+50 전기 저항"
+}

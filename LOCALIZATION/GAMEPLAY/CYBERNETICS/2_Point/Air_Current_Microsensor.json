@@ -1,0 +1,11 @@
+{
+  "names": {
+    "air current microsensor": "공기 흐름 마이크로센서"
+  },
+  "slot": "Body,Head",
+  "cost": 2,
+  "description": "Near the Fuming God Sea, where seawater crashes into sunrock and erupts into mephitic vapor, a labyrinth of volcanic grottos form a dimensionless space where the utility of sight wanes. For the children of the deep, new senses wax in its stead.",
+  "behaviorDescription": "Staircases and other up/down map transitions are always revealed to you.",
+  "description_ko": "김이 나는 신의 바다 근처, 바닷물이 태양암에 부딪혀 악취 나는 증기로 분출하는 곳에서, 화산 동굴의 미로가 시각의 효용이 쇠퇴하는 무차원 공간을 형성합니다. 심해의 아이들에게는 새로운 감각이 그 자리를 대신합니다.",
+  "behaviorDescription_ko": "계단과 기타 위/아래 지도 전환이 항상 표시됩니다."
+}

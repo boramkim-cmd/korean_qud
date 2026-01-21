@@ -1,0 +1,11 @@
+{
+  "names": {
+    "tibular hydrojets": "경골 하이드로젯"
+  },
+  "slot": "Feet",
+  "cost": 1,
+  "description": "Planate chutes conduct the myoelectric force and push the body through water.",
+  "behaviorDescription": "+200 move speed while swimming",
+  "description_ko": "평평한 슈트가 근전기력을 전도하여 몸을 물 속으로 밀어냅니다.",
+  "behaviorDescription_ko": "수영 중 이동 속도 +200"
+}

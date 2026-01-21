@@ -1,0 +1,11 @@
+{
+  "names": {
+    "dermal insulation": "피부 단열재"
+  },
+  "slot": "Body,Head,Back",
+  "cost": 2,
+  "description": "Pillowy fiberglass scales tense around a supporting axis. Once installed, they'll unwind and inflate under the skin.",
+  "behaviorDescription": "+6 heat resistance\n+6 cold resistance\n+6 electrical resistance\n+6 acid resistance",
+  "description_ko": "베개처럼 부드러운 유리섬유 비늘이 지지축 주위로 긴장합니다. 설치되면 피부 아래에서 풀려 부풀어 오릅니다.",
+  "behaviorDescription_ko": "+6 열 저항\n+6 냉기 저항\n+6 전기 저항\n+6 산성 저항"
+}

@@ -1,0 +1,11 @@
+{
+  "names": {
+    "custom visage": "커스텀 용모"
+  },
+  "slot": "Face",
+  "cost": 3,
+  "description": "Meticulously detailed modeling software and instructions for facial reformation allow the host to assume the visage of choice, forever obsoleting masks.",
+  "behaviorDescription": "+300 reputation with a faction you choose at installation time",
+  "description_ko": "세밀하게 상세한 모델링 소프트웨어와 얼굴 재구성 명령이 숙주가 선택한 용모를 취할 수 있게 하여 가면을 영원히 구식으로 만듭니다.",
+  "behaviorDescription_ko": "설치 시 선택한 세력과의 평판 +300"
+}

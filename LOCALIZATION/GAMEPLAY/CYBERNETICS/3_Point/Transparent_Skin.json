@@ -1,0 +1,11 @@
+{
+  "names": {
+    "transparent skin": "투명 피부"
+  },
+  "slot": "Body,Back",
+  "cost": 3,
+  "description": "The new flesh is as ghost film, cloaking none of the machinery of life.",
+  "behaviorDescription": "+3 DV",
+  "description_ko": "새 살은 유령 필름처럼 생명의 기계장치를 전혀 가리지 않습니다.",
+  "behaviorDescription_ko": "+3 DV"
+}

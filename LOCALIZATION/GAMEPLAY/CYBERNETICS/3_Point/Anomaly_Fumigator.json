@@ -1,0 +1,11 @@
+{
+  "names": {
+    "anomaly fumigator": "이상현상 훈증기"
+  },
+  "slot": "Hands,Feet,Body,Back,Face,Arm,Head",
+  "cost": 3,
+  "description": "Paracausal circuitry excites the structure of spacetime into a normotropic particulate.",
+  "behaviorDescription": "You emit clouds of normality gas every turn.",
+  "description_ko": "초인과적 회로가 시공간의 구조를 정상 지향적 입자로 여기시킵니다.",
+  "behaviorDescription_ko": "매 턴 정상화 가스 구름을 방출합니다."
+}

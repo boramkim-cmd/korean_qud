@@ -1,0 +1,11 @@
+{
+  "names": {
+    "micromanipulator array": "마이크로 조작기 어레이"
+  },
+  "slot": "Hands",
+  "cost": 5,
+  "description": "A dozen armatures and manipulators splay out from a metal brace that fuses to the metacarpals.",
+  "behaviorDescription": "You can tinker and repair in combat at the action cost of one turn.\nReduces the action cost of other tinker skills by 40%.\nGrants a bonus to identifying artifacts as if your Intelligence score were increased by 8.\n+10% chance to recover bits from disassembling artifacts.",
+  "description_ko": "중수골에 융합되는 금속 브레이스에서 십여 개의 아마추어와 조작기가 펼쳐집니다.",
+  "behaviorDescription_ko": "전투 중 1턴의 행동 비용으로 제작 및 수리할 수 있습니다.\n다른 제작 기술의 행동 비용이 40% 감소합니다.\n지능이 8 높은 것처럼 유물 식별 보너스를 얻습니다.\n유물 분해 시 비트 회수 확률 +10%."
+}

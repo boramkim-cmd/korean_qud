@@ -1,0 +1,11 @@
+{
+  "names": {
+    "equipment rack": "장비 랙"
+  },
+  "slot": "Body",
+  "cost": 3,
+  "description": "Carbide mounting rods scaffold a gyroscopic shelf designed for extra baggage.",
+  "behaviorDescription": "You gain an additional Back equipment slot.",
+  "description_ko": "카바이드 장착 로드가 추가 짐을 위해 설계된 자이로스코프 선반을 비계처럼 지탱합니다.",
+  "behaviorDescription_ko": "등(Back) 장비 슬롯이 추가로 생깁니다."
+}

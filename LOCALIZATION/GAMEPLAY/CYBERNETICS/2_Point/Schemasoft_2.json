@@ -1,0 +1,11 @@
+{
+  "names": {
+    "Schemasoft": "스키마소프트"
+  },
+  "slot": "Head",
+  "cost": 2,
+  "description": "Encoded on this chip are the schematics for a whole class of low-tier artifacts.",
+  "behaviorDescription": "You gain access to every schematic for a single class of artifacts.",
+  "description_ko": "이 칩에는 저등급 유물의 전체 분류 설계도가 인코딩되어 있습니다.",
+  "behaviorDescription_ko": "단일 유물 분류의 모든 설계도에 접근할 수 있습니다."
+}

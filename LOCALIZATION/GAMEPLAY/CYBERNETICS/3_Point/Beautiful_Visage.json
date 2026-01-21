@@ -1,0 +1,11 @@
+{
+  "names": {
+    "beautiful visage": "아름다운 용모"
+  },
+  "slot": "Face",
+  "cost": 3,
+  "description": "Instructions dictate the reformation of the face into a countenance that arouses latent desires in its onlookers.",
+  "behaviorDescription": "+2 Ego",
+  "description_ko": "명령이 얼굴을 보는 이들의 잠재된 욕망을 불러일으키는 표정으로 재구성하도록 지시합니다.",
+  "behaviorDescription_ko": "+2 자아"
+}

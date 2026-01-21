@@ -1,0 +1,11 @@
+{
+  "names": {
+    "stasis entangler": "정지장 얽힘 장치"
+  },
+  "slot": "Feet,Back,Body",
+  "cost": 8,
+  "description": "Shaved crystal faces are matrixed and angled to pipe stillness across a graph of live vertices.",
+  "behaviorDescription": "Activated. Cooldown 200.\nYou choose one creature in line of sight. All other creatures are put into stasis fields for 15 rounds.",
+  "description_ko": "깎인 결정면이 매트릭스화되고 각도가 조정되어 살아있는 정점의 그래프를 가로질러 고요함을 전달합니다.",
+  "behaviorDescription_ko": "활성화. 재사용 대기시간 200.\n시야 내의 생명체 하나를 선택합니다. 다른 모든 생명체가 15라운드 동안 정지장에 갇힙니다."
+}

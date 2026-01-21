@@ -1,0 +1,11 @@
+{
+  "names": {
+    "electromagnetic sensor": "전자기 센서"
+  },
+  "slot": "Head,Face,Back,Body,Feet,Arm,Hands",
+  "cost": 1,
+  "description": "Small distortions in the electromagnetic field caused by machine folk are visible to this sensor.",
+  "behaviorDescription": "You detect nearby robots without having to see them.",
+  "description_ko": "기계 생명체가 일으키는 전자기장의 작은 왜곡을 감지하는 센서입니다.",
+  "behaviorDescription_ko": "시야에 없어도 근처의 로봇을 감지합니다."
+}

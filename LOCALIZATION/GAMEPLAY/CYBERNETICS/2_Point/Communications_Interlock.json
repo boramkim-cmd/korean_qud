@@ -1,0 +1,11 @@
+{
+  "names": {
+    "communications interlock": "통신 연동 장치"
+  },
+  "slot": "Hands,Feet,Body,Back,Face,Arm,Head",
+  "cost": 2,
+  "description": "Between the multipronged sticktool and cipherbox, one can interface with all available robotic ports.",
+  "behaviorDescription": "You rebuke robots as if you were 5 levels higher.",
+  "description_ko": "다중 갈래 스틱툴과 암호 상자 사이에서, 사용 가능한 모든 로봇 포트와 인터페이스할 수 있습니다.",
+  "behaviorDescription_ko": "5레벨 높은 것처럼 로봇을 질책합니다."
+}

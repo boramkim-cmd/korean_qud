@@ -1,0 +1,11 @@
+{
+  "names": {
+    "reactive cranial plating": "반응형 두개골 장갑"
+  },
+  "slot": "Head",
+  "cost": 2,
+  "description": "Carbide plates are molded to skull shape and alloyed with foam that inflates on impact.",
+  "behaviorDescription": "You cannot be dazed or stunned by kinetic effects.",
+  "description_ko": "카바이드 판이 두개골 모양으로 성형되고 충격 시 팽창하는 폼과 합금됩니다.",
+  "behaviorDescription_ko": "운동 효과로 인한 현기증이나 기절을 받지 않습니다."
+}

@@ -1,0 +1,11 @@
+{
+  "names": {
+    "security interlock": "보안 연동 장치"
+  },
+  "slot": "Hands,Feet,Body,Back,Face,Arm,Head",
+  "cost": 3,
+  "description": "Fluted keys for every wavelength along every spectrum permit entrance through every portal.",
+  "behaviorDescription": "You can unlock any door.",
+  "description_ko": "모든 스펙트럼의 모든 파장에 대한 홈이 있는 열쇠가 모든 포털을 통한 입장을 허용합니다.",
+  "behaviorDescription_ko": "어떤 문이든 열 수 있습니다."
+}

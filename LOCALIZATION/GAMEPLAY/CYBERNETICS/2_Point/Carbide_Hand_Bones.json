@@ -1,0 +1,11 @@
+{
+  "names": {
+    "carbide hand bones": "카바이드 손뼈"
+  },
+  "slot": "Hands",
+  "cost": 2,
+  "description": "Blue carbide merely dents where weak collagen would be smashed to bits.",
+  "behaviorDescription": "Your fists deal 2d3 damage.",
+  "description_ko": "약한 콜라겐은 산산조각 날 곳에서 청색 카바이드는 단지 움푹 들어갈 뿐입니다.",
+  "behaviorDescription_ko": "주먹이 2d3의 피해를 입힙니다."
+}

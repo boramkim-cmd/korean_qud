@@ -1,0 +1,11 @@
+{
+  "names": {
+    "ultra-elastic ankle tendons": "초고탄성 발목 힘줄"
+  },
+  "slot": "Feet",
+  "cost": 3,
+  "description": "Neutrafoam ropes are banded and bundled into a fluted column.",
+  "behaviorDescription": "+10 movespeed",
+  "description_ko": "뉴트라폼 로프가 띠로 묶여 홈이 있는 기둥으로 묶여 있습니다.",
+  "behaviorDescription_ko": "+10 이동 속도"
+}

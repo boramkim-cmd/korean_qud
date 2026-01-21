@@ -1,0 +1,11 @@
+{
+  "names": {
+    "bionic hands": "바이오닉 손"
+  },
+  "slot": "Hands",
+  "cost": 3,
+  "description": "A whole new pair of hands fabricated from graphene and neutrafoam. Their pylons await engagement.",
+  "behaviorDescription": "+2 Agility",
+  "description_ko": "그래핀과 뉴트라폼으로 제작된 완전히 새로운 한 쌍의 손입니다. 그들의 파일론이 연결을 기다립니다.",
+  "behaviorDescription_ko": "+2 민첩"
+}

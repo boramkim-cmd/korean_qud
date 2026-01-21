@@ -1,0 +1,11 @@
+{
+  "names": {
+    "penetrating radar": "관통 레이더"
+  },
+  "slot": "Body,Back,Head,Face,Arm",
+  "cost": 6,
+  "description": "Picophase transceiver arrays assemble an exquisitely detailed model of one's surroundings.",
+  "behaviorDescription": "You gain total visibility in a radius of 10 spaces around you, blocked only by force fields and spacetime anomalies.",
+  "description_ko": "피코위상 송수신기 어레이가 주변 환경의 정교하게 세부적인 모델을 조립합니다.",
+  "behaviorDescription_ko": "반경 10칸 내에서 완전한 시야를 얻습니다. 역장과 시공간 이상만 시야를 차단합니다."
+}

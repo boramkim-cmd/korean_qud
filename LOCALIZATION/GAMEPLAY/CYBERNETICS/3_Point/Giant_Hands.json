@@ -1,0 +1,11 @@
+{
+  "names": {
+    "giant hands": "거대한 손"
+  },
+  "slot": "Hands",
+  "cost": 3,
+  "description": "For ages they dreamed, 'the hands must grow'. In the soft luster of a laboratory, the dream was realized.",
+  "behaviorDescription": "You can wield two-handed weapons in one hand.",
+  "description_ko": "오랜 세월 그들은 '손이 자라야 한다'고 꿈꿨습니다. 연구실의 부드러운 광택 속에서 그 꿈이 실현되었습니다.",
+  "behaviorDescription_ko": "양손 무기를 한 손으로 사용할 수 있습니다."
+}

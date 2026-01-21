@@ -1,0 +1,11 @@
+{
+  "names": {
+    "phase-adaptive scope": "위상 적응형 스코프"
+  },
+  "slot": "Back",
+  "cost": 4,
+  "description": "A small lune of tetraxenonoglass is curved at Q radius to account for interdimensional parallax.",
+  "behaviorDescription": "When you fire a missile weapon or throw something, your projectile shifts phase to pass through obstacles and reach your target.",
+  "description_ko": "테트라제노노글라스의 작은 반월이 차원간 시차를 고려하여 Q 반경으로 휘어져 있습니다.",
+  "behaviorDescription_ko": "원거리 무기를 발사하거나 무언가를 던지면 발사체가 위상을 이동하여 장애물을 통과하고 목표에 도달합니다."
+}

@@ -1,0 +1,11 @@
+{
+  "names": {
+    "social coprocessor": "소셜 코프로세서"
+  },
+  "slot": "Head",
+  "cost": 8,
+  "description": "Around a central processor, neural grafts attach to the brain lobes responsible for the feeling of social warmth.",
+  "behaviorDescription": "Whenever you perform the water ritual with a new creature, you gain an extra 25 reputation. If you install this implant after you treat with a creature for the first time, you gain 25 reputation the next time you treat with them.\nReputation costs in the water ritual are reduced by 20%.\nYou may Proselytize one additional creature.\nCompute power on the local lattice increases this implant's effectiveness.",
+  "description_ko": "중앙 프로세서 주위에 신경 이식편이 사회적 따뜻함의 감정을 담당하는 뇌엽에 부착됩니다.",
+  "behaviorDescription_ko": "새로운 생명체와 물 의식을 수행할 때마다 평판을 25 추가로 얻습니다. 생명체와 처음 대화한 후 이 임플란트를 설치하면 다음에 그들과 대화할 때 평판 25를 얻습니다.\n물 의식에서 평판 비용이 20% 감소합니다.\n하나의 생명체를 추가로 개종시킬 수 있습니다.\n로컬 격자의 연산 능력이 이 임플란트의 효과를 증가시킵니다."
+}

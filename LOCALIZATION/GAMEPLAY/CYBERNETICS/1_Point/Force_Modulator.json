@@ -1,0 +1,11 @@
+{
+  "names": {
+    "force modulator": "역장 변조기"
+  },
+  "slot": "Hands,Feet,Body,Back,Face,Arm,Head",
+  "cost": 1,
+  "description": "The emitted frequencies of your tiniest bits are synchronized with the standardized band for force emission.",
+  "behaviorDescription": "You can walk through forcefields.",
+  "description_ko": "당신의 가장 작은 입자들의 방출 주파수가 역장 방출의 표준 대역과 동기화됩니다.",
+  "behaviorDescription_ko": "역장을 통과할 수 있습니다."
+}

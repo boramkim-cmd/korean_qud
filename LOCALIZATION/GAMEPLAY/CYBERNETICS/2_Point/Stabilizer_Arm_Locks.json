@@ -1,0 +1,11 @@
+{
+  "names": {
+    "stabilizer arm locks": "안정화 팔 잠금장치"
+  },
+  "slot": "Arm",
+  "cost": 2,
+  "description": "Chrome clasps fasten arm joints to emulate the stillness of unlife.",
+  "behaviorDescription": "For the purpose of determining your accuracy with ranged attacks, your agility is treated as if it were 6 points higher.",
+  "description_ko": "크롬 걸쇠가 팔 관절을 고정하여 생명 없는 것의 고요함을 모방합니다.",
+  "behaviorDescription_ko": "원거리 공격 정확도를 결정할 때 민첩이 6 높은 것으로 취급됩니다."
+}

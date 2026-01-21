@@ -1,0 +1,11 @@
+{
+  "names": {
+    "gun rack": "총기 랙"
+  },
+  "slot": "Back",
+  "cost": 4,
+  "description": "The back-mounted gun rack of polished chrome has two slots for pistols to sit over each shoulder or for a single rifle to sit over the shoulder of choice.",
+  "behaviorDescription": "You gain an additional left and right missile weapon slot.\nYou cannot wear equipment on your back.",
+  "description_ko": "광택 크롬으로 된 등에 장착된 총기 랙에는 각 어깨 위에 권총 두 자루가 놓이거나 선택한 어깨 위에 소총 한 자루가 놓일 수 있는 슬롯이 있습니다.",
+  "behaviorDescription_ko": "왼쪽과 오른쪽 원거리 무기 슬롯이 추가로 생깁니다.\n등에 장비를 착용할 수 없습니다."
+}
