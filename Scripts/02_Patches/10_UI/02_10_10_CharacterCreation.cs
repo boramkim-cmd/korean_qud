@@ -955,6 +955,29 @@ namespace QudKRTranslation.Patches
     [HarmonyPatch(typeof(KeyMenuOption))]
     public static class Patch_KeyMenuOption_MutationAndCyberneticNames
     {
+        /// <summary>
+        /// Translate content inside color tags like {{C|content}} 
+        /// </summary>
+        private static string TranslateColorTaggedContent(string text, params string[] categories)
+        {
+            if (string.IsNullOrEmpty(text)) return text;
+            
+            // Match {{X|content}} pattern
+            var match = System.Text.RegularExpressions.Regex.Match(text, @"^\{\{([a-zA-Z])\|(.+)\}\}$", System.Text.RegularExpressions.RegexOptions.Singleline);
+            if (match.Success)
+            {
+                string colorCode = match.Groups[1].Value;
+                string content = match.Groups[2].Value;
+                
+                // Translate the inner content line by line
+                string translated = ChargenTranslationUtils.TranslateLongDescription(content, categories);
+                return $"{{{{{colorCode}|{translated}}}}}";
+            }
+            
+            // No color tag wrapper, try direct translation
+            return ChargenTranslationUtils.TranslateLongDescription(text, categories);
+        }
+        
         [HarmonyPatch(nameof(KeyMenuOption.setDataPrefixMenuOption))]
         [HarmonyPrefix]
         static void setDataPrefixMenuOption_Prefix(PrefixMenuOption data)
@@ -998,9 +1021,10 @@ namespace QudKRTranslation.Patches
                 if (LocalizationManager.TryGetAnyTerm("<none>", out string tNone, "chargen_ui", "ui"))
                     data.Description = tNone;
                 // Translate LongDescription for <none> option
+                // Original: "{{C|-2 License Tier\n+1 Toughness}}"
                 if (!string.IsNullOrEmpty(data.LongDescription))
                 {
-                    data.LongDescription = ChargenTranslationUtils.TranslateLongDescription(data.LongDescription, "chargen_ui", "ui");
+                    data.LongDescription = TranslateColorTaggedContent(data.LongDescription, "chargen_ui", "ui");
                 }
                 return;
             }
