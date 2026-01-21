@@ -197,6 +197,57 @@ namespace QudKRTranslation.Core
 
                 if (_koreanTMPFont != null)
                 {
+                    // ================================================================
+                    // 핵심: 한글 폰트의 메트릭스를 게임 기본 폰트(SourceCodePro)에 맞춤
+                    // 이렇게 하면 클리핑 없이 한글이 표시됨
+                    // ================================================================
+                    TMP_FontAsset referenceFont = null;
+                    foreach (var f in allTMPFonts)
+                    {
+                        if (f != null && f.name.Contains("SourceCodePro-Regular"))
+                        {
+                            referenceFont = f;
+                            break;
+                        }
+                    }
+                    
+                    if (referenceFont != null)
+                    {
+                        try
+                        {
+                            var refFaceInfo = referenceFont.faceInfo;
+                            var korFaceInfo = _koreanTMPFont.faceInfo;
+                            
+                            Debug.Log($"[Qud-KR] Reference font '{referenceFont.name}' metrics: " +
+                                $"LineHeight={refFaceInfo.lineHeight}, Ascender={refFaceInfo.ascentLine}, " +
+                                $"Descender={refFaceInfo.descentLine}, Scale={refFaceInfo.scale}");
+                            Debug.Log($"[Qud-KR] Korean font '{_koreanTMPFont.name}' BEFORE: " +
+                                $"LineHeight={korFaceInfo.lineHeight}, Ascender={korFaceInfo.ascentLine}, " +
+                                $"Descender={korFaceInfo.descentLine}, Scale={korFaceInfo.scale}");
+                            
+                            // 한글 폰트의 메트릭스를 참조 폰트에 맞춤
+                            korFaceInfo.lineHeight = refFaceInfo.lineHeight;
+                            korFaceInfo.ascentLine = refFaceInfo.ascentLine;
+                            korFaceInfo.descentLine = refFaceInfo.descentLine;
+                            korFaceInfo.baseline = refFaceInfo.baseline;
+                            // scale은 유지 (글리프 크기에 영향)
+                            
+                            _koreanTMPFont.faceInfo = korFaceInfo;
+                            
+                            Debug.Log($"[Qud-KR] Korean font '{_koreanTMPFont.name}' AFTER metrics adjustment: " +
+                                $"LineHeight={korFaceInfo.lineHeight}, Ascender={korFaceInfo.ascentLine}, " +
+                                $"Descender={korFaceInfo.descentLine}");
+                        }
+                        catch (Exception ex)
+                        {
+                            Debug.LogWarning($"[Qud-KR] Failed to adjust font metrics: {ex.Message}");
+                        }
+                    }
+                    else
+                    {
+                        Debug.LogWarning("[Qud-KR] Reference font (SourceCodePro-Regular) not found, skipping metrics adjustment");
+                    }
+                    
                     // Ensure TMP_Settings fallback list exists and contains our font (insert at front)
                     if (TMP_Settings.fallbackFontAssets == null)
                         TMP_Settings.fallbackFontAssets = new System.Collections.Generic.List<TMP_FontAsset>();
