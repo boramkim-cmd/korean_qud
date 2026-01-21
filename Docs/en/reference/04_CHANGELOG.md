@@ -1,12 +1,51 @@
 # Caves of Qud Korean Localization - Changelog
 
-> **Version**: 3.5 | **Last Updated**: 2026-01-19
+> **Version**: 3.6 | **Last Updated**: 2026-01-21
 
 > [!NOTE]
 > **AI Agent**: This document is for completion records. Read `00_PRINCIPLES.md` first!
 
 Official changelog for all completed work.
 Completed items from `03_TODO.md` are moved here.
+
+---
+
+## [2026-01-21] - Tutorial Translation Key Matching Fix (ERR-018)
+
+### Summary
+Fixed critical issue where tutorial text was not being translated despite having translations in JSON files. Two root causes identified and resolved:
+1. Infinite loop from re-translating already-translated Korean text
+2. Smart quote mismatch between game text and JSON keys
+
+### ✅ Changes
+
+**Korean Text Skip Logic**
+- Added `ContainsKorean()` helper function to detect already-translated text
+- Prevents infinite translation attempts on Korean text (e.g., `{{y|야영 하기.}}`)
+
+**Smart Quote Normalization**
+- Game uses smart quotes: `'` (U+2019), `'` (U+2018), `"` (U+201C), `"` (U+201D)
+- JSON uses straight quotes: `'` (U+0027), `"` (U+0022)
+- Added character replacement in `NormalizeKey()` function
+
+**NormalizeKey() Improvements**
+- Added trim before other normalizations
+- Added full-text wrapping color tag removal (`{{y|entire text}}` → `entire text`)
+- Improved debug logging to show both original and normalized text
+
+**Missing Translation Keys Added**
+- `"There's a village to the north called Joppa. Let's go there."` (plain text version)
+- `"Press 8 or ◎."` variation
+- `"TUTORIAL GUIDE"` UI title
+- `"[Space] Continue"` button text
+
+### Files Modified
+- `Scripts/02_Patches/10_UI/02_10_15_Tutorial.cs`
+- `LOCALIZATION/GAMEPLAY/tutorial/04_surface.json`
+- `LOCALIZATION/GAMEPLAY/tutorial/_common.json`
+
+### Related
+- Error Log: `05_ERROR_LOG.md` → ERR-018
 
 ---
 

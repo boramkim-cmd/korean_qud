@@ -52,6 +52,79 @@ This document records errors encountered during development and their solutions.
 
 ---
 
+## ERR-018: Tutorial Translation Not Applied
+
+### Basic Info
+| Item | Content |
+|------|---------|  
+| **Status** | 🟢 RESOLVED |
+| **Severity** | 🟠 High |
+| **Discovered** | 2026-01-21 |
+| **Resolved** | 2026-01-21 |
+
+### Symptoms
+1. Tutorial popup text remained in English despite having Korean translations in JSON
+2. Examples: "There's a village to the north called Joppa. Let's go there.", "We're on the surface now...", "TUTORIAL GUIDE"
+3. Log showed: `[Qud-KR][Tutorial] No match: 'There's a village...'`
+4. Log showed Korean text being re-processed: `[Qud-KR][Tutorial] No match: '{{y|야영 하기.}}'`
+
+### Root Cause Analysis
+
+**Problem 1: Korean Text Re-processing (Infinite Loop)**
+- Game wraps already-translated text with color tags like `{{y|야영 하기.}}`
+- Patch tried to translate Korean text again, causing unnecessary processing
+
+**Problem 2: Smart Quote Mismatch (Key Match Failure)**
+- Game source uses **smart quotes**: `There's` (U+2019 RIGHT SINGLE QUOTATION MARK)
+- JSON files use **straight quotes**: `There's` (U+0027 APOSTROPHE)
+- Dictionary lookup failed because `'` ≠ `'`
+
+**Problem 3: Missing Plain Text Variations**
+- JSON had keys with command suffixes (`\n\nPress ~CmdMoveN...`)
+- But game sometimes displays plain text without commands
+
+### ✅ Final Resolution
+
+**1. Added Korean Text Skip**
+```csharp
+private static bool ContainsKorean(string text) {
+    foreach (char c in text)
+        if ((c >= 0xAC00 && c <= 0xD7A3) || (c >= 0x1100 && c <= 0x11FF))
+            return true;
+    return false;
+}
+
+// In TryTranslateTutorial:
+if (ContainsKorean(originalText))
+    return false;  // Skip already-translated text
+```
+
+**2. Added Smart Quote Normalization**
+```csharp
+// In NormalizeKey():
+normalized = normalized.Replace('\u2019', '\'');  // ' → '
+normalized = normalized.Replace('\u2018', '\'');  // ' → '
+normalized = normalized.Replace('\u201C', '"');   // " → "
+normalized = normalized.Replace('\u201D', '"');   // " → "
+```
+
+**3. Added Missing JSON Keys**
+- Plain text versions without command suffixes
+- UI element translations ("TUTORIAL GUIDE", "[Space] Continue")
+
+### Related Files
+- `Scripts/02_Patches/10_UI/02_10_15_Tutorial.cs`
+- `LOCALIZATION/GAMEPLAY/tutorial/04_surface.json`
+- `LOCALIZATION/GAMEPLAY/tutorial/_common.json`
+
+### Prevention Guide
+1. **Always check character encoding** when translation lookup fails
+2. **Add Korean text detection** to prevent re-processing translated text
+3. **Include plain text variations** in JSON, not just command-suffixed versions
+4. **Use improved debug logging** that shows both original and normalized keys
+
+---
+
 ## ERR-017: Attribute Screen Multiple Issues (Batch Fix)
 
 ### Basic Info
