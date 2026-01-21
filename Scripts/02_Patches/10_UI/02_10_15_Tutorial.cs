@@ -7,6 +7,7 @@
 using System;
 using HarmonyLib;
 using UnityEngine;
+using QudKRTranslation.Core;
 using QudKRTranslation.Utils;
 
 namespace QudKRTranslation.Patches
@@ -38,8 +39,18 @@ namespace QudKRTranslation.Patches
             if (string.IsNullOrEmpty(originalText))
                 return false;
             
+            // LocalizationManager에서 "tutorial" 카테고리의 딕셔너리를 가져옴
+            LocalizationManager.Initialize();
+            var tutorialScope = LocalizationManager.GetGlossary("tutorial");
+            
+            if (tutorialScope == null)
+            {
+                Debug.LogWarning("[Qud-KR][Tutorial] Tutorial glossary not found");
+                return false;
+            }
+            
             // ~Command 플레이스홀더와 색상 태그 보존하며 번역
-            if (TranslationUtils.TryTranslatePreservingTags(originalText, out string result, "tutorial"))
+            if (TranslationUtils.TryTranslatePreservingTags(originalText, out string result, tutorialScope))
             {
                 translated = result;
                 Debug.Log($"[Qud-KR][Tutorial] Translated: '{originalText.Substring(0, Math.Min(50, originalText.Length))}...' -> '{result.Substring(0, Math.Min(50, result.Length))}...'");
