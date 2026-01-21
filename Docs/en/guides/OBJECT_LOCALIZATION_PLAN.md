@@ -1,26 +1,79 @@
 # Object Localization System Plan
 # Creatures & Items Translation Architecture
 
-**Version**: 1.0  
+**Version**: 2.0  
 **Created**: 2026-01-22  
-**Status**: Planning  
+**Updated**: 2026-01-22  
+**Status**: Ready for Implementation  
+
+---
+
+> ⚠️ **CRITICAL: ISOLATION STRATEGY**  
+> This system is **completely isolated** from existing translation infrastructure.  
+> **DO NOT modify**: TranslationEngine.cs, StructureTranslator.cs, LocalizationManager.cs  
+> If something breaks, delete `Scripts/02_Patches/20_Objects/` + `LOCALIZATION/OBJECTS/` to restore.
+
+---
+
+## TL;DR (Executive Summary)
+
+| Aspect | Detail |
+|--------|--------|
+| **Goal** | Translate creature/item DisplayNames to Korean |
+| **Method** | Harmony Postfix on `GetDisplayNameEvent.GetFor()` |
+| **Isolation** | 100% separate from existing CharacterCreation/Mutation systems |
+| **Start Point** | Phase 0 (Foundation) → Phase 1 (Tutorial) |
+| **Time Estimate** | Phase 0: 4-6h, Phase 1: 2-3h |
+| **Key Risk** | `GetFor()` has 16 parameters - must guard `ForSort`/`ColorOnly` modes |
+
+---
+
+## Table of Contents
+
+1. [Overview](#1-overview)
+2. [Architecture](#2-architecture) - Hybrid Isolation Strategy
+3. [File Structure](#3-folder-structure) - Isolated folders
+4. [JSON Schema](#4-json-schema)
+5. [Patch Implementation](#5-patch-implementation-details) - Correct signatures
+6. [Edge Cases](#6-edge-case-handling)
+7. [Performance](#7-performance-optimization)
+8. [Phase Plan](#8-implementation-phases) - Realistic estimates
+9. [Debugging Tools](#9-debugging-tools) - Wish commands ⭐ NEW
+10. [Testing Checklist](#10-testing-checklist)
+11. [Risk Assessment](#11-risk-assessment)
+12. [Dependencies](#12-dependencies)
+- [Appendix A-C](#appendix) - Reference data
+
+> **Note**: Sections 13-22 (Effects, Combat, Grammar) have been moved to a separate document:  
+> `EFFECT_COMBAT_LOCALIZATION_PLAN.md` (to be created after Phase 2 completion)
 
 ---
 
 ## 1. Overview
 
-This document describes the complete plan for implementing creature and item localization in the Caves of Qud Korean mod. The system uses Harmony Postfix patches on `GetDisplayNameEvent.GetFor()` to translate display names at the UI layer only, preserving game data integrity.
+This document describes the implementation plan for creature and item localization in the Caves of Qud Korean mod. 
+
+### Scope
+**This document covers Objects (Creatures/Items) ONLY.**  
+Effects, Combat Messages, and Grammar systems are documented separately.
+
+### Architecture Principle
+> **"Read-only reuse of existing infrastructure, complete isolation for caching/patching"**
+
+The system uses Harmony Postfix patches on `GetDisplayNameEvent.GetFor()` to translate display names at the UI layer only, preserving game data integrity.
 
 ### Goals
 - Translate all creature and item DisplayNames to Korean
 - Translate descriptions shown in tooltips and examine screens
 - Handle edge cases: color tags, dynamic prefixes, corpses, unknown items
-- Maintain performance with caching strategy
+- Maintain performance with aggressive caching
+- **Zero interference with existing CharacterCreation/Mutation translations**
 
 ### Non-Goals (Out of Scope)
 - Modifying game data directly
 - Translating internal IDs or blueprint names
 - Changing game mechanics
+- Modifying existing Core files (TranslationEngine, StructureTranslator)
 
 ---
 
