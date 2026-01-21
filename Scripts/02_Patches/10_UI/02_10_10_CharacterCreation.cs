@@ -1026,20 +1026,158 @@ namespace QudKRTranslation.Patches
     [HarmonyPatch(typeof(QudCyberneticsModuleWindow))]
     public static class Patch_QudCyberneticsModuleWindow
     {
+        // Slot name translations
+        private static readonly Dictionary<string, string> SlotTranslations = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase)
+        {
+            { "Face", "얼굴" },
+            { "Head", "머리" },
+            { "Body", "몸" },
+            { "Back", "등" },
+            { "Arm", "팔" },
+            { "Hands", "손" },
+            { "Feet", "발" }
+        };
+        
         [HarmonyPatch(nameof(QudCyberneticsModuleWindow.UpdateControls))]
         [HarmonyPostfix]
         static void UpdateControls_Postfix(QudCyberneticsModuleWindow __instance)
         {
             // categoryMenus is private, use Traverse - the actual field name is cyberneticsMenuState
             var categoryMenus = Traverse.Create(__instance).Field("cyberneticsMenuState").GetValue<List<CategoryMenuData>>();
-            if (categoryMenus != null)
+            if (categoryMenus == null)
             {
-                foreach (var cat in categoryMenus)
+                Debug.Log("[Qud-KR Cyber] cyberneticsMenuState is null");
+                return;
+            }
+            
+            Debug.Log($"[Qud-KR Cyber] UpdateControls_Postfix: {categoryMenus.Count} categories");
+            
+            foreach (var cat in categoryMenus)
+            {
+                // Translate category title "Cybernetics" -> "사이버네틱스"
+                if (LocalizationManager.TryGetAnyTerm(cat.Title?.ToLowerInvariant(), out string tTitle, "chargen_ui", "ui"))
+                    cat.Title = tTitle;
+                
+                // Translate each PrefixMenuOption in the category
+                if (cat.menuOptions == null) continue;
+                
+                Debug.Log($"[Qud-KR Cyber] Category '{cat.Title}' has {cat.menuOptions.Count} options");
+                
+                foreach (var opt in cat.menuOptions)
                 {
-                    // Translate category title "Cybernetics" -> "사이버네틱스"
-                    if (LocalizationManager.TryGetAnyTerm(cat.Title?.ToLowerInvariant(), out string tTitle, "chargen_ui", "ui"))
-                        cat.Title = tTitle;
+                    if (opt == null) continue;
+                    TranslateCyberneticOption(opt);
                 }
+            }
+        }
+        
+        /// <summary>
+        /// Translate a single cybernetic PrefixMenuOption
+        /// </summary>
+        private static void TranslateCyberneticOption(PrefixMenuOption opt)
+        {
+            string desc = opt.Description;
+            if (string.IsNullOrEmpty(desc))
+            {
+                Debug.Log("[Qud-KR Cyber] Option has empty description");
+                return;
+            }
+            
+            // Handle "<none>" option
+            if (desc == "<none>")
+            {
+                if (LocalizationManager.TryGetAnyTerm("<none>", out string tNone, "chargen_ui", "ui"))
+                    opt.Description = tNone;
+                // LongDescription for <none> is the "no cybernetic" bonus text
+                if (!string.IsNullOrEmpty(opt.LongDescription))
+                {
+                    opt.LongDescription = ChargenTranslationUtils.TranslateLongDescription(opt.LongDescription, "chargen_ui", "ui");
+                }
+                Debug.Log($"[Qud-KR Cyber] Translated <none> option");
+                return;
+            }
+            
+            // Parse "name (slot)" format
+            int parenIdx = desc.LastIndexOf(" (");
+            if (parenIdx <= 0)
+            {
+                Debug.Log($"[Qud-KR Cyber] No slot format in: {desc}");
+                return;
+            }
+            
+            string cyberName = desc.Substring(0, parenIdx);
+            string slotPart = desc.Substring(parenIdx); // " (Face)" etc.
+            
+            Debug.Log($"[Qud-KR Cyber] Parsing: name='{cyberName}', slot='{slotPart}'");
+            
+            // Extract slot name from " (Slot)"
+            string slotName = slotPart.Trim();
+            if (slotName.StartsWith("(") && slotName.EndsWith(")"))
+                slotName = slotName.Substring(1, slotName.Length - 2);
+            else if (slotName.StartsWith(" (") && slotName.EndsWith(")"))
+                slotName = slotName.Substring(2, slotName.Length - 3);
+            
+            // Translate slot name
+            string translatedSlot = slotName;
+            if (SlotTranslations.TryGetValue(slotName, out string tSlot))
+                translatedSlot = tSlot;
+            
+            // Try StructureTranslator for cybernetic name and description
+            if (StructureTranslator.TryGetData(cyberName, out var cyberData))
+            {
+                string translatedName = !string.IsNullOrEmpty(cyberData.KoreanName) ? cyberData.KoreanName : cyberName;
+                opt.Description = $"{translatedName} ({translatedSlot})";
+                
+                // Translate LongDescription
+                string combinedDesc = cyberData.GetCombinedCyberneticDescription();
+                if (!string.IsNullOrEmpty(combinedDesc))
+                {
+                    opt.LongDescription = combinedDesc;
+                }
+                
+                Debug.Log($"[Qud-KR Cyber] Translated via StructureTranslator: {cyberName} -> {translatedName}");
+            }
+            else
+            {
+                // Try simple name translation from JSON
+                if (LocalizationManager.TryGetAnyTerm(cyberName.ToLowerInvariant(), out string tName, "cybernetics", "chargen_ui", "ui"))
+                {
+                    opt.Description = $"{tName} ({translatedSlot})";
+                    Debug.Log($"[Qud-KR Cyber] Translated via LocalizationManager: {cyberName} -> {tName}");
+                }
+                else
+                {
+                    // At least translate the slot
+                    opt.Description = $"{cyberName} ({translatedSlot})";
+                    Debug.Log($"[Qud-KR Cyber] No translation found for: {cyberName}");
+                }
+            }
+        }
+    }
+    
+    // ========================================================================
+    // [7.5] CategoryMenusScroller - 우측 설명 패널 번역
+    // ========================================================================
+    [HarmonyPatch(typeof(CategoryMenusScroller))]
+    public static class Patch_CategoryMenusScroller
+    {
+        [HarmonyPatch(nameof(CategoryMenusScroller.UpdateDescriptions))]
+        [HarmonyPostfix]
+        static void UpdateDescriptions_Postfix(CategoryMenusScroller __instance, FrameworkDataElement dataElement)
+        {
+            if (dataElement is PrefixMenuOption prefixMenuOption)
+            {
+                // The data should already be translated by UpdateControls_Postfix
+                // But we need to re-apply it to the UI text elements
+                if (__instance.selectedTitleText != null)
+                {
+                    __instance.selectedTitleText.SetText(prefixMenuOption.Description);
+                }
+                if (__instance.selectedDescriptionText != null)
+                {
+                    __instance.selectedDescriptionText.SetText(prefixMenuOption.LongDescription);
+                }
+                Debug.Log($"[Qud-KR Cyber] UpdateDescriptions re-applied: {prefixMenuOption.Description?.Substring(0, Math.Min(30, prefixMenuOption.Description?.Length ?? 0))}...");
             }
         }
     }

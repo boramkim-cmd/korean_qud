@@ -18,6 +18,24 @@
       "select": "선택",
       "Select": "선택"
     },
+    "Slots": {
+      "face": "얼굴",
+      "Face": "얼굴",
+      "head": "머리",
+      "Head": "머리",
+      "body": "몸",
+      "Body": "몸",
+      "back": "등",
+      "Back": "등",
+      "arm": "팔",
+      "Arm": "팔",
+      "hands": "손",
+      "Hands": "손",
+      "feet": "발",
+      "Feet": "발",
+      "floating nearby": "부유 아이템",
+      "Floating Nearby": "부유 아이템"
+    },
     "General UI": {
       ":build library:": ":빌드 라이브러리:",
       ":build summary:": ":빌드 요약:",
@@ -25,7 +43,7 @@
       ":choose calling:": ":직업 선택:",
       ":choose caste:": ":계급 선택:",
       ":choose character type:": ":캐릭터 유형 선택:",
-      ":choose cybernetic implant:": ":사이버네틱 임플란트 선택:",
+      ":choose cybernetic implant:": ":사이버네틱 임플란트 선택:
       ":choose game mode:": ":게임 모드 선택:",
       ":choose genotype:": ":유전자형 선택:",
       ":choose mutations:": ":변이 선택:",

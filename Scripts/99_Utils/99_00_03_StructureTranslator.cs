@@ -338,6 +338,7 @@ namespace QudKRTranslation.Utils
                 if (itemData != null && !string.IsNullOrEmpty(itemData.EnglishName))
                 {
                     _data[itemData.EnglishName] = itemData;
+                    Debug.Log($"[StructureTranslator] Loaded: '{itemData.EnglishName}' -> '{itemData.KoreanName}' from {Path.GetFileName(path)}");
                 }
             }
             catch (Exception e)
