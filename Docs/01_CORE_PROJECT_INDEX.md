@@ -1,6 +1,6 @@
 # 📚 프로젝트 완전 인덱스 (자동 생성)
 
-**생성**: 2026-01-20 20:42:50
+**생성**: 2026-01-21 15:49:53
 
 이 문서는 프로젝트의 모든 파일과 메서드 시그니처를 포함합니다. **새로운 기능을 만들기 전, 반드시 여기서 기존 메서드를 검색하십시오.**
 
@@ -72,6 +72,7 @@
 - **Namespace**: `QudKRTranslation.Core`
 - **공개 메서드 (Public Methods)**:
   ```csharp
+  TMP_FontAsset GetKoreanFont()
   void ApplyKoreanFont()
   void ApplyFallbackToTMPComponent(TMPro.TMP_Text txt, bool forceLog = false)
   void ApplyFallbackToAllTMPComponents()
@@ -99,6 +100,7 @@
 - **공개 메서드 (Public Methods)**:
   ```csharp
   void TranslateMenuData()
+  bool TryGetHardcodedTranslation(string text, out string translated)
   ```
 
 ### `Scripts/02_Patches/10_UI/02_10_01_Options.cs`
@@ -132,6 +134,18 @@
 ### `Scripts/02_Patches/10_UI/02_10_10_CharacterCreation.cs`
 - **역할**: 캐릭터 생성의 모든 단계(모드, 종족, 직업, 스탯, 변이 등)의 UI와 설명을 번역합니다.
 - **Namespace**: `QudKRTranslation.Patches`
+- **공개 메서드 (Public Methods)**:
+  ```csharp
+  void ClearTranslatedCanvasCache()
+  ```
+
+### `Scripts/02_Patches/10_UI/02_10_11_WorldCreation.cs`
+- **역할**: "Creating World" 화면의 진행 메시지를 번역하고 한글 폰트를 적용합니다.
+- **Namespace**: `QudKRTranslation.Patches`
+- **공개 메서드 (Public Methods)**:
+  ```csharp
+  void DestroyOverlay()
+  ```
 
 ### `Scripts/02_Patches/10_UI/02_10_15_EmbarkOverlay.cs`
 - **역할**: 캐릭터 생성 화면 하단의 'Back', 'Next' 공통 버튼 텍스트를 번역합니다.
@@ -145,6 +159,7 @@
 - **공개 메서드 (Public Methods)**:
   ```csharp
   string GetCombinedLongDescription(string fallbackOriginal = null)
+  string GetCombinedCyberneticDescription()
   void InitializeDirectory(string directoryPath)
   bool TryGetData(string englishName, out TranslationData data)
   string TranslateName(string englishName)

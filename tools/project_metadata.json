@@ -1,5 +1,5 @@
 {
-  "generated": "2026-01-20 20:42:50",
+  "generated": "2026-01-21 15:49:53",
   "scripts": {
     "Scripts/99_Utils/99_00_03_StructureTranslator.cs": {
       "classification": "Util",
@@ -14,6 +14,11 @@
           "name": "GetCombinedLongDescription",
           "return": "string",
           "params": "string fallbackOriginal = null"
+        },
+        {
+          "name": "GetCombinedCyberneticDescription",
+          "return": "string",
+          "params": ""
         },
         {
           "name": "InitializeDirectory",
@@ -247,6 +252,7 @@
         "UILoadPatch",
         "MainMenu_Show_Patch",
         "XRLCore_Start_Patch",
+        "UITextSkin_Apply_Patch",
         "TextMeshProUGUI_OnEnable_Patch",
         "TextMeshPro_OnEnable_Patch",
         "TextMeshProUGUI_Awake_Patch",
@@ -260,6 +266,11 @@
         "KoreanTextHelper"
       ],
       "methods": [
+        {
+          "name": "GetKoreanFont",
+          "return": "TMP_FontAsset",
+          "params": ""
+        },
         {
           "name": "ApplyKoreanFont",
           "return": "void",
@@ -333,8 +344,9 @@
         "Patch_AttributeSelectionControl",
         "Patch_QudAttributesModuleWindow",
         "Patch_QudMutationsModuleWindow",
-        "Patch_KeyMenuOption_MutationNames",
+        "Patch_KeyMenuOption_MutationAndCyberneticNames",
         "Patch_QudCyberneticsModuleWindow",
+        "Patch_CategoryMenusScroller",
         "Patch_QudPregenModuleWindow",
         "Patch_QudChooseStartingLocationModuleWindow",
         "Patch_QudCustomizeCharacterModuleWindow",
@@ -343,7 +355,32 @@
         "Patch_EmbarkBuilderOverlayWindow_Scope",
         "Patch_EmbarkBuilderOverlayWindow_Hide"
       ],
-      "methods": []
+      "methods": [
+        {
+          "name": "ClearTranslatedCanvasCache",
+          "return": "void",
+          "params": ""
+        }
+      ]
+    },
+    "Scripts/02_Patches/10_UI/02_10_11_WorldCreation.cs": {
+      "classification": "UI Patch",
+      "role": "\"Creating World\" 화면의 진행 메시지를 번역하고 한글 폰트를 적용합니다.",
+      "namespace": "QudKRTranslation.Patches",
+      "classes": [
+        "Patch_WorldGenerationScreen_AddMessage",
+        "Patch_WorldCreationProgress_Begin",
+        "Patch_WorldCreationProgress_NextStep",
+        "Patch_WorldCreationProgress_StepProgress",
+        "Patch_WorldCreationProgress_Draw"
+      ],
+      "methods": [
+        {
+          "name": "DestroyOverlay",
+          "return": "void",
+          "params": ""
+        }
+      ]
     },
     "Scripts/02_Patches/10_UI/02_10_04_ListScroller.cs": {
       "classification": "UI Patch",
@@ -412,13 +449,19 @@
         "Patch_TMP_Text_Setter",
         "Patch_PopupMessage_Buttons",
         "Patch_Popup_ShowYesNoAsync",
-        "Patch_FrameworkScroller_BeforeShow"
+        "Patch_FrameworkScroller_BeforeShow",
+        "Patch_UITextSkin_SetText"
       ],
       "methods": [
         {
           "name": "TranslateMenuData",
           "return": "void",
           "params": ""
+        },
+        {
+          "name": "TryGetHardcodedTranslation",
+          "return": "bool",
+          "params": "string text, out string translated"
         }
       ]
     },
@@ -511,7 +554,7 @@
         "status",
         "ui"
       ],
-      "entries": 148
+      "entries": 161
     },
     "display.json": {
       "categories": [
@@ -532,6 +575,12 @@
       ],
       "entries": 35
     },
+    "glossary_worldgen.json": {
+      "categories": [
+        "worldgen"
+      ],
+      "entries": 40
+    },
     "locations.json": {
       "categories": [
         "chargen_location"
@@ -549,18 +598,6 @@
         "factions"
       ],
       "entries": 53
-    },
-    "presets.json": {
-      "categories": [
-        "chargen_pregen"
-      ],
-      "entries": 25
-    },
-    "ui.json": {
-      "categories": [
-        "chargen_ui"
-      ],
-      "entries": 6
     },
     "stats.json": {
       "categories": [
@@ -1195,10 +1232,12 @@
     "Night_Vision.json": {
       "categories": [
         "names",
+        "slot",
+        "cost",
         "description",
-        "leveltext",
+        "behaviorDescription",
         "description_ko",
-        "leveltext_ko"
+        "behaviorDescription_ko"
       ],
       "entries": 1
     },
@@ -1411,6 +1450,876 @@
         "leveltext_ko"
       ],
       "entries": 1
+    },
+    "Micromanipulator_Array.json": {
+      "categories": [
+        "names",
+        "slot",
+        "cost",
+        "description",
+        "behaviorDescription",
+        "description_ko",
+        "behaviorDescription_ko"
+      ],
+      "entries": 1
+    },
+    "Grafted_Mirror_Arm.json": {
+      "categories": [
+        "names",
+        "slot",
+        "cost",
+        "description",
+        "behaviorDescription",
+        "description_ko",
+        "behaviorDescription_ko"
+      ],
+      "entries": 1
+    },
+    "High-Grade_Dermal_Insulation.json": {
+      "categories": [
+        "names",
+        "slot",
+        "cost",
+        "description",
+        "behaviorDescription",
+        "description_ko",
+        "behaviorDescription_ko"
+      ],
+      "entries": 1
+    },
+    "Equipment_Rack.json": {
+      "categories": [
+        "names",
+        "slot",
+        "cost",
+        "description",
+        "behaviorDescription",
+        "description_ko",
+        "behaviorDescription_ko"
+      ],
+      "entries": 1
+    },
+    "Ultra-Elastic_Ankle_Tendons.json": {
+      "categories": [
+        "names",
+        "slot",
+        "cost",
+        "description",
+        "behaviorDescription",
+        "description_ko",
+        "behaviorDescription_ko"
+      ],
+      "entries": 1
+    },
+    "Bionic_Arm.json": {
+      "categories": [
+        "names",
+        "slot",
+        "cost",
+        "description",
+        "behaviorDescription",
+        "description_ko",
+        "behaviorDescription_ko"
+      ],
+      "entries": 1
+    },
+    "Security_Interlock.json": {
+      "categories": [
+        "names",
+        "slot",
+        "cost",
+        "description",
+        "behaviorDescription",
+        "description_ko",
+        "behaviorDescription_ko"
+      ],
+      "entries": 1
+    },
+    "Custom_Visage.json": {
+      "categories": [
+        "names",
+        "slot",
+        "cost",
+        "description",
+        "behaviorDescription",
+        "description_ko",
+        "behaviorDescription_ko"
+      ],
+      "entries": 1
+    },
+    "Matter_Recompositer.json": {
+      "categories": [
+        "names",
+        "slot",
+        "cost",
+        "description",
+        "behaviorDescription",
+        "description_ko",
+        "behaviorDescription_ko"
+      ],
+      "entries": 1
+    },
+    "Medassist_Module.json": {
+      "categories": [
+        "names",
+        "slot",
+        "cost",
+        "description",
+        "behaviorDescription",
+        "description_ko",
+        "behaviorDescription_ko"
+      ],
+      "entries": 1
+    },
+    "Bionic_Hands.json": {
+      "categories": [
+        "names",
+        "slot",
+        "cost",
+        "description",
+        "behaviorDescription",
+        "description_ko",
+        "behaviorDescription_ko"
+      ],
+      "entries": 1
+    },
+    "Anomaly_Fumigator.json": {
+      "categories": [
+        "names",
+        "slot",
+        "cost",
+        "description",
+        "behaviorDescription",
+        "description_ko",
+        "behaviorDescription_ko"
+      ],
+      "entries": 1
+    },
+    "Intravenous_Port.json": {
+      "categories": [
+        "names",
+        "slot",
+        "cost",
+        "description",
+        "behaviorDescription",
+        "description_ko",
+        "behaviorDescription_ko"
+      ],
+      "entries": 1
+    },
+    "Giant_Hands.json": {
+      "categories": [
+        "names",
+        "slot",
+        "cost",
+        "description",
+        "behaviorDescription",
+        "description_ko",
+        "behaviorDescription_ko"
+      ],
+      "entries": 1
+    },
+    "Bionic_Heart.json": {
+      "categories": [
+        "names",
+        "slot",
+        "cost",
+        "description",
+        "behaviorDescription",
+        "description_ko",
+        "behaviorDescription_ko"
+      ],
+      "entries": 1
+    },
+    "Palladium_Electrodeposits.json": {
+      "categories": [
+        "names",
+        "slot",
+        "cost",
+        "description",
+        "behaviorDescription",
+        "description_ko",
+        "behaviorDescription_ko"
+      ],
+      "entries": 1
+    },
+    "Dopamine_Synth.json": {
+      "categories": [
+        "names",
+        "slot",
+        "cost",
+        "description",
+        "behaviorDescription",
+        "description_ko",
+        "behaviorDescription_ko"
+      ],
+      "entries": 1
+    },
+    "Beautiful_Visage.json": {
+      "categories": [
+        "names",
+        "slot",
+        "cost",
+        "description",
+        "behaviorDescription",
+        "description_ko",
+        "behaviorDescription_ko"
+      ],
+      "entries": 1
+    },
+    "Bionic_Liver.json": {
+      "categories": [
+        "names",
+        "slot",
+        "cost",
+        "description",
+        "behaviorDescription",
+        "description_ko",
+        "behaviorDescription_ko"
+      ],
+      "entries": 1
+    },
+    "Transparent_Skin.json": {
+      "categories": [
+        "names",
+        "slot",
+        "cost",
+        "description",
+        "behaviorDescription",
+        "description_ko",
+        "behaviorDescription_ko"
+      ],
+      "entries": 1
+    },
+    "Dermal_Plating.json": {
+      "categories": [
+        "names",
+        "slot",
+        "cost",
+        "description",
+        "behaviorDescription",
+        "description_ko",
+        "behaviorDescription_ko"
+      ],
+      "entries": 1
+    },
+    "Skillsoft_1.json": {
+      "categories": [
+        "names",
+        "slot",
+        "cost",
+        "description",
+        "behaviorDescription",
+        "description_ko",
+        "behaviorDescription_ko"
+      ],
+      "entries": 1
+    },
+    "Skin_Glitter_1.json": {
+      "categories": [
+        "names",
+        "slot",
+        "cost",
+        "description",
+        "behaviorDescription",
+        "description_ko",
+        "behaviorDescription_ko"
+      ],
+      "entries": 1
+    },
+    "Optical_Bioscanner.json": {
+      "categories": [
+        "names",
+        "slot",
+        "cost",
+        "description",
+        "behaviorDescription",
+        "description_ko",
+        "behaviorDescription_ko"
+      ],
+      "entries": 1
+    },
+    "Navigation_System.json": {
+      "categories": [
+        "names",
+        "slot",
+        "cost",
+        "description",
+        "behaviorDescription",
+        "description_ko",
+        "behaviorDescription_ko"
+      ],
+      "entries": 1
+    },
+    "Tibular_Hydrojets.json": {
+      "categories": [
+        "names",
+        "slot",
+        "cost",
+        "description",
+        "behaviorDescription",
+        "description_ko",
+        "behaviorDescription_ko"
+      ],
+      "entries": 1
+    },
+    "Optical_Technoscanner.json": {
+      "categories": [
+        "names",
+        "slot",
+        "cost",
+        "description",
+        "behaviorDescription",
+        "description_ko",
+        "behaviorDescription_ko"
+      ],
+      "entries": 1
+    },
+    "Cherubic_Visage.json": {
+      "categories": [
+        "names",
+        "slot",
+        "cost",
+        "description",
+        "behaviorDescription",
+        "description_ko",
+        "behaviorDescription_ko"
+      ],
+      "entries": 1
+    },
+    "Force_Modulator.json": {
+      "categories": [
+        "names",
+        "slot",
+        "cost",
+        "description",
+        "behaviorDescription",
+        "description_ko",
+        "behaviorDescription_ko"
+      ],
+      "entries": 1
+    },
+    "Electromagnetic_Sensor.json": {
+      "categories": [
+        "names",
+        "slot",
+        "cost",
+        "description",
+        "behaviorDescription",
+        "description_ko",
+        "behaviorDescription_ko"
+      ],
+      "entries": 1
+    },
+    "Penetrating_Radar.json": {
+      "categories": [
+        "names",
+        "slot",
+        "cost",
+        "description",
+        "behaviorDescription",
+        "description_ko",
+        "behaviorDescription_ko"
+      ],
+      "entries": 1
+    },
+    "Biodynamic_Power_Plant.json": {
+      "categories": [
+        "names",
+        "slot",
+        "cost",
+        "description",
+        "behaviorDescription",
+        "description_ko",
+        "behaviorDescription_ko"
+      ],
+      "entries": 1
+    },
+    "Holographic_Visage.json": {
+      "categories": [
+        "names",
+        "slot",
+        "cost",
+        "description",
+        "behaviorDescription",
+        "description_ko",
+        "behaviorDescription_ko"
+      ],
+      "entries": 1
+    },
+    "Stasis_Projector.json": {
+      "categories": [
+        "names",
+        "slot",
+        "cost",
+        "description",
+        "behaviorDescription",
+        "description_ko",
+        "behaviorDescription_ko"
+      ],
+      "entries": 1
+    },
+    "Reactive_Trauma_Plate.json": {
+      "categories": [
+        "names",
+        "slot",
+        "cost",
+        "description",
+        "behaviorDescription",
+        "description_ko",
+        "behaviorDescription_ko"
+      ],
+      "entries": 1
+    },
+    "Precision_Force_Lathe.json": {
+      "categories": [
+        "names",
+        "slot",
+        "cost",
+        "description",
+        "behaviorDescription",
+        "description_ko",
+        "behaviorDescription_ko"
+      ],
+      "entries": 1
+    },
+    "Phase-Adaptive_Scope.json": {
+      "categories": [
+        "names",
+        "slot",
+        "cost",
+        "description",
+        "behaviorDescription",
+        "description_ko",
+        "behaviorDescription_ko"
+      ],
+      "entries": 1
+    },
+    "Fullerite_Hand_Bones.json": {
+      "categories": [
+        "names",
+        "slot",
+        "cost",
+        "description",
+        "behaviorDescription",
+        "description_ko",
+        "behaviorDescription_ko"
+      ],
+      "entries": 1
+    },
+    "Motorized_Treads.json": {
+      "categories": [
+        "names",
+        "slot",
+        "cost",
+        "description",
+        "behaviorDescription",
+        "description_ko",
+        "behaviorDescription_ko"
+      ],
+      "entries": 1
+    },
+    "Magnetic_Core.json": {
+      "categories": [
+        "names",
+        "slot",
+        "cost",
+        "description",
+        "behaviorDescription",
+        "description_ko",
+        "behaviorDescription_ko"
+      ],
+      "entries": 1
+    },
+    "Onboard_Recoiler.json": {
+      "categories": [
+        "names",
+        "slot",
+        "cost",
+        "description",
+        "behaviorDescription",
+        "description_ko",
+        "behaviorDescription_ko"
+      ],
+      "entries": 1
+    },
+    "Gun_Rack.json": {
+      "categories": [
+        "names",
+        "slot",
+        "cost",
+        "description",
+        "behaviorDescription",
+        "description_ko",
+        "behaviorDescription_ko"
+      ],
+      "entries": 1
+    },
+    "Dermal_Insulation.json": {
+      "categories": [
+        "names",
+        "slot",
+        "cost",
+        "description",
+        "behaviorDescription",
+        "description_ko",
+        "behaviorDescription_ko"
+      ],
+      "entries": 1
+    },
+    "Parabolic_Muscular_Subroutine.json": {
+      "categories": [
+        "names",
+        "slot",
+        "cost",
+        "description",
+        "behaviorDescription",
+        "description_ko",
+        "behaviorDescription_ko"
+      ],
+      "entries": 1
+    },
+    "Hyper-Elastic_Ankle_Tendons.json": {
+      "categories": [
+        "names",
+        "slot",
+        "cost",
+        "description",
+        "behaviorDescription",
+        "description_ko",
+        "behaviorDescription_ko"
+      ],
+      "entries": 1
+    },
+    "Translucent_Skin.json": {
+      "categories": [
+        "names",
+        "slot",
+        "cost",
+        "description",
+        "behaviorDescription",
+        "description_ko",
+        "behaviorDescription_ko"
+      ],
+      "entries": 1
+    },
+    "Communications_Interlock.json": {
+      "categories": [
+        "names",
+        "slot",
+        "cost",
+        "description",
+        "behaviorDescription",
+        "description_ko",
+        "behaviorDescription_ko"
+      ],
+      "entries": 1
+    },
+    "Phase_Harmonic_Modulator.json": {
+      "categories": [
+        "names",
+        "slot",
+        "cost",
+        "description",
+        "behaviorDescription",
+        "description_ko",
+        "behaviorDescription_ko"
+      ],
+      "entries": 1
+    },
+    "Fire_Suppression_System.json": {
+      "categories": [
+        "names",
+        "slot",
+        "cost",
+        "description",
+        "behaviorDescription",
+        "description_ko",
+        "behaviorDescription_ko"
+      ],
+      "entries": 1
+    },
+    "Grounding_Shunts.json": {
+      "categories": [
+        "names",
+        "slot",
+        "cost",
+        "description",
+        "behaviorDescription",
+        "description_ko",
+        "behaviorDescription_ko"
+      ],
+      "entries": 1
+    },
+    "Air_Current_Microsensor.json": {
+      "categories": [
+        "names",
+        "slot",
+        "cost",
+        "description",
+        "behaviorDescription",
+        "description_ko",
+        "behaviorDescription_ko"
+      ],
+      "entries": 1
+    },
+    "Stabilizer_Arm_Locks.json": {
+      "categories": [
+        "names",
+        "slot",
+        "cost",
+        "description",
+        "behaviorDescription",
+        "description_ko",
+        "behaviorDescription_ko"
+      ],
+      "entries": 1
+    },
+    "Inflatable_Axons.json": {
+      "categories": [
+        "names",
+        "slot",
+        "cost",
+        "description",
+        "behaviorDescription",
+        "description_ko",
+        "behaviorDescription_ko"
+      ],
+      "entries": 1
+    },
+    "Reactive_Cranial_Plating.json": {
+      "categories": [
+        "names",
+        "slot",
+        "cost",
+        "description",
+        "behaviorDescription",
+        "description_ko",
+        "behaviorDescription_ko"
+      ],
+      "entries": 1
+    },
+    "Rapid_Release_Finger_Flexors.json": {
+      "categories": [
+        "names",
+        "slot",
+        "cost",
+        "description",
+        "behaviorDescription",
+        "description_ko",
+        "behaviorDescription_ko"
+      ],
+      "entries": 1
+    },
+    "Schemasoft_2.json": {
+      "categories": [
+        "names",
+        "slot",
+        "cost",
+        "description",
+        "behaviorDescription",
+        "description_ko",
+        "behaviorDescription_ko"
+      ],
+      "entries": 1
+    },
+    "Skin_Glitter_2.json": {
+      "categories": [
+        "names",
+        "slot",
+        "cost",
+        "description",
+        "behaviorDescription",
+        "description_ko",
+        "behaviorDescription_ko"
+      ],
+      "entries": 1
+    },
+    "Pneumatic_Pistons.json": {
+      "categories": [
+        "names",
+        "slot",
+        "cost",
+        "description",
+        "behaviorDescription",
+        "description_ko",
+        "behaviorDescription_ko"
+      ],
+      "entries": 1
+    },
+    "Nocturnal_Apex.json": {
+      "categories": [
+        "names",
+        "slot",
+        "cost",
+        "description",
+        "behaviorDescription",
+        "description_ko",
+        "behaviorDescription_ko"
+      ],
+      "entries": 1
+    },
+    "Anchor_Spikes.json": {
+      "categories": [
+        "names",
+        "slot",
+        "cost",
+        "description",
+        "behaviorDescription",
+        "description_ko",
+        "behaviorDescription_ko"
+      ],
+      "entries": 1
+    },
+    "Skillsoft_2.json": {
+      "categories": [
+        "names",
+        "slot",
+        "cost",
+        "description",
+        "behaviorDescription",
+        "description_ko",
+        "behaviorDescription_ko"
+      ],
+      "entries": 1
+    },
+    "Pentaceps.json": {
+      "categories": [
+        "names",
+        "slot",
+        "cost",
+        "description",
+        "behaviorDescription",
+        "description_ko",
+        "behaviorDescription_ko"
+      ],
+      "entries": 1
+    },
+    "Carbide_Hand_Bones.json": {
+      "categories": [
+        "names",
+        "slot",
+        "cost",
+        "description",
+        "behaviorDescription",
+        "description_ko",
+        "behaviorDescription_ko"
+      ],
+      "entries": 1
+    },
+    "Cathedra_Sapphire.json": {
+      "categories": [
+        "names",
+        "slot",
+        "cost",
+        "description",
+        "behaviorDescription",
+        "description_ko",
+        "behaviorDescription_ko"
+      ],
+      "entries": 1
+    },
+    "Cathedra_Black_Opal.json": {
+      "categories": [
+        "names",
+        "slot",
+        "cost",
+        "description",
+        "behaviorDescription",
+        "description_ko",
+        "behaviorDescription_ko"
+      ],
+      "entries": 1
+    },
+    "Cathedra_White_Opal.json": {
+      "categories": [
+        "names",
+        "slot",
+        "cost",
+        "description",
+        "behaviorDescription",
+        "description_ko",
+        "behaviorDescription_ko"
+      ],
+      "entries": 1
+    },
+    "Cathedra_Ruby.json": {
+      "categories": [
+        "names",
+        "slot",
+        "cost",
+        "description",
+        "behaviorDescription",
+        "description_ko",
+        "behaviorDescription_ko"
+      ],
+      "entries": 1
+    },
+    "High-Fidelity_Matter_Recompositer.json": {
+      "categories": [
+        "names",
+        "slot",
+        "cost",
+        "description",
+        "behaviorDescription",
+        "description_ko",
+        "behaviorDescription_ko"
+      ],
+      "entries": 1
+    },
+    "Social_Coprocessor.json": {
+      "categories": [
+        "names",
+        "slot",
+        "cost",
+        "description",
+        "behaviorDescription",
+        "description_ko",
+        "behaviorDescription_ko"
+      ],
+      "entries": 1
+    },
+    "Crysteel_Hand_Bones.json": {
+      "categories": [
+        "names",
+        "slot",
+        "cost",
+        "description",
+        "behaviorDescription",
+        "description_ko",
+        "behaviorDescription_ko"
+      ],
+      "entries": 1
+    },
+    "Stasis_Entangler.json": {
+      "categories": [
+        "names",
+        "slot",
+        "cost",
+        "description",
+        "behaviorDescription",
+        "description_ko",
+        "behaviorDescription_ko"
+      ],
+      "entries": 1
+    },
+    "Optical_Multiscanner.json": {
+      "categories": [
+        "names",
+        "slot",
+        "cost",
+        "description",
+        "behaviorDescription",
+        "description_ko",
+        "behaviorDescription_ko"
+      ],
+      "entries": 1
+    },
+    "descriptions.json": {
+      "categories": [
+        "chargen_pregen"
+      ],
+      "entries": 25
     },
     "Mutated_Human.json": {
       "categories": [
