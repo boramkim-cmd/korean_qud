@@ -32,7 +32,7 @@ namespace QudKRTranslation.Patches
         /// <param name="originalText">원본 영어 텍스트</param>
         /// <param name="translated">번역된 한글 텍스트</param>
         /// <returns>번역 성공 여부</returns>
-        private static bool TryTranslateTutorial(string originalText, out string translated)
+        public static bool TryTranslateTutorial(string originalText, out string translated)
         {
             translated = originalText;
             
@@ -209,6 +209,27 @@ namespace QudKRTranslation.Patches
             
             if (TryTranslateTutorial(text, out var translated))
                 text = translated;
+        }
+    }
+
+    /// <summary>
+    /// Popup 클래스 패치 - 튜토리얼 팝업 번역 (Before you move on...)
+    /// </summary>
+    [HarmonyPatch(typeof(XRL.UI.Popup))]
+    public static class Patch_Popup
+    {
+        // Popup.Show(string Text, bool Capitalize = true, bool DimBackground = true, bool AllowEscape = true, bool HideSidebar = true, bool PreserveInput = false)
+        [HarmonyPrefix]
+        // Harmony가 오버로드를 자동으로 찾도록 인자 타입 명시하지 않음 (가장 매칭되는 것 찾음)
+        // 하지만 여러 개일 경우를 대비해 가장 인자가 많은 것을 타겟팅하되, Harmony에게 맡김.
+        // 또는 명시적으로 지정
+        [HarmonyPatch(nameof(XRL.UI.Popup.Show), new Type[] { typeof(string), typeof(bool), typeof(bool), typeof(bool), typeof(bool), typeof(bool) })]
+        static void Show_Prefix(ref string Text)
+        {
+            if (Patch_TutorialManager.TryTranslateTutorial(Text, out var translated))
+            {
+                Text = translated;
+            }
         }
     }
 }

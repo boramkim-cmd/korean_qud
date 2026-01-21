@@ -1,5 +1,11 @@
 {
   "tutorial_fight": {
+    "Looks like there was some sort of battle to the north. Let's grab the gear that was left behind.": "북쪽에서 어떤 전투가 있었던 것 같습니다. 남겨진 장비를 집어듭시다.",
+    
+    "Walk down the passage.": "통로를 따라 걸어가세요.",
+    
+    "Keep moving forward.": "계속 앞으로 이동하세요.",
+    
     "What's that??? Some sort of creature. Take a closer look at it.": "저게 뭐지??? 어떤 생물 같습니다. 더 자세히 살펴보세요.",
     
     "Oh! Another creature. Let's look at it more closely.\n\nWhen you come across something new, it's always a good idea to inspect it.": "오! 다른 생물이 있습니다. 더 자세히 살펴봅시다.\n\n새로운 것을 발견하면 항상 조사해보는 것이 좋습니다.",
@@ -42,11 +48,13 @@
     
     "Sprinting doubles your movespeed but ends if you make an attack. Let's sprint back down the corridor to put some distance between us and the bear.": "달리기는 이동 속도를 두 배로 높이지만 공격하면 종료됩니다. 복도로 달려가서 곰과 거리를 벌립시다.",
     
-    "Every character has Sprint, but most of your abilities are determined by traits like your mutations. You have Freezing Ray, so you can shoot frost out of your hands. Select it.\n\nPress {{hotkey|~CmdAbility2}}": "모든 캐릭터는 달리기를 가지고 있지만, 대부분의 능력은 변이 같은 특성에 의해 결정됩니다. 당신은 냉동 광선이 있어서 손에서 서리를 쏠 수 있습니다. 선택하세요.\n\n{{hotkey|~CmdAbility2}}를 누르세요.",
+    "Every character has Sprint, but most of your abilities are determined by traits like your mutations. You have Freezing Ray, so you can shoot frost out of your hands. Select it.\n\nPress {{hotkey|~CmdAbility2}}.": "모든 캐릭터는 달리기를 가지고 있지만, 대부분의 능력은 변이 같은 특성에 의해 결정됩니다. 당신은 냉동 광선이 있어서 손에서 서리를 쏠 수 있습니다. 선택하세요.\n\n{{hotkey|~CmdAbility2}}를 누르세요.",
     
     "Make sure the bear is in the path of your freezing ray.": "곰이 냉동 광선 경로에 있는지 확인하세요.",
     
     "It's quite dangerous to fight this bear in melee combat! Try backing away and using Freezing Ray.": "이 곰과 근접 전투를 하는 것은 매우 위험합니다! 뒤로 물러나서 냉동 광선을 사용해 보세요.",
+    
+    "Looking at a creature shows its description and some other important details. Every object in the world can be looked at.": "생물을 살펴보면 설명과 기타 중요한 세부 정보를 볼 수 있습니다. 세상의 모든 물체를 살펴볼 수 있습니다.",
     
     "Whew! You killed the snapjaw and earned some experience. It looks like they dropped a piece of equipment, too.\n\nPress ~CmdGetFrom and then choose a direction or press ~AdventureMouseInteract.": "휴! 스냅조를 죽이고 경험치를 얻었습니다. 장비도 떨어뜨린 것 같습니다.\n\n~CmdGetFrom을 누른 다음 방향을 선택하거나 ~AdventureMouseInteract를 누르세요.",
     
