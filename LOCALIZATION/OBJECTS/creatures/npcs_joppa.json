@@ -1,0 +1,107 @@
+{
+  "_meta": {
+    "description": "Joppa Village NPCs",
+    "version": "1.0",
+    "created": "2026-01-22",
+    "phase": "3"
+  },
+
+  "ElderBob": {
+    "names": {
+      "Irudad": "이루다드"
+    },
+    "description": "A warm smile spreads over an old face freckled by time and a million crumbs of salt. =pronouns.Subjective= =verb:shrink:afterpronoun= under a hunched back and =verb:drum:afterpronoun= the ground beneath =pronouns.objective= with a short and barb-crowned tail. A second pair of arms rise over the slump of =pronouns.possessive= shoulders, where hands meet and fingers lace to form another face, this one vacant and prehistoric, no mouth and eyes desert-white.",
+    "description_ko": "따뜻한 미소가 세월과 무수한 소금 알갱이에 주근깨처럼 물든 늙은 얼굴 위로 퍼진다. 구부정한 등 아래로 움츠러들며, 짧고 가시 달린 꼬리로 발 아래 땅을 두드린다. 어깨 너머로 두 번째 팔이 솟아올라, 손이 만나고 손가락이 엮여 또 다른 얼굴을 형성한다. 이 얼굴은 공허하고 선사시대적이며, 입도 없고 눈은 사막처럼 하얗다."
+  },
+
+  "Nima Ruda": {
+    "names": {
+      "Nima Ruda": "니마 루다"
+    },
+    "description": "Sharp jade eyes are crow-worn to late middle age and her lips are scarred with gas burns. Climbing over her back and neck are the jeweled segments of a great spiral tail and stinger; a bead of smoking gut juice gleams on the tip.",
+    "description_ko": "날카로운 옥빛 눈은 까마귀발 주름으로 중년 후반임을 드러내며, 입술에는 가스 화상 흉터가 있다. 등과 목을 타고 올라가는 것은 보석처럼 빛나는 거대한 나선형 꼬리와 독침의 마디들이며, 끝에는 김이 나는 장액 한 방울이 빛난다."
+  },
+
+  "Argyve": {
+    "names": {
+      "Argyve": "아르기브"
+    },
+    "description": "=pronouns.Possessive= mushroom cloud of beard hair is powdered with all the abrasions of the trash sea: white lime, red iron, gold filament, opalescent shavings of the plastiglomerate. Chrome joints and pieces of scrap crystal are hooked to pockets lining =pronouns.possessive= torso, and one of =pronouns.possessive= bushy eyebrows is perpetually cocked, though whether that's a symptom of an insatiable curiosity or forehead mutation is unknown.",
+    "description_ko": "버섯구름처럼 뻗은 수염에는 쓰레기 바다의 온갖 마모물이 묻어 있다: 백회색 석회, 붉은 철, 금빛 필라멘트, 플라스틱글로머레이트의 유백색 부스러기. 크롬 관절과 폐수정 조각들이 몸통을 따라 늘어선 주머니에 걸려 있고, 텁수룩한 눈썹 하나는 언제나 치켜올려져 있는데, 그것이 끝없는 호기심의 증상인지 이마 돌연변이인지는 알 수 없다."
+  },
+
+  "Ctesiphus": {
+    "names": {
+      "Ctesiphus": "크테시푸스"
+    },
+    "description": "One star-ribboned night, a ray cat crossed the marshy loam and wandered into Joppa. The watervine farmers, wakened by the joyful cries of a small girl, gathered around to revel at the favorable omen and extol the generosity of the Beetle Moon. Since then, Ctesiphus =verb:have= spent =pronouns.possessive= days curled under the shade of brinestalk huts and sauntering over dirt paths. So long as =pronouns.subjective==verb:'re:afterpronoun= approached with care, =pronouns.subjective= =verb:welcome:afterpronoun= the hands of friends and strangers alike.\n\n&mphosphorescent&y",
+    "description_ko": "별띠가 빛나던 어느 밤, 레이 캣 한 마리가 습지의 양토를 건너 조파로 흘러들어왔다. 어린 소녀의 기쁨에 찬 외침에 잠에서 깬 수초 농부들은 모여들어 길조를 축하하고 딱정벌레 달의 관대함을 찬양했다. 그 이후로 크테시푸스는 소금줄기 오두막 그늘 아래에서 웅크리거나 흙길을 거닐며 나날을 보낸다. 조심스럽게 다가가기만 한다면, 친구든 낯선 이든 손길을 환영한다.\n\n{{m|인광}}{{y|}}"
+  },
+
+  "Tam": {
+    "names": {
+      "Tam": "탐"
+    },
+    "description_ko": "드로마드 상인으로, 조파에서 물건을 사고판다."
+  },
+
+  "Mehmet": {
+    "names": {
+      "Mehmet": "메흐메트"
+    },
+    "description": "=pronouns.Subjective= =verb:are:afterpronoun= a wind-carved man with the posture of a vinereaper; =pronouns.possessive= spine is bent to point the bright turquoise of =pronouns.possessive= eyes at the tilling angle, =pronouns.possessive= hips are pushed odd-forward with the slumping ease of a stance much more relaxed than =pronouns.possessive=. If it weren't for the salt on =pronouns.possessive= brow and the scarred knuckles, =pronouns.subjective= would seem a marble Saad perched under a crumbling tomb.",
+    "description_ko": "바람에 깎인 듯한 남자로, 덩굴낫 휘두르는 이의 자세를 하고 있다. 등뼈는 밝은 청록색 눈이 경작 각도를 향하도록 구부러져 있고, 엉덩이는 그의 것보다 훨씬 더 편안한 자세의 느긋한 안락함으로 앞쪽으로 밀려나 있다. 이마의 소금기와 상처 입은 주먹 관절이 아니었다면, 무너져 가는 무덤 아래 자리한 대리석 사드처럼 보였을 것이다."
+  },
+
+  "Warden Yrame": {
+    "names": {
+      "Yrame": "이라메"
+    },
+    "description": "Big Yrame shifts =pronouns.possessive= weight between hind and forelegs. =pronouns.Subjective= =verb:shake:afterpronoun= a storm of rust dander from the tines of =pronouns.possessive= great horns, and =pronouns.subjective= =verb:blow:afterpronoun= a halo of freezing air from =pronouns.possessive= rime-veined hands.",
+    "description_ko": "거대한 이라메가 뒷다리와 앞다리 사이로 무게를 옮긴다. 거대한 뿔의 가지들에서 녹 비듬 폭풍을 털어내고, 서리 핏줄이 뻗은 손에서 얼어붙는 공기의 후광을 내뿜는다."
+  },
+
+  "WatervineFarmerJoppa": {
+    "names": {
+      "watervine farmer": "수초 농부"
+    },
+    "description_ko": "조파 마을의 수초 농부."
+  },
+
+  "VillageZeroConvert": {
+    "names": {
+      "watervine farmer and Mechanimist convert": "수초 농부 겸 메카님스트 개종자"
+    },
+    "description_ko": "메카님스트로 개종한 농부로, 전통적인 의복을 수도복처럼 재봉하여 입고 있다."
+  },
+
+  "WatervineFarmerConvert": {
+    "names": {
+      "watervine farmer and Mechanimist convert": "수초 농부 겸 메카님스트 개종자"
+    },
+    "description": "=pronouns.Possessive= kufiya has been cut and resewn to a cowl, and =pronouns.subjective= =verb:have:afterpronoun= tailored a vinewafer sack to approximate the slate habit of the chromaic people. A sheaf of watervine bundled in copper wire is slung on =pronouns.possessive= hip, and =pronouns.subjective= =verb:rub:afterpronoun= a salt-nailed thumb over a talisman of cracked circuitboard.",
+    "description_ko": "쿠피야는 잘라서 두건으로 다시 꿰맸고, 덩굴웨이퍼 자루를 색채의 사람들의 회색 수도복과 비슷하게 재단했다. 구리 철사로 묶은 수초 다발이 허리에 걸려 있고, 소금 때가 낀 엄지로 금 간 회로판 부적을 문지른다."
+  },
+
+  "JoppaFarmerConvert": {
+    "names": {
+      "watervine farmer and Mechanimist convert": "수초 농부 겸 메카님스트 개종자"
+    }
+  },
+
+  "AppleFarmer": {
+    "names": {
+      "apple farmer": "사과 농부"
+    },
+    "description": "=pronouns.IndicativeProximal= brawny, mustachioed =pronouns.personTerm= =verb:wear:afterpronoun= a white apron stained with the juice of starapples. =pronouns.Possessive= sable hair mats against the browned skin of =pronouns.possessive= forehead. From =pronouns.possessive= left forearm hangs a wet rag, with which =pronouns.subjective= =verb:scrub:afterpronoun= the dirt from =pronouns.possessive= hands every few moments.",
+    "description_ko": "건장하고 콧수염이 난 이 농부는 별사과 즙에 물든 흰 앞치마를 두르고 있다. 검은 머리카락이 햇볕에 그을린 이마에 달라붙어 있다. 왼쪽 팔뚝에는 젖은 걸레가 걸려 있어, 몇 분마다 손의 흙을 닦아낸다."
+  },
+
+  "AppleFarmerDaughter": {
+    "names": {
+      "apple farmer's daughter": "사과 농부의 딸"
+    },
+    "description": "O, she doth pale red apples by her cheek!\nThat cheek which doth proclaim the rite of spring,\nAnd heretofore hath nature's grand technique,\nNe'er ripened lips so red from which to sing.\nBegone, false sun! I know thee for a fraud.\nHer fairest skin illuminates the day.\nAll gold is brass and e'ery jewel is flawed,\nWhen set beside the sums her eyes might pay.\nThe Spindle, which from Omonporch ascends,\nMust surely be her likeness brightly wrought,\nAnd as a likeness, fails to apprehend,\nThe artless beauty that its makers sought.\nDid I know love or beauty? No, for shame!\nFor I knew neither 'til they spoke her name.",
+    "description_ko": "오, 그녀의 볼은 붉은 사과를 창백하게 하네!\n봄의 의례를 선포하는 그 볼,\n지금껏 자연의 위대한 기술도,\n노래하기 위해 그토록 붉게 익은 입술은 만들지 못했네.\n거짓 태양이여 물러가라! 나는 네가 사기꾼임을 안다.\n그녀의 고운 피부가 낮을 밝히노라.\n모든 금은 황동이요 모든 보석은 흠집이라,\n그녀의 눈이 갚을 수 있는 값에 놓이면.\n오몬포치에서 솟아오르는 방추는,\n분명 그녀의 모습을 밝게 빚은 것이리라,\n그리고 그 닮음은 그 만든 이들이 찾던\n꾸밈없는 아름다움을 담아내지 못하네.\n나는 사랑이나 아름다움을 알았던가? 아니, 부끄럽게도!\n그녀의 이름을 들을 때까지 나는 둘 다 몰랐노라."
+  }
+}

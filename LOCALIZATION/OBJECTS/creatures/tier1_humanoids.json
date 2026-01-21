@@ -1,0 +1,167 @@
+{
+  "_meta": {
+    "description": "Tier 1 Humanoid creatures - Snapjaws, Cannibals, etc.",
+    "version": "1.0",
+    "created": "2026-01-22",
+    "phase": "3"
+  },
+
+  "Snapjaw": {
+    "names": {
+      "snapjaw": "스냅조"
+    },
+    "description": "Tussocks of fur dress skin stretched over taut muscle. Upright =pronouns.subjective= =verb:stand:afterpronoun=, but =pronouns.subjective= =verb:look:afterpronoun= ready to drop onto fours. =pronouns.Possessive= snout snarls and =pronouns.possessive= ears twitch. =pronouns.Subjective= =verb:bark:afterpronoun=, and =pronouns.possessive= hyena tribeskin answer.",
+    "description_ko": "촘촘한 털 다발이 팽팽한 근육 위에 펼쳐진 피부를 덮고 있다. 직립해 있지만, 언제든 네 발로 달릴 준비가 되어 있어 보인다. 주둥이가 으르렁거리고 귀가 실룩인다. 짖어대면, 하이에나 부족민들이 응답한다."
+  },
+
+  "Snapjaw Scavenger": {
+    "names": {
+      "snapjaw scavenger": "스냅조 청소부"
+    },
+    "description": "Tussocks of fur dress skin stretched over taut muscle. Upright =pronouns.subjective= =verb:stand:afterpronoun=, but =pronouns.subjective= =verb:look:afterpronoun= ready to drop onto fours. =pronouns.Possessive= snout snarls and =pronouns.possessive= ears twitch. =pronouns.Subjective= =verb:bark:afterpronoun=, and =pronouns.possessive= hyena tribeskin answer.",
+    "description_ko": "촘촘한 털 다발이 팽팽한 근육 위에 펼쳐진 피부를 덮고 있다. 직립해 있지만, 언제든 네 발로 달릴 준비가 되어 있어 보인다. 주둥이가 으르렁거리고 귀가 실룩인다. 짖어대면, 하이에나 부족민들이 응답한다."
+  },
+
+  "Snapjaw Scavenger 0": {
+    "names": {
+      "snapjaw scavenger": "스냅조 청소부"
+    }
+  },
+
+  "Snapjaw Scavenger 1": {
+    "names": {
+      "snapjaw scavenger": "스냅조 청소부"
+    }
+  },
+
+  "Snapjaw Scavenger 2": {
+    "names": {
+      "snapjaw scavenger": "스냅조 청소부"
+    }
+  },
+
+  "Snapjaw Hunter": {
+    "names": {
+      "snapjaw hunter": "스냅조 사냥꾼"
+    },
+    "description_ko": "촘촘한 털 다발이 팽팽한 근육 위에 펼쳐진 피부를 덮고 있다. 직립해 있지만, 언제든 네 발로 달릴 준비가 되어 있어 보인다. 주둥이가 으르렁거리고 귀가 실룩인다. 짖어대면, 하이에나 부족민들이 응답한다."
+  },
+
+  "Snapjaw Hunter 0": {
+    "names": {
+      "snapjaw hunter": "스냅조 사냥꾼"
+    }
+  },
+
+  "Snapjaw Hunter 1": {
+    "names": {
+      "snapjaw hunter": "스냅조 사냥꾼"
+    }
+  },
+
+  "Snapjaw Hunter 2": {
+    "names": {
+      "snapjaw hunter": "스냅조 사냥꾼"
+    }
+  },
+
+  "Snapjaw Shotgunner": {
+    "names": {
+      "snapjaw shotgunner": "스냅조 산탄총잡이"
+    },
+    "description_ko": "촘촘한 털 다발이 팽팽한 근육 위에 펼쳐진 피부를 덮고 있다. 직립해 있지만, 언제든 네 발로 달릴 준비가 되어 있어 보인다. 주둥이가 으르렁거리고 귀가 실룩인다. 짖어대면, 하이에나 부족민들이 응답한다."
+  },
+
+  "Snapjaw Shotgunner 0": {
+    "names": {
+      "snapjaw shotgunner": "스냅조 산탄총잡이"
+    }
+  },
+
+  "Snapjaw Shotgunner 1": {
+    "names": {
+      "snapjaw shotgunner": "스냅조 산탄총잡이"
+    }
+  },
+
+  "Snapjaw Shotgunner 2": {
+    "names": {
+      "snapjaw shotgunner": "스냅조 산탄총잡이"
+    }
+  },
+
+  "Snapjaw Brute": {
+    "names": {
+      "snapjaw brute": "스냅조 무법자"
+    },
+    "description_ko": "촘촘한 털 다발이 팽팽한 근육 위에 펼쳐진 피부를 덮고 있다. 직립해 있지만, 언제든 네 발로 달릴 준비가 되어 있어 보인다. 주둥이가 으르렁거리고 귀가 실룩인다. 짖어대면, 하이에나 부족민들이 응답한다."
+  },
+
+  "Snapjaw Warlord": {
+    "names": {
+      "snapjaw warlord": "스냅조 전쟁군주"
+    },
+    "description_ko": "촘촘한 털 다발이 팽팽한 근육 위에 펼쳐진 피부를 덮고 있다. 직립해 있지만, 언제든 네 발로 달릴 준비가 되어 있어 보인다. 주둥이가 으르렁거리고 귀가 실룩인다. 짖어대면, 하이에나 부족민들이 응답한다."
+  },
+
+  "Snapjaw Hero 0": {
+    "names": {
+      "snapjaw warlord": "스냅조 전쟁군주"
+    }
+  },
+
+  "Snapjaw Hero 1": {
+    "names": {
+      "snapjaw warlord": "스냅조 전쟁군주"
+    }
+  },
+
+  "Snapjaw Feeder": {
+    "names": {
+      "snapjaw feeder": "스냅조 피더"
+    },
+    "description_ko": "스냅조 부족의 가장 낮은 계층으로, 더 강한 동족들에게 먹이를 가져다주는 역할을 한다."
+  },
+
+  "Snapjaw Spearfiend": {
+    "names": {
+      "snapjaw spearfiend": "스냅조 창마"
+    },
+    "description_ko": "스냅조 부족의 창술사로, 원거리에서 창을 던져 사냥감을 쓰러뜨린다."
+  },
+
+  "Snapjaw Trapper": {
+    "names": {
+      "snapjaw trapper": "스냅조 덫사냥꾼"
+    },
+    "description_ko": "스냅조 부족의 덫 전문가로, 그물과 함정을 사용해 먹잇감을 포획한다."
+  },
+
+  "Snapjaw Howler": {
+    "names": {
+      "snapjaw howler": "스냅조 하울러"
+    },
+    "description_ko": "스냅조 부족의 울부짖는 자로, 그 포효는 동족을 전투로 불러모은다."
+  },
+
+  "Snapjaw Golem": {
+    "names": {
+      "snapjaw golem": "스냅조 골렘"
+    },
+    "description_ko": "스냅조의 형상을 본떠 만든 골렘."
+  },
+
+  "Snapjaw Corpse": {
+    "names": {
+      "snapjaw corpse": "스냅조 시체"
+    }
+  },
+
+  "Cannibal": {
+    "names": {
+      "cannibal": "식인종"
+    },
+    "description": "Sunshame has left =pronouns.possessive= skin pulpy and spider-white, and =pronouns.possessive= capillaries are shot with blood two shades too dark.",
+    "description_ko": "햇빛을 피해 살아온 탓에 피부는 희고 물컹하며, 모세혈관에는 두 톤 더 어두운 피가 흐른다."
+  }
+}

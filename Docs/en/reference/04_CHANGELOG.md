@@ -1,12 +1,58 @@
 # Caves of Qud Korean Localization - Changelog
 
-> **Version**: 3.8 | **Last Updated**: 2026-01-22 08:08:46
+> **Version**: 3.9 | **Last Updated**: 2026-01-22 09:30:00
 
 > [!NOTE]
 > **AI Agent**: This document is for completion records. Read `00_PRINCIPLES.md` first!
 
 Official changelog for all completed work.
 Completed items from `03_TODO.md` are moved here.
+
+---
+
+## [2026-01-22 09:30] - Object Localization System Phase 2 Implementation
+
+### Summary
+Implemented Phase 2 of Object Localization System: Basic Equipment.
+Added comprehensive translations for melee weapons, armor, and tools.
+
+### ✅ JSON Data Created
+
+**Melee Weapons** (`LOCALIZATION/OBJECTS/items/melee_weapons.json`):
+- 37 melee weapons covering all material tiers
+- Cudgels: club, wrench, pestle, staff, walking stick, maces, war hammers
+- Short Blades: daggers (bronze/iron/steel/carbide), kukri, kris, utility knives
+- Axes: battle axes (all tiers), hand axes, vinereaper, halberds
+- Full descriptions translated for all items
+
+**Armor** (`LOCALIZATION/OBJECTS/items/armor.json`):
+- 26 armor pieces covering Tiers 1-6
+- Body armor: leather, bark, studded, chain, plate, crysteel, fullerite
+- Helmets: steel, chain coif, armet, skull caps
+- Boots: leather, chain, steel, carbide, magnetized, bounding
+- Specialty: flexivest, recycling suit, rubber suit, nanoweave
+
+**Tools** (`LOCALIZATION/OBJECTS/items/tools.json`):
+- 15 utility items
+- Light sources: torch, glowsphere, headlamp
+- Energy cells: chem, fidget, solar, nuclear, antimatter
+- Tools: bandage, toolkit, advanced toolkit, pickaxe, jackhammer
+- Containers: waterskin, canteen, hoversled
+
+**Common Terms Update** (`LOCALIZATION/OBJECTS/items/_common.json`):
+- Version 2.0 with expanded materials (chain, bark, chitin, folded carbide)
+- New prefixes: two-handed, opal-pommeled, magnetized, greased, bounding
+- Expanded item types: 30+ new entries
+
+### Statistics
+- Total new JSON entries: ~78 items
+- Melee weapons: 37 entries
+- Armor: 26 entries  
+- Tools: 15 entries
+
+### Deploy Status
+- Build: ✅ Success
+- Deploy: ✅ Success
 
 ---
 

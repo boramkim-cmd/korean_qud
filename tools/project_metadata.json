@@ -1,5 +1,5 @@
 {
-  "generated": "2026-01-22 08:05:08",
+  "generated": "2026-01-22 08:31:50",
   "scripts": {
     "Scripts/99_Utils/99_00_03_StructureTranslator.cs": {
       "classification": "Util",
@@ -668,10 +668,10 @@
       "modified": "2026-01-19"
     },
     "01_CORE_PROJECT_INDEX.md": {
-      "modified": "2026-01-21"
+      "modified": "2026-01-22"
     },
     "02_CORE_QUICK_REFERENCE.md": {
-      "modified": "2026-01-21"
+      "modified": "2026-01-22"
     }
   },
   "localization": {
@@ -798,9 +798,11 @@
         "_meta",
         "common_terms",
         "species",
-        "creature_classes"
+        "creature_classes",
+        "roles",
+        "honorifics"
       ],
-      "entries": 23
+      "entries": 62
     },
     "01_chest.json": {
       "categories": [
@@ -2500,6 +2502,63 @@
       ],
       "entries": 1
     },
+    "armor.json": {
+      "categories": [
+        "_meta",
+        "Bark Armor",
+        "Leather Armor",
+        "Vine-Weave Tunic",
+        "Studded Leather Armor",
+        "Pocketed Vest",
+        "Ring Mail",
+        "Chain Mail",
+        "Steel Plate Mail",
+        "Puma Chitin Vest",
+        "Elastyne Skin Suit",
+        "Carbide Plate Armor",
+        "Flexivest",
+        "Rubber Suit",
+        "Fullerite Plate Mail",
+        "Fullerite Flake Armor",
+        "Crysteel Shardmail",
+        "Nanoweave Vest",
+        "Steel Helmet",
+        "Elastyne Skull Cap",
+        "Chain Coif",
+        "Leather Boots",
+        "Chain Boots",
+        "Steel Boots",
+        "Carbide Boots",
+        "Magnetized Boots",
+        "Bounding Boots",
+        "Miner's Helmet",
+        "Fullerite Armet",
+        "Recycling Suit"
+      ],
+      "entries": 90
+    },
+    "tools.json": {
+      "categories": [
+        "_meta",
+        "Torch",
+        "Glowsphere",
+        "Bandage",
+        "Toolkit",
+        "Advanced Toolkit",
+        "Pickaxe",
+        "Nanopneumatic Jackhammer",
+        "Chem Cell",
+        "Fidget Cell",
+        "Solar Cell",
+        "Nuclear Cell",
+        "Antimatter Cell",
+        "Waterskin",
+        "Canteen",
+        "Hoversled",
+        "Headlamp"
+      ],
+      "entries": 51
+    },
     "tutorial.json": {
       "categories": [
         "_meta",
@@ -2511,6 +2570,132 @@
         "ClockworkBeetle"
       ],
       "entries": 21
+    },
+    "melee_weapons.json": {
+      "categories": [
+        "_meta",
+        "Club",
+        "Wrench",
+        "Pestle",
+        "Staff",
+        "Walking Stick",
+        "Mace2",
+        "Warhammer2",
+        "Steel War Hammer",
+        "Dagger",
+        "Desert Kris",
+        "Dagger2",
+        "Steel Kukri",
+        "Steel Dagger",
+        "Steel Utility Knife",
+        "Steel Potter's Knife",
+        "Steel Butcher Knife",
+        "Dagger3",
+        "BattleAxe2",
+        "Hand Axe",
+        "Iron Vinereaper",
+        "BattleAxe3",
+        "Steel Battle Axe",
+        "Two-handed Steel Battle Axe",
+        "Steel Hand Axe",
+        "Opal-pommeled Steel Battle Axe",
+        "Steel Vinereaper",
+        "Carbide Battle Axe",
+        "Two-handed Carbide Battle Axe",
+        "Folded Carbide Battle Axe",
+        "Two-handed Folded Carbide Battle Axe",
+        "Fullerite Battle Axe",
+        "Fullerite Two-handed Axe",
+        "Crysteel Battle Axe",
+        "Crysteel Halberd",
+        "Flawless Crysteel Battle Axe",
+        "Flawless Crysteel Halberd",
+        "Zetachrome Battle Axe",
+        "Zetachrome Halberd"
+      ],
+      "entries": 117
+    },
+    "tier1_animals.json": {
+      "categories": [
+        "_meta",
+        "Bear",
+        "Bear Corpse",
+        "Bat",
+        "Bat Corpse",
+        "Pig",
+        "Pig Corpse",
+        "Farm Pig",
+        "Boar",
+        "Boar Corpse",
+        "Ray Cat",
+        "Ray Cat Corpse",
+        "Joppa Ray Cat",
+        "Cave Spider",
+        "Cave Spider Corpse",
+        "Baboon",
+        "Baboon Corpse",
+        "Hulking Baboon",
+        "Shrewd Baboon",
+        "Baboon Hero 1",
+        "ClockworkBeetle",
+        "Salthopper",
+        "Glowfish",
+        "Dawnglider",
+        "Girshling",
+        "Seedsprout Worm",
+        "Fire Ant",
+        "Knollworm"
+      ],
+      "entries": 55
+    },
+    "npcs_joppa.json": {
+      "categories": [
+        "_meta",
+        "ElderBob",
+        "Nima Ruda",
+        "Argyve",
+        "Ctesiphus",
+        "Tam",
+        "Mehmet",
+        "Warden Yrame",
+        "WatervineFarmerJoppa",
+        "VillageZeroConvert",
+        "WatervineFarmerConvert",
+        "JoppaFarmerConvert",
+        "AppleFarmer",
+        "AppleFarmerDaughter"
+      ],
+      "entries": 38
+    },
+    "tier1_humanoids.json": {
+      "categories": [
+        "_meta",
+        "Snapjaw",
+        "Snapjaw Scavenger",
+        "Snapjaw Scavenger 0",
+        "Snapjaw Scavenger 1",
+        "Snapjaw Scavenger 2",
+        "Snapjaw Hunter",
+        "Snapjaw Hunter 0",
+        "Snapjaw Hunter 1",
+        "Snapjaw Hunter 2",
+        "Snapjaw Shotgunner",
+        "Snapjaw Shotgunner 0",
+        "Snapjaw Shotgunner 1",
+        "Snapjaw Shotgunner 2",
+        "Snapjaw Brute",
+        "Snapjaw Warlord",
+        "Snapjaw Hero 0",
+        "Snapjaw Hero 1",
+        "Snapjaw Feeder",
+        "Snapjaw Spearfiend",
+        "Snapjaw Trapper",
+        "Snapjaw Howler",
+        "Snapjaw Golem",
+        "Snapjaw Corpse",
+        "Cannibal"
+      ],
+      "entries": 43
     },
     "descriptions.json": {
       "categories": [

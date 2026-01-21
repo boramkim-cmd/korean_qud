@@ -1,8 +1,10 @@
 {
   "_meta": {
     "description": "Common creature terms - species names, corpse terms, etc.",
-    "version": "1.0",
-    "created": "2026-01-22"
+    "version": "2.0",
+    "created": "2026-01-22",
+    "updated": "2026-01-22",
+    "phase": "3"
   },
 
   "common_terms": {
@@ -11,7 +13,11 @@
     "husk": "껍데기",
     "hostile": "적대적",
     "friendly": "우호적",
-    "neutral": "중립"
+    "neutral": "중립",
+    "wild": "야생",
+    "tame": "길들여진",
+    "legendary": "전설적인",
+    "hero": "영웅"
   },
 
   "species": {
@@ -22,7 +28,21 @@
     "bat": "박쥐",
     "boar": "멧돼지",
     "pig": "돼지",
-    "antelope": "영양"
+    "antelope": "영양",
+    "cat": "고양이",
+    "dog": "개",
+    "spider": "거미",
+    "baboon": "비비",
+    "bird": "새",
+    "crab": "게",
+    "clam": "조개",
+    "worm": "벌레",
+    "ant": "개미",
+    "fish": "물고기",
+    "glowfish": "발광어",
+    "dromad": "드로마드",
+    "human": "인간",
+    "mutant": "돌연변이"
   },
 
   "creature_classes": {
@@ -31,6 +51,31 @@
     "insect": "곤충",
     "robot": "로봇",
     "plant": "식물",
-    "fungus": "균류"
+    "fungus": "균류",
+    "arachnid": "거미류",
+    "mollusk": "연체동물",
+    "crustacean": "갑각류",
+    "bird": "조류",
+    "mammal": "포유류",
+    "reptile": "파충류"
+  },
+
+  "roles": {
+    "scavenger": "청소부",
+    "hunter": "사냥꾼",
+    "brute": "무법자",
+    "warlord": "전쟁군주",
+    "minion": "졸개",
+    "leader": "지도자",
+    "skirmisher": "척후병",
+    "merchant": "상인",
+    "farmer": "농부",
+    "elder": "장로",
+    "warden": "경비병"
+  },
+
+  "honorifics": {
+    "Elder": "장로",
+    "Warden": "경비관"
   }
 }
