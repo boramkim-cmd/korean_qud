@@ -330,6 +330,31 @@ Scripts/
 
 **Target**: `XRL.World.GetDisplayNameEvent.GetFor()`
 
+> ⚠️ **CRITICAL**: This method has **16 parameters**, not 2. Must guard special modes!
+
+**Full Method Signature** (from game source):
+```csharp
+public static string GetFor(
+    GameObject Object,
+    string Base,
+    int Cutoff = int.MaxValue,
+    string Context = null,
+    bool AsIfKnown = false,
+    bool Single = false,
+    bool NoConfusion = false,
+    bool NoColor = false,
+    bool ColorOnly = false,      // ⚠️ Returns ONLY color code - SKIP translation
+    bool Visible = true,
+    bool BaseOnly = false,
+    bool UsingAdjunctNoun = false,
+    bool WithoutTitles = false,
+    bool ForSort = false,        // ⚠️ For sorting - SKIP translation
+    bool Reference = false,
+    bool IncludeImplantPrefix = true
+)
+```
+
+**Correct Implementation**:
 ```csharp
 [HarmonyPatch(typeof(GetDisplayNameEvent))]
 public static class Patch_ObjectDisplayName
@@ -338,11 +363,21 @@ public static class Patch_ObjectDisplayName
     
     [HarmonyPatch(nameof(GetDisplayNameEvent.GetFor))]
     [HarmonyPostfix]
-    static void GetFor_Postfix(ref string __result, GameObject Object, string Base)
+    static void GetFor_Postfix(
+        ref string __result, 
+        GameObject Object, 
+        string Base,
+        bool ColorOnly,    // ⚠️ Must check
+        bool ForSort)      // ⚠️ Must check
     {
+        // CRITICAL: Skip translation for special modes
+        if (ForSort || ColorOnly) return;
+        
         if (Object == null || string.IsNullOrEmpty(__result)) return;
         
         string blueprint = Object.Blueprint;
+        if (string.IsNullOrEmpty(blueprint)) return;
+        
         string cacheKey = $"{blueprint}:{Base}";
         
         // Fast path: cache hit
@@ -353,15 +388,19 @@ public static class Patch_ObjectDisplayName
         }
         
         // Slow path: lookup and cache
-        if (ObjectTranslator.TryGetDisplayName(blueprint, Base, out string translated))
+        if (ObjectTranslator.TryGetDisplayName(blueprint, __result, out string translated))
         {
-            // Preserve color tag structure, replace inner text only
-            __result = ReplacePreservingTags(__result, Base, translated);
-            _cache[cacheKey] = __result;
+            _cache[cacheKey] = translated;
+            __result = translated;
         }
     }
     
     public static void ClearCache() => _cache.Clear();
+    public static void ReloadAndClear() 
+    {
+        ObjectTranslator.ReloadJson();
+        _cache.Clear();
+    }
 }
 ```
 
@@ -380,6 +419,7 @@ public static class Patch_ObjectDescription
         if (__instance?.ParentObject == null) return;
         
         string blueprint = __instance.ParentObject.Blueprint;
+        if (string.IsNullOrEmpty(blueprint)) return;
         
         if (ObjectTranslator.TryGetDescription(blueprint, out string translated))
         {
@@ -389,9 +429,55 @@ public static class Patch_ObjectDescription
 }
 ```
 
-### 5.3 Cache Invalidation
+### 5.3 Description.GetLongDescription() Patch (for hardcoded strings)
 
-**Event Hook**: Scene transition or game load
+**Target**: Hardcoded UI strings in `Description.GetLongDescription()`
+
+Strings to translate:
+- `"Physical features: "` → `"신체적 특징: "`
+- `"Equipped: "` → `"장착: "`
+- `"Gender: "` → `"성별: "`
+
+```csharp
+[HarmonyPatch(typeof(Description))]
+public static class Patch_ObjectLongDescription
+{
+    [HarmonyPatch("GetLongDescription", typeof(StringBuilder))]
+    [HarmonyPostfix]
+    static void GetLongDescription_Postfix(StringBuilder SB)
+    {
+        // Replace hardcoded English strings
+        SB.Replace("Physical features: ", "신체적 특징: ");
+        SB.Replace("Equipped: ", "장착: ");
+        SB.Replace("Gender: ", "성별: ");
+    }
+}
+```
+
+### 5.4 Description.GetFeelingDescription() Patch
+
+**Target**: Hardcoded "Friendly"/"Hostile"/"Neutral" strings
+
+```csharp
+[HarmonyPatch(typeof(Description))]
+public static class Patch_FeelingDescription
+{
+    [HarmonyPatch(nameof(Description.GetFeelingDescription))]
+    [HarmonyPostfix]
+    static void Postfix(ref string __result)
+    {
+        __result = __result switch
+        {
+            "{{G|Friendly}}" => "{{G|우호적}}",
+            "{{R|Hostile}}" => "{{R|적대적}}",
+            "Neutral" => "중립",
+            _ => __result
+        };
+    }
+}
+```
+
+### 5.5 Cache Invalidation
 
 ```csharp
 // In ModEntry.cs or dedicated event handler
@@ -580,69 +666,168 @@ public static class ObjectTranslator
 
 ## 8. Implementation Phases
 
-### Phase 0: Foundation (Estimated: 1.5 hours)
+> ⏱️ **Time estimates are REALISTIC** (3x original optimistic estimates)
+
+### Phase 0: Foundation (Estimated: 4-6 hours) 🔴 FIRST
 
 | ID | Task | File | Time |
 |----|------|------|------|
-| OBJ-001 | Create folder structure | `LOCALIZATION/GAMEPLAY/CREATURES/`, `ITEMS/` | 5 min |
-| OBJ-002 | Create ObjectTranslator.cs | `Scripts/99_Utils/99_00_04_ObjectTranslator.cs` | 30 min |
-| OBJ-003 | Create DisplayNamePatch.cs | `Scripts/02_Patches/20_Objects/02_20_01_ObjectDisplayNamePatch.cs` | 30 min |
-| OBJ-004 | Create DescriptionPatch.cs | `Scripts/02_Patches/20_Objects/02_20_02_ObjectDescriptionPatch.cs` | 15 min |
-| OBJ-005 | Update ModEntry registration | `Scripts/00_Core/00_00_00_ModEntry.cs` | 10 min |
+| OBJ-001 | Create folder structure | `LOCALIZATION/OBJECTS/creatures/`, `items/` | 10 min |
+| OBJ-002 | Create ObjectTranslator.cs | `Scripts/02_Patches/20_Objects/02_20_00_ObjectTranslator.cs` | 2 hours |
+| OBJ-003 | Create DisplayNamePatch.cs | `Scripts/02_Patches/20_Objects/02_20_01_DisplayNamePatch.cs` | 1.5 hours |
+| OBJ-004 | Create DescriptionPatch.cs | `Scripts/02_Patches/20_Objects/02_20_02_DescriptionPatch.cs` | 30 min |
+| OBJ-005 | Create DebugWishes.cs | `Scripts/02_Patches/20_Objects/02_20_99_DebugWishes.cs` | 1 hour |
+| OBJ-006 | Create test JSON (1 creature) | `LOCALIZATION/OBJECTS/creatures/test.json` | 10 min |
+| OBJ-007 | Verify patch works | In-game test with Wish | 30 min |
 
-### Phase 1: Tutorial (Estimated: 1 hour) 🔴 PRIORITY
+**Phase 0 Deliverables**:
+- ✅ Isolated ObjectTranslator with own cache
+- ✅ Working DisplayName patch (with ForSort/ColorOnly guards)
+- ✅ `kr:reload` command for hot-reloading JSON
+- ✅ One test creature translating correctly
+
+### Phase 1: Tutorial (Estimated: 2-3 hours) 🟠 PRIORITY
 
 | ID | Task | Items | Time |
 |----|------|-------|------|
-| OBJ-006 | Create CREATURES/tutorial.json | 3 creatures | 20 min |
-| OBJ-007 | Create ITEMS/tutorial.json | 9 items | 20 min |
-| OBJ-008 | Test tutorial flow | - | 20 min |
+| OBJ-008 | Create creatures/tutorial.json | 3 creatures | 30 min |
+| OBJ-009 | Create items/tutorial.json | 9 items | 45 min |
+| OBJ-010 | Add Description patch for tooltips | - | 30 min |
+| OBJ-011 | Test full tutorial flow | - | 45 min |
 
 **Tutorial Creatures**:
-- TutorialSnapjaw (→ Snapjaw Scavenger)
-- TutorialBear (→ Bear)
-- TutorialClockworkBeetlePariah
+- TutorialSnapjaw (→ Snapjaw Scavenger) → "스냅조 청소부"
+- TutorialBear (→ Bear) → "곰"
+- TutorialClockworkBeetlePariah → "클락워크 비틀 패리아"
 
 **Tutorial Items**:
-- TutorialDagger, TutorialTorch, TutorialLeatherArmor
-- TutorialChemCell, TutorialBattleAxe, TutorialAphorisms
-- TutorialMarkovBook, TutorialHalfFullWaterskin, TutorialChest1
+- TutorialDagger → "단검", TutorialTorch → "횃불"
+- TutorialLeatherArmor → "가죽 갑옷"
+- TutorialChemCell → "화학 전지", TutorialBattleAxe → "전투 도끼"
 
-### Phase 2: Basic Equipment (Estimated: 1.5 hours) 🟠
-
-| ID | Task | Items | Time |
-|----|------|-------|------|
-| OBJ-009 | Create ITEMS/_common.json | Materials, prefixes | 15 min |
-| OBJ-010 | Create ITEMS/melee_weapons.json | ~15 items | 30 min |
-| OBJ-011 | Create ITEMS/armor_body.json | ~10 items | 20 min |
-| OBJ-012 | Create ITEMS/tools.json | ~5 items | 10 min |
-| OBJ-013 | Test inventory/equipment | - | 15 min |
-
-### Phase 3: Joppa Area (Estimated: 2 hours) 🟡
+### Phase 2: Basic Equipment (Estimated: 3-4 hours) 🟡
 
 | ID | Task | Items | Time |
 |----|------|-------|------|
-| OBJ-014 | Create CREATURES/_common.json | Common terms | 10 min |
-| OBJ-015 | Create CREATURES/tier1_humanoids.json | Snapjaws (4) | 30 min |
-| OBJ-016 | Create CREATURES/tier1_animals.json | ~15 animals | 40 min |
-| OBJ-017 | Create CREATURES/npcs_joppa.json | ~10 NPCs | 30 min |
-| OBJ-018 | Test Joppa exploration | - | 20 min |
+| OBJ-012 | Create items/_common.json | Materials, prefixes, modifiers | 1 hour |
+| OBJ-013 | Create items/melee_weapons.json | ~15 items | 1 hour |
+| OBJ-014 | Create items/armor.json | ~10 items | 45 min |
+| OBJ-015 | Create items/tools.json | ~5 items | 30 min |
+| OBJ-016 | Test inventory/equipment | - | 45 min |
 
-### Phase 4: Extended Content (Future)
+### Phase 3: Joppa Area (Estimated: 4-5 hours) 🔵
+
+| ID | Task | Items | Time |
+|----|------|-------|------|
+| OBJ-017 | Create creatures/_common.json | Common terms, species | 30 min |
+| OBJ-018 | Create creatures/tier1_humanoids.json | Snapjaws (4) | 1 hour |
+| OBJ-019 | Create creatures/tier1_animals.json | ~15 animals | 1.5 hours |
+| OBJ-020 | Create creatures/npcs_joppa.json | ~10 NPCs | 1 hour |
+| OBJ-021 | Test Joppa exploration | - | 1 hour |
+
+### Phase 4: Extended Content (Future - After Phase 3 Stable)
 
 | ID | Task | Scope |
 |----|------|-------|
-| OBJ-019 | Unknown items | `ITEMS/unknown_items.json` |
-| OBJ-020 | Tier 2+ creatures | All remaining tiers |
-| OBJ-021 | Missile weapons | Bows, guns, etc. |
-| OBJ-022 | Books & artifacts | Special items |
-| OBJ-023 | Merchants | Trading NPCs |
+| OBJ-022 | Unknown items | `items/unknown.json` |
+| OBJ-023 | Tier 2+ creatures | All remaining tiers |
+| OBJ-024 | Missile weapons | Bows, guns, etc. |
+| OBJ-025 | Corpse handling | `{creature} 시체` pattern |
 
 ---
 
-## 9. Testing Checklist
+## 9. Debugging Tools ⭐ NEW
 
-### 9.1 Display Name Tests
+### 9.1 Built-in Wish System (Ctrl+W)
+
+| Command | Description | Usage |
+|---------|-------------|-------|
+| `<name>` | Spawn creature/item by name | `snapjaw`, `dagger` |
+| `item:<name>` | Spawn item specifically | `item:Dagger` |
+| `creature:<name>` | Spawn creature specifically | `creature:Bear` |
+| `object:*<pattern>*` | Search blueprints | `object:*snap*` |
+| `testpets` | Spawn all creatures (DisplayName test) | - |
+| `testobjects` | Spawn all objects (DisplayName test) | - |
+
+### 9.2 Debug Options (Options → Debug)
+
+| Option | Description |
+|--------|-------------|
+| `Show internal ID on look` | Press N in Look mode to see Blueprint name |
+| `Show conversation node IDs` | Debug dialogue |
+
+### 9.3 Custom Wish Commands (kr:*)
+
+**Implementation in `02_20_99_DebugWishes.cs`**:
+
+```csharp
+[HasWishCommand]
+public static class ObjectDebugWishes
+{
+    [WishCommand(Command = "kr:reload")]
+    public static void ReloadTranslations()
+    {
+        ObjectTranslator.ReloadJson();
+        Patch_ObjectDisplayName.ClearCache();
+        Popup.Show("Object translations reloaded!");
+    }
+    
+    [WishCommand(Command = "kr:check")]
+    public static void CheckTranslation(string blueprint)
+    {
+        if (ObjectTranslator.TryGetDisplayName(blueprint, "", out string result))
+            Popup.Show($"{blueprint} → {result}");
+        else
+            Popup.Show($"{blueprint}: No translation found");
+    }
+    
+    [WishCommand(Command = "kr:untranslated")]
+    public static void ListUntranslated()
+    {
+        // List objects in current zone without translations
+        var zone = The.Game?.Player?.Body?.CurrentZone;
+        if (zone == null) return;
+        
+        var untranslated = new List<string>();
+        foreach (var obj in zone.GetObjects())
+        {
+            if (!ObjectTranslator.HasTranslation(obj.Blueprint))
+                untranslated.Add(obj.Blueprint);
+        }
+        Popup.Show($"Untranslated: {string.Join(", ", untranslated.Distinct())}");
+    }
+}
+```
+
+### 9.4 Log Monitoring
+
+```bash
+# macOS - Real-time log
+tail -f ~/Library/Logs/Freehold\ Games/CavesOfQud/Player.log
+
+# Filter mod logs only
+tail -f ~/Library/Logs/Freehold\ Games/CavesOfQud/Player.log | grep "\[QudKR"
+
+# Windows
+Get-Content "$env:APPDATA\..\LocalLow\Freehold Games\CavesOfQud\Player.log" -Wait
+```
+
+### 9.5 Debugging Workflow
+
+```
+1. Start game
+2. Ctrl+W → "kr:reload" → Enter (load translations)
+3. Ctrl+W → "snapjaw" → Enter (spawn test creature)
+4. Press L → Look at creature → Verify Korean name
+5. Press N → See Blueprint ID → Verify JSON key matches
+6. If wrong: Edit JSON → "kr:reload" → Re-test (no restart needed!)
+```
+
+---
+
+## 10. Testing Checklist
+
+### 10.1 Display Name Tests
 
 - [ ] Inventory screen shows Korean names
 - [ ] Look popup shows Korean names
@@ -650,13 +835,13 @@ public static class ObjectTranslator
 - [ ] Equipment screen shows Korean names
 - [ ] Trade screen shows Korean names
 
-### 9.2 Description Tests
+### 10.2 Description Tests
 
 - [ ] Tooltip shows Korean description
 - [ ] Examine (look) shows Korean description
 - [ ] Journal entries show Korean names
 
-### 9.3 Edge Case Tests
+### 10.3 Edge Case Tests
 
 - [ ] Color-tagged items display correctly
 - [ ] Rusty/masterwork prefixes translate
@@ -664,43 +849,53 @@ public static class ObjectTranslator
 - [ ] Unknown items show alternate translation
 - [ ] Stacked items display correctly
 
-### 9.4 Performance Tests
+### 10.4 Performance Tests
 
 - [ ] No noticeable lag in inventory
 - [ ] Combat log updates smoothly
 - [ ] Scene transitions don't cause issues
 
+### 10.5 Isolation Tests (CRITICAL)
+
+- [ ] CharacterCreation still works (Mutation selection)
+- [ ] Existing UI translations still work (Options, Inventory labels)
+- [ ] StructureTranslator not affected (Mutation descriptions)
+
 ---
 
-## 10. Risk Assessment
+## 11. Risk Assessment
 
 | Risk | Impact | Mitigation |
 |------|--------|------------|
+| **Breaking existing translations** | 🔴 Critical | Complete isolation strategy |
 | Performance degradation | High | Aggressive caching, lazy loading |
-| Color tag corruption | Medium | Preserve tag structure, unit tests |
+| Color tag corruption | Medium | Preserve tag structure |
 | Missing translations | Low | Fallback to original English |
 | Cache memory bloat | Low | Clear on scene transition |
 | Mod conflicts | Medium | Use unique namespace, late patching |
+| GetFor() special modes | High | Guard ForSort/ColorOnly parameters |
 
 ---
 
-## 11. Dependencies
+## 12. Dependencies
 
-### Required Files (Read)
+### Required Files (Read Only)
 - `Assets/core_source/XRL.World/GetDisplayNameEvent.cs`
-- `Assets/core_source/XRL.World.Parts/Render.cs`
 - `Assets/core_source/XRL.World.Parts/Description.cs`
 - `Assets/StreamingAssets/Base/ObjectBlueprints/Creatures.xml`
 - `Assets/StreamingAssets/Base/ObjectBlueprints/Items.xml`
 
-### Existing Code (Reuse)
-- `Scripts/00_Core/00_00_01_TranslationEngine.cs` - Tag preservation
-- `Scripts/00_Core/00_00_03_LocalizationManager.cs` - JSON loading
-- `Scripts/99_Utils/99_00_03_StructureTranslator.cs` - Pattern reference
+### Safe to Reuse (Read-Only)
+- `LocalizationManager.GetModDirectory()` - Path lookup only
+
+### DO NOT MODIFY
+- `Scripts/00_Core/00_00_01_TranslationEngine.cs`
+- `Scripts/00_Core/00_00_03_LocalizationManager.cs`
+- `Scripts/99_Utils/99_00_03_StructureTranslator.cs`
 
 ---
 
-## 12. Appendix
+## Appendix
 
 ### A. Joppa Tier 1 Creature List
 
@@ -741,7 +936,23 @@ public static class ObjectTranslator
 
 ---
 
-## 13. Status Effects System
+---
+
+# ⚠️ SECTIONS 13-22: TO BE SEPARATED
+
+> **The following sections (13-22) will be moved to a separate document:**
+> `EFFECT_COMBAT_LOCALIZATION_PLAN.md`
+> 
+> **Reason**: These cover different systems (Effects, Combat, Grammar) that:
+> - Use different patch targets (Effect.GetDescription vs GetDisplayNameEvent)
+> - Have no code dependencies on Object system
+> - Can be implemented independently after Phase 2 completion
+>
+> **For now, this content is preserved as reference.**
+
+---
+
+## 13. Status Effects System (→ TO BE MOVED)
 
 ### 13.1 Effect Classes Location
 
@@ -1238,7 +1449,7 @@ Scripts/02_Patches/
 
 ---
 
-## 22. Updated Risk Assessment
+## 22. Updated Risk Assessment (→ TO BE MOVED)
 
 | Risk | Impact | Mitigation |
 |------|--------|------------|
@@ -1256,3 +1467,4 @@ Scripts/02_Patches/
 |---------|------|---------|
 | 1.0 | 2026-01-22 | Initial plan created |
 | 1.1 | 2026-01-22 | Added: Status effects, damage types, color tags, hardcoded text analysis, grammar system, expanded folder structure, additional patches |
+| **2.0** | **2026-01-22** | **MAJOR REVISION**: Hybrid isolation strategy (separate from existing systems), correct GetFor() 16-param signature, realistic time estimates (3x), debugging tools section (kr:reload, kr:check), isolated folder structure (LOCALIZATION/OBJECTS/), marked Sections 13-22 for separation to EFFECT_COMBAT_LOCALIZATION_PLAN.md |
