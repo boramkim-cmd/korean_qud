@@ -137,8 +137,8 @@
     },
     "Cybernetics Bonus": {
       "-2 License Tier": "라이선스 등급 -2",
-      "+1 Toughness": "강인함 +1",
-      "{{C|-2 License Tier\n+1 Toughness}}": "{{C|라이선스 등급 -2\n강인함 +1}}"
+      "+1 Toughness": "건강 +1",
+      "{{C|-2 License Tier\n+1 Toughness}}": "{{C|라이선스 등급 -2\n건강 +1}}"
     },
     "Save Bonuses": {
       "+2 to saves vs. bleeding": "출혈 저항 +2",
