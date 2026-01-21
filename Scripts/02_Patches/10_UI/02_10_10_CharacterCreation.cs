@@ -1105,10 +1105,13 @@ namespace QudKRTranslation.Patches
                 return;
             }
             
-            string cyberName = desc.Substring(0, parenIdx);
+            string cyberNameRaw = desc.Substring(0, parenIdx);
             string slotPart = desc.Substring(parenIdx); // " (Face)" etc.
             
-            Debug.Log($"[Qud-KR Cyber] Parsing: name='{cyberName}', slot='{slotPart}'");
+            // Strip color tags from cybernetic name: {{Y|name}} -> name
+            string cyberName = System.Text.RegularExpressions.Regex.Replace(cyberNameRaw, @"\{\{[a-zA-Z]\|([^}]+)\}\}", "$1");
+            
+            Debug.Log($"[Qud-KR Cyber] Parsing: raw='{cyberNameRaw}', stripped='{cyberName}', slot='{slotPart}'");
             
             // Extract slot name from " (Slot)"
             string slotName = slotPart.Trim();
@@ -1122,7 +1125,7 @@ namespace QudKRTranslation.Patches
             if (SlotTranslations.TryGetValue(slotName, out string tSlot))
                 translatedSlot = tSlot;
             
-            // Try StructureTranslator for cybernetic name and description
+            // Try StructureTranslator for cybernetic name and description (using stripped name)
             if (StructureTranslator.TryGetData(cyberName, out var cyberData))
             {
                 string translatedName = !string.IsNullOrEmpty(cyberData.KoreanName) ? cyberData.KoreanName : cyberName;
@@ -1139,7 +1142,7 @@ namespace QudKRTranslation.Patches
             }
             else
             {
-                // Try simple name translation from JSON
+                // Try simple name translation from JSON (lowercase, no tags)
                 if (LocalizationManager.TryGetAnyTerm(cyberName.ToLowerInvariant(), out string tName, "cybernetics", "chargen_ui", "ui"))
                 {
                     opt.Description = $"{tName} ({translatedSlot})";
