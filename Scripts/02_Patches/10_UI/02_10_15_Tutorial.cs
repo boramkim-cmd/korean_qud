@@ -39,29 +39,43 @@ namespace QudKRTranslation.Patches
             if (string.IsNullOrEmpty(originalText))
                 return false;
             
-            Debug.Log($"[Qud-KR][Tutorial] TryTranslate called with: '{originalText.Substring(0, Math.Min(80, originalText.Length))}...'");
-            
             // LocalizationManager에서 "tutorial" 카테고리의 딕셔너리를 가져옴
             LocalizationManager.Initialize();
             var tutorialScope = LocalizationManager.GetCategory("tutorial");
             
             if (tutorialScope == null)
             {
-                Debug.LogWarning("[Qud-KR][Tutorial] Tutorial category not found! Check LOCALIZATION/GAMEPLAY/tutorial.json");
+                Debug.LogWarning("[Qud-KR][Tutorial] Tutorial category not found!");
                 return false;
             }
             
-            Debug.Log($"[Qud-KR][Tutorial] Tutorial scope loaded with {tutorialScope.Count} entries");
-            
-            // ~Command 플레이스홀더와 색상 태그 보존하며 번역
-            if (TranslationUtils.TryTranslatePreservingTags(originalText, out string result, tutorialScope))
+            // 1차 시도: 직접 딕셔너리 조회 (정확한 키 매칭)
+            if (tutorialScope.TryGetValue(originalText, out string directResult))
             {
-                translated = result;
-                Debug.Log($"[Qud-KR][Tutorial] SUCCESS: '{originalText.Substring(0, Math.Min(50, originalText.Length))}...' -> '{result.Substring(0, Math.Min(50, result.Length))}...'");
+                translated = directResult;
+                Debug.Log($"[Qud-KR][Tutorial] Direct match: '{originalText.Substring(0, Math.Min(40, originalText.Length))}...'");
                 return true;
             }
             
-            Debug.Log($"[Qud-KR][Tutorial] No translation found for: '{originalText.Substring(0, Math.Min(80, originalText.Length))}...'");
+            // 2차 시도: 앞뒤 공백 제거 후 조회
+            string trimmed = originalText.Trim();
+            if (tutorialScope.TryGetValue(trimmed, out string trimmedResult))
+            {
+                translated = trimmedResult;
+                Debug.Log($"[Qud-KR][Tutorial] Trimmed match: '{trimmed.Substring(0, Math.Min(40, trimmed.Length))}...'");
+                return true;
+            }
+            
+            // 3차 시도: TranslationUtils (태그 보존 번역)
+            if (TranslationUtils.TryTranslatePreservingTags(originalText, out string result, tutorialScope))
+            {
+                translated = result;
+                Debug.Log($"[Qud-KR][Tutorial] Utils match: '{originalText.Substring(0, Math.Min(40, originalText.Length))}...'");
+                return true;
+            }
+            
+            // 디버그: 첫 50자 출력
+            Debug.Log($"[Qud-KR][Tutorial] No match: '{originalText.Substring(0, Math.Min(60, originalText.Length))}...'");
             return false;
         }
         
