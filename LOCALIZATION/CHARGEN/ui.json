@@ -135,6 +135,11 @@
       "acid resistance": "산 저항",
       "electric resistance": "전기 저항"
     },
+    "Cybernetics Bonus": {
+      "-2 License Tier": "라이선스 등급 -2",
+      "+1 Toughness": "강인함 +1",
+      "{{C|-2 License Tier\n+1 Toughness}}": "{{C|라이선스 등급 -2\n강인함 +1}}"
+    },
     "Save Bonuses": {
       "+2 to saves vs. bleeding": "출혈 저항 +2",
       "+3 to saves vs. bleeding": "출혈 저항 +3",
