@@ -1,12 +1,51 @@
 # Caves of Qud Korean Localization - Changelog
 
-> **Version**: 3.6 | **Last Updated**: 2026-01-21
+> **Version**: 3.7 | **Last Updated**: 2026-01-22
 
 > [!NOTE]
 > **AI Agent**: This document is for completion records. Read `00_PRINCIPLES.md` first!
 
 Official changelog for all completed work.
 Completed items from `03_TODO.md` are moved here.
+
+---
+
+## [2026-01-22] - Debug Tools Documentation
+
+### Summary
+Comprehensive documentation created for all in-game debugging tools useful for object/creature translation testing.
+
+### ✅ Documentation Added
+
+**New File: `Docs/en/guides/DEBUG_TOOLS_REFERENCE.md`**
+- Complete Wish command system documentation
+- Object/creature spawning commands (`<name>`, `item:<name>`, `testhero:<name>`)
+- Debug options reference (`DebugInternals`, `DebugShowConversationNode`, etc.)
+- Game logging locations and monitoring commands
+- Look/Examine system analysis
+- Proposed custom wish commands for mod (`kr:check`, `kr:reload`, `kr:verbose`)
+- Recommended testing workflow
+
+### Key Findings
+
+**Wish System Access:**
+- Always available via **Ctrl+W** (no special mode needed)
+- Fuzzy search using Levenshtein distance
+- Supports `item:<name>:<count>` for batch spawning
+
+**Useful Test Commands:**
+- `testpets` - Tests all creature DisplayNames for `[bracket]` issues
+- `testobjects` - Tests all object DisplayNames for issues
+- `blueprint` - Shows blueprint name of adjacent object
+- `showcharset` - Displays character set (useful for font testing)
+
+**Custom Wish Support:**
+- Mods can add custom wishes using `[HasWishCommand]` class attribute
+- Method attribute `[WishCommand(Command = "name")]` registers command
+- Supports string parameters and regex matching
+
+### Files Created
+- `Docs/en/guides/DEBUG_TOOLS_REFERENCE.md`
 
 ---
 
