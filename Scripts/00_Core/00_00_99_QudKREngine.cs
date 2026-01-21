@@ -40,9 +40,9 @@ namespace QudKRTranslation.Core
 
         // 시스템 폰트 검색 우선순위 (TMP fallback용)
         public static string[] TargetFontNames = { 
-            "Cafe24PROSlimMax SDF",  // TMP 번들 폰트
-            "Cafe24PROSlimMax",      // 시스템 설치 폰트
-            "Cafe24 PRO SlimMax",    // 대체 이름
+            "Pretendard GOV Variable SDF",  // TMP 번들 폰트
+            "Pretendard GOV Variable",      // 시스템 설치 폰트
+            "PretendardGOVVariable",        // 대체 이름
             "AppleGothic",
             "NeoDunggeunmo-Regular", 
             "NeoDunggeunmo",         
@@ -413,11 +413,11 @@ namespace QudKRTranslation.Core
                             try { if (f == null || !f.HasCharacter('가')) needPatch = true; } catch { needPatch = true; }
                             if (needPatch)
                             {
-                                // 시스템 설치된 Cafe24PROSlimMax 우선 사용 (TMP 번들과 동일한 폰트)
+                                // 시스템 설치된 Pretendard GOV Variable 우선 사용 (TMP 번들과 동일한 폰트)
                                 Font fallback = null;
                                 string[] candidates = { 
-                                    "Cafe24PROSlimMax",      // 설치된 한글 폰트 (TMP와 동일)
-                                    "Cafe24 PRO SlimMax",    // 대체 이름
+                                    "Pretendard GOV Variable",  // 설치된 한글 폰트 (TMP와 동일)
+                                    "PretendardGOVVariable",    // 대체 이름
                                     "Apple SD Gothic Neo", 
                                     "AppleGothic", 
                                     "Arial" 
@@ -467,7 +467,7 @@ namespace QudKRTranslation.Core
 
         // Apply Korean font to a single TMP text component
         // FORCE REPLACE: 모든 TMP 컴포넌트의 폰트를 한국어 폰트로 강제 교체
-        // 이렇게 해야 영어 텍스트도 Cafe24 폰트로 표시됨
+        // 이렇게 해야 영어 텍스트도 Pretendard 폰트로 표시됨
         public static void ApplyFallbackToTMPComponent(TMPro.TMP_Text txt, bool forceLog = false)
         {
             if (txt == null) return;
@@ -498,7 +498,7 @@ namespace QudKRTranslation.Core
                     }
                 }
                 
-                // 폰트 강제 교체 (영어 + 한글 모두 Cafe24로 통일)
+                // 폰트 강제 교체 (영어 + 한글 모두 Pretendard로 통일)
                 if (txt.font != k)
                 {
                     txt.font = k;
