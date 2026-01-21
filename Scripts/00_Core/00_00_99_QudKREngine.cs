@@ -198,13 +198,50 @@ namespace QudKRTranslation.Core
                 if (_koreanTMPFont != null)
                 {
                     // ================================================================
-                    // 핵심: 한글 폰트의 메트릭스를 게임 기본 폰트(SourceCodePro)에 맞춤
+                    // 방법 1: 게임 폰트(SourceCodePro 등)에 한글 글리프 직접 주입
+                    // 이렇게 하면 게임이 SourceCodePro를 사용해도 한글이 표시됨
+                    // ================================================================
+                    int injectedFonts = 0;
+                    foreach (var gameFont in allTMPFonts)
+                    {
+                        if (gameFont == null || gameFont == _koreanTMPFont) continue;
+                        
+                        // SourceCodePro, LiberationSans 등 주요 폰트에 한글 폰트를 fallback으로 추가
+                        string fname = gameFont.name;
+                        if (fname.Contains("SourceCodePro") || fname.Contains("LiberationSans"))
+                        {
+                            try
+                            {
+                                // Fallback 테이블에 한글 폰트 추가 (최우선)
+                                if (gameFont.fallbackFontAssetTable == null)
+                                    gameFont.fallbackFontAssetTable = new System.Collections.Generic.List<TMP_FontAsset>();
+                                
+                                if (!gameFont.fallbackFontAssetTable.Contains(_koreanTMPFont))
+                                {
+                                    gameFont.fallbackFontAssetTable.Insert(0, _koreanTMPFont);
+                                    injectedFonts++;
+                                    Debug.Log($"[Qud-KR] Injected Korean font as fallback to '{fname}'");
+                                }
+                                
+                                // 게임 폰트의 메트릭스를 한글 폰트에도 적용 (일관성)
+                                // 가장 먼저 발견된 SourceCodePro-Regular 기준
+                            }
+                            catch (Exception ex)
+                            {
+                                Debug.LogWarning($"[Qud-KR] Failed to inject into '{fname}': {ex.Message}");
+                            }
+                        }
+                    }
+                    Debug.Log($"[Qud-KR] Injected Korean fallback into {injectedFonts} game fonts");
+                    
+                    // ================================================================
+                    // 방법 2: 한글 폰트의 메트릭스를 게임 폰트(SourceCodePro)에 맞춤
                     // 이렇게 하면 클리핑 없이 한글이 표시됨
                     // ================================================================
                     TMP_FontAsset referenceFont = null;
                     foreach (var f in allTMPFonts)
                     {
-                        if (f != null && f.name.Contains("SourceCodePro-Regular"))
+                        if (f != null && f.name.Contains("SourceCodePro-Regular") && !f.name.Contains("Dynamic"))
                         {
                             referenceFont = f;
                             break;
