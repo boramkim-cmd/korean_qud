@@ -1,5 +1,5 @@
 {
-  "generated": "2026-01-21 17:09:54",
+  "generated": "2026-01-21 17:12:59",
   "scripts": {
     "Scripts/99_Utils/99_00_03_StructureTranslator.cs": {
       "classification": "Util",
@@ -637,7 +637,7 @@
       "categories": [
         "tutorial"
       ],
-      "entries": 8
+      "entries": 16
     },
     "skills.json": {
       "categories": [
