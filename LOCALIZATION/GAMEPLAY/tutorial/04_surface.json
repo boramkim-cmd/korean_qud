@@ -43,9 +43,13 @@
     
     "You can look around here just like on a local map.\n\nUse ~LookDirection": "여기서도 로컬 맵처럼 주변을 살펴볼 수 있습니다.\n\n~LookDirection을 사용하세요.",
     
+    "There's a village to the north called Joppa. Let's go there.": "북쪽에 조파라는 마을이 있습니다. 가봅시다.",
+    
     "There's a village to the north called Joppa. Let's go there.\n\nPress ~CmdMoveN or ~AdventureMouseContextAction.": "북쪽에 조파라는 마을이 있습니다. 가봅시다.\n\n~CmdMoveN 또는 ~AdventureMouseContextAction을 누르세요.",
     
     "There's a village to the north called Joppa. Let's go there.\n\nHold ~IndicateDirection towards the north and press ~Take A Step.": "북쪽에 조파라는 마을이 있습니다. 가봅시다.\n\n북쪽으로 ~IndicateDirection을 누른 채 ~Take A Step을 누르세요.",
+    
+    "There's a village to the north called Joppa. Let's go there.\n\nPress 8 or ◎.": "북쪽에 조파라는 마을이 있습니다. 가봅시다.\n\n8 또는 ◎를 누르세요.",
     
     "You'll be able to explore the world freely after the tutorial.\n\nFor now, let's visit Joppa.": "튜토리얼 후에는 자유롭게 세계를 탐험할 수 있습니다.\n\n지금은 조파를 방문합시다."
   }

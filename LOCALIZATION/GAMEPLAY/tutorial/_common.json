@@ -2,6 +2,8 @@
   "tutorial_common": {
     "[~Accept] Continue": "[~Accept] 계속",
     "Continue": "계속",
-    "What's that???": "저게 뭐지???"
+    "What's that???": "저게 뭐지???",
+    "[Space] Continue": "[Space] 계속",
+    "TUTORIAL GUIDE": "튜토리얼 가이드"
   }
 }

@@ -27,6 +27,21 @@ namespace QudKRTranslation.Patches
     public static class Patch_TutorialManager
     {
         /// <summary>
+        /// 한글 문자가 포함되어 있는지 확인 (이미 번역된 텍스트 감지)
+        /// </summary>
+        private static bool ContainsKorean(string text)
+        {
+            if (string.IsNullOrEmpty(text)) return false;
+            foreach (char c in text)
+            {
+                // 한글 유니코드 범위: AC00-D7A3 (완성형), 1100-11FF (자모)
+                if ((c >= 0xAC00 && c <= 0xD7A3) || (c >= 0x1100 && c <= 0x11FF))
+                    return true;
+            }
+            return false;
+        }
+        
+        /// <summary>
         /// 키 문자열 정규화 - 게임 소스와 JSON 키 간의 차이점 해소
         /// </summary>
         /// <param name="text">정규화할 텍스트</param>
@@ -35,17 +50,32 @@ namespace QudKRTranslation.Patches
         {
             if (string.IsNullOrEmpty(text)) return text;
             
-            // 1. CRLF -> LF 정규화 (게임 소스는 \r\n, JSON은 \n 사용)
-            string normalized = text.Replace("\r\n", "\n");
+            // 0. 앞뒤 공백 제거
+            string normalized = text.Trim();
             
-            // 2. 색상 태그 제거: {{y|text}} -> text, {{C|text}} -> text 등
+            // 1. CRLF -> LF 정규화 (게임 소스는 \r\n, JSON은 \n 사용)
+            normalized = normalized.Replace("\r\n", "\n");
+            
+            // 2. 전체 텍스트를 감싸는 색상 태그 제거: {{y|entire text}} -> entire text
+            //    이것은 게임이 전체 메시지를 태그로 감쌀 때 발생
+            var wrapMatch = System.Text.RegularExpressions.Regex.Match(
+                normalized,
+                @"^\{\{[a-zA-Z]\|(.*)\}\}$",
+                System.Text.RegularExpressions.RegexOptions.Singleline
+            );
+            if (wrapMatch.Success)
+            {
+                normalized = wrapMatch.Groups[1].Value;
+            }
+            
+            // 3. 인라인 색상 태그 제거: {{y|text}} -> text, {{C|text}} -> text 등
             normalized = System.Text.RegularExpressions.Regex.Replace(
                 normalized, 
                 @"\{\{[a-zA-Z]\|([^}]*)\}\}", 
                 "$1"
             );
             
-            // 3. 핫키 태그 형식 정규화: {{~Tag}} -> ~Tag (일부 소스 파일 차이)
+            // 4. 핫키 태그 형식 정규화: {{~Tag}} -> ~Tag (일부 소스 파일 차이)
             normalized = System.Text.RegularExpressions.Regex.Replace(
                 normalized, 
                 @"\{\{(~[^}]+)\}\}", 
@@ -66,6 +96,10 @@ namespace QudKRTranslation.Patches
             translated = originalText;
             
             if (string.IsNullOrEmpty(originalText))
+                return false;
+            
+            // 이미 한글이 포함된 텍스트는 번역 시도하지 않음 (무한 루프 방지)
+            if (ContainsKorean(originalText))
                 return false;
             
             // LocalizationManager에서 "tutorial" 카테고리의 딕셔너리를 가져옴
@@ -151,7 +185,8 @@ namespace QudKRTranslation.Patches
             }
             
             // 디버그 로그 (매칭 실패 시)
-            Debug.Log($"[Qud-KR][Tutorial] No match: '{originalText.Substring(0, Math.Min(60, originalText.Length))}...'");
+            string normalizedForLog = NormalizeKey(originalText);
+            Debug.Log($"[Qud-KR][Tutorial] No match. Original(60): '{originalText.Substring(0, Math.Min(60, originalText.Length))}' / Normalized(60): '{normalizedForLog.Substring(0, Math.Min(60, normalizedForLog.Length))}'");
             return false;
         }
         

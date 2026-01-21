@@ -1,5 +1,5 @@
 {
-  "generated": "2026-01-21 22:16:12",
+  "generated": "2026-01-21 23:19:20",
   "scripts": {
     "Scripts/99_Utils/99_00_03_StructureTranslator.cs": {
       "classification": "Util",
@@ -680,13 +680,13 @@
       "categories": [
         "tutorial_surface"
       ],
-      "entries": 25
+      "entries": 27
     },
     "_common.json": {
       "categories": [
         "tutorial_common"
       ],
-      "entries": 3
+      "entries": 5
     },
     "01_chest.json": {
       "categories": [
@@ -698,7 +698,7 @@
       "categories": [
         "tutorial_fight"
       ],
-      "entries": 45
+      "entries": 49
     },
     "05_joppa.json": {
       "categories": [
