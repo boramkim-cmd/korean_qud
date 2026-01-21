@@ -255,12 +255,30 @@ namespace QudKRTranslation.Core
                             var refFaceInfo = referenceFont.faceInfo;
                             var korFaceInfo = _koreanTMPFont.faceInfo;
                             
-                            Debug.Log($"[Qud-KR] Reference font '{referenceFont.name}' metrics: " +
-                                $"LineHeight={refFaceInfo.lineHeight}, Ascender={refFaceInfo.ascentLine}, " +
-                                $"Descender={refFaceInfo.descentLine}, Scale={refFaceInfo.scale}");
-                            Debug.Log($"[Qud-KR] Korean font '{_koreanTMPFont.name}' BEFORE: " +
-                                $"LineHeight={korFaceInfo.lineHeight}, Ascender={korFaceInfo.ascentLine}, " +
-                                $"Descender={korFaceInfo.descentLine}, Scale={korFaceInfo.scale}");
+                            // 상세 Face Info 로그 출력 (Unity에서 폰트 설정할 때 참고)
+                            Debug.Log($"[Qud-KR][FaceInfo] ===== SourceCodePro-Regular SDF (Reference) =====");
+                            Debug.Log($"[Qud-KR][FaceInfo] Point Size: {refFaceInfo.pointSize}");
+                            Debug.Log($"[Qud-KR][FaceInfo] Scale: {refFaceInfo.scale}");
+                            Debug.Log($"[Qud-KR][FaceInfo] Line Height: {refFaceInfo.lineHeight}");
+                            Debug.Log($"[Qud-KR][FaceInfo] Ascender: {refFaceInfo.ascentLine}");
+                            Debug.Log($"[Qud-KR][FaceInfo] Cap Height: {refFaceInfo.capLine}");
+                            Debug.Log($"[Qud-KR][FaceInfo] Mean Line: {refFaceInfo.meanLine}");
+                            Debug.Log($"[Qud-KR][FaceInfo] Baseline: {refFaceInfo.baseline}");
+                            Debug.Log($"[Qud-KR][FaceInfo] Descender: {refFaceInfo.descentLine}");
+                            Debug.Log($"[Qud-KR][FaceInfo] Underline Offset: {refFaceInfo.underlineOffset}");
+                            Debug.Log($"[Qud-KR][FaceInfo] Underline Thickness: {refFaceInfo.underlineThickness}");
+                            Debug.Log($"[Qud-KR][FaceInfo] Strikethrough Offset: {refFaceInfo.strikethroughOffset}");
+                            Debug.Log($"[Qud-KR][FaceInfo] Tab Width: {refFaceInfo.tabWidth}");
+                            
+                            Debug.Log($"[Qud-KR][FaceInfo] ===== PretendardGOVVariable SDF (Korean) BEFORE =====");
+                            Debug.Log($"[Qud-KR][FaceInfo] Point Size: {korFaceInfo.pointSize}");
+                            Debug.Log($"[Qud-KR][FaceInfo] Scale: {korFaceInfo.scale}");
+                            Debug.Log($"[Qud-KR][FaceInfo] Line Height: {korFaceInfo.lineHeight}");
+                            Debug.Log($"[Qud-KR][FaceInfo] Ascender: {korFaceInfo.ascentLine}");
+                            Debug.Log($"[Qud-KR][FaceInfo] Cap Height: {korFaceInfo.capLine}");
+                            Debug.Log($"[Qud-KR][FaceInfo] Mean Line: {korFaceInfo.meanLine}");
+                            Debug.Log($"[Qud-KR][FaceInfo] Baseline: {korFaceInfo.baseline}");
+                            Debug.Log($"[Qud-KR][FaceInfo] Descender: {korFaceInfo.descentLine}");
                             
                             // 한글 폰트의 메트릭스를 참조 폰트에 맞춤
                             korFaceInfo.lineHeight = refFaceInfo.lineHeight;
