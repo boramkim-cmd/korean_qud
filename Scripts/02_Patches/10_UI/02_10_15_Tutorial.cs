@@ -218,17 +218,17 @@ namespace QudKRTranslation.Patches
     [HarmonyPatch(typeof(XRL.UI.Popup))]
     public static class Patch_Popup
     {
-        // Popup.Show(string Text, bool Capitalize = true, bool DimBackground = true, bool AllowEscape = true, bool HideSidebar = true, bool PreserveInput = false)
+        // Popup.Show(string Message, string Title = null, string Sound = "Sounds/UI/ui_notification", bool CopyScrap = true, bool Capitalize = true, bool DimBackground = true, bool LogMessage = true, Location2D PopupLocation = null)
         [HarmonyPrefix]
-        // Harmony가 오버로드를 자동으로 찾도록 인자 타입 명시하지 않음 (가장 매칭되는 것 찾음)
-        // 하지만 여러 개일 경우를 대비해 가장 인자가 많은 것을 타겟팅하되, Harmony에게 맡김.
-        // 또는 명시적으로 지정
-        [HarmonyPatch(nameof(XRL.UI.Popup.Show), new Type[] { typeof(string), typeof(bool), typeof(bool), typeof(bool), typeof(bool), typeof(bool) })]
-        static void Show_Prefix(ref string Text)
+        // 정확한 시그니처 매칭: (string, string, string, bool, bool, bool, bool, Location2D)
+        [HarmonyPatch(nameof(XRL.UI.Popup.Show), new Type[] { 
+            typeof(string), typeof(string), typeof(string), typeof(bool), typeof(bool), typeof(bool), typeof(bool), typeof(Genkit.Location2D) 
+        })]
+        static void Show_Prefix(ref string Message)
         {
-            if (Patch_TutorialManager.TryTranslateTutorial(Text, out var translated))
+            if (Patch_TutorialManager.TryTranslateTutorial(Message, out var translated))
             {
-                Text = translated;
+                Message = translated;
             }
         }
     }
