@@ -1,5 +1,5 @@
 {
-  "generated": "2026-01-21 17:12:59",
+  "generated": "2026-01-21 22:16:12",
   "scripts": {
     "Scripts/99_Utils/99_00_03_StructureTranslator.cs": {
       "classification": "Util",
@@ -416,9 +416,16 @@
       "role": "ModelShark Tooltip 시스템의 텍스트를 번역합니다.",
       "namespace": "QudKRTranslation.Patches",
       "classes": [
-        "Tooltip_Patch"
+        "Tooltip_Patch",
+        "Tooltip_ShowManually_Patch"
       ],
-      "methods": []
+      "methods": [
+        {
+          "name": "ApplyKoreanFontToTooltip",
+          "return": "void",
+          "params": "TooltipTrigger trigger"
+        }
+      ]
     },
     "Scripts/02_Patches/10_UI/02_10_03_UITextSkin.cs": {
       "classification": "UI Patch",
@@ -470,9 +477,16 @@
       "role": "TutorialManager의 텍스트를 번역합니다.",
       "namespace": "QudKRTranslation.Patches",
       "classes": [
-        "Patch_TutorialManager"
+        "Patch_TutorialManager",
+        "Patch_Popup"
       ],
-      "methods": []
+      "methods": [
+        {
+          "name": "TryTranslateTutorial",
+          "return": "bool",
+          "params": "string originalText, out string translated"
+        }
+      ]
     },
     "Scripts/02_Patches/00_Core/02_00_02_ScreenBuffer.cs": {
       "classification": "Core Patch",
@@ -633,12 +647,6 @@
       ],
       "entries": 54
     },
-    "tutorial.json": {
-      "categories": [
-        "tutorial"
-      ],
-      "entries": 16
-    },
     "skills.json": {
       "categories": [
         "skill",
@@ -661,6 +669,48 @@
         "chargen_proto"
       ],
       "entries": 40
+    },
+    "03_explore.json": {
+      "categories": [
+        "tutorial_explore"
+      ],
+      "entries": 33
+    },
+    "04_surface.json": {
+      "categories": [
+        "tutorial_surface"
+      ],
+      "entries": 25
+    },
+    "_common.json": {
+      "categories": [
+        "tutorial_common"
+      ],
+      "entries": 3
+    },
+    "01_chest.json": {
+      "categories": [
+        "tutorial_chest"
+      ],
+      "entries": 22
+    },
+    "02_fight.json": {
+      "categories": [
+        "tutorial_fight"
+      ],
+      "entries": 45
+    },
+    "05_joppa.json": {
+      "categories": [
+        "tutorial_joppa"
+      ],
+      "entries": 11
+    },
+    "00_intro.json": {
+      "categories": [
+        "tutorial_intro"
+      ],
+      "entries": 5
     },
     "Clairvoyance.json": {
       "categories": [

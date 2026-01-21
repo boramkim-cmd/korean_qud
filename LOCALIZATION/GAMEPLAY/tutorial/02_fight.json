@@ -5,6 +5,8 @@
     "All actions are turn-based, meaning you take a turn, then other creatures take a turn. For the most part, creatures won't act until you do.\n\nIf you ever get panicked, just slow down and consider your next move. There's no rush.": "모든 행동은 턴 기반입니다. 즉, 당신이 행동하면 다른 생물들이 행동합니다. 대부분의 경우, 생물들은 당신이 행동하기 전까지 움직이지 않습니다.\n\n당황하면 천천히 다음 행동을 생각하세요. 서두를 필요 없습니다.",
 
     "Mouse over the battle axe and hover or press {{W|Alt}} to view its tooltip.": "전투 도끼 위에 마우스를 올리거나 {{W|Alt}}를 눌러 툴팁을 확인하세요.",
+    
+    "Mouse over the battle axe and hover or press {{W|Alt}} to view the tooltip.": "전투 도끼 위에 마우스를 올리거나 {{W|Alt}}를 눌러 툴팁을 확인하세요.",
 
     "This time you hit, but you failed to penetrate the bear's armor.": "이번에는 명중했지만 곰의 갑옷을 뚫지 못했습니다.",
 

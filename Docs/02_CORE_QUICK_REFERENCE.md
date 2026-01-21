@@ -1,6 +1,6 @@
 # 🚀 프로젝트 빠른 참조 (자동 생성)
 
-**생성**: 2026-01-21 17:12:59
+**생성**: 2026-01-21 22:16:12
 
 ## ⭐ 핵심 경로
 ```
@@ -10,6 +10,12 @@ LOCALIZATION/**/*.json              → 용어집 데이터
 ```
 
 ## 📚 용어집 현황
+- `00_intro.json`: 5개 항목
+- `01_chest.json`: 22개 항목
+- `02_fight.json`: 45개 항목
+- `03_explore.json`: 33개 항목
+- `04_surface.json`: 25개 항목
+- `05_joppa.json`: 11개 항목
 - `Adrenal_Control.json`: 1개 항목
 - `Air_Current_Microsensor.json`: 1개 항목
 - `Albino.json`: 1개 항목
@@ -189,6 +195,7 @@ LOCALIZATION/**/*.json              → 용어집 데이터
 - `Water_Merchant.json`: 1개 항목
 - `Watervine_Farmer.json`: 1개 항목
 - `Wings.json`: 1개 항목
+- `_common.json`: 3개 항목
 - `attributes.json`: 7개 항목
 - `common.json`: 188개 항목
 - `cybernetics.json`: 54개 항목
@@ -203,7 +210,6 @@ LOCALIZATION/**/*.json              → 용어집 데이터
 - `skills.json`: 223개 항목
 - `stats.json`: 2개 항목
 - `terms.json`: 35개 항목
-- `tutorial.json`: 16개 항목
 - `ui.json`: 8개 항목
 
 ## ⛔ 절대 금지 (DO NOT)

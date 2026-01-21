@@ -27,6 +27,28 @@ namespace QudKRTranslation.Patches
     public static class Patch_TutorialManager
     {
         /// <summary>
+        /// 키 문자열 정규화 - 게임 소스와 JSON 키 간의 차이점 해소
+        /// </summary>
+        /// <param name="text">정규화할 텍스트</param>
+        /// <returns>정규화된 텍스트</returns>
+        private static string NormalizeKey(string text)
+        {
+            if (string.IsNullOrEmpty(text)) return text;
+            
+            // 1. CRLF -> LF 정규화 (게임 소스는 \r\n, JSON은 \n 사용)
+            string normalized = text.Replace("\r\n", "\n");
+            
+            // 2. 태그 형식 정규화: {{~Tag}} -> ~Tag (일부 소스 파일 차이)
+            normalized = System.Text.RegularExpressions.Regex.Replace(
+                normalized, 
+                @"\{\{(~[^}]+)\}\}", 
+                "$1"
+            );
+            
+            return normalized;
+        }
+        
+        /// <summary>
         /// 튜토리얼 텍스트 번역 시도
         /// </summary>
         /// <param name="originalText">원본 영어 텍스트</param>
@@ -49,6 +71,14 @@ namespace QudKRTranslation.Patches
                 return false;
             }
             
+            // 0차 시도: 정규화된 키로 조회 (CRLF/태그 형식 차이 해소)
+            string normalizedKey = NormalizeKey(originalText);
+            if (tutorialScope.TryGetValue(normalizedKey, out string normalizedResult))
+            {
+                translated = normalizedResult;
+                return true;
+            }
+            
             // 1차 시도: 직접 딕셔너리 조회 (정확한 키 매칭)
             if (tutorialScope.TryGetValue(originalText, out string directResult))
             {
@@ -56,8 +86,8 @@ namespace QudKRTranslation.Patches
                 return true;
             }
             
-            // 2차 시도: 앞뒤 공백 제거 후 조회
-            string trimmed = originalText.Trim();
+            // 2차 시도: 앞뒤 공백 제거 후 조회 (정규화 포함)
+            string trimmed = NormalizeKey(originalText.Trim());
             if (tutorialScope.TryGetValue(trimmed, out string trimmedResult))
             {
                 translated = trimmedResult;

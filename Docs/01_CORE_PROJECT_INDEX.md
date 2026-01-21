@@ -1,6 +1,6 @@
 # 📚 프로젝트 완전 인덱스 (자동 생성)
 
-**생성**: 2026-01-21 17:12:59
+**생성**: 2026-01-21 22:16:12
 
 이 문서는 프로젝트의 모든 파일과 메서드 시그니처를 포함합니다. **새로운 기능을 만들기 전, 반드시 여기서 기존 메서드를 검색하십시오.**
 
@@ -114,6 +114,10 @@
 ### `Scripts/02_Patches/10_UI/02_10_02_Tooltip.cs`
 - **역할**: ModelShark Tooltip 시스템의 텍스트를 번역합니다.
 - **Namespace**: `QudKRTranslation.Patches`
+- **공개 메서드 (Public Methods)**:
+  ```csharp
+  void ApplyKoreanFontToTooltip(TooltipTrigger trigger)
+  ```
 
 ### `Scripts/02_Patches/10_UI/02_10_03_UITextSkin.cs`
 - **역할**: UITextSkin.Apply 메서드를 패치하여 TMPro 기반 UI 텍스트를 번역합니다.
@@ -154,6 +158,10 @@
 ### `Scripts/02_Patches/10_UI/02_10_15_Tutorial.cs`
 - **역할**: TutorialManager의 텍스트를 번역합니다.
 - **Namespace**: `QudKRTranslation.Patches`
+- **공개 메서드 (Public Methods)**:
+  ```csharp
+  bool TryTranslateTutorial(string originalText, out string translated)
+  ```
 
 ## 📂 [Util]
 
