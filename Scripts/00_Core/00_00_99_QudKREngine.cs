@@ -257,6 +257,9 @@ namespace QudKRTranslation.Core
                             
                             // 상세 Face Info 로그 출력 (Unity에서 폰트 설정할 때 참고)
                             Debug.Log($"[Qud-KR][FaceInfo] ===== SourceCodePro-Regular SDF (Reference) =====");
+                            Debug.Log($"[Qud-KR][FaceInfo] Atlas Padding: {referenceFont.atlasPadding}");
+                            Debug.Log($"[Qud-KR][FaceInfo] Atlas Width: {referenceFont.atlasWidth}");
+                            Debug.Log($"[Qud-KR][FaceInfo] Atlas Height: {referenceFont.atlasHeight}");
                             Debug.Log($"[Qud-KR][FaceInfo] Point Size: {refFaceInfo.pointSize}");
                             Debug.Log($"[Qud-KR][FaceInfo] Scale: {refFaceInfo.scale}");
                             Debug.Log($"[Qud-KR][FaceInfo] Line Height: {refFaceInfo.lineHeight}");
