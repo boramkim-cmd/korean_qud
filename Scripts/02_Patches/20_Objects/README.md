@@ -46,10 +46,11 @@ If something breaks, delete these folders to restore:
 
 | Version | Date | Time | Changes |
 |---------|------|------|----------|
+| 3.0 | 2026-01-22 | 17:32 | Phase 3 implemented: tier1_humanoids.json, tier1_animals.json, npcs_joppa.json |
 | 2.1 | 2026-01-22 | 09:30 | Phase 2 implemented: melee_weapons.json, armor.json, tools.json |
 | 2.0 | 2026-01-22 | 08:08 | Phase 0-1 implemented, tutorial JSON files created |
 | 1.0 | 2026-01-22 | - | Initial structure created |
 
-**Last Modified**: 2026-01-22 09:30:00
+**Last Modified**: 2026-01-22 17:32:00
 
 See: `Docs/en/guides/OBJECT_LOCALIZATION_PLAN.md`

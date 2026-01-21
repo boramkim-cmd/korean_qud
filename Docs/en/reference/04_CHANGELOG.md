@@ -1,12 +1,69 @@
 # Caves of Qud Korean Localization - Changelog
 
-> **Version**: 3.9 | **Last Updated**: 2026-01-22 09:30:00
+> **Version**: 4.0 | **Last Updated**: 2026-01-22 17:32:00
 
 > [!NOTE]
 > **AI Agent**: This document is for completion records. Read `00_PRINCIPLES.md` first!
 
 Official changelog for all completed work.
 Completed items from `03_TODO.md` are moved here.
+
+---
+
+## [2026-01-22 17:32] - Object Localization System Phase 3 Implementation
+
+### Summary
+Implemented Phase 3 of Object Localization System: Joppa Area.
+Added comprehensive translations for Tier 1 creatures, Snapjaws, and Joppa NPCs.
+
+### ✅ JSON Data Created
+
+**Tier 1 Humanoids** (`LOCALIZATION/OBJECTS/creatures/tier1_humanoids.json`):
+- 25+ Snapjaw variants
+  - Base: 스냅조
+  - Scavenger variants (0-2): 스냅조 청소부
+  - Hunter variants (0-2): 스냅조 사냥꾼
+  - Shotgunner variants (0-2): 스냅조 산탄총잡이
+  - Brute: 스냅조 무법자
+  - Warlord/Hero: 스냅조 전쟁군주
+  - Troglodyte variants: 피더, 창마, 덫사냥꾼, 하울러
+  - Golem: 스냅조 골렘
+- Cannibal: 식인종
+
+**Tier 1 Animals** (`LOCALIZATION/OBJECTS/creatures/tier1_animals.json`):
+- 20+ animals covering early game encounters
+- Bear: 곰, Bat: 박쥐, Pig: 돼지, Boar: 멧돼지
+- Ray Cat: 레이 캣, Cave Spider: 동굴 거미
+- Baboon variants: 비비, 거대 비비, 약삭빠른 비비
+- Clockwork Beetle: 클락워크 비틀
+- Additional fauna: 소금메뚜기, 발광어, 불개미, etc.
+
+**Joppa NPCs** (`LOCALIZATION/OBJECTS/creatures/npcs_joppa.json`):
+- 15 named NPCs and roles
+  - Elder Irudad (ElderBob): 이루다드
+  - Argyve: 아르기브
+  - Mehmet: 메흐메트
+  - Tam: 탐
+  - Warden Yrame: 이라메
+  - Nima Ruda: 니마 루다
+  - Ctesiphus: 크테시푸스
+- Village roles: 수초 농부, 사과 농부, 메카님스트 개종자
+
+**Common Terms Update** (`LOCALIZATION/OBJECTS/creatures/_common.json`):
+- Version 2.0 with expanded species (cat, dog, spider, crab, etc.)
+- Creature classes: 거미류, 연체동물, 갑각류, etc.
+- Roles: 청소부, 사냥꾼, 무법자, 전쟁군주, etc.
+- Honorifics: 장로, 경비관
+
+### Statistics
+- Total new JSON entries: ~60 creatures
+- Tier 1 humanoids: 25 entries
+- Tier 1 animals: 20 entries
+- Joppa NPCs: 15 entries
+
+### Deploy Status
+- Build: ✅ Success (1 warning - unrelated)
+- Deploy: ✅ Success
 
 ---
 
