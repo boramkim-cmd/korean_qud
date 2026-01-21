@@ -56,7 +56,13 @@ namespace QudKRTranslation.Patches
             // 1. CRLF -> LF 정규화 (게임 소스는 \r\n, JSON은 \n 사용)
             normalized = normalized.Replace("\r\n", "\n");
             
-            // 2. 전체 텍스트를 감싸는 색상 태그 제거: {{y|entire text}} -> entire text
+            // 2. 스마트 따옴표를 일반 따옴표로 변환 (게임은 ' " " 사용, JSON은 ' " 사용)
+            normalized = normalized.Replace('\u2019', '\'');  // ' -> '
+            normalized = normalized.Replace('\u2018', '\'');  // ' -> '
+            normalized = normalized.Replace('\u201C', '"');   // " -> "
+            normalized = normalized.Replace('\u201D', '"');   // " -> "
+            
+            // 3. 전체 텍스트를 감싸는 색상 태그 제거: {{y|entire text}} -> entire text
             //    이것은 게임이 전체 메시지를 태그로 감쌀 때 발생
             var wrapMatch = System.Text.RegularExpressions.Regex.Match(
                 normalized,
