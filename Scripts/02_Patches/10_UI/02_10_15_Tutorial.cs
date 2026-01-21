@@ -39,24 +39,29 @@ namespace QudKRTranslation.Patches
             if (string.IsNullOrEmpty(originalText))
                 return false;
             
+            Debug.Log($"[Qud-KR][Tutorial] TryTranslate called with: '{originalText.Substring(0, Math.Min(80, originalText.Length))}...'");
+            
             // LocalizationManager에서 "tutorial" 카테고리의 딕셔너리를 가져옴
             LocalizationManager.Initialize();
             var tutorialScope = LocalizationManager.GetCategory("tutorial");
             
             if (tutorialScope == null)
             {
-                Debug.LogWarning("[Qud-KR][Tutorial] Tutorial glossary not found");
+                Debug.LogWarning("[Qud-KR][Tutorial] Tutorial category not found! Check LOCALIZATION/GAMEPLAY/tutorial.json");
                 return false;
             }
+            
+            Debug.Log($"[Qud-KR][Tutorial] Tutorial scope loaded with {tutorialScope.Count} entries");
             
             // ~Command 플레이스홀더와 색상 태그 보존하며 번역
             if (TranslationUtils.TryTranslatePreservingTags(originalText, out string result, tutorialScope))
             {
                 translated = result;
-                Debug.Log($"[Qud-KR][Tutorial] Translated: '{originalText.Substring(0, Math.Min(50, originalText.Length))}...' -> '{result.Substring(0, Math.Min(50, result.Length))}...'");
+                Debug.Log($"[Qud-KR][Tutorial] SUCCESS: '{originalText.Substring(0, Math.Min(50, originalText.Length))}...' -> '{result.Substring(0, Math.Min(50, result.Length))}...'");
                 return true;
             }
             
+            Debug.Log($"[Qud-KR][Tutorial] No translation found for: '{originalText.Substring(0, Math.Min(80, originalText.Length))}...'");
             return false;
         }
         
