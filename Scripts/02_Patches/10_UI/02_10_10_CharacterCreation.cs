@@ -946,40 +946,75 @@ namespace QudKRTranslation.Patches
     }
 
     // ========================================================================
-    // [6.5] 변이 선택 왼쪽 리스트 UI 렌더링 패치 (KeyMenuOption)
+    // [6.5] 변이/사이버네틱스 선택 왼쪽 리스트 UI 렌더링 패치 (KeyMenuOption)
     // 문제: UpdateControls_Postfix는 BeforeShow() 호출 이후에 실행되어
     //       데이터를 수정해도 이미 UI에 전달된 상태임.
     // 해결: KeyMenuOption.setDataPrefixMenuOption()을 패치하여 
     //       UI 렌더링 시점에 번역을 적용.
     // ========================================================================
     [HarmonyPatch(typeof(KeyMenuOption))]
-    public static class Patch_KeyMenuOption_MutationNames
+    public static class Patch_KeyMenuOption_MutationAndCyberneticNames
     {
         [HarmonyPatch(nameof(KeyMenuOption.setDataPrefixMenuOption))]
         [HarmonyPrefix]
         static void setDataPrefixMenuOption_Prefix(PrefixMenuOption data)
         {
-            if (data == null || string.IsNullOrEmpty(data.Id)) return;
+            if (data == null) return;
             
-            // Check if this is a mutation (has translation in StructureTranslator)
-            string translatedName = StructureTranslator.TranslateName(data.Id);
-            if (!string.IsNullOrEmpty(translatedName) && translatedName != data.Id)
+            // === MUTATIONS (has Id) ===
+            if (!string.IsNullOrEmpty(data.Id))
             {
-                // Get current description and preserve ALL suffixes
-                // Examples: "Albino (D)", "Flaming Ray [V]", "Horns [{{W|V}}]"
-                string desc = data.Description;
-                if (!string.IsNullOrEmpty(desc))
+                // Check if this is a mutation (has translation in StructureTranslator)
+                string translatedName = StructureTranslator.TranslateName(data.Id);
+                if (!string.IsNullOrEmpty(translatedName) && translatedName != data.Id)
                 {
-                    // Find suffix by locating where the mutation name ends
-                    // data.Id is the English mutation name, find it in desc and extract suffix
-                    string suffix = "";
-                    int idIndex = desc.IndexOf(data.Id);
-                    if (idIndex >= 0)
+                    // Get current description and preserve ALL suffixes
+                    // Examples: "Albino (D)", "Flaming Ray [V]", "Horns [{{W|V}}]"
+                    string desc = data.Description;
+                    if (!string.IsNullOrEmpty(desc))
                     {
-                        // Everything after the mutation name is the suffix
-                        suffix = desc.Substring(idIndex + data.Id.Length);
+                        // Find suffix by locating where the mutation name ends
+                        // data.Id is the English mutation name, find it in desc and extract suffix
+                        string suffix = "";
+                        int idIndex = desc.IndexOf(data.Id);
+                        if (idIndex >= 0)
+                        {
+                            // Everything after the mutation name is the suffix
+                            suffix = desc.Substring(idIndex + data.Id.Length);
+                        }
+                        data.Description = translatedName + suffix;
                     }
-                    data.Description = translatedName + suffix;
+                }
+                return; // Done with mutations
+            }
+            
+            // === CYBERNETICS (no Id, uses "name (slot)" format in Description) ===
+            string cyberDesc = data.Description;
+            if (string.IsNullOrEmpty(cyberDesc) || cyberDesc == "<none>") return;
+            
+            // Check if this looks like a cybernetic: "name (slot)" format
+            int parenIdx = cyberDesc.LastIndexOf(" (");
+            if (parenIdx <= 0) return; // Not cybernetics format
+            
+            string cyberName = cyberDesc.Substring(0, parenIdx);
+            string slotSuffix = cyberDesc.Substring(parenIdx); // " (Face)" etc.
+            
+            // Try to find translation using StructureTranslator
+            if (StructureTranslator.TryGetData(cyberName, out var cyberData))
+            {
+                if (!string.IsNullOrEmpty(cyberData.KoreanName))
+                {
+                    data.Description = cyberData.KoreanName + slotSuffix;
+                }
+                
+                // Translate LongDescription
+                if (!string.IsNullOrEmpty(data.LongDescription))
+                {
+                    string combinedDesc = cyberData.GetCombinedCyberneticDescription();
+                    if (!string.IsNullOrEmpty(combinedDesc))
+                    {
+                        data.LongDescription = combinedDesc;
+                    }
                 }
             }
         }
@@ -995,92 +1030,15 @@ namespace QudKRTranslation.Patches
         [HarmonyPostfix]
         static void UpdateControls_Postfix(QudCyberneticsModuleWindow __instance)
         {
-            // categoryMenus is private, use Traverse
-            var categoryMenus = Traverse.Create(__instance).Field("categoryMenus").GetValue<List<CategoryMenuData>>();
-            if (categoryMenus == null)
-            {
-                // Try cyberneticsMenuState (the actual field name)
-                categoryMenus = Traverse.Create(__instance).Field("cyberneticsMenuState").GetValue<List<CategoryMenuData>>();
-            }
-            Debug.Log($"[Qud-KR Cyber] categoryMenus: {(categoryMenus != null ? categoryMenus.Count.ToString() : "null")}");
+            // categoryMenus is private, use Traverse - the actual field name is cyberneticsMenuState
+            var categoryMenus = Traverse.Create(__instance).Field("cyberneticsMenuState").GetValue<List<CategoryMenuData>>();
             if (categoryMenus != null)
             {
                 foreach (var cat in categoryMenus)
                 {
-                    Debug.Log($"[Qud-KR Cyber] Category: {cat.Title}");
+                    // Translate category title "Cybernetics" -> "사이버네틱스"
                     if (LocalizationManager.TryGetAnyTerm(cat.Title?.ToLowerInvariant(), out string tTitle, "chargen_ui", "ui"))
                         cat.Title = tTitle;
-
-                    if (cat.menuOptions != null)
-                    {
-                        foreach (var opt in cat.menuOptions)
-                        {
-                            var tr = Traverse.Create(opt);
-                            string desc = tr.Field<string>("Description").Value;
-                            Debug.Log($"[Qud-KR Cyber] Original desc: '{desc}'");
-                            
-                            // Extract cybernetic name from "name (slot)" format
-                            string cyberName = desc;
-                            if (!string.IsNullOrEmpty(desc))
-                            {
-                                int parenIdx = desc.LastIndexOf(" (");
-                                if (parenIdx > 0)
-                                {
-                                    cyberName = desc.Substring(0, parenIdx);
-                                }
-                            }
-                            Debug.Log($"[Qud-KR Cyber] Searching for: '{cyberName}'");
-                            
-                            // Try StructureTranslator for cybernetics (uses names key matching)
-                            if (!string.IsNullOrEmpty(cyberName) && StructureTranslator.TryGetData(cyberName, out var cyberData))
-                            {
-                                Debug.Log($"[Qud-KR Cyber] FOUND: '{cyberName}' -> '{cyberData.KoreanName}'");
-                                // Translate name (Description field format: "name (slot)")
-                                if (!string.IsNullOrEmpty(cyberData.KoreanName))
-                                {
-                                    // Preserve slot info: "Korean Name (slot)"
-                                    int parenIdx = desc.LastIndexOf(" (");
-                                    if (parenIdx > 0)
-                                    {
-                                        string slot = desc.Substring(parenIdx);
-                                        tr.Field<string>("Description").Value = cyberData.KoreanName + slot;
-                                    }
-                                    else
-                                    {
-                                        tr.Field<string>("Description").Value = cyberData.KoreanName;
-                                    }
-                                }
-                                
-                                // Translate LongDescription using combined cybernetic description
-                                string combinedDesc = cyberData.GetCombinedCyberneticDescription();
-                                if (!string.IsNullOrEmpty(combinedDesc))
-                                    opt.LongDescription = combinedDesc;
-                            }
-                            else
-                            {
-                                Debug.Log($"[Qud-KR Cyber] NOT FOUND: '{cyberName}'");
-                                // Fallback to old method
-                                if (LocalizationManager.TryGetAnyTerm(cyberName?.ToLowerInvariant(), out string tDesc, "cybernetics", "ui"))
-                                {
-                                    int parenIdx = desc.LastIndexOf(" (");
-                                    if (parenIdx > 0)
-                                    {
-                                        string slot = desc.Substring(parenIdx);
-                                        tr.Field<string>("Description").Value = tDesc + slot;
-                                    }
-                                    else
-                                    {
-                                        tr.Field<string>("Description").Value = tDesc;
-                                    }
-                                }
-
-                                if (!string.IsNullOrEmpty(opt.LongDescription))
-                                {
-                                    opt.LongDescription = ChargenTranslationUtils.TranslateLongDescription(opt.LongDescription, "cybernetics_desc", "ui");
-                                }
-                            }
-                        }
-                    }
                 }
             }
         }
