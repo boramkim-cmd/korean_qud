@@ -1,0 +1,21 @@
+{
+  "tutorial_joppa": {
+    "Joppa is a village. Everything you learned in the cave applies here too. Villages are like caves with very high roofs.": "조파는 마을입니다. 동굴에서 배운 모든 것이 여기서도 적용됩니다. 마을은 지붕이 매우 높은 동굴과 같습니다.",
+    
+    "You can see a list of points of interest by clicking this button or pressing ~CmdMoveToPointOfInterest.\n\nThe list will grow as you explore more of the map.": "이 버튼을 클릭하거나 ~CmdMoveToPointOfInterest를 눌러 관심 지점 목록을 볼 수 있습니다.\n\n맵을 더 탐험하면 목록이 늘어납니다.",
+    
+    "You can see a list of points of interest by pressing ~CmdMoveToPointOfInterest.\n\nThe list will grow as you explore more of the map.": "~CmdMoveToPointOfInterest를 눌러 관심 지점 목록을 볼 수 있습니다.\n\n맵을 더 탐험하면 목록이 늘어납니다.",
+    
+    "Choose Mehmet.": "메흐메트를 선택하세요.",
+    
+    "Quetzal! That's all for the tutorial, friend.\n\nWe just scratched the very tip of the surface. Quests, secrets, leveling up, physics, reputation, limbs... we leave that for you to discover.": "케찰! 이것으로 튜토리얼 끝입니다, 친구.\n\n우리는 표면의 아주 끝만 긁었을 뿐입니다. 퀘스트, 비밀, 레벨업, 물리학, 평판, 사지... 이것들은 당신이 발견하도록 남겨둡니다.",
+    
+    "You're ready to continue the journey on your own, but don't hesitate to play the tutorial again if you need a refresher.": "이제 혼자서 여정을 계속할 준비가 되었지만, 복습이 필요하면 언제든지 튜토리얼을 다시 플레이하세요.",
+    
+    "Live and drink.": "살아서 마시라.",
+    
+    "Whatever you choose, good luck, and feel free to return here for a refresher.\n\nLive and drink.": "무엇을 선택하든 행운을 빕니다. 복습이 필요하면 언제든지 여기로 돌아오세요.\n\n살아서 마시라.",
+    
+    "Oh… it looks like Warden Yrame killed Mehmet. Why, you ask?\n\nWell, named creatures who you can perform the water ritual with, like Mehmet, generate with dynamic faction relationships. In your game, Mehmet must have been hated by the Fellowship of Wardens for some reason.": "오... 수호자 이라메가 메흐메트를 죽인 것 같습니다. 왜냐고요?\n\n메흐메트처럼 물의 의식을 수행할 수 있는 이름 있는 생물들은 동적인 파벌 관계를 가지고 생성됩니다. 당신의 게임에서 메흐메트는 어떤 이유로 수호자 동맹에게 미움을 받았던 것 같습니다."
+  }
+}

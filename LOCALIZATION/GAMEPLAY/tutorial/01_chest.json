@@ -1,0 +1,31 @@
+{
+  "tutorial_chest": {
+    "This is the main gameplay stage. At the top of the screen are your attributes, HP, and XP.\n\nOn the right are action buttons, minimap, and the message log.\n\nAt the bottom is your ability hotbar.": "이것이 메인 게임플레이 화면입니다. 화면 상단에는 속성, HP, XP가 있습니다.\n\n오른쪽에는 액션 버튼, 미니맵, 메시지 로그가 있습니다.\n\n하단에는 능력 단축키가 있습니다.",
+    
+    "Let's explore this cave we've found ourselves in.": "우리가 발견한 이 동굴을 탐험해 봅시다.",
+    
+    "Let's explore further into the cave.": "동굴 안쪽을 더 탐험해 봅시다.",
+    
+    "Looks like there's a chest over at the end of the room. Let's walk over to it.": "방 끝에 상자가 있는 것 같습니다. 걸어가 봅시다.",
+    
+    "Looks like there's a chest over at the end of the room. Let's walk over to it.\n\n You can click ~AdventureNavMouseLeftClick the square you want to move to, or use the {{hotkey|arrow keys}} or {{hotkey|numpad.}}\n\nWith arrow keys, you can press {{hotkey|shift+arrow keys}} to move diagonally.": "방 끝에 상자가 있는 것 같습니다. 걸어가 봅시다.\n\n 이동하려는 칸을 ~AdventureNavMouseLeftClick 클릭하거나 {{hotkey|화살표 키}} 또는 {{hotkey|넘패드}}를 사용할 수 있습니다.\n\n화살표 키로는 {{hotkey|Shift+화살표 키}}를 눌러 대각선으로 이동할 수 있습니다.",
+    
+    "You can interact with objects you're next to. Open the chest.\n\nPress {{hotkey|~Accept}} or {{hotkey|~AdventureMouseContextAction}}": "바로 옆에 있는 물체와 상호작용할 수 있습니다. 상자를 열어보세요.\n\n{{hotkey|~Accept}}를 누르거나 {{hotkey|~AdventureMouseContextAction}}를 누르세요.",
+    
+    "You can interact with objects you're next to. Open the chest.\n\nPress {{hotkey|~Accept}}": "바로 옆에 있는 물체와 상호작용할 수 있습니다. 상자를 열어보세요.\n\n{{hotkey|~Accept}}를 누르세요.",
+    
+    "You can interact with objects you're next to. Open the chest.": "바로 옆에 있는 물체와 상호작용할 수 있습니다. 상자를 열어보세요.",
+    
+    "A torch. When it's nighttime or when you're underground, you need a torch equipped to see. Select it.": "횃불입니다. 밤이거나 지하에 있을 때 보려면 횃불을 장착해야 합니다. 선택하세요.",
+    
+    "Equip the dagger too.": "단검도 장착하세요.",
+    
+    "Huh, you destroyed the tutorial chest we were going to teach you how to use.\n\nGo ahead and pick of the torch and dagger from the floor.": "어, 우리가 사용법을 가르쳐주려던 튜토리얼 상자를 파괴했네요.\n\n바닥에서 횃불과 단검을 집어드세요.",
+    
+    "Before you move on, you should equip yourself from the nearby chest.": "계속 진행하기 전에 근처 상자에서 장비를 갖추어야 합니다.",
+    
+    "Keep moving down the passage...": "통로를 따라 계속 이동하세요...",
+    
+    "There's nothing you can interact with.": "상호작용할 수 있는 것이 없습니다."
+  }
+}

@@ -1,0 +1,39 @@
+{
+  "tutorial_surface": {
+    "We're on the surface now. We can walk the whole world this way, or we can access the worldmap to fast travel.": "이제 지표면에 있습니다. 이렇게 전 세계를 걸어다닐 수도 있고, 월드맵에 접속하여 빠른 이동을 할 수도 있습니다.",
+    
+    "But first, we've become hungry. We need to eat.": "그런데 먼저, 배가 고파졌습니다. 음식을 먹어야 합니다.",
+    
+    "Let's make camp. How about next to that beetle.": "야영을 합시다. 저기 딱정벌레 옆이 어때요.",
+    
+    "Make camp.": "야영 하기.",
+    
+    "Let's not be rude. Talk to the beetle.\n\nPress ~CmdUse or ~AdventureMouseContextAction": "무례하게 굴지 맙시다. 딱정벌레에게 말을 걸어보세요.\n\n~CmdUse 또는 ~AdventureMouseContextAction를 누르세요.",
+    
+    "Let's not be rude. Talk to the beetle.": "무례하게 굴지 맙시다. 딱정벌레에게 말을 걸어보세요.",
+    
+    "Not much of a talker. But not everyone is. Any non-hostile creature can be talked to.\n\nLet's see what the beetle has to trade.": "말이 많지 않네요. 하지만 모두가 그런 것은 아닙니다. 적대적이지 않은 생물이라면 대화를 시도할 수 있습니다.\n\n딱정벌레가 무엇을 거래하는지 봅시다.",
+    
+    "The beetle's inventory is on the left, and your inventory is on the right.\n\nThe beetle has some witchwood bark. That's useful — it heals you when you eat it. Let's trade for it.": "딱정벌레의 인벤토리는 왼쪽에, 당신의 인벤토리는 오른쪽에 있습니다.\n\n딱정벌레가 마녀나무 껍질을 가지고 있습니다. 유용합니다 — 먹으면 체력을 회복합니다. 교환합시다.",
+    
+    "The beetle has some witchwood bark. That's useful — it heals you when you eat it. Let's trade for it.\n\nPress ~CmdTradeAdd or ~AdventureMouseContextAction": "딱정벌레가 마녀나무 껍질을 가지고 있습니다. 유용합니다 — 먹으면 체력을 회복합니다. 교환합시다.\n\n~CmdTradeAdd 또는 ~AdventureMouseContextAction을 누르세요.",
+    
+    "We don't need this dagger any more, so we can trade it away.\n\nPress ~CmdTradeAdd or ~AdventureMouseContextAction": "이 단검은 더 이상 필요 없으니 교환할 수 있습니다.\n\n~CmdTradeAdd 또는 ~AdventureMouseContextAction을 누르세요.",
+    
+    "The trade is uneven, so we'll have to pony up some money.\n\nIn the salt-stippled ecosystem of Qud, {{B|fresh water}} is currency. You need to drink it, too, so don't spend it all.": "거래가 불균형하므로 돈을 더 내야 합니다.\n\nQud의 소금 얼룩진 생태계에서는 {{B|신선한 물}}이 화폐입니다. 마시기도 해야 하니 다 쓰지 마세요.",
+    
+    "Now to go to the world map. Try ascending again.\n\nYou can click this button or press ~CmdMoveU.": "이제 월드맵으로 가봅시다. 다시 올라가 보세요.\n\n이 버튼을 클릭하거나 ~CmdMoveU를 누르세요.",
+    
+    "Now to go to the world map. Try ascending again.\n\nPress ~CmdMoveU.": "이제 월드맵으로 가봅시다. 다시 올라가 보세요.\n\n~CmdMoveU를 누르세요.",
+    
+    "You can look around here just like on a local map.\n\nPress ~CmdLook": "여기서도 로컬 맵처럼 주변을 살펴볼 수 있습니다.\n\n~CmdLook을 누르세요.",
+    
+    "You can look around here just like on a local map.\n\nUse ~LookDirection": "여기서도 로컬 맵처럼 주변을 살펴볼 수 있습니다.\n\n~LookDirection을 사용하세요.",
+    
+    "There's a village to the north called Joppa. Let's go there.\n\nPress ~CmdMoveN or ~AdventureMouseContextAction.": "북쪽에 조파라는 마을이 있습니다. 가봅시다.\n\n~CmdMoveN 또는 ~AdventureMouseContextAction을 누르세요.",
+    
+    "There's a village to the north called Joppa. Let's go there.\n\nHold ~IndicateDirection towards the north and press ~Take A Step.": "북쪽에 조파라는 마을이 있습니다. 가봅시다.\n\n북쪽으로 ~IndicateDirection을 누른 채 ~Take A Step을 누르세요.",
+    
+    "You'll be able to explore the world freely after the tutorial.\n\nFor now, let's visit Joppa.": "튜토리얼 후에는 자유롭게 세계를 탐험할 수 있습니다.\n\n지금은 조파를 방문합시다."
+  }
+}

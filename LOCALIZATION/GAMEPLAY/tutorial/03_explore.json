@@ -1,0 +1,55 @@
+{
+  "tutorial_explore": {
+    "The whole game world is a series of contiguous maps. Our passage continues off screen. Let's follow it. Walk north.": "전체 게임 세계는 연속된 맵의 시리즈입니다. 통로가 화면 밖으로 이어집니다. 따라가 봅시다. 북쪽으로 걸어가세요.",
+    
+    "The entire gameworld is a series of contiguous maps. The passage leads off-screen. Let's follow it. Walk north.": "전체 게임 세계는 연속된 맵의 시리즈입니다. 통로가 화면 밖으로 이어집니다. 따라가 봅시다. 북쪽으로 걸어가세요.",
+    
+    "Let's keep moving. Keep exploring.": "계속 이동합시다. 계속 탐험하세요.",
+    
+    "There's stairs here! Walk to them.": "여기 계단이 있습니다! 걸어가세요.",
+    
+    "Ascend.\n\nYou can click this button or press ~CmdMoveU.": "올라가세요.\n\n이 버튼을 클릭하거나 ~CmdMoveU를 누르세요.",
+    
+    "Ascend.\n\nPress ~CmdMoveU.": "올라가세요.\n\n~CmdMoveU를 누르세요.",
+    
+    "Descend.\n\nPress ~CmdMoveD.": "내려가세요.\n\n~CmdMoveD를 누르세요.",
+    
+    "Descend.\n\nYou can click this button or press ~CmdMoveD.": "내려가세요.\n\n이 버튼을 클릭하거나 ~CmdMoveD를 누르세요.",
+    
+    "Select the Inventory && Equipment tab.\n\nYou can use ~Page Left and ~Page Right to navigate between tabs.": "인벤토리 && 장비 탭을 선택하세요.\n\n~Page Left와 ~Page Right를 사용해 탭 사이를 이동할 수 있습니다.",
+    
+    "This is your equipment and inventory screen. Equipped items on the left, and inventory on the right.": "이것은 장비 및 인벤토리 화면입니다. 왼쪽에 장착된 아이템, 오른쪽에 인벤토리가 있습니다.",
+    
+    "The battle axe has better penetration and deals more damage than your dagger.": "전투 도끼는 단검보다 관통력이 높고 더 많은 피해를 줍니다.",
+    
+    "Equip the battle axe since it's better than your dagger.": "단검보다 좋으니 전투 도끼를 장착하세요.",
+    
+    "A battle axe. Get it.\n\nHit ~CmdGet": "전투 도끼입니다. 집으세요.\n\n~CmdGet을 누르세요.",
+    
+    "A battle axe. Get it.\n\nHit ~CmdUse": "전투 도끼입니다. 집으세요.\n\n~CmdUse를 누르세요.",
+    
+    "Looks like there was some sort of battle to the north. Let's grab the gear that was left behind.": "북쪽에서 어떤 전투가 있었던 것 같습니다. 남겨진 장비를 집어듭시다.",
+    
+    "Keep moving forward.": "계속 앞으로 이동하세요.",
+    
+    "Let's take a look at the Equipment screen.\n\nPress ~CmdEquipment": "장비 화면을 살펴봅시다.\n\n~CmdEquipment를 누르세요.",
+    
+    "Let's take a look at the Equipment screen.\n\nPress ~CmdCharacter": "장비 화면을 살펴봅시다.\n\n~CmdCharacter를 누르세요.",
+    
+    "Equip the battle axe.": "전투 도끼를 장착하세요.",
+    
+    "There's something else over here.": "여기 다른 것이 있습니다.",
+    
+    "Sometimes squares have multiple items in them.\n\nTo see everything in a space, press ~CmdGetFrom and then choose a direction or press ~AdventureMouseInteractAll.": "때때로 한 칸에 여러 아이템이 있습니다.\n\n한 공간에 있는 모든 것을 보려면 ~CmdGetFrom을 누른 다음 방향을 선택하거나 ~AdventureMouseInteractAll을 누르세요.",
+    
+    "Whoever this was, they had some books. All books can be read in game.\n\nBooks with {{Y|white}} titles are generated and usually contain nonsense, but the nonsense can occasionally be useful.\n\nBooks with {{W|gold}} titles are more valuable: they are handwritten by in-world beings and contain interesting takes on the world.": "여기 누군가 책을 가지고 있었습니다. 게임에서 모든 책을 읽을 수 있습니다.\n\n{{Y|흰색}} 제목의 책은 생성된 것으로 보통 무의미한 내용이지만, 가끔 유용할 수 있습니다.\n\n{{W|금색}} 제목의 책은 더 가치가 있습니다: 게임 세계의 존재들이 손으로 쓴 것이며 세계에 대한 흥미로운 견해를 담고 있습니다.",
+    
+    "Get the books.": "책을 집으세요.",
+    
+    "This water is valuable too. Take it all.": "이 물도 가치가 있습니다. 모두 가져가세요.",
+    
+    "You can pick up things that are in the same space as you.\n\nPress ~CmdGet": "같은 공간에 있는 것들을 집을 수 있습니다.\n\n~CmdGet을 누르세요.",
+    
+    "You can pick up things that are in the same space as you.\n\nPress ~CmdUse": "같은 공간에 있는 것들을 집을 수 있습니다.\n\n~CmdUse를 누르세요."
+  }
+}

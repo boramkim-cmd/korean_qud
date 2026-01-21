@@ -1,0 +1,69 @@
+{
+  "tutorial_fight": {
+    "What's that??? Some sort of creature. Take a closer look at it.": "저게 뭐지??? 어떤 생물 같습니다. 더 자세히 살펴보세요.",
+    
+    "Oh! Another creature. Let's look at it more closely.\n\nWhen you come across something new, it's always a good idea to inspect it.": "오! 다른 생물이 있습니다. 더 자세히 살펴봅시다.\n\n새로운 것을 발견하면 항상 조사해보는 것이 좋습니다.",
+    
+    "Look view lets you look around and investigate your surroundings.\n\nMove the cursor to the snapjaw.": "살펴보기 모드에서는 주변을 둘러보고 조사할 수 있습니다.\n\n커서를 스냅조로 이동하세요.",
+    
+    "Look view lets you look around and investigate your surroundings.\n\nMove the cursor to the bear.": "살펴보기 모드에서는 주변을 둘러보고 조사할 수 있습니다.\n\n커서를 곰으로 이동하세요.",
+    
+    "Take a look at the snapjaw before we continue.": "계속하기 전에 스냅조를 살펴보세요.",
+    
+    "Let's take a look at the bear before we continue.": "계속하기 전에 곰을 살펴봅시다.",
+    
+    "Press ~CmdLook or ~AdventureMouseInteract the snapjaw.": "~CmdLook을 누르거나 스냅조를 ~AdventureMouseInteract하세요.",
+    
+    "Press ~CmdLook or ~AdventureMouseInteract the bear.": "~CmdLook을 누르거나 곰을 ~AdventureMouseInteract하세요.",
+    
+    "Use ~LookDirection to look at the snapjaw.": "~LookDirection을 사용해서 스냅조를 살펴보세요.",
+    
+    "Use ~LookDirection to look at the bear.": "~LookDirection을 사용해서 곰을 살펴보세요.",
+    
+    "It's a snapjaw scavenger.": "스냅조 청소부입니다.",
+    
+    "It's a bear.": "곰입니다.",
+    
+    "The snapjaw is hostile! Let's get ready for a fight.": "스냅조가 적대적입니다! 전투 준비를 합시다.",
+    
+    "The bear is wounded, but it's tough. This'll be a harder fight.": "곰이 부상당했지만 강합니다. 더 어려운 싸움이 될 것입니다.",
+    
+    "Take a step toward the snapjaw.": "스냅조를 향해 한 발짝 이동하세요.",
+    
+    "You can attack a hostile creature by moving into its square. This is called {{W|bump attacking}}.": "적대적인 생물이 있는 칸으로 이동하여 공격할 수 있습니다. 이것을 {{W|부딪쳐 공격}}이라고 합니다.",
+    
+    "Wait for the bear to take a step towards you.": "곰이 당신에게 한 발짝 다가올 때까지 기다리세요.",
+    
+    "Bump attack the bear.": "곰에게 부딪쳐 공격하세요.",
+    
+    "You missed, then the bear attacked and missed.\n\nAttack again.": "빗나갔고, 곰도 공격했지만 빗나갔습니다.\n\n다시 공격하세요.",
+    
+    "Let's try using an ability. Look at your ability bar. Let's start sprinting. You can click the button or hit the hotkey {{hotkey|~CmdAbility1}}.": "능력을 사용해 봅시다. 능력 바를 보세요. 달리기를 시작합시다. 버튼을 클릭하거나 단축키 {{hotkey|~CmdAbility1}}을 누르세요.",
+    
+    "Sprinting doubles your movespeed but ends if you make an attack. Let's sprint back down the corridor to put some distance between us and the bear.": "달리기는 이동 속도를 두 배로 높이지만 공격하면 종료됩니다. 복도로 달려가서 곰과 거리를 벌립시다.",
+    
+    "Every character has Sprint, but most of your abilities are determined by traits like your mutations. You have Freezing Ray, so you can shoot frost out of your hands. Select it.\n\nPress {{hotkey|~CmdAbility2}}": "모든 캐릭터는 달리기를 가지고 있지만, 대부분의 능력은 변이 같은 특성에 의해 결정됩니다. 당신은 냉동 광선이 있어서 손에서 서리를 쏠 수 있습니다. 선택하세요.\n\n{{hotkey|~CmdAbility2}}를 누르세요.",
+    
+    "Make sure the bear is in the path of your freezing ray.": "곰이 냉동 광선 경로에 있는지 확인하세요.",
+    
+    "It's quite dangerous to fight this bear in melee combat! Try backing away and using Freezing Ray.": "이 곰과 근접 전투를 하는 것은 매우 위험합니다! 뒤로 물러나서 냉동 광선을 사용해 보세요.",
+    
+    "Whew! You killed the snapjaw and earned some experience. It looks like they dropped a piece of equipment, too.\n\nPress ~CmdGetFrom and then choose a direction or press ~AdventureMouseInteract.": "휴! 스냅조를 죽이고 경험치를 얻었습니다. 장비도 떨어뜨린 것 같습니다.\n\n~CmdGetFrom을 누른 다음 방향을 선택하거나 ~AdventureMouseInteract를 누르세요.",
+    
+    "The bear is dead! Looks like it dropped something, too.": "곰이 죽었습니다! 무언가 떨어뜨린 것 같습니다.",
+    
+    "The bear is dead! Looks like it dropped something, too.\n\nBut first, let's use this opportunity to heal.": "곰이 죽었습니다! 무언가 떨어뜨린 것 같습니다.\n\n하지만 먼저, 이 기회에 치료합시다.",
+    
+    "You regain hitpoints naturally as turns pass. You can pass a few turns by waiting, or if there are no hostile creatures around, you can {{W|rest until healed}}.\n\nPress ~CmdWaitUntilHealed": "턴이 지나면 자연스럽게 체력이 회복됩니다. 대기하며 몇 턴을 보내거나, 주변에 적대적인 생물이 없다면 {{W|완전히 회복될 때까지 휴식}}할 수 있습니다.\n\n~CmdWaitUntilHealed를 누르세요.",
+    
+    "It's a chem cell. It can be used later to power other artifacts you find.": "화학 전지입니다. 나중에 발견하는 다른 유물에 전력을 공급하는 데 사용할 수 있습니다.",
+    
+    "You picked up the odd trinket automatically because it is an artifact.\n\nPress ~CmdInventory to investigate it.": "유물이기 때문에 이상한 장신구가 자동으로 주워졌습니다.\n\n~CmdInventory를 눌러 조사하세요.",
+    
+    "You picked up the odd trinket automatically because it is an artifact.\n\nPress ~CmdCharacter to investigate it.": "유물이기 때문에 이상한 장신구가 자동으로 주워졌습니다.\n\n~CmdCharacter를 눌러 조사하세요.",
+    
+    "This is an artifact beyond simple understanding. Try examining it.": "이것은 단순히 이해할 수 없는 유물입니다. 조사해 보세요.",
+    
+    "Inspect the bear.": "곰을 조사하세요."
+  }
+}
