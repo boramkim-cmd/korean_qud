@@ -316,12 +316,13 @@ namespace QudKRTranslation.Core
                         Debug.Log($"[Qud-KR] Inserted '{_koreanTMPFont.name}' into TMP_Settings.fallbackFontAssets.");
                     }
 
-                    // Set Korean font as default for consistent rendering
-                    if (TMP_Settings.defaultFontAsset != _koreanTMPFont)
-                    {
-                        Debug.Log($"[Qud-KR] Changing default font from '{TMP_Settings.defaultFontAsset?.name}' to '{_koreanTMPFont.name}'");
-                        TMP_Settings.defaultFontAsset = _koreanTMPFont;
-                    }
+                    // 주의: 한글 폰트를 기본 폰트로 설정하면 영어 글리프가 누락될 수 있음
+                    // 대신 fallback 방식만 사용하여 영어 폰트를 유지하고 한글만 fallback으로 처리
+                    // if (TMP_Settings.defaultFontAsset != _koreanTMPFont)
+                    // {
+                    //     Debug.Log($"[Qud-KR] Changing default font from '{TMP_Settings.defaultFontAsset?.name}' to '{_koreanTMPFont.name}'");
+                    //     TMP_Settings.defaultFontAsset = _koreanTMPFont;
+                    // }
 
                     // Add as fallback to all existing TMP font assets
                     // AND add existing fonts as fallback to Korean font (Bi-directional)

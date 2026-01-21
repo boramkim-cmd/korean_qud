@@ -507,11 +507,20 @@ namespace QudKRTranslation.Patches
                         if (tmpField?.Text == null) continue;
                         
                         var tmp = tmpField.Text;
-                        // ERR-012: 툴팁은 반드시 폰트 강제 교체 필요 (fallback 방식은 공백 표시됨)
-                        tmp.font = koreanFont;
+                        // 폰트 완전 교체가 아닌 fallback 추가 방식 사용
+                        // 영어 폰트를 유지하면서 한글만 fallback으로 처리
+                        if (tmp.font != null)
+                        {
+                            if (tmp.font.fallbackFontAssetTable == null)
+                                tmp.font.fallbackFontAssetTable = new System.Collections.Generic.List<TMPro.TMP_FontAsset>();
+                            if (!tmp.font.fallbackFontAssetTable.Contains(koreanFont))
+                            {
+                                tmp.font.fallbackFontAssetTable.Insert(0, koreanFont);
+                                applied++;
+                            }
+                        }
                         tmp.SetAllDirty();
                         tmp.ForceMeshUpdate();
-                        applied++;
                     }
                 }
                 
@@ -520,11 +529,19 @@ namespace QudKRTranslation.Patches
                 foreach (var tmp in allTmps)
                 {
                     if (tmp == null) continue;
-                    // ERR-012: 툴팁은 반드시 폰트 강제 교체 필요
-                    tmp.font = koreanFont;
+                    // 폰트 완전 교체가 아닌 fallback 추가 방식 사용
+                    if (tmp.font != null)
+                    {
+                        if (tmp.font.fallbackFontAssetTable == null)
+                            tmp.font.fallbackFontAssetTable = new System.Collections.Generic.List<TMPro.TMP_FontAsset>();
+                        if (!tmp.font.fallbackFontAssetTable.Contains(koreanFont))
+                        {
+                            tmp.font.fallbackFontAssetTable.Insert(0, koreanFont);
+                            applied++;
+                        }
+                    }
                     tmp.SetAllDirty();
                     tmp.ForceMeshUpdate();
-                    applied++;
                 }
                 
                 Debug.Log($"[Qud-KR][Tooltip] Applied Korean font to {applied} TMP components.");

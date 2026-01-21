@@ -38,49 +38,81 @@ namespace QudKRTranslation.Patches
         [HarmonyPostfix]
         static void SetText_Postfix(TooltipTrigger __instance)
         {
+            ApplyKoreanFontToTooltip(__instance);
+        }
+        
+        /// <summary>
+        /// 툴팁 팝업 GameObject의 모든 TMP 컴포넌트에 한글 폰트 fallback 적용
+        /// 주의: TooltipTrigger != Tooltip - 트리거와 팝업은 별도 계층
+        /// </summary>
+        public static void ApplyKoreanFontToTooltip(TooltipTrigger trigger)
+        {
             try
             {
-                var k = QudKRTranslation.Core.FontManager.GetKoreanTMPFont();
-                if (k == null)
+                var koreanFont = QudKRTranslation.Core.FontManager.GetKoreanTMPFont();
+                if (koreanFont == null)
                 {
-                    Debug.Log("[Qud-KR] Tooltip postfix: No Korean TMP font available yet.");
                     return;
                 }
 
-                var tmps = __instance.GetComponentsInChildren<TMPro.TextMeshProUGUI>(true);
-                int applied = 0;
-                foreach (var t in tmps)
+                // 1. 트리거의 Tooltip 프로퍼티에서 실제 팝업 GameObject 가져오기
+                var tooltip = trigger?.Tooltip;
+                if (tooltip?.GameObject == null)
                 {
-                    if (t == null) continue;
+                    return;
+                }
+
+                // 2. 툴팁 팝업 내부의 모든 TMP 컴포넌트에 한글 폰트 fallback 적용
+                var tmps = tooltip.GameObject.GetComponentsInChildren<TMPro.TextMeshProUGUI>(true);
+                int applied = 0;
+                foreach (var tmp in tmps)
+                {
+                    if (tmp == null) continue;
                     try
                     {
-                        if (t.font != null)
+                        if (tmp.font != null)
                         {
-                            if (t.font.fallbackFontAssetTable == null)
-                                t.font.fallbackFontAssetTable = new System.Collections.Generic.List<TMPro.TMP_FontAsset>();
-                            if (!t.font.fallbackFontAssetTable.Contains(k))
+                            if (tmp.font.fallbackFontAssetTable == null)
+                                tmp.font.fallbackFontAssetTable = new System.Collections.Generic.List<TMPro.TMP_FontAsset>();
+                            if (!tmp.font.fallbackFontAssetTable.Contains(koreanFont))
                             {
-                                t.font.fallbackFontAssetTable.Add(k);
+                                tmp.font.fallbackFontAssetTable.Insert(0, koreanFont);
                                 applied++;
                             }
                         }
                         else
                         {
-                            t.font = k;
+                            tmp.font = koreanFont;
                             applied++;
                         }
-                        t.font = t.font; // trigger refresh
-                        t.SetAllDirty();
+                        tmp.SetAllDirty();
                     }
                     catch { }
                 }
 
-                Debug.Log($"[Qud-KR] Tooltip postfix applied Korean fallback '{k.name}' to {applied} TMP components.");
+                if (applied > 0)
+                {
+                    Debug.Log($"[Qud-KR] Tooltip: Applied Korean font to {applied} TMP components in popup.");
+                }
             }
             catch (Exception ex)
             {
-                Debug.LogWarning($"[Qud-KR] Tooltip postfix exception: {ex.Message}");
+                Debug.LogWarning($"[Qud-KR] Tooltip font exception: {ex.Message}");
             }
+        }
+    }
+    
+    /// <summary>
+    /// TooltipTrigger.ShowManually 패치 - 툴팁 표시 시점에 한글 폰트 적용
+    /// </summary>
+    [HarmonyPatch(typeof(TooltipTrigger))]
+    public static class Tooltip_ShowManually_Patch
+    {
+        [HarmonyPatch(nameof(TooltipTrigger.ShowManually), new System.Type[] { typeof(bool), typeof(UnityEngine.Vector3), typeof(bool), typeof(bool) })]
+        [HarmonyPostfix]
+        static void ShowManually_Postfix(TooltipTrigger __instance)
+        {
+            Tooltip_Patch.ApplyKoreanFontToTooltip(__instance);
         }
     }
 }
