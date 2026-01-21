@@ -1431,16 +1431,42 @@ namespace QudKRTranslation.Patches
                 
                 string trimmed = line.Trim();
                 
+                // 0. Handle cybernetics format: "name (Slot)" -> extract name and translate
+                var cyberMatch = System.Text.RegularExpressions.Regex.Match(trimmed, @"^(.+?)\s*\((\w+)\)$");
+                if (cyberMatch.Success)
+                {
+                    string cyberName = cyberMatch.Groups[1].Value.Trim();
+                    string slot = cyberMatch.Groups[2].Value;
+                    
+                    // Try StructureTranslator first (cybernetics)
+                    if (StructureTranslator.TryGetData(cyberName, out var cyberData) && !string.IsNullOrEmpty(cyberData.KoreanName))
+                    {
+                        string slotKo = TranslateSlot(slot);
+                        lines[i] = cyberData.KoreanName + " (" + slotKo + ")";
+                        changed = true;
+                        continue;
+                    }
+                    // Try direct lookup
+                    else if (LocalizationManager.TryGetAnyTerm(cyberName, out string tCyber, "cybernetics", "chargen_ui") ||
+                             LocalizationManager.TryGetAnyTerm(cyberName.ToLowerInvariant(), out tCyber, "cybernetics", "chargen_ui"))
+                    {
+                        string slotKo = TranslateSlot(slot);
+                        lines[i] = tCyber + " (" + slotKo + ")";
+                        changed = true;
+                        continue;
+                    }
+                }
+                
                 // 1. Try direct translation from multiple categories
                 if (LocalizationManager.TryGetAnyTerm(trimmed, out string translated, 
-                    "mutation", "chargen_proto", "chargen_ui", "status", "common"))
+                    "mutation", "cybernetics", "chargen_proto", "chargen_ui", "status", "common"))
                 {
                     lines[i] = translated;
                     changed = true;
                     continue;
                 }
                 
-                // 2. Try StructureTranslator for mutation/genotype/subtype names
+                // 2. Try StructureTranslator for mutation/genotype/subtype/cybernetics names
                 if (StructureTranslator.TryGetData(trimmed, out var data) && !string.IsNullOrEmpty(data.KoreanName))
                 {
                     lines[i] = data.KoreanName;
@@ -1471,7 +1497,7 @@ namespace QudKRTranslation.Patches
                 
                 // 4. Apply general TranslateLongDescription for remaining patterns (attribute:value, etc.)
                 string longTranslated = ChargenTranslationUtils.TranslateLongDescription(trimmed, 
-                    "mutation", "chargen_proto", "chargen_ui", "chargen_attributes", "status", "common");
+                    "mutation", "cybernetics", "chargen_proto", "chargen_ui", "chargen_attributes", "status", "common");
                 if (longTranslated != trimmed)
                 {
                     lines[i] = longTranslated;
@@ -1480,6 +1506,19 @@ namespace QudKRTranslation.Patches
             }
             
             return changed ? string.Join("\n", lines) : original;
+        }
+        
+        /// <summary>
+        /// 슬롯 이름 번역 (Head, Feet, Body 등)
+        /// </summary>
+        private static string TranslateSlot(string slot)
+        {
+            if (LocalizationManager.TryGetAnyTerm(slot, out string translated, "chargen_ui", "inventory", "common") ||
+                LocalizationManager.TryGetAnyTerm(slot.ToLowerInvariant(), out translated, "chargen_ui", "inventory", "common"))
+            {
+                return translated;
+            }
+            return slot;
         }
         
         [HarmonyPatch(nameof(QudBuildSummaryModuleWindow.GetKeyMenuBar))]
