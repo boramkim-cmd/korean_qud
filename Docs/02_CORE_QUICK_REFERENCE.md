@@ -1,6 +1,6 @@
 # 🚀 프로젝트 빠른 참조 (자동 생성)
 
-**생성**: 2026-01-22 08:31:50
+**생성**: 2026-01-22 08:40:33
 
 ## ⭐ 핵심 경로
 ```
@@ -207,6 +207,7 @@ LOCALIZATION/**/*.json              → 용어집 데이터
 - `glossary_worldgen.json`: 40개 항목
 - `locations.json`: 22개 항목
 - `melee_weapons.json`: 117개 항목
+- `missile_weapons.json`: 133개 항목
 - `modes.json`: 6개 항목
 - `npcs_joppa.json`: 38개 항목
 - `options.json`: 454개 항목
@@ -215,9 +216,11 @@ LOCALIZATION/**/*.json              → 용어집 데이터
 - `terms.json`: 35개 항목
 - `tier1_animals.json`: 55개 항목
 - `tier1_humanoids.json`: 43개 항목
+- `tier2.json`: 46개 항목
 - `tools.json`: 51개 항목
 - `tutorial.json`: 21개 항목
 - `ui.json`: 8개 항목
+- `unknown.json`: 94개 항목
 
 ## ⛔ 절대 금지 (DO NOT)
 ```

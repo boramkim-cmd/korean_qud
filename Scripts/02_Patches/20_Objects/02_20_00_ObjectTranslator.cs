@@ -134,6 +134,67 @@ namespace QudKorean.Objects
                 }
             }
             
+            // Corpse pattern handling: "{creature} corpse" -> "{creature_ko} 시체"
+            if (TryTranslateCorpse(originalName, out translated))
+            {
+                _displayNameCache[cacheKey] = translated;
+                return true;
+            }
+            
+            return false;
+        }
+        
+        /// <summary>
+        /// Attempts to translate corpse names using pattern: "{creature} corpse" -> "{creature_ko} 시체"
+        /// </summary>
+        private static bool TryTranslateCorpse(string originalName, out string translated)
+        {
+            translated = null;
+            string stripped = StripColorTags(originalName);
+            
+            // Check if it ends with "corpse"
+            if (!stripped.EndsWith(" corpse", StringComparison.OrdinalIgnoreCase))
+                return false;
+            
+            // Extract creature part
+            string creaturePart = stripped.Substring(0, stripped.Length - " corpse".Length);
+            if (string.IsNullOrEmpty(creaturePart))
+                return false;
+            
+            // Try to find creature translation
+            foreach (var kvp in _creatureCache)
+            {
+                foreach (var namePair in kvp.Value.Names)
+                {
+                    if (namePair.Key.Equals(creaturePart, StringComparison.OrdinalIgnoreCase))
+                    {
+                        translated = $"{namePair.Value} 시체";
+                        return true;
+                    }
+                }
+            }
+            
+            // Fallback: check common species names
+            string[] commonSpecies = new[]
+            {
+                "bear", "곰", "bat", "박쥐", "pig", "돼지", "boar", "멧돼지",
+                "baboon", "비비", "crab", "게", "spider", "거미", "beetle", "딱정벌레",
+                "ant", "개미", "fish", "물고기", "worm", "벌레", "bird", "새",
+                "dog", "개", "cat", "고양이", "snapjaw", "스냅조", "goatfolk", "염소인",
+                "dromad", "드로마드", "hindren", "힌드렌", "leech", "거머리",
+                "glowmoth", "발광나방", "salthopper", "소금메뚜기", "knollworm", "구릉지렁이",
+                "electrofuge", "전기거미", "eyeless crab", "눈먼 게"
+            };
+            
+            for (int i = 0; i < commonSpecies.Length; i += 2)
+            {
+                if (creaturePart.Equals(commonSpecies[i], StringComparison.OrdinalIgnoreCase))
+                {
+                    translated = $"{commonSpecies[i + 1]} 시체";
+                    return true;
+                }
+            }
+            
             return false;
         }
         
