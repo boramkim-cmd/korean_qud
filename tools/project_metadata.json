@@ -1,5 +1,5 @@
 {
-  "generated": "2026-01-21 15:49:53",
+  "generated": "2026-01-21 16:11:54",
   "scripts": {
     "Scripts/99_Utils/99_00_03_StructureTranslator.cs": {
       "classification": "Util",
@@ -534,10 +534,10 @@
       "modified": "2026-01-19"
     },
     "01_CORE_PROJECT_INDEX.md": {
-      "modified": "2026-01-20"
+      "modified": "2026-01-21"
     },
     "02_CORE_QUICK_REFERENCE.md": {
-      "modified": "2026-01-20"
+      "modified": "2026-01-21"
     }
   },
   "localization": {
@@ -554,7 +554,7 @@
         "status",
         "ui"
       ],
-      "entries": 161
+      "entries": 169
     },
     "display.json": {
       "categories": [
@@ -598,6 +598,12 @@
         "factions"
       ],
       "entries": 53
+    },
+    "ui.json": {
+      "categories": [
+        "chargen_ui"
+      ],
+      "entries": 8
     },
     "stats.json": {
       "categories": [

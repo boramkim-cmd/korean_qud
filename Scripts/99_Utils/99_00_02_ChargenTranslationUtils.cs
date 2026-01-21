@@ -170,6 +170,24 @@ namespace QudKRTranslation.Utils
                     }
                 }
                 
+                // 4.3. Build Summary Attribute pattern: "<Attribute>: <Number>" (e.g., "Strength: 16")
+                // Format: "속성: 수치" (keep same format for readability)
+                var attrColonMatch = Regex.Match(contentToTranslate, @"^([A-Za-z]+):\s*(\d+)$");
+                if (attrColonMatch.Success)
+                {
+                    string attrName = attrColonMatch.Groups[1].Value;
+                    string attrValue = attrColonMatch.Groups[2].Value;
+                    
+                    if (TranslationEngine.TryTranslate(attrName, out string translatedAttr, scopes) ||
+                        TranslationEngine.TryTranslate(attrName.ToLowerInvariant(), out translatedAttr, scopes) ||
+                        LocalizationManager.TryGetAnyTerm(attrName.ToLowerInvariant(), out translatedAttr, "status", "chargen_attributes", "common"))
+                    {
+                        lines[i] = prefix + uiPrefix + bulletPrefix + translatedAttr + ": " + attrValue + uiSuffix;
+                        changed = true;
+                        continue;
+                    }
+                }
+
                 // 4.5. Reverse stat pattern: "<Text> +<Number>" (e.g., "Toughness +2")
                 // Same format transformation for consistency
                 var reverseMatch = Regex.Match(contentToTranslate, @"^(.+)\s+([+-]?\d+)$");

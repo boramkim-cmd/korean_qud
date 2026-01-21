@@ -1399,6 +1399,7 @@ namespace QudKRTranslation.Patches
             var list = __result.ToList();
             foreach (var block in list)
             {
+                // Translate Title (Attributes, Mutations, etc.)
                 if (LocalizationManager.TryGetAnyTerm(block.Title?.ToLowerInvariant(), out string tTitle, "chargen_ui", "ui"))
                     block.Title = tTitle;
 
@@ -1406,10 +1407,87 @@ namespace QudKRTranslation.Patches
                 string desc = tr.Field<string>("Description").Value;
                 if (!string.IsNullOrEmpty(desc))
                 {
-                    tr.Field<string>("Description").Value = ChargenTranslationUtils.TranslateLongDescription(desc, "mutation", "mutation_desc", "powers", "power", "skill", "skill_desc", "cybernetics", "cybernetics_desc", "chargen_proto", "chargen_location", "ui", "common");
+                    // Translate each line - handles Attributes (Strength: 16), Mutations (name), Body info
+                    tr.Field<string>("Description").Value = TranslateBuildSummaryDescription(desc);
                 }
             }
             __result = list;
+        }
+        
+        /// <summary>
+        /// Build Summary Description 번역 - 속성, 변이, 캐릭터 정보 포함
+        /// </summary>
+        private static string TranslateBuildSummaryDescription(string original)
+        {
+            if (string.IsNullOrEmpty(original)) return original;
+            
+            var lines = original.Split('\n');
+            bool changed = false;
+            
+            for (int i = 0; i < lines.Length; i++)
+            {
+                string line = lines[i];
+                if (string.IsNullOrWhiteSpace(line)) continue;
+                
+                string trimmed = line.Trim();
+                
+                // 1. Try direct translation from multiple categories
+                if (LocalizationManager.TryGetAnyTerm(trimmed, out string translated, 
+                    "mutation", "chargen_proto", "chargen_ui", "status", "common"))
+                {
+                    lines[i] = translated;
+                    changed = true;
+                    continue;
+                }
+                
+                // 2. Try StructureTranslator for mutation/genotype/subtype names
+                if (StructureTranslator.TryGetData(trimmed, out var data) && !string.IsNullOrEmpty(data.KoreanName))
+                {
+                    lines[i] = data.KoreanName;
+                    changed = true;
+                    continue;
+                }
+                
+                // 3. Handle "MutationNamex2" format (e.g., "Stingerx2")
+                var countMatch = System.Text.RegularExpressions.Regex.Match(trimmed, @"^(.+)x(\d+)$");
+                if (countMatch.Success)
+                {
+                    string mutName = countMatch.Groups[1].Value;
+                    string count = countMatch.Groups[2].Value;
+                    
+                    if (StructureTranslator.TryGetData(mutName, out var mutData) && !string.IsNullOrEmpty(mutData.KoreanName))
+                    {
+                        lines[i] = mutData.KoreanName + "x" + count;
+                        changed = true;
+                        continue;
+                    }
+                    else if (LocalizationManager.TryGetAnyTerm(mutName, out string tMutName, "mutation", "chargen_ui"))
+                    {
+                        lines[i] = tMutName + "x" + count;
+                        changed = true;
+                        continue;
+                    }
+                }
+                
+                // 4. Apply general TranslateLongDescription for remaining patterns (attribute:value, etc.)
+                string longTranslated = ChargenTranslationUtils.TranslateLongDescription(trimmed, 
+                    "mutation", "chargen_proto", "chargen_ui", "chargen_attributes", "status", "common");
+                if (longTranslated != trimmed)
+                {
+                    lines[i] = longTranslated;
+                    changed = true;
+                }
+            }
+            
+            return changed ? string.Join("\n", lines) : original;
+        }
+        
+        [HarmonyPatch(nameof(QudBuildSummaryModuleWindow.GetKeyMenuBar))]
+        [HarmonyPostfix]
+        static void GetKeyMenuBar_Postfix(ref IEnumerable<MenuOption> __result)
+        {
+            // Translate bottom menu bar options (Re-Randomize, Export Code, Save Build)
+            __result = ChargenTranslationUtils.TranslateMenuOptions(__result);
         }
     }
 
