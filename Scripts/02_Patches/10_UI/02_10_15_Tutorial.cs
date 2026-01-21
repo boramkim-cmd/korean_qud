@@ -53,7 +53,6 @@ namespace QudKRTranslation.Patches
             if (tutorialScope.TryGetValue(originalText, out string directResult))
             {
                 translated = directResult;
-                Debug.Log($"[Qud-KR][Tutorial] Direct match: '{originalText.Substring(0, Math.Min(40, originalText.Length))}...'");
                 return true;
             }
             
@@ -62,19 +61,59 @@ namespace QudKRTranslation.Patches
             if (tutorialScope.TryGetValue(trimmed, out string trimmedResult))
             {
                 translated = trimmedResult;
-                Debug.Log($"[Qud-KR][Tutorial] Trimmed match: '{trimmed.Substring(0, Math.Min(40, trimmed.Length))}...'");
                 return true;
             }
             
-            // 3차 시도: TranslationUtils (태그 보존 번역)
+            // 3차 시도: 문장 단위 분할 번역 (줄바꿈 기준)
+            if (originalText.Contains("\n"))
+            {
+                string[] paragraphs = originalText.Split(new[] { "\n\n" }, StringSplitOptions.None);
+                bool anyTranslated = false;
+                
+                for (int i = 0; i < paragraphs.Length; i++)
+                {
+                    string para = paragraphs[i].Trim();
+                    if (string.IsNullOrEmpty(para)) continue;
+                    
+                    // 문단 전체 매칭
+                    if (tutorialScope.TryGetValue(para, out string paraResult))
+                    {
+                        paragraphs[i] = paraResult;
+                        anyTranslated = true;
+                    }
+                    // 문장 단위 분할
+                    else if (para.Contains("\n"))
+                    {
+                        string[] lines = para.Split('\n');
+                        for (int j = 0; j < lines.Length; j++)
+                        {
+                            string line = lines[j].Trim();
+                            if (tutorialScope.TryGetValue(line, out string lineResult))
+                            {
+                                lines[j] = lineResult;
+                                anyTranslated = true;
+                            }
+                        }
+                        paragraphs[i] = string.Join("\n", lines);
+                    }
+                }
+                
+                if (anyTranslated)
+                {
+                    translated = string.Join("\n\n", paragraphs);
+                    Debug.Log($"[Qud-KR][Tutorial] Paragraph match: '{originalText.Substring(0, Math.Min(40, originalText.Length))}...'");
+                    return true;
+                }
+            }
+            
+            // 4차 시도: TranslationUtils (태그 보존 번역)
             if (TranslationUtils.TryTranslatePreservingTags(originalText, out string result, tutorialScope))
             {
                 translated = result;
-                Debug.Log($"[Qud-KR][Tutorial] Utils match: '{originalText.Substring(0, Math.Min(40, originalText.Length))}...'");
                 return true;
             }
             
-            // 디버그: 첫 50자 출력
+            // 디버그 로그 (매칭 실패 시)
             Debug.Log($"[Qud-KR][Tutorial] No match: '{originalText.Substring(0, Math.Min(60, originalText.Length))}...'");
             return false;
         }
