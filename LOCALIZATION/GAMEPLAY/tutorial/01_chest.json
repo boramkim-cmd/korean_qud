@@ -6,7 +6,13 @@
     
     "Let's look at the leather armor you picked up.": "방금 집은 가죽 갑옷을 살펴봅시다.",
     
+    "Let's look at the leather armor you picked up.\n\nArmor has an armor value ({{b|♦}}{{y|2}}) and a dodge value ({{K|○}}{{y|0}})\n\nBoth help you avoid damage.": "방금 집은 가죽 갑옷을 살펴봅시다.\n\n갑옷에는 방어 수치 ({{b|♦}}{{y|2}})와 회피 수치 ({{K|○}}{{y|0}})가 있습니다.\n\n둘 다 피해를 피하는 데 도움이 됩니다.",
+    
     "You can also equip items by dragging them from your inventory to your equipment.": "인벤토리에서 장비 슬롯으로 드래그하여 아이템을 장착할 수도 있습니다.",
+    
+    "You can also equip items by dragging them from your inventory to their equipment slot.\n\nBy the way, you have several other tabs in your character sheet. Feel free to explore them later.": "인벤토리에서 장비 슬롯으로 드래그하여 아이템을 장착할 수도 있습니다.\n\n참고로, 캐릭터 시트에는 다른 탭들도 있습니다. 나중에 자유롭게 살펴보세요.",
+    
+    "Huh, you somehow destroyed the leather armor. Let's move on.": "어, 어떻게든 가죽 갑옷을 파괴했네요. 계속 진행합시다.",
     "This is the main gameplay stage. At the top of the screen are your attributes, HP, and XP.\n\nOn the right are action buttons, minimap, and the message log.\n\nAt the bottom is your ability hotbar.": "이것이 메인 게임플레이 화면입니다. 화면 상단에는 속성, HP, XP가 있습니다.\n\n오른쪽에는 액션 버튼, 미니맵, 메시지 로그가 있습니다.\n\n하단에는 능력 단축키가 있습니다.",
     
     "Let's explore this cave we've found ourselves in.": "우리가 발견한 이 동굴을 탐험해 봅시다.",
