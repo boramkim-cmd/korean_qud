@@ -487,8 +487,7 @@ namespace QudKRTranslation.Core
         }
 
         // Apply Korean font to a single TMP text component
-        // FORCE REPLACE: 모든 TMP 컴포넌트의 폰트를 한국어 폰트로 강제 교체
-        // 이렇게 해야 영어 텍스트도 Pretendard 폰트로 표시됨
+        // MODIFIED: 폰트 강제 교체 대신 Fallback으로 추가하여 영문은 원본 폰트 사용, 한글은 Fallback 폰트 사용
         public static void ApplyFallbackToTMPComponent(TMPro.TMP_Text txt, bool forceLog = false)
         {
             if (txt == null) return;
@@ -499,35 +498,35 @@ namespace QudKRTranslation.Core
             {
                 var currentFont = txt.font;
                 
-                // 아이콘/심볼 폰트는 교체하지 않음
-                if (currentFont != null)
+                // 1. 폰트가 아예 지정되지 않은 경우에만 한글 폰트로 설정
+                if (currentFont == null)
+                {
+                    txt.font = k;
+                    if (forceLog) Debug.Log($"[Qud-KR][FontApply] null -> {k.name} on {txt.gameObject.name} (Primary)");
+                }
+                // 2. 이미 한글 폰트인 경우 패스
+                else if (currentFont == k)
+                {
+                    // 패스
+                }
+                // 3. 다른 폰트(SourceCodePro 등)가 설정된 경우: Fallback에 한글 폰트 추가
+                else
                 {
                     string fname = currentFont.name;
-                    if (fname.Contains("Filled") || 
-                        fname.Contains("Outlined") || 
-                        fname.Contains("Icons") ||
-                        fname.Contains("Cursor") ||
-                        fname.Contains("Dingbats") ||
-                        fname.Contains("PC-"))  // 컨트롤러 아이콘 폰트
+                    
+                    // Fallback 리스트 초기화
+                    if (currentFont.fallbackFontAssetTable == null)
+                        currentFont.fallbackFontAssetTable = new System.Collections.Generic.List<TMP_FontAsset>();
+                    
+                    // 한글 폰트가 없으면 추가 (우선순위 높게 0번에 추가)
+                    if (!currentFont.fallbackFontAssetTable.Contains(k))
                     {
-                        // 아이콘 폰트는 fallback만 추가
-                        if (currentFont.fallbackFontAssetTable == null)
-                            currentFont.fallbackFontAssetTable = new System.Collections.Generic.List<TMP_FontAsset>();
-                        if (!currentFont.fallbackFontAssetTable.Contains(k))
-                            currentFont.fallbackFontAssetTable.Insert(0, k);
-                        return;
+                        currentFont.fallbackFontAssetTable.Insert(0, k);
+                        if (forceLog) Debug.Log($"[Qud-KR][FontApply] Added fallback {k.name} to {fname} on {txt.gameObject.name}");
                     }
                 }
                 
-                // 폰트 강제 교체 (영어 + 한글 모두 Pretendard로 통일)
-                if (txt.font != k)
-                {
-                    txt.font = k;
-                    if (forceLog) Debug.Log($"[Qud-KR][FontApply] {currentFont?.name ?? "null"} -> {k.name} on {txt.gameObject.name}");
-                }
-                
                 // 한글 폰트 클리핑 방지: extraPadding 활성화
-                // 한글 글리프가 위아래로 잘리는 문제 해결
                 if (!txt.extraPadding)
                 {
                     txt.extraPadding = true;
@@ -743,16 +742,14 @@ namespace QudKRTranslation.Core
         {
             if (!FontManager.IsFontLoaded) return;
             
-            var krFont = FontManager.GetKoreanTMPFont();
-            if (krFont == null) return;
-            
             try
             {
                 // UITextSkin 내부의 TMP 컴포넌트에 접근
                 var tmp = __instance.GetComponent<TMPro.TextMeshProUGUI>();
-                if (tmp != null && tmp.font != krFont)
+                if (tmp != null)
                 {
-                    tmp.font = krFont;
+                    // 직접 할당 대신 안전한 Fallback 적용 메서드 사용
+                    FontManager.ApplyFallbackToTMPComponent(tmp);
                     tmp.SetAllDirty();
                 }
             }
