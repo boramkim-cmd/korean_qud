@@ -1,12 +1,60 @@
 # Caves of Qud Korean Localization - Changelog
 
-> **Version**: 3.7 | **Last Updated**: 2026-01-22
+> **Version**: 3.8 | **Last Updated**: 2026-01-22 08:08:46
 
 > [!NOTE]
 > **AI Agent**: This document is for completion records. Read `00_PRINCIPLES.md` first!
 
 Official changelog for all completed work.
 Completed items from `03_TODO.md` are moved here.
+
+---
+
+## [2026-01-22 08:08] - Object Localization System Phase 0-1 Implementation
+
+### Summary
+Implemented isolated Object (Creature/Item) Localization System Phase 0-1.
+Complete separation from existing CharacterCreation/Mutation translation infrastructure.
+
+### ✅ Code Implementation
+
+**Verified Files (already existed, validated)**:
+- `Scripts/02_Patches/20_Objects/02_20_00_ObjectTranslator.cs` - Isolated JSON loader + cache
+- `Scripts/02_Patches/20_Objects/02_20_01_DisplayNamePatch.cs` - `GetDisplayNameEvent.GetFor()` patch (fixed XRL.Core namespace)
+- `Scripts/02_Patches/20_Objects/02_20_02_DescriptionPatch.cs` - Description patches
+- `Scripts/02_Patches/20_Objects/02_20_99_DebugWishes.cs` - `kr:reload`, `kr:check`, `kr:untranslated`
+
+### ✅ JSON Data Created
+
+**Tutorial Creatures** (`LOCALIZATION/OBJECTS/creatures/tutorial.json`):
+- TutorialSnapjaw → 스냅조 청소부
+- TutorialBear → 곰
+- TutorialClockworkBeetlePariah → 클락워크 비틀 - 동족의 패리아
+- Base versions (Bear, Snapjaw Scavenger, ClockworkBeetle)
+
+**Tutorial Items** (`LOCALIZATION/OBJECTS/items/tutorial.json`):
+- TutorialDagger → {{w|청동}} 단검
+- TutorialTorch → 횃불
+- TutorialLeatherArmor → 가죽 갑옷
+- TutorialChemCell → {{c|화학 전지}}
+- TutorialBattleAxe → {{w|청동}} 전투 도끼
+- TutorialHalfFullWaterskin → 물주머니
+- Base item versions included
+
+**Common Terms**:
+- `creatures/_common.json` - species, corpse terms, classes
+- `items/_common.json` - materials, prefixes, suffixes, item types
+
+### Bug Fix
+- Fixed `XRLCore` → `XRL.Core.XRLCore` namespace in DisplayNamePatch.cs
+
+### Testing
+- Build: ✅ Success (1 warning - unrelated)
+- Deploy: ✅ Success
+
+### Next Steps
+- Phase 2: Basic equipment (melee_weapons.json, armor.json)
+- Phase 3: Joppa area creatures and NPCs
 
 ---
 

@@ -42,8 +42,13 @@ If something breaks, delete these folders to restore:
 1. `Scripts/02_Patches/20_Objects/`
 2. `LOCALIZATION/OBJECTS/`
 
-## Version
+## Version History
 
-- Version: 2.0
-- Created: 2026-01-22
-- See: `Docs/en/guides/OBJECT_LOCALIZATION_PLAN.md`
+| Version | Date | Time | Changes |
+|---------|------|------|----------|
+| 2.0 | 2026-01-22 | 08:08 | Phase 0-1 implemented, tutorial JSON files created |
+| 1.0 | 2026-01-22 | - | Initial structure created |
+
+**Last Modified**: 2026-01-22 08:08:46
+
+See: `Docs/en/guides/OBJECT_LOCALIZATION_PLAN.md`

@@ -1,5 +1,7 @@
 # Object Translations
 
+> **Last Modified**: 2026-01-22 08:08:46
+
 This folder contains translation data for creatures and items.
 
 ## ⚠️ ISOLATION POLICY
