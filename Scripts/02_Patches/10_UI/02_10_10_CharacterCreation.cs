@@ -1431,27 +1431,28 @@ namespace QudKRTranslation.Patches
                 
                 string trimmed = line.Trim();
                 
-                // 0. Handle cybernetics format: "name (Slot)" -> extract name and translate
-                var cyberMatch = System.Text.RegularExpressions.Regex.Match(trimmed, @"^(.+?)\s*\((\w+)\)$");
-                if (cyberMatch.Success)
+                // 0. Handle format with parentheses: "name (Variant/Slot)" -> extract name and translate
+                // Used by both cybernetics "name (Slot)" and mutations with variants "Amphibious (D)"
+                var parenMatch = System.Text.RegularExpressions.Regex.Match(trimmed, @"^(.+?)\s*\(([^)]+)\)$");
+                if (parenMatch.Success)
                 {
-                    string cyberName = cyberMatch.Groups[1].Value.Trim();
-                    string slot = cyberMatch.Groups[2].Value;
+                    string itemName = parenMatch.Groups[1].Value.Trim();
+                    string parenContent = parenMatch.Groups[2].Value;
                     
-                    // Try StructureTranslator first (cybernetics)
-                    if (StructureTranslator.TryGetData(cyberName, out var cyberData) && !string.IsNullOrEmpty(cyberData.KoreanName))
+                    // Try StructureTranslator first (mutations, cybernetics)
+                    if (StructureTranslator.TryGetData(itemName, out var itemData) && !string.IsNullOrEmpty(itemData.KoreanName))
                     {
-                        string slotKo = TranslateSlot(slot);
-                        lines[i] = cyberData.KoreanName + " (" + slotKo + ")";
+                        string parenKo = TranslateSlot(parenContent); // Reuse slot translation for variants too
+                        lines[i] = itemData.KoreanName + " (" + parenKo + ")";
                         changed = true;
                         continue;
                     }
-                    // Try direct lookup
-                    else if (LocalizationManager.TryGetAnyTerm(cyberName, out string tCyber, "cybernetics", "chargen_ui") ||
-                             LocalizationManager.TryGetAnyTerm(cyberName.ToLowerInvariant(), out tCyber, "cybernetics", "chargen_ui"))
+                    // Try direct lookup from multiple categories
+                    else if (LocalizationManager.TryGetAnyTerm(itemName, out string tItem, "mutation", "cybernetics", "chargen_ui") ||
+                             LocalizationManager.TryGetAnyTerm(itemName.ToLowerInvariant(), out tItem, "mutation", "cybernetics", "chargen_ui"))
                     {
-                        string slotKo = TranslateSlot(slot);
-                        lines[i] = tCyber + " (" + slotKo + ")";
+                        string parenKo = TranslateSlot(parenContent);
+                        lines[i] = tItem + " (" + parenKo + ")";
                         changed = true;
                         continue;
                     }
