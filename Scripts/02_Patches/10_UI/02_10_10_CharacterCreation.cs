@@ -997,10 +997,12 @@ namespace QudKRTranslation.Patches
         {
             // categoryMenus is private, use Traverse
             var categoryMenus = Traverse.Create(__instance).Field("categoryMenus").GetValue<List<CategoryMenuData>>();
+            Debug.Log($"[Qud-KR Cyber] categoryMenus: {(categoryMenus != null ? categoryMenus.Count.ToString() : "null")}");
             if (categoryMenus != null)
             {
                 foreach (var cat in categoryMenus)
                 {
+                    Debug.Log($"[Qud-KR Cyber] Category: {cat.Title}");
                     if (LocalizationManager.TryGetAnyTerm(cat.Title?.ToLowerInvariant(), out string tTitle, "chargen_ui", "ui"))
                         cat.Title = tTitle;
 
@@ -1010,10 +1012,12 @@ namespace QudKRTranslation.Patches
                         {
                             var tr = Traverse.Create(opt);
                             string desc = tr.Field<string>("Description").Value;
+                            Debug.Log($"[Qud-KR Cyber] Searching for: '{desc}'");
                             
                             // Try StructureTranslator for cybernetics (uses names key matching)
                             if (!string.IsNullOrEmpty(desc) && StructureTranslator.TryGetData(desc, out var cyberData))
                             {
+                                Debug.Log($"[Qud-KR Cyber] FOUND: '{desc}' -> '{cyberData.KoreanName}'");
                                 // Translate name (Description field is actually the cybernetic name)
                                 if (!string.IsNullOrEmpty(cyberData.KoreanName))
                                     tr.Field<string>("Description").Value = cyberData.KoreanName;
@@ -1025,6 +1029,7 @@ namespace QudKRTranslation.Patches
                             }
                             else
                             {
+                                Debug.Log($"[Qud-KR Cyber] NOT FOUND: '{desc}'");
                                 // Fallback to old method
                                 if (LocalizationManager.TryGetAnyTerm(desc?.ToLowerInvariant(), out string tDesc, "cybernetics", "ui"))
                                 {
