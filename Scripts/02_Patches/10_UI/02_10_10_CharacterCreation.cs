@@ -997,6 +997,11 @@ namespace QudKRTranslation.Patches
         {
             // categoryMenus is private, use Traverse
             var categoryMenus = Traverse.Create(__instance).Field("categoryMenus").GetValue<List<CategoryMenuData>>();
+            if (categoryMenus == null)
+            {
+                // Try cyberneticsMenuState (the actual field name)
+                categoryMenus = Traverse.Create(__instance).Field("cyberneticsMenuState").GetValue<List<CategoryMenuData>>();
+            }
             Debug.Log($"[Qud-KR Cyber] categoryMenus: {(categoryMenus != null ? categoryMenus.Count.ToString() : "null")}");
             if (categoryMenus != null)
             {
@@ -1012,15 +1017,39 @@ namespace QudKRTranslation.Patches
                         {
                             var tr = Traverse.Create(opt);
                             string desc = tr.Field<string>("Description").Value;
-                            Debug.Log($"[Qud-KR Cyber] Searching for: '{desc}'");
+                            Debug.Log($"[Qud-KR Cyber] Original desc: '{desc}'");
+                            
+                            // Extract cybernetic name from "name (slot)" format
+                            string cyberName = desc;
+                            if (!string.IsNullOrEmpty(desc))
+                            {
+                                int parenIdx = desc.LastIndexOf(" (");
+                                if (parenIdx > 0)
+                                {
+                                    cyberName = desc.Substring(0, parenIdx);
+                                }
+                            }
+                            Debug.Log($"[Qud-KR Cyber] Searching for: '{cyberName}'");
                             
                             // Try StructureTranslator for cybernetics (uses names key matching)
-                            if (!string.IsNullOrEmpty(desc) && StructureTranslator.TryGetData(desc, out var cyberData))
+                            if (!string.IsNullOrEmpty(cyberName) && StructureTranslator.TryGetData(cyberName, out var cyberData))
                             {
-                                Debug.Log($"[Qud-KR Cyber] FOUND: '{desc}' -> '{cyberData.KoreanName}'");
-                                // Translate name (Description field is actually the cybernetic name)
+                                Debug.Log($"[Qud-KR Cyber] FOUND: '{cyberName}' -> '{cyberData.KoreanName}'");
+                                // Translate name (Description field format: "name (slot)")
                                 if (!string.IsNullOrEmpty(cyberData.KoreanName))
-                                    tr.Field<string>("Description").Value = cyberData.KoreanName;
+                                {
+                                    // Preserve slot info: "Korean Name (slot)"
+                                    int parenIdx = desc.LastIndexOf(" (");
+                                    if (parenIdx > 0)
+                                    {
+                                        string slot = desc.Substring(parenIdx);
+                                        tr.Field<string>("Description").Value = cyberData.KoreanName + slot;
+                                    }
+                                    else
+                                    {
+                                        tr.Field<string>("Description").Value = cyberData.KoreanName;
+                                    }
+                                }
                                 
                                 // Translate LongDescription using combined cybernetic description
                                 string combinedDesc = cyberData.GetCombinedCyberneticDescription();
@@ -1029,11 +1058,20 @@ namespace QudKRTranslation.Patches
                             }
                             else
                             {
-                                Debug.Log($"[Qud-KR Cyber] NOT FOUND: '{desc}'");
+                                Debug.Log($"[Qud-KR Cyber] NOT FOUND: '{cyberName}'");
                                 // Fallback to old method
-                                if (LocalizationManager.TryGetAnyTerm(desc?.ToLowerInvariant(), out string tDesc, "cybernetics", "ui"))
+                                if (LocalizationManager.TryGetAnyTerm(cyberName?.ToLowerInvariant(), out string tDesc, "cybernetics", "ui"))
                                 {
-                                    tr.Field<string>("Description").Value = tDesc;
+                                    int parenIdx = desc.LastIndexOf(" (");
+                                    if (parenIdx > 0)
+                                    {
+                                        string slot = desc.Substring(parenIdx);
+                                        tr.Field<string>("Description").Value = tDesc + slot;
+                                    }
+                                    else
+                                    {
+                                        tr.Field<string>("Description").Value = tDesc;
+                                    }
                                 }
 
                                 if (!string.IsNullOrEmpty(opt.LongDescription))
