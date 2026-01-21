@@ -1,0 +1,144 @@
+{
+  "_meta": {
+    "description": "Tools and utility items - Phase 2",
+    "version": "1.0",
+    "created": "2026-01-22"
+  },
+
+  "Torch": {
+    "names": {
+      "torch": "횃불"
+    },
+    "description": "A length of brinestalk is wrapped in oil-sodden cloth.",
+    "description_ko": "브라인스톡 막대기가 기름에 흠뻑 젖은 천으로 감싸져 있다."
+  },
+
+  "Glowsphere": {
+    "names": {
+      "{{Y|glowsphere}}": "{{Y|글로우스피어}}",
+      "glowsphere": "글로우스피어"
+    },
+    "description": "A phosphorescent opal-like fits in the palm of a hand and glows with the light of auroras absorbed chiliads ago.",
+    "description_ko": "손바닥에 들어오는 인광 오팔 같은 것이 수천 년 전 흡수한 오로라의 빛으로 빛난다."
+  },
+
+  "Bandage": {
+    "names": {
+      "bandage": "붕대"
+    },
+    "description": "It's worm silk gauze spooled about a wood rod and suited to staunch bleeding.",
+    "description_ko": "나무 막대에 감긴 벌레 비단 거즈로 출혈을 막는 데 적합하다."
+  },
+
+  "Toolkit": {
+    "names": {
+      "{{c|toolkit}}": "{{c|공구함}}",
+      "toolkit": "공구함"
+    },
+    "description": "An array of tinkering utensils jangle in a leathery satchel: stylus, hammer, set of screw heads, hex keys, pliers, voltmeter, and a pair of wire cutters.",
+    "description_ko": "가죽 가방 안에서 다양한 수리 도구들이 쨍그랑거린다: 첨필, 망치, 나사 머리 세트, 육각 렌치, 펜치, 전압계, 그리고 와이어 커터."
+  },
+
+  "Advanced Toolkit": {
+    "names": {
+      "{{C|advanced toolkit}}": "{{C|고급 공구함}}",
+      "advanced toolkit": "고급 공구함"
+    },
+    "description": "An array of tinkering utensils clang against carbide: voltmeter, polyjack, soldering knife, ion shield, circuitboard, and three spare vacuum tubes.",
+    "description_ko": "다양한 수리 도구들이 카바이드에 부딪혀 소리를 낸다: 전압계, 폴리잭, 납땜 칼, 이온 실드, 회로 기판, 그리고 여분의 진공관 세 개."
+  },
+
+  "Pickaxe": {
+    "names": {
+      "{{c|pickaxe}}": "{{c|곡괭이}}",
+      "pickaxe": "곡괭이"
+    },
+    "description": "Its head is a shard of grinded metal, pointed on one end and flat on the other. Dust is stuck in its hairline nicks and shines across the opalescent spectrum of rock possibility.",
+    "description_ko": "머리는 갈린 금속 조각으로, 한쪽 끝은 뾰족하고 다른 쪽은 평평하다. 먼지가 미세한 흠집에 붙어 암석 가능성의 유백색 스펙트럼 전체에서 빛난다."
+  },
+
+  "Nanopneumatic Jackhammer": {
+    "names": {
+      "nanopneumatic jackhammer": "나노공압 잭해머"
+    },
+    "description": "A pneumatic tube is driven under a ratchet and through a giant drill head. Crenulated air pockets allow for vibrative absorption to create a cascade of pressure.",
+    "description_ko": "공압 튜브가 래칫 아래로 구동되어 거대한 드릴 헤드를 통과한다. 톱니 모양의 공기 주머니가 진동 흡수를 허용하여 압력의 연쇄를 만든다."
+  },
+
+  "Chem Cell": {
+    "names": {
+      "{{c|chem cell}}": "{{c|화학 전지}}",
+      "chem cell": "화학 전지"
+    },
+    "description": "Inside the small cask, liquid salt transfers ions to the cathode and produces spark.",
+    "description_ko": "작은 통 안에서 액체 소금이 이온을 음극으로 전달하고 스파크를 만들어낸다."
+  },
+
+  "Fidget Cell": {
+    "names": {
+      "{{g|fidget cell}}": "{{g|피젯 전지}}",
+      "fidget cell": "피젯 전지"
+    },
+    "description": "A thumb-sized kinetic generator stores energy harvested from the motion of tiny gyroscopes.",
+    "description_ko": "엄지손가락 크기의 운동 발전기가 작은 자이로스코프의 움직임에서 수확한 에너지를 저장한다."
+  },
+
+  "Solar Cell": {
+    "names": {
+      "{{W|solar cell}}": "{{W|태양 전지}}",
+      "solar cell": "태양 전지"
+    },
+    "description": "A flat disc of light-drinking crystal soaks up the rays of the sun.",
+    "description_ko": "빛을 마시는 수정의 평평한 원반이 태양 광선을 흡수한다."
+  },
+
+  "Nuclear Cell": {
+    "names": {
+      "{{K|nuclear cell}}": "{{K|핵 전지}}",
+      "nuclear cell": "핵 전지"
+    },
+    "description": "Inside its lead shell, a small pile of decaying isotopes produces a steady trickle of power.",
+    "description_ko": "납 껍질 안에서 작은 붕괴 동위원소 더미가 안정적인 전력 흐름을 만들어낸다."
+  },
+
+  "Antimatter Cell": {
+    "names": {
+      "{{m|antimatter cell}}": "{{m|반물질 전지}}",
+      "antimatter cell": "반물질 전지"
+    },
+    "description": "A magnetic bottle suspends antimatter in vacuum, producing enormous power when matter is annihilated.",
+    "description_ko": "자기 병이 진공에서 반물질을 매달아 물질이 소멸할 때 엄청난 전력을 생산한다."
+  },
+
+  "Waterskin": {
+    "names": {
+      "waterskin": "물주머니"
+    },
+    "description": "A goat's bladder is knotted at the bottom and suspended by a strap of intestine.",
+    "description_ko": "염소의 방광이 아래쪽에서 묶여 있고 창자로 만든 끈으로 매달려 있다."
+  },
+
+  "Canteen": {
+    "names": {
+      "canteen": "수통"
+    },
+    "description": "A metal container for carrying water.",
+    "description_ko": "물을 운반하기 위한 금속 용기."
+  },
+
+  "Hoversled": {
+    "names": {
+      "hoversled": "호버슬레드"
+    },
+    "description": "A magnetic platform that hovers above the ground and follows its owner.",
+    "description_ko": "지면 위에 떠서 주인을 따라다니는 자기 플랫폼."
+  },
+
+  "Headlamp": {
+    "names": {
+      "headlamp": "헤드램프"
+    },
+    "description": "A lamp that attaches to the head and illuminates the path ahead.",
+    "description_ko": "머리에 부착되어 앞길을 밝히는 램프."
+  }
+}

@@ -1,0 +1,346 @@
+{
+  "_meta": {
+    "description": "Melee weapons - Phase 2",
+    "version": "1.0",
+    "created": "2026-01-22"
+  },
+
+  "Club": {
+    "names": {
+      "club": "곤봉"
+    },
+    "description": "Wood was shaved into a bludgeoning bulb.",
+    "description_ko": "나무를 깎아 둔기용 불룩한 형태로 만들었다."
+  },
+
+  "Wrench": {
+    "names": {
+      "wrench": "렌치"
+    },
+    "description": "An armlength of time-tortured metal is punched through with screwing iron for extra torque.",
+    "description_ko": "시간에 시달린 금속 팔뚝만 한 길이에 추가 토크를 위해 나사 철이 뚫려 있다."
+  },
+
+  "Pestle": {
+    "names": {
+      "pestle": "절구공이"
+    },
+    "description": "A bulb of stone is dusted by humoric powders.",
+    "description_ko": "돌 절구공이에 약재 가루가 묻어 있다."
+  },
+
+  "Staff": {
+    "names": {
+      "staff": "지팡이"
+    },
+    "description": "Quartersawn witchwood wears a thousand nicks along its warped length.",
+    "description_ko": "쿼터소운 위치우드가 뒤틀린 길이를 따라 수천 개의 흠집을 달고 있다."
+  },
+
+  "Walking Stick": {
+    "names": {
+      "walking stick": "지팡이"
+    },
+    "description": "Brinestalk was scythed from its marsh home and dried in the high salt sun. Its top is spiraled into a crook.",
+    "description_ko": "브라인스톡을 습지에서 베어내 뜨거운 염분 태양 아래 말렸다. 꼭대기는 나선형으로 구부러져 있다."
+  },
+
+  "Mace2": {
+    "names": {
+      "{{w|bronze}} mace": "{{w|청동}} 메이스",
+      "bronze mace": "청동 메이스",
+      "mace": "메이스"
+    },
+    "description": "A corm of bell bronze is screw-fitted to a scarred wooden shaft.",
+    "description_ko": "벨 청동 구근이 상처 난 나무 자루에 나사로 고정되어 있다."
+  },
+
+  "Warhammer2": {
+    "names": {
+      "iron mace": "철 메이스"
+    },
+    "description": "Iron lines unfold into a head of six flanges.",
+    "description_ko": "철 선이 여섯 개의 플랜지를 가진 머리로 펼쳐진다."
+  },
+
+  "Steel War Hammer": {
+    "names": {
+      "{{Y|steel}} war hammer": "{{Y|강철}} 워해머",
+      "steel war hammer": "강철 워해머",
+      "war hammer": "워해머"
+    },
+    "description": "Hand grease shines on the pole, and a volume of polished steel weights one end.",
+    "description_ko": "손때가 막대에서 빛나고, 광택 난 강철 덩어리가 한쪽 끝에 무게를 더한다."
+  },
+
+  "Dagger": {
+    "names": {
+      "{{w|bronze}} dagger": "{{w|청동}} 단검",
+      "bronze dagger": "청동 단검",
+      "dagger": "단검"
+    },
+    "description": "Bell bronze is shaped to a point and its handle wrapped in leather.",
+    "description_ko": "벨 청동이 뾰족하게 다듬어지고 손잡이는 가죽으로 감싸져 있다."
+  },
+
+  "Desert Kris": {
+    "names": {
+      "desert kris": "사막 크리스"
+    },
+    "description": "Iron wormwags out of its halite stub of a hilt.",
+    "description_ko": "철이 암염 손잡이에서 구불구불 나온다."
+  },
+
+  "Dagger2": {
+    "names": {
+      "iron dagger": "철 단검"
+    },
+    "description": "Pits mark the blade like craters on an iron edge-world.",
+    "description_ko": "구덩이들이 철 세계의 분화구처럼 칼날에 새겨져 있다."
+  },
+
+  "Steel Kukri": {
+    "names": {
+      "{{Y|steel}} kukri": "{{Y|강철}} 쿠크리",
+      "steel kukri": "강철 쿠크리",
+      "kukri": "쿠크리"
+    },
+    "description": "Bright metal spills out the leather fuzz hilt along the killer's recurve.",
+    "description_ko": "빛나는 금속이 가죽 보풀 손잡이에서 살인자의 곡선을 따라 쏟아진다."
+  },
+
+  "Steel Dagger": {
+    "names": {
+      "{{Y|steel}} dagger": "{{Y|강철}} 단검",
+      "steel dagger": "강철 단검"
+    },
+    "description": "The edge is bright and polished.",
+    "description_ko": "날이 밝고 광택이 난다."
+  },
+
+  "Steel Utility Knife": {
+    "names": {
+      "{{Y|steel}} utility knife": "{{Y|강철}} 공구 칼",
+      "steel utility knife": "강철 공구 칼",
+      "utility knife": "공구 칼"
+    },
+    "description": "A use-dull and finger-smudged knife folds in on itself.",
+    "description_ko": "사용으로 무뎌지고 손가락 자국이 묻은 칼이 접혀 있다."
+  },
+
+  "Steel Potter's Knife": {
+    "names": {
+      "{{Y|steel}} potter's knife": "{{Y|강철}} 도공의 칼",
+      "steel potter's knife": "강철 도공의 칼",
+      "potter's knife": "도공의 칼"
+    },
+    "description": "Wet clay dresses the edge and dirt cakes the hilt.",
+    "description_ko": "젖은 점토가 날을 덮고 흙이 손잡이에 붙어 있다."
+  },
+
+  "Steel Butcher Knife": {
+    "names": {
+      "{{Y|steel}} butcher knife": "{{Y|강철}} 정육점 칼",
+      "steel butcher knife": "강철 정육점 칼",
+      "butcher knife": "정육점 칼"
+    },
+    "description": "A wide and bright blade has been painted with entrails.",
+    "description_ko": "넓고 빛나는 칼날이 내장으로 물들어 있다."
+  },
+
+  "Dagger3": {
+    "names": {
+      "{{b|carbide}} dagger": "{{b|카바이드}} 단검",
+      "carbide dagger": "카바이드 단검"
+    },
+    "description": "Salt and scars form a comet's tail along the azure blade edge.",
+    "description_ko": "소금과 상처가 푸른 칼날을 따라 혜성의 꼬리를 형성한다."
+  },
+
+  "BattleAxe2": {
+    "names": {
+      "{{w|bronze}} battle axe": "{{w|청동}} 전투 도끼",
+      "bronze battle axe": "청동 전투 도끼",
+      "battle axe": "전투 도끼"
+    },
+    "description": "Damp leather wraps the wood haft up to a sharpened bit of bell bronze.",
+    "description_ko": "축축한 가죽이 나무 자루를 감아 올라가 날카롭게 다듬어진 벨 청동 날에 연결된다."
+  },
+
+  "Hand Axe": {
+    "names": {
+      "hand axe": "손도끼"
+    },
+    "description": "A rough head of iron is seated on an oiled haft.",
+    "description_ko": "거친 철 머리가 기름칠한 자루에 박혀 있다."
+  },
+
+  "Iron Vinereaper": {
+    "names": {
+      "iron vinereaper": "철 덩굴낫"
+    },
+    "description": "The reaper's blade cuts watervine back from the farm's hard-won earth.",
+    "description_ko": "낫의 칼날이 농장의 힘들게 일군 땅에서 워터바인을 베어낸다."
+  },
+
+  "BattleAxe3": {
+    "names": {
+      "iron battle axe": "철 전투 도끼"
+    },
+    "description": "Forge marks scar the blade like potholes on an iron steppe.",
+    "description_ko": "단조 자국이 철 초원의 웅덩이처럼 칼날에 상처를 남긴다."
+  },
+
+  "Steel Battle Axe": {
+    "names": {
+      "{{Y|steel}} battle axe": "{{Y|강철}} 전투 도끼",
+      "steel battle axe": "강철 전투 도끼"
+    },
+    "description": "A bright crescent glints above the polished haft.",
+    "description_ko": "밝은 초승달이 광택 난 자루 위에서 반짝인다."
+  },
+
+  "Two-handed Steel Battle Axe": {
+    "names": {
+      "two-handed {{Y|steel}} battle axe": "양손 {{Y|강철}} 전투 도끼",
+      "two-handed steel battle axe": "양손 강철 전투 도끼"
+    },
+    "description": "Steel spans a double bit at the end of a long, darkwood haft.",
+    "description_ko": "강철이 긴 다크우드 자루 끝에서 양날을 펼친다."
+  },
+
+  "Steel Hand Axe": {
+    "names": {
+      "{{Y|steel}} hand axe": "{{Y|강철}} 손도끼",
+      "steel hand axe": "강철 손도끼"
+    },
+    "description": "A bright edge caps the wood handle.",
+    "description_ko": "밝은 날이 나무 손잡이를 마감한다."
+  },
+
+  "Opal-pommeled Steel Battle Axe": {
+    "names": {
+      "opal-pommeled {{Y|steel}} battle axe": "오팔 손잡이의 {{Y|강철}} 전투 도끼",
+      "opal-pommeled steel battle axe": "오팔 손잡이의 강철 전투 도끼"
+    },
+    "description": "A milk-white stone seals the base of a steel axe.",
+    "description_ko": "우유빛 흰 돌이 강철 도끼의 밑동을 봉인한다."
+  },
+
+  "Steel Vinereaper": {
+    "names": {
+      "{{Y|steel}} vinereaper": "{{Y|강철}} 덩굴낫",
+      "steel vinereaper": "강철 덩굴낫"
+    },
+    "description": "A bright edge sweeps across the blade.",
+    "description_ko": "밝은 날이 칼날을 가로지른다."
+  },
+
+  "Carbide Battle Axe": {
+    "names": {
+      "{{b|carbide}} battle axe": "{{b|카바이드}} 전투 도끼",
+      "carbide battle axe": "카바이드 전투 도끼"
+    },
+    "description": "Blue steel spreads across the head like a peacock's tail.",
+    "description_ko": "푸른 강철이 공작새 꼬리처럼 머리에 펼쳐진다."
+  },
+
+  "Two-handed Carbide Battle Axe": {
+    "names": {
+      "two-handed {{b|carbide}} battle axe": "양손 {{b|카바이드}} 전투 도끼",
+      "two-handed carbide battle axe": "양손 카바이드 전투 도끼"
+    },
+    "description": "Blue steel spans a double bit at the end of a long, darkwood haft.",
+    "description_ko": "푸른 강철이 긴 다크우드 자루 끝에서 양날을 펼친다."
+  },
+
+  "Folded Carbide Battle Axe": {
+    "names": {
+      "{{B|folded carbide}} battle axe": "{{B|접힌 카바이드}} 전투 도끼",
+      "folded carbide battle axe": "접힌 카바이드 전투 도끼"
+    },
+    "description": "Bright layers of folded blue steel spread like the rings of a tidal pond.",
+    "description_ko": "접힌 푸른 강철의 밝은 층이 조수 웅덩이의 고리처럼 펼쳐진다."
+  },
+
+  "Two-handed Folded Carbide Battle Axe": {
+    "names": {
+      "two-handed {{B|folded carbide}} battle axe": "양손 {{B|접힌 카바이드}} 전투 도끼",
+      "two-handed folded carbide battle axe": "양손 접힌 카바이드 전투 도끼"
+    },
+    "description": "Bright layers of folded blue steel span a double bit at the end of a long, darkwood haft.",
+    "description_ko": "접힌 푸른 강철의 밝은 층이 긴 다크우드 자루 끝에서 양날을 펼친다."
+  },
+
+  "Fullerite Battle Axe": {
+    "names": {
+      "{{K|fullerite}} battle axe": "{{K|풀러라이트}} 전투 도끼",
+      "fullerite battle axe": "풀러라이트 전투 도끼"
+    },
+    "description": "Midnight metal caps the hard-wearing haft.",
+    "description_ko": "자정의 금속이 내구성 좋은 자루를 마감한다."
+  },
+
+  "Fullerite Two-handed Axe": {
+    "names": {
+      "{{K|fullerite}} two-handed axe": "{{K|풀러라이트}} 양손 도끼",
+      "fullerite two-handed axe": "풀러라이트 양손 도끼"
+    },
+    "description": "Midnight metal spans a double bit at the end of a long haft.",
+    "description_ko": "자정의 금속이 긴 자루 끝에서 양날을 펼친다."
+  },
+
+  "Crysteel Battle Axe": {
+    "names": {
+      "{{K|{{crysteel|crysteel}} battle axe}}": "{{K|{{crysteel|크리스틸}} 전투 도끼}}",
+      "crysteel battle axe": "크리스틸 전투 도끼"
+    },
+    "description": "Extruded green crystalline nanotubes make a wickedly sharp edge.",
+    "description_ko": "압출된 녹색 결정질 나노튜브가 사악하게 날카로운 날을 만든다."
+  },
+
+  "Crysteel Halberd": {
+    "names": {
+      "{{K|{{crysteel|crysteel}} halberd}}": "{{K|{{crysteel|크리스틸}} 미늘창}}",
+      "crysteel halberd": "크리스틸 미늘창"
+    },
+    "description": "Extruded green crystalline nanotubes form a polearm head.",
+    "description_ko": "압출된 녹색 결정질 나노튜브가 장병 무기의 머리를 형성한다."
+  },
+
+  "Flawless Crysteel Battle Axe": {
+    "names": {
+      "{{K|flawless {{crysteel|crysteel}} battle axe}}": "{{K|완벽한 {{crysteel|크리스틸}} 전투 도끼}}",
+      "flawless crysteel battle axe": "완벽한 크리스틸 전투 도끼"
+    },
+    "description": "Flawless green crystalline nanotubes make an impossibly sharp edge.",
+    "description_ko": "완벽한 녹색 결정질 나노튜브가 믿을 수 없이 날카로운 날을 만든다."
+  },
+
+  "Flawless Crysteel Halberd": {
+    "names": {
+      "{{K|flawless {{crysteel|crysteel}} halberd}}": "{{K|완벽한 {{crysteel|크리스틸}} 미늘창}}",
+      "flawless crysteel halberd": "완벽한 크리스틸 미늘창"
+    },
+    "description": "Flawless green crystalline nanotubes form a polearm head.",
+    "description_ko": "완벽한 녹색 결정질 나노튜브가 장병 무기의 머리를 형성한다."
+  },
+
+  "Zetachrome Battle Axe": {
+    "names": {
+      "{{zetachrome|zetachrome}} battle axe": "{{zetachrome|제타크롬}} 전투 도끼",
+      "zetachrome battle axe": "제타크롬 전투 도끼"
+    },
+    "description": "Bands of rare metal stretch across a head that shifts with an inner light.",
+    "description_ko": "희귀 금속 띠가 내부 빛으로 변하는 머리에 펼쳐진다."
+  },
+
+  "Zetachrome Halberd": {
+    "names": {
+      "{{zetachrome|zetachrome}} halberd": "{{zetachrome|제타크롬}} 미늘창",
+      "zetachrome halberd": "제타크롬 미늘창"
+    },
+    "description": "Bands of rare metal form a polearm head that shifts with an inner light.",
+    "description_ko": "희귀 금속 띠가 내부 빛으로 변하는 장병 무기의 머리를 형성한다."
+  }
+}
