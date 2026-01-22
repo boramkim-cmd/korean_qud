@@ -1,10 +1,26 @@
 # Caves of Qud Korean Localization - AI Instructions
-# Version: 2.2 | Updated: 2026-01-22
+# Version: 2.3 | Updated: 2026-01-22
 # This file is automatically read by GitHub Copilot at every session.
 # SSOT (Single Source of Truth) - AI_SESSION_START.md is deprecated
 
 ################################################################################
-# LAYER 0: SESSION HANDOFF (New Chat? Read This!)
+# LAYER 0: AUTO-COMPLETION RULE (HIGHEST PRIORITY)
+################################################################################
+
+## 🤖 AFTER COMPLETING ANY TASK, AUTOMATICALLY RUN:
+# python3 tools/session_manager.py save && python3 tools/project_tool.py && bash tools/quick-save.sh
+#
+# This includes:
+# - Code changes
+# - Translation additions
+# - Documentation updates
+# - Bug fixes
+# - Any file modifications
+#
+# NO NEED TO ASK - JUST DO IT AFTER EACH TASK COMPLETES SUCCESSFULLY
+
+################################################################################
+# LAYER 0.5: SESSION HANDOFF (New Chat? Read This!)
 ################################################################################
 
 ## 🔄 IF CONTINUING FROM PREVIOUS SESSION:
@@ -20,24 +36,8 @@
 # 3. Read ERROR_LOG for known issues:
 #    cat Docs/en/reference/05_ERROR_LOG.md | head -100
 
-## ✅ BEFORE ENDING SESSION:
-# 1. Save session state for next chat:
-#    python3 tools/session_manager.py save
-# 2. Validate and commit:
-#    python3 tools/project_tool.py && bash tools/quick-save.sh
-
 ## 📋 SESSION HANDOFF PROMPT (Copy to new chat):
 # "이전 세션에서 이어서 작업합니다. SESSION_STATE.md를 읽고 맥락을 파악한 후 다음 작업을 진행해주세요."
-
-################################################################################
-# LAYER 0.5: LANGUAGE RULES (Highest Priority)
-################################################################################
-
-## ALL DOCUMENTATION AND CODE IN ENGLISH
-# - All reasoning, code, comments, documentation: ENGLISH
-# - Only user-facing reports/responses: KOREAN (when user speaks Korean)
-# - User may ask in Korean, but you MUST think and work in English
-# - This improves AI reasoning quality and code consistency
 
 ## DOCUMENTATION LANGUAGE POLICY
 # - All project documents: ENGLISH (primary)
