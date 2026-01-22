@@ -107,26 +107,16 @@ namespace QudKRTranslation.Patches
     }
     
     /// <summary>
-    /// TooltipTrigger.ShowManually 패치 - 툴팁 표시 시점에 한글 폰트 적용
+    /// TooltipTrigger.ShowManually 패치 - 툴팁 표시 시점에 한글 폰트 적용 및 헤더 번역
+    /// 이 패치는 모든 툴팁 표시 경로를 커버합니다:
+    /// - BaseLineWithTooltip.StartTooltip (인벤토리 아이템 비교)
+    /// - Look.QueueLookerTooltip (월드맵 타일/오브젝트 클릭)
+    /// - Look.ShowItemTooltipAsync (일반 아이템 툴팁)
     /// </summary>
     [HarmonyPatch(typeof(TooltipTrigger))]
     public static class Tooltip_ShowManually_Patch
     {
-        [HarmonyPatch(nameof(TooltipTrigger.ShowManually), new System.Type[] { typeof(bool), typeof(UnityEngine.Vector3), typeof(bool), typeof(bool) })]
-        [HarmonyPostfix]
-        static void ShowManually_Postfix(TooltipTrigger __instance)
-        {
-            Tooltip_Patch.ApplyKoreanFontToTooltip(__instance);
-        }
-    }
-    
-    /// <summary>
-    /// BaseLineWithTooltip.StartTooltip 패치 - 아이템 비교 툴팁 헤더 번역
-    /// </summary>
-    [HarmonyPatch(typeof(BaseLineWithTooltip))]
-    public static class BaseLineWithTooltip_StartTooltip_Patch
-    {
-        // Tooltip header translations
+        // Tooltip header translations - centralized here for all tooltip types
         private static readonly Dictionary<string, string> HeaderTranslations = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase)
         {
             { "This Item", "현재 아이템" },
@@ -135,36 +125,30 @@ namespace QudKRTranslation.Patches
             { "equipped item", "장착 아이템" }
         };
         
-        [HarmonyPatch("StartTooltip", new System.Type[] { 
-            typeof(XRL.World.GameObject), 
-            typeof(XRL.World.GameObject), 
-            typeof(bool), 
-            typeof(RectTransform) })]
+        [HarmonyPatch(nameof(TooltipTrigger.ShowManually), new System.Type[] { typeof(bool), typeof(UnityEngine.Vector3), typeof(bool), typeof(bool) })]
         [HarmonyPostfix]
-        static void StartTooltip_Postfix(TooltipTrigger ___tooltip)
+        static void ShowManually_Postfix(TooltipTrigger __instance)
         {
-            if (___tooltip == null) return;
-            
             try
             {
-                // 1. Translate header text components ("This Item", "Equipped Item")
-                TranslateTooltipHeaders(___tooltip);
+                // 1. Translate headers if present (for compareLookerTooltip)
+                TranslateTooltipHeaders(__instance);
                 
                 // 2. Apply Korean font fallback to all text components
-                ApplyKoreanFontToTooltipChildren(___tooltip);
+                Tooltip_Patch.ApplyKoreanFontToTooltip(__instance);
             }
             catch (Exception ex)
             {
-                Debug.LogWarning($"[Qud-KR] StartTooltip patch error: {ex.Message}");
+                Debug.LogWarning($"[Qud-KR] ShowManually patch error: {ex.Message}");
             }
         }
         
         /// <summary>
-        /// Find and translate header text elements in the tooltip
+        /// Find and translate header text elements in the tooltip.
+        /// Safe to call on any tooltip - will only translate if matching text found.
         /// </summary>
         private static void TranslateTooltipHeaders(TooltipTrigger trigger)
         {
-            // CRITICAL: TooltipTrigger is the trigger component, actual tooltip UI is in Tooltip.GameObject
             var tooltipObj = trigger?.Tooltip?.GameObject;
             if (tooltipObj == null) return;
             
@@ -185,45 +169,27 @@ namespace QudKRTranslation.Patches
                 }
             }
         }
-        
-        /// <summary>
-        /// Apply Korean font fallback to all TMP components in the tooltip
-        /// </summary>
-        private static void ApplyKoreanFontToTooltipChildren(TooltipTrigger trigger)
+    }
+    
+    /// <summary>
+    /// BaseLineWithTooltip.StartTooltip 패치 - 보조 안전망
+    /// NOTE: ShowManually_Patch에서 이미 처리하지만, StartTooltip이 ShowManually 전에 
+    /// 텍스트를 설정하므로 여기서도 한 번 더 적용합니다.
+    /// 중복 적용되어도 안전합니다 (idempotent).
+    /// </summary>
+    [HarmonyPatch(typeof(BaseLineWithTooltip))]
+    public static class BaseLineWithTooltip_StartTooltip_Patch
+    {
+        [HarmonyPatch("StartTooltip", new System.Type[] { 
+            typeof(XRL.World.GameObject), 
+            typeof(XRL.World.GameObject), 
+            typeof(bool), 
+            typeof(RectTransform) })]
+        [HarmonyPostfix]
+        static void StartTooltip_Postfix(TooltipTrigger ___tooltip)
         {
-            var koreanFont = QudKRTranslation.Core.FontManager.GetKoreanTMPFont();
-            if (koreanFont == null) return;
-            
-            // CRITICAL: TooltipTrigger is the trigger component, actual tooltip UI is in Tooltip.GameObject
-            var tooltipObj = trigger?.Tooltip?.GameObject;
-            if (tooltipObj == null) return;
-            
-            var textComponents = tooltipObj.GetComponentsInChildren<TextMeshProUGUI>(true);
-            
-            foreach (var tmp in textComponents)
-            {
-                if (tmp == null) continue;
-                
-                try
-                {
-                    if (tmp.font != null)
-                    {
-                        if (tmp.font.fallbackFontAssetTable == null)
-                            tmp.font.fallbackFontAssetTable = new System.Collections.Generic.List<TMPro.TMP_FontAsset>();
-                        
-                        if (!tmp.font.fallbackFontAssetTable.Contains(koreanFont))
-                        {
-                            tmp.font.fallbackFontAssetTable.Insert(0, koreanFont);
-                        }
-                    }
-                    else
-                    {
-                        tmp.font = koreanFont;
-                    }
-                    tmp.SetAllDirty();
-                }
-                catch { }
-            }
+            // ShowManually_Patch에서 처리하므로 여기서는 추가 작업 불필요
+            // StartTooltip 끝에서 ShowManually가 호출되어 해당 패치가 실행됨
         }
     }
 }
