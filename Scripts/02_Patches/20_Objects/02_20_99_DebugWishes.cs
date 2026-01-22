@@ -1,7 +1,10 @@
-// Object Localization System - Debug Wish Commands
-// Provides kr:reload, kr:check, kr:untranslated commands for debugging
-// ISOLATED from existing translation infrastructure
-// Version: 2.0 | Created: 2026-01-22
+/*
+ * 파일명: 02_20_99_DebugWishes.cs
+ * 분류: [Utility] 디버그 명령어
+ * 역할: kr:reload, kr:check, kr:untranslated 등 디버그 명령 제공
+ * 작성일: 2026-01-22
+ * 비고: Ctrl+W로 게임 내에서 사용 가능
+ */
 
 using System;
 using System.Collections.Generic;

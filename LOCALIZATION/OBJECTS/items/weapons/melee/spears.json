@@ -1,0 +1,116 @@
+{
+  "_meta": {
+    "category": "weapons/melee/spears",
+    "description": "Spear and polearm weapons",
+    "version": "2.0",
+    "updated": "2026-01-22"
+  },
+
+  "Spear": {
+    "tier": 1,
+    "category": "weapon",
+    "slot": "hand",
+    "tags": ["spear", "two-handed", "reach"],
+    "names": {
+      "spear": "창"
+    },
+    "description": "A simple wooden shaft with a pointed tip.",
+    "description_ko": "뾰족한 끝이 달린 단순한 나무 자루."
+  },
+
+  "Bronze Spear": {
+    "tier": 1,
+    "category": "weapon",
+    "slot": "hand",
+    "tags": ["spear", "two-handed", "reach", "bronze"],
+    "names": {
+      "bronze spear": "청동 창"
+    },
+    "description": "A spear with a bronze tip.",
+    "description_ko": "청동 촉이 달린 창."
+  },
+
+  "Iron Spear": {
+    "tier": 2,
+    "category": "weapon",
+    "slot": "hand",
+    "tags": ["spear", "two-handed", "reach", "iron"],
+    "names": {
+      "iron spear": "철 창"
+    },
+    "description": "A spear with an iron tip.",
+    "description_ko": "철 촉이 달린 창."
+  },
+
+  "Steel Spear": {
+    "tier": 3,
+    "category": "weapon",
+    "slot": "hand",
+    "tags": ["spear", "two-handed", "reach", "steel"],
+    "names": {
+      "steel spear": "강철 창"
+    },
+    "description": "A spear with a steel tip.",
+    "description_ko": "강철 촉이 달린 창."
+  },
+
+  "Carbide Spear": {
+    "tier": 5,
+    "category": "weapon",
+    "slot": "hand",
+    "tags": ["spear", "two-handed", "reach", "carbide"],
+    "names": {
+      "carbide spear": "카바이드 창"
+    },
+    "description": "A spear with an ultra-hard carbide tip.",
+    "description_ko": "초경질 카바이드 촉이 달린 창."
+  },
+
+  "Pike": {
+    "tier": 2,
+    "category": "weapon",
+    "slot": "hand",
+    "tags": ["spear", "two-handed", "reach", "long"],
+    "names": {
+      "pike": "파이크"
+    },
+    "description": "A very long spear used for infantry formations.",
+    "description_ko": "보병 대형에 사용되는 매우 긴 창."
+  },
+
+  "Halberd": {
+    "tier": 3,
+    "category": "weapon",
+    "slot": "hand",
+    "tags": ["polearm", "two-handed", "reach", "axe"],
+    "names": {
+      "halberd": "할버드"
+    },
+    "description": "A polearm with an axe blade and spike.",
+    "description_ko": "도끼날과 스파이크가 달린 장창."
+  },
+
+  "Glaive": {
+    "tier": 3,
+    "category": "weapon",
+    "slot": "hand",
+    "tags": ["polearm", "two-handed", "reach", "blade"],
+    "names": {
+      "glaive": "글레이브"
+    },
+    "description": "A polearm with a single-edged blade.",
+    "description_ko": "외날이 달린 장창."
+  },
+
+  "Trident": {
+    "tier": 2,
+    "category": "weapon",
+    "slot": "hand",
+    "tags": ["spear", "two-handed", "reach", "pronged"],
+    "names": {
+      "trident": "삼지창"
+    },
+    "description": "A three-pronged spear.",
+    "description_ko": "세 갈래의 창."
+  }
+}

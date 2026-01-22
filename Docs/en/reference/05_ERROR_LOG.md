@@ -1,6 +1,6 @@
 # Caves of Qud Korean Localization - Error/Issue Log
 
-> **Version**: 2.3 | **Last Updated**: 2026-01-19
+> **Version**: 2.4 | **Last Updated**: 2026-01-22
 
 > [!WARNING]
 > **AI Agent**: Check unresolved issues (🔴 OPEN) before starting work!
@@ -686,6 +686,169 @@ Implemented `InventoryAndEquipmentStatusScreen.UpdateViewFromData` Postfix patch
 
 ### Related Files
 - `Scripts/02_Patches/10_UI/02_10_07_Inventory.cs`
+
+---
+
+## 📚 Frequently Asked Questions (FAQ)
+
+### FAQ-001: Translation Not Showing in Game
+
+**Checklist:**
+
+1. **Verify mod activation**
+   - Main Menu → Mods → Korean Localization should be checked
+
+2. **Verify mod deployment**
+   ```bash
+   ./tools/deploy-mods.sh
+   ```
+
+3. **Check JSON syntax errors**
+   ```bash
+   python3 tools/project_tool.py
+   ```
+
+4. **Restart game completely**
+   - Full restart required after mod activation
+
+5. **Check logs**
+   ```bash
+   tail -100 ~/Library/Logs/Freehold\ Games/CavesOfQud/Player.log | grep -i "error\|qud-kr"
+   ```
+
+---
+
+### FAQ-002: Harmony Patch Failure
+
+**Checklist:**
+
+1. **Verify namespace**
+   ```bash
+   grep -r "class TargetClass" Assets/core_source/
+   ```
+
+2. **Verify method signature**
+   ```bash
+   grep "void MethodName" Assets/core_source/Path/To/File.cs
+   ```
+
+3. **Check for overloads**
+   - Same method name may have multiple overloads
+   - Use `new Type[] { }` to specify parameters explicitly
+
+4. **Check both XRL.UI and Qud.UI**
+   - Many screens have dual implementations
+   - Verify which class is actually used
+
+---
+
+### FAQ-003: Korean Particles (Josa) Not Processing Correctly
+
+**Checklist:**
+
+1. **Verify placeholder format**
+   ```
+   ✅ Correct: {이/가}, {을/를}, {은/는}
+   ❌ Wrong: (이/가), [이/가], 이/가
+   ```
+
+2. **Use curly braces**
+   - Particle placeholders must use `{}`
+
+3. **Particles after color tags**
+   - Currently unsupported (see ERR-002)
+   - `{{w|검}}{을/를}` → will not work
+
+4. **Verify QudKREngine loaded**
+   - Check mod load order
+
+---
+
+### FAQ-004: Specific Text Not Being Translated
+
+**Checklist:**
+
+1. **Verify key exists in glossary**
+   ```bash
+   grep -r "the text" LOCALIZATION/*.json
+   ```
+
+2. **Check case sensitivity**
+   - TranslationEngine supports case variation search
+   - But exact case is fastest
+
+3. **Verify scope**
+   - Check if correct scope is pushed for that screen
+   - Look for `PushScope` call in patch file
+
+4. **Check special characters**
+   - Remove leading/trailing whitespace, newlines
+
+---
+
+### FAQ-005: Mod Not Working After Game Update
+
+**Checklist:**
+
+1. **Check if patch target method changed**
+   ```bash
+   # Compare sources after game update
+   diff Assets/core_source/old/File.cs Assets/core_source/new/File.cs
+   ```
+
+2. **Check for class name changes**
+   - Some screens have different class names per version
+
+3. **Check field/property name changes**
+   - Traverse access is vulnerable to field name changes
+
+4. **Check error logs**
+   ```bash
+   tail -200 ~/Library/Logs/Freehold\ Games/CavesOfQud/Player.log | grep -i "harmony\|error"
+   ```
+
+---
+
+### FAQ-006: When Is an Issue "Resolved"? [IMPORTANT]
+
+> [!CAUTION]
+> **AI Agent**: Do NOT declare "resolved" until completing ALL verification steps below!
+
+**Required Verification Steps:**
+
+**Step 1: Verify Actual Runtime Data**
+```
+❌ Wrong: Assume "it should work this way" from code analysis alone
+✅ Right: Add Debug.Log to verify actual values being sent
+```
+
+Example:
+```csharp
+// Add temporary debug log to patch
+UnityEngine.Debug.Log($"[DEBUG] Input text: '{text}'");
+UnityEngine.Debug.Log($"[DEBUG] After processing: '{processed}'");
+```
+
+**Step 2: Trace Full Data Flow**
+```
+Game original data → Value received in patch → Transform processing → Glossary lookup → Result
+```
+Verify actual values at each step!
+
+**Step 3: Screenshot/Log-Based Verification**
+- Check the **actual characters** in user-provided screenshots
+- Example: `-` (hyphen) vs `·` (middle dot) vs `ù` (u-grave) are **different characters**
+
+**Step 4: Verify After Game Restart**
+- Mod changes only apply after game restart
+- Verify directly or request user confirmation after restart
+
+**Common Mistakes:**
+| Mistake | Result |
+|---------|--------|
+| Declare "fixed" after code change only | Actual problem not solved |
+| Only check glossary key, not input | Key mismatch not discovered |
+| Glance at screenshot and assume | Miss actual character differences |
 
 ---
 

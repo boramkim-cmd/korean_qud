@@ -1,0 +1,92 @@
+{
+  "_meta": {
+    "category": "armor/back",
+    "description": "Back slot armor - cloaks, capes, backpacks",
+    "version": "2.0",
+    "updated": "2026-01-22"
+  },
+
+  "Cloak": {
+    "tier": 1,
+    "category": "armor",
+    "slot": "back",
+    "tags": ["back", "cloth"],
+    "names": {
+      "cloak": "망토"
+    },
+    "description": "A simple cloth cloak.",
+    "description_ko": "단순한 천 망토."
+  },
+
+  "Fur Cloak": {
+    "tier": 2,
+    "category": "armor",
+    "slot": "back",
+    "tags": ["back", "fur", "cold resistance"],
+    "names": {
+      "fur cloak": "모피 망토"
+    },
+    "description": "A cloak made from animal fur.",
+    "description_ko": "동물 모피로 만든 망토."
+  },
+
+  "Hooded Cloak": {
+    "tier": 2,
+    "category": "armor",
+    "slot": "back",
+    "tags": ["back", "cloth", "hooded"],
+    "names": {
+      "hooded cloak": "후드 망토"
+    },
+    "description": "A cloak with an attached hood.",
+    "description_ko": "후드가 달린 망토."
+  },
+
+  "Backpack": {
+    "tier": 1,
+    "category": "armor",
+    "slot": "back",
+    "tags": ["back", "container", "storage"],
+    "names": {
+      "backpack": "배낭"
+    },
+    "description": "A pack worn on the back for carrying items.",
+    "description_ko": "아이템을 운반하기 위해 등에 매는 가방."
+  },
+
+  "Mechanical Wings": {
+    "tier": 6,
+    "category": "armor",
+    "slot": "back",
+    "tags": ["back", "artifact", "flight"],
+    "names": {
+      "mechanical wings": "기계 날개"
+    },
+    "description": "Mechanical wings that enable flight.",
+    "description_ko": "비행을 가능하게 하는 기계 날개."
+  },
+
+  "Quiver": {
+    "tier": 1,
+    "category": "armor",
+    "slot": "back",
+    "tags": ["back", "ammo", "archery"],
+    "names": {
+      "quiver": "화살통"
+    },
+    "description": "A container for arrows.",
+    "description_ko": "화살을 담는 용기."
+  },
+
+  "Thermo Cloak": {
+    "tier": 4,
+    "category": "armor",
+    "slot": "back",
+    "tags": ["back", "artifact", "temperature"],
+    "names": {
+      "thermo cloak": "온도 조절 망토"
+    },
+    "description": "A cloak that regulates body temperature.",
+    "description_ko": "체온을 조절하는 망토."
+  }
+}

@@ -1,0 +1,139 @@
+{
+  "_meta": {
+    "category": "animals/mammals",
+    "description": "Mammalian creatures - bears, baboons, pigs, etc.",
+    "version": "2.0",
+    "updated": "2026-01-22"
+  },
+
+  "Bear": {
+    "tier": 2,
+    "category": "animal",
+    "tags": ["mammal", "hostile", "common"],
+    "names": {
+      "bear": "곰"
+    },
+    "description": "\"The Grizzly Bear is huge and wild; =pronouns.Subjective= =verb:have:afterpronoun= devoured the infant child. The infant child is unaware =pronouns.Subjective= =verb:have:afterpronoun= been eaten by the bear.\" -A.E. Housman",
+    "description_ko": "\"회색곰은 거대하고 야생적이라; 어린아이를 삼켜버렸다. 어린아이는 곰에게 잡아먹힌 것도 모른다.\" -A.E. 하우스만"
+  },
+
+  "Bear Corpse": {
+    "tier": 2,
+    "category": "corpse",
+    "tags": ["mammal"],
+    "names": {
+      "bear corpse": "곰 시체"
+    }
+  },
+
+  "Pig": {
+    "tier": 1,
+    "category": "animal",
+    "tags": ["mammal", "neutral", "common"],
+    "names": {
+      "pig": "돼지"
+    },
+    "description": "Dirt-dappled flesh hangs from =pronouns.possessive= pouch belly and nearly slaps =pronouns.possessive= chipper trotters.",
+    "description_ko": "흙투성이 살점이 주머니 같은 배에서 늘어지며, 발굽에 닿을 듯이 흔들린다."
+  },
+
+  "Pig Corpse": {
+    "tier": 1,
+    "category": "corpse",
+    "tags": ["mammal"],
+    "names": {
+      "pig corpse": "돼지 시체"
+    }
+  },
+
+  "Farm Pig": {
+    "tier": 1,
+    "category": "animal",
+    "tags": ["mammal", "friendly", "domestic"],
+    "names": {
+      "pig": "돼지"
+    }
+  },
+
+  "Boar": {
+    "tier": 2,
+    "category": "animal",
+    "tags": ["mammal", "hostile", "common"],
+    "names": {
+      "boar": "멧돼지"
+    },
+    "description": "Next to =pronouns.possessive= pig cousins, wild time has shorted =pronouns.possessive= ears, pushed canines through =pronouns.possessive= jaw, and dressed =pronouns.objective= in a scratch-hair coat. =pronouns.Subjective= =verb:root:afterpronoun= in the ground for jewels.",
+    "description_ko": "집돼지 사촌과 달리, 야생의 시간이 귀를 작게 만들고, 송곳니를 턱 밖으로 밀어내고, 거친 털가죽을 입혔다. 땅을 파헤치며 보물을 찾는다."
+  },
+
+  "Boar Corpse": {
+    "tier": 2,
+    "category": "corpse",
+    "tags": ["mammal"],
+    "names": {
+      "boar corpse": "멧돼지 시체"
+    }
+  },
+
+  "Baboon": {
+    "tier": 2,
+    "category": "animal",
+    "tags": ["mammal", "hostile", "pack"],
+    "names": {
+      "baboon": "비비"
+    },
+    "description": "=pronouns.Subjective= =verb:are:afterpronoun= a social primate with a dog-like muzzle and close-set eyes.",
+    "description_ko": "영리하고 사회적인 영장류로, 무리를 지어 다닌다."
+  },
+
+  "Baboon Corpse": {
+    "tier": 2,
+    "category": "corpse",
+    "tags": ["mammal"],
+    "names": {
+      "baboon corpse": "비비 시체"
+    }
+  },
+
+  "Hulking Baboon": {
+    "tier": 3,
+    "category": "animal",
+    "tags": ["mammal", "hostile", "elite"],
+    "names": {
+      "hulking baboon": "거대 비비"
+    },
+    "description": "A massive baboon with powerful arms and a fearsome bite.",
+    "description_ko": "비비 중에서도 특히 덩치가 크고 힘이 센 개체다."
+  },
+
+  "Shrewd Baboon": {
+    "tier": 3,
+    "category": "animal",
+    "tags": ["mammal", "hostile", "leader"],
+    "names": {
+      "shrewd baboon": "약삭빠른 비비"
+    },
+    "description": "An intelligent baboon that leads its troop with cunning.",
+    "description_ko": "비비 중에서도 특히 영리한 개체로, 무리의 지도자 역할을 한다."
+  },
+
+  "Baboon Hero 1": {
+    "tier": 4,
+    "category": "animal",
+    "tags": ["mammal", "hostile", "hero"],
+    "names": {
+      "baboon hero": "비비 영웅"
+    }
+  },
+
+  "Equimax": {
+    "tier": 3,
+    "category": "animal",
+    "tags": ["mammal", "neutral", "mount"],
+    "names": {
+      "equimax": "에퀴맥스"
+    },
+    "description": "A large equine creature adapted to the harsh Qud environment.",
+    "description_ko": "말과 비슷한 대형 초식동물."
+  }
+}

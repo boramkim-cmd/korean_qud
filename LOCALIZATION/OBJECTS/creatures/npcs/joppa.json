@@ -1,12 +1,15 @@
 {
   "_meta": {
-    "description": "Joppa Village NPCs",
-    "version": "1.0",
-    "created": "2026-01-22",
-    "phase": "3"
+    "category": "npcs/joppa",
+    "description": "Joppa village NPCs",
+    "version": "2.0",
+    "updated": "2026-01-22"
   },
 
   "ElderBob": {
+    "tier": 0,
+    "category": "npc",
+    "tags": ["joppa", "elder", "quest", "unique"],
     "names": {
       "Irudad": "이루다드"
     },
@@ -15,6 +18,9 @@
   },
 
   "Nima Ruda": {
+    "tier": 0,
+    "category": "npc",
+    "tags": ["joppa", "quest", "unique"],
     "names": {
       "Nima Ruda": "니마 루다"
     },
@@ -23,6 +29,9 @@
   },
 
   "Argyve": {
+    "tier": 0,
+    "category": "npc",
+    "tags": ["joppa", "tinker", "quest", "unique"],
     "names": {
       "Argyve": "아르기브"
     },
@@ -31,6 +40,9 @@
   },
 
   "Ctesiphus": {
+    "tier": 0,
+    "category": "npc",
+    "tags": ["joppa", "pet", "unique", "ray_cat"],
     "names": {
       "Ctesiphus": "크테시푸스"
     },
@@ -39,13 +51,20 @@
   },
 
   "Tam": {
+    "tier": 0,
+    "category": "npc",
+    "tags": ["joppa", "merchant", "dromad", "unique"],
     "names": {
       "Tam": "탐"
     },
+    "description": "A dromad merchant who sells wares in Joppa.",
     "description_ko": "드로마드 상인으로, 조파에서 물건을 사고판다."
   },
 
   "Mehmet": {
+    "tier": 0,
+    "category": "npc",
+    "tags": ["joppa", "farmer", "quest", "unique"],
     "names": {
       "Mehmet": "메흐메트"
     },
@@ -54,6 +73,9 @@
   },
 
   "Warden Yrame": {
+    "tier": 0,
+    "category": "npc",
+    "tags": ["joppa", "warden", "quest", "unique"],
     "names": {
       "Yrame": "이라메"
     },
@@ -62,20 +84,31 @@
   },
 
   "WatervineFarmerJoppa": {
+    "tier": 0,
+    "category": "npc",
+    "tags": ["joppa", "farmer", "common"],
     "names": {
       "watervine farmer": "수초 농부"
     },
+    "description": "A watervine farmer from Joppa village.",
     "description_ko": "조파 마을의 수초 농부."
   },
 
   "VillageZeroConvert": {
+    "tier": 0,
+    "category": "npc",
+    "tags": ["joppa", "farmer", "mechanimist", "common"],
     "names": {
       "watervine farmer and Mechanimist convert": "수초 농부 겸 메카님스트 개종자"
     },
+    "description": "A farmer who converted to the Mechanimist faith, wearing modified clothing to resemble the chromaic habit.",
     "description_ko": "메카님스트로 개종한 농부로, 전통적인 의복을 수도복처럼 재봉하여 입고 있다."
   },
 
   "WatervineFarmerConvert": {
+    "tier": 0,
+    "category": "npc",
+    "tags": ["joppa", "farmer", "mechanimist", "common"],
     "names": {
       "watervine farmer and Mechanimist convert": "수초 농부 겸 메카님스트 개종자"
     },
@@ -84,12 +117,18 @@
   },
 
   "JoppaFarmerConvert": {
+    "tier": 0,
+    "category": "npc",
+    "tags": ["joppa", "farmer", "mechanimist", "common"],
     "names": {
       "watervine farmer and Mechanimist convert": "수초 농부 겸 메카님스트 개종자"
     }
   },
 
   "AppleFarmer": {
+    "tier": 0,
+    "category": "npc",
+    "tags": ["joppa", "farmer", "unique"],
     "names": {
       "apple farmer": "사과 농부"
     },
@@ -98,10 +137,24 @@
   },
 
   "AppleFarmerDaughter": {
+    "tier": 0,
+    "category": "npc",
+    "tags": ["joppa", "unique"],
     "names": {
       "apple farmer's daughter": "사과 농부의 딸"
     },
-    "description": "O, she doth pale red apples by her cheek!\nThat cheek which doth proclaim the rite of spring,\nAnd heretofore hath nature's grand technique,\nNe'er ripened lips so red from which to sing.\nBegone, false sun! I know thee for a fraud.\nHer fairest skin illuminates the day.\nAll gold is brass and e'ery jewel is flawed,\nWhen set beside the sums her eyes might pay.\nThe Spindle, which from Omonporch ascends,\nMust surely be her likeness brightly wrought,\nAnd as a likeness, fails to apprehend,\nThe artless beauty that its makers sought.\nDid I know love or beauty? No, for shame!\nFor I knew neither 'til they spoke her name.",
-    "description_ko": "오, 그녀의 볼은 붉은 사과를 창백하게 하네!\n봄의 의례를 선포하는 그 볼,\n지금껏 자연의 위대한 기술도,\n노래하기 위해 그토록 붉게 익은 입술은 만들지 못했네.\n거짓 태양이여 물러가라! 나는 네가 사기꾼임을 안다.\n그녀의 고운 피부가 낮을 밝히노라.\n모든 금은 황동이요 모든 보석은 흠집이라,\n그녀의 눈이 갚을 수 있는 값에 놓이면.\n오몬포치에서 솟아오르는 방추는,\n분명 그녀의 모습을 밝게 빚은 것이리라,\n그리고 그 닮음은 그 만든 이들이 찾던\n꾸밈없는 아름다움을 담아내지 못하네.\n나는 사랑이나 아름다움을 알았던가? 아니, 부끄럽게도!\n그녀의 이름을 들을 때까지 나는 둘 다 몰랐노라."
+    "description": "O, she doth pale red apples by her cheek!\nThat cheek which doth proclaim the rite of spring,\nAnd heretofore hath nature's grand technique,\nNe'er ripened lips so red from which to sing.",
+    "description_ko": "오, 그녀의 볼은 붉은 사과를 창백하게 하네!\n봄의 의례를 선포하는 그 볼,\n지금껏 자연의 위대한 기술도,\n노래하기 위해 그토록 붉게 익은 입술은 만들지 못했네."
+  },
+
+  "Mayor Nuntu": {
+    "tier": 0,
+    "category": "npc",
+    "tags": ["joppa", "mayor", "quest", "unique"],
+    "names": {
+      "Mayor Nuntu": "눈투 시장"
+    },
+    "description": "The mayor of Joppa village.",
+    "description_ko": "조파의 시장인 눈투."
   }
 }

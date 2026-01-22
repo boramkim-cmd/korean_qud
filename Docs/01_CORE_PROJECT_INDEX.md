@@ -1,6 +1,6 @@
 # 📚 프로젝트 완전 인덱스 (자동 생성)
 
-**생성**: 2026-01-22 08:40:33
+**생성**: 2026-01-22 11:15:47
 
 이 문서는 프로젝트의 모든 파일과 메서드 시그니처를 포함합니다. **새로운 기능을 만들기 전, 반드시 여기서 기존 메서드를 검색하십시오.**
 
@@ -92,10 +92,10 @@
 - **역할**: ScreenBuffer.Write 메서드를 패치하여 모든 화면의 텍스트를 번역합니다.
 - **Namespace**: `QudKRTranslation.Patches`
 
-## 📂 [N/A]
+## 📂 [Patch]
 
 ### `Scripts/02_Patches/20_Objects/02_20_00_ObjectTranslator.cs`
-- **역할**: N/A
+- **역할**: 생물/아이템 이름 및 설명을 번역하는 독립 시스템
 - **Namespace**: `QudKorean.Objects`
 - **공개 메서드 (Public Methods)**:
   ```csharp
@@ -109,7 +109,7 @@
   ```
 
 ### `Scripts/02_Patches/20_Objects/02_20_01_DisplayNamePatch.cs`
-- **역할**: N/A
+- **역할**: GetDisplayNameEvent.GetFor() 패치로 생물/아이템 이름 한글화
 - **Namespace**: `QudKorean.Objects`
 - **공개 메서드 (Public Methods)**:
   ```csharp
@@ -118,20 +118,8 @@
   ```
 
 ### `Scripts/02_Patches/20_Objects/02_20_02_DescriptionPatch.cs`
-- **역할**: N/A
+- **역할**: Description.GetShortDescription() 패치로 설명 한글화
 - **Namespace**: `QudKorean.Objects`
-
-### `Scripts/02_Patches/20_Objects/02_20_99_DebugWishes.cs`
-- **역할**: N/A
-- **Namespace**: `QudKorean.Objects`
-- **공개 메서드 (Public Methods)**:
-  ```csharp
-  void ReloadTranslations()
-  void CheckTranslation(string blueprint)
-  void ListUntranslated()
-  void ShowStats()
-  void ClearCache()
-  ```
 
 ## 📂 [UI Patch]
 
@@ -218,6 +206,20 @@
   string TranslateName(string englishName)
   string GetLongDescription(string englishName, string fallbackOriginal = null)
   List<string> TranslateLevelText(string englishName)
+  ```
+
+## 📂 [Utility]
+
+### `Scripts/02_Patches/20_Objects/02_20_99_DebugWishes.cs`
+- **역할**: kr:reload, kr:check, kr:untranslated 등 디버그 명령 제공
+- **Namespace**: `QudKorean.Objects`
+- **공개 메서드 (Public Methods)**:
+  ```csharp
+  void ReloadTranslations()
+  void CheckTranslation(string blueprint)
+  void ListUntranslated()
+  void ShowStats()
+  void ClearCache()
   ```
 
 ## 📂 [Utils]

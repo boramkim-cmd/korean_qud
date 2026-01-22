@@ -1,0 +1,116 @@
+{
+  "_meta": {
+    "category": "tools",
+    "description": "General tools and utility items",
+    "version": "2.0",
+    "updated": "2026-01-22"
+  },
+
+  "Torch": {
+    "tier": 1,
+    "category": "tool",
+    "slot": "hand",
+    "tags": ["light", "fire"],
+    "names": {
+      "torch": "횃불"
+    },
+    "description": "A burning piece of wood that provides light.",
+    "description_ko": "빛을 제공하는 불타는 나무."
+  },
+
+  "Glowsphere": {
+    "tier": 3,
+    "category": "tool",
+    "slot": "hand",
+    "tags": ["light", "permanent"],
+    "names": {
+      "glowsphere": "빛구슬"
+    },
+    "description": "A sphere that emits a constant glow.",
+    "description_ko": "지속적인 빛을 발하는 구슬."
+  },
+
+  "Pickaxe": {
+    "tier": 2,
+    "category": "tool",
+    "slot": "hand",
+    "tags": ["mining", "digging"],
+    "names": {
+      "pickaxe": "곡괭이"
+    },
+    "description": "A tool for mining and breaking rocks.",
+    "description_ko": "광물 채굴과 바위 파괴를 위한 도구."
+  },
+
+  "Shovel": {
+    "tier": 1,
+    "category": "tool",
+    "slot": "hand",
+    "tags": ["digging"],
+    "names": {
+      "shovel": "삽"
+    },
+    "description": "A tool for digging.",
+    "description_ko": "땅파기를 위한 도구."
+  },
+
+  "Grappling Hook": {
+    "tier": 3,
+    "category": "tool",
+    "slot": "hand",
+    "tags": ["climbing", "traversal"],
+    "names": {
+      "grappling hook": "갈고리"
+    },
+    "description": "A hook and rope for climbing.",
+    "description_ko": "등반을 위한 갈고리와 밧줄."
+  },
+
+  "Lockpick": {
+    "tier": 2,
+    "category": "tool",
+    "slot": "hand",
+    "tags": ["lock", "security"],
+    "names": {
+      "lockpick": "자물쇠 따개"
+    },
+    "description": "A tool for picking locks.",
+    "description_ko": "자물쇠를 따기 위한 도구."
+  },
+
+  "Repair Kit": {
+    "tier": 3,
+    "category": "tool",
+    "slot": "hand",
+    "tags": ["repair", "maintenance"],
+    "names": {
+      "repair kit": "수리 키트"
+    },
+    "description": "A kit for repairing equipment.",
+    "description_ko": "장비 수리를 위한 키트."
+  },
+
+  "Compass Bracelet": {
+    "tier": 3,
+    "category": "tool",
+    "slot": "arm",
+    "tags": ["navigation"],
+    "names": {
+      "compass bracelet": "나침반 팔찌"
+    },
+    "description": "A bracelet with a built-in compass.",
+    "description_ko": "나침반이 내장된 팔찌."
+  },
+
+  "Geomagnetic Disc": {
+    "tier": 4,
+    "category": "tool",
+    "slot": "hand",
+    "tags": ["navigation", "artifact"],
+    "names": {
+      "geomagnetic disc": "지자기 디스크"
+    },
+    "description": "A disc that detects magnetic fields.",
+    "description_ko": "자기장을 감지하는 디스크."
+  }
+}

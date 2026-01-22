@@ -1,0 +1,19 @@
+{
+  "_meta": {
+    "category": "plants/fungi",
+    "description": "Fungal creatures",
+    "version": "2.0",
+    "updated": "2026-01-22"
+  },
+
+  "Luminous Hoarshroom": {
+    "tier": 3,
+    "category": "plant",
+    "tags": ["fungus", "hostile", "freeze"],
+    "names": {
+      "luminous hoarshroom": "빛나는 서리버섯"
+    },
+    "description": "A large luminescent mushroom that releases freezing spores when disturbed.",
+    "description_ko": "빛을 발하는 큰 버섯. 건드리면 동결 포자를 내뿜는다."
+  }
+}

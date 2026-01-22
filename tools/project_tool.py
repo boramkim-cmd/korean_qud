@@ -225,9 +225,10 @@ def verify_build() -> bool:
     print("=" * 80)
 
     try:
-        # Run dotnet build
+        # Run dotnet build with explicit project file
+        csproj_file = PROJECT_ROOT / "QudKorean.csproj"
         result = subprocess.run(
-            ["dotnet", "build", "-v", "q", "/property:WarningLevel=0"], # Quiet output, suppress warnings for cleaner output checks
+            ["dotnet", "build", str(csproj_file), "-v", "q", "/property:WarningLevel=0"], # Quiet output, suppress warnings for cleaner output checks
             cwd=PROJECT_ROOT,
             capture_output=True,
             text=True

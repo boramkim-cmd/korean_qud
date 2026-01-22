@@ -1,0 +1,92 @@
+{
+  "_meta": {
+    "category": "artifacts/books",
+    "description": "Books, tablets, and written materials",
+    "version": "2.0",
+    "updated": "2026-01-22"
+  },
+
+  "Waterskin": {
+    "tier": 1,
+    "category": "container",
+    "slot": "hand",
+    "tags": ["container", "liquid"],
+    "names": {
+      "waterskin": "물통"
+    },
+    "description": "A container for carrying liquids.",
+    "description_ko": "액체를 운반하기 위한 용기."
+  },
+
+  "Canteen": {
+    "tier": 2,
+    "category": "container",
+    "slot": "hand",
+    "tags": ["container", "liquid"],
+    "names": {
+      "canteen": "수통"
+    },
+    "description": "A metal container for water.",
+    "description_ko": "물을 담기 위한 금속 용기."
+  },
+
+  "Prayer Book": {
+    "tier": 2,
+    "category": "book",
+    "slot": "hand",
+    "tags": ["book", "religious"],
+    "names": {
+      "prayer book": "기도서"
+    },
+    "description": "A book of prayers to the Six Day Stilt.",
+    "description_ko": "6일 죽마교의 기도 모음집."
+  },
+
+  "Technical Manual": {
+    "tier": 3,
+    "category": "book",
+    "slot": "hand",
+    "tags": ["book", "technical", "learning"],
+    "names": {
+      "technical manual": "기술 설명서"
+    },
+    "description": "A manual containing technical knowledge.",
+    "description_ko": "기술 지식이 담긴 설명서."
+  },
+
+  "Cracked Security Disc": {
+    "tier": 4,
+    "category": "artifact",
+    "slot": "hand",
+    "tags": ["data", "security"],
+    "names": {
+      "cracked security disc": "해킹된 보안 디스크"
+    },
+    "description": "A security disc that has been bypassed.",
+    "description_ko": "우회된 보안 디스크."
+  },
+
+  "Data Disc": {
+    "tier": 3,
+    "category": "artifact",
+    "slot": "hand",
+    "tags": ["data", "storage"],
+    "names": {
+      "data disc": "데이터 디스크"
+    },
+    "description": "A disc containing digital data.",
+    "description_ko": "디지털 데이터가 담긴 디스크."
+  },
+
+  "Recall Recoiler": {
+    "tier": 4,
+    "category": "artifact",
+    "slot": "hand",
+    "tags": ["teleport", "consumable"],
+    "names": {
+      "recall recoiler": "리콜 리코일러"
+    },
+    "description": "A device that teleports you to a marked location.",
+    "description_ko": "표시된 위치로 순간이동시키는 장치."
+  }
+}

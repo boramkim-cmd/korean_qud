@@ -1,0 +1,19 @@
+{
+  "_meta": {
+    "category": "humanoids/hindren",
+    "description": "Hindren deer-folk creatures",
+    "version": "2.0",
+    "updated": "2026-01-22"
+  },
+
+  "Hindren": {
+    "tier": 2,
+    "category": "humanoid",
+    "tags": ["hindren", "neutral", "civilized"],
+    "names": {
+      "hindren": "힌드렌"
+    },
+    "description": "A deer-like humanoid species with a civilized tribal culture.",
+    "description_ko": "사슴 형상의 인간형 종족. 문명화된 부족을 이루고 산다."
+  }
+}

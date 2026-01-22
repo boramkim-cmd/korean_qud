@@ -1,0 +1,52 @@
+{
+  "_meta": {
+    "category": "humanoids/goatfolk",
+    "description": "Goatfolk humanoid creatures",
+    "version": "2.0",
+    "updated": "2026-01-22"
+  },
+
+  "Goatfolk": {
+    "tier": 2,
+    "category": "humanoid",
+    "tags": ["goatfolk", "hostile", "tribal"],
+    "names": {
+      "goatfolk": "염소족"
+    },
+    "description": "A goat-like humanoid that dwells in mountainous regions.",
+    "description_ko": "염소 형상의 인간형 종족. 산악 지역에 서식한다."
+  },
+
+  "Goatfolk Sower": {
+    "tier": 2,
+    "category": "humanoid",
+    "tags": ["goatfolk", "hostile", "tribal", "support"],
+    "names": {
+      "goatfolk sower": "염소족 파종자"
+    },
+    "description": "A goatfolk that spreads seeds as it travels.",
+    "description_ko": "씨앗을 뿌리며 다니는 염소족."
+  },
+
+  "Goatfolk Shaman": {
+    "tier": 3,
+    "category": "humanoid",
+    "tags": ["goatfolk", "hostile", "tribal", "psionic"],
+    "names": {
+      "goatfolk shaman": "염소족 주술사"
+    },
+    "description": "A goatfolk tribal leader that uses mental abilities.",
+    "description_ko": "정신적 능력을 사용하는 염소족 지도자."
+  },
+
+  "Goatfolk Yurtwarden": {
+    "tier": 3,
+    "category": "humanoid",
+    "tags": ["goatfolk", "hostile", "tribal", "warrior"],
+    "names": {
+      "goatfolk yurtwarden": "염소족 천막지기"
+    },
+    "description": "A goatfolk warrior responsible for defending the tribe's camp.",
+    "description_ko": "염소족 부락의 방어를 담당하는 전사."
+  }
+}

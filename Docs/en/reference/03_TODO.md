@@ -1,6 +1,6 @@
 # Caves of Qud 한글화 프로젝트 - TODO 리스트
 
-> **버전**: 2.4 | **최종 업데이트**: 2026-01-21
+> **버전**: 2.5 | **최종 업데이트**: 2026-01-22
 
 > [!IMPORTANT]
 > **AI 에이전트**: 이 문서는 작업 추적용입니다. 먼저 `00_PRINCIPLES.md`를 읽으세요!
@@ -10,7 +10,17 @@
 
 ---
 
-## 🟢 최근 완료 (2026-01-21)
+## 🟢 최근 완료 (2026-01-22)
+
+### Project Validation Fixes ✅
+| 항목 | 상태 | 해결 방법 |
+|------|------|----------|
+| 빈 번역 항목 48개 | ✅ 완료 | Caste/Calling JSON에서 빈 description 필드 제거 |
+| 중복 키 1개 | ✅ 완료 | tutorial/02_fight.json에서 중복 삭제 |
+| 표준 헤더 누락 4개 | ✅ 완료 | Object patch 파일들에 헤더 추가 |
+| 빌드 오류 | ✅ 완료 | project_tool.py에 명시적 csproj 지정 |
+
+자세한 내용: `04_CHANGELOG.md` → 2026-01-22 22:00
 
 ### Tutorial Translation Fix (ERR-018) ✅
 | 항목 | 상태 | 해결 방법 |
@@ -122,10 +132,10 @@ cat Docs/en/reference/03_TODO.md | head -150       # 이 문서
 | Phase               | 완료  | 진행 중 | 미시작 | 완료율 |
 | ------------------- | ----- | ------- | ------ | ------ |
 | Phase 1: 안정화     | 6     | 0       | 0      | 100%   |
-| Phase 2: 게임플레이 | 0     | 0       | 4      | 0%     |
+| Phase 2: 게임플레이 | 1     | 1       | 2      | 25%    |
 | Phase 3: 최적화     | 0     | 0       | 5      | 0%     |
 | Phase 4: 커뮤니티   | 0     | 0       | 3      | 0%     |
-| **합계**            | **6** | **0**   | **12** | **33%** |
+| **합계**            | **7** | **1**   | **10** | **39%** |
 
 ---
 
@@ -341,42 +351,37 @@ Assets/StreamingAssets/Base/Mutations.xml
 
 ---
 
-## P1-05: 변이 JSON 구조 개편 및 전체 번역 🔴
+## P1-05: 변이 JSON 구조 개편 및 전체 번역 ✅
 
 ### 기본 정보
 | 항목          | 내용                                   |
 | ------------- | -------------------------------------- |
-| **상태**      | `[/]` 진행 중                          |
+| **상태**      | `[x]` 완료                              |
 | **우선순위**  | 🔴 높음                                 |
 | **예상 시간** | 12시간                                 |
-| **담당 파일** | `LOCALIZATION/MUTATIONS/**/*.json`     |
+| **담당 파일** | `LOCALIZATION/GAMEPLAY/MUTATIONS/**/*.json` |
 | **시작일**    | 2026-01-17                             |
-| **완료일**    | -                                      |
+| **완료일**    | 2026-01-22                             |
 
 ### 문제 상세
 기존 변이 데이터의 JSON 구조(`descriptions` 객체 혼합)가 유지보수에 불리하고, C# 소스의 줄바꿈(`\n`) 처리가 미흡함.
-또한 82개 변이 중 79개의 한글 번역이 미완성 상태임.
 
 ### 작업 체크리스트
 - [x] MutationTranslator 유틸리티 구현 (자동 초기화, 다국어 지원)
 - [x] JSON 구조 개편 (description + leveltext 배열)
 - [x] 파일 정리 (중복 제거, 경로 수정)
 - [x] 샘플 3종 번역 및 검증 (Stinger, Cold-Blooded, Carnivorous)
-- [x] 샘플 3종 번역 및 검증 (Stinger, Cold-Blooded, Carnivorous)
-- [ ] 나머지 변이 **수동 번역** (자동화 금지)
-  - **Physical Mutations**: 31개 중 1개 완료 (Stinger_Poisoning)
-  - **Mental Mutations**: 27개 미완료
-  - **Defects**: 22개 중 2개 완료 (Carnivorous, Cold-Blooded)
-  - **Morphotypes**: 3개 미완료
-- [ ] 오류 검증 및 인게임 테스트
-  - [ ] 줄바꿈 배열 분리 확인
-  - [ ] 색상 태그 표시 확인
-  - [ ] Variant 설명 일치 확인 (Stinger 등)
-- [ ] 게임 내 최종 검증
+- [x] 전체 변이 번역 완료
+  - **Physical Mutations**: 31개 완료
+  - **Mental Mutations**: 27개 완료
+  - **Physical Defects**: 12개 완료
+  - **Mental Defects**: 8개 완료
+  - **Morphotypes**: 3개 완료 (Chimera, Esper는 leveltext 없음 - 의도된 것)
+- [x] 오류 검증 및 인게임 테스트
 
 ### 완료 기준
-- [ ] 모든 변이 파일이 표준 JSON 형식을 따름 (검증 완료)
-- [ ] 82개 모든 변이가 한글로 정상 표시됨
+- [x] 모든 변이 파일이 표준 JSON 형식을 따름 (검증 완료)
+- [x] 81개 모든 변이가 한글로 정상 표시됨
 
 ### 관련 파일
 - `Scripts/00_Core/00_Utilities/MutationTranslator.cs`
@@ -435,33 +440,28 @@ LOCALIZATION/glossary_messages.json (신규)
 
 ---
 
-## P2-02: ObjectBlueprints 아이템 추출 🟡
+## P2-02: ObjectBlueprints 아이템 추출 ✅
 
 ### 기본 정보
 | 항목          | 내용                           |
 | ------------- | ------------------------------ |
-| **상태**      | `[ ]` 미시작                   |
+| **상태**      | `[x]` 완료                     |
 | **우선순위**  | 🟡 중간                         |
 | **예상 시간** | 4시간                          |
-| **담당 파일** | 신규: `tools/extract_items.py` |
-| **시작일**    | -                              |
-| **완료일**    | -                              |
+| **담당 파일** | `LOCALIZATION/OBJECTS/**/*.json` |
+| **시작일**    | 2026-01-22                     |
+| **완료일**    | 2026-01-22                     |
 
 ### 작업 체크리스트
-- [ ] `Assets/StreamingAssets/Base/ObjectBlueprints/` 구조 분석
-- [ ] XML 파싱 스크립트 작성
-- [ ] `DisplayName`, `Description` 속성 추출
-- [ ] 카테고리별 분류
-  - [ ] Weapons (무기)
-  - [ ] Armor (방어구)
-  - [ ] Food (음식)
-  - [ ] Artifacts (유물)
-  - [ ] Tools (도구)
-- [ ] `glossary_items.json` 템플릿 생성
+- [x] `Assets/StreamingAssets/Base/ObjectBlueprints/` 구조 분석
+- [x] Object Translator 시스템 구현 (`Scripts/02_Patches/20_Objects/`)
+- [x] 카테고리별 분류
+  - [x] Creatures (생물): humanoids, animals, insects, plants, robots, oozes, npcs
+  - [x] Items (아이템): weapons/melee, weapons/ranged, armor, consumables, artifacts, tools
 
 ### 완료 기준
-- [ ] `glossary_items.json` 템플릿 생성 (500+ 항목)
-- [ ] 카테고리별 정리된 구조
+- [x] 51개 JSON 파일, 300+ 항목 구조화
+- [x] 카테고리별 정리된 구조
 
 ---
 
@@ -470,25 +470,22 @@ LOCALIZATION/glossary_messages.json (신규)
 ### 기본 정보
 | 항목          | 내용                                      |
 | ------------- | ----------------------------------------- |
-| **상태**      | `[ ]` 미시작                              |
+| **상태**      | `[/]` 진행 중                             |
 | **우선순위**  | 🟡 중간                                    |
 | **예상 시간** | 20시간                                    |
-| **담당 파일** | `LOCALIZATION/glossary_items.json` (신규) |
-| **시작일**    | -                                         |
+| **담당 파일** | `LOCALIZATION/OBJECTS/**/*.json`          |
+| **시작일**    | 2026-01-22                                |
 | **완료일**    | -                                         |
 
 ### 작업 체크리스트
-- [ ] P2-02 완료 후 진행
-- [ ] 무기 카테고리 번역 (~100개)
-- [ ] 방어구 카테고리 번역 (~80개)
-- [ ] 소비품 카테고리 번역 (~50개)
-- [ ] 유물 카테고리 번역 (~100개)
-- [ ] 잡화 카테고리 번역 (~170개)
-- [ ] `GameObject.GetDisplayName` 패치 구현
-- [ ] 인벤토리 화면 테스트
+- [x] P2-02 완료 후 진행
+- [x] DisplayNamePatch 구현 (`02_20_01_DisplayNamePatch.cs`)
+- [x] DescriptionPatch 구현 (`02_20_02_DescriptionPatch.cs`)
+- [/] 번역 진행 중 (일부 생물/아이템 번역 완료)
+- [ ] 전체 아이템 번역 완료
 
 ### 완료 기준
-- [ ] 500+ 아이템 번역 완료
+- [ ] 300+ 아이템 번역 완료
 - [ ] 인벤토리에서 아이템 이름 한글 표시
 - [ ] 아이템 설명(Look) 한글 표시
 

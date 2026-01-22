@@ -1,0 +1,19 @@
+{
+  "_meta": {
+    "category": "insects/ants",
+    "description": "Ant creatures",
+    "version": "2.0",
+    "updated": "2026-01-22"
+  },
+
+  "Fire Ant": {
+    "tier": 1,
+    "category": "insect",
+    "tags": ["ant", "hostile", "swarm", "fire"],
+    "names": {
+      "fire ant": "불개미"
+    },
+    "description": "A small but aggressive ant that attacks in swarms.",
+    "description_ko": "작지만 공격적인 개미로, 무리 지어 다닌다."
+  }
+}

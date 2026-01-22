@@ -1,12 +1,174 @@
 # Caves of Qud Korean Localization - Changelog
 
-> **Version**: 4.0 | **Last Updated**: 2026-01-22 17:32:00
+> **Version**: 5.3 | **Last Updated**: 2026-01-22 23:00:00
 
 > [!NOTE]
 > **AI Agent**: This document is for completion records. Read `00_PRINCIPLES.md` first!
 
 Official changelog for all completed work.
 Completed items from `03_TODO.md` are moved here.
+
+---
+
+## [2026-01-22 23:00] - Mutation Translation Status Verification
+
+### Summary
+Verified that all 81 mutation JSON files have complete Korean translations.
+
+### ✅ Verification Results
+
+**Translation Coverage**:
+- Physical Mutations: 31/31 complete
+- Mental Mutations: 27/27 complete
+- Physical Defects: 12/12 complete
+- Mental Defects: 8/8 complete
+- Morphotypes: 3/3 complete (Chimera/Esper have empty leveltext by design)
+
+**Total**: 81/81 mutation files with `description_ko` and `leveltext_ko` fields
+
+### Status
+- P1-05 marked as COMPLETE in TODO
+- Phase 1 fully completed (6/6 tasks)
+
+---
+
+## [2026-01-22 22:00] - Project Validation Fixes
+
+### Summary
+Fixed multiple validation warnings identified by project_tool.py.
+
+### ✅ Fixes Applied
+
+**Empty Translation Values (48 items)**:
+- Removed empty `description` and `description_ko` fields from Caste/Calling JSON files
+- These fields don't exist in game's original Subtypes.xml - no description text available
+- Files affected: 12 Castes + 12 Callings = 24 files
+
+**Duplicate Key**:
+- Removed duplicate "It's a snapjaw scavenger." key in `LOCALIZATION/GAMEPLAY/tutorial/02_fight.json`
+
+**Standard Headers**:
+- Added standard headers (분류:, 역할:) to 4 Object patch files:
+  - `02_20_00_ObjectTranslator.cs`
+  - `02_20_01_DisplayNamePatch.cs`
+  - `02_20_02_DescriptionPatch.cs`
+  - `02_20_99_DebugWishes.cs`
+
+**Build Command**:
+- Fixed `project_tool.py` to specify explicit csproj file to avoid "multiple project files" error
+
+### Validation Results
+- 총 번역 항목: 3938개
+- 빈 번역 항목: 0개
+- 중복 키: 0개
+- 빌드: 성공
+
+---
+
+## [2026-01-22 21:30] - Object JSON Reorganization (Type-Based Structure)
+
+### Summary
+Reorganized all object translation JSON files from tier-based flat structure to type-based nested structure with enhanced metadata. Each entry now includes tier, category, tags, slot, description (English), and description_ko (Korean).
+
+### ✅ New Directory Structure
+
+**Creatures** (`LOCALIZATION/OBJECTS/creatures/`):
+- `animals/` - mammals.json, cats.json, bats.json, fish.json
+- `insects/` - spiders.json, beetles.json, ants.json, crabs.json, hoppers.json, moths.json, worms.json
+- `humanoids/` - snapjaws.json, goatfolk.json, hindren.json, dromad.json, svardym.json, templars.json, naphtaali.json, others.json
+- `npcs/` - joppa.json
+- `robots/` - turrets.json, drones.json
+- `plants/` - vines.json, fungi.json
+- `oozes/` - jells.json
+
+**Items** (`LOCALIZATION/OBJECTS/items/`):
+- `weapons/melee/` - blades.json, cudgels.json, axes.json, long_blades.json, spears.json
+- `weapons/ranged/` - bows.json, guns.json
+- `armor/` - body.json, head.json, hands.json, feet.json, back.json, face.json
+- `consumables/` - food.json, drinks.json, injectors.json
+- `artifacts/` - grenades.json, cells.json, cybernetics.json, relics.json, misc.json
+- `tools/` - tools.json
+
+### ✅ Enhanced JSON Format
+
+```json
+{
+  "BlueprintId": {
+    "tier": 1-8,
+    "category": "weapon|armor|consumable|artifact|tool",
+    "slot": "hand|body|head|hands|feet|back|face|arm",
+    "tags": ["tag1", "tag2"],
+    "names": { "english name": "한글 이름" },
+    "description": "English original description",
+    "description_ko": "한글 번역된 설명"
+  }
+}
+```
+
+### ✅ Deleted Old Files
+- Creatures: tier1_animals.json, tier1_humanoids.json, tier2.json, tier3_advanced.json, npcs_joppa.json
+- Items: melee_weapons.json, missile_weapons.json, armor.json, tools.json, food.json, artifacts.json, unknown.json
+
+### Statistics
+- ~300+ object entries with full metadata
+- Creatures: ~120 entries across 7 categories
+- Items: ~180 entries across 6 categories
+
+---
+
+## [2026-01-22 19:00] - Object Localization System Phase 4 Implementation
+
+### Summary
+Implemented Phase 4 of Object Localization System: Extended Content.
+Added unknown items, missile weapons, Tier 2 creatures, and corpse pattern handling.
+
+### ✅ JSON Data Created
+
+**Unknown Items** (`LOCALIZATION/OBJECTS/items/unknown.json`):
+- 30+ unidentified item translations
+  - UnknownPistol: 권총
+  - UnknownRifle: 소총
+  - UnknownBow: 활
+  - UnknownSword: 검
+  - UnknownAxe: 도끼
+  - UnknownArmor: 갑옷
+  - UnknownHelmet: 투구
+  - UnknownMed/tubes: 튜브 variants
+  - And more...
+
+**Missile Weapons** (`LOCALIZATION/OBJECTS/items/missile_weapons.json`):
+- 40+ ranged weapons covering all categories
+- **Bows**: short bow (단궁), compound bow (컴파운드 보우), electrobow (전기궁), turbow (터보우)
+- **Pistols**: laser pistol (레이저 권총), eigenpistol (고유권총), arc winder (아크 와인더), etc.
+- **Rifles**: laser rifle (레이저 소총), sniper rifle (저격 소총), carbine (카빈), etc.
+- **Heavy**: chaingun (체인건), flamethrower (화염방사기), missile launcher (미사일 발사기), etc.
+
+**Tier 2 Creatures** (`LOCALIZATION/OBJECTS/creatures/tier2.json`):
+- 20+ mid-level creatures
+- **Arthropods**: electrofuge (전기거미), eyeless crab (눈먼 게), glowmoth (발광나방), salthopper (소금메뚜기)
+- **Worms**: knollworm (구릉지렁이), leech (거머리), seedsprout worm (새싹지렁이)
+- **Plants**: seed-spitting vine (씨앗발사 덩굴), jilted lover (버림받은 연인)
+- **Humanoids**: hindren (힌드렌), woodsprog (우드스프로그), dromad (드로마드), mechanimist (메카님스트), templar (템플러)
+- **Animals**: boar (멧돼지), equimax (에퀴맥스), goatfolk (염소족), dawning ape (여명원숭이)
+- **Robots**: waydroid (웨이드로이드)
+
+### ✅ Code Enhancement
+
+**Corpse Pattern Handling** (`02_20_00_ObjectTranslator.cs`):
+- Added `TryTranslateCorpse()` method for "{creature} corpse" → "{creature_ko} 시체" pattern
+- Searches creature cache for matching creature name
+- Fallback list for common species not in cache
+- Automatic translation of dynamically generated corpse names
+
+### Statistics
+- Total new JSON entries: ~90 items/creatures
+- Unknown items: 30+ entries
+- Missile weapons: 40+ entries
+- Tier 2 creatures: 20+ entries
+
+### Deploy Status
+- Build: ✅ Success (1 warning - unrelated)
+- Deploy: ✅ Success
 
 ---
 

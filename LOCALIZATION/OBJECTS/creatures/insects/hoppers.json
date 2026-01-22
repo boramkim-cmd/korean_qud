@@ -1,0 +1,19 @@
+{
+  "_meta": {
+    "category": "insects/hoppers",
+    "description": "Hopper and jumping insect creatures",
+    "version": "2.0",
+    "updated": "2026-01-22"
+  },
+
+  "Salthopper": {
+    "tier": 2,
+    "category": "insect",
+    "tags": ["hopper", "hostile", "common"],
+    "names": {
+      "salthopper": "소금메뚜기"
+    },
+    "description": "A large grasshopper adapted to the salt wastes with powerful jaws.",
+    "description_ko": "소금 황야에 서식하는 대형 메뚜기. 강력한 턱을 가지고 있다."
+  }
+}

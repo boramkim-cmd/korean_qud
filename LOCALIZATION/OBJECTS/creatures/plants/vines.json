@@ -1,0 +1,30 @@
+{
+  "_meta": {
+    "category": "plants/vines",
+    "description": "Vine and plant creatures",
+    "version": "2.0",
+    "updated": "2026-01-22"
+  },
+
+  "Seed-spitting Vine": {
+    "tier": 2,
+    "category": "plant",
+    "tags": ["vine", "hostile", "ranged"],
+    "names": {
+      "{{g|seed-spitting vine}}": "{{g|씨앗발사 덩굴}}"
+    },
+    "description": "A plant that spits seeds as projectiles.",
+    "description_ko": "씨앗을 발사체로 뱉는 식물. 원거리에서 공격한다."
+  },
+
+  "Jilted Lover": {
+    "tier": 3,
+    "category": "plant",
+    "tags": ["vine", "hostile", "melee"],
+    "names": {
+      "{{g|jilted lover}}": "{{g|버림받은 연인}}"
+    },
+    "description": "A mournful plant mutant that attacks with thorny vines.",
+    "description_ko": "슬픔에 잠긴 식물 변이체. 가시 덩굴로 공격한다."
+  }
+}

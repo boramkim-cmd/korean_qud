@@ -2,7 +2,7 @@
 > **Purpose**: Standardized issue tracking and documentation  
 > **Location**: `Docs/Issues/`  
 > **Naming Convention**: `[STATUS_]ISSUE_YYYYMMDD_SHORT_DESCRIPTION.md`  
-> **Management System**: See [12_ISSUE_MANAGEMENT_RULES.md](../en/reference/12_ISSUE_MANAGEMENT_RULES.md)
+> **Management System**: See [07_ISSUE_RULES.md](../en/reference/07_ISSUE_RULES.md)
 
 ---
 

@@ -1,0 +1,30 @@
+{
+  "_meta": {
+    "category": "humanoids/naphtaali",
+    "description": "Naphtaali tribal humanoids",
+    "version": "2.0",
+    "updated": "2026-01-22"
+  },
+
+  "Naphtaali Forager": {
+    "tier": 2,
+    "category": "humanoid",
+    "tags": ["naphtaali", "neutral", "tribal"],
+    "names": {
+      "naphtaali forager": "납탈리 채집자"
+    },
+    "description": "A wandering forager from the Naphtaali tribe.",
+    "description_ko": "방랑하며 채집하는 납탈리 부족민."
+  },
+
+  "Naphtaali Hunter": {
+    "tier": 3,
+    "category": "humanoid",
+    "tags": ["naphtaali", "neutral", "tribal", "hunter"],
+    "names": {
+      "naphtaali hunter": "납탈리 사냥꾼"
+    },
+    "description": "A skilled hunter from the Naphtaali tribe.",
+    "description_ko": "납탈리 부족의 숙련된 사냥꾼."
+  }
+}

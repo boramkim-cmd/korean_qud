@@ -1,0 +1,41 @@
+{
+  "_meta": {
+    "category": "insects/moths",
+    "description": "Moth and flying insect creatures",
+    "version": "2.0",
+    "updated": "2026-01-22"
+  },
+
+  "Glowmoth": {
+    "tier": 2,
+    "category": "insect",
+    "tags": ["flying", "hostile", "luminescent", "blind"],
+    "names": {
+      "glowmoth": "발광나방"
+    },
+    "description": "A moth that emits neon light and can blind enemies with its flash.",
+    "description_ko": "네온빛을 발산하는 나방. 섬광으로 적을 눈멀게 할 수 있다."
+  },
+
+  "Agolfly": {
+    "tier": 2,
+    "category": "insect",
+    "tags": ["flying", "hostile", "disease"],
+    "names": {
+      "agolfly": "아골파리"
+    },
+    "description": "A grotesque fly species that can spread disease.",
+    "description_ko": "기괴한 파리 종. 질병을 옮길 수 있다."
+  },
+
+  "Plasmafly": {
+    "tier": 4,
+    "category": "insect",
+    "tags": ["flying", "hostile", "plasma"],
+    "names": {
+      "plasmafly": "플라즈마 파리"
+    },
+    "description": "A dangerous fly that spits plasma.",
+    "description_ko": "플라즈마를 내뿜는 위험한 파리."
+  }
+}

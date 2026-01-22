@@ -119,14 +119,13 @@
 # LOCALIZATION/UI/        - Common UI
 
 ## Documentation (Reorganized by language/purpose)
-# Docs/en/guides/00_PRINCIPLES.md      - Detailed principles (required reading)
-# Docs/en/guides/06_ARCHITECTURE.md    - System architecture
-# Docs/en/guides/10_DEVELOPMENT_GUIDE.md - Development guide
+# Docs/en/guides/01_PRINCIPLES.md      - Detailed principles (required reading)
+# Docs/en/guides/02_ARCHITECTURE.md    - System architecture
+# Docs/en/guides/04_DEVELOPMENT_GUIDE.md - Development guide
 # Docs/en/reference/03_TODO.md         - Task tracking
 # Docs/en/reference/04_CHANGELOG.md    - Change history
-# Docs/en/reference/05_ERROR_LOG.md    - Error history
-# Docs/ko/guides/                       - Korean guides (workflow, style)
-# Docs/ko/reference/                    - Korean reference (TODO, changelog)
+# Docs/en/reference/05_ERROR_LOG.md    - Error history + FAQ
+# Docs/ko/guides/                       - Korean guides (deprecated for reference docs)
 
 ################################################################################
 # LAYER 5: ESSENTIAL COMMANDS

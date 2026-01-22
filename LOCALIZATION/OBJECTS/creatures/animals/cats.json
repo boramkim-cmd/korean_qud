@@ -1,0 +1,37 @@
+{
+  "_meta": {
+    "category": "animals/cats",
+    "description": "Feline creatures - ray cats, etc.",
+    "version": "2.0",
+    "updated": "2026-01-22"
+  },
+
+  "Ray Cat": {
+    "tier": 1,
+    "category": "animal",
+    "tags": ["feline", "friendly", "rare", "phosphorescent"],
+    "names": {
+      "ray cat": "레이 캣"
+    },
+    "description": "=pronouns.Subjective= =verb:are:afterpronoun= a small kitty and the glassy fibers of =pronouns.possessive= coat bend the light of faraway stars into strange loops.\n\n&mphosphorescent&y",
+    "description_ko": "작은 고양이로, 유리 같은 털 섬유가 먼 별빛을 이상한 고리 모양으로 굴절시킨다.\n\n{{m|인광}}{{y|}}"
+  },
+
+  "Ray Cat Corpse": {
+    "tier": 1,
+    "category": "corpse",
+    "tags": ["feline"],
+    "names": {
+      "ray cat corpse": "레이 캣 시체"
+    }
+  },
+
+  "Joppa Ray Cat": {
+    "tier": 1,
+    "category": "animal",
+    "tags": ["feline", "friendly", "unique", "phosphorescent"],
+    "names": {
+      "ray cat": "레이 캣"
+    }
+  }
+}

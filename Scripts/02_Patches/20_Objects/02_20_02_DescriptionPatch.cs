@@ -1,7 +1,10 @@
-// Object Localization System - Description Patch
-// Patches Description.GetShortDescription() and related methods
-// ISOLATED from existing translation infrastructure
-// Version: 2.0 | Created: 2026-01-22
+/*
+ * 파일명: 02_20_02_DescriptionPatch.cs
+ * 분류: [Patch] 오브젝트 설명 번역
+ * 역할: Description.GetShortDescription() 패치로 설명 한글화
+ * 작성일: 2026-01-22
+ * 비고: 툴팁 및 Look 팝업의 설명 번역
+ */
 
 using System;
 using System.Text;

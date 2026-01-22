@@ -1,0 +1,52 @@
+{
+  "_meta": {
+    "category": "humanoids/svardym",
+    "description": "Svardym mantis-folk creatures",
+    "version": "2.0",
+    "updated": "2026-01-22"
+  },
+
+  "Svardym": {
+    "tier": 3,
+    "category": "humanoid",
+    "tags": ["svardym", "hostile", "insectoid"],
+    "names": {
+      "svardym": "스바르딤"
+    },
+    "description": "A mantis-like humanoid species.",
+    "description_ko": "사마귀 형상의 인간형 종족."
+  },
+
+  "Svardym Hatchling": {
+    "tier": 2,
+    "category": "humanoid",
+    "tags": ["svardym", "hostile", "young"],
+    "names": {
+      "svardym hatchling": "스바르딤 유충"
+    },
+    "description": "A young svardym.",
+    "description_ko": "어린 스바르딤."
+  },
+
+  "Svardym Scavenger": {
+    "tier": 3,
+    "category": "humanoid",
+    "tags": ["svardym", "hostile", "scavenger"],
+    "names": {
+      "svardym scavenger": "스바르딤 청소부"
+    },
+    "description": "A svardym that picks through corpses.",
+    "description_ko": "시체를 뒤지는 스바르딤."
+  },
+
+  "Svardym Junk Shopper": {
+    "tier": 3,
+    "category": "humanoid",
+    "tags": ["svardym", "neutral", "merchant"],
+    "names": {
+      "svardym junk shopper": "스바르딤 고물상"
+    },
+    "description": "A svardym that collects and sells junk.",
+    "description_ko": "고물을 모으고 파는 스바르딤."
+  }
+}

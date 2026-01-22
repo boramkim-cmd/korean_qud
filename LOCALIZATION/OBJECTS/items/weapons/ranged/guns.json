@@ -1,0 +1,92 @@
+{
+  "_meta": {
+    "category": "weapons/ranged/guns",
+    "description": "Gun ranged weapons - pistols, rifles, shotguns",
+    "version": "2.0",
+    "updated": "2026-01-22"
+  },
+
+  "Pistol": {
+    "tier": 3,
+    "category": "weapon",
+    "slot": "hand",
+    "tags": ["gun", "ranged", "one-handed"],
+    "names": {
+      "pistol": "권총"
+    },
+    "description": "A small handheld firearm.",
+    "description_ko": "손에 쥘 수 있는 소형 화기."
+  },
+
+  "Revolver": {
+    "tier": 3,
+    "category": "weapon",
+    "slot": "hand",
+    "tags": ["gun", "ranged", "one-handed"],
+    "names": {
+      "revolver": "리볼버"
+    },
+    "description": "A rotating cylinder firearm.",
+    "description_ko": "회전 실린더가 달린 화기."
+  },
+
+  "Rifle": {
+    "tier": 4,
+    "category": "weapon",
+    "slot": "hand",
+    "tags": ["gun", "ranged", "two-handed"],
+    "names": {
+      "rifle": "소총"
+    },
+    "description": "A long-barreled firearm for accurate shooting.",
+    "description_ko": "정밀 사격을 위한 긴 총신의 화기."
+  },
+
+  "Shotgun": {
+    "tier": 3,
+    "category": "weapon",
+    "slot": "hand",
+    "tags": ["gun", "ranged", "two-handed", "spread"],
+    "names": {
+      "shotgun": "산탄총"
+    },
+    "description": "A firearm that fires multiple projectiles in a spread.",
+    "description_ko": "여러 발사체를 넓게 퍼뜨리는 화기."
+  },
+
+  "Pump Shotgun": {
+    "tier": 4,
+    "category": "weapon",
+    "slot": "hand",
+    "tags": ["gun", "ranged", "two-handed", "spread"],
+    "names": {
+      "pump shotgun": "펌프 산탄총"
+    },
+    "description": "A pump-action shotgun.",
+    "description_ko": "펌프 액션 산탄총."
+  },
+
+  "Laser Pistol": {
+    "tier": 5,
+    "category": "weapon",
+    "slot": "hand",
+    "tags": ["energy", "ranged", "one-handed"],
+    "names": {
+      "laser pistol": "레이저 권총"
+    },
+    "description": "A pistol that fires concentrated light beams.",
+    "description_ko": "집중된 광선을 발사하는 권총."
+  },
+
+  "Laser Rifle": {
+    "tier": 6,
+    "category": "weapon",
+    "slot": "hand",
+    "tags": ["energy", "ranged", "two-handed"],
+    "names": {
+      "laser rifle": "레이저 소총"
+    },
+    "description": "A rifle that fires concentrated light beams.",
+    "description_ko": "집중된 광선을 발사하는 소총."
+  }
+}

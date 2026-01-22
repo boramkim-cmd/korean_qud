@@ -1,0 +1,128 @@
+{
+  "_meta": {
+    "category": "artifacts/grenades",
+    "description": "Throwable explosives and grenades",
+    "version": "2.0",
+    "updated": "2026-01-22"
+  },
+
+  "HE Grenade Mk I": {
+    "tier": 3,
+    "category": "artifact",
+    "slot": "hand",
+    "tags": ["grenade", "explosive"],
+    "names": {
+      "HE grenade mk I": "고폭 수류탄 Mk I"
+    },
+    "description": "A basic high-explosive grenade.",
+    "description_ko": "기본 고폭 수류탄."
+  },
+
+  "HE Grenade Mk II": {
+    "tier": 4,
+    "category": "artifact",
+    "slot": "hand",
+    "tags": ["grenade", "explosive"],
+    "names": {
+      "HE grenade mk II": "고폭 수류탄 Mk II"
+    },
+    "description": "An improved high-explosive grenade.",
+    "description_ko": "개량된 고폭 수류탄."
+  },
+
+  "HE Grenade Mk III": {
+    "tier": 5,
+    "category": "artifact",
+    "slot": "hand",
+    "tags": ["grenade", "explosive"],
+    "names": {
+      "HE grenade mk III": "고폭 수류탄 Mk III"
+    },
+    "description": "An advanced high-explosive grenade.",
+    "description_ko": "고급 고폭 수류탄."
+  },
+
+  "EMP Grenade Mk I": {
+    "tier": 3,
+    "category": "artifact",
+    "slot": "hand",
+    "tags": ["grenade", "emp", "anti-robot"],
+    "names": {
+      "EMP grenade mk I": "EMP 수류탄 Mk I"
+    },
+    "description": "An electromagnetic pulse grenade.",
+    "description_ko": "전자기 펄스 수류탄."
+  },
+
+  "EMP Grenade Mk II": {
+    "tier": 4,
+    "category": "artifact",
+    "slot": "hand",
+    "tags": ["grenade", "emp", "anti-robot"],
+    "names": {
+      "EMP grenade mk II": "EMP 수류탄 Mk II"
+    },
+    "description": "An improved electromagnetic pulse grenade.",
+    "description_ko": "개량된 전자기 펄스 수류탄."
+  },
+
+  "EMP Grenade Mk III": {
+    "tier": 5,
+    "category": "artifact",
+    "slot": "hand",
+    "tags": ["grenade", "emp", "anti-robot"],
+    "names": {
+      "EMP grenade mk III": "EMP 수류탄 Mk III"
+    },
+    "description": "An advanced electromagnetic pulse grenade.",
+    "description_ko": "고급 전자기 펄스 수류탄."
+  },
+
+  "Thermal Grenade": {
+    "tier": 4,
+    "category": "artifact",
+    "slot": "hand",
+    "tags": ["grenade", "fire"],
+    "names": {
+      "thermal grenade": "열 수류탄"
+    },
+    "description": "A grenade that explodes with intense heat.",
+    "description_ko": "강렬한 열로 폭발하는 수류탄."
+  },
+
+  "Freeze Grenade": {
+    "tier": 4,
+    "category": "artifact",
+    "slot": "hand",
+    "tags": ["grenade", "cold"],
+    "names": {
+      "freeze grenade": "냉동 수류탄"
+    },
+    "description": "A grenade that freezes everything nearby.",
+    "description_ko": "주변을 얼려버리는 수류탄."
+  },
+
+  "Stun Gas Grenade Mk I": {
+    "tier": 3,
+    "category": "artifact",
+    "slot": "hand",
+    "tags": ["grenade", "gas", "stun"],
+    "names": {
+      "stun gas grenade mk I": "기절 가스 수류탄 Mk I"
+    },
+    "description": "A grenade that releases stunning gas.",
+    "description_ko": "기절 가스를 방출하는 수류탄."
+  },
+
+  "Poison Gas Grenade Mk I": {
+    "tier": 3,
+    "category": "artifact",
+    "slot": "hand",
+    "tags": ["grenade", "gas", "poison"],
+    "names": {
+      "poison gas grenade mk I": "독가스 수류탄 Mk I"
+    },
+    "description": "A grenade that releases toxic gas.",
+    "description_ko": "독성 가스를 방출하는 수류탄."
+  }
+}

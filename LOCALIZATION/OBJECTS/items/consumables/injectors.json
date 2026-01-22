@@ -1,0 +1,92 @@
+{
+  "_meta": {
+    "category": "consumables/injectors",
+    "description": "Injectors and tonics - medical and combat drugs",
+    "version": "2.0",
+    "updated": "2026-01-22"
+  },
+
+  "Salve Injector": {
+    "tier": 3,
+    "category": "consumable",
+    "slot": "hand",
+    "tags": ["injector", "healing"],
+    "names": {
+      "salve injector": "연고 주사기"
+    },
+    "description": "An injector containing healing salve.",
+    "description_ko": "치유 연고가 담긴 주사기."
+  },
+
+  "Ubernostrum Injector": {
+    "tier": 6,
+    "category": "consumable",
+    "slot": "hand",
+    "tags": ["injector", "healing", "rare"],
+    "names": {
+      "ubernostrum injector": "우버노스트룸 주사기"
+    },
+    "description": "A powerful healing injector.",
+    "description_ko": "강력한 치유 주사기."
+  },
+
+  "Blaze Injector": {
+    "tier": 4,
+    "category": "consumable",
+    "slot": "hand",
+    "tags": ["injector", "combat", "fire"],
+    "names": {
+      "blaze injector": "블레이즈 주사기"
+    },
+    "description": "An injector that grants fire resistance.",
+    "description_ko": "화염 저항을 부여하는 주사기."
+  },
+
+  "Shade Oil Injector": {
+    "tier": 4,
+    "category": "consumable",
+    "slot": "hand",
+    "tags": ["injector", "stealth"],
+    "names": {
+      "shade oil injector": "그림자 기름 주사기"
+    },
+    "description": "An injector that enhances stealth.",
+    "description_ko": "은신 능력을 향상시키는 주사기."
+  },
+
+  "Eater's Nectar Injector": {
+    "tier": 7,
+    "category": "consumable",
+    "slot": "hand",
+    "tags": ["injector", "rare", "mutation"],
+    "names": {
+      "Eater's nectar injector": "식자의 넥타 주사기"
+    },
+    "description": "A rare injector containing the nectar of Eaters.",
+    "description_ko": "식자들의 넥타가 담긴 희귀 주사기."
+  },
+
+  "Rubbergum Injector": {
+    "tier": 4,
+    "category": "consumable",
+    "slot": "hand",
+    "tags": ["injector", "defense"],
+    "names": {
+      "rubbergum injector": "러버검 주사기"
+    },
+    "description": "An injector that makes flesh rubbery and flexible.",
+    "description_ko": "살을 고무처럼 유연하게 만드는 주사기."
+  },
+
+  "Desalination Pill": {
+    "tier": 2,
+    "category": "consumable",
+    "slot": "hand",
+    "tags": ["pill", "water"],
+    "names": {
+      "desalination pill": "탈염 정제"
+    },
+    "description": "A pill that neutralizes salt in the body.",
+    "description_ko": "체내 염분을 중화하는 정제."
+  }
+}

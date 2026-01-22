@@ -1,0 +1,92 @@
+{
+  "_meta": {
+    "category": "armor/face",
+    "description": "Face slot armor - masks, goggles, visors",
+    "version": "2.0",
+    "updated": "2026-01-22"
+  },
+
+  "Goggles": {
+    "tier": 2,
+    "category": "armor",
+    "slot": "face",
+    "tags": ["face", "vision"],
+    "names": {
+      "goggles": "고글"
+    },
+    "description": "Protective eyewear.",
+    "description_ko": "보호용 안경."
+  },
+
+  "Night Vision Goggles": {
+    "tier": 5,
+    "category": "armor",
+    "slot": "face",
+    "tags": ["face", "vision", "artifact", "night"],
+    "names": {
+      "night vision goggles": "야간 투시 고글"
+    },
+    "description": "Goggles that allow vision in darkness.",
+    "description_ko": "어둠 속에서도 볼 수 있게 해주는 고글."
+  },
+
+  "Spectacles": {
+    "tier": 1,
+    "category": "armor",
+    "slot": "face",
+    "tags": ["face", "vision"],
+    "names": {
+      "spectacles": "안경"
+    },
+    "description": "Simple corrective lenses.",
+    "description_ko": "단순한 교정 렌즈."
+  },
+
+  "Leather Mask": {
+    "tier": 1,
+    "category": "armor",
+    "slot": "face",
+    "tags": ["face", "protection"],
+    "names": {
+      "leather mask": "가죽 가면"
+    },
+    "description": "A mask made from leather.",
+    "description_ko": "가죽으로 만든 가면."
+  },
+
+  "Gas Mask": {
+    "tier": 3,
+    "category": "armor",
+    "slot": "face",
+    "tags": ["face", "protection", "gas"],
+    "names": {
+      "gas mask": "방독면"
+    },
+    "description": "A mask that filters toxic gases.",
+    "description_ko": "독성 가스를 여과하는 마스크."
+  },
+
+  "Polarized Visor": {
+    "tier": 4,
+    "category": "armor",
+    "slot": "face",
+    "tags": ["face", "vision", "light"],
+    "names": {
+      "polarized visor": "편광 바이저"
+    },
+    "description": "A visor that protects against bright light.",
+    "description_ko": "강한 빛으로부터 보호하는 바이저."
+  },
+
+  "Hypertractor Mask": {
+    "tier": 6,
+    "category": "armor",
+    "slot": "face",
+    "tags": ["face", "artifact", "telekinesis"],
+    "names": {
+      "hypertractor mask": "하이퍼트랙터 마스크"
+    },
+    "description": "A mask with tractor beam technology.",
+    "description_ko": "트랙터 빔 기술이 탑재된 마스크."
+  }
+}

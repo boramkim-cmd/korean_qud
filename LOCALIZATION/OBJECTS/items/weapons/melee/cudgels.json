@@ -1,0 +1,108 @@
+{
+  "_meta": {
+    "category": "weapons/melee/cudgels",
+    "description": "Cudgel melee weapons - clubs, maces, hammers",
+    "version": "2.0",
+    "updated": "2026-01-22"
+  },
+
+  "Club": {
+    "tier": 1,
+    "category": "weapon",
+    "slot": "hand",
+    "tags": ["cudgel", "blunt", "one-handed"],
+    "names": {
+      "club": "곤봉"
+    },
+    "description": "Wood was shaved into a bludgeoning bulb.",
+    "description_ko": "나무를 깎아 둔기용 불룩한 형태로 만들었다."
+  },
+
+  "Wrench": {
+    "tier": 1,
+    "category": "weapon",
+    "slot": "hand",
+    "tags": ["cudgel", "blunt", "tool", "one-handed"],
+    "names": {
+      "wrench": "렌치"
+    },
+    "description": "An armlength of time-tortured metal is punched through with screwing iron for extra torque.",
+    "description_ko": "시간에 시달린 금속 팔뚝만 한 길이에 추가 토크를 위해 나사 철이 뚫려 있다."
+  },
+
+  "Pestle": {
+    "tier": 1,
+    "category": "weapon",
+    "slot": "hand",
+    "tags": ["cudgel", "blunt", "tool", "one-handed"],
+    "names": {
+      "pestle": "절구공이"
+    },
+    "description": "A bulb of stone is dusted by humoric powders.",
+    "description_ko": "돌 절구공이에 약재 가루가 묻어 있다."
+  },
+
+  "Staff": {
+    "tier": 1,
+    "category": "weapon",
+    "slot": "hand",
+    "tags": ["cudgel", "blunt", "two-handed"],
+    "names": {
+      "staff": "지팡이"
+    },
+    "description": "Quartersawn witchwood wears a thousand nicks along its warped length.",
+    "description_ko": "쿼터소운 위치우드가 뒤틀린 길이를 따라 수천 개의 흠집을 달고 있다."
+  },
+
+  "Walking Stick": {
+    "tier": 1,
+    "category": "weapon",
+    "slot": "hand",
+    "tags": ["cudgel", "blunt", "one-handed"],
+    "names": {
+      "walking stick": "지팡이"
+    },
+    "description": "Brinestalk was scythed from its marsh home and dried in the high salt sun. Its top is spiraled into a crook.",
+    "description_ko": "브라인스톡을 습지에서 베어내 뜨거운 염분 태양 아래 말렸다. 꼭대기는 나선형으로 구부러져 있다."
+  },
+
+  "Mace2": {
+    "tier": 2,
+    "category": "weapon",
+    "slot": "hand",
+    "tags": ["cudgel", "blunt", "one-handed"],
+    "names": {
+      "{{w|bronze}} mace": "{{w|청동}} 메이스",
+      "bronze mace": "청동 메이스",
+      "mace": "메이스"
+    },
+    "description": "A corm of bell bronze is screw-fitted to a scarred wooden shaft.",
+    "description_ko": "벨 청동 구근이 상처 난 나무 자루에 나사로 고정되어 있다."
+  },
+
+  "Warhammer2": {
+    "tier": 2,
+    "category": "weapon",
+    "slot": "hand",
+    "tags": ["cudgel", "blunt", "one-handed"],
+    "names": {
+      "iron mace": "철 메이스"
+    },
+    "description": "Iron lines unfold into a head of six flanges.",
+    "description_ko": "철 선이 여섯 개의 플랜지를 가진 머리로 펼쳐진다."
+  },
+
+  "Steel War Hammer": {
+    "tier": 3,
+    "category": "weapon",
+    "slot": "hand",
+    "tags": ["cudgel", "blunt", "one-handed"],
+    "names": {
+      "{{Y|steel}} war hammer": "{{Y|강철}} 워해머",
+      "steel war hammer": "강철 워해머",
+      "war hammer": "워해머"
+    },
+    "description": "Hand grease shines on the pole, and a volume of polished steel weights one end.",
+    "description_ko": "손때가 막대에서 빛나고, 광택 난 강철 덩어리가 한쪽 끝에 무게를 더한다."
+  }
+}

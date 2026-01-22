@@ -1,0 +1,92 @@
+{
+  "_meta": {
+    "category": "armor/body",
+    "description": "Body armor - chest, torso protection",
+    "version": "2.0",
+    "updated": "2026-01-22"
+  },
+
+  "Leather Armor": {
+    "tier": 1,
+    "category": "armor",
+    "slot": "body",
+    "tags": ["body", "light"],
+    "names": {
+      "leather armor": "가죽 갑옷"
+    },
+    "description": "A suit of armor made from treated animal hides.",
+    "description_ko": "처리된 동물 가죽으로 만든 갑옷."
+  },
+
+  "Chain Mail": {
+    "tier": 2,
+    "category": "armor",
+    "slot": "body",
+    "tags": ["body", "medium", "metal"],
+    "names": {
+      "chain mail": "사슬 갑옷"
+    },
+    "description": "Armor made of interlocking metal rings.",
+    "description_ko": "서로 맞물린 금속 고리로 만든 갑옷."
+  },
+
+  "Scale Mail": {
+    "tier": 3,
+    "category": "armor",
+    "slot": "body",
+    "tags": ["body", "medium", "metal"],
+    "names": {
+      "scale mail": "비늘 갑옷"
+    },
+    "description": "Armor with overlapping metal scales.",
+    "description_ko": "겹쳐진 금속 비늘로 만든 갑옷."
+  },
+
+  "Plastifer Jerkin": {
+    "tier": 4,
+    "category": "armor",
+    "slot": "body",
+    "tags": ["body", "light", "synthetic"],
+    "names": {
+      "plastifer jerkin": "플라스티퍼 조끼"
+    },
+    "description": "A lightweight vest made from plastifer polymers.",
+    "description_ko": "플라스티퍼 폴리머로 만든 가벼운 조끼."
+  },
+
+  "Plate Mail": {
+    "tier": 4,
+    "category": "armor",
+    "slot": "body",
+    "tags": ["body", "heavy", "metal"],
+    "names": {
+      "plate mail": "판금 갑옷"
+    },
+    "description": "Heavy armor made of solid metal plates.",
+    "description_ko": "단단한 금속판으로 만든 중갑."
+  },
+
+  "Carbide Plate Armor": {
+    "tier": 6,
+    "category": "armor",
+    "slot": "body",
+    "tags": ["body", "heavy", "carbide"],
+    "names": {
+      "carbide plate armor": "카바이드 판금 갑옷"
+    },
+    "description": "Heavy armor made from ultra-hard carbide plates.",
+    "description_ko": "초경질 카바이드 판으로 만든 중갑."
+  },
+
+  "Flawless Crysteel Shardmail": {
+    "tier": 7,
+    "category": "armor",
+    "slot": "body",
+    "tags": ["body", "heavy", "crysteel", "artifact"],
+    "names": {
+      "flawless crysteel shardmail": "완벽한 크리스틸 파편갑옷"
+    },
+    "description": "Armor forged from flawless crysteel, offering supreme protection.",
+    "description_ko": "완벽한 크리스틸로 제련된 갑옷, 최고의 방어력을 제공한다."
+  }
+}

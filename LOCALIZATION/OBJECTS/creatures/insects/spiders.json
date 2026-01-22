@@ -1,0 +1,39 @@
+{
+  "_meta": {
+    "category": "insects/spiders",
+    "description": "Spider and arachnid creatures",
+    "version": "2.0",
+    "updated": "2026-01-22"
+  },
+
+  "Cave Spider": {
+    "tier": 1,
+    "category": "insect",
+    "tags": ["arachnid", "hostile", "common"],
+    "names": {
+      "cave spider": "동굴 거미"
+    },
+    "description": "=pronouns.Subjective= =verb:are:afterpronoun= Spindle-limbed and skittish. Bits of =pronouns.possessive= silk home are stuck to =pronouns.possessive= underhairs.",
+    "description_ko": "가늘고 긴 다리를 가진 신경질적인 녀석이다. 거미줄 집의 조각들이 배 밑의 털에 붙어 있다."
+  },
+
+  "Cave Spider Corpse": {
+    "tier": 1,
+    "category": "corpse",
+    "tags": ["arachnid"],
+    "names": {
+      "cave spider corpse": "동굴 거미 시체"
+    }
+  },
+
+  "Electrofuge": {
+    "tier": 3,
+    "category": "insect",
+    "tags": ["arachnid", "hostile", "electric"],
+    "names": {
+      "electrofuge": "전기거미"
+    },
+    "description": "An arachnid that stores and discharges electrical energy.",
+    "description_ko": "전기를 축적하고 방출하는 거미류. 접촉 시 감전될 수 있다."
+  }
+}

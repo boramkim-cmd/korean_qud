@@ -1,7 +1,10 @@
-// Object Localization System - DisplayName Patch
-// Patches GetDisplayNameEvent.GetFor() to translate creature/item names
-// ISOLATED from existing translation infrastructure
-// Version: 2.0 | Created: 2026-01-22
+/*
+ * 파일명: 02_20_01_DisplayNamePatch.cs
+ * 분류: [Patch] 오브젝트 이름 번역
+ * 역할: GetDisplayNameEvent.GetFor() 패치로 생물/아이템 이름 한글화
+ * 작성일: 2026-01-22
+ * 비고: ForSort, ColorOnly 모드에서는 번역 스킵
+ */
 
 using System;
 using System.Collections.Generic;

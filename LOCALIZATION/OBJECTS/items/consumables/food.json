@@ -1,0 +1,128 @@
+{
+  "_meta": {
+    "category": "consumables/food",
+    "description": "Food items - cooking recipes, raw foods, mushrooms",
+    "version": "2.0",
+    "updated": "2026-01-22"
+  },
+
+  "Yuckwheat Stem": {
+    "tier": 1,
+    "category": "food",
+    "slot": "hand",
+    "tags": ["ingredient", "plant", "raw"],
+    "names": {
+      "yuckwheat stem": "역겨운밀 줄기"
+    },
+    "description": "A fibrous stem from a yuckwheat plant.",
+    "description_ko": "역겨운밀 식물의 섬유질 줄기."
+  },
+
+  "Witchwood Bark": {
+    "tier": 2,
+    "category": "food",
+    "slot": "hand",
+    "tags": ["ingredient", "plant", "medicinal"],
+    "names": {
+      "witchwood bark": "마녀나무 껍질"
+    },
+    "description": "Bark stripped from a witchwood tree.",
+    "description_ko": "마녀나무에서 벗겨낸 껍질."
+  },
+
+  "Spine Fruit": {
+    "tier": 1,
+    "category": "food",
+    "slot": "hand",
+    "tags": ["fruit", "plant"],
+    "names": {
+      "spine fruit": "가시 열매"
+    },
+    "description": "A spiny fruit with edible flesh.",
+    "description_ko": "먹을 수 있는 과육이 있는 가시 열매."
+  },
+
+  "Watervine": {
+    "tier": 1,
+    "category": "food",
+    "slot": "hand",
+    "tags": ["ingredient", "plant", "water"],
+    "names": {
+      "watervine": "물덩굴"
+    },
+    "description": "A vine that stores fresh water.",
+    "description_ko": "신선한 물을 저장하는 덩굴."
+  },
+
+  "Starapple": {
+    "tier": 2,
+    "category": "food",
+    "slot": "hand",
+    "tags": ["fruit", "plant"],
+    "names": {
+      "starapple": "별사과"
+    },
+    "description": "A star-shaped apple with sweet flesh.",
+    "description_ko": "달콤한 과육의 별 모양 사과."
+  },
+
+  "Umber Mushroom": {
+    "tier": 2,
+    "category": "food",
+    "slot": "hand",
+    "tags": ["mushroom", "fungus"],
+    "names": {
+      "umber mushroom": "암갈색 버섯"
+    },
+    "description": "A dark brown mushroom found in caves.",
+    "description_ko": "동굴에서 발견되는 어두운 갈색 버섯."
+  },
+
+  "Vinewafer": {
+    "tier": 2,
+    "category": "food",
+    "slot": "hand",
+    "tags": ["cooked", "prepared"],
+    "names": {
+      "vinewafer": "덩굴과자"
+    },
+    "description": "A crispy wafer made from processed vines.",
+    "description_ko": "가공된 덩굴로 만든 바삭한 과자."
+  },
+
+  "Eyeball": {
+    "tier": 2,
+    "category": "food",
+    "slot": "hand",
+    "tags": ["meat", "organ"],
+    "names": {
+      "eyeball": "안구"
+    },
+    "description": "A harvested eyeball.",
+    "description_ko": "채취한 안구."
+  },
+
+  "Cooked Meat": {
+    "tier": 1,
+    "category": "food",
+    "slot": "hand",
+    "tags": ["meat", "cooked"],
+    "names": {
+      "cooked meat": "조리된 고기"
+    },
+    "description": "Meat cooked over a fire.",
+    "description_ko": "불에 조리한 고기."
+  },
+
+  "Raw Meat": {
+    "tier": 1,
+    "category": "food",
+    "slot": "hand",
+    "tags": ["meat", "raw"],
+    "names": {
+      "raw meat": "생고기"
+    },
+    "description": "Uncooked meat from a creature.",
+    "description_ko": "크리처에서 얻은 익히지 않은 고기."
+  }
+}

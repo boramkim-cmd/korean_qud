@@ -1,0 +1,104 @@
+{
+  "_meta": {
+    "category": "artifacts/cells",
+    "description": "Energy cells and power sources",
+    "version": "2.0",
+    "updated": "2026-01-22"
+  },
+
+  "Chem Cell": {
+    "tier": 2,
+    "category": "artifact",
+    "slot": "hand",
+    "tags": ["cell", "power", "basic"],
+    "names": {
+      "chem cell": "화학 전지"
+    },
+    "description": "A basic chemical power cell.",
+    "description_ko": "기본 화학 전지."
+  },
+
+  "Solar Cell": {
+    "tier": 3,
+    "category": "artifact",
+    "slot": "hand",
+    "tags": ["cell", "power", "solar"],
+    "names": {
+      "solar cell": "태양 전지"
+    },
+    "description": "A cell that recharges in sunlight.",
+    "description_ko": "햇빛에서 충전되는 전지."
+  },
+
+  "Lead-Acid Cell": {
+    "tier": 2,
+    "category": "artifact",
+    "slot": "hand",
+    "tags": ["cell", "power", "heavy"],
+    "names": {
+      "lead-acid cell": "납축 전지"
+    },
+    "description": "A heavy but reliable power cell.",
+    "description_ko": "무겁지만 신뢰할 수 있는 전지."
+  },
+
+  "Combustion Cell": {
+    "tier": 3,
+    "category": "artifact",
+    "slot": "hand",
+    "tags": ["cell", "power", "liquid"],
+    "names": {
+      "combustion cell": "연소 전지"
+    },
+    "description": "A cell powered by combustible liquids.",
+    "description_ko": "가연성 액체로 작동하는 전지."
+  },
+
+  "Radio-Isotope Cell": {
+    "tier": 5,
+    "category": "artifact",
+    "slot": "hand",
+    "tags": ["cell", "power", "nuclear"],
+    "names": {
+      "radio-isotope cell": "방사성 동위원소 전지"
+    },
+    "description": "A powerful nuclear-powered cell.",
+    "description_ko": "강력한 핵 동력 전지."
+  },
+
+  "Antimatter Cell": {
+    "tier": 7,
+    "category": "artifact",
+    "slot": "hand",
+    "tags": ["cell", "power", "antimatter", "rare"],
+    "names": {
+      "antimatter cell": "반물질 전지"
+    },
+    "description": "An incredibly powerful antimatter-based power cell.",
+    "description_ko": "믿을 수 없을 만큼 강력한 반물질 기반 전지."
+  },
+
+  "Fidget Cell": {
+    "tier": 4,
+    "category": "artifact",
+    "slot": "hand",
+    "tags": ["cell", "power", "kinetic"],
+    "names": {
+      "fidget cell": "피젯 전지"
+    },
+    "description": "A cell that generates power from movement.",
+    "description_ko": "움직임으로 전력을 생성하는 전지."
+  },
+
+  "Biodynamic Cell": {
+    "tier": 4,
+    "category": "artifact",
+    "slot": "hand",
+    "tags": ["cell", "power", "organic"],
+    "names": {
+      "biodynamic cell": "바이오다이나믹 전지"
+    },
+    "description": "A cell powered by biological processes.",
+    "description_ko": "생물학적 과정으로 작동하는 전지."
+  }
+}

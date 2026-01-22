@@ -1,6 +1,6 @@
 # 🚀 프로젝트 빠른 참조 (자동 생성)
 
-**생성**: 2026-01-22 08:40:33
+**생성**: 2026-01-22 11:15:47
 
 ## ⭐ 핵심 경로
 ```
@@ -196,31 +196,68 @@ LOCALIZATION/**/*.json              → 용어집 데이터
 - `Watervine_Farmer.json`: 1개 항목
 - `Wings.json`: 1개 항목
 - `_common.json`: 62개 항목
-- `armor.json`: 90개 항목
+- `ants.json`: 10개 항목
 - `attributes.json`: 7개 항목
+- `axes.json`: 39개 항목
+- `back.json`: 53개 항목
+- `bats.json`: 14개 항목
+- `beetles.json`: 10개 항목
+- `blades.json`: 67개 항목
+- `body.json`: 53개 항목
+- `bows.json`: 18개 항목
+- `cats.json`: 18개 항목
+- `cells.json`: 60개 항목
 - `common.json`: 188개 항목
-- `cybernetics.json`: 54개 항목
+- `crabs.json`: 10개 항목
+- `cudgels.json`: 60개 항목
+- `cybernetics.json`: 60개 항목
 - `descriptions.json`: 25개 항목
 - `display.json`: 32개 항목
+- `drinks.json`: 60개 항목
+- `dromad.json`: 10개 항목
+- `drones.json`: 52개 항목
+- `face.json`: 53개 항목
 - `factions.json`: 53개 항목
+- `feet.json`: 46개 항목
+- `fish.json`: 10개 항목
+- `food.json`: 74개 항목
+- `fungi.json`: 10개 항목
 - `glossary_proto.json`: 40개 항목
 - `glossary_worldgen.json`: 40개 항목
+- `goatfolk.json`: 28개 항목
+- `grenades.json`: 74개 항목
+- `guns.json`: 53개 항목
+- `hands.json`: 39개 항목
+- `head.json`: 46개 항목
+- `hindren.json`: 10개 항목
+- `hoppers.json`: 10개 항목
+- `injectors.json`: 53개 항목
+- `jells.json`: 46개 항목
+- `joppa.json`: 86개 항목
 - `locations.json`: 22개 항목
-- `melee_weapons.json`: 117개 항목
-- `missile_weapons.json`: 133개 항목
+- `long_blades.json`: 81개 항목
+- `mammals.json`: 70개 항목
+- `misc.json`: 53개 항목
 - `modes.json`: 6개 항목
-- `npcs_joppa.json`: 38개 항목
+- `moths.json`: 22개 항목
+- `naphtaali.json`: 16개 항목
 - `options.json`: 454개 항목
+- `others.json`: 28개 항목
+- `relics.json`: 60개 항목
 - `skills.json`: 223개 항목
+- `snapjaws.json`: 124개 항목
+- `spears.json`: 67개 항목
+- `spiders.json`: 20개 항목
 - `stats.json`: 2개 항목
+- `svardym.json`: 28개 항목
+- `templars.json`: 22개 항목
 - `terms.json`: 35개 항목
-- `tier1_animals.json`: 55개 항목
-- `tier1_humanoids.json`: 43개 항목
-- `tier2.json`: 46개 항목
-- `tools.json`: 51개 항목
+- `tools.json`: 67개 항목
+- `turrets.json`: 28개 항목
 - `tutorial.json`: 21개 항목
 - `ui.json`: 8개 항목
-- `unknown.json`: 94개 항목
+- `vines.json`: 16개 항목
+- `worms.json`: 34개 항목
 
 ## ⛔ 절대 금지 (DO NOT)
 ```

@@ -1,0 +1,41 @@
+{
+  "_meta": {
+    "category": "humanoids/templars",
+    "description": "Templar pureblood human crusaders",
+    "version": "2.0",
+    "updated": "2026-01-22"
+  },
+
+  "Templar": {
+    "tier": 3,
+    "category": "humanoid",
+    "tags": ["templar", "hostile", "purist", "human"],
+    "names": {
+      "templar": "템플러"
+    },
+    "description": "A pureblood human crusader who is hostile to mutants.",
+    "description_ko": "순혈 인간 십자군 전사. 돌연변이를 적대시한다."
+  },
+
+  "Putus Templar": {
+    "tier": 4,
+    "category": "humanoid",
+    "tags": ["templar", "hostile", "purist", "elite"],
+    "names": {
+      "putus templar": "푸투스 템플러"
+    },
+    "description": "A knight of the Purist order.",
+    "description_ko": "퓨리스트 교단의 전투 기사."
+  },
+
+  "Templar Knight": {
+    "tier": 4,
+    "category": "humanoid",
+    "tags": ["templar", "hostile", "purist", "warrior"],
+    "names": {
+      "templar knight": "템플러 기사"
+    },
+    "description": "A crusader knight that hunts mutants.",
+    "description_ko": "돌연변이를 사냥하는 십자군 기사."
+  }
+}

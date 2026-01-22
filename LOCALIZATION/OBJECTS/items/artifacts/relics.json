@@ -1,0 +1,104 @@
+{
+  "_meta": {
+    "category": "artifacts/relics",
+    "description": "True artifacts and legendary relics",
+    "version": "2.0",
+    "updated": "2026-01-22"
+  },
+
+  "Flume-Flier of the Sky-Bear": {
+    "tier": 8,
+    "category": "relic",
+    "slot": "back",
+    "tags": ["relic", "flight", "legendary"],
+    "names": {
+      "flume-flier of the sky-bear": "하늘곰의 수로 비행체"
+    },
+    "description": "A legendary artifact that grants the power of flight.",
+    "description_ko": "비행의 힘을 부여하는 전설적인 유물."
+  },
+
+  "Cloaca Surprise": {
+    "tier": 7,
+    "category": "relic",
+    "slot": "hand",
+    "tags": ["relic", "weapon", "legendary"],
+    "names": {
+      "Cloaca Surprise": "배설강의 놀라움"
+    },
+    "description": "A bizarre but powerful legendary weapon.",
+    "description_ko": "기이하지만 강력한 전설적인 무기."
+  },
+
+  "Zetachrome Lune": {
+    "tier": 8,
+    "category": "relic",
+    "slot": "hand",
+    "tags": ["relic", "blade", "legendary"],
+    "names": {
+      "zetachrome lune": "제타크롬 초승달검"
+    },
+    "description": "A crescent blade forged from zetachrome alloy.",
+    "description_ko": "제타크롬 합금으로 제련된 초승달 모양의 칼."
+  },
+
+  "Fist of the Ape God": {
+    "tier": 8,
+    "category": "relic",
+    "slot": "hands",
+    "tags": ["relic", "gloves", "legendary"],
+    "names": {
+      "Fist of the Ape God": "유인원 신의 주먹"
+    },
+    "description": "Ancient gauntlets blessed by the Ape God.",
+    "description_ko": "유인원 신의 축복을 받은 고대 건틀릿."
+  },
+
+  "Kesil Face": {
+    "tier": 7,
+    "category": "relic",
+    "slot": "face",
+    "tags": ["relic", "mask", "legendary"],
+    "names": {
+      "Kesil Face": "케실 얼굴"
+    },
+    "description": "An ancient ceremonial mask with mysterious powers.",
+    "description_ko": "신비로운 힘을 가진 고대 의식용 가면."
+  },
+
+  "Chrome Pyramid": {
+    "tier": 8,
+    "category": "relic",
+    "slot": "hand",
+    "tags": ["relic", "artifact", "legendary", "urshiib"],
+    "names": {
+      "chrome pyramid": "크롬 피라미드"
+    },
+    "description": "An ancient Urshiib artifact of immense power.",
+    "description_ko": "엄청난 힘을 가진 고대 우르쉬이브 유물."
+  },
+
+  "Cyclopean Prism": {
+    "tier": 7,
+    "category": "relic",
+    "slot": "hand",
+    "tags": ["relic", "vision", "legendary"],
+    "names": {
+      "cyclopean prism": "외눈박이 프리즘"
+    },
+    "description": "A prism that grants enhanced vision.",
+    "description_ko": "강화된 시야를 부여하는 프리즘."
+  },
+
+  "Amaranthine Prism": {
+    "tier": 8,
+    "category": "relic",
+    "slot": "hand",
+    "tags": ["relic", "light", "legendary"],
+    "names": {
+      "amaranthine prism": "비색 프리즘"
+    },
+    "description": "A prism of eternal unfading color.",
+    "description_ko": "영원히 바래지 않는 색의 프리즘."
+  }
+}

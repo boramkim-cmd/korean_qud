@@ -1,0 +1,19 @@
+{
+  "_meta": {
+    "category": "insects/crabs",
+    "description": "Crab and crustacean creatures",
+    "version": "2.0",
+    "updated": "2026-01-22"
+  },
+
+  "Eyeless Crab": {
+    "tier": 2,
+    "category": "insect",
+    "tags": ["crustacean", "hostile", "blind"],
+    "names": {
+      "eyeless crab": "눈먼 게"
+    },
+    "description": "A crustacean without eyes that hunts by detecting vibrations.",
+    "description_ko": "눈이 없는 갑각류. 진동을 감지하여 사냥한다."
+  }
+}

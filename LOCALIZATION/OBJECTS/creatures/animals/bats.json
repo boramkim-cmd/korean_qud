@@ -1,0 +1,28 @@
+{
+  "_meta": {
+    "category": "animals/bats",
+    "description": "Bat creatures",
+    "version": "2.0",
+    "updated": "2026-01-22"
+  },
+
+  "Bat": {
+    "tier": 1,
+    "category": "animal",
+    "tags": ["flying", "neutral", "common", "swarm"],
+    "names": {
+      "bat": "박쥐"
+    },
+    "description": "It sheaths itself in filmy wings.",
+    "description_ko": "얇은 날개로 몸을 감싸고 있다."
+  },
+
+  "Bat Corpse": {
+    "tier": 1,
+    "category": "corpse",
+    "tags": ["flying"],
+    "names": {
+      "bat corpse": "박쥐 시체"
+    }
+  }
+}

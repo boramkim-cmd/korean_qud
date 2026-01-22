@@ -1,0 +1,32 @@
+{
+  "_meta": {
+    "category": "weapons/ranged/bows",
+    "description": "Bow ranged weapons",
+    "version": "2.0",
+    "updated": "2026-01-22"
+  },
+
+  "Bow": {
+    "tier": 2,
+    "category": "weapon",
+    "slot": "hand",
+    "tags": ["bow", "ranged", "two-handed"],
+    "names": {
+      "bow": "활"
+    },
+    "description": "A curved piece of wood strung with sinew.",
+    "description_ko": "힘줄로 팽팽하게 당긴 휘어진 나무."
+  },
+
+  "Compound Bow": {
+    "tier": 4,
+    "category": "weapon",
+    "slot": "hand",
+    "tags": ["bow", "ranged", "two-handed", "mechanical"],
+    "names": {
+      "compound bow": "컴파운드 보우"
+    },
+    "description": "A complex bow with pulleys and cables for greater power.",
+    "description_ko": "풀리와 케이블로 더 강한 힘을 내는 복잡한 활."
+  }
+}

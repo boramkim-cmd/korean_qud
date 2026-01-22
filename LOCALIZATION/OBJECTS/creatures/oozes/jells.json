@@ -1,0 +1,85 @@
+{
+  "_meta": {
+    "category": "oozes/jells",
+    "description": "Jell and ooze creatures",
+    "version": "2.0",
+    "updated": "2026-01-22"
+  },
+
+  "Jell": {
+    "tier": 2,
+    "category": "ooze",
+    "tags": ["jell", "hostile", "common"],
+    "names": {
+      "jell": "젤"
+    },
+    "description": "A gelatinous creature.",
+    "description_ko": "끈적거리는 젤리 형태의 생명체."
+  },
+
+  "Brown Jell": {
+    "tier": 2,
+    "category": "ooze",
+    "tags": ["jell", "hostile", "common"],
+    "names": {
+      "brown jell": "갈색 젤"
+    },
+    "description": "A brown gelatinous creature.",
+    "description_ko": "갈색 젤리 형태의 생명체."
+  },
+
+  "Green Jell": {
+    "tier": 2,
+    "category": "ooze",
+    "tags": ["jell", "hostile", "common", "acid"],
+    "names": {
+      "green jell": "녹색 젤"
+    },
+    "description": "A green gelatinous creature.",
+    "description_ko": "녹색 젤리 형태의 생명체."
+  },
+
+  "Blue Jell": {
+    "tier": 3,
+    "category": "ooze",
+    "tags": ["jell", "hostile", "electric"],
+    "names": {
+      "blue jell": "파란 젤"
+    },
+    "description": "A blue gelatinous creature.",
+    "description_ko": "파란 젤리 형태의 생명체."
+  },
+
+  "White Ooze": {
+    "tier": 3,
+    "category": "ooze",
+    "tags": ["ooze", "hostile"],
+    "names": {
+      "white ooze": "흰 점액괴물"
+    },
+    "description": "A white viscous ooze creature.",
+    "description_ko": "흰색의 끈적이는 점액 생명체."
+  },
+
+  "Black Ooze": {
+    "tier": 4,
+    "category": "ooze",
+    "tags": ["ooze", "hostile", "dangerous"],
+    "names": {
+      "black ooze": "검은 점액괴물"
+    },
+    "description": "A threatening black ooze creature.",
+    "description_ko": "검은색의 위협적인 점액 생명체."
+  },
+
+  "Gelatinous Mass": {
+    "tier": 5,
+    "category": "ooze",
+    "tags": ["ooze", "hostile", "large", "absorb"],
+    "names": {
+      "gelatinous mass": "젤라틴 덩어리"
+    },
+    "description": "A giant gelatinous creature that absorbs anything it touches.",
+    "description_ko": "거대한 젤라틴 형태의 생명체. 접촉한 것을 흡수한다."
+  }
+}

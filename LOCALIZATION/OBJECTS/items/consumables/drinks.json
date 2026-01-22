@@ -1,0 +1,104 @@
+{
+  "_meta": {
+    "category": "consumables/drinks",
+    "description": "Liquid consumables - water, tonics, other drinks",
+    "version": "2.0",
+    "updated": "2026-01-22"
+  },
+
+  "Fresh Water": {
+    "tier": 1,
+    "category": "consumable",
+    "slot": "hand",
+    "tags": ["liquid", "water"],
+    "names": {
+      "fresh water": "신선한 물"
+    },
+    "description": "Pure, drinkable water.",
+    "description_ko": "순수하고 마실 수 있는 물."
+  },
+
+  "Salt Water": {
+    "tier": 1,
+    "category": "consumable",
+    "slot": "hand",
+    "tags": ["liquid", "water", "salt"],
+    "names": {
+      "salt water": "소금물"
+    },
+    "description": "Water saturated with salt.",
+    "description_ko": "소금이 포화된 물."
+  },
+
+  "Convalessence": {
+    "tier": 3,
+    "category": "consumable",
+    "slot": "hand",
+    "tags": ["liquid", "healing"],
+    "names": {
+      "convalessence": "컨발레센스"
+    },
+    "description": "A healing tonic that restores vitality.",
+    "description_ko": "활력을 회복시켜주는 치유 강장제."
+  },
+
+  "Honey": {
+    "tier": 2,
+    "category": "consumable",
+    "slot": "hand",
+    "tags": ["liquid", "sweet"],
+    "names": {
+      "honey": "꿀"
+    },
+    "description": "Sweet golden nectar.",
+    "description_ko": "달콤한 황금빛 넥타."
+  },
+
+  "Acid": {
+    "tier": 2,
+    "category": "consumable",
+    "slot": "hand",
+    "tags": ["liquid", "corrosive", "dangerous"],
+    "names": {
+      "acid": "산"
+    },
+    "description": "Highly corrosive liquid.",
+    "description_ko": "강한 부식성 액체."
+  },
+
+  "Sludge": {
+    "tier": 1,
+    "category": "consumable",
+    "slot": "hand",
+    "tags": ["liquid", "waste"],
+    "names": {
+      "sludge": "진흙"
+    },
+    "description": "Thick, muddy substance.",
+    "description_ko": "걸쭉하고 진흙투성이인 물질."
+  },
+
+  "Cider": {
+    "tier": 2,
+    "category": "consumable",
+    "slot": "hand",
+    "tags": ["liquid", "alcohol"],
+    "names": {
+      "cider": "사이다"
+    },
+    "description": "Fermented apple drink.",
+    "description_ko": "발효된 사과 음료."
+  },
+
+  "Wine": {
+    "tier": 3,
+    "category": "consumable",
+    "slot": "hand",
+    "tags": ["liquid", "alcohol"],
+    "names": {
+      "wine": "와인"
+    },
+    "description": "Fermented grape drink.",
+    "description_ko": "발효된 포도 음료."
+  }
+}

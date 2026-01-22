@@ -1,0 +1,140 @@
+{
+  "_meta": {
+    "category": "weapons/melee/long_blades",
+    "description": "Long blade weapons - swords, longswords, two-handed swords",
+    "version": "2.0",
+    "updated": "2026-01-22"
+  },
+
+  "Bronze Sword": {
+    "tier": 1,
+    "category": "weapon",
+    "slot": "hand",
+    "tags": ["long blade", "one-handed", "bronze"],
+    "names": {
+      "bronze sword": "청동 검"
+    },
+    "description": "A sword forged from bronze.",
+    "description_ko": "청동으로 제련된 검."
+  },
+
+  "Iron Sword": {
+    "tier": 2,
+    "category": "weapon",
+    "slot": "hand",
+    "tags": ["long blade", "one-handed", "iron"],
+    "names": {
+      "iron sword": "철 검"
+    },
+    "description": "A sword forged from iron.",
+    "description_ko": "철로 제련된 검."
+  },
+
+  "Steel Sword": {
+    "tier": 3,
+    "category": "weapon",
+    "slot": "hand",
+    "tags": ["long blade", "one-handed", "steel"],
+    "names": {
+      "steel sword": "강철 검"
+    },
+    "description": "A sword forged from steel.",
+    "description_ko": "강철로 제련된 검."
+  },
+
+  "Carbide Sword": {
+    "tier": 5,
+    "category": "weapon",
+    "slot": "hand",
+    "tags": ["long blade", "one-handed", "carbide"],
+    "names": {
+      "carbide sword": "카바이드 검"
+    },
+    "description": "A sword forged from ultra-hard carbide.",
+    "description_ko": "초경질 카바이드로 제련된 검."
+  },
+
+  "Folded Carbide Sword": {
+    "tier": 6,
+    "category": "weapon",
+    "slot": "hand",
+    "tags": ["long blade", "one-handed", "carbide", "folded"],
+    "names": {
+      "folded carbide sword": "접힌 카바이드 검"
+    },
+    "description": "A sword of folded carbide with exceptional sharpness.",
+    "description_ko": "뛰어난 날카로움을 가진 접힌 카바이드 검."
+  },
+
+  "Bronze Two-Handed Sword": {
+    "tier": 1,
+    "category": "weapon",
+    "slot": "hand",
+    "tags": ["long blade", "two-handed", "bronze"],
+    "names": {
+      "bronze two-handed sword": "청동 양손검"
+    },
+    "description": "A large two-handed sword forged from bronze.",
+    "description_ko": "청동으로 제련된 대형 양손검."
+  },
+
+  "Iron Two-Handed Sword": {
+    "tier": 2,
+    "category": "weapon",
+    "slot": "hand",
+    "tags": ["long blade", "two-handed", "iron"],
+    "names": {
+      "iron two-handed sword": "철 양손검"
+    },
+    "description": "A large two-handed sword forged from iron.",
+    "description_ko": "철로 제련된 대형 양손검."
+  },
+
+  "Steel Two-Handed Sword": {
+    "tier": 3,
+    "category": "weapon",
+    "slot": "hand",
+    "tags": ["long blade", "two-handed", "steel"],
+    "names": {
+      "steel two-handed sword": "강철 양손검"
+    },
+    "description": "A large two-handed sword forged from steel.",
+    "description_ko": "강철로 제련된 대형 양손검."
+  },
+
+  "Carbide Two-Handed Sword": {
+    "tier": 5,
+    "category": "weapon",
+    "slot": "hand",
+    "tags": ["long blade", "two-handed", "carbide"],
+    "names": {
+      "carbide two-handed sword": "카바이드 양손검"
+    },
+    "description": "A massive two-handed sword of ultra-hard carbide.",
+    "description_ko": "초경질 카바이드로 만든 거대한 양손검."
+  },
+
+  "Scimitar": {
+    "tier": 3,
+    "category": "weapon",
+    "slot": "hand",
+    "tags": ["long blade", "one-handed", "curved"],
+    "names": {
+      "scimitar": "시미터"
+    },
+    "description": "A curved sword with a single-edged blade.",
+    "description_ko": "외날의 곡선형 검."
+  },
+
+  "Sabre": {
+    "tier": 3,
+    "category": "weapon",
+    "slot": "hand",
+    "tags": ["long blade", "one-handed", "cavalry"],
+    "names": {
+      "sabre": "사브르"
+    },
+    "description": "A single-edged cavalry sword.",
+    "description_ko": "외날의 기병용 검."
+  }
+}

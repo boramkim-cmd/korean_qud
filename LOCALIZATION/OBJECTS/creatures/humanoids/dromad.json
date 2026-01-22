@@ -1,0 +1,19 @@
+{
+  "_meta": {
+    "category": "humanoids/dromad",
+    "description": "Dromad camel-folk creatures",
+    "version": "2.0",
+    "updated": "2026-01-22"
+  },
+
+  "Dromad": {
+    "tier": 2,
+    "category": "humanoid",
+    "tags": ["dromad", "neutral", "merchant"],
+    "names": {
+      "dromad": "드로마드"
+    },
+    "description": "A camel-like humanoid species, most work as merchants.",
+    "description_ko": "낙타 형상의 인간형 종족. 대부분 상인으로 활동한다."
+  }
+}

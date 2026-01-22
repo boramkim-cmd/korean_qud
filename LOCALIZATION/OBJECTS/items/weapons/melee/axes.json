@@ -1,0 +1,71 @@
+{
+  "_meta": {
+    "category": "weapons/melee/axes",
+    "description": "Axe melee weapons",
+    "version": "2.0",
+    "updated": "2026-01-22"
+  },
+
+  "Hand Axe": {
+    "tier": 2,
+    "category": "weapon",
+    "slot": "hand",
+    "tags": ["axe", "one-handed"],
+    "names": {
+      "hand axe": "손도끼"
+    },
+    "description": "A rough head of iron is seated on an oiled haft.",
+    "description_ko": "거친 철 머리가 기름칠한 자루에 박혀 있다."
+  },
+
+  "BattleAxe2": {
+    "tier": 2,
+    "category": "weapon",
+    "slot": "hand",
+    "tags": ["axe", "two-handed"],
+    "names": {
+      "{{w|bronze}} battle axe": "{{w|청동}} 전투 도끼",
+      "bronze battle axe": "청동 전투 도끼",
+      "battle axe": "전투 도끼"
+    },
+    "description": "Damp leather wraps the wood haft up to a sharpened bit of bell bronze.",
+    "description_ko": "축축한 가죽이 나무 자루를 감아 올라가 날카롭게 다듬어진 벨 청동 날에 연결된다."
+  },
+
+  "BattleAxe3": {
+    "tier": 3,
+    "category": "weapon",
+    "slot": "hand",
+    "tags": ["axe", "two-handed"],
+    "names": {
+      "iron battle axe": "철 전투 도끼"
+    },
+    "description": "Forge marks scar the blade like potholes on an iron steppe.",
+    "description_ko": "단조 자국이 철 초원의 웅덩이처럼 칼날에 상처를 남긴다."
+  },
+
+  "Steel Battle Axe": {
+    "tier": 4,
+    "category": "weapon",
+    "slot": "hand",
+    "tags": ["axe", "two-handed"],
+    "names": {
+      "{{Y|steel}} battle axe": "{{Y|강철}} 전투 도끼",
+      "steel battle axe": "강철 전투 도끼"
+    },
+    "description": "A bright crescent glints above the polished haft.",
+    "description_ko": "밝은 초승달이 광택 난 자루 위에서 반짝인다."
+  },
+
+  "Iron Vinereaper": {
+    "tier": 2,
+    "category": "weapon",
+    "slot": "hand",
+    "tags": ["axe", "farming", "one-handed"],
+    "names": {
+      "iron vinereaper": "철 덩굴낫"
+    },
+    "description": "The reaper's blade cuts watervine back from the farm's hard-won earth.",
+    "description_ko": "낫의 칼날이 농장의 힘들게 일군 땅에서 워터바인을 베어낸다."
+  }
+}

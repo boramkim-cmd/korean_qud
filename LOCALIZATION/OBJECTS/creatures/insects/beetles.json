@@ -1,0 +1,19 @@
+{
+  "_meta": {
+    "category": "insects/beetles",
+    "description": "Beetle creatures",
+    "version": "2.0",
+    "updated": "2026-01-22"
+  },
+
+  "ClockworkBeetle": {
+    "tier": 2,
+    "category": "insect",
+    "tags": ["beetle", "hostile", "common"],
+    "names": {
+      "clockwork beetle": "클락워크 비틀"
+    },
+    "description": "Shining black elytra flitter on the back of a goat-sized bug.",
+    "description_ko": "염소만 한 크기의 벌레 등에서 반짝이는 검은 딱지날개가 파르르 떨린다."
+  }
+}

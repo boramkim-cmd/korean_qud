@@ -1,0 +1,96 @@
+{
+  "_meta": {
+    "category": "robots/drones",
+    "description": "Drone and mobile robot creatures",
+    "version": "2.0",
+    "updated": "2026-01-22"
+  },
+
+  "Waydroid": {
+    "tier": 2,
+    "category": "robot",
+    "tags": ["drone", "neutral", "guide"],
+    "names": {
+      "{{c|waydroid}}": "{{c|웨이드로이드}}"
+    },
+    "description": "A robot originally designed for navigation guidance, now wandering the wasteland.",
+    "description_ko": "길안내용으로 제작된 로봇. 이제는 황야를 배회한다."
+  },
+
+  "Booster Bot": {
+    "tier": 3,
+    "category": "robot",
+    "tags": ["drone", "hostile", "support"],
+    "names": {
+      "booster bot": "부스터 봇"
+    },
+    "description": "A support robot that enhances other robots.",
+    "description_ko": "다른 로봇을 강화하는 지원형 로봇."
+  },
+
+  "Chaingun Champion": {
+    "tier": 5,
+    "category": "robot",
+    "tags": ["drone", "hostile", "elite", "ranged"],
+    "names": {
+      "chaingun champion": "체인건 챔피언"
+    },
+    "description": "A powerful combat robot equipped with a chaingun.",
+    "description_ko": "체인건을 장착한 강력한 전투 로봇."
+  },
+
+  "Decarbonizer": {
+    "tier": 5,
+    "category": "robot",
+    "tags": ["drone", "hostile", "deadly"],
+    "names": {
+      "decarbonizer": "탈탄소화기"
+    },
+    "description": "A robot designed to disintegrate carbon-based lifeforms.",
+    "description_ko": "탄소 기반 생명체를 분해하도록 설계된 로봇."
+  },
+
+  "Leering Stalker": {
+    "tier": 4,
+    "category": "robot",
+    "tags": ["drone", "hostile", "stealth"],
+    "names": {
+      "leering stalker": "응시하는 추적자"
+    },
+    "description": "A dangerous mechanical creature that stalks its prey.",
+    "description_ko": "은밀하게 추적하는 위험한 기계 생명체."
+  },
+
+  "Chrome Pyramid": {
+    "tier": 6,
+    "category": "robot",
+    "tags": ["ancient", "hostile", "guardian"],
+    "names": {
+      "chrome pyramid": "크롬 피라미드"
+    },
+    "description": "A metallic pyramid-shaped guardian created with ancient technology.",
+    "description_ko": "고대 기술로 만들어진 금속 피라미드 형태의 수호자."
+  },
+
+  "Cherubim": {
+    "tier": 7,
+    "category": "robot",
+    "tags": ["ancient", "hostile", "guardian", "angel"],
+    "names": {
+      "cherubim": "케루빔"
+    },
+    "description": "An ancient guardian robot in the form of an angel.",
+    "description_ko": "고대의 수호 천사 형태 로봇."
+  },
+
+  "Seraphim": {
+    "tier": 8,
+    "category": "robot",
+    "tags": ["ancient", "hostile", "guardian", "angel", "elite"],
+    "names": {
+      "seraphim": "세라핌"
+    },
+    "description": "A powerful high-angel form robot.",
+    "description_ko": "고위 천사 형태의 강력한 로봇."
+  }
+}

@@ -1,0 +1,52 @@
+{
+  "_meta": {
+    "category": "robots/turrets",
+    "description": "Turret robot creatures",
+    "version": "2.0",
+    "updated": "2026-01-22"
+  },
+
+  "Turret": {
+    "tier": 3,
+    "category": "robot",
+    "tags": ["turret", "stationary", "hostile"],
+    "names": {
+      "turret": "터렛"
+    },
+    "description": "An automated defensive turret.",
+    "description_ko": "자동 사격하는 방어 터렛."
+  },
+
+  "Gun Turret": {
+    "tier": 3,
+    "category": "robot",
+    "tags": ["turret", "stationary", "hostile", "ranged"],
+    "names": {
+      "gun turret": "총 터렛"
+    },
+    "description": "An automated defensive turret equipped with a gun.",
+    "description_ko": "총을 장착한 자동 방어 터렛."
+  },
+
+  "Missile Turret": {
+    "tier": 4,
+    "category": "robot",
+    "tags": ["turret", "stationary", "hostile", "explosive"],
+    "names": {
+      "missile turret": "미사일 터렛"
+    },
+    "description": "A large turret that fires missiles.",
+    "description_ko": "미사일을 발사하는 대형 터렛."
+  },
+
+  "Laser Turret": {
+    "tier": 4,
+    "category": "robot",
+    "tags": ["turret", "stationary", "hostile", "energy"],
+    "names": {
+      "laser turret": "레이저 터렛"
+    },
+    "description": "A turret that fires lasers.",
+    "description_ko": "레이저를 발사하는 터렛."
+  }
+}

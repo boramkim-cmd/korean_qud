@@ -1,0 +1,68 @@
+{
+  "_meta": {
+    "category": "armor/hands",
+    "description": "Hand armor - gloves, gauntlets",
+    "version": "2.0",
+    "updated": "2026-01-22"
+  },
+
+  "Leather Gloves": {
+    "tier": 1,
+    "category": "armor",
+    "slot": "hands",
+    "tags": ["hands", "light"],
+    "names": {
+      "leather gloves": "가죽 장갑"
+    },
+    "description": "Simple gloves made from leather.",
+    "description_ko": "가죽으로 만든 간단한 장갑."
+  },
+
+  "Iron Gauntlets": {
+    "tier": 2,
+    "category": "armor",
+    "slot": "hands",
+    "tags": ["hands", "medium", "metal"],
+    "names": {
+      "iron gauntlets": "철 건틀릿"
+    },
+    "description": "Gauntlets forged from iron.",
+    "description_ko": "철로 제련된 건틀릿."
+  },
+
+  "Steel Gauntlets": {
+    "tier": 3,
+    "category": "armor",
+    "slot": "hands",
+    "tags": ["hands", "heavy", "metal"],
+    "names": {
+      "steel gauntlets": "강철 건틀릿"
+    },
+    "description": "Sturdy gauntlets forged from steel.",
+    "description_ko": "강철로 제련된 튼튼한 건틀릿."
+  },
+
+  "Carbide Gauntlets": {
+    "tier": 6,
+    "category": "armor",
+    "slot": "hands",
+    "tags": ["hands", "heavy", "carbide"],
+    "names": {
+      "carbide gauntlets": "카바이드 건틀릿"
+    },
+    "description": "Gauntlets made from ultra-hard carbide.",
+    "description_ko": "초경질 카바이드로 만든 건틀릿."
+  },
+
+  "Helping Hands": {
+    "tier": 7,
+    "category": "armor",
+    "slot": "hands",
+    "tags": ["hands", "artifact", "cybernetic"],
+    "names": {
+      "Helping Hands": "조력의 손"
+    },
+    "description": "Mechanical hands that assist with manual tasks.",
+    "description_ko": "수작업을 보조하는 기계 손."
+  }
+}

@@ -1,0 +1,63 @@
+{
+  "_meta": {
+    "category": "insects/worms",
+    "description": "Worm and leech creatures",
+    "version": "2.0",
+    "updated": "2026-01-22"
+  },
+
+  "Knollworm": {
+    "tier": 2,
+    "category": "insect",
+    "tags": ["worm", "hostile", "burrowing"],
+    "names": {
+      "knollworm": "구릉지렁이"
+    },
+    "description": "A worm that inhabits hillside areas with a powerful crushing beak.",
+    "description_ko": "구릉지대에 서식하는 지렁이. 게를 으깨는 강력한 부리를 가지고 있다."
+  },
+
+  "Leech": {
+    "tier": 2,
+    "category": "insect",
+    "tags": ["worm", "hostile", "blood-drain"],
+    "names": {
+      "{{r|leech}}": "{{r|거머리}}"
+    },
+    "description": "A blood-sucking annelid that drains health when attached.",
+    "description_ko": "피를 빠는 환형동물. 부착되면 지속적으로 체력을 빼앗는다."
+  },
+
+  "Seedsprout Worm": {
+    "tier": 1,
+    "category": "insect",
+    "tags": ["worm", "neutral", "symbiotic"],
+    "names": {
+      "seedsprout worm": "새싹지렁이"
+    },
+    "description": "A worm that lives in symbiosis with plants, sprouting from its body.",
+    "description_ko": "식물과 공생하는 지렁이. 몸에서 새싹이 자란다."
+  },
+
+  "Segmented Mirthworm": {
+    "tier": 2,
+    "category": "insect",
+    "tags": ["worm", "neutral", "strange"],
+    "names": {
+      "{{w|segmented mirthworm}}": "{{w|마디환희지렁이}}"
+    },
+    "description": "A strange multi-segmented worm.",
+    "description_ko": "여러 마디로 이루어진 기이한 지렁이."
+  },
+
+  "Agolmaggot": {
+    "tier": 3,
+    "category": "insect",
+    "tags": ["worm", "hostile", "large"],
+    "names": {
+      "agolmaggot": "아골 구더기"
+    },
+    "description": "A giant maggot found in the Agol region.",
+    "description_ko": "아골 지역에서 서식하는 거대한 구더기."
+  }
+}

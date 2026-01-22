@@ -5,17 +5,24 @@
 ```
 qud_korean/
 ├── Docs/                    📖 모든 가이드 문서
-│   ├── 00_PRINCIPLES.md            ⭐ AI 에이전트 필독 - 개발 대원칙
-│   ├── 01_PROJECT_INDEX.md         📚 전체 메서드 시그니처 (자동생성)
-│   ├── 02_QUICK_REFERENCE.md       🔍 빠른 참조 (자동생성)
-│   ├── 03_TODO.md                  📝 작업 추적
-│   ├── 04_CHANGELOG.md             📋 변경 이력
-│   ├── 05_ERROR_LOG.md             ⚠️ 에러/이슈 추적
-│   ├── 06_ARCHITECTURE.md          🏗️ 아키텍처 문서
-│   ├── 07_WORKFLOW.md              🔄 워크플로우
-│   ├── 08_STYLE_GUIDE.md           🎨 스타일 가이드
-│   ├── 09_TOOLS_AND_BUILD.md       🛠️ 도구 및 빌드 가이드
-│   └── 10_DEVELOPMENT_GUIDE.md     📘 상세 개발 가이드
+│   ├── en/guides/
+│   │   ├── 01_PRINCIPLES.md        ⭐ AI 에이전트 필독 - 개발 대원칙
+│   │   ├── 02_ARCHITECTURE.md      🏗️ 아키텍처 문서
+│   │   ├── 03_TOOLS_AND_BUILD.md   🛠️ 도구 및 빌드 가이드
+│   │   ├── 04_DEVELOPMENT_GUIDE.md 📘 상세 개발 가이드
+│   │   ├── 05_GIT_WORKFLOW.md      🔄 Git 워크플로우
+│   │   ├── 06_DEBUG_TOOLS.md       🐛 디버그 도구
+│   │   └── 07_OBJECT_LOCALIZATION.md 🎯 오브젝트 번역 계획
+│   ├── en/reference/
+│   │   ├── 01_PROJECT_INDEX.md     📚 전체 메서드 시그니처 (자동생성)
+│   │   ├── 02_QUICK_REFERENCE.md   🔍 빠른 참조 (자동생성)
+│   │   ├── 03_TODO.md              📝 작업 추적
+│   │   ├── 04_CHANGELOG.md         📋 변경 이력
+│   │   ├── 05_ERROR_LOG.md         ⚠️ 에러/이슈 추적 + FAQ
+│   │   ├── 06_FONT_TRACKER.md      🔤 폰트 추적
+│   │   ├── 07_ISSUE_RULES.md       📌 이슈 관리 규칙
+│   │   └── 08_ISSUE_QUICK_REF.md   ⚡ 이슈 빠른 참조
+│   └── ko/guides/                  🇰🇷 한국어 가이드
 │
 ├── tools/                   🔧 도구 모음
 │   ├── HarmonyAnalyzer/    🔧 게임 DLL API 추출 도구 (C#)
@@ -42,12 +49,12 @@ qud_korean/
 
 ### 1. 작업 시작 전 (30초)
 ```bash
-cat Docs/00_PRINCIPLES.md
+cat Docs/en/guides/01_PRINCIPLES.md
 ```
 
 ### 2. 메서드 확인 (10초)
 ```bash
-cat Docs/01_CORE_PROJECT_INDEX.md | grep -A 5 "메서드명"
+cat Docs/en/reference/01_PROJECT_INDEX.md | grep -A 5 "메서드명"
 ```
 
 ### 3. 통합 검증 (1분)
@@ -86,16 +93,16 @@ python3 tools/check_missing_translations.py  # 미번역 정밀 탐색
 
 ## 📚 핵심 문서
 
-1. **Docs/00_PRINCIPLES.md** - AI 에이전트 필독 대원칙
-2. **Docs/01_PROJECT_INDEX.md** - 모든 메서드 시그니처
-3. **Docs/02_QUICK_REFERENCE.md** - 프로젝트 구조
+1. **Docs/en/guides/01_PRINCIPLES.md** - AI 에이전트 필독 대원칙
+2. **Docs/en/reference/01_PROJECT_INDEX.md** - 모든 메서드 시그니처
+3. **Docs/en/reference/02_QUICK_REFERENCE.md** - 프로젝트 구조
 
 ## ⚡ 워크플로우
 
 ```
-1. cat Docs/00_PRINCIPLES.md
+1. cat Docs/en/guides/01_PRINCIPLES.md
    ↓
-2. 메서드 확인 (01_PROJECT_INDEX.md)
+2. 메서드 확인 (en/reference/01_PROJECT_INDEX.md)
    ↓
 3. 코드 작성
    ↓
@@ -107,7 +114,7 @@ python3 tools/check_missing_translations.py  # 미번역 정밀 탐색
 ## 🎯 핵심 규칙
 
 ### ✅ 해야 할 것
-- 00_PRINCIPLES.md 먼저 읽기
+- 01_PRINCIPLES.md 먼저 읽기
 - 기존 함수 재사용 (TranslationEngine, LocalizationManager)
 - project_tool.py로 검증 후 배포
 
@@ -120,7 +127,7 @@ python3 tools/check_missing_translations.py  # 미번역 정밀 탐색
 
 - **Scripts**: 21개 C# 파일
 - **Localization**: Context-based 구조 (CHARGEN/, GAMEPLAY/, UI/)
-- **Docs**: 11개 문서
+- **Docs**: 33개 문서
 
 ## 🔄 업데이트
 
@@ -133,4 +140,4 @@ python3 tools/project_tool.py
 
 ---
 
-**시작점**: `cat Docs/00_PRINCIPLES.md`
+**시작점**: `cat Docs/en/guides/01_PRINCIPLES.md`

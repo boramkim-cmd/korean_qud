@@ -1,0 +1,128 @@
+{
+  "_meta": {
+    "category": "weapons/melee/blades",
+    "description": "Blade melee weapons - daggers, swords, knives",
+    "version": "2.0",
+    "updated": "2026-01-22"
+  },
+
+  "Dagger": {
+    "tier": 1,
+    "category": "weapon",
+    "slot": "hand",
+    "tags": ["blade", "short", "one-handed"],
+    "names": {
+      "{{w|bronze}} dagger": "{{w|청동}} 단검",
+      "bronze dagger": "청동 단검",
+      "dagger": "단검"
+    },
+    "description": "Bell bronze is shaped to a point and its handle wrapped in leather.",
+    "description_ko": "벨 청동이 뾰족하게 다듬어지고 손잡이는 가죽으로 감싸져 있다."
+  },
+
+  "Dagger2": {
+    "tier": 2,
+    "category": "weapon",
+    "slot": "hand",
+    "tags": ["blade", "short", "one-handed"],
+    "names": {
+      "iron dagger": "철 단검"
+    },
+    "description": "Pits mark the blade like craters on an iron edge-world.",
+    "description_ko": "구덩이들이 철 세계의 분화구처럼 칼날에 새겨져 있다."
+  },
+
+  "Steel Dagger": {
+    "tier": 3,
+    "category": "weapon",
+    "slot": "hand",
+    "tags": ["blade", "short", "one-handed"],
+    "names": {
+      "{{Y|steel}} dagger": "{{Y|강철}} 단검",
+      "steel dagger": "강철 단검"
+    },
+    "description": "The edge is bright and polished.",
+    "description_ko": "날이 밝고 광택이 난다."
+  },
+
+  "Dagger3": {
+    "tier": 4,
+    "category": "weapon",
+    "slot": "hand",
+    "tags": ["blade", "short", "one-handed"],
+    "names": {
+      "{{b|carbide}} dagger": "{{b|카바이드}} 단검",
+      "carbide dagger": "카바이드 단검"
+    },
+    "description": "Salt and scars form a comet's tail along the azure blade edge.",
+    "description_ko": "소금과 상처가 푸른 칼날을 따라 혜성의 꼬리를 형성한다."
+  },
+
+  "Desert Kris": {
+    "tier": 2,
+    "category": "weapon",
+    "slot": "hand",
+    "tags": ["blade", "short", "one-handed", "exotic"],
+    "names": {
+      "desert kris": "사막 크리스"
+    },
+    "description": "Iron wormwags out of its halite stub of a hilt.",
+    "description_ko": "철이 암염 손잡이에서 구불구불 나온다."
+  },
+
+  "Steel Kukri": {
+    "tier": 3,
+    "category": "weapon",
+    "slot": "hand",
+    "tags": ["blade", "short", "one-handed"],
+    "names": {
+      "{{Y|steel}} kukri": "{{Y|강철}} 쿠크리",
+      "steel kukri": "강철 쿠크리",
+      "kukri": "쿠크리"
+    },
+    "description": "Bright metal spills out the leather fuzz hilt along the killer's recurve.",
+    "description_ko": "빛나는 금속이 가죽 보풀 손잡이에서 살인자의 곡선을 따라 쏟아진다."
+  },
+
+  "Steel Utility Knife": {
+    "tier": 2,
+    "category": "weapon",
+    "slot": "hand",
+    "tags": ["blade", "tool", "one-handed"],
+    "names": {
+      "{{Y|steel}} utility knife": "{{Y|강철}} 공구 칼",
+      "steel utility knife": "강철 공구 칼",
+      "utility knife": "공구 칼"
+    },
+    "description": "A use-dull and finger-smudged knife folds in on itself.",
+    "description_ko": "사용으로 무뎌지고 손가락 자국이 묻은 칼이 접혀 있다."
+  },
+
+  "Steel Potter's Knife": {
+    "tier": 2,
+    "category": "weapon",
+    "slot": "hand",
+    "tags": ["blade", "tool", "one-handed"],
+    "names": {
+      "{{Y|steel}} potter's knife": "{{Y|강철}} 도공의 칼",
+      "steel potter's knife": "강철 도공의 칼",
+      "potter's knife": "도공의 칼"
+    },
+    "description": "Wet clay dresses the edge and dirt cakes the hilt.",
+    "description_ko": "젖은 점토가 날을 덮고 흙이 손잡이에 붙어 있다."
+  },
+
+  "Steel Butcher Knife": {
+    "tier": 2,
+    "category": "weapon",
+    "slot": "hand",
+    "tags": ["blade", "tool", "one-handed"],
+    "names": {
+      "{{Y|steel}} butcher knife": "{{Y|강철}} 정육점 칼",
+      "steel butcher knife": "강철 정육점 칼",
+      "butcher knife": "정육점 칼"
+    },
+    "description": "A wide and bright blade has been painted with entrails.",
+    "description_ko": "넓고 빛나는 칼날이 내장으로 물들어 있다."
+  }
+}

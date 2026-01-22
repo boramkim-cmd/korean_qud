@@ -1,0 +1,19 @@
+{
+  "_meta": {
+    "category": "animals/fish",
+    "description": "Fish and aquatic creatures",
+    "version": "2.0",
+    "updated": "2026-01-22"
+  },
+
+  "Glowfish": {
+    "tier": 1,
+    "category": "animal",
+    "tags": ["aquatic", "neutral", "common", "luminescent"],
+    "names": {
+      "glowfish": "발광어"
+    },
+    "description": "A small fish that emits a soft glow in the darkness.",
+    "description_ko": "어둠 속에서 빛나는 작은 물고기다."
+  }
+}

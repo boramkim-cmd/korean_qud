@@ -1,0 +1,52 @@
+{
+  "_meta": {
+    "category": "humanoids/others",
+    "description": "Other humanoid creatures",
+    "version": "2.0",
+    "updated": "2026-01-22"
+  },
+
+  "Cannibal": {
+    "tier": 2,
+    "category": "humanoid",
+    "tags": ["human", "hostile", "underground"],
+    "names": {
+      "cannibal": "식인종"
+    },
+    "description": "Sunshame has left =pronouns.possessive= skin pulpy and spider-white, and =pronouns.possessive= capillaries are shot with blood two shades too dark.",
+    "description_ko": "햇빛을 피해 살아온 탓에 피부는 희고 물컹하며, 모세혈관에는 두 톤 더 어두운 피가 흐른다."
+  },
+
+  "Mechanimist": {
+    "tier": 2,
+    "category": "humanoid",
+    "tags": ["human", "neutral", "religious"],
+    "names": {
+      "mechanimist": "메카님스트"
+    },
+    "description": "A follower of the Mechanimist religion who worships machines.",
+    "description_ko": "기계를 숭배하는 종교 신자."
+  },
+
+  "Woodsprog": {
+    "tier": 2,
+    "category": "humanoid",
+    "tags": ["frog", "neutral", "forest"],
+    "names": {
+      "woodsprog": "우드스프로그"
+    },
+    "description": "A frog-like humanoid species that lives in forests.",
+    "description_ko": "숲에 사는 개구리 형상의 인간형 종족."
+  },
+
+  "Dawning Ape": {
+    "tier": 3,
+    "category": "humanoid",
+    "tags": ["ape", "hostile", "intelligent"],
+    "names": {
+      "dawning ape": "여명원숭이"
+    },
+    "description": "A highly intelligent ape that can use tools.",
+    "description_ko": "지능이 높은 유인원. 도구를 사용할 수 있다."
+  }
+}

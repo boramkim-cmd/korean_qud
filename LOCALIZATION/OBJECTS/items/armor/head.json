@@ -1,0 +1,80 @@
+{
+  "_meta": {
+    "category": "armor/head",
+    "description": "Head armor - helmets, hats, hoods",
+    "version": "2.0",
+    "updated": "2026-01-22"
+  },
+
+  "Leather Cap": {
+    "tier": 1,
+    "category": "armor",
+    "slot": "head",
+    "tags": ["head", "light"],
+    "names": {
+      "leather cap": "가죽 모자"
+    },
+    "description": "A simple cap made from leather.",
+    "description_ko": "가죽으로 만든 간단한 모자."
+  },
+
+  "Steel Helmet": {
+    "tier": 3,
+    "category": "armor",
+    "slot": "head",
+    "tags": ["head", "heavy", "metal"],
+    "names": {
+      "steel helmet": "강철 투구"
+    },
+    "description": "A sturdy helmet forged from steel.",
+    "description_ko": "강철로 제련된 튼튼한 투구."
+  },
+
+  "Iron Helmet": {
+    "tier": 2,
+    "category": "armor",
+    "slot": "head",
+    "tags": ["head", "medium", "metal"],
+    "names": {
+      "iron helmet": "철 투구"
+    },
+    "description": "A helmet forged from iron.",
+    "description_ko": "철로 제련된 투구."
+  },
+
+  "Plastifer Bonnet": {
+    "tier": 4,
+    "category": "armor",
+    "slot": "head",
+    "tags": ["head", "light", "synthetic"],
+    "names": {
+      "plastifer bonnet": "플라스티퍼 보닛"
+    },
+    "description": "A lightweight bonnet made from plastifer.",
+    "description_ko": "플라스티퍼로 만든 가벼운 보닛."
+  },
+
+  "Carbide Helmet": {
+    "tier": 6,
+    "category": "armor",
+    "slot": "head",
+    "tags": ["head", "heavy", "carbide"],
+    "names": {
+      "carbide helmet": "카바이드 투구"
+    },
+    "description": "A helmet made from ultra-hard carbide.",
+    "description_ko": "초경질 카바이드로 만든 투구."
+  },
+
+  "Stopsvalinn": {
+    "tier": 8,
+    "category": "armor",
+    "slot": "head",
+    "tags": ["head", "artifact", "relic"],
+    "names": {
+      "Stopsvalinn": "스톱스발린"
+    },
+    "description": "The legendary shield-helm of ancient heroes.",
+    "description_ko": "고대 영웅의 전설적인 방패투구."
+  }
+}

@@ -1,7 +1,10 @@
-// Object Localization System - ObjectTranslator
-// ISOLATED from existing translation infrastructure
-// DO NOT modify TranslationEngine.cs or StructureTranslator.cs
-// Version: 2.0 | Created: 2026-01-22
+/*
+ * 파일명: 02_20_00_ObjectTranslator.cs
+ * 분류: [Patch] 오브젝트 번역
+ * 역할: 생물/아이템 이름 및 설명을 번역하는 독립 시스템
+ * 작성일: 2026-01-22
+ * 비고: 기존 TranslationEngine/StructureTranslator와 분리된 캐시 사용
+ */
 
 using System;
 using System.Collections.Generic;
