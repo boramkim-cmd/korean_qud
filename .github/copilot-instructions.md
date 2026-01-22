@@ -1,33 +1,25 @@
 # Caves of Qud Korean Localization - AI Instructions
-# Version: 2.3 | Updated: 2026-01-22
+# Version: 2.4 | Updated: 2026-01-22
 # This file is automatically read by GitHub Copilot at every session.
 # SSOT (Single Source of Truth) - AI_SESSION_START.md is deprecated
 
 ################################################################################
-# LAYER 0: AUTO-COMPLETION RULE (HIGHEST PRIORITY)
+# LAYER 0: WORKFLOW COMMANDS (Reference Only - Do NOT auto-execute)
 ################################################################################
 
-## 🤖 AFTER COMPLETING ANY TASK, AUTOMATICALLY RUN:
-# python3 tools/session_manager.py save && python3 tools/project_tool.py && bash tools/quick-save.sh
-#
-# This includes:
-# - Code changes
-# - Translation additions
-# - Documentation updates
-# - Bug fixes
-# - Any file modifications
-#
-# NO NEED TO ASK - JUST DO IT AFTER EACH TASK COMPLETES SUCCESSFULLY
+## 📋 STANDARD WORKFLOW (User triggers manually or requests explicitly)
+# Validate: python3 tools/project_tool.py
+# Commit:   bash tools/quick-save.sh
+# Session:  python3 tools/session_manager.py save "description"
+# Full:     python3 tools/project_tool.py && bash tools/quick-save.sh
 
-## 🔄 SESSION SPLIT RULE (Context Management)
-# After completing 3-5 major tasks OR when conversation feels long:
-# 1. Run: python3 tools/session_manager.py save && python3 tools/project_tool.py && bash tools/quick-save.sh
-# 2. Say: "컨텍스트가 길어졌습니다. 새 채팅을 시작하고 아래를 붙여넣으세요:"
-# 3. Provide handoff prompt:
-#    ---
-#    이전 세션에서 이어서 작업합니다. SESSION_STATE.md를 읽고 맥락을 파악한 후 다음 작업을 진행해주세요.
-#    ---
-# This reduces token cost and improves AI accuracy.
+## ⚠️ DO NOT automatically run commands after every task
+## Wait for user to explicitly request validation/commit
+## This prevents VS Code's repetition detection popup
+
+## 🔄 SESSION SPLIT (When context gets long)
+# After 3-5 major tasks, suggest: "컨텍스트가 길어졌습니다. 새 채팅을 시작하세요."
+# Provide handoff: "이전 세션에서 이어서 작업합니다. SESSION_STATE.md를 읽고 진행해주세요."
 
 ################################################################################
 # LAYER 0.5: SESSION HANDOFF (New Chat? Read This!)
