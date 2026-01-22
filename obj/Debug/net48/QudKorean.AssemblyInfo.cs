@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("QudKorean")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+60a6d54b02f1a3b19ab9ca8b730b1a11e475d352")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+4d0ca4e47800c811f9785f955288f1fd53355b8b")]
 [assembly: System.Reflection.AssemblyProductAttribute("QudKorean")]
 [assembly: System.Reflection.AssemblyTitleAttribute("QudKorean")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

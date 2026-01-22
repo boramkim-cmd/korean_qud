@@ -199,28 +199,12 @@ namespace QudKRTranslation.Test
     }
 
     /// <summary>
-    /// TextMeshProUGUI.SetText() 패치 - 모든 TMP 텍스트 설정 시 한글 폰트 강제 적용
-    /// </summary>
-    [HarmonyPatch(typeof(TextMeshProUGUI), "SetText", new Type[] { typeof(string) })]
-    public static class Patch_TMP_SetText
-    {
-        [HarmonyPostfix]
-        static void Postfix(TextMeshProUGUI __instance, string sourceText)
-        {
-            try
-            {
-                if (string.IsNullOrEmpty(sourceText)) return;
-                KoreanFontHelper.ApplyKoreanFontIfNeeded(__instance, sourceText);
-            }
-            catch { }
-        }
-    }
-
-    /// <summary>
     /// TMP_Text.text setter 패치 - tmp.text = "한글" 형태로 설정될 때도 처리
     /// UITextSkin.Apply()에서 tmp.text = formattedText 로 설정하는 경우 처리
+    ///
+    /// 주의: TextMeshProUGUI.SetText(string) 패치는 메서드 시그니처가 없어서 제거함
     /// </summary>
-    [HarmonyPatch(typeof(TMP_Text), "set_text")]
+    [HarmonyPatch(typeof(TMP_Text), "text", MethodType.Setter)]
     public static class Patch_TMP_Text_Setter
     {
         [HarmonyPostfix]
