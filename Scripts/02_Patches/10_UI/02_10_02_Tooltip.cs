@@ -117,6 +117,3 @@ namespace QudKRTranslation.Patches
         }
     }
 }
-        }
-    }
-}

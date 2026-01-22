@@ -47,25 +47,10 @@ namespace QudKorean.Objects
                 string blueprint = Object.Blueprint;
                 if (string.IsNullOrEmpty(blueprint)) return;
                 
-                // Debug: Log waterskin specifically
-                if (__result.ToLowerInvariant().Contains("waterskin"))
-                {
-                    UnityEngine.Debug.Log($"{LOG_PREFIX} [DEBUG] Waterskin found: blueprint='{blueprint}', result='{__result}'");
-                }
-                
                 // Attempt translation
                 if (ObjectTranslator.TryGetDisplayName(blueprint, __result, out string translated))
                 {
-                    // Debug log for waterskin
-                    if (__result.ToLowerInvariant().Contains("waterskin"))
-                    {
-                        UnityEngine.Debug.Log($"{LOG_PREFIX} [DEBUG] Waterskin translated: '{__result}' -> '{translated}'");
-                    }
                     __result = translated;
-                }
-                else if (__result.ToLowerInvariant().Contains("waterskin"))
-                {
-                    UnityEngine.Debug.Log($"{LOG_PREFIX} [DEBUG] Waterskin NOT translated: blueprint='{blueprint}'");
                 }
             }
             catch (Exception ex)
