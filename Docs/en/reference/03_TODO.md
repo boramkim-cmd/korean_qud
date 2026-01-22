@@ -18,6 +18,18 @@
 
 ## Next Session Required
 
+### Game Test: Item Tooltip (P2-02) - HIGH PRIORITY
+| Item | Expected | Status |
+|------|----------|--------|
+| Tooltip header (comparison) | "현재 아이템" / "장착 아이템" | [ ] |
+| Static item name | "횃불", "청동 단검" | [ ] |
+| Item with state suffix | "물주머니 [비어있음]" | [ ] |
+| Dynamic food item | "곰 육포", "곰 고기" | [ ] |
+| Font display | Korean characters visible | [ ] |
+| World map item tooltip | Same translation as inventory | [ ] |
+
+**Test Path**: New game - Pick up items - Hover for tooltip - Compare with equipped item
+
 ### Game Test: Message Log (P2-01)
 | Item | Expected | Status |
 |------|----------|--------|

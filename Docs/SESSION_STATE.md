@@ -1,6 +1,6 @@
 # 🔄 Session State
 
-> **Last Updated**: 2026-01-22 (Session 2)
+> **Last Updated**: 2026-01-22 (Session 3)
 > **Copy the handoff prompt at the bottom to new chat**
 
 ---
@@ -13,11 +13,11 @@
 | Options Screen | ✅ Complete |
 | Tutorial Popups | ✅ Complete |
 | Message Log | ✅ Patch Complete (Testing) |
-| **Item Tooltips** | 🟡 **Implementation Done - Testing Needed** |
+| **Item Tooltips** | ✅ **Implementation Complete - Ready for Test** |
 
 ---
 
-## 🟡 Item Tooltip Localization - Implementation Complete
+## ✅ Item Tooltip Localization - Implementation Complete
 
 ### ✅ Completed This Session:
 
@@ -113,19 +113,24 @@ bash tools/quick-save.sh
 ```
 이전 세션에서 이어서 작업합니다.
 
-다음 문서를 순서대로 읽어주세요:
+다음 문서를 읽어주세요:
 1. Docs/SESSION_STATE.md (현재 상태)
-2. Docs/en/reference/10_ITEM_TOOLTIP_ANALYSIS.md (아이템 툴팁 분석)
+2. Docs/en/reference/03_TODO.md (테스트 체크리스트 확인)
 
 현재 상태:
-- 아이템 툴팁 한글화 구현 완료
+- 아이템 툴팁 한글화 구현 완료 (테스트 대기)
 - "This Item"/"Equipped Item" 헤더 번역 완료
-- 동적 음식 (jerky, meat) 패턴 추가 완료
+- 동적 음식 (jerky, meat) 패턴 완료
 - 상태 접미사 ([empty] 등) 번역 완료
 
 다음 작업:
-- 게임 내 테스트 및 버그 수정
-- 잠재적 위험 요소 모니터링 (RTF 이중 래핑, JosaHandler 패치)
+- 게임 내 테스트 체크리스트 실행
+- 테스트 결과에 따른 버그 수정
 
-위 문서 읽고 테스트 결과에 따라 수정을 진행해주세요.
+테스트 항목:
+- [ ] 툴팁 헤더: "현재 아이템" / "장착 아이템"
+- [ ] 정적 아이템: "횃불", "청동 단검"
+- [ ] 상태 접미사: "물주머니 [비어있음]"
+- [ ] 동적 음식: "곰 육포", "곰 고기"
+- [ ] 폰트 표시: 한글 정상 출력
 ```
