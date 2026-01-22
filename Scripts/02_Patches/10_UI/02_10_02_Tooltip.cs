@@ -25,13 +25,11 @@ namespace QudKRTranslation.Patches
     [HarmonyPatch(typeof(TooltipManager))]
     public static class TooltipManager_SetTextAndSize_Patch
     {
-        // Tooltip header translations
+        // Tooltip header translations (case-insensitive, no duplicates)
         private static readonly Dictionary<string, string> HeaderTranslations = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase)
         {
             { "This Item", "현재 아이템" },
-            { "Equipped Item", "장착 아이템" },
-            { "this item", "현재 아이템" },
-            { "equipped item", "장착 아이템" }
+            { "Equipped Item", "장착 아이템" }
         };
         
         [HarmonyPatch(nameof(TooltipManager.SetTextAndSize))]
