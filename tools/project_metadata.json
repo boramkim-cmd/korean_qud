@@ -1,5 +1,5 @@
 {
-  "generated": "2026-01-22 12:22:01",
+  "generated": "2026-01-22 12:33:27",
   "scripts": {
     "Scripts/99_Utils/99_00_03_StructureTranslator.cs": {
       "classification": "Util",
@@ -660,7 +660,7 @@
     },
     "session_manager.py": {
       "type": "script",
-      "size": 13466
+      "size": 15203
     },
     "analyze_glossary.py": {
       "type": "script",

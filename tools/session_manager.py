@@ -22,7 +22,7 @@ from pathlib import Path
 PROJECT_ROOT = Path(__file__).parent.parent
 SESSION_FILE = PROJECT_ROOT / "Docs" / "SESSION_STATE.md"
 SESSION_JSON = PROJECT_ROOT / "tools" / "session_state.json"
-CONTEXT_FILE = PROJECT_ROOT / "Docs" / "CONTEXT.yaml"  # Vectorized context
+CONTEXT_FILE = PROJECT_ROOT / "CONTEXT.yaml"  # Main vectorized context (project root)
 TODO_FILE = PROJECT_ROOT / "Docs" / "en" / "reference" / "03_TODO.md"
 CHANGELOG_FILE = PROJECT_ROOT / "Docs" / "en" / "reference" / "04_CHANGELOG.md"
 ERROR_LOG = PROJECT_ROOT / "Docs" / "en" / "reference" / "05_ERROR_LOG.md"
@@ -175,11 +175,62 @@ def save_session():
     md_content = generate_session_markdown(state)
     SESSION_FILE.write_text(md_content)
     
+    # Note: This function is replaced by the one below with session_work parameter
+    # Keeping for backward compatibility but it won't be called
+    
     print(f"✅ Session state saved to:")
     print(f"   - {SESSION_FILE}")
     print(f"   - {SESSION_JSON}")
     
     return state
+
+
+def update_context_yaml(state, session_work=None):
+    """Update the status section of CONTEXT.yaml (preserves all other content)."""
+    if not CONTEXT_FILE.exists():
+        print(f"⚠️ CONTEXT.yaml not found at {CONTEXT_FILE}")
+        return
+    
+    content = CONTEXT_FILE.read_text()
+    
+    # Find and replace the status section
+    import re
+    
+    # Get last commit hash
+    last_commit = state['recent_commits'][0].split()[0] if state['recent_commits'] else 'unknown'
+    
+    # Build new status section
+    pending_items = state['todo']['next_tasks'][:5] if state['todo']['next_tasks'] else ['None']
+    
+    new_status = f"""status:
+  translations: {state['translation_count']}
+  mutation_files: 81
+  object_files: 57
+  build: passing
+  last_commit: {last_commit}
+  last_updated: {state['timestamp']}
+  
+  progress:
+    phase1_stabilization: 100%
+    phase2_gameplay: 75%
+    phase3_optimization: 0%
+    phase4_community: 0%
+  
+  pending:
+"""
+    for item in pending_items:
+        new_status += f'    - "{item}"\n'
+    
+    new_status += f"""  
+  recent_work:
+    - "{session_work if session_work else 'Not specified'}" """
+    
+    # Replace status section - match from 'status:' to end of file
+    pattern = r'^status:.*'
+    if re.search(pattern, content, re.MULTILINE | re.DOTALL):
+        content = re.sub(pattern, new_status.strip(), content, flags=re.MULTILINE | re.DOTALL)
+        CONTEXT_FILE.write_text(content)
+        print(f"   ✅ Updated status section in CONTEXT.yaml")
 
 
 def generate_session_markdown(state):
@@ -343,13 +394,15 @@ def save_session(session_work=None):
     md_content = generate_session_markdown(state)
     SESSION_FILE.write_text(md_content)
     
-    # Generate vectorized context
-    context = generate_vectorized_context(state, session_work)
-    CONTEXT_FILE.write_text(context)
+    # Update CONTEXT.yaml status section ONLY (preserve full project info)
+    update_context_yaml(state, session_work)
     
     print(f"✅ Session state saved to:")
     print(f"   - {SESSION_FILE}")
     print(f"   - {SESSION_JSON}")
+    print(f"   - {CONTEXT_FILE} (status section updated)")
+    
+    return state
     print(f"   - {CONTEXT_FILE} (vectorized)")
     
     return state

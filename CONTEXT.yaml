@@ -1,112 +1,188 @@
-# CONTEXT.yaml - 프로젝트 현재 상태 (기계 판독용)
-# 마지막 업데이트: 2026-01-18T16:14:02+09:00
-# 
-# 이 파일은 AI 에이전트가 세션 시작 시 빠르게 현재 상태를 파악하기 위한 것입니다.
-# 인간도 읽기 쉽도록 YAML 형식을 사용합니다.
-#
-# 💡 TIP: 상세 작업 가이드는 .agent/skills/localization/SKILL.md 참조
+# ============================================================================
+# 🧠 Caves of Qud Korean Localization - AI Context (Vectorized)
+# ============================================================================
+# This file provides structured project context for AI assistants.
+# Auto-updated by: python3 tools/session_manager.py save
+# Last Updated: 2026-01-22
+# ============================================================================
 
-# ============================================================
-# 🚨 AI 에이전트: 이 파일과 AI_SESSION_START.md를 먼저 읽으세요!
-# ============================================================
-#
-# 새 세션 시작 시 필수 읽기:
-#   1. AI_SESSION_START.md (과거 이슈, 위험 필드 목록)
-#   2. Docs/05_ERROR_LOG.md (에러 이력)
-#   3. Docs/04_CHANGELOG.md (최근 변경)
-#
-# ============================================================
-
+# ============================================================================
+# PROJECT IDENTITY
+# ============================================================================
 project:
-  name: "Caves of Qud 한글화"
-  version: "2.0.3"
-  phase: "Phase 1 - 안정화"
-  repository: "https://github.com/boramkim-cmd/korean_qud"
+  name: Caves of Qud Korean Localization
+  type: unity_mod
+  game: Caves of Qud
+  language: C# (Unity)
+  framework: Harmony 2.x (Runtime Patching)
+  purpose: Translate game UI/content to Korean
+  repo: https://github.com/boramkim-cmd/korean_qud
 
-current_work:
-  active_task: null  # 현재 진행 중인 작업 없음
-  # 진행 중 작업이 있을 때 예시:
-  # active_task:
-  #   id: "P2-01"
-  #   name: "메시지 로그 패치 확장"
-  #   started: "2026-01-XX"
-  #   blocker: null
-  #   notes: "XRL.Messages.MessageQueue 분석 중"
-
-blocking_issues: []
-  # 작업 차단 이슈가 있을 때 예시:
-  # - id: "ERR-XXX"
-  #   summary: "이슈 요약"
-  #   severity: "critical"  # critical, high, medium, low
-  #   see: "Docs/ERROR_LOG.md#err-xxx"
-
-recent_changes:
-  - date: "2026-01-20"
-    summary: "ERR-012 해결: 툴팁 한글 폰트 문제 (StreamingAssets 배포, 폰트 경로, TMP 적용)"
-    commits: ["025274f", "10be02d", "48a47bd"]
-  - date: "2026-01-18"
-    summary: "루트 디렉토리 정리 (20개 스크립트 → _Legacy/), 문서 시스템 개선"
-    commits: ["c3d117f", "ff68115"]
-  - date: "2026-01-17"
-    summary: "Mutation JSON 표준화, StructureTranslator 도입, 용어집 충돌 분석"
-
-known_issues:
-  - id: "ERR-012"
-    summary: "✅ 해결됨 - 툴팁 한글 폰트 미표시 (ModelShark 구조 미분석)"
-    see: "ISSUES/ERR-012_Tooltip_Font_Display.md"
-  - id: "P3-05"
-    summary: "용어집 간 102건 충돌 (Phase 3에서 해결 예정)"
-    see: "LOCALIZATION/integrity_report.md"
-  - id: "TOOL-01"
-    summary: "project_tool.py의 중괄호 파서 오류 (실제 코드는 정상)"
-
-next_recommended:
-  - task: "Phase 2 게임플레이 번역 시작"
-    priority: "medium"
-    see: "Docs/03_TODO.md#phase-2"
-  - task: "게임 내 테스트로 GENOTYPES/SUBTYPES 로딩 확인"
-    priority: "high"
-
-# 빠른 명령어 복사용
-quick_commands:
-  validate: "python3 tools/project_tool.py"
-  deploy: "./tools/deploy-mods.sh"
-  sync_and_deploy: "./tools/sync-and-deploy.sh"
-  git_status: "git status --short"
+# ============================================================================
+# ARCHITECTURE (How the mod works)
+# ============================================================================
+architecture:
+  entry_point: Scripts/00_Core/00_00_00_ModEntry.cs
   
-# 핵심 경로 (자주 참조)
-key_paths:
-  principles: "Docs/00_PRINCIPLES.md"
-  todo: "Docs/03_TODO.md"
-  error_log: "Docs/05_ERROR_LOG.md"
-  localization: "LOCALIZATION/"
-  scripts: "Scripts/"
-  tools: "tools/"
+  core_flow:
+    1_init: ModEntry loads on game start
+    2_load: LocalizationManager loads all JSON from LOCALIZATION/
+    3_patch: Harmony patches intercept game text rendering
+    4_translate: TranslationEngine finds Korean translation
+    5_display: Translated text displayed to player
+  
+  layers:
+    core:
+      path: Scripts/00_Core/
+      files:
+        ModEntry: 00_00_00_ModEntry.cs - Mod initialization
+        TranslationEngine: 00_00_01_TranslationEngine.cs - Tag preservation, lookup
+        ScopeManager: 00_00_02_ScopeManager.cs - Screen-based scope
+        LocalizationManager: 00_00_03_LocalizationManager.cs - JSON loading
+        QudKREngine: 00_00_99_QudKREngine.cs - Korean font, Josa
+    
+    patches:
+      path: Scripts/02_Patches/
+      subfolders:
+        00_Core: Low-level (ScreenBuffer, Steam)
+        10_UI: UI screens (Options, CharGen, Inventory, Tutorial)
+        20_Objects: Object/Creature names
+    
+    utils:
+      path: Scripts/99_Utils/
+      purpose: Translation helpers, CharGen utils, StructureTranslator
 
-# 로컬라이제이션 구조 요약
-localization_structure:
-  layer1_files:  # LocalizationManager가 처리
-    - "CHARGEN/modes.json"
-    - "CHARGEN/stats.json"
-    - "CHARGEN/ui.json"
-    - "CHARGEN/presets.json"
-    - "CHARGEN/locations.json"
-    - "CHARGEN/factions.json"
-    - "GAMEPLAY/skills.json"
-    - "GAMEPLAY/cybernetics.json"
-    - "UI/common.json"
-    - "UI/options.json"
-    - "UI/display.json"
-    - "UI/terms.json"
-  layer2_directories:  # StructureTranslator가 처리
-    - "GAMEPLAY/MUTATIONS/"
-    - "CHARGEN/GENOTYPES/"
-    - "CHARGEN/SUBTYPES/"
+# ============================================================================
+# DATA STRUCTURE (Translation JSON)
+# ============================================================================
+data:
+  root: LOCALIZATION/
+  
+  categories:
+    CHARGEN:
+      purpose: Character creation
+      key_files: [genotypes.json, subtypes.json, castes.json, callings.json]
+    
+    GAMEPLAY:
+      purpose: In-game content
+      subfolders:
+        MUTATIONS: 81 files (Physical, Mental, Defects, Morphotypes)
+        TUTORIAL: 6 files (step-by-step tutorials)
+      root_files: [messages.json, skills.json, factions.json]
+    
+    OBJECTS:
+      purpose: Items and creatures (57 files, 321+ entries)
+      creatures: animals/, humanoids/, insects/, oozes/, plants/, robots/
+      items: weapons/, armor/, consumables/, artifacts/, tools/, ammo/, books/
+    
+    UI:
+      purpose: Common UI elements
+      key_files: [common.json, options.json, display.json]
 
-# 컴포넌트 역할 요약
-component_roles:
-  LocalizationManager: "glossary_*.json 로드, 카테고리별 키-값 검색"
-  TranslationEngine: "태그 보존/복원, 대소문자 무시 번역"
-  StructureTranslator: "MUTATIONS/GENOTYPES/SUBTYPES 구조화된 JSON 처리"
-  ScopeManager: "화면별 번역 스코프 스택 관리"
-  QudKREngine: "한국어 폰트, 조사(은/는, 이/가) 처리"
+  json_formats:
+    simple: '{"English Text": "한국어 번역"}'
+    structured: '{"BlueprintId": {"names": {}, "description_ko": ""}}'
+
+# ============================================================================
+# DANGER ZONES (Never do these!)
+# ============================================================================
+danger:
+  never_translate_directly:
+    - AttributeDataElement.Attribute: Game uses Substring(0,3)
+    - ChoiceWithColorIcon.Id: Used in selection logic
+  
+  color_tags:
+    rule: Never include in translation JSON - auto-restored by engine
+    bad: '{"{{c|u}} text": "{{c|u}} 번역"}'
+    good: '{"{{c|u}} text": "번역"}'
+
+# ============================================================================
+# KEY PATTERNS
+# ============================================================================
+patterns:
+  translation:
+    simple: TranslationEngine.TryTranslate(text, out result)
+    category: LocalizationManager.TryGetAnyTerm(key, out value, "cat1", "cat2")
+    structured: StructureTranslator.GetTranslationData("Name", "MUTATIONS")
+  
+  harmony_postfix: |
+    [HarmonyPostfix]
+    static void Method_Postfix(ref string __result) {
+        if (TranslationEngine.TryTranslate(__result, out var tr))
+            __result = tr;
+    }
+
+# ============================================================================
+# TOOLS & COMMANDS
+# ============================================================================
+commands:
+  validate: python3 tools/project_tool.py
+  commit: bash tools/quick-save.sh
+  deploy: bash tools/sync-and-deploy.sh
+  session_save: python3 tools/session_manager.py save "description"
+  session_handoff: python3 tools/session_manager.py handoff
+  full_workflow: python3 tools/session_manager.py save && python3 tools/project_tool.py && bash tools/quick-save.sh
+
+  debug_wishes:
+    kr_reload: Reload JSON without restart
+    kr_check: Check translation for blueprint
+    kr_stats: Show statistics
+    kr_untranslated: List untranslated in zone
+
+# ============================================================================
+# DOCUMENTATION
+# ============================================================================
+docs:
+  ai_instructions: .github/copilot-instructions.md
+  todo: Docs/en/reference/03_TODO.md
+  changelog: Docs/en/reference/04_CHANGELOG.md
+  error_log: Docs/en/reference/05_ERROR_LOG.md
+  session_state: Docs/SESSION_STATE.md
+
+# ============================================================================
+# QUICK START (For AI)
+# ============================================================================
+quick_start:
+  new_session:
+    1: Read this file (CONTEXT.yaml)
+    2: Check Docs/SESSION_STATE.md for recent work
+    3: Read TODO for pending tasks
+  
+  add_translation:
+    1: Find JSON in LOCALIZATION/appropriate_folder/
+    2: Add {"English": "한국어"}
+    3: Run python3 tools/project_tool.py
+  
+  add_patch:
+    1: Find class in Assets/core_source/
+    2: Create patch in Scripts/02_Patches/
+    3: Use HarmonyPostfix pattern
+  
+  end_session:
+    1: python3 tools/session_manager.py save "work done"
+    2: python3 tools/project_tool.py
+    3: bash tools/quick-save.sh
+
+# ============================================================================
+# CURRENT STATUS (Auto-updated by session_manager.py)
+# ============================================================================
+status:
+  translations: 1377
+  mutation_files: 81
+  object_files: 57
+  build: passing
+  last_commit: 85c314e
+  last_updated: 2026-01-22T12:27:29.751111
+  
+  progress:
+    phase1_stabilization: 100%
+    phase2_gameplay: 75%
+    phase3_optimization: 0%
+    phase4_community: 0%
+  
+  pending:
+    - "Game Test: Message Log (P2-01)"
+    - "Game Test: Attribute Screen (ERR-017 fix)"
+  
+  recent_work:
+    - "CONTEXT.yaml 자동 업데이트 기능 수정 완료"
