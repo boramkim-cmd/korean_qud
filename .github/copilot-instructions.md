@@ -19,6 +19,16 @@
 #
 # NO NEED TO ASK - JUST DO IT AFTER EACH TASK COMPLETES SUCCESSFULLY
 
+## 🔄 SESSION SPLIT RULE (Context Management)
+# After completing 3-5 major tasks OR when conversation feels long:
+# 1. Run: python3 tools/session_manager.py save && python3 tools/project_tool.py && bash tools/quick-save.sh
+# 2. Say: "컨텍스트가 길어졌습니다. 새 채팅을 시작하고 아래를 붙여넣으세요:"
+# 3. Provide handoff prompt:
+#    ---
+#    이전 세션에서 이어서 작업합니다. SESSION_STATE.md를 읽고 맥락을 파악한 후 다음 작업을 진행해주세요.
+#    ---
+# This reduces token cost and improves AI accuracy.
+
 ################################################################################
 # LAYER 0.5: SESSION HANDOFF (New Chat? Read This!)
 ################################################################################
