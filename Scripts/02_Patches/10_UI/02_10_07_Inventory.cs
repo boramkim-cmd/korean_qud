@@ -186,11 +186,20 @@ namespace QudKRTranslation.Patches.UI
                         // CRITICAL: Never set empty translation
                         if (!string.IsNullOrEmpty(translated) && __instance.text != null)
                         {
-                            // [FIX] Manually apply font fallback to ensure visibility
+                            // [FIX] FORCE KOREAN FONT (Nuclear Option)
                             var tmp = __instance.text.GetComponent<TextMeshProUGUI>();
                             if (tmp != null)
                             {
-                                FontManager.ApplyFallbackToTMPComponent(tmp);
+                                var krFont = FontManager.GetKoreanTMPFont();
+                                if (krFont != null)
+                                {
+                                    tmp.font = krFont;
+                                    // Add original font as fallback? Maybe not needed if KR font has English
+                                }
+                                else
+                                {
+                                    FontManager.ApplyFallbackToTMPComponent(tmp);
+                                }
                             }
 
                             // FORCE COLOR: Wrap in {{y|...}} (white)
@@ -200,11 +209,19 @@ namespace QudKRTranslation.Patches.UI
                     }
                     else if (!string.IsNullOrEmpty(currentDisplayName) && __instance.text != null)
                     {
-                        // [FIX] Manually apply font fallback here too
+                        // [FIX] FORCE KOREAN FONT (Nuclear Option)
                         var tmp = __instance.text.GetComponent<TextMeshProUGUI>();
                         if (tmp != null)
                         {
-                            FontManager.ApplyFallbackToTMPComponent(tmp);
+                            var krFont = FontManager.GetKoreanTMPFont();
+                            if (krFont != null)
+                            {
+                                tmp.font = krFont;
+                            }
+                            else
+                            {
+                                FontManager.ApplyFallbackToTMPComponent(tmp);
+                            }
                         }
 
                         // Fallback: Set English text if translation fails (fixes invisible text)
