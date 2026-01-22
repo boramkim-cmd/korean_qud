@@ -140,4 +140,44 @@ namespace QudKRTranslation.Patches.UI
             }
         }
     }
+    
+    // ========================================================================
+    // 4. 인벤토리 아이템 이름 번역 (InventoryLine.setData 패치)
+    // ========================================================================
+    [HarmonyPatch(typeof(InventoryLine), "setData")]
+    public static class Patch_InventoryLine_SetData
+    {
+        [HarmonyPostfix]
+        static void Postfix(InventoryLine __instance, FrameworkDataElement data)
+        {
+            try
+            {
+                if (data is InventoryLineData inventoryLineData && !inventoryLineData.category)
+                {
+                    // 아이템인 경우에만 처리
+                    var go = inventoryLineData.go;
+                    if (go == null) return;
+                    
+                    string blueprint = go.Blueprint;
+                    string currentDisplayName = inventoryLineData.displayName;
+                    
+                    if (string.IsNullOrEmpty(currentDisplayName)) return;
+                    
+                    // ObjectTranslator를 통해 번역 시도
+                    if (QudKorean.Objects.ObjectTranslator.TryGetDisplayName(blueprint, currentDisplayName, out string translated))
+                    {
+                        // UITextSkin.text를 직접 업데이트
+                        if (__instance.text != null)
+                        {
+                            __instance.text.SetText(translated);
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                UnityEngine.Debug.LogWarning($"[Qud-KR] InventoryLine setData patch error: {ex.Message}");
+            }
+        }
+    }
 }
