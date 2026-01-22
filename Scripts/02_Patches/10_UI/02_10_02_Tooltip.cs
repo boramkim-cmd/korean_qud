@@ -59,12 +59,17 @@ namespace QudKRTranslation.Patches
         {
             // Try to find InventoryLine context
             var line = trigger.gameObject.GetComponent<InventoryLine>();
-            if (line == null || line.context == null || line.context.data == null || line.context.data.go == null) 
+            if (line == null) return;
+            
+            // Fix: Access context via Reflection (Traverse) to avoid CS1061 error
+            var go = Traverse.Create(line).Field("context").Field("data").Field("go").GetValue<GameObject>();
+            
+            if (go == null) 
                 return;
 
-            string blueprint = line.context.data.go.Blueprint;
+            string blueprint = go.Blueprint;
             // Use the GameObject's name as source of truth for "Original English Name" to match against
-            string goDisplayName = line.context.data.go.GetDisplayName(NoColor: true);
+            string goDisplayName = go.GetDisplayName(NoColor: true);
 
             var texts = trigger.Tooltip.GameObject.GetComponentsInChildren<TextMeshProUGUI>(true);
             foreach (var tmpro in texts)
