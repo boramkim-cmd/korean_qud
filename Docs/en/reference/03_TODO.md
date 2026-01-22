@@ -83,7 +83,7 @@
 | Task | Date |
 |------|------|
 | Object Blueprint System | 01-22 |
-| Object/Creature Translation (51 files, 300+ entries) | 01-22 |
+| Object/Creature Translation (57 files, 321+ entries) | 01-22 |
 | Message Log Patch (P2-01) | 01-22 |
 
 ---

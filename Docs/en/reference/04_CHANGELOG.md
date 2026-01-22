@@ -6,6 +6,12 @@
 
 ## Recent Changes
 
+### [2026-01-22] Object Translation Expansion
+- Added new creature categories: birds, reptiles, farmers, seedsprout
+- Added new item categories: ammo, books
+- Final stats: 57 JSON files, 321+ translation entries
+- Git synced: commit a6d9cf2
+
 ### [2026-01-22] P2-01 Message Log Patch Complete
 - Created `02_10_16_MessageLog.cs` - Harmony patch for MessageQueue.AddPlayerMessage
 - Created `LOCALIZATION/GAMEPLAY/messages.json` - 50+ message patterns
@@ -56,9 +62,9 @@
 ---
 
 ## Statistics
-- Total translation entries: 4,009
+- Total translation entries: 4,130+
 - Mutation files: 81
-- Object files: 51
+- Object files: 57
 - Message patterns: 50+
 - Build status: Success
 
