@@ -43,6 +43,12 @@ namespace QudKorean.Objects
     {
         private const string LOG_PREFIX = "[QudKR-Objects]";
         
+        // Static constructor to verify patch is loaded
+        static Patch_ObjectDisplayName()
+        {
+            UnityEngine.Debug.Log($"{LOG_PREFIX} DisplayName patch class loaded!");
+        }
+        
         /// <summary>
         /// Postfix patch for GetDisplayNameEvent.GetFor().
         /// CRITICAL: Must check ForSort and ColorOnly parameters to avoid breaking sorting/color-only operations.
@@ -65,9 +71,17 @@ namespace QudKorean.Objects
                 string blueprint = Object.Blueprint;
                 if (string.IsNullOrEmpty(blueprint)) return;
                 
+                // DEBUG: Log first few translation attempts
+                if (_logCount < 10)
+                {
+                    _logCount++;
+                    UnityEngine.Debug.Log($"{LOG_PREFIX} TryTranslate: blueprint='{blueprint}', result='{__result}'");
+                }
+                
                 // Attempt translation
                 if (ObjectTranslator.TryGetDisplayName(blueprint, __result, out string translated))
                 {
+                    UnityEngine.Debug.Log($"{LOG_PREFIX} Translated: '{__result}' -> '{translated}'");
                     __result = translated;
                 }
             }
@@ -77,6 +91,8 @@ namespace QudKorean.Objects
                 UnityEngine.Debug.LogError($"{LOG_PREFIX} GetFor_Postfix error: {ex.Message}");
             }
         }
+        
+        private static int _logCount = 0;
         
         /// <summary>
         /// Clears the translation cache. Called on game load.
