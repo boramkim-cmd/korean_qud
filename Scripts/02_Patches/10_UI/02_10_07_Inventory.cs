@@ -185,9 +185,16 @@ namespace QudKRTranslation.Patches.UI
                         // CRITICAL: Never set empty translation
                         if (!string.IsNullOrEmpty(translated) && __instance.text != null)
                         {
-                            __instance.text.SetText(translated);
+                            // FORCE COLOR: Wrap in {{y|...}} (white)
+                            __instance.text.SetText("{{y|" + translated + "}}");
                             UnityEngine.Debug.Log($"[QudKR-Inv] Translated: '{currentDisplayName}' -> '{translated}'");
                         }
+                    }
+                    else if (!string.IsNullOrEmpty(currentDisplayName) && __instance.text != null)
+                    {
+                        // Fallback: Set English text if translation fails (fixes invisible text)
+                        // FORCE COLOR: Wrap in {{y|...}} (white) to prevent invisibility
+                        __instance.text.SetText("{{y|" + currentDisplayName + "}}");
                     }
                 }
             }

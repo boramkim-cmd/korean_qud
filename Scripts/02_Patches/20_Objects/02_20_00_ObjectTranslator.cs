@@ -26,7 +26,7 @@ namespace QudKorean.Objects
         public class ObjectData
         {
             public string BlueprintId { get; set; }
-            public Dictionary<string, string> Names { get; set; } = new();
+            public Dictionary<string, string> Names { get; set; } = new(StringComparer.OrdinalIgnoreCase);
             public string Description { get; set; }
             public string DescriptionKo { get; set; }
         }
@@ -137,11 +137,13 @@ namespace QudKorean.Objects
                 _itemCache.TryGetValue(blueprint, out data))
             {
                 // Try exact match
+                // Try exact match
                 string strippedOriginal = StripColorTags(originalName);
                 if (data.Names.TryGetValue(strippedOriginal, out string koreanName) && !string.IsNullOrEmpty(koreanName))
                 {
-                    // Restore color tags if present in original
-                    translated = RestoreColorTags(originalName, strippedOriginal, koreanName);
+                    // Full match including suffix if present in the key
+                    // In this case, strippedOriginal IS the core name found in DB
+                    translated = RestoreFormatting(originalName, strippedOriginal, koreanName, "", "");
                     if (string.IsNullOrEmpty(translated)) return false;
                     _displayNameCache[cacheKey] = translated;
                     return true;
@@ -152,16 +154,16 @@ namespace QudKorean.Objects
                 string noStateSuffix = StripStateSuffix(strippedOriginal);
                 if (noStateSuffix != strippedOriginal)
                 {
-                    foreach (var namePair in data.Names)
+                    string suffix = strippedOriginal.Substring(noStateSuffix.Length);
+                    
+                    if (data.Names.TryGetValue(noStateSuffix, out string baseNameKo) && !string.IsNullOrEmpty(baseNameKo))
                     {
-                        if (namePair.Key.Equals(noStateSuffix, StringComparison.OrdinalIgnoreCase) && !string.IsNullOrEmpty(namePair.Value))
-                        {
-                            string suffix = strippedOriginal.Substring(noStateSuffix.Length);
-                            translated = namePair.Value + TranslateStateSuffix(suffix);
-                            if (string.IsNullOrEmpty(translated)) continue;
-                            _displayNameCache[cacheKey] = translated;
-                            return true;
-                        }
+                        string suffixKo = TranslateStateSuffix(suffix);
+                        translated = RestoreFormatting(originalName, noStateSuffix, baseNameKo, suffix, suffixKo);
+                        
+                        if (string.IsNullOrEmpty(translated)) continue;
+                        _displayNameCache[cacheKey] = translated;
+                        return true;
                     }
                 }
                 
@@ -183,6 +185,8 @@ namespace QudKorean.Objects
             string globalNoSuffix = StripStateSuffix(globalStripped);
             if (globalNoSuffix != globalStripped)
             {
+                string globalSuffix = globalStripped.Substring(globalNoSuffix.Length);
+
                 // Try finding translation for base name without state suffix in ALL caches
                 foreach (var cache in new[] { _creatureCache, _itemCache })
                 {
@@ -192,8 +196,8 @@ namespace QudKorean.Objects
                         {
                             if (namePair.Key.Equals(globalNoSuffix, StringComparison.OrdinalIgnoreCase))
                             {
-                                string suffix = globalStripped.Substring(globalNoSuffix.Length);
-                                translated = namePair.Value + TranslateStateSuffix(suffix);
+                                string suffixKo = TranslateStateSuffix(globalSuffix);
+                                translated = RestoreFormatting(originalName, globalNoSuffix, namePair.Value, globalSuffix, suffixKo);
                                 _displayNameCache[cacheKey] = translated;
                                 return true;
                             }
@@ -472,7 +476,39 @@ namespace QudKorean.Objects
             
             return false;
         }
-        
+
+        /// <summary>
+        /// Attempts to translate a description ONLY if the current text matches the known English description.
+        /// Use this to safely replace text in Tooltips without context.
+        /// </summary>
+        public static bool TryTranslateDescriptionExact(string blueprint, string currentText, out string translated)
+        {
+            translated = null;
+            if (string.IsNullOrEmpty(blueprint) || string.IsNullOrEmpty(currentText)) return false;
+
+            EnsureInitialized();
+            
+            string normalizedBlueprint = NormalizeBlueprintId(blueprint);
+            ObjectData data = null;
+            if (_creatureCache.TryGetValue(normalizedBlueprint, out data) || 
+                _itemCache.TryGetValue(normalizedBlueprint, out data) ||
+                _creatureCache.TryGetValue(blueprint, out data) || 
+                _itemCache.TryGetValue(blueprint, out data))
+            {
+                // strict or trimmed match of English description
+                if (!string.IsNullOrEmpty(data.Description) && !string.IsNullOrEmpty(data.DescriptionKo))
+                {
+                    if (currentText.Trim().Equals(data.Description.Trim(), StringComparison.OrdinalIgnoreCase))
+                    {
+                        translated = data.DescriptionKo;
+                        return true;
+                    }
+                }
+            }
+            
+            return false;
+        }
+
         /// <summary>
         /// Checks if a blueprint has any translation data.
         /// </summary>
@@ -638,30 +674,65 @@ namespace QudKorean.Objects
         
         /// <summary>
         /// Strips Qud color tags from text. Own implementation, not using TranslationEngine.
+        /// Updated to handle nested braces slightly better by being non-greedy.
         /// </summary>
         private static string StripColorTags(string text)
         {
             if (string.IsNullOrEmpty(text)) return text;
             
-            // {{color|text}} format
-            string result = Regex.Replace(text, @"\{\{[a-zA-Z]+\|([^}]+)\}\}", "$1");
+            string result = text;
+
+            // Remove simple color codes like &r, &W, &^r, &^W
+            result = Regex.Replace(result, @"&[\^]?[a-zA-Z]", "");
             
-            // Short format &color
-            result = Regex.Replace(result, @"&[a-zA-Z]", "");
+            // Remove {{...}} tags
+            // Note: detailed nested parsing is hard with regex, 
+            // but we assume standard Qud format like {{color|text}}.
+            // We loop to handle simple nesting like {{r|{{b|Text}}}}
+            int limit = 5;
+            while (limit-- > 0 && result.Contains("{{"))
+            {
+                // Regex to find sets of {{...}} that do not contain {{ inside them (innermost)
+                // And replace them with efficiently. 
+                // Pattern: {{tag|content}} -> content
+                string next = Regex.Replace(result, @"\{\{[^|]+\|([^}]+)\}\}", "$1");
+                if (next == result) break; // No more replacements made
+                result = next;
+            }
             
             return result.Trim();
         }
         
         /// <summary>
-        /// Restores color tags from original to translated text.
+        /// Restores color tags from original to translated text using granular replacement.
+        /// Handles cases like "{{r|Torch}} (lit)" where "Torch (lit)" is not a contiguous string in original.
         /// </summary>
-        private static string RestoreColorTags(string original, string stripped, string translated)
+        private static string RestoreFormatting(string original, string coreName, string translatedCore, string suffix, string translatedSuffix)
         {
-            if (string.IsNullOrEmpty(original) || original == stripped)
-                return translated;
+            if (string.IsNullOrEmpty(original)) return translatedCore + translatedSuffix;
             
-            // Try simple replacement
-            return original.Replace(stripped, translated);
+            string result = original;
+            
+            // 1. Replace the core name (e.g. "Torch" -> "횃불")
+            // We must be careful not to replace parts of tags.
+            // But since we are translating display names, collision with tag names (e.g. "red") is rare but possible.
+            // We assume the CoreName found in the original string that isn't inside a tag definition is the target.
+            // For simplicity/robustness in Qud: Just replace the first occurrence that isn't part of a tag syntax? 
+            // Or just string replace. Given "Torch", it's unlikely to be "red" or "bold".
+            
+            if (!string.IsNullOrEmpty(coreName) && !string.IsNullOrEmpty(translatedCore))
+            {
+                // Case-insensitive replace for robustness
+                result = Regex.Replace(result, Regex.Escape(coreName), translatedCore, RegexOptions.IgnoreCase);
+            }
+            
+            // 2. Replace the suffix (e.g. " (lit)" -> " (점화됨)")
+            if (!string.IsNullOrEmpty(suffix) && !string.IsNullOrEmpty(translatedSuffix) && suffix != translatedSuffix)
+            {
+                result = Regex.Replace(result, Regex.Escape(suffix), translatedSuffix, RegexOptions.IgnoreCase);
+            }
+            
+            return result;
         }
         
         #endregion

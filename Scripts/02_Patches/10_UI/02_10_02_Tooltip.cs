@@ -43,7 +43,10 @@ namespace QudKRTranslation.Patches
                 // 1. Translate static header text (This Item / Equipped Item)
                 TranslateTooltipHeaders(trigger.Tooltip.GameObject);
                 
-                // 2. Apply Korean font fallback
+                // 2. Try to translate Item Name/Description if this is an InventoryLine
+                TranslateInventoryTooltip(trigger);
+
+                // 3. Apply Korean font fallback
                 ApplyKoreanFontToTooltip(trigger.Tooltip.GameObject);
             }
             catch (Exception ex)
@@ -52,6 +55,45 @@ namespace QudKRTranslation.Patches
             }
         }
         
+        private static void TranslateInventoryTooltip(TooltipTrigger trigger)
+        {
+            // Try to find InventoryLine context
+            var line = trigger.gameObject.GetComponent<InventoryLine>();
+            if (line == null || line.context == null || line.context.data == null || line.context.data.go == null) 
+                return;
+
+            string blueprint = line.context.data.go.Blueprint;
+            // Use the GameObject's name as source of truth for "Original English Name" to match against
+            string goDisplayName = line.context.data.go.GetDisplayName(NoColor: true);
+
+            var texts = trigger.Tooltip.GameObject.GetComponentsInChildren<TextMeshProUGUI>(true);
+            foreach (var tmpro in texts)
+            {
+                if (string.IsNullOrEmpty(tmpro.text)) continue;
+
+                string currentText = tmpro.text;
+                
+                // Attempt 1: Name Translation
+                // We pass currentText to TryGetDisplayName because it might contain suffixes like " (equipped)" or counts "x10"
+                // which the translator logic ("StripStateSuffix") handles.
+                if (ObjectTranslator.TryGetDisplayName(blueprint, currentText, out string nameKo))
+                {
+                    // Only replace if it contains the base name or is a recognized variant
+                    tmpro.text = nameKo;
+                    tmpro.SetAllDirty();
+                    continue; 
+                }
+
+                // Attempt 2: Description Translation
+                // Use Exact match logic to be safe
+                if (ObjectTranslator.TryTranslateDescriptionExact(blueprint, currentText, out string descKo))
+                {
+                    tmpro.text = descKo;
+                    tmpro.SetAllDirty();
+                }
+            }
+        }
+
         private static void TranslateTooltipHeaders(GameObject tooltipObj)
         {
             var textComponents = tooltipObj.GetComponentsInChildren<TextMeshProUGUI>(true);
