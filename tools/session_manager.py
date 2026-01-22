@@ -2,11 +2,13 @@
 """
 Session Manager for AI Context Handoff
 Automatically saves and restores session state between chat sessions.
+Generates vectorized context for efficient handoff to new chats.
 
 Usage:
   python3 tools/session_manager.py save    # Save current session state
   python3 tools/session_manager.py load    # Load previous session state (for new chat)
   python3 tools/session_manager.py status  # Show current status
+  python3 tools/session_manager.py handoff # Generate copy-paste handoff prompt
 """
 
 import os
@@ -20,6 +22,7 @@ from pathlib import Path
 PROJECT_ROOT = Path(__file__).parent.parent
 SESSION_FILE = PROJECT_ROOT / "Docs" / "SESSION_STATE.md"
 SESSION_JSON = PROJECT_ROOT / "tools" / "session_state.json"
+CONTEXT_FILE = PROJECT_ROOT / "Docs" / "CONTEXT.yaml"  # Vectorized context
 TODO_FILE = PROJECT_ROOT / "Docs" / "en" / "reference" / "03_TODO.md"
 CHANGELOG_FILE = PROJECT_ROOT / "Docs" / "en" / "reference" / "04_CHANGELOG.md"
 ERROR_LOG = PROJECT_ROOT / "Docs" / "en" / "reference" / "05_ERROR_LOG.md"
@@ -257,6 +260,115 @@ Copy and paste this to start a new chat session:
     return md
 
 
+def generate_vectorized_context(state, session_work=None):
+    """Generate compressed vectorized context for new chat handoff."""
+    
+    # Get recent file changes from git diff
+    recent_files = []
+    try:
+        result = subprocess.run(
+            ["git", "diff", "--name-only", "HEAD~3"],
+            cwd=PROJECT_ROOT,
+            capture_output=True,
+            text=True
+        )
+        recent_files = [f for f in result.stdout.strip().split('\n') if f][:15]
+    except:
+        pass
+    
+    context = f"""# 🧠 AI Context Handoff (Vectorized)
+# Generated: {state['timestamp']}
+# Copy this ENTIRE block to new chat
+
+## PROJECT_STATE
+type: caves_of_qud_korean_localization
+translations: {state['translation_count']}
+build: passing
+uncommitted: {state['git']['uncommitted_files']}
+
+## RECENT_COMMITS
+{chr(10).join(state['recent_commits'][:5])}
+
+## PENDING_TASKS
+{chr(10).join('- ' + t for t in state['todo']['next_tasks'][:5]) if state['todo']['next_tasks'] else '- None'}
+
+## RECENT_CHANGES
+{chr(10).join(state['recent_changes'][:3]) if state['recent_changes'] else '- None'}
+
+## MODIFIED_FILES
+{chr(10).join(recent_files) if recent_files else 'None'}
+
+## KNOWN_ISSUES
+{chr(10).join('- ' + e for e in state['known_errors'][:5]) if state['known_errors'] else '- None'}
+
+## SESSION_WORK
+{session_work if session_work else 'Not specified'}
+
+## KEY_PATHS
+- Scripts/00_Core/ → Translation engine
+- Scripts/02_Patches/ → Harmony patches
+- LOCALIZATION/ → JSON translation data
+- Docs/en/reference/ → TODO, CHANGELOG, ERROR_LOG
+
+## COMMANDS
+validate: python3 tools/project_tool.py
+commit: bash tools/quick-save.sh
+session: python3 tools/session_manager.py save
+
+---
+위 맥락을 기반으로 작업을 이어서 진행해주세요.
+"""
+    
+    return context
+
+
+def save_session(session_work=None):
+    """Save current session state."""
+    state = {
+        "timestamp": datetime.now().isoformat(),
+        "git": get_git_status(),
+        "recent_commits": get_recent_commits(),
+        "todo": get_todo_summary(),
+        "recent_changes": get_recent_changes(),
+        "known_errors": get_known_errors(),
+        "translation_count": count_translations(),
+        "session_work": session_work
+    }
+    
+    # Save JSON
+    with open(SESSION_JSON, 'w', encoding='utf-8') as f:
+        json.dump(state, f, ensure_ascii=False, indent=2)
+    
+    # Generate Markdown
+    md_content = generate_session_markdown(state)
+    SESSION_FILE.write_text(md_content)
+    
+    # Generate vectorized context
+    context = generate_vectorized_context(state, session_work)
+    CONTEXT_FILE.write_text(context)
+    
+    print(f"✅ Session state saved to:")
+    print(f"   - {SESSION_FILE}")
+    print(f"   - {SESSION_JSON}")
+    print(f"   - {CONTEXT_FILE} (vectorized)")
+    
+    return state
+
+
+def generate_handoff_prompt(state):
+    """Generate a complete handoff prompt for new chat."""
+    context = generate_vectorized_context(state, state.get('session_work'))
+    
+    prompt = f"""
+{'='*60}
+📋 COPY EVERYTHING BELOW TO NEW CHAT
+{'='*60}
+
+{context}
+"""
+    return prompt
+
+
 def load_session():
     """Load and display previous session state."""
     if not SESSION_JSON.exists():
@@ -327,22 +439,51 @@ def show_status():
     print("=" * 60)
 
 
+def handoff():
+    """Generate and print handoff prompt for new chat."""
+    if not SESSION_JSON.exists():
+        print("❌ No previous session found. Run 'save' first.")
+        return
+    
+    with open(SESSION_JSON, 'r', encoding='utf-8') as f:
+        state = json.load(f)
+    
+    prompt = generate_handoff_prompt(state)
+    print(prompt)
+    
+    # Also save to file
+    handoff_file = PROJECT_ROOT / "Docs" / "HANDOFF_PROMPT.txt"
+    handoff_file.write_text(prompt)
+    print(f"\n💾 Also saved to: {handoff_file}")
+
+
 def main():
     if len(sys.argv) < 2:
-        print("Usage: python3 session_manager.py [save|load|status]")
+        print("Usage: python3 session_manager.py [save|load|status|handoff]")
+        print("")
+        print("Commands:")
+        print("  save    - Save current session state")
+        print("  load    - Load and display previous session")
+        print("  status  - Show current project status")
+        print("  handoff - Generate copy-paste prompt for new chat")
         sys.exit(1)
     
     command = sys.argv[1].lower()
     
+    # Optional: session work description
+    session_work = " ".join(sys.argv[2:]) if len(sys.argv) > 2 else None
+    
     if command == "save":
-        save_session()
+        save_session(session_work)
     elif command == "load":
         load_session()
     elif command == "status":
         show_status()
+    elif command == "handoff":
+        handoff()
     else:
         print(f"Unknown command: {command}")
-        print("Available: save, load, status")
+        print("Available: save, load, status, handoff")
         sys.exit(1)
 
 

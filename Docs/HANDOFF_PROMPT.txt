@@ -1,0 +1,60 @@
+
+============================================================
+📋 COPY EVERYTHING BELOW TO NEW CHAT
+============================================================
+
+# 🧠 AI Context Handoff (Vectorized)
+# Generated: 2026-01-22T12:21:50.381249
+# Copy this ENTIRE block to new chat
+
+## PROJECT_STATE
+type: caves_of_qud_korean_localization
+translations: 1377
+build: passing
+uncommitted: 1
+
+## RECENT_COMMITS
+347442a chore: quick save - 2026-01-22 12:20:34
+38becf0 chore: quick save - 2026-01-22 12:18:51
+31dfc81 chore: quick save - 2026-01-22 12:15:06
+6cd1a1e chore: quick save - 2026-01-22 12:13:05
+a6d9cf2 chore: quick save - 2026-01-22 12:12:07
+
+## PENDING_TASKS
+- Game Test: Message Log (P2-01)
+- Game Test: Attribute Screen (ERR-017 fix)
+
+## RECENT_CHANGES
+### [2026-01-22] Object Translation Expansion
+### [2026-01-22] P2-01 Message Log Patch Complete
+### [2026-01-22] Mutation & Object Systems Complete
+
+## MODIFIED_FILES
+.github/copilot-instructions.md
+Docs/01_CORE_PROJECT_INDEX.md
+Docs/02_CORE_QUICK_REFERENCE.md
+Docs/SESSION_STATE.md
+tools/project_metadata.json
+tools/session_manager.py
+tools/session_state.json
+
+## KNOWN_ISSUES
+- None
+
+## SESSION_WORK
+아이템/크리처 번역 확장, 세션 매니저 생성, 자동완료 규칙 추가
+
+## KEY_PATHS
+- Scripts/00_Core/ → Translation engine
+- Scripts/02_Patches/ → Harmony patches
+- LOCALIZATION/ → JSON translation data
+- Docs/en/reference/ → TODO, CHANGELOG, ERROR_LOG
+
+## COMMANDS
+validate: python3 tools/project_tool.py
+commit: bash tools/quick-save.sh
+session: python3 tools/session_manager.py save
+
+---
+위 맥락을 기반으로 작업을 이어서 진행해주세요.
+
