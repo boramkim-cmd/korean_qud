@@ -282,7 +282,6 @@ namespace QudKRTranslation.Patches
                 UnityEngine.Object.Destroy(_overlayCanvas);
                 _overlayCanvas = null;
                 _titleText = null;
-                _progressText = null;
             }
         }
     }
