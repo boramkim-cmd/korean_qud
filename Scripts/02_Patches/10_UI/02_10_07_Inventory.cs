@@ -13,6 +13,7 @@ using Qud.UI;
 using XRL.World;
 using XRL.UI.Framework;
 using QudKRTranslation.Core;
+using TMPro;
 using UnityEngine;
 using GameObject = XRL.World.GameObject;
 
@@ -185,6 +186,13 @@ namespace QudKRTranslation.Patches.UI
                         // CRITICAL: Never set empty translation
                         if (!string.IsNullOrEmpty(translated) && __instance.text != null)
                         {
+                            // [FIX] Manually apply font fallback to ensure visibility
+                            var tmp = __instance.text.GetComponent<TextMeshProUGUI>();
+                            if (tmp != null)
+                            {
+                                FontManager.ApplyFallbackToTMPComponent(tmp);
+                            }
+
                             // FORCE COLOR: Wrap in {{y|...}} (white)
                             __instance.text.SetText("{{y|" + translated + "}}");
                             UnityEngine.Debug.Log($"[QudKR-Inv] Translated: '{currentDisplayName}' -> '{translated}'");
@@ -192,6 +200,13 @@ namespace QudKRTranslation.Patches.UI
                     }
                     else if (!string.IsNullOrEmpty(currentDisplayName) && __instance.text != null)
                     {
+                        // [FIX] Manually apply font fallback here too
+                        var tmp = __instance.text.GetComponent<TextMeshProUGUI>();
+                        if (tmp != null)
+                        {
+                            FontManager.ApplyFallbackToTMPComponent(tmp);
+                        }
+
                         // Fallback: Set English text if translation fails (fixes invisible text)
                         // FORCE COLOR: Wrap in {{y|...}} (white) to prevent invisibility
                         __instance.text.SetText("{{y|" + currentDisplayName + "}}");
