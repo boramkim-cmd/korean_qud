@@ -147,6 +147,8 @@ namespace QudKRTranslation.Patches.UI
     [HarmonyPatch(typeof(InventoryLine), "setData")]
     public static class Patch_InventoryLine_SetData
     {
+        private static int _logCount = 0;
+        
         [HarmonyPostfix]
         static void Postfix(InventoryLine __instance, FrameworkDataElement data)
         {
@@ -159,17 +161,32 @@ namespace QudKRTranslation.Patches.UI
                     if (go == null) return;
                     
                     string blueprint = go.Blueprint;
+                    
+                    // displayName이 비어있으면 GetDisplayName() 사용
                     string currentDisplayName = inventoryLineData.displayName;
+                    if (string.IsNullOrEmpty(currentDisplayName))
+                    {
+                        // Try to get display name from the game object itself
+                        currentDisplayName = go.GetDisplayName(NoColor: true);
+                    }
                     
                     if (string.IsNullOrEmpty(currentDisplayName)) return;
+                    
+                    // Debug logging (first 10 items only)
+                    if (_logCount < 10)
+                    {
+                        _logCount++;
+                        UnityEngine.Debug.Log($"[QudKR-Inv] Blueprint='{blueprint}', DisplayName='{currentDisplayName}'");
+                    }
                     
                     // ObjectTranslator를 통해 번역 시도
                     if (QudKorean.Objects.ObjectTranslator.TryGetDisplayName(blueprint, currentDisplayName, out string translated))
                     {
-                        // UITextSkin.text를 직접 업데이트
-                        if (__instance.text != null)
+                        // CRITICAL: Never set empty translation
+                        if (!string.IsNullOrEmpty(translated) && __instance.text != null)
                         {
                             __instance.text.SetText(translated);
+                            UnityEngine.Debug.Log($"[QudKR-Inv] Translated: '{currentDisplayName}' -> '{translated}'");
                         }
                     }
                 }

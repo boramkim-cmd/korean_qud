@@ -455,8 +455,12 @@ namespace QudKorean.Objects
             
             EnsureInitialized();
             
+            // Normalize blueprint ID for consistent lookup (fixes "Torch" vs "torch" mismatch)
+            string normalizedBlueprint = NormalizeBlueprintId(blueprint);
             ObjectData data = null;
-            if (_creatureCache.TryGetValue(blueprint, out data) || 
+            if (_creatureCache.TryGetValue(normalizedBlueprint, out data) || 
+                _itemCache.TryGetValue(normalizedBlueprint, out data) ||
+                _creatureCache.TryGetValue(blueprint, out data) || 
                 _itemCache.TryGetValue(blueprint, out data))
             {
                 if (!string.IsNullOrEmpty(data.DescriptionKo))
