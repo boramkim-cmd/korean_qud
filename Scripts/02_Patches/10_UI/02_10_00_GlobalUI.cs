@@ -296,11 +296,9 @@ namespace QudKRTranslation.Patches
                     }
                 }
             }
-            catch (System.Exception ex)
+            catch (System.Exception)
             {
-                #if DEBUG
-                Debug.LogWarning($"[Qud-KR TMP_Text Patch] {ex.Message}");
-                #endif
+                // Silently ignore translation errors to avoid game disruption
             }
         }
         

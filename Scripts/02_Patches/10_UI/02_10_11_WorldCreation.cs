@@ -171,7 +171,6 @@ namespace QudKRTranslation.Patches
     {
         private static GameObject _overlayCanvas;
         private static TextMeshProUGUI _titleText;
-        private static TextMeshProUGUI _progressText;
         
         static MethodBase TargetMethod()
         {

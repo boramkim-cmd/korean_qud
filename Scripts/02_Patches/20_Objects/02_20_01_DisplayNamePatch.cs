@@ -79,13 +79,13 @@ namespace QudKorean.Objects
     
     /// <summary>
     /// Invalidates cache on game load to ensure fresh translations.
+    /// Uses CallAfterGameLoaded attribute which is the official Qud mod API for this purpose.
     /// </summary>
-    [HarmonyPatch(typeof(XRL.Core.XRLCore))]
-    public static class Patch_CacheInvalidation
+    [HasCallAfterGameLoaded]
+    public static class CacheInvalidation
     {
-        [HarmonyPatch("LoadGame")]
-        [HarmonyPostfix]
-        static void LoadGame_Postfix()
+        [CallAfterGameLoaded]
+        public static void OnGameLoaded()
         {
             Patch_ObjectDisplayName.ClearCache();
         }
