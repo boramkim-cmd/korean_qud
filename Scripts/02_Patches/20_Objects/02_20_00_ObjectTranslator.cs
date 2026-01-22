@@ -107,7 +107,14 @@ namespace QudKorean.Objects
             string cacheKey = $"{blueprint}:{originalName}";
             if (_displayNameCache.TryGetValue(cacheKey, out translated))
             {
-                return true;
+                // CRITICAL: Don't return empty strings as successful translations
+                if (!string.IsNullOrEmpty(translated))
+                {
+                    return true;
+                }
+                // Remove invalid cache entry
+                _displayNameCache.Remove(cacheKey);
+                translated = null;
             }
             
             // Try creature cache first, then item cache
@@ -117,10 +124,11 @@ namespace QudKorean.Objects
             {
                 // Try exact match
                 string strippedOriginal = StripColorTags(originalName);
-                if (data.Names.TryGetValue(strippedOriginal, out string koreanName))
+                if (data.Names.TryGetValue(strippedOriginal, out string koreanName) && !string.IsNullOrEmpty(koreanName))
                 {
                     // Restore color tags if present in original
                     translated = RestoreColorTags(originalName, strippedOriginal, koreanName);
+                    if (string.IsNullOrEmpty(translated)) return false;
                     _displayNameCache[cacheKey] = translated;
                     return true;
                 }
@@ -132,10 +140,11 @@ namespace QudKorean.Objects
                 {
                     foreach (var namePair in data.Names)
                     {
-                        if (namePair.Key.Equals(noStateSuffix, StringComparison.OrdinalIgnoreCase))
+                        if (namePair.Key.Equals(noStateSuffix, StringComparison.OrdinalIgnoreCase) && !string.IsNullOrEmpty(namePair.Value))
                         {
                             string suffix = strippedOriginal.Substring(noStateSuffix.Length);
                             translated = namePair.Value + TranslateStateSuffix(suffix);
+                            if (string.IsNullOrEmpty(translated)) continue;
                             _displayNameCache[cacheKey] = translated;
                             return true;
                         }
@@ -145,9 +154,10 @@ namespace QudKorean.Objects
                 // Try any name in the names dictionary (partial match fallback)
                 foreach (var kvp in data.Names)
                 {
-                    if (originalName.Contains(kvp.Key) || strippedOriginal.Contains(kvp.Key))
+                    if (!string.IsNullOrEmpty(kvp.Value) && (originalName.Contains(kvp.Key) || strippedOriginal.Contains(kvp.Key)))
                     {
                         translated = originalName.Replace(kvp.Key, kvp.Value);
+                        if (string.IsNullOrEmpty(translated)) continue;
                         _displayNameCache[cacheKey] = translated;
                         return true;
                     }

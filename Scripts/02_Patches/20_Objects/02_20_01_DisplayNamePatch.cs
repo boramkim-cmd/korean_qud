@@ -81,8 +81,16 @@ namespace QudKorean.Objects
                 // Attempt translation
                 if (ObjectTranslator.TryGetDisplayName(blueprint, __result, out string translated))
                 {
-                    UnityEngine.Debug.Log($"{LOG_PREFIX} Translated: '{__result}' -> '{translated}'");
-                    __result = translated;
+                    // CRITICAL: Final safety check - never replace with empty string
+                    if (!string.IsNullOrEmpty(translated))
+                    {
+                        UnityEngine.Debug.Log($"{LOG_PREFIX} Translated: '{__result}' -> '{translated}'");
+                        __result = translated;
+                    }
+                    else
+                    {
+                        UnityEngine.Debug.LogWarning($"{LOG_PREFIX} Empty translation for '{blueprint}', keeping original: '{__result}'");
+                    }
                 }
             }
             catch (Exception ex)
