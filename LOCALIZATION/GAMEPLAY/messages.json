@@ -1,0 +1,96 @@
+{
+  "_meta": {
+    "category": "gameplay/messages",
+    "description": "In-game message log translations",
+    "version": "1.0",
+    "updated": "2026-01-22"
+  },
+
+  "flight": {
+    "You begin flying!": "비행을 시작합니다!",
+    "You return to the ground.": "땅으로 돌아옵니다.",
+    "You fall to the ground!": "땅으로 떨어집니다!",
+    "You begin using an additional flight capability.": "추가 비행 능력을 사용하기 시작합니다.",
+    "You cease using one of your flight capabilities.": "비행 능력 중 하나의 사용을 중단합니다.",
+    "One of your flight capabilities fails.": "비행 능력 중 하나가 실패합니다."
+  },
+
+  "movement": {
+    "You move north.": "북쪽으로 이동합니다.",
+    "You move south.": "남쪽으로 이동합니다.",
+    "You move east.": "동쪽으로 이동합니다.",
+    "You move west.": "서쪽으로 이동합니다.",
+    "You move northeast.": "북동쪽으로 이동합니다.",
+    "You move northwest.": "북서쪽으로 이동합니다.",
+    "You move southeast.": "남동쪽으로 이동합니다.",
+    "You move southwest.": "남서쪽으로 이동합니다.",
+    "You wait.": "기다립니다.",
+    "You rest.": "휴식합니다."
+  },
+
+  "items": {
+    "You pick up": "집어들었습니다:",
+    "You drop": "떨어뜨렸습니다:",
+    "You equip": "장착했습니다:",
+    "You unequip": "해제했습니다:",
+    "You drink": "마셨습니다:",
+    "You eat": "먹었습니다:",
+    "You use": "사용했습니다:"
+  },
+
+  "combat": {
+    "You attack": "공격합니다:",
+    "You hit": "명중시켰습니다:",
+    "You miss": "빗나갔습니다:",
+    "You dodge": "회피했습니다:",
+    "You block": "막았습니다:",
+    "You kill": "처치했습니다:",
+    "You are hit!": "공격당했습니다!",
+    "You are attacked!": "공격받았습니다!",
+    "You take damage.": "피해를 입었습니다.",
+    "Critical hit!": "치명타!"
+  },
+
+  "status": {
+    "You are hungry.": "배가 고픕니다.",
+    "You are thirsty.": "목이 마릅니다.",
+    "You are starving!": "굶주리고 있습니다!",
+    "You are dehydrated!": "탈수 상태입니다!",
+    "You feel tired.": "피곤함을 느낍니다.",
+    "You feel refreshed.": "상쾌함을 느낍니다.",
+    "You feel stronger.": "더 강해진 것 같습니다.",
+    "You feel weaker.": "약해진 것 같습니다.",
+    "You are poisoned!": "중독되었습니다!",
+    "You are bleeding!": "출혈 중입니다!",
+    "You are on fire!": "불타고 있습니다!",
+    "You are frozen!": "얼어붙었습니다!",
+    "You are confused.": "혼란스럽습니다.",
+    "You are stunned!": "기절했습니다!"
+  },
+
+  "interaction": {
+    "You open the door.": "문을 엽니다.",
+    "You close the door.": "문을 닫습니다.",
+    "You climb up.": "올라갑니다.",
+    "You climb down.": "내려갑니다.",
+    "You enter": "들어갑니다:",
+    "You leave": "나갑니다:",
+    "You see": "봅니다:",
+    "You hear": "듣습니다:",
+    "You find": "발견했습니다:"
+  },
+
+  "system": {
+    "Saved.": "저장되었습니다.",
+    "Loaded.": "불러왔습니다.",
+    "Autosaved.": "자동 저장되었습니다.",
+    "Game over.": "게임 오버.",
+    "You die.": "사망했습니다.",
+    "You have died.": "사망했습니다.",
+    "Level up!": "레벨 업!",
+    "You gain experience.": "경험치를 획득했습니다.",
+    "You learn": "배웠습니다:",
+    "Quest complete!": "퀘스트 완료!",
+    "New quest:": "새 퀘스트:"
+  }
+}

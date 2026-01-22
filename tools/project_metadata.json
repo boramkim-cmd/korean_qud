@@ -1,5 +1,5 @@
 {
-  "generated": "2026-01-22 11:19:24",
+  "generated": "2026-01-22 11:29:56",
   "scripts": {
     "Scripts/99_Utils/99_00_03_StructureTranslator.cs": {
       "classification": "Util",
@@ -436,6 +436,21 @@
       ],
       "methods": []
     },
+    "Scripts/02_Patches/10_UI/02_10_16_MessageLog.cs": {
+      "classification": "N/A",
+      "role": "N/A",
+      "namespace": "QudKoreanMod.Patches",
+      "classes": [
+        "Patch_MessageQueue"
+      ],
+      "methods": [
+        {
+          "name": "AddPlayerMessage_Prefix",
+          "return": "void",
+          "params": "ref string Message"
+        }
+      ]
+    },
     "Scripts/02_Patches/10_UI/02_10_08_Status.cs": {
       "classification": "UI Patch",
       "role": "상태창(인벤토리, 장비, 캐릭터 시트 등 포함)이 열릴 때",
@@ -768,6 +783,19 @@
         "Parabolic Muscular Subroutine"
       ],
       "entries": 60
+    },
+    "messages.json": {
+      "categories": [
+        "_meta",
+        "flight",
+        "movement",
+        "items",
+        "combat",
+        "status",
+        "interaction",
+        "system"
+      ],
+      "entries": 71
     },
     "skills.json": {
       "categories": [

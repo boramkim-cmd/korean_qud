@@ -9,10 +9,10 @@
 | Phase | Done | WIP | Todo | Progress |
 |-------|------|-----|------|----------|
 | Phase 1: Stabilization | 6 | 0 | 0 | 100% |
-| Phase 2: Gameplay | 1 | 1 | 2 | 25% |
+| Phase 2: Gameplay | 2 | 0 | 2 | 50% |
 | Phase 3: Optimization | 0 | 0 | 6 | 0% |
 | Phase 4: Community | 0 | 0 | 3 | 0% |
-| **Total** | **7** | **1** | **11** | **37%** |
+| **Total** | **8** | **0** | **11** | **42%** |
 
 ---
 
@@ -28,17 +28,6 @@
 | Breadcrumb | Korean caste name | [ ] |
 
 **Test Path**: New game - True Kin - Select caste - Attribute screen
-
----
-
-## In Progress
-
-### P2-03: Object/Creature Translation
-| Item | Value |
-|------|-------|
-| Files | LOCALIZATION/OBJECTS/**/*.json |
-| Status | 51 JSON files, 300+ entries |
-| Progress | Partial (names done, descriptions WIP) |
 
 ---
 
@@ -81,10 +70,11 @@
 | Mutation JSON Restructure (81 files) | 01-22 |
 | Tutorial Translation (ERR-018) | 01-21 |
 
-### Phase 2 (1/4)
+### Phase 2 (2/4)
 | Task | Date |
 |------|------|
 | Object Blueprint System | 01-22 |
+| Object/Creature Translation (51 files, 300+ entries) | 01-22 |
 
 ---
 
