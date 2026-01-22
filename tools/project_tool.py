@@ -1,18 +1,28 @@
 #!/usr/bin/env python3
 """
-🚀 통합 프로젝트 도구 (Unified Project Tool)
+🚀 통합 프로젝트 도구 (Unified Project Tool) v2.0
 - 코드/JSON 검증
 - 메타데이터 및 문서 생성
-- 미번역 항목 탐색
+- 용어집 분석
+- CLI 서브커맨드 지원
+
+Usage:
+  python3 tools/project_tool.py           # 전체 검증 (기본)
+  python3 tools/project_tool.py validate  # 검증만
+  python3 tools/project_tool.py build     # 빌드만
+  python3 tools/project_tool.py glossary  # 용어집 분석
+  python3 tools/project_tool.py stats     # 통계 출력
 """
 
 from __future__ import annotations
 import json
 import re
 import subprocess
+import sys
 from datetime import datetime
 from pathlib import Path
 from typing import Any
+from collections import defaultdict
 
 # ============================================================================
 # 설정 및 경로
@@ -415,21 +425,169 @@ def _generate_quick_reference(db: dict[str, Any]) -> None:
 
 
 # ============================================================================
-# 메인 실행부
+# 4. 용어집 분석 (Glossary Analysis) - analyze_glossary.py 통합
 # ============================================================================
 
+def analyze_glossary() -> dict[str, Any]:
+    """용어집 중복 및 구조 분석"""
+    print("\n" + "=" * 80)
+    print("📊 용어집 분석 (Glossary Analysis)")
+    print("=" * 80)
+
+    # 모든 JSON 파일 로드
+    all_keys: dict[str, list[str]] = defaultdict(list)  # key -> [file:category, ...]
+    stats = {"files": 0, "categories": 0, "entries": 0, "duplicates": 0}
+    
+    for json_file in sorted(LOCALIZATION_DIR.rglob("*.json")):
+        if "_DEPRECATED" in str(json_file):
+            continue
+        content = _read_file(json_file)
+        if content is None:
+            continue
+        try:
+            data = json.loads(content)
+            stats["files"] += 1
+            rel_path = json_file.relative_to(LOCALIZATION_DIR)
+            
+            # 구조화된 JSON (names, description_ko 등)
+            if "names" in data:
+                for eng_key in data.get("names", {}).keys():
+                    all_keys[eng_key.lower()].append(f"{rel_path}")
+                    stats["entries"] += 1
+            # 평면 JSON (key: value)
+            elif isinstance(data, dict):
+                for category, entries in data.items():
+                    if isinstance(entries, dict):
+                        stats["categories"] += 1
+                        for key in entries.keys():
+                            all_keys[key.lower()].append(f"{rel_path}:{category}")
+                            stats["entries"] += 1
+        except json.JSONDecodeError:
+            pass
+
+    # 중복 키 찾기
+    duplicates = {k: v for k, v in all_keys.items() if len(v) > 1}
+    stats["duplicates"] = len(duplicates)
+
+    print(f"총 JSON 파일: {stats['files']}개")
+    print(f"총 카테고리: {stats['categories']}개")
+    print(f"총 번역 항목: {stats['entries']}개")
+
+    if duplicates:
+        print(f"\n⚠️  중복 키 발견: {len(duplicates)}개")
+        for key, locations in list(duplicates.items())[:5]:
+            print(f"   - '{key}': {', '.join(locations[:3])}")
+    else:
+        print("✅ 중복 키 없음")
+
+    return stats
+
+
+# ============================================================================
+# 5. 통계 출력 (Statistics)
+# ============================================================================
+
+def show_stats() -> None:
+    """프로젝트 통계 요약 출력"""
+    print("\n" + "=" * 80)
+    print("📈 프로젝트 통계 (Statistics)")
+    print("=" * 80)
+
+    # Scripts 통계
+    cs_files = list(SCRIPTS_DIR.rglob("*.cs"))
+    cs_files = [f for f in cs_files if "_Legacy" not in str(f)]
+    total_lines = 0
+    for f in cs_files:
+        content = _read_file(f)
+        if content:
+            total_lines += len(content.splitlines())
+
+    print(f"\n📁 Scripts:")
+    print(f"   - C# 파일: {len(cs_files)}개")
+    print(f"   - 총 라인: {total_lines:,}줄")
+
+    # Localization 통계
+    json_files = list(LOCALIZATION_DIR.rglob("*.json"))
+    json_files = [f for f in json_files if "_DEPRECATED" not in str(f)]
+    
+    categories = {"CHARGEN": 0, "GAMEPLAY": 0, "UI": 0, "OBJECTS": 0}
+    for f in json_files:
+        rel = str(f.relative_to(LOCALIZATION_DIR))
+        for cat in categories:
+            if rel.startswith(cat):
+                categories[cat] += 1
+                break
+
+    print(f"\n📚 Localization:")
+    print(f"   - JSON 파일: {len(json_files)}개")
+    for cat, count in categories.items():
+        print(f"   - {cat}: {count}개")
+
+    # Git 통계
+    try:
+        result = subprocess.run(
+            ["git", "rev-list", "--count", "HEAD"],
+            cwd=PROJECT_ROOT, capture_output=True, text=True
+        )
+        commits = result.stdout.strip()
+        print(f"\n📝 Git: {commits} commits")
+    except:
+        pass
+
+
+# ============================================================================
+# 메인 실행부 (CLI)
+# ============================================================================
+
+def print_usage():
+    """사용법 출력"""
+    print("""
+🚀 Qud 한글화 프로젝트 통합 도구 v2.0
+
+Usage:
+  python3 tools/project_tool.py [command]
+
+Commands:
+  (none)    전체 검증 실행 (기본)
+  validate  코드/JSON 검증만
+  build     빌드만 실행
+  glossary  용어집 분석
+  stats     프로젝트 통계
+  help      이 도움말 출력
+""")
+
+
 def main() -> None:
+    cmd = sys.argv[1] if len(sys.argv) > 1 else "all"
+
+    if cmd == "help":
+        print_usage()
+        return
+
+    if cmd == "stats":
+        show_stats()
+        return
+
+    if cmd == "glossary":
+        analyze_glossary()
+        return
+
     print("\n" + "🚀" * 40)
     print("  Qud 한글화 프로젝트 통합 도구 환경 검증 시작")
     print("🚀" * 40)
 
-    results = [
-        verify_code(),
-        verify_localization(),
-        verify_build()
-    ]
+    results = []
 
-    build_project_references()
+    if cmd in ("all", "validate"):
+        results.append(verify_code())
+        results.append(verify_localization())
+
+    if cmd in ("all", "build"):
+        results.append(verify_build())
+
+    if cmd == "all":
+        build_project_references()
+        analyze_glossary()
 
     print("\n" + "=" * 80)
     if all(results):

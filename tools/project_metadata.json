@@ -1,5 +1,5 @@
 {
-  "generated": "2026-01-22 12:33:27",
+  "generated": "2026-01-22 12:42:10",
   "scripts": {
     "Scripts/99_Utils/99_00_03_StructureTranslator.cs": {
       "classification": "Util",
@@ -648,15 +648,11 @@
     },
     "project_tool.py": {
       "type": "script",
-      "size": 15864
+      "size": 21008
     },
     "get_deploy_path.py": {
       "type": "script",
       "size": 663
-    },
-    "verify_structure_data.py": {
-      "type": "script",
-      "size": 2734
     },
     "session_manager.py": {
       "type": "script",
@@ -666,20 +662,12 @@
       "type": "script",
       "size": 11503
     },
-    "check_missing_translations.py": {
-      "type": "script",
-      "size": 4495
-    },
     "sort_json.py": {
       "type": "script",
       "size": 2136
     },
     "HarmonyAnalyzer": {
       "type": "tool_folder"
-    },
-    "fix_empty_descriptions.py": {
-      "type": "script",
-      "size": 1750
     },
     "generate_csproj.py": {
       "type": "script",

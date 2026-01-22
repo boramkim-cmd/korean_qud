@@ -1,6 +1,6 @@
 # Caves of Qud Korean Localization - TODO
 
-> **Version**: 3.1 | **Last Updated**: 2026-01-22
+> **Version**: 3.2 | **Last Updated**: 2026-01-22
 
 ---
 
@@ -10,9 +10,9 @@
 |-------|------|-----|------|----------|
 | Phase 1: Stabilization | 6 | 0 | 0 | 100% |
 | Phase 2: Gameplay | 3 | 0 | 1 | 75% |
-| Phase 3: Optimization | 0 | 0 | 6 | 0% |
+| Phase 3: Optimization | 1 | 0 | 5 | 17% |
 | Phase 4: Community | 0 | 0 | 3 | 0% |
-| **Total** | **9** | **0** | **10** | **47%** |
+| **Total** | **10** | **0** | **9** | **53%** |
 
 ---
 
@@ -49,14 +49,14 @@
 | P2-04 | NPC Dialogue (Conversations.xml 647KB) | 16h | Medium | Todo |
 
 ### Phase 3: Optimization  
-| ID | Task | Hours | Priority |
-|----|------|-------|----------|
-| P3-01 | Translation Caching (LRU) | 4h | Low |
-| P3-02 | Missing Term Auto-Collector | 3h | Low |
-| P3-03 | TMP_Text Conditional Skip | 2h | Low |
-| P3-04 | Performance Profiling | 4h | Low |
-| P3-05 | Glossary Conflict Resolution | 12h | High |
-| P3-06 | Tool Scripts Consolidation | 4h | High |
+| ID | Task | Hours | Priority | Status |
+|----|------|-------|----------|--------|
+| P3-01 | Translation Caching (LRU) | 4h | Low | Todo |
+| P3-02 | Missing Term Auto-Collector | 3h | Low | Todo |
+| P3-03 | TMP_Text Conditional Skip | 2h | Low | Todo |
+| P3-04 | Performance Profiling | 4h | Low | Todo |
+| P3-05 | Glossary Conflict Resolution | 12h | High | Todo |
+| P3-06 | Tool Scripts Consolidation | 4h | High | ✅ Done |
 
 ### Phase 4: Community
 | ID | Task | Priority |

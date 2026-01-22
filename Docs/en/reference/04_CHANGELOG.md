@@ -1,10 +1,20 @@
 # Caves of Qud Korean Localization - Changelog
 
-> **Version**: 6.1 | **Last Updated**: 2026-01-22
+> **Version**: 6.2 | **Last Updated**: 2026-01-22
 
 ---
 
 ## Recent Changes
+
+### [2026-01-22] P3-06 Tool Scripts Consolidation
+- Upgraded `project_tool.py` to v2.0 with CLI subcommands
+  - `validate`, `build`, `glossary`, `stats`, `help`
+- Moved 3 legacy scripts to `tools/_legacy/`:
+  - `check_missing_translations.py` (XML-based, obsolete)
+  - `verify_structure_data.py` (integrated into project_tool)
+  - `fix_empty_descriptions.py` (one-time fix, complete)
+- Created `tools/README.md` documentation
+- Total legacy scripts: 13 (safely archived)
 
 ### [2026-01-22] Object Translation Expansion
 - Added new creature categories: birds, reptiles, farmers, seedsprout
