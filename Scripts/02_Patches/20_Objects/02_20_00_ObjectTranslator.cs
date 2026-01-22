@@ -45,6 +45,16 @@ namespace QudKorean.Objects
         
         private const string LOG_PREFIX = "[QudKR-Objects]";
         
+        /// <summary>
+        /// Normalizes blueprint IDs for consistent lookup.
+        /// "Witchwood Bark" → "witchwoodbark" (lowercase, no spaces)
+        /// </summary>
+        private static string NormalizeBlueprintId(string id)
+        {
+            if (string.IsNullOrEmpty(id)) return id;
+            return id.Replace(" ", "").ToLowerInvariant();
+        }
+        
         #endregion
         
         #region Public API
@@ -118,8 +128,12 @@ namespace QudKorean.Objects
             }
             
             // Try creature cache first, then item cache
+            // Use normalized blueprint for lookup to handle key variations
+            string normalizedBlueprint = NormalizeBlueprintId(blueprint);
             ObjectData data = null;
-            if (_creatureCache.TryGetValue(blueprint, out data) || 
+            if (_creatureCache.TryGetValue(normalizedBlueprint, out data) || 
+                _itemCache.TryGetValue(normalizedBlueprint, out data) ||
+                _creatureCache.TryGetValue(blueprint, out data) || 
                 _itemCache.TryGetValue(blueprint, out data))
             {
                 // Try exact match
@@ -576,12 +590,13 @@ namespace QudKorean.Objects
                     if (prop.Name.StartsWith("_")) continue;
                     
                     string blueprintId = prop.Name;
+                    string normalizedId = NormalizeBlueprintId(blueprintId);
                     JObject entry = prop.Value as JObject;
                     if (entry == null) continue;
                     
                     var data = new ObjectData
                     {
-                        BlueprintId = blueprintId,
+                        BlueprintId = blueprintId,  // Keep original for reference
                         Description = entry["description"]?.ToString(),
                         DescriptionKo = entry["description_ko"]?.ToString()
                     };
@@ -596,7 +611,13 @@ namespace QudKorean.Objects
                         }
                     }
                     
-                    cache[blueprintId] = data;
+                    // Store with normalized key for consistent lookup
+                    cache[normalizedId] = data;
+                    // Also store with original key for direct matches
+                    if (normalizedId != blueprintId.ToLowerInvariant())
+                    {
+                        cache[blueprintId] = data;
+                    }
                 }
                 
                 UnityEngine.Debug.Log($"{LOG_PREFIX} Loaded: {Path.GetFileName(filePath)}");
