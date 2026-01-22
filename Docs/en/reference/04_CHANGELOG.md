@@ -1,10 +1,27 @@
 # Caves of Qud Korean Localization - Changelog
 
-> **Version**: 6.2 | **Last Updated**: 2026-01-22
+> **Version**: 6.3 | **Last Updated**: 2026-01-22
 
 ---
 
 ## Recent Changes
+
+### [2026-01-22] Item Tooltip Localization Complete
+- **Patches Created/Modified**:
+  - `02_10_02_Tooltip.cs` - ShowManually unified patch for all tooltip paths
+  - `02_20_00_ObjectTranslator.cs` - Dynamic food patterns + state suffix handling
+- **Features Added**:
+  - Tooltip header translation ("This Item" → "현재 아이템", "Equipped Item" → "장착 아이템")
+  - Dynamic food patterns: `{creature} jerky/meat/haunch` → Korean
+  - State suffix translation: `[empty]` → `[비어있음]`, `(lit)` → `(점화됨)`
+- **Bugs Fixed**:
+  - TooltipTrigger vs Tooltip.GameObject confusion (critical)
+  - State suffix processing order (waterskin [empty] now properly translated)
+  - Look.QueueLookerTooltip path not covered (world map tooltips)
+- **JSON Added**:
+  - `common.json`: tooltips section
+  - `food.json`: bear jerky, haunch, preserved meat entries
+- See: [10_ITEM_TOOLTIP_ANALYSIS.md](10_ITEM_TOOLTIP_ANALYSIS.md)
 
 ### [2026-01-22] P3-06 Tool Scripts Consolidation
 - Upgraded `project_tool.py` to v2.0 with CLI subcommands

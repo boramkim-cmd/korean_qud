@@ -311,12 +311,12 @@ private static string StripStateSuffix(string name)
 
 ## 7. Implementation Checklist
 
-- [ ] Create `BaseLineWithTooltip.StartTooltip` Postfix patch
-- [ ] Add header text translation ("This Item" → "현재 아이템")
-- [ ] Add jerky/meat/haunch pattern to ObjectTranslator
-- [ ] Improve state suffix stripping in name matching
-- [ ] Add missing food items to JSON (jerky, preserved meat, etc.)
-- [ ] Add tooltip headers to common.json
+- [x] Create `BaseLineWithTooltip.StartTooltip` Postfix patch
+- [x] Add header text translation ("This Item" → "현재 아이템")
+- [x] Add jerky/meat/haunch pattern to ObjectTranslator
+- [x] Improve state suffix stripping in name matching
+- [x] Add missing food items to JSON (jerky, preserved meat, etc.)
+- [x] Add tooltip headers to common.json
 - [ ] Test with various item types:
   - [ ] Static items (dagger, torch)
   - [ ] Items with state ([empty], (unburnt))
@@ -325,9 +325,61 @@ private static string StripStateSuffix(string name)
 
 ---
 
-## 8. Technical Notes
+## 8. Bugs Found During Implementation (2026-01-22)
 
-### 8.1 Unity Prefab Access Pattern
+### 8.1 BUG: TooltipTrigger vs Tooltip.GameObject Confusion (FIXED)
+
+**Problem**: Original code accessed TMP components from wrong object.
+
+```csharp
+// WRONG - TooltipTrigger is the trigger, not the tooltip UI!
+var textComponents = tooltip.GetComponentsInChildren<TextMeshProUGUI>(true);
+
+// CORRECT - Tooltip.GameObject is the actual tooltip UI
+var textComponents = trigger.Tooltip.GameObject.GetComponentsInChildren<TextMeshProUGUI>(true);
+```
+
+**Impact**: Header translation and font application failed silently.
+
+### 8.2 BUG: State Suffix Processing Order (FIXED)
+
+**Problem**: Partial matching executed before suffix stripping.
+
+```
+Input: "waterskin [empty]"
+1. Exact match: "waterskin [empty]" ≠ "waterskin" → FAIL
+2. Partial match: "waterskin [empty]".Contains("waterskin") → TRUE
+3. Result: "물주머니 [empty]" (English suffix kept!)
+```
+
+**Fix**: Reordered to check suffix stripping BEFORE partial matching.
+
+```
+Input: "waterskin [empty]"
+1. Exact match: FAIL
+2. Suffix strip: "waterskin" + " [empty]"
+3. Exact match stripped: "waterskin" → "물주머니"
+4. Translate suffix: " [empty]" → " [비어있음]"
+5. Result: "물주머니 [비어있음]" ✓
+```
+
+### 8.3 BUG: Look.QueueLookerTooltip Path Not Covered (FIXED)
+
+**Problem**: Multiple tooltip rendering paths exist:
+
+| Path | Trigger | Original Patch |
+|------|---------|----------------|
+| `BaseLineWithTooltip.StartTooltip` | Inventory item hover | ✅ Patched |
+| `Look.QueueLookerTooltip` | World map object click | ❌ Missing |
+| `Look.ShowItemTooltipAsync` | General item tooltip | ❌ Missing |
+
+**Fix**: Consolidated all patches into `TooltipTrigger.ShowManually` Postfix, which is the common endpoint for all tooltip display paths.
+
+---
+
+## 9. Technical Notes
+
+### 9.1 Unity Prefab Access Pattern
 
 The `compareLookerTooltip` is accessed via `GameManager.Instance`. Text children can be found using:
 
@@ -337,13 +389,47 @@ var textComponents = tooltip.GetComponentsInChildren<TMPro.TextMeshProUGUI>(true
 
 **Caution**: Prefab might be pooled/reused. Always check text content before replacing.
 
-### 8.2 Performance Considerations
+### 9.2 Performance Considerations
 
 - Header translation should use string comparison, not regex
 - Cache translated display names (already implemented in ObjectTranslator)
 - Avoid calling GetComponentsInChildren every frame - only on tooltip show
 
-### 8.3 Related Documentation
+### 9.3 Tooltip Architecture Summary
+
+```
+┌─────────────────────────────────────────────────────────────────┐
+│                        TOOLTIP SYSTEM                           │
+├─────────────────────────────────────────────────────────────────┤
+│  Entry Points (3 different paths):                              │
+│  ┌─────────────────────────┐                                    │
+│  │ BaseLineWithTooltip     │ → Inventory item comparison        │
+│  │ .StartTooltip()         │                                    │
+│  └───────────┬─────────────┘                                    │
+│              │                                                   │
+│  ┌───────────┴─────────────┐                                    │
+│  │ Look.QueueLookerTooltip │ → World map tile/object click      │
+│  └───────────┬─────────────┘                                    │
+│              │                                                   │
+│  ┌───────────┴─────────────┐                                    │
+│  │ Look.ShowItemTooltipAsync│ → General item tooltip            │
+│  └───────────┬─────────────┘                                    │
+│              │                                                   │
+│              ▼                                                   │
+│  ┌─────────────────────────┐                                    │
+│  │ TooltipTrigger          │ ← OUR PATCH POINT (ShowManually)   │
+│  │ .ShowManually()         │   Covers ALL paths!                │
+│  └───────────┬─────────────┘                                    │
+│              │                                                   │
+│              ▼                                                   │
+│  ┌─────────────────────────┐                                    │
+│  │ Tooltip.GameObject      │ ← Actual UI (TMP components here)  │
+│  │ (Unity Prefab)          │                                    │
+│  └─────────────────────────┘                                    │
+└─────────────────────────────────────────────────────────────────┘
+```
+
+### 9.4 Related Documentation
 
 - [09_OBJECT_REVIEW.md](09_OBJECT_REVIEW.md) - Object localization analysis
 - [05_ERROR_LOG.md](05_ERROR_LOG.md) - Known issues
@@ -351,22 +437,30 @@ var textComponents = tooltip.GetComponentsInChildren<TMPro.TextMeshProUGUI>(true
 
 ---
 
-## 9. References
+## 10. Remaining Risks (Monitor)
+
+| Risk | Description | Mitigation |
+|------|-------------|------------|
+| RTF Double Wrapping | If translated name already has color tags, `Markup.Color("y", ...)` may double-wrap | Test with colored item names |
+| JosaHandler Patch Mismatch | `GenerateTooltipInformation` returns struct, not string - legacy patch may not work | Verify in Base-Work folder |
+| Different Prefab Structures | lookerTooltip, tileTooltip, compareLookerTooltip may have different structures | Test all tooltip types |
+
+---
+
+## 11. References
 
 ### Source Files Analyzed
 
 1. `Assets/core_source/GameSource/Qud.UI/BaseLineWithTooltip.cs` (Lines 1-185)
-2. `Assets/core_source/GameSource/Qud.UI/InventoryLine.cs` (Lines 1-150)
-3. `Scripts/02_Patches/10_UI/02_10_02_Tooltip.cs` (Full file)
-4. `Scripts/02_Patches/10_UI/02_10_07_Inventory.cs` (Full file)
-5. `Scripts/02_Patches/20_Objects/02_20_00_ObjectTranslator.cs` (Full file)
-6. `Scripts/02_Patches/20_Objects/02_20_01_DisplayNamePatch.cs` (Full file)
-7. `Scripts/02_Patches/20_Objects/02_20_02_DescriptionPatch.cs` (Full file)
+2. `Assets/core_source/GameSource/XRL.UI/Look.cs` (Lines 240-400)
+3. `Assets/core_source/ThirdParty/ModelShark/TooltipTrigger.cs` (Full file)
+4. `Assets/core_source/ThirdParty/ModelShark/TooltipManager.cs` (Lines 130-250)
+5. `Assets/core_source/ThirdParty/ModelShark/Tooltip.cs` (Lines 1-80)
+6. `Assets/core_source/GameSource/Qud.UI/RTF.cs` (Full file)
+7. `Scripts/02_Patches/10_UI/02_10_02_Tooltip.cs` (Full file)
+8. `Scripts/02_Patches/20_Objects/02_20_00_ObjectTranslator.cs` (Full file)
 
-### JSON Files Analyzed
+### JSON Files Modified
 
-1. `LOCALIZATION/UI/common.json`
-2. `LOCALIZATION/OBJECTS/items/tutorial.json`
-3. `LOCALIZATION/OBJECTS/items/consumables/food.json`
-4. `LOCALIZATION/OBJECTS/items/artifacts/misc.json`
-5. `LOCALIZATION/OBJECTS/creatures/tutorial.json`
+1. `LOCALIZATION/UI/common.json` - Added tooltips section
+2. `LOCALIZATION/OBJECTS/items/consumables/food.json` - Added jerky, haunch, preserved meat
