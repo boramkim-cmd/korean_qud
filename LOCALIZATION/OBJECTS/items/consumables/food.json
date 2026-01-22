@@ -124,5 +124,53 @@
     },
     "description": "Uncooked meat from a creature.",
     "description_ko": "크리처에서 얻은 익히지 않은 고기."
+  },
+
+  "Bear Jerky": {
+    "tier": 2,
+    "category": "food",
+    "slot": "hand",
+    "tags": ["meat", "preserved", "jerky"],
+    "names": {
+      "bear jerky": "곰 육포"
+    },
+    "description": "Bear flesh was cut into neat strips, salted, and smoked.",
+    "description_ko": "곰고기를 깔끔한 조각으로 잘라 소금에 절이고 훈제했다."
+  },
+
+  "Jerky": {
+    "tier": 2,
+    "category": "food",
+    "slot": "hand",
+    "tags": ["meat", "preserved", "jerky"],
+    "names": {
+      "jerky": "육포"
+    },
+    "description": "Dried and cured meat.",
+    "description_ko": "건조시키고 절인 고기."
+  },
+
+  "Haunch": {
+    "tier": 1,
+    "category": "food",
+    "slot": "hand",
+    "tags": ["meat", "raw"],
+    "names": {
+      "haunch": "넓적다리"
+    },
+    "description": "A large piece of meat from the leg of an animal.",
+    "description_ko": "동물의 다리에서 나온 큰 고기 덩어리."
+  },
+
+  "Preserved Meat": {
+    "tier": 2,
+    "category": "food",
+    "slot": "hand",
+    "tags": ["meat", "preserved"],
+    "names": {
+      "preserved meat": "절임 고기"
+    },
+    "description": "Meat preserved for long storage.",
+    "description_ko": "장기 보관을 위해 절인 고기."
   }
 }

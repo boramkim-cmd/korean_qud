@@ -194,5 +194,11 @@
     "wander": "방랑",
     "weekly challenge": "주간 도전",
     "weight": "무게"
+  },
+  "tooltips": {
+    "this item": "현재 아이템",
+    "equipped item": "장착 아이템",
+    "This Item": "현재 아이템",
+    "Equipped Item": "장착 아이템"
   }
 }

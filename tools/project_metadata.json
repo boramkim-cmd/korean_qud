@@ -1,5 +1,5 @@
 {
-  "generated": "2026-01-22 12:42:10",
+  "generated": "2026-01-22 13:41:10",
   "scripts": {
     "Scripts/99_Utils/99_00_03_StructureTranslator.cs": {
       "classification": "Util",
@@ -417,7 +417,8 @@
       "namespace": "QudKRTranslation.Patches",
       "classes": [
         "Tooltip_Patch",
-        "Tooltip_ShowManually_Patch"
+        "Tooltip_ShowManually_Patch",
+        "BaseLineWithTooltip_StartTooltip_Patch"
       ],
       "methods": [
         {
@@ -599,7 +600,7 @@
       "namespace": "QudKorean.Objects",
       "classes": [
         "Patch_ObjectDisplayName",
-        "Patch_CacheInvalidation"
+        "CacheInvalidation"
       ],
       "methods": [
         {
@@ -609,6 +610,11 @@
         },
         {
           "name": "ReloadAndClear",
+          "return": "void",
+          "params": ""
+        },
+        {
+          "name": "OnGameLoaded",
           "return": "void",
           "params": ""
         }
@@ -700,9 +706,10 @@
         "common",
         "inventory",
         "status",
-        "ui"
+        "ui",
+        "tooltips"
       ],
-      "entries": 188
+      "entries": 192
     },
     "display.json": {
       "categories": [
@@ -3030,9 +3037,13 @@
         "Vinewafer",
         "Eyeball",
         "Cooked Meat",
-        "Raw Meat"
+        "Raw Meat",
+        "Bear Jerky",
+        "Jerky",
+        "Haunch",
+        "Preserved Meat"
       ],
-      "entries": 74
+      "entries": 102
     },
     "drinks.json": {
       "categories": [

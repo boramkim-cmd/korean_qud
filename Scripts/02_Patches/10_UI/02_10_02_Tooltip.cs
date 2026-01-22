@@ -5,11 +5,15 @@
  */
 
 using System;
+using System.Collections.Generic;
 using HarmonyLib;
 using ModelShark;
 using UnityEngine;
+using TMPro;
 using QudKRTranslation.Utils;
 using QudKRTranslation;
+using Qud.UI;
+using QudKorean.Objects;
 
 namespace QudKRTranslation.Patches
 {
@@ -113,6 +117,105 @@ namespace QudKRTranslation.Patches
         static void ShowManually_Postfix(TooltipTrigger __instance)
         {
             Tooltip_Patch.ApplyKoreanFontToTooltip(__instance);
+        }
+    }
+    
+    /// <summary>
+    /// BaseLineWithTooltip.StartTooltip 패치 - 아이템 비교 툴팁 헤더 번역
+    /// </summary>
+    [HarmonyPatch(typeof(BaseLineWithTooltip))]
+    public static class BaseLineWithTooltip_StartTooltip_Patch
+    {
+        // Tooltip header translations
+        private static readonly Dictionary<string, string> HeaderTranslations = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase)
+        {
+            { "This Item", "현재 아이템" },
+            { "Equipped Item", "장착 아이템" },
+            { "this item", "현재 아이템" },
+            { "equipped item", "장착 아이템" }
+        };
+        
+        [HarmonyPatch("StartTooltip", new System.Type[] { 
+            typeof(XRL.World.GameObject), 
+            typeof(XRL.World.GameObject), 
+            typeof(bool), 
+            typeof(RectTransform) })]
+        [HarmonyPostfix]
+        static void StartTooltip_Postfix(TooltipTrigger ___tooltip)
+        {
+            if (___tooltip == null) return;
+            
+            try
+            {
+                // 1. Translate header text components ("This Item", "Equipped Item")
+                TranslateTooltipHeaders(___tooltip);
+                
+                // 2. Apply Korean font fallback to all text components
+                ApplyKoreanFontToTooltipChildren(___tooltip);
+            }
+            catch (Exception ex)
+            {
+                Debug.LogWarning($"[Qud-KR] StartTooltip patch error: {ex.Message}");
+            }
+        }
+        
+        /// <summary>
+        /// Find and translate header text elements in the tooltip
+        /// </summary>
+        private static void TranslateTooltipHeaders(TooltipTrigger tooltip)
+        {
+            var textComponents = tooltip.GetComponentsInChildren<TextMeshProUGUI>(true);
+            
+            foreach (var textComponent in textComponents)
+            {
+                if (textComponent == null || string.IsNullOrEmpty(textComponent.text))
+                    continue;
+                
+                string trimmedText = textComponent.text.Trim();
+                
+                // Check if this is a header that needs translation
+                if (HeaderTranslations.TryGetValue(trimmedText, out string koreanText))
+                {
+                    textComponent.text = koreanText;
+                    textComponent.SetAllDirty();
+                }
+            }
+        }
+        
+        /// <summary>
+        /// Apply Korean font fallback to all TMP components in the tooltip
+        /// </summary>
+        private static void ApplyKoreanFontToTooltipChildren(TooltipTrigger tooltip)
+        {
+            var koreanFont = QudKRTranslation.Core.FontManager.GetKoreanTMPFont();
+            if (koreanFont == null) return;
+            
+            var textComponents = tooltip.GetComponentsInChildren<TextMeshProUGUI>(true);
+            
+            foreach (var tmp in textComponents)
+            {
+                if (tmp == null) continue;
+                
+                try
+                {
+                    if (tmp.font != null)
+                    {
+                        if (tmp.font.fallbackFontAssetTable == null)
+                            tmp.font.fallbackFontAssetTable = new System.Collections.Generic.List<TMPro.TMP_FontAsset>();
+                        
+                        if (!tmp.font.fallbackFontAssetTable.Contains(koreanFont))
+                        {
+                            tmp.font.fallbackFontAssetTable.Insert(0, koreanFont);
+                        }
+                    }
+                    else
+                    {
+                        tmp.font = koreanFont;
+                    }
+                    tmp.SetAllDirty();
+                }
+                catch { }
+            }
         }
     }
 }

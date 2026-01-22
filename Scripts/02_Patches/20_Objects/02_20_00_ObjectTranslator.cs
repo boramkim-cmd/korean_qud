@@ -137,6 +137,30 @@ namespace QudKorean.Objects
                 }
             }
             
+            // Try with state suffix stripped (e.g., "waterskin [empty]" -> "waterskin")
+            string noStateSuffix = StripStateSuffix(strippedOriginal);
+            if (noStateSuffix != strippedOriginal)
+            {
+                // Try finding translation for base name without state suffix
+                foreach (var cache in new[] { _creatureCache, _itemCache })
+                {
+                    foreach (var kvp in cache)
+                    {
+                        foreach (var namePair in kvp.Value.Names)
+                        {
+                            if (namePair.Key.Equals(noStateSuffix, StringComparison.OrdinalIgnoreCase))
+                            {
+                                // Keep the state suffix, translate the base name
+                                string suffix = strippedOriginal.Substring(noStateSuffix.Length);
+                                translated = namePair.Value + TranslateStateSuffix(suffix);
+                                _displayNameCache[cacheKey] = translated;
+                                return true;
+                            }
+                        }
+                    }
+                }
+            }
+            
             // Corpse pattern handling: "{creature} corpse" -> "{creature_ko} 시체"
             if (TryTranslateCorpse(originalName, out translated))
             {
@@ -144,8 +168,214 @@ namespace QudKorean.Objects
                 return true;
             }
             
+            // Dynamic food patterns: jerky, meat, haunch
+            if (TryTranslateDynamicFood(originalName, out translated))
+            {
+                _displayNameCache[cacheKey] = translated;
+                return true;
+            }
+            
             return false;
         }
+        
+        /// <summary>
+        /// Strips state suffixes like [empty], [full], (lit), (unlit), x4, etc.
+        /// </summary>
+        private static string StripStateSuffix(string name)
+        {
+            if (string.IsNullOrEmpty(name)) return name;
+            
+            string result = name;
+            
+            // Remove bracket suffixes: [empty], [full], [loaded], etc.
+            result = Regex.Replace(result, @"\s*\[[^\]]+\]$", "");
+            
+            // Remove parenthesis suffixes: (lit), (unlit), (unburnt), etc.
+            result = Regex.Replace(result, @"\s*\([^)]+\)$", "");
+            
+            // Remove count suffixes: x4, x10, etc.
+            result = Regex.Replace(result, @"\s*x\d+$", "");
+            
+            return result.Trim();
+        }
+        
+        /// <summary>
+        /// Translates common state suffixes to Korean
+        /// </summary>
+        private static string TranslateStateSuffix(string suffix)
+        {
+            if (string.IsNullOrEmpty(suffix)) return "";
+            
+            // Common state translations
+            var stateTranslations = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase)
+            {
+                { " [empty]", " [비어있음]" },
+                { " [full]", " [가득 참]" },
+                { " [loaded]", " [장전됨]" },
+                { " (lit)", " (점화됨)" },
+                { " (unlit)", " (꺼짐)" },
+                { " (unburnt)", " (미사용)" }
+            };
+            
+            string trimmedSuffix = suffix.Trim();
+            foreach (var kvp in stateTranslations)
+            {
+                if (kvp.Key.Trim().Equals(trimmedSuffix, StringComparison.OrdinalIgnoreCase))
+                {
+                    return kvp.Value;
+                }
+            }
+            
+            // Return original suffix if no translation found
+            return suffix;
+        }
+        
+        /// <summary>
+        /// Attempts to translate dynamic food items using patterns:
+        /// - "{creature} jerky" -> "{creature_ko} 육포"
+        /// - "{creature} meat" -> "{creature_ko} 고기"
+        /// - "{creature} haunch" -> "{creature_ko} 넓적다리"
+        /// - "preserved {ingredient}" -> "절임 {ingredient_ko}"
+        /// </summary>
+        private static bool TryTranslateDynamicFood(string originalName, out string translated)
+        {
+            translated = null;
+            string stripped = StripColorTags(originalName);
+            
+            // Pattern: "{creature} jerky"
+            if (stripped.EndsWith(" jerky", StringComparison.OrdinalIgnoreCase))
+            {
+                string creaturePart = stripped.Substring(0, stripped.Length - " jerky".Length);
+                if (TryGetCreatureTranslation(creaturePart, out string creatureKo))
+                {
+                    translated = $"{creatureKo} 육포";
+                    return true;
+                }
+            }
+            
+            // Pattern: "{creature} meat"
+            if (stripped.EndsWith(" meat", StringComparison.OrdinalIgnoreCase))
+            {
+                string creaturePart = stripped.Substring(0, stripped.Length - " meat".Length);
+                if (TryGetCreatureTranslation(creaturePart, out string creatureKo))
+                {
+                    translated = $"{creatureKo} 고기";
+                    return true;
+                }
+            }
+            
+            // Pattern: "{creature} haunch"
+            if (stripped.EndsWith(" haunch", StringComparison.OrdinalIgnoreCase))
+            {
+                string creaturePart = stripped.Substring(0, stripped.Length - " haunch".Length);
+                if (TryGetCreatureTranslation(creaturePart, out string creatureKo))
+                {
+                    translated = $"{creatureKo} 넓적다리";
+                    return true;
+                }
+            }
+            
+            // Pattern: "preserved {creature/ingredient}"
+            if (stripped.StartsWith("preserved ", StringComparison.OrdinalIgnoreCase))
+            {
+                string ingredientPart = stripped.Substring("preserved ".Length);
+                if (TryGetCreatureTranslation(ingredientPart, out string ingredientKo))
+                {
+                    translated = $"절임 {ingredientKo}";
+                    return true;
+                }
+                // Try item translation as well
+                if (TryGetItemTranslation(ingredientPart, out ingredientKo))
+                {
+                    translated = $"절임 {ingredientKo}";
+                    return true;
+                }
+            }
+            
+            // Pattern: "cooked {ingredient}"
+            if (stripped.StartsWith("cooked ", StringComparison.OrdinalIgnoreCase))
+            {
+                string ingredientPart = stripped.Substring("cooked ".Length);
+                if (TryGetItemTranslation(ingredientPart, out string ingredientKo))
+                {
+                    translated = $"조리된 {ingredientKo}";
+                    return true;
+                }
+                if (TryGetCreatureTranslation(ingredientPart, out ingredientKo))
+                {
+                    translated = $"조리된 {ingredientKo}";
+                    return true;
+                }
+            }
+            
+            return false;
+        }
+        
+        /// <summary>
+        /// Tries to find a creature translation from cache or common species list
+        /// </summary>
+        private static bool TryGetCreatureTranslation(string creatureName, out string translated)
+        {
+            translated = null;
+            
+            // Try creature cache first
+            foreach (var kvp in _creatureCache)
+            {
+                foreach (var namePair in kvp.Value.Names)
+                {
+                    if (namePair.Key.Equals(creatureName, StringComparison.OrdinalIgnoreCase))
+                    {
+                        translated = namePair.Value;
+                        return true;
+                    }
+                }
+            }
+            
+            // Fallback: common species names
+            if (_commonSpeciesTranslations.TryGetValue(creatureName.ToLowerInvariant(), out translated))
+            {
+                return true;
+            }
+            
+            return false;
+        }
+        
+        /// <summary>
+        /// Tries to find an item translation from cache
+        /// </summary>
+        private static bool TryGetItemTranslation(string itemName, out string translated)
+        {
+            translated = null;
+            
+            foreach (var kvp in _itemCache)
+            {
+                foreach (var namePair in kvp.Value.Names)
+                {
+                    if (namePair.Key.Equals(itemName, StringComparison.OrdinalIgnoreCase))
+                    {
+                        translated = namePair.Value;
+                        return true;
+                    }
+                }
+            }
+            
+            return false;
+        }
+        
+        // Common species translations for dynamic food items
+        private static readonly Dictionary<string, string> _commonSpeciesTranslations = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase)
+        {
+            { "bear", "곰" }, { "bat", "박쥐" }, { "pig", "돼지" }, { "boar", "멧돼지" },
+            { "baboon", "비비" }, { "crab", "게" }, { "spider", "거미" }, { "beetle", "딱정벌레" },
+            { "ant", "개미" }, { "fish", "물고기" }, { "worm", "벌레" }, { "bird", "새" },
+            { "dog", "개" }, { "cat", "고양이" }, { "snapjaw", "스냅조" }, { "goatfolk", "염소인" },
+            { "dromad", "드로마드" }, { "hindren", "힌드렌" }, { "leech", "거머리" },
+            { "glowmoth", "발광나방" }, { "salthopper", "소금메뚜기" }, { "knollworm", "구릉지렁이" },
+            { "electrofuge", "전기거미" }, { "eyeless crab", "눈먼 게" }, { "slug", "민달팽이" },
+            { "girshling", "거슐링" }, { "tortoise", "거북" }, { "issachari", "이사차리" },
+            { "albino ape", "흰알비노 유인원" }, { "ape", "유인원" }, { "croc", "악어" },
+            { "crocodile", "악어" }, { "segmented mirthworm", "마디 웃음벌레" }
+        };
         
         /// <summary>
         /// Attempts to translate corpse names using pattern: "{creature} corpse" -> "{creature_ko} 시체"
@@ -164,38 +394,11 @@ namespace QudKorean.Objects
             if (string.IsNullOrEmpty(creaturePart))
                 return false;
             
-            // Try to find creature translation
-            foreach (var kvp in _creatureCache)
+            // Try to find creature translation using shared method
+            if (TryGetCreatureTranslation(creaturePart, out string creatureKo))
             {
-                foreach (var namePair in kvp.Value.Names)
-                {
-                    if (namePair.Key.Equals(creaturePart, StringComparison.OrdinalIgnoreCase))
-                    {
-                        translated = $"{namePair.Value} 시체";
-                        return true;
-                    }
-                }
-            }
-            
-            // Fallback: check common species names
-            string[] commonSpecies = new[]
-            {
-                "bear", "곰", "bat", "박쥐", "pig", "돼지", "boar", "멧돼지",
-                "baboon", "비비", "crab", "게", "spider", "거미", "beetle", "딱정벌레",
-                "ant", "개미", "fish", "물고기", "worm", "벌레", "bird", "새",
-                "dog", "개", "cat", "고양이", "snapjaw", "스냅조", "goatfolk", "염소인",
-                "dromad", "드로마드", "hindren", "힌드렌", "leech", "거머리",
-                "glowmoth", "발광나방", "salthopper", "소금메뚜기", "knollworm", "구릉지렁이",
-                "electrofuge", "전기거미", "eyeless crab", "눈먼 게"
-            };
-            
-            for (int i = 0; i < commonSpecies.Length; i += 2)
-            {
-                if (creaturePart.Equals(commonSpecies[i], StringComparison.OrdinalIgnoreCase))
-                {
-                    translated = $"{commonSpecies[i + 1]} 시체";
-                    return true;
-                }
+                translated = $"{creatureKo} 시체";
+                return true;
             }
             
             return false;
