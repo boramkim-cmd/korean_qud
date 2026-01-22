@@ -9,10 +9,13 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
+using HarmonyLib;
 using XRL;
 using XRL.UI;
 using XRL.Wish;
 using XRL.World;
+using UnityEngine;
 
 namespace QudKorean.Objects
 {
@@ -168,6 +171,91 @@ namespace QudKorean.Objects
             catch (Exception ex)
             {
                 Popup.Show($"Clear cache failed: {ex.Message}");
+            }
+        }
+
+        /// <summary>
+        /// Investigates TextConsole font system for Korean support.
+        /// Usage: Ctrl+W → "kr:fontinfo" → Enter
+        /// </summary>
+        [WishCommand(Command = "kr:fontinfo")]
+        public static void InvestigateFont()
+        {
+            try
+            {
+                var sb = new System.Text.StringBuilder();
+                sb.AppendLine("=== TextConsole Font Investigation ===\n");
+
+                // 1. ex 타입 조사
+                var exType = AccessTools.TypeByName("ConsoleLib.Console.ex");
+                if (exType != null)
+                {
+                    sb.AppendLine($"[ex] Type: {exType.FullName}");
+
+                    // 폰트 관련 필드
+                    var fields = exType.GetFields(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Static | BindingFlags.Instance);
+                    foreach (var f in fields)
+                    {
+                        string typeName = f.FieldType.Name.ToLower();
+                        string fieldName = f.Name.ToLower();
+                        if (typeName.Contains("font") || typeName.Contains("sprite") || typeName.Contains("texture") ||
+                            fieldName.Contains("font") || fieldName.Contains("char"))
+                        {
+                            object val = null;
+                            try { if (f.IsStatic) val = f.GetValue(null); } catch { }
+                            sb.AppendLine($"  {f.Name}: {f.FieldType.Name} = {val?.ToString() ?? "(instance)"}");
+                        }
+                    }
+                }
+                else
+                {
+                    sb.AppendLine("[ex] Type NOT FOUND");
+                }
+
+                sb.AppendLine();
+
+                // 2. SpriteManager 조사
+                var smType = AccessTools.TypeByName("ConsoleLib.Console.SpriteManager");
+                if (smType != null)
+                {
+                    sb.AppendLine($"[SpriteManager] Type: {smType.FullName}");
+                    var fields = smType.GetFields(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Static | BindingFlags.Instance);
+                    foreach (var f in fields)
+                    {
+                        string typeName = f.FieldType.Name.ToLower();
+                        if (typeName.Contains("font") || typeName.Contains("texture") || typeName.Contains("dict"))
+                        {
+                            sb.AppendLine($"  {f.Name}: {f.FieldType.Name}");
+                        }
+                    }
+                }
+
+                sb.AppendLine();
+
+                // 3. TextConsole 조사
+                var tcType = AccessTools.TypeByName("ConsoleLib.Console.TextConsole");
+                if (tcType != null)
+                {
+                    sb.AppendLine($"[TextConsole] Type: {tcType.FullName}");
+                    var fields = tcType.GetFields(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Static | BindingFlags.Instance);
+                    foreach (var f in fields)
+                    {
+                        string typeName = f.FieldType.Name.ToLower();
+                        if (typeName.Contains("font") || typeName.Contains("tmp") || typeName.Contains("text"))
+                        {
+                            sb.AppendLine($"  {f.Name}: {f.FieldType.Name}");
+                        }
+                    }
+                }
+
+                // 로그에도 출력
+                Debug.Log(sb.ToString());
+                Popup.Show(sb.ToString());
+            }
+            catch (Exception ex)
+            {
+                Popup.Show($"Font investigation failed: {ex.Message}\n\n{ex.StackTrace}");
+                Debug.LogError($"{LOG_PREFIX} Font investigation failed: {ex}");
             }
         }
     }

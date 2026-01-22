@@ -14,6 +14,7 @@ using QudKRTranslation.Utils;
 using QudKRTranslation;
 using Qud.UI;
 using QudKorean.Objects;
+using XRL.UI;
 
 namespace QudKRTranslation.Patches
 {
@@ -42,9 +43,9 @@ namespace QudKRTranslation.Patches
                 
                 // 1. Translate static header text (This Item / Equipped Item)
                 TranslateTooltipHeaders(trigger.Tooltip.GameObject);
-                
-                // 2. Try to translate Item Name/Description if this is an InventoryLine
-                TranslateInventoryTooltip(trigger);
+
+                // 2. Item Name/Description translation is now handled by Look_GenerateTooltipInformation_Patch
+                //    (The old TranslateInventoryTooltip method was removed because it always got null InventoryLine)
 
                 // 3. Apply Korean font fallback
                 ApplyKoreanFontToTooltip(trigger.Tooltip.GameObject);
@@ -55,55 +56,6 @@ namespace QudKRTranslation.Patches
             }
         }
         
-        private static void TranslateInventoryTooltip(TooltipTrigger trigger)
-        {
-            // Try to find InventoryLine context
-            var line = trigger.gameObject.GetComponent<InventoryLine>();
-            if (line == null) return;
-            
-            // Fix: Access context via Reflection (Traverse) to avoid CS1061 error
-            // CRITICAL: Force type explicitly to avoid ambiguity, or just use Traverse for properties
-            var goTraverse = Traverse.Create(line).Field("context").Field("data").Field("go");
-            var go = goTraverse.GetValue<UnityEngine.Object>(); // Get as base object just to check null
-            
-            if (go == null) return;
-
-            // Use Traverse to get properties from the runtime object (XRL.World.GameObject)
-            string blueprint = goTraverse.Property("Blueprint").GetValue<string>();
-            
-            // Invoke GetDisplayName via Traverse (method)
-            // Signature: GetDisplayName(bool NoColor = false, ...)
-            // We need to pass arguments.
-            string goDisplayName = goTraverse.Method("GetDisplayName", new object[] { true }).GetValue<string>();
-
-            var texts = trigger.Tooltip.GameObject.GetComponentsInChildren<TextMeshProUGUI>(true);
-            foreach (var tmpro in texts)
-            {
-                if (string.IsNullOrEmpty(tmpro.text)) continue;
-
-                string currentText = tmpro.text;
-                
-                // Attempt 1: Name Translation
-                // We pass currentText to TryGetDisplayName because it might contain suffixes like " (equipped)" or counts "x10"
-                // which the translator logic ("StripStateSuffix") handles.
-                if (ObjectTranslator.TryGetDisplayName(blueprint, currentText, out string nameKo))
-                {
-                    // Only replace if it contains the base name or is a recognized variant
-                    tmpro.text = nameKo;
-                    tmpro.SetAllDirty();
-                    continue; 
-                }
-
-                // Attempt 2: Description Translation
-                // Use Exact match logic to be safe
-                if (ObjectTranslator.TryTranslateDescriptionExact(blueprint, currentText, out string descKo))
-                {
-                    tmpro.text = descKo;
-                    tmpro.SetAllDirty();
-                }
-            }
-        }
-
         private static void TranslateTooltipHeaders(GameObject tooltipObj)
         {
             var textComponents = tooltipObj.GetComponentsInChildren<TextMeshProUGUI>(true);
@@ -142,6 +94,52 @@ namespace QudKRTranslation.Patches
                     tmp.font.fallbackFontAssetTable.Insert(0, koreanFont);
                     tmp.SetAllDirty();
                 }
+            }
+        }
+    }
+
+    /// <summary>
+    /// Look.GenerateTooltipInformation 패치 - 핵심 툴팁 번역 지점
+    /// 이 메서드는 툴팁에 표시될 아이템 정보(이름, 설명)를 생성합니다.
+    /// BaseLineWithTooltip.StartTooltip()이 이 메서드를 호출하여 TooltipInformation을 얻습니다.
+    /// RTF 변환 전에 한글 번역을 적용하므로, 모든 툴팁 경로에서 동작합니다.
+    /// </summary>
+    [HarmonyPatch(typeof(Look), "GenerateTooltipInformation")]
+    public static class Look_GenerateTooltipInformation_Patch
+    {
+        [HarmonyPostfix]
+        static void Postfix(ref Look.TooltipInformation __result, XRL.World.GameObject go)
+        {
+            try
+            {
+                if (go == null) return;
+
+                string blueprint = go.Blueprint;
+                if (string.IsNullOrEmpty(blueprint)) return;
+
+                // 1. 이름 번역 (DisplayName)
+                if (!string.IsNullOrEmpty(__result.DisplayName))
+                {
+                    if (ObjectTranslator.TryGetDisplayName(blueprint, __result.DisplayName, out string nameKo))
+                    {
+                        __result.DisplayName = nameKo;
+                        Debug.Log($"[Qud-KR][TooltipInfo] Translated DisplayName: '{nameKo}' (Blueprint: {blueprint})");
+                    }
+                }
+
+                // 2. 설명 번역 (LongDescription)
+                if (!string.IsNullOrEmpty(__result.LongDescription))
+                {
+                    if (ObjectTranslator.TryTranslateDescriptionExact(blueprint, __result.LongDescription, out string descKo))
+                    {
+                        __result.LongDescription = descKo;
+                        Debug.Log($"[Qud-KR][TooltipInfo] Translated LongDescription for: {blueprint}");
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Debug.LogWarning($"[Qud-KR] Look.GenerateTooltipInformation patch error: {ex.Message}");
             }
         }
     }

@@ -1,0 +1,10 @@
+/Users/ben/Desktop/qud_korean/bin/Release/net48/QudKorean.dll
+/Users/ben/Desktop/qud_korean/bin/Release/net48/QudKorean.pdb
+/Users/ben/Desktop/qud_korean/obj/Release/net48/QudKorean.csproj.AssemblyReference.cache
+/Users/ben/Desktop/qud_korean/obj/Release/net48/QudKorean.GeneratedMSBuildEditorConfig.editorconfig
+/Users/ben/Desktop/qud_korean/obj/Release/net48/QudKorean.AssemblyInfoInputs.cache
+/Users/ben/Desktop/qud_korean/obj/Release/net48/QudKorean.AssemblyInfo.cs
+/Users/ben/Desktop/qud_korean/obj/Release/net48/QudKorean.csproj.CoreCompileInputs.cache
+/Users/ben/Desktop/qud_korean/obj/Release/net48/QudKorean.sourcelink.json
+/Users/ben/Desktop/qud_korean/obj/Release/net48/QudKorean.dll
+/Users/ben/Desktop/qud_korean/obj/Release/net48/QudKorean.pdb

@@ -39,17 +39,10 @@ namespace QudKRTranslation.Core
         public static TMP_FontAsset GetKoreanFont() => _koreanTMPFont;
 
         // 시스템 폰트 검색 우선순위 (TMP fallback용)
-        public static string[] TargetFontNames = { 
+        public static string[] TargetFontNames = {
             "Pretendard GOV Variable SDF",  // TMP 번들 폰트
             "Pretendard GOV Variable",      // 시스템 설치 폰트
-            "PretendardGOVVariable",        // 대체 이름
-            "AppleGothic",
-            "NeoDunggeunmo-Regular", 
-            "NeoDunggeunmo",         
-            "neodgm",                
-            "Apple SD Gothic Neo",
-            "Noto Sans CJK KR",
-            "Arial" 
+            "PretendardGOVVariable"         // 대체 이름
         };
 
         public static void ApplyKoreanFont()
@@ -206,30 +199,25 @@ namespace QudKRTranslation.Core
                     {
                         if (gameFont == null || gameFont == _koreanTMPFont) continue;
                         
-                        // SourceCodePro, LiberationSans 등 주요 폰트에 한글 폰트를 fallback으로 추가
+                        // 모든 TMP 폰트에 한글 fallback 추가
+                        // (한글 폰트 자체는 제외 - 이미 위에서 gameFont != _koreanTMPFont로 체크함)
                         string fname = gameFont.name;
-                        if (fname.Contains("SourceCodePro") || fname.Contains("LiberationSans"))
+                        try
                         {
-                            try
+                            // Fallback 테이블에 한글 폰트 추가 (최우선)
+                            if (gameFont.fallbackFontAssetTable == null)
+                                gameFont.fallbackFontAssetTable = new System.Collections.Generic.List<TMP_FontAsset>();
+
+                            if (!gameFont.fallbackFontAssetTable.Contains(_koreanTMPFont))
                             {
-                                // Fallback 테이블에 한글 폰트 추가 (최우선)
-                                if (gameFont.fallbackFontAssetTable == null)
-                                    gameFont.fallbackFontAssetTable = new System.Collections.Generic.List<TMP_FontAsset>();
-                                
-                                if (!gameFont.fallbackFontAssetTable.Contains(_koreanTMPFont))
-                                {
-                                    gameFont.fallbackFontAssetTable.Insert(0, _koreanTMPFont);
-                                    injectedFonts++;
-                                    Debug.Log($"[Qud-KR] Injected Korean font as fallback to '{fname}'");
-                                }
-                                
-                                // 게임 폰트의 메트릭스를 한글 폰트에도 적용 (일관성)
-                                // 가장 먼저 발견된 SourceCodePro-Regular 기준
+                                gameFont.fallbackFontAssetTable.Insert(0, _koreanTMPFont);
+                                injectedFonts++;
+                                Debug.Log($"[Qud-KR] Injected Korean font as fallback to '{fname}'");
                             }
-                            catch (Exception ex)
-                            {
-                                Debug.LogWarning($"[Qud-KR] Failed to inject into '{fname}': {ex.Message}");
-                            }
+                        }
+                        catch (Exception ex)
+                        {
+                            Debug.LogWarning($"[Qud-KR] Failed to inject into '{fname}': {ex.Message}");
                         }
                     }
                     Debug.Log($"[Qud-KR] Injected Korean fallback into {injectedFonts} game fonts");
@@ -437,12 +425,9 @@ namespace QudKRTranslation.Core
                             {
                                 // 시스템 설치된 Pretendard GOV Variable 우선 사용 (TMP 번들과 동일한 폰트)
                                 Font fallback = null;
-                                string[] candidates = { 
+                                string[] candidates = {
                                     "Pretendard GOV Variable",  // 설치된 한글 폰트 (TMP와 동일)
-                                    "PretendardGOVVariable",    // 대체 이름
-                                    "Apple SD Gothic Neo", 
-                                    "AppleGothic", 
-                                    "Arial" 
+                                    "PretendardGOVVariable"     // 대체 이름
                                 };
                                 foreach (var cname in candidates)
                                 {
@@ -489,6 +474,7 @@ namespace QudKRTranslation.Core
 
         // Apply Korean font to a single TMP text component
         // MODIFIED: 폰트 강제 교체 대신 Fallback으로 추가하여 영문은 원본 폰트 사용, 한글은 Fallback 폰트 사용
+        // [Plan C] 이미 fallback이 적용된 경우 early return으로 로그 노이즈 및 성능 부하 감소
         public static void ApplyFallbackToTMPComponent(TMPro.TMP_Text txt, bool forceLog = false)
         {
             if (txt == null) return;
@@ -498,39 +484,51 @@ namespace QudKRTranslation.Core
             try
             {
                 var currentFont = txt.font;
-                
+                bool needsUpdate = false;
+
                 // 1. 폰트가 아예 지정되지 않은 경우에만 한글 폰트로 설정
                 if (currentFont == null)
                 {
                     txt.font = k;
+                    needsUpdate = true;
                     if (forceLog) Debug.Log($"[Qud-KR][FontApply] null -> {k.name} on {txt.gameObject.name} (Primary)");
                 }
-                // 2. 이미 한글 폰트인 경우 패스
+                // 2. 이미 한글 폰트인 경우 - early return (로그 없음)
                 else if (currentFont == k)
                 {
-                    // 패스
+                    return; // 이미 한글 폰트 → 추가 작업 불필요
                 }
                 // 3. 다른 폰트(SourceCodePro 등)가 설정된 경우: Fallback에 한글 폰트 추가
                 else
                 {
-                    string fname = currentFont.name;
-                    
                     // Fallback 리스트 초기화
                     if (currentFont.fallbackFontAssetTable == null)
                         currentFont.fallbackFontAssetTable = new System.Collections.Generic.List<TMP_FontAsset>();
-                    
-                    // 한글 폰트가 없으면 추가 (우선순위 높게 0번에 추가)
-                    if (!currentFont.fallbackFontAssetTable.Contains(k))
+
+                    // 한글 폰트가 이미 있으면 early return (로그 없음)
+                    if (currentFont.fallbackFontAssetTable.Contains(k))
                     {
-                        currentFont.fallbackFontAssetTable.Insert(0, k);
-                        if (forceLog) Debug.Log($"[Qud-KR][FontApply] Added fallback {k.name} to {fname} on {txt.gameObject.name}");
+                        return; // 이미 fallback 존재 → 추가 작업 불필요
                     }
+
+                    // 한글 폰트 추가 (우선순위 높게 0번에 추가)
+                    currentFont.fallbackFontAssetTable.Insert(0, k);
+                    needsUpdate = true;
+                    if (forceLog) Debug.Log($"[Qud-KR][FontApply] Added fallback {k.name} to {currentFont.name} on {txt.gameObject.name}");
                 }
-                
-                // 한글 폰트 클리핑 방지: extraPadding 활성화
-                if (!txt.extraPadding)
+
+                // 실제 변경이 있는 경우에만 업데이트
+                if (needsUpdate)
                 {
-                    txt.extraPadding = true;
+                    // 한글 폰트 클리핑 방지: extraPadding 활성화
+                    if (!txt.extraPadding)
+                    {
+                        txt.extraPadding = true;
+                    }
+
+                    // [FIX] TMP 강제 갱신 - fallback 적용 후 렌더링 갱신 필수
+                    txt.SetAllDirty();
+                    txt.ForceMeshUpdate();
                 }
             }
             catch (Exception ex)
@@ -734,6 +732,10 @@ namespace QudKRTranslation.Core
         }
     }
 
+    // ================================================================
+    // [DISABLED FOR TESTING] 기존 폰트 패치들 - TorchTest.cs로 대체 테스트 중
+    // ================================================================
+    /*
     // UITextSkin.Apply() 패치 - 모든 UI 텍스트에 한국어 폰트 강제 적용
     // UITextSkin은 TextMeshProUGUI를 감싸는 래퍼로, 대부분의 게임 UI 텍스트에 사용됨
     [HarmonyPatch(typeof(XRL.UI.UITextSkin), "Apply")]
@@ -742,7 +744,7 @@ namespace QudKRTranslation.Core
         static void Postfix(XRL.UI.UITextSkin __instance)
         {
             if (!FontManager.IsFontLoaded) return;
-            
+
             try
             {
                 // UITextSkin 내부의 TMP 컴포넌트에 접근
@@ -783,7 +785,7 @@ namespace QudKRTranslation.Core
 
     // TextMeshProUGUI.Awake 패치 - 최초 생성 시점에도 적용
     [HarmonyPatch(typeof(TMPro.TextMeshProUGUI), "Awake")]
-    public static class TextMeshProUGUI_Awake_Patch
+    public static class TextMeshProUGUI_Awake_Patch_DISABLED
     {
         static void Postfix(TMPro.TextMeshProUGUI __instance)
         {
@@ -791,6 +793,10 @@ namespace QudKRTranslation.Core
             FontManager.ApplyFallbackToTMPComponent(__instance);
         }
     }
+    */
+    // ================================================================
+    // [END DISABLED FOR TESTING]
+    // ================================================================
 
     [HarmonyPatch(typeof(MessageQueue), "AddPlayerMessage", new Type[] { typeof(string), typeof(string), typeof(bool) })]
     public static class MessageLogPatch
@@ -822,6 +828,8 @@ namespace QudKRTranslation.Core
         }
     }
 
+    // [DISABLED] NameOrderPatch - TargetMethod()가 null 반환 가능하여 에러 발생
+    /*
     [HarmonyPatch]
     public static class NameOrderPatch
     {
@@ -854,6 +862,7 @@ namespace QudKRTranslation.Core
             }
         }
     }
+    */
 
     [HarmonyPatch(typeof(Description), "GetShortDescription")]
     public static class DescriptionPatch
@@ -869,8 +878,9 @@ namespace QudKRTranslation.Core
     }
 
     // =================================================================
-    // 4. TextMeshPro 글로벌 폰트 적용 패치
+    // 4. TextMeshPro 글로벌 폰트 적용 패치 [DISABLED FOR TESTING]
     // =================================================================
+    /*
     [HarmonyPatch(typeof(TMPro.TextMeshProUGUI), "OnEnable")]
     public static class TMPUGUIOnEnablePatch
     {
@@ -896,6 +906,7 @@ namespace QudKRTranslation.Core
             catch { }
         }
     }
+    */
 
     // =================================================================
     // 3. 한국어 유틸리티

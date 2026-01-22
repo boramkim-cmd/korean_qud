@@ -1,0 +1,3 @@
+/Users/ben/Desktop/qud_korean/Assets/core_source/EngineSupport/obj/Release/net40/Assembly-CSharp.GeneratedMSBuildEditorConfig.editorconfig
+/Users/ben/Desktop/qud_korean/Assets/core_source/EngineSupport/obj/Release/net40/Assembly-CSharp.csproj.CoreCompileInputs.cache
+/Users/ben/Desktop/qud_korean/Assets/core_source/EngineSupport/obj/Release/net40/Assembly-CSharp.sourcelink.json

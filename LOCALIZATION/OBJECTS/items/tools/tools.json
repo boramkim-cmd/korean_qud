@@ -6,18 +6,6 @@
     "updated": "2026-01-22"
   },
 
-  "Torch": {
-    "tier": 1,
-    "category": "tool",
-    "slot": "hand",
-    "tags": ["light", "fire"],
-    "names": {
-      "torch": "횃불"
-    },
-    "description": "A burning piece of wood that provides light.",
-    "description_ko": "빛을 제공하는 불타는 나무."
-  },
-
   "Glowsphere": {
     "tier": 3,
     "category": "tool",

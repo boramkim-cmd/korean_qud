@@ -83,15 +83,84 @@ namespace QudKRTranslation
             // 주요 타겟 타입 존재 여부만 로그로 남김
             // NOTE: These are version-sensitive. Update if game structure changes.
             // Last verified: Caves of Qud 2026.1.x
-            string[] criticalTypes = { 
+            string[] criticalTypes = {
                 "ConsoleLib.Console.ScreenBuffer",  // Console rendering
                 "XRL.UI.UITextSkin",                 // Modern UI text
                 "Qud.UI.MainMenu"                   // Main menu (may also be XRL.UI.MainMenu in older versions)
             };
-            
+
             foreach(var typeName in criticalTypes) {
-                if(AccessTools.TypeByName(typeName) == null) 
+                if(AccessTools.TypeByName(typeName) == null)
                     Debug.LogWarning($"[Qud-KR Translation] 경고: 핵심 타입 '{typeName}'을 찾을 수 없습니다.");
+            }
+
+            // TextConsole 폰트 시스템 조사
+            InvestigateTextConsoleFont();
+        }
+
+        /// <summary>
+        /// TextConsole 폰트 시스템 조사 (한글 지원을 위한 정보 수집)
+        /// </summary>
+        private static void InvestigateTextConsoleFont()
+        {
+            try
+            {
+                // ex 타입 찾기 (ConsoleLib.Console.ex)
+                var exType = AccessTools.TypeByName("ConsoleLib.Console.ex");
+                if (exType == null)
+                {
+                    Debug.LogWarning("[Qud-KR][FontInvestigate] ex type not found");
+                    return;
+                }
+
+                Debug.Log($"[Qud-KR][FontInvestigate] ex type found: {exType.FullName}");
+
+                // 모든 필드 출력 (Font 관련)
+                var fields = exType.GetFields(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Static | BindingFlags.Instance);
+                foreach (var field in fields)
+                {
+                    string fieldTypeName = field.FieldType.Name;
+                    if (field.Name.ToLower().Contains("font") ||
+                        fieldTypeName.Contains("Font") ||
+                        fieldTypeName.Contains("Sprite") ||
+                        fieldTypeName.Contains("Texture"))
+                    {
+                        Debug.Log($"[Qud-KR][FontInvestigate] ex.{field.Name} : {field.FieldType.FullName}");
+                    }
+                }
+
+                // 모든 속성 출력 (Font 관련)
+                var props = exType.GetProperties(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Static | BindingFlags.Instance);
+                foreach (var prop in props)
+                {
+                    string propTypeName = prop.PropertyType.Name;
+                    if (prop.Name.ToLower().Contains("font") ||
+                        propTypeName.Contains("Font") ||
+                        propTypeName.Contains("Sprite") ||
+                        propTypeName.Contains("Texture"))
+                    {
+                        Debug.Log($"[Qud-KR][FontInvestigate] ex.{prop.Name} (prop) : {prop.PropertyType.FullName}");
+                    }
+                }
+
+                // SpriteManager 조사
+                var spriteManagerType = AccessTools.TypeByName("ConsoleLib.Console.SpriteManager");
+                if (spriteManagerType != null)
+                {
+                    Debug.Log($"[Qud-KR][FontInvestigate] SpriteManager found: {spriteManagerType.FullName}");
+                    var smFields = spriteManagerType.GetFields(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Static | BindingFlags.Instance);
+                    foreach (var field in smFields)
+                    {
+                        if (field.Name.ToLower().Contains("font") || field.FieldType.Name.Contains("Font"))
+                        {
+                            Debug.Log($"[Qud-KR][FontInvestigate] SpriteManager.{field.Name} : {field.FieldType.FullName}");
+                        }
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                Debug.LogError($"[Qud-KR][FontInvestigate] Error: {e.Message}");
             }
         }
     }

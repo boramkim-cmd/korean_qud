@@ -247,34 +247,36 @@ namespace QudKorean.Objects
         }
         
         /// <summary>
-        /// Translates common state suffixes to Korean
+        /// Translates common state suffixes to Korean.
+        /// Supports compound suffixes like " x15 (unburnt)" -> " x15 (미사용)"
         /// </summary>
         private static string TranslateStateSuffix(string suffix)
         {
             if (string.IsNullOrEmpty(suffix)) return "";
-            
-            // Common state translations
+
+            string result = suffix;
+
+            // State translations - keys without leading space for Contains() matching
             var stateTranslations = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase)
             {
-                { " [empty]", " [비어있음]" },
-                { " [full]", " [가득 참]" },
-                { " [loaded]", " [장전됨]" },
-                { " (lit)", " (점화됨)" },
-                { " (unlit)", " (꺼짐)" },
-                { " (unburnt)", " (미사용)" }
+                { "[empty]", "[비어있음]" },
+                { "[full]", "[가득 참]" },
+                { "[loaded]", "[장전됨]" },
+                { "(lit)", "(점화됨)" },
+                { "(unlit)", "(꺼짐)" },
+                { "(unburnt)", "(미사용)" }
             };
-            
-            string trimmedSuffix = suffix.Trim();
+
+            // Iterate through patterns and replace any that are contained (supports compound suffixes)
             foreach (var kvp in stateTranslations)
             {
-                if (kvp.Key.Trim().Equals(trimmedSuffix, StringComparison.OrdinalIgnoreCase))
+                if (result.IndexOf(kvp.Key, StringComparison.OrdinalIgnoreCase) >= 0)
                 {
-                    return kvp.Value;
+                    result = Regex.Replace(result, Regex.Escape(kvp.Key), kvp.Value, RegexOptions.IgnoreCase);
                 }
             }
-            
-            // Return original suffix if no translation found
-            return suffix;
+
+            return result;
         }
         
         /// <summary>

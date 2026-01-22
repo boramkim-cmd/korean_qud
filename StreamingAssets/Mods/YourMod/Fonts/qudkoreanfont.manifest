@@ -1,16 +1,16 @@
 ManifestFileVersion: 0
-UnityVersion: 6000.3.4f1
-CRC: 2013736555
+UnityVersion: 6000.0.41f1
+CRC: 1722594742
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 3ba44480460efd4875c05a5e86acd0c9
+    Hash: 5a5324082875156fc07fdab16fbe2bcd
   TypeTreeHash:
     serializedVersion: 2
-    Hash: fa8951d7deeedc7d251cf1e02d8cfb9f
+    Hash: 4cd78a37fb460e353ea675aea82a1045
   IncrementalBuildHash:
     serializedVersion: 2
-    Hash: ce44f0fb081a275ee215b4d1ebb172fd
+    Hash: ebf51b9432fd0968a85baf5756f84b45
 HashAppended: 0
 ClassTypes:
 - Class: 21
@@ -22,6 +22,8 @@ ClassTypes:
 - Class: 114
   Script: {fileID: 11500000, guid: 71c1514a6bd24e1e882cebbe1904ce04, type: 3}
 - Class: 115
+  Script: {instanceID: 0}
+- Class: 128
   Script: {instanceID: 0}
 SerializeReferenceClassIdentifiers:
 - AssemblyName: Unity.TextMeshPro
@@ -46,4 +48,6 @@ SerializeReferenceClassIdentifiers:
   ClassName: UnityEngine.TextCore.GlyphRect
 Assets:
 - Assets/TextMesh Pro/Fonts/PretendardGOVVariable SDF.asset
+- Assets/TextMesh Pro/Fonts/PretendardGOVVariable.ttf
+- Assets/TextMesh Pro/Fonts/Cafe24PROSlimMax SDF.asset
 Dependencies: []

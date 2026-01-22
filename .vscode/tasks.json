@@ -1,0 +1,78 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "Validate & Deploy",
+            "type": "shell",
+            "command": "bash",
+            "args": [
+                "${workspaceFolder}/tools/sync-and-deploy.sh"
+            ],
+            "problemMatcher": [],
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": false,
+                "panel": "shared",
+                "showReuseMessage": true,
+                "clear": false
+            },
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }
+        },
+        {
+            "label": "Run Validation Only",
+            "type": "shell",
+            "command": "python3",
+            "args": [
+                "${workspaceFolder}/tools/project_tool.py"
+            ],
+            "problemMatcher": [],
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": false,
+                "panel": "shared",
+                "showReuseMessage": true,
+                "clear": false
+            }
+            },
+            {
+                "label": "List All Issues",
+                "type": "shell",
+                "command": "bash",
+                "args": [
+                    "${workspaceFolder}/tools/list-issues.sh"
+                ],
+                "problemMatcher": [],
+                "presentation": {
+                    "echo": true,
+                    "reveal": "always",
+                    "focus": true,
+                    "panel": "shared",
+                    "showReuseMessage": true,
+                    "clear": true
+                }
+            },
+            {
+                "label": "Create New Issue",
+                "type": "shell",
+                "command": "bash",
+                "args": [
+                    "-c",
+                    "read -p 'Issue description: ' desc && bash ${workspaceFolder}/tools/create-issue.sh \"$desc\""
+                ],
+                "problemMatcher": [],
+                "presentation": {
+                    "echo": true,
+                    "reveal": "always",
+                    "focus": true,
+                    "panel": "shared",
+                    "showReuseMessage": true,
+                    "clear": false
+                }
+        }
+    ]
+}

@@ -1,0 +1,18 @@
+{
+	"folders": [
+		{
+			"path": ".."
+		},
+		{
+			"path": "../../../Library/Application Support/com.FreeholdGames.CavesOfQud/Mods"
+		}
+	],
+	"settings": {
+		"github.copilot.chat.codeGeneration.instructions": [
+			{
+				"file": ".github/copilot-instructions.md"
+			}
+		],
+		"github.copilot.chat.welcomeMessage": "🚨 이 프로젝트에는 필수 규칙이 있습니다. .github/copilot-instructions.md를 참조하세요."
+	}
+}

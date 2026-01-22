@@ -53,12 +53,19 @@ namespace QudKorean.Objects
                 
                 string blueprint = Object.Blueprint;
                 if (string.IsNullOrEmpty(blueprint)) return;
-                
-                // DEBUG: Log first few translation attempts
-                if (_logCount < 10)
+
+                // [TEST MODE] Torch만 번역 테스트
+                if (blueprint != "Torch" && blueprint != "TutorialTorch")
+                {
+                    return;
+                }
+
+                // DEBUG: Log first few translation attempts - 원본 텍스트 상세 로그
+                if (_logCount < 20)
                 {
                     _logCount++;
-                    UnityEngine.Debug.Log($"{LOG_PREFIX} TryTranslate: blueprint='{blueprint}', result='{__result}'");
+                    bool hasColorTags = __result.Contains("{{") || __result.Contains("&");
+                    UnityEngine.Debug.Log($"{LOG_PREFIX} [BEFORE] blueprint='{blueprint}', hasColorTags={hasColorTags}, raw='{__result}'");
                 }
                 
                 // Attempt translation
@@ -67,7 +74,8 @@ namespace QudKorean.Objects
                     // CRITICAL: Final safety check - never replace with empty string
                     if (!string.IsNullOrEmpty(translated))
                     {
-                        UnityEngine.Debug.Log($"{LOG_PREFIX} Translated: '{__result}' -> '{translated}'");
+                        bool resultHasTags = translated.Contains("{{") || translated.Contains("&");
+                        UnityEngine.Debug.Log($"{LOG_PREFIX} [AFTER] '{__result}' -> '{translated}' (hasTags={resultHasTags})");
                         __result = translated;
                     }
                     else

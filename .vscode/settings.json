@@ -1,0 +1,13 @@
+{
+    "markdown.validate.enabled": true,
+    "chat.tools.terminal.autoApprove": {
+        "/^cd /Users/ben/Desktop/qud_korean && python3 -c \"\nimport json\n\nwith open\\('tools/options_translations\\.json', 'r'\\) as f:\n    tools_data = json\\.load\\(f\\)\n\nwith open\\('LOCALIZATION/UI/options\\.json', 'r'\\) as f:\n    loc_data = json\\.load\\(f\\)\\['options'\\]\n\n# Find keys in tools that are not in loc\ntools_keys = set\\(tools_data\\.keys\\(\\)\\)\nloc_keys = set\\(loc_data\\.keys\\(\\)\\)\n\nmissing = tools_keys - loc_keys\nextra = loc_keys - tools_keys\n\nprint\\(f'=== tools/options_translations\\.json에 있지만 LOCALIZATION/UI/options\\.json에 없는 키들 ==='\\)\nprint\\(f'총 \\{len\\(missing\\)\\}개 누락:'\\)\nfor k in sorted\\(missing\\)\\[:30\\]:\n    print\\(f'  - \\{k\\}'\\)\nif len\\(missing\\) > 30:\n    print\\(f'  \\.\\.\\. 그 외 \\{len\\(missing\\)-30\\}개 더 있음'\\)\n\"$/": {
+            "approve": true,
+            "matchCommandLine": true
+        },
+        "/^cd /Users/ben/Desktop/qud_korean && python3 -c \"\nimport json\n\n# 스크린샷에서 영어로 보이는 항목들\nuntranslated_items = \\[\n    'Draw visibility flood fill',\n    'Draw electrical arc history for last few rounds',\n\\]\n\nwith open\\('LOCALIZATION/UI/options\\.json', 'r'\\) as f:\n    loc_data = json\\.load\\(f\\)\\['options'\\]\n\nprint\\('=== 스크린샷에서 영어로 표시되는 항목 확인 ==='\\)\nfor item in untranslated_items:\n    found = False\n    # 정확한 키 확인\n    if item in loc_data:\n        print\\(f'✓ \\\\\"\\{item\\}\\\\\" -> \\\\\"\\{loc_data\\[item\\]\\}\\\\\"'\\)\n        found = True\n    # 대문자 키 확인\n    upper_item = item\\.upper\\(\\)\n    if upper_item in loc_data:\n        print\\(f'✓ \\\\\"\\{upper_item\\}\\\\\" -> \\\\\"\\{loc_data\\[upper_item\\]\\}\\\\\"'\\)\n        found = True\n    if not found:\n        print\\(f'✗ \\\\\"\\{item\\}\\\\\" NOT FOUND!'\\)\n        print\\(f'  대문자 \\\\\"\\{upper_item\\}\\\\\" NOT FOUND!'\\)\n\"$/": {
+            "approve": true,
+            "matchCommandLine": true
+        }
+    }
+}
