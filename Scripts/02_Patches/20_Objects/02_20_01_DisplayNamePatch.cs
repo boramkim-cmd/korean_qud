@@ -4,7 +4,7 @@
  * 역할: GetDisplayNameEvent.GetFor() 패치로 생물/아이템 이름 한글화
  * 작성일: 2026-01-22
  * 비고: ForSort, ColorOnly 모드에서는 번역 스킵
- * 수정: 2026-01-22 - Harmony 패치 시그니처 수정 (파라미터 타입 명시)
+ * 수정: 2026-01-22 - Harmony 패치 시그니처 수정 - 파라미터 타입 명시 제거로 모든 호출 패치
  */
 
 using System;
@@ -18,27 +18,10 @@ namespace QudKorean.Objects
     /// <summary>
     /// Harmony patch for GetDisplayNameEvent.GetFor() method.
     /// Translates creature and item display names to Korean.
+    /// NOTE: We don't specify parameter types so this matches ALL GetFor calls,
+    /// including short calls like GetFor(this, DisplayNameBase) that use default params.
     /// </summary>
-    [HarmonyPatch(typeof(GetDisplayNameEvent))]
-    [HarmonyPatch("GetFor")]
-    [HarmonyPatch(new Type[] { 
-        typeof(GameObject),  // Object
-        typeof(string),      // Base
-        typeof(int),         // Cutoff
-        typeof(string),      // Context
-        typeof(bool),        // AsIfKnown
-        typeof(bool),        // Single
-        typeof(bool),        // NoConfusion
-        typeof(bool),        // NoColor
-        typeof(bool),        // ColorOnly
-        typeof(bool),        // Visible
-        typeof(bool),        // BaseOnly
-        typeof(bool),        // UsingAdjunctNoun
-        typeof(bool),        // WithoutTitles
-        typeof(bool),        // ForSort
-        typeof(bool),        // Reference
-        typeof(bool)         // IncludeImplantPrefix
-    })]
+    [HarmonyPatch(typeof(GetDisplayNameEvent), "GetFor")]
     public static class Patch_ObjectDisplayName
     {
         private const string LOG_PREFIX = "[QudKR-Objects]";
@@ -57,8 +40,8 @@ namespace QudKorean.Objects
         static void GetFor_Postfix(
             ref string __result,
             GameObject Object,
-            bool ColorOnly,    // If true, only returns color code - DO NOT translate
-            bool ForSort)      // If true, used for sorting - DO NOT translate
+            bool ColorOnly = false,   // Default value to handle calls that don't specify
+            bool ForSort = false)     // Default value to handle calls that don't specify
         {
             try
             {
