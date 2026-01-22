@@ -162,9 +162,13 @@ namespace QudKRTranslation.Patches
         /// <summary>
         /// Find and translate header text elements in the tooltip
         /// </summary>
-        private static void TranslateTooltipHeaders(TooltipTrigger tooltip)
+        private static void TranslateTooltipHeaders(TooltipTrigger trigger)
         {
-            var textComponents = tooltip.GetComponentsInChildren<TextMeshProUGUI>(true);
+            // CRITICAL: TooltipTrigger is the trigger component, actual tooltip UI is in Tooltip.GameObject
+            var tooltipObj = trigger?.Tooltip?.GameObject;
+            if (tooltipObj == null) return;
+            
+            var textComponents = tooltipObj.GetComponentsInChildren<TextMeshProUGUI>(true);
             
             foreach (var textComponent in textComponents)
             {
@@ -185,12 +189,16 @@ namespace QudKRTranslation.Patches
         /// <summary>
         /// Apply Korean font fallback to all TMP components in the tooltip
         /// </summary>
-        private static void ApplyKoreanFontToTooltipChildren(TooltipTrigger tooltip)
+        private static void ApplyKoreanFontToTooltipChildren(TooltipTrigger trigger)
         {
             var koreanFont = QudKRTranslation.Core.FontManager.GetKoreanTMPFont();
             if (koreanFont == null) return;
             
-            var textComponents = tooltip.GetComponentsInChildren<TextMeshProUGUI>(true);
+            // CRITICAL: TooltipTrigger is the trigger component, actual tooltip UI is in Tooltip.GameObject
+            var tooltipObj = trigger?.Tooltip?.GameObject;
+            if (tooltipObj == null) return;
+            
+            var textComponents = tooltipObj.GetComponentsInChildren<TextMeshProUGUI>(true);
             
             foreach (var tmp in textComponents)
             {

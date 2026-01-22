@@ -125,7 +125,24 @@ namespace QudKorean.Objects
                     return true;
                 }
                 
-                // Try any name in the names dictionary
+                // PRIORITY: Check state suffix BEFORE partial matching
+                // This ensures "waterskin [empty]" -> "물주머니 [비어있음]" not "물주머니 [empty]"
+                string noStateSuffix = StripStateSuffix(strippedOriginal);
+                if (noStateSuffix != strippedOriginal)
+                {
+                    foreach (var namePair in data.Names)
+                    {
+                        if (namePair.Key.Equals(noStateSuffix, StringComparison.OrdinalIgnoreCase))
+                        {
+                            string suffix = strippedOriginal.Substring(noStateSuffix.Length);
+                            translated = namePair.Value + TranslateStateSuffix(suffix);
+                            _displayNameCache[cacheKey] = translated;
+                            return true;
+                        }
+                    }
+                }
+                
+                // Try any name in the names dictionary (partial match fallback)
                 foreach (var kvp in data.Names)
                 {
                     if (originalName.Contains(kvp.Key) || strippedOriginal.Contains(kvp.Key))
@@ -137,21 +154,21 @@ namespace QudKorean.Objects
                 }
             }
             
-            // Try with state suffix stripped (e.g., "waterskin [empty]" -> "waterskin")
-            string noStateSuffix = StripStateSuffix(strippedOriginal);
-            if (noStateSuffix != strippedOriginal)
+            // Try with state suffix stripped for items NOT in blueprint cache
+            string globalStripped = StripColorTags(originalName);
+            string globalNoSuffix = StripStateSuffix(globalStripped);
+            if (globalNoSuffix != globalStripped)
             {
-                // Try finding translation for base name without state suffix
+                // Try finding translation for base name without state suffix in ALL caches
                 foreach (var cache in new[] { _creatureCache, _itemCache })
                 {
                     foreach (var kvp in cache)
                     {
                         foreach (var namePair in kvp.Value.Names)
                         {
-                            if (namePair.Key.Equals(noStateSuffix, StringComparison.OrdinalIgnoreCase))
+                            if (namePair.Key.Equals(globalNoSuffix, StringComparison.OrdinalIgnoreCase))
                             {
-                                // Keep the state suffix, translate the base name
-                                string suffix = strippedOriginal.Substring(noStateSuffix.Length);
+                                string suffix = globalStripped.Substring(globalNoSuffix.Length);
                                 translated = namePair.Value + TranslateStateSuffix(suffix);
                                 _displayNameCache[cacheKey] = translated;
                                 return true;
