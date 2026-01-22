@@ -1,0 +1,65 @@
+{
+  "_meta": {
+    "category": "items/books",
+    "description": "Books and readable items",
+    "version": "2.0",
+    "created": "2026-01-22",
+    "updated": "2026-01-22"
+  },
+
+  "Trade Notes": {
+    "tier": 1,
+    "category": "book",
+    "tags": ["readable", "valuable"],
+    "names": {
+      "trade note": "거래 증서",
+      "trade notes": "거래 증서"
+    },
+    "description": "Notes used as currency among merchants.",
+    "description_ko": "상인들 사이에서 화폐로 사용되는 증서."
+  },
+
+  "Schematic": {
+    "tier": 3,
+    "category": "book",
+    "tags": ["readable", "tinkering"],
+    "names": {
+      "schematic": "설계도"
+    },
+    "description": "A blueprint for crafting items.",
+    "description_ko": "아이템 제작을 위한 설계도."
+  },
+
+  "Data Disk": {
+    "tier": 2,
+    "category": "book",
+    "tags": ["readable", "artifact"],
+    "names": {
+      "data disk": "데이터 디스크"
+    },
+    "description": "A disk containing stored data from the before-times.",
+    "description_ko": "과거 시대의 저장된 데이터가 담긴 디스크."
+  },
+
+  "Tome": {
+    "tier": 2,
+    "category": "book",
+    "tags": ["readable", "skill"],
+    "names": {
+      "tome": "고서"
+    },
+    "description": "A book containing ancient knowledge.",
+    "description_ko": "고대의 지식이 담긴 책."
+  },
+
+  "Cookbook": {
+    "tier": 2,
+    "category": "book",
+    "tags": ["readable", "cooking"],
+    "names": {
+      "cookbook": "요리책"
+    },
+    "description": "A book of cooking recipes.",
+    "description_ko": "요리 레시피가 담긴 책."
+  }
+}

@@ -1,0 +1,53 @@
+{
+  "_meta": {
+    "category": "animals/birds",
+    "description": "Bird creatures",
+    "version": "2.0",
+    "created": "2026-01-22",
+    "updated": "2026-01-22"
+  },
+
+  "Segmented Mirthful": {
+    "tier": 2,
+    "category": "animal",
+    "tags": ["bird", "neutral"],
+    "names": {
+      "segmented mirthful": "분절된 즐거움새"
+    },
+    "description": "A strange bird with a segmented body.",
+    "description_ko": "몸이 분절된 이상한 새."
+  },
+
+  "Voider": {
+    "tier": 4,
+    "category": "animal",
+    "tags": ["bird", "hostile", "psychic"],
+    "names": {
+      "voider": "공허자"
+    },
+    "description": "A psychic bird creature from the void.",
+    "description_ko": "공허에서 온 정신 능력을 가진 새 생물."
+  },
+
+  "Madpole": {
+    "tier": 2,
+    "category": "animal",
+    "tags": ["bird", "hostile", "water"],
+    "names": {
+      "madpole": "매드폴"
+    },
+    "description": "A strange water bird with a long body.",
+    "description_ko": "긴 몸을 가진 이상한 물새."
+  },
+
+  "Salthopper": {
+    "tier": 1,
+    "category": "animal",
+    "tags": ["bird", "neutral", "common"],
+    "names": {
+      "salthopper": "소금호퍼"
+    },
+    "description": "A small bird that feeds on salt deposits.",
+    "description_ko": "소금 퇴적물을 먹는 작은 새."
+  }
+}

@@ -1,0 +1,76 @@
+{
+  "_meta": {
+    "category": "items/ammo",
+    "description": "Ammunition for ranged weapons",
+    "version": "2.0",
+    "created": "2026-01-22",
+    "updated": "2026-01-22"
+  },
+
+  "Arrow": {
+    "tier": 1,
+    "category": "ammo",
+    "tags": ["bow", "projectile"],
+    "names": {
+      "arrow": "화살"
+    },
+    "description": "A standard arrow for bows.",
+    "description_ko": "활에 사용하는 표준 화살."
+  },
+
+  "Steel Arrow": {
+    "tier": 2,
+    "category": "ammo",
+    "tags": ["bow", "projectile"],
+    "names": {
+      "steel arrow": "강철 화살"
+    },
+    "description": "A steel-tipped arrow.",
+    "description_ko": "강철 촉이 달린 화살."
+  },
+
+  "Lead Slug": {
+    "tier": 1,
+    "category": "ammo",
+    "tags": ["gun", "projectile"],
+    "names": {
+      "lead slug": "납 탄환"
+    },
+    "description": "A lead projectile for firearms.",
+    "description_ko": "총기용 납 탄환."
+  },
+
+  "Steel Slug": {
+    "tier": 2,
+    "category": "ammo",
+    "tags": ["gun", "projectile"],
+    "names": {
+      "steel slug": "강철 탄환"
+    },
+    "description": "A steel projectile for firearms.",
+    "description_ko": "총기용 강철 탄환."
+  },
+
+  "Shotgun Shell": {
+    "tier": 2,
+    "category": "ammo",
+    "tags": ["shotgun", "projectile"],
+    "names": {
+      "shotgun shell": "산탄총 탄약",
+      "shell": "탄약"
+    },
+    "description": "Shells for shotguns.",
+    "description_ko": "산탄총용 탄약."
+  },
+
+  "Missile": {
+    "tier": 4,
+    "category": "ammo",
+    "tags": ["launcher", "explosive"],
+    "names": {
+      "missile": "미사일"
+    },
+    "description": "A guided explosive projectile.",
+    "description_ko": "유도형 폭발 발사체."
+  }
+}

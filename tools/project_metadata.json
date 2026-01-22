@@ -1,5 +1,5 @@
 {
-  "generated": "2026-01-22 11:29:56",
+  "generated": "2026-01-22 12:01:26",
   "scripts": {
     "Scripts/99_Utils/99_00_03_StructureTranslator.cs": {
       "classification": "Util",
@@ -2608,6 +2608,24 @@
       ],
       "entries": 10
     },
+    "farmers.json": {
+      "categories": [
+        "_meta",
+        "Watervine Farmer",
+        "Salt Marsh Elder",
+        "Dromad Merchant",
+        "Warden"
+      ],
+      "entries": 29
+    },
+    "seedsprout.json": {
+      "categories": [
+        "_meta",
+        "Seedsprout",
+        "Elder Seedsprout"
+      ],
+      "entries": 17
+    },
     "svardym.json": {
       "categories": [
         "_meta",
@@ -2691,6 +2709,26 @@
         "Gelatinous Mass"
       ],
       "entries": 46
+    },
+    "reptiles.json": {
+      "categories": [
+        "_meta",
+        "Girshling",
+        "Greater Girshling",
+        "Salt Kraken",
+        "Tongue Tyrant"
+      ],
+      "entries": 29
+    },
+    "birds.json": {
+      "categories": [
+        "_meta",
+        "Segmented Mirthful",
+        "Voider",
+        "Madpole",
+        "Salthopper"
+      ],
+      "entries": 29
     },
     "fish.json": {
       "categories": [
@@ -2888,6 +2926,17 @@
       ],
       "entries": 67
     },
+    "books.json": {
+      "categories": [
+        "_meta",
+        "Trade Notes",
+        "Schematic",
+        "Data Disk",
+        "Tome",
+        "Cookbook"
+      ],
+      "entries": 35
+    },
     "hands.json": {
       "categories": [
         "_meta",
@@ -2961,6 +3010,18 @@
         "Flawless Crysteel Shardmail"
       ],
       "entries": 53
+    },
+    "ammo.json": {
+      "categories": [
+        "_meta",
+        "Arrow",
+        "Steel Arrow",
+        "Lead Slug",
+        "Steel Slug",
+        "Shotgun Shell",
+        "Missile"
+      ],
+      "entries": 41
     },
     "food.json": {
       "categories": [

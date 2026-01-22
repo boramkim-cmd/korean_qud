@@ -1,0 +1,53 @@
+{
+  "_meta": {
+    "category": "humanoids/farmers",
+    "description": "Watervine farmer NPCs",
+    "version": "2.0",
+    "created": "2026-01-22",
+    "updated": "2026-01-22"
+  },
+
+  "Watervine Farmer": {
+    "tier": 1,
+    "category": "humanoid",
+    "tags": ["human", "neutral", "farmer"],
+    "names": {
+      "watervine farmer": "물덩굴 농부"
+    },
+    "description": "A mutant farmer who cultivates watervines.",
+    "description_ko": "물덩굴을 재배하는 돌연변이 농부."
+  },
+
+  "Salt Marsh Elder": {
+    "tier": 2,
+    "category": "humanoid",
+    "tags": ["human", "neutral", "elder"],
+    "names": {
+      "salt marsh elder": "소금 습지 장로"
+    },
+    "description": "An elder who lives in the salt marshes.",
+    "description_ko": "소금 습지에 사는 장로."
+  },
+
+  "Dromad Merchant": {
+    "tier": 2,
+    "category": "humanoid",
+    "tags": ["dromad", "neutral", "merchant"],
+    "names": {
+      "dromad merchant": "드로마드 상인"
+    },
+    "description": "A traveling merchant from the dromad caravans.",
+    "description_ko": "드로마드 상단의 여행하는 상인."
+  },
+
+  "Warden": {
+    "tier": 3,
+    "category": "humanoid",
+    "tags": ["human", "neutral", "guard"],
+    "names": {
+      "warden": "경비원"
+    },
+    "description": "A guard who watches over the village.",
+    "description_ko": "마을을 지키는 경비원."
+  }
+}

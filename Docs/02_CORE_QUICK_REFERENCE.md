@@ -1,6 +1,6 @@
 # 🚀 프로젝트 빠른 참조 (자동 생성)
 
-**생성**: 2026-01-22 11:29:56
+**생성**: 2026-01-22 12:01:26
 
 ## ⭐ 핵심 경로
 ```
@@ -196,14 +196,17 @@ LOCALIZATION/**/*.json              → 용어집 데이터
 - `Watervine_Farmer.json`: 1개 항목
 - `Wings.json`: 1개 항목
 - `_common.json`: 62개 항목
+- `ammo.json`: 41개 항목
 - `ants.json`: 10개 항목
 - `attributes.json`: 7개 항목
 - `axes.json`: 39개 항목
 - `back.json`: 53개 항목
 - `bats.json`: 14개 항목
 - `beetles.json`: 10개 항목
+- `birds.json`: 29개 항목
 - `blades.json`: 67개 항목
 - `body.json`: 53개 항목
+- `books.json`: 35개 항목
 - `bows.json`: 18개 항목
 - `cats.json`: 18개 항목
 - `cells.json`: 60개 항목
@@ -218,6 +221,7 @@ LOCALIZATION/**/*.json              → 용어집 데이터
 - `drones.json`: 52개 항목
 - `face.json`: 53개 항목
 - `factions.json`: 53개 항목
+- `farmers.json`: 29개 항목
 - `feet.json`: 46개 항목
 - `fish.json`: 10개 항목
 - `food.json`: 74개 항목
@@ -245,6 +249,8 @@ LOCALIZATION/**/*.json              → 용어집 데이터
 - `options.json`: 454개 항목
 - `others.json`: 28개 항목
 - `relics.json`: 60개 항목
+- `reptiles.json`: 29개 항목
+- `seedsprout.json`: 17개 항목
 - `skills.json`: 223개 항목
 - `snapjaws.json`: 124개 항목
 - `spears.json`: 67개 항목
