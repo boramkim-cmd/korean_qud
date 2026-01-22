@@ -1,6 +1,6 @@
 # Caves of Qud Korean Localization - TODO
 
-> **Version**: 3.0 | **Last Updated**: 2026-01-22
+> **Version**: 3.1 | **Last Updated**: 2026-01-22
 
 ---
 
@@ -9,14 +9,23 @@
 | Phase | Done | WIP | Todo | Progress |
 |-------|------|-----|------|----------|
 | Phase 1: Stabilization | 6 | 0 | 0 | 100% |
-| Phase 2: Gameplay | 2 | 0 | 2 | 50% |
+| Phase 2: Gameplay | 3 | 0 | 1 | 75% |
 | Phase 3: Optimization | 0 | 0 | 6 | 0% |
 | Phase 4: Community | 0 | 0 | 3 | 0% |
-| **Total** | **8** | **0** | **11** | **42%** |
+| **Total** | **9** | **0** | **10** | **47%** |
 
 ---
 
 ## Next Session Required
+
+### Game Test: Message Log (P2-01)
+| Item | Expected | Status |
+|------|----------|--------|
+| Flight messages | "당신은 날아오릅니다" | [ ] |
+| Movement messages | "당신은 위로 올라갑니다" | [ ] |
+| Item messages | "당신은 ~을(를) 집었습니다" | [ ] |
+
+**Test Path**: New game - Start moving around - Check message log
 
 ### Game Test: Attribute Screen (ERR-017 fix)
 | Item | Expected | Status |
@@ -34,10 +43,10 @@
 ## Backlog
 
 ### Phase 2: Gameplay
-| ID | Task | Hours | Priority |
-|----|------|-------|----------|
-| P2-01 | Message Log Patch (XRL.Messages.MessageQueue) | 8h | Medium |
-| P2-04 | NPC Dialogue (Conversations.xml 647KB) | 16h | Medium |
+| ID | Task | Hours | Priority | Status |
+|----|------|-------|----------|--------|
+| P2-01 | Message Log Patch | 8h | Medium | ✅ Done |
+| P2-04 | NPC Dialogue (Conversations.xml 647KB) | 16h | Medium | Todo |
 
 ### Phase 3: Optimization  
 | ID | Task | Hours | Priority |
@@ -70,11 +79,12 @@
 | Mutation JSON Restructure (81 files) | 01-22 |
 | Tutorial Translation (ERR-018) | 01-21 |
 
-### Phase 2 (2/4)
+### Phase 2 (3/4)
 | Task | Date |
 |------|------|
 | Object Blueprint System | 01-22 |
 | Object/Creature Translation (51 files, 300+ entries) | 01-22 |
+| Message Log Patch (P2-01) | 01-22 |
 
 ---
 

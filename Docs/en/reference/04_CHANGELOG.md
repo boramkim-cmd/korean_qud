@@ -1,10 +1,16 @@
 # Caves of Qud Korean Localization - Changelog
 
-> **Version**: 6.0 | **Last Updated**: 2026-01-22
+> **Version**: 6.1 | **Last Updated**: 2026-01-22
 
 ---
 
 ## Recent Changes
+
+### [2026-01-22] P2-01 Message Log Patch Complete
+- Created `02_10_16_MessageLog.cs` - Harmony patch for MessageQueue.AddPlayerMessage
+- Created `LOCALIZATION/GAMEPLAY/messages.json` - 50+ message patterns
+- Features: verb translation dictionary, Korean josa handling, pattern matching
+- Categories: flight, movement, items, combat, status, interaction, system
 
 ### [2026-01-22] Mutation & Object Systems Complete
 - Verified all 81 mutation files translated (Physical/Mental/Defects/Morphotypes)
@@ -41,17 +47,19 @@
 | 01-17~22 | Mutation JSON restructure (81 files) |
 | 01-21 | Tutorial translation system |
 
-### Phase 2: Gameplay (25%)
+### Phase 2: Gameplay (75%)
 | Date | Work |
-|------|------|
+|------|----- |
 | 01-22 | Object localization system (Phases 0-4) |
+| 01-22 | Message Log Patch (P2-01) |
 
 ---
 
 ## Statistics
-- Total translation entries: 3,938
+- Total translation entries: 4,009
 - Mutation files: 81
 - Object files: 51
+- Message patterns: 50+
 - Build status: Success
 
 ---
