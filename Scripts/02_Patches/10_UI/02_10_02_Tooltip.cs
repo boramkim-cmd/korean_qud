@@ -131,6 +131,8 @@ namespace QudKRTranslation.Patches
         {
             try
             {
+                Debug.Log("[Qud-KR] ShowManually_Postfix called");
+                
                 // 1. Translate headers if present (for compareLookerTooltip)
                 TranslateTooltipHeaders(__instance);
                 
@@ -150,9 +152,14 @@ namespace QudKRTranslation.Patches
         private static void TranslateTooltipHeaders(TooltipTrigger trigger)
         {
             var tooltipObj = trigger?.Tooltip?.GameObject;
-            if (tooltipObj == null) return;
+            if (tooltipObj == null)
+            {
+                Debug.Log("[Qud-KR] TranslateTooltipHeaders: tooltipObj is null");
+                return;
+            }
             
             var textComponents = tooltipObj.GetComponentsInChildren<TextMeshProUGUI>(true);
+            Debug.Log($"[Qud-KR] TranslateTooltipHeaders: found {textComponents.Length} text components");
             
             foreach (var textComponent in textComponents)
             {
@@ -164,6 +171,7 @@ namespace QudKRTranslation.Patches
                 // Check if this is a header that needs translation
                 if (HeaderTranslations.TryGetValue(trimmedText, out string koreanText))
                 {
+                    Debug.Log($"[Qud-KR] Translating header: '{trimmedText}' -> '{koreanText}'");
                     textComponent.text = koreanText;
                     textComponent.SetAllDirty();
                 }
