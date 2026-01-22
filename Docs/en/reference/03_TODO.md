@@ -1,738 +1,107 @@
-# Caves of Qud 한글화 프로젝트 - TODO 리스트
+# Caves of Qud Korean Localization - TODO
 
-> **버전**: 2.5 | **최종 업데이트**: 2026-01-22
-
-> [!IMPORTANT]
-> **AI 에이전트**: 이 문서는 작업 추적용입니다. 먼저 `00_PRINCIPLES.md`를 읽으세요!
-
-이 문서는 모든 작업 항목을 추적하는 **동적 문서**입니다.
-작업 시작/완료 시 이 문서를 업데이트해야 합니다.
+> **Version**: 3.0 | **Last Updated**: 2026-01-22
 
 ---
 
-## 🟢 최근 완료 (2026-01-22)
+## Progress Summary
 
-### Project Validation Fixes ✅
-| 항목 | 상태 | 해결 방법 |
-|------|------|----------|
-| 빈 번역 항목 48개 | ✅ 완료 | Caste/Calling JSON에서 빈 description 필드 제거 |
-| 중복 키 1개 | ✅ 완료 | tutorial/02_fight.json에서 중복 삭제 |
-| 표준 헤더 누락 4개 | ✅ 완료 | Object patch 파일들에 헤더 추가 |
-| 빌드 오류 | ✅ 완료 | project_tool.py에 명시적 csproj 지정 |
-
-자세한 내용: `04_CHANGELOG.md` → 2026-01-22 22:00
-
-### Tutorial Translation Fix (ERR-018) ✅
-| 항목 | 상태 | 해결 방법 |
-|------|------|----------|
-| 튜토리얼 텍스트 영문 표시 | ✅ 완료 | 스마트 따옴표 정규화 추가 |
-| 이미 번역된 텍스트 재처리 | ✅ 완료 | 한글 감지 스킵 로직 추가 |
-| 누락된 번역 키 | ✅ 완료 | JSON에 plain text 버전 추가 |
-
-자세한 내용: `05_ERROR_LOG.md` → ERR-018, `04_CHANGELOG.md` → 2026-01-21
+| Phase | Done | WIP | Todo | Progress |
+|-------|------|-----|------|----------|
+| Phase 1: Stabilization | 6 | 0 | 0 | 100% |
+| Phase 2: Gameplay | 1 | 1 | 2 | 25% |
+| Phase 3: Optimization | 0 | 0 | 6 | 0% |
+| Phase 4: Community | 0 | 0 | 3 | 0% |
+| **Total** | **7** | **1** | **11** | **37%** |
 
 ---
 
-## 🚨 다음 세션 필수 작업 (NEXT SESSION REQUIRED)
+## Next Session Required
 
-> **AI 에이전트**: 새 세션 시작 시 반드시 이 섹션을 먼저 읽고 처리하세요!
+### Game Test: Attribute Screen (ERR-017 fix)
+| Item | Expected | Status |
+|------|----------|--------|
+| Attribute names | 힘, 민첩, 건강, 지능, 의지, 자아 | [ ] |
+| Point cost | [1점], [2점] | [ ] |
+| Remaining points | 남은 포인트: 38 | [ ] |
+| Caste bonus tooltip | 달의사제 계급 +2 | [ ] |
+| Breadcrumb | Korean caste name | [ ] |
 
-### 1. 문서 업데이트 확인 ⚠️
-다음 문서들을 읽고 최신 상태인지 확인:
+**Test Path**: New game - True Kin - Select caste - Attribute screen
+
+---
+
+## In Progress
+
+### P2-03: Object/Creature Translation
+| Item | Value |
+|------|-------|
+| Files | LOCALIZATION/OBJECTS/**/*.json |
+| Status | 51 JSON files, 300+ entries |
+| Progress | Partial (names done, descriptions WIP) |
+
+---
+
+## Backlog
+
+### Phase 2: Gameplay
+| ID | Task | Hours | Priority |
+|----|------|-------|----------|
+| P2-01 | Message Log Patch (XRL.Messages.MessageQueue) | 8h | Medium |
+| P2-04 | NPC Dialogue (Conversations.xml 647KB) | 16h | Medium |
+
+### Phase 3: Optimization  
+| ID | Task | Hours | Priority |
+|----|------|-------|----------|
+| P3-01 | Translation Caching (LRU) | 4h | Low |
+| P3-02 | Missing Term Auto-Collector | 3h | Low |
+| P3-03 | TMP_Text Conditional Skip | 2h | Low |
+| P3-04 | Performance Profiling | 4h | Low |
+| P3-05 | Glossary Conflict Resolution | 12h | High |
+| P3-06 | Tool Scripts Consolidation | 4h | High |
+
+### Phase 4: Community
+| ID | Task | Priority |
+|----|------|----------|
+| P4-01 | Web Translation Editor | Optional |
+| P4-02 | Steam Workshop Auto-Deploy | Optional |
+| P4-03 | Version Compatibility CI | Optional |
+
+---
+
+## Completed
+
+### Phase 1 (6/6)
+| Task | Date |
+|------|------|
+| Inventory "*All" Filter | 01-16 |
+| Options 50 Empty Values | 01-16 |
+| Josa Color Tag Support | 01-16 |
+| Missing Mutation Desc | 01-16 |
+| Mutation JSON Restructure (81 files) | 01-22 |
+| Tutorial Translation (ERR-018) | 01-21 |
+
+### Phase 2 (1/4)
+| Task | Date |
+|------|------|
+| Object Blueprint System | 01-22 |
+
+---
+
+## Critical Rules
+
+### Dangerous Fields - NEVER Translate
+| Class | Field | Why | Safe Point |
+|-------|-------|-----|------------|
+| AttributeDataElement | Attribute | Substring(0,3) | UI Postfix |
+| ChoiceWithColorIcon | Id | Selection logic | Title only |
+
+### Pre-Deploy Checklist
 ```bash
-cat Docs/en/reference/04_CHANGELOG.md | head -100  # 최근 변경사항
-cat Docs/en/reference/05_ERROR_LOG.md | head -100  # 최근 에러
-cat Docs/en/reference/03_TODO.md | head -150       # 이 문서
-```
-
-### 2. 속성 분배 화면 테스트 필요 🔴
-**2026-01-19 세션에서 ERR-017 수정 완료, 게임 테스트 필요:**
-
-| 항목 | 예상 결과 | 테스트 상태 |
-|------|----------|------------|
-| 속성명 | 힘, 민첩, 건강, 지능, 의지, 자아 (1~2글자) | `[ ]` 미확인 |
-| 포인트 비용 | `[1점]`, `[2점]` | `[ ]` 미확인 |
-| 남은 포인트 | `남은 포인트: 38` | `[ ]` 미확인 |
-| 계급 보너스 툴팁 | `달의사제 계급 +2` 형식 | `[ ]` 미확인 |
-| 상단 브레드크럼 | 계급/직업명 한글 표시 (예: 모든 달의 사제) | `[ ]` 미확인 |
-| 속성 설명 | 힘/민첩/건강 등 설명 한글 표시 | `[ ]` 미확인 |
-
-**테스트 방법:**
-1. 게임 실행 → 새 캐릭터 생성
-2. True Kin 선택 → 계급 선택 (예: Priest of All Moons)
-3. 속성 분배 화면에서 확인:
-   - 상단 바에 계급명이 한글인지
-   - 속성명이 한글 1~2글자인지
-   - 속성 선택 시 하단 설명이 한글인지
-   - 각 속성 호버 시 툴팁이 한글인지 (보너스 있는 속성)
-   - 하단 "남은 포인트" 표시 확인
-4. 이상 발견 시 `05_ERROR_LOG.md`에 기록
-
-**알려진 이슈 (WONTFIX):**
-- `[1점]` 표시와 설명 텍스트 일부 겹침: UI prefab 레이아웃 문제, 코드로 해결 불가
-
-### 3. 발견된 이슈 처리
-테스트 후 발견된 이슈가 있으면:
-1. `05_ERROR_LOG.md`에 에러 기록
-2. 이 TODO에 수정 작업 추가
-3. 수정 후 `04_CHANGELOG.md` 업데이트
-
----
-
-## 🔴 긴급 수정 완료 (2026-01-19)
-
-다음 Critical 이슈들이 해결되었습니다:
-
-| 이슈 | 상태 | 해결 방법 |
-|------|------|----------|
-| 캐릭터 생성 계급 선택 불가 | ✅ 완료 | `AttributeSelectionControl` Postfix 패치로 전환 |
-| 더블 닷/닷 누락 | ✅ 완료 | `CombineWithLevelText()`에 불렛 자동 추가 |
-| 평판 영어 표시 | ✅ 완료 | 색상 태그 제거 + `factions.json` 확장 |
-| 계급명 영문 혼용 | ✅ 완료 | Castes JSON 영문 괄호 제거 |
-| 속성 분배 화면 영문 | ✅ 완료 | 속성명/툴팁/포인트 전체 한글화 |
-| 브레드크럼 영문 계급명 | ✅ 완료 (ERR-017) | StructureTranslator 추가 |
-| 속성 툴팁 빈값 | ✅ 완료 (ERR-017) | 정규식 패턴 수정 |
-| 속성 설명 영문 | ✅ 완료 (ERR-017) | JSON 키 전체 문장으로 업데이트 |
-
-자세한 내용: `05_ERROR_LOG.md` (ERR-008 ~ ERR-017), `04_CHANGELOG.md`
-
----
-
-## 📋 문서 시스템 연동
-
-### 연동 구조
-```
-10_DEVELOPMENT_GUIDE.md (불변 참조)
-          ↓
-03_TODO.md (이 문서 - 동적 추적)
-          ↓
-04_CHANGELOG.md (완료된 작업 기록)
-          ↓
-05_ERROR_LOG.md (에러/이슈 추적)
-```
-
-### 상태 표기법
-| 표시  | 의미    | 설명                    |
-| ----- | ------- | ----------------------- |
-| `[ ]` | 미시작  | 아직 시작하지 않은 작업 |
-| `[/]` | 진행 중 | 현재 작업 중인 항목     |
-| `[x]` | 완료    | 완료된 항목 (날짜 기록) |
-| `[-]` | 보류    | 일시 중단된 작업        |
-
-### 업데이트 규칙
-1. **작업 시작 시**: `[ ]` → `[/]` 변경, 시작일 기록
-2. **작업 완료 시**: `[/]` → `[x]` 변경, 완료일 기록
-3. **검증**: 작업 완료 후 `python3 tools/project_tool.py` 실행
-4. **Phase 완료 시**: 완료 항목을 `03_CHANGELOG.md`로 이동
-
----
-
-## 📊 전체 진행 현황 요약
-
-| Phase               | 완료  | 진행 중 | 미시작 | 완료율 |
-| ------------------- | ----- | ------- | ------ | ------ |
-| Phase 1: 안정화     | 6     | 0       | 0      | 100%   |
-| Phase 2: 게임플레이 | 1     | 1       | 2      | 25%    |
-| Phase 3: 최적화     | 0     | 0       | 5      | 0%     |
-| Phase 4: 커뮤니티   | 0     | 0       | 3      | 0%     |
-| **합계**            | **7** | **1**   | **10** | **39%** |
-
----
-
-## ⚠️ 반복 실수 방지 체크리스트
-
-> 작업 전 반드시 확인!
-
-### 데이터 필드 번역 시 주의사항
-- [ ] 게임 원본 코드에서 해당 필드를 `Substring()`, `Split()`, `IndexOf()` 등으로 가공하는지 확인
-- [ ] 가공하는 경우: 해당 필드 직접 번역 금지! UI 표시 시점에 Postfix 패치 사용
-- [ ] 가공하지 않는 경우: 직접 번역 가능
-
-### 알려진 위험 필드 목록
-| 클래스 | 필드 | 가공 방식 | 대응 방법 |
-|--------|------|----------|----------|
-| `AttributeDataElement` | `Attribute` | `Substring(0, 3)` | `AttributeSelectionControl.Updated()` Postfix |
-| (추가 발견 시 기록) | | | |
-
-### Player.log 확인 필수 케이스
-- 캐릭터 생성 화면에서 다음 진행 불가
-- UI에서 텍스트가 비정상 표시
-- 특정 화면에서 크래시 발생
-
----
-
-# Phase 1: 안정화 (Stabilization)
-
-**기간**: 2주 | **우선순위**: 🔴 높음 | **목표**: 현재 기능 완성도 100% 달성
-
----
-
-## P1-01: 인벤토리 "*All" 필터 번역 🔴
-
-### 기본 정보
-| 항목          | 내용                                          |
-| ------------- | --------------------------------------------- |
-| **상태**      | `[x]` 완료 (2026-01-16)                     |
-| **우선순위**  | 🔴 높음                                        |
-| **예상 시간** | 2시간                                         |
-| **담당 파일** | `Scripts/02_Patches/10_UI/02_10_07_Inventory.cs` |
-| **시작일**    | 2026-01-16                                    |
-| **완료일**    | 2026-01-16                                    |
-
-### 문제 상세
-인벤토리 화면 상단의 필터 바에서 "*All" 텍스트가 영어로 표시됨.
-다른 필터 카테고리(Weapons, Armor, Tools 등)도 함께 확인 필요.
-
-### 작업 체크리스트
-- [ ] `InventoryAndEquipmentStatusScreen.cs` 소스 분석
-- [ ] `UpdateViewFromData` 메서드 내 필터 바 로직 확인
-- [ ] FilterBar 컴포넌트 접근 방법 조사 (Traverse 또는 직접 참조)
-- [ ] "*All" → "전체" 변환 패치 구현
-- [ ] 다른 필터 카테고리 확인 및 번역
-  - [ ] Weapons → 무기
-  - [ ] Armor → 방어구
-  - [ ] Tools → 도구
-  - [ ] 기타...
-- [ ] 필터 클릭 시 정상 동작 테스트
-
-### 완료 기준
-- [ ] 필터 바에서 "*All"이 "전체"로 표시됨
-- [ ] 모든 필터 카테고리가 한글로 표시됨
-- [ ] 필터 클릭 시 정상 동작
-- [ ] `project_tool.py` 검증 통과
-
-### 관련 파일
-```
-Scripts/02_Patches/UI/02_10_07_Inventory.cs
-Assets/core_source/_GameSource/Qud.UI/InventoryAndEquipmentStatusScreen.cs
-Assets/core_source/_GameSource/XRL.UI/InventoryScreen.cs
-```
-
-### 참조
-- 개발 가이드: Part K (화면-에셋 맵핑) - 인벤토리 섹션
-
----
-
-## P1-02: Options 빈 값 50개 번역 🟡
-
-### 기본 정보
-| 항목          | 내용                                 |
-| ------------- | ------------------------------------ |
-| **상태**      | `[x]` 완료 (2026-01-16)             |
-| **우선순위**  | 🟡 중간                               |
-| **예상 시간** | 4시간                                |
-| **담당 파일** | `LOCALIZATION/glossary_options.json` |
-| **시작일**    | 2026-01-16                                    |
-| **완료일**    | 2026-01-16                                    |
-
-### 문제 상세
-`project_tool.py` 실행 결과, `glossary_options.json`에 약 50개의 빈 번역 값 존재.
-설정 화면에서 해당 옵션들이 영어로 표시됨.
-
-### 작업 체크리스트
-- [ ] `python3 tools/project_tool.py` 실행하여 빈 값 목록 추출
-- [ ] 빈 값 목록을 별도 파일로 저장
-- [ ] `Assets/StreamingAssets/Base/Options.xml`에서 원문 확인
-- [ ] 각 옵션별 한글 번역 작성
-  - [ ] Display 카테고리 (~15개)
-  - [ ] Audio 카테고리 (~10개)
-  - [ ] Controls 카테고리 (~15개)
-  - [ ] Gameplay 카테고리 (~10개)
-- [ ] JSON 업데이트
-- [ ] 설정 화면에서 표시 확인
-
-### 완료 기준
-- [ ] `project_tool.py` 출력: "빈 번역 항목: 0개"
-- [ ] 설정 화면에서 모든 옵션 한글 표시
-- [ ] 옵션 설명(HelpText) 포함 번역
-
-### 관련 파일
-```
-LOCALIZATION/glossary_options.json
-Assets/StreamingAssets/Base/Options.xml
-Scripts/02_Patches/UI/02_10_01_Options.cs
+python3 tools/project_tool.py   # Required!
+bash tools/sync-and-deploy.sh   # Deploy
 ```
 
 ---
 
-## P1-03: 조사 색상 태그 내부 지원 🟡
-
-### 기본 정보
-| 항목          | 내용                                   |
-| ------------- | -------------------------------------- |
-| **상태**      | `[x]` 완료 (2026-01-16)                |
-| **우선순위**  | 🟡 중간                                 |
-| **예상 시간** | 3시간                                  |
-| **담당 파일** | `Scripts/00_Core/00_00_99_QudKREngine.cs` |
-| **시작일**    | 2026-01-16                                    |
-| **완료일**    | 2026-01-16                                    |
-
-### 문제 상세
-현재 조사 처리 시 색상 태그 내부의 한글을 인식하지 못함.
-예: `"{{w|검}}{을/를}"` → 현재: `"{{w|검}}{을/를}"` (변환 안됨)
-기대: `"{{w|검}}을"` (받침 인식 후 변환)
-
-### 작업 체크리스트
-- [ ] 현재 `ResolveJosa()` 로직 분석
-- [ ] 색상 태그 패턴 정규식 작성: `{{[a-zA-Z]\|([^}]+)}}`
-- [ ] `GetLastHangul()` 메서드 구현
-  - [ ] 색상 태그 내부 텍스트 추출
-  - [ ] 마지막 한글 문자 반환
-  - [ ] 태그가 아닌 경우 기존 로직 유지
-- [ ] 기존 조사 처리와 통합
-- [ ] 다양한 케이스 테스트
-  - [ ] `{{w|검}}{을/를}` → `{{w|검}}을`
-  - [ ] `{{y|사과}}{을/를}` → `{{y|사과}}를`
-  - [ ] `검{을/를}` → `검을` (기존 동작 유지)
-
-### 완료 기준
-- [ ] `"{{w|검}}{을/를}"` → `"{{w|검}}을"` 정상 변환
-- [ ] 기존 `"검{을/를}"` → `"검을"` 정상 동작 유지
-- [ ] 여러 색상 태그 연속 사용 시 정상 동작
-
-### 관련 파일
-```
-Scripts/00_Core/00_99_QudKREngine.cs
-```
-
-### 기술 상세
-```csharp
-// 구현 예시
-private static char? GetLastHangul(string text)
-{
-    // 1. 색상 태그 패턴으로 마지막 태그 찾기
-    var match = Regex.Match(text, @"\{\{[a-zA-Z]\|([^}]+)\}\}$");
-    if (match.Success)
-    {
-        string innerText = match.Groups[1].Value;
-        // innerText의 마지막 한글 반환
-    }
-    
-    // 2. 태그가 없으면 text의 마지막 한글 반환
-    return GetLastHangulChar(text);
-}
-```
-
----
-
-## P1-04: 변이 설명 5개 누락 번역 🟢
-
-### 기본 정보
-| 항목          | 내용                                   |
-| ------------- | -------------------------------------- |
-| **상태**      | `[x]` 완료 (2026-01-16)                |
-| **우선순위**  | 🟢 낮음                                 |
-| **예상 시간** | 1시간                                  |
-| **담당 파일** | `LOCALIZATION/glossary_mutations.json` |
-| **시작일**    | 2026-01-16                                    |
-| **완료일**    | 2026-01-16                                    |
-
-### 문제 상세
-`glossary_mutations.json`에 5개의 변이 설명이 누락됨.
-현재 완성도: 96.5% (143/148)
-
-### 작업 체크리스트
-- [ ] `python3 tools/project_tool.py` 실행하여 빈 값 확인
-- [ ] `Assets/StreamingAssets/Base/Mutations.xml`에서 원문 확인
-- [ ] 누락된 5개 변이 식별
-- [ ] 한글 번역 작성
-- [ ] JSON 업데이트
-- [ ] 캐릭터 생성 화면에서 표시 확인
-
-### 완료 기준
-- [ ] `glossary_mutations.json` 완성도 100%
-- [ ] 캐릭터 생성 시 모든 변이 설명 한글 표시
-
-### 관련 파일
-```
-LOCALIZATION/glossary_mutations.json
-Assets/StreamingAssets/Base/Mutations.xml
-```
-
----
-
-## P1-05: 변이 JSON 구조 개편 및 전체 번역 ✅
-
-### 기본 정보
-| 항목          | 내용                                   |
-| ------------- | -------------------------------------- |
-| **상태**      | `[x]` 완료                              |
-| **우선순위**  | 🔴 높음                                 |
-| **예상 시간** | 12시간                                 |
-| **담당 파일** | `LOCALIZATION/GAMEPLAY/MUTATIONS/**/*.json` |
-| **시작일**    | 2026-01-17                             |
-| **완료일**    | 2026-01-22                             |
-
-### 문제 상세
-기존 변이 데이터의 JSON 구조(`descriptions` 객체 혼합)가 유지보수에 불리하고, C# 소스의 줄바꿈(`\n`) 처리가 미흡함.
-
-### 작업 체크리스트
-- [x] MutationTranslator 유틸리티 구현 (자동 초기화, 다국어 지원)
-- [x] JSON 구조 개편 (description + leveltext 배열)
-- [x] 파일 정리 (중복 제거, 경로 수정)
-- [x] 샘플 3종 번역 및 검증 (Stinger, Cold-Blooded, Carnivorous)
-- [x] 전체 변이 번역 완료
-  - **Physical Mutations**: 31개 완료
-  - **Mental Mutations**: 27개 완료
-  - **Physical Defects**: 12개 완료
-  - **Mental Defects**: 8개 완료
-  - **Morphotypes**: 3개 완료 (Chimera, Esper는 leveltext 없음 - 의도된 것)
-- [x] 오류 검증 및 인게임 테스트
-
-### 완료 기준
-- [x] 모든 변이 파일이 표준 JSON 형식을 따름 (검증 완료)
-- [x] 81개 모든 변이가 한글로 정상 표시됨
-
-### 관련 파일
-- `Scripts/00_Core/00_Utilities/MutationTranslator.cs`
-- `LOCALIZATION/MUTATIONS/**/*.json`
-
-
----
-
-# Phase 2: 게임플레이 (Gameplay)
-
-**기간**: 2~4주 | **우선순위**: 🟡 중간 | **목표**: 실제 게임 플레이 요소 번역
-
----
-
-## P2-01: 메시지 로그 패치 확장 🟡
-
-### 기본 정보
-| 항목          | 내용                                                 |
-| ------------- | ---------------------------------------------------- |
-| **상태**      | `[ ]` 미시작                                         |
-| **우선순위**  | 🟡 중간                                               |
-| **예상 시간** | 8시간                                                |
-| **담당 파일** | 신규: `Scripts/02_Patches/UI/02_10_XX_MessageLog.cs` |
-| **시작일**    | -                                                    |
-| **완료일**    | -                                                    |
-
-### 문제 상세
-게임 플레이 중 표시되는 메시지 로그(전투, 아이템 획득, 이동 등)가 대부분 영어로 표시됨.
-`XRL.Messages.MessageQueue` 시스템 패치 필요.
-
-### 작업 체크리스트
-- [ ] `XRL.Messages.MessageQueue` 클래스 분석
-- [ ] `AddPlayerMessage`, `Add` 메서드 시그니처 확인
-- [ ] 메시지 패턴 분류
-  - [ ] 공격 메시지: "You attack the..."
-  - [ ] 피격 메시지: "The ... attacks you"
-  - [ ] 획득 메시지: "You pick up..."
-  - [ ] 이동 메시지: "You move..."
-  - [ ] 상태 메시지: "You are..."
-- [ ] 정규식 기반 문장 구조 인식 구현
-- [ ] 조사(Josa) 자동 적용 통합
-- [ ] `glossary_messages.json` 신규 생성
-- [ ] 주요 메시지 패턴 번역
-
-### 완료 기준
-- [ ] 전투 메시지 80% 이상 한글화
-- [ ] 아이템 관련 메시지 한글화
-- [ ] 영문 메시지 비율 20% 미만
-
-### 관련 파일
-```
-Assets/core_source/_GameSource/XRL.Messages/MessageQueue.cs
-Scripts/02_Patches/UI/02_10_XX_MessageLog.cs (신규)
-LOCALIZATION/glossary_messages.json (신규)
-```
-
----
-
-## P2-02: ObjectBlueprints 아이템 추출 ✅
-
-### 기본 정보
-| 항목          | 내용                           |
-| ------------- | ------------------------------ |
-| **상태**      | `[x]` 완료                     |
-| **우선순위**  | 🟡 중간                         |
-| **예상 시간** | 4시간                          |
-| **담당 파일** | `LOCALIZATION/OBJECTS/**/*.json` |
-| **시작일**    | 2026-01-22                     |
-| **완료일**    | 2026-01-22                     |
-
-### 작업 체크리스트
-- [x] `Assets/StreamingAssets/Base/ObjectBlueprints/` 구조 분석
-- [x] Object Translator 시스템 구현 (`Scripts/02_Patches/20_Objects/`)
-- [x] 카테고리별 분류
-  - [x] Creatures (생물): humanoids, animals, insects, plants, robots, oozes, npcs
-  - [x] Items (아이템): weapons/melee, weapons/ranged, armor, consumables, artifacts, tools
-
-### 완료 기준
-- [x] 51개 JSON 파일, 300+ 항목 구조화
-- [x] 카테고리별 정리된 구조
-
----
-
-## P2-03: 아이템 이름/설명 번역 🟡
-
-### 기본 정보
-| 항목          | 내용                                      |
-| ------------- | ----------------------------------------- |
-| **상태**      | `[/]` 진행 중                             |
-| **우선순위**  | 🟡 중간                                    |
-| **예상 시간** | 20시간                                    |
-| **담당 파일** | `LOCALIZATION/OBJECTS/**/*.json`          |
-| **시작일**    | 2026-01-22                                |
-| **완료일**    | -                                         |
-
-### 작업 체크리스트
-- [x] P2-02 완료 후 진행
-- [x] DisplayNamePatch 구현 (`02_20_01_DisplayNamePatch.cs`)
-- [x] DescriptionPatch 구현 (`02_20_02_DescriptionPatch.cs`)
-- [/] 번역 진행 중 (일부 생물/아이템 번역 완료)
-- [ ] 전체 아이템 번역 완료
-
-### 완료 기준
-- [ ] 300+ 아이템 번역 완료
-- [ ] 인벤토리에서 아이템 이름 한글 표시
-- [ ] 아이템 설명(Look) 한글 표시
-
----
-
-## P2-04: NPC 대화 추출 및 번역 🟡
-
-### 기본 정보
-| 항목          | 내용                                                             |
-| ------------- | ---------------------------------------------------------------- |
-| **상태**      | `[ ]` 미시작                                                     |
-| **우선순위**  | 🟡 중간                                                           |
-| **예상 시간** | 16시간                                                           |
-| **담당 파일** | 신규: `tools/extract_conversations.py`, `glossary_dialogue.json` |
-| **시작일**    | -                                                                |
-| **완료일**    | -                                                                |
-
-### 작업 체크리스트
-- [ ] `Conversations.xml` (647KB) 파싱 스크립트 작성
-- [ ] NPC별 대화 추출
-- [ ] 대화 구조 분석 (Text, Choice, Condition)
-- [ ] 주요 퀘스트 관련 NPC 대화 우선 번역
-  - [ ] Joppa 마을 NPC
-  - [ ] 주요 상인
-  - [ ] 퀘스트 시작 NPC
-- [ ] `glossary_dialogue.json` 생성
-- [ ] ConversationUI 패치 확장
-
-### 완료 기준
-- [ ] 주요 NPC 대화 번역 (우선순위 상위 20%)
-- [ ] 대화 UI에서 한글 표시
-- [ ] 선택지(Choice) 한글 표시
-
----
-
-# Phase 3: 최적화 (Optimization)
-
-**기간**: 4~6주 | **우선순위**: 🟢 낮음 | **목표**: 성능 및 유지보수성 개선
-
----
-
-## P3-01: 번역 캐싱 구현 🟢
-
-### 기본 정보
-| 항목          | 내용                                         |
-| ------------- | -------------------------------------------- |
-| **상태**      | `[ ]` 미시작                                 |
-| **예상 시간** | 4시간                                        |
-| **담당 파일** | `Scripts/00_Core/00_01_TranslationEngine.cs` |
-
-### 작업 체크리스트
-- [ ] `Dictionary<string, string> _cache` 추가
-- [ ] `TryTranslate` 메서드 캐시 로직 추가
-- [ ] 캐시 히트율 로깅 추가
-- [ ] 캐시 사이즈 제한 (LRU 또는 고정 크기)
-- [ ] 메모리 사용량 측정
-
-### 완료 기준
-- [ ] 캐시 히트율 90% 이상
-- [ ] 메모리 증가 10MB 미만
-
----
-
-## P3-02: 누락 용어 자동 수집 🟢
-
-### 기본 정보
-| 항목          | 내용                                         |
-| ------------- | -------------------------------------------- |
-| **상태**      | `[ ]` 미시작                                 |
-| **예상 시간** | 3시간                                        |
-| **담당 파일** | `Scripts/00_Core/00_01_TranslationEngine.cs` |
-
-### 작업 체크리스트
-- [ ] `HashSet<string> _missingTerms` 추가
-- [ ] 번역 실패 시 수집 로직 구현
-- [ ] `DumpMissingTerms()` 메서드 구현
-- [ ] DEBUG 빌드 조건부 컴파일
-- [ ] 파일 출력 기능
-
-### 완료 기준
-- [ ] 미번역 텍스트 자동 수집 기능 동작
-- [ ] 수집 결과 파일 출력
-
----
-
-## P3-03: TMP_Text 조건부 패치 🟢
-
-### 기본 정보
-| 항목          | 내용                                         |
-| ------------- | -------------------------------------------- |
-| **상태**      | `[ ]` 미시작                                 |
-| **예상 시간** | 2시간                                        |
-| **담당 파일** | `Scripts/02_Patches/UI/02_10_00_GlobalUI.cs` |
-
-### 작업 체크리스트
-- [ ] 한글 포함 여부 체크 함수 추가
-- [ ] 숫자/기호만 포함 체크
-- [ ] 이미 번역된 텍스트 스킵 로직
-- [ ] 성능 측정 비교
-
-### 완료 기준
-- [ ] 불필요한 번역 시도 50% 감소
-- [ ] 성능 개선 측정 결과 문서화
-
----
-
-## P3-04: 성능 프로파일링 🟢
-
-### 기본 정보
-| 항목          | 내용         |
-| ------------- | ------------ |
-| **상태**      | `[ ]` 미시작 |
-| **예상 시간** | 4시간        |
-| **담당 파일** | 분석 리포트  |
-
-### 작업 체크리스트
-- [ ] TMP_Text 패치 소요 시간 측정
-- [ ] LocalizationManager 검색 성능 측정
-- [ ] 메모리 사용량 분석
-- [ ] 병목 지점 식별
-- [ ] 최적화 권고사항 문서화
-
-### 완료 기준
-- [ ] 성능 리포트 작성 완료
-
----
-
-## P3-05: 글로벌 용어 충돌 해결 (Conflict Resolution) 🔴
-
-### 기본 정보
-| 항목          | 내용                                 |
-| ------------- | ------------------------------------ |
-| **상태**      | `[ ]` 미시작                         |
-| **우선순위**  | 🔴 높음                               |
-| **예상 시간** | 12시간                               |
-| **담당 파일** | `LOCALIZATION/*.json`, `integrity_report.md` |
-| **시작일**    | -                                    |
-| **완료일**    | -                                    |
-
-### 문제 상세
-`integrity_report.md` 결과, 용어집 간 100건 이상의 번역 불일치 발견.
-특히 `glossary_skills.json`과 `glossary_powers.json` 간의 중복이 심각함.
-
-### 작업 체크리스트
-- [ ] `integrity_report.md` 기반 전수 조사
-- [ ] 스킬과 능력 간의 소유권(Ownership) 정리
-  - 명칭(Name)은 `powers`로, 효과 설명(Desc)은 전문화된 카테고리로 통합 고려
-- [ ] 동일 영문 키에 대한 중복 번역 제거 (Deduplication)
-- [ ] 우선순위가 높은 용어집(Engine Core > Patches > Data) 정의 및 적용
-- [ ] 정규화 충돌 해결 (Tagged vs Untagged 일치화)
-
-### 완료 기준
-- [ ] `integrity_report.md`의 "Value Conflicts" 항목 0건 달성
-- [ ] `integrity_report.md`의 "Value Conflicts" 항목 0건 달성
-- [ ] 중복 항목 제거를 통한 메모리 사용량 최적화
-
----
-
-## P3-06: 개발 도구 정비 및 스크립트 통합 🔴
-
-### 기본 정보
-| 항목          | 내용                                 |
-| ------------- | ------------------------------------ |
-| **상태**      | `[ ]` 미시작                         |
-| **우선순위**  | 🔴 높음                               |
-| **예상 시간** | 4시간                                |
-| **담당 파일** | `tools/**/*.py`, `*.py`              |
-
-### 문제 상세
-루트 디렉토리에 약 20개의 일회성 Python 스크립트가 난립해 있으며, `tools/` 폴더의 기존 유틸리티를 재사용하지 않고 중복 구현함. 이로 인해 유지보수가 어렵고 프로젝트 구조가 지저분해짐.
-
-### 원인 분석
-1. **일회성 접근**: 장기적 유지보수보다 당장의 문제 해결을 위한 "Quick & Dirty" 스크립트 작성
-2. **재사용성 부재**: `tools/` 내의 기존 모듈(JSON 처리 등)을 활용하지 않음
-
-### 작업 체크리스트
-- [ ] 루트 디렉토리의 모든 `.py` 파일 분석
-- [ ] `tools/legacy/` 폴더 생성 및 일회성 스크립트 이동
-- [ ] 유용한 기능(Mutation 변환 등)은 `tools/mutation_utils.py` 등으로 통합
-- [ ] `convert_mutation_json.py`, `add_ko_fields.py` 등을 통합 도구화
-- [ ] `DEVELOPMENT_GUIDE.md`에 스크립트 작성 규칙 명시
-
-### 완료 기준
-- [ ] 루트 디렉토리에 `.py` 파일이 없어야 함 (entry point 제외)
-- [ ] 모든 유틸리티가 `tools/` 내에서 체계적으로 관리됨
-- [ ] 중복된 로직(파일 입출력 등) 제거
-
----
-
-# Phase 4: 커뮤니티 (Community)
-
-**기간**: 6주+ | **우선순위**: ⚪ 선택 | **목표**: 커뮤니티 기여 환경 구축
-
----
-
-## P4-01: 웹 기반 번역 에디터 ⚪
-
-### 기본 정보
-| 항목     | 내용                                     |
-| -------- | ---------------------------------------- |
-| **상태** | `[ ]` 미시작                             |
-| **설명** | Crowdin/Weblate 연동 또는 자체 도구 개발 |
-
----
-
-## P4-02: Steam Workshop 자동 배포 ⚪
-
-### 기본 정보
-| 항목     | 내용                                 |
-| -------- | ------------------------------------ |
-| **상태** | `[ ]` 미시작                         |
-| **설명** | GitHub Actions + Steamworks CLI 연동 |
-
----
-
-## P4-03: 버전 호환성 자동 검증 ⚪
-
-### 기본 정보
-| 항목     | 내용                                 |
-| -------- | ------------------------------------ |
-| **상태** | `[ ]` 미시작                         |
-| **설명** | 게임 업데이트 시 패치 대상 자동 확인 |
-
----
-
-# 📝 작업 요청 템플릿
-
-AI 에이전트에게 작업 요청 시 사용:
-
-```markdown
-## 작업 요청
-**TODO ID**: P1-01
-**작업명**: 인벤토리 "*All" 필터 번역
-
-## 현재 상태
-- [ ] 미시작
-
-## 참조 문서
-- 01_DEVELOPMENT_GUIDE.md: Part K (화면-에셋 맵핑)
-- 04_ERROR_LOG.md: 관련 이슈 확인
-
-## 완료 후 요청
-1. TODO 문서의 해당 항목 상태를 완료로 업데이트
-2. 03_CHANGELOG.md에 완료 기록 추가
-3. 에러 발생 시 04_ERROR_LOG.md에 기록
-```
-
----
-
-*TODO 버전 2.0 | 2026-01-16 | 문서 통합 완료*
+*Full archive: _archive/03_TODO_full_20260122.md*
