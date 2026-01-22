@@ -252,32 +252,33 @@ namespace QudKorean.Objects
         {
             if (_modDirectory != null) return _modDirectory;
             
-            // Use LocalizationManager's method (read-only reuse)
             try
             {
-                // Find the mod directory by looking for our LOCALIZATION folder
-                string assemblyPath = System.Reflection.Assembly.GetExecutingAssembly().Location;
-                string modDir = Path.GetDirectoryName(assemblyPath);
-                
-                // Walk up to find LOCALIZATION/OBJECTS folder
-                while (!string.IsNullOrEmpty(modDir))
+                // Use ModManager to get our mod's path - this is the official way
+                var modInfo = XRL.ModManager.GetMod("KoreanLocalization");
+                if (modInfo != null && !string.IsNullOrEmpty(modInfo.Path))
                 {
-                    string objectsPath = Path.Combine(modDir, "LOCALIZATION", "OBJECTS");
+                    string objectsPath = Path.Combine(modInfo.Path, "LOCALIZATION", "OBJECTS");
                     if (Directory.Exists(objectsPath))
                     {
-                        _modDirectory = modDir;
+                        _modDirectory = modInfo.Path;
+                        UnityEngine.Debug.Log($"{LOG_PREFIX} Found mod directory via ModManager: {_modDirectory}");
                         return _modDirectory;
                     }
-                    modDir = Path.GetDirectoryName(modDir);
                 }
                 
-                // Fallback: try common mod locations
+                // Fallback: try common mod locations (macOS and Windows)
                 string[] possiblePaths = new[]
                 {
-                    Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), 
-                        "Caves of Qud", "Mods", "QudKorean"),
+                    // macOS - Unity standalone
                     Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile),
-                        "Library", "Application Support", "Steam", "steamapps", "workshop", "content", "333640")
+                        "Library", "Application Support", "com.FreeholdGames.CavesOfQud", "Mods", "KoreanLocalization"),
+                    // Windows - Steam
+                    Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData),
+                        "..", "LocalLow", "Freehold Games", "CavesOfQud", "Mods", "KoreanLocalization"),
+                    // Windows - GOG
+                    Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile),
+                        "AppData", "LocalLow", "Freehold Games", "CavesOfQud", "Mods", "KoreanLocalization")
                 };
                 
                 foreach (var path in possiblePaths)
@@ -285,9 +286,12 @@ namespace QudKorean.Objects
                     if (Directory.Exists(Path.Combine(path, "LOCALIZATION", "OBJECTS")))
                     {
                         _modDirectory = path;
+                        UnityEngine.Debug.Log($"{LOG_PREFIX} Found mod directory via fallback: {_modDirectory}");
                         return _modDirectory;
                     }
                 }
+                
+                UnityEngine.Debug.LogError($"{LOG_PREFIX} Could not find mod directory in any known location");
             }
             catch (Exception ex)
             {
