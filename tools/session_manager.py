@@ -1,0 +1,350 @@
+#!/usr/bin/env python3
+"""
+Session Manager for AI Context Handoff
+Automatically saves and restores session state between chat sessions.
+
+Usage:
+  python3 tools/session_manager.py save    # Save current session state
+  python3 tools/session_manager.py load    # Load previous session state (for new chat)
+  python3 tools/session_manager.py status  # Show current status
+"""
+
+import os
+import sys
+import json
+import subprocess
+from datetime import datetime
+from pathlib import Path
+
+# Paths
+PROJECT_ROOT = Path(__file__).parent.parent
+SESSION_FILE = PROJECT_ROOT / "Docs" / "SESSION_STATE.md"
+SESSION_JSON = PROJECT_ROOT / "tools" / "session_state.json"
+TODO_FILE = PROJECT_ROOT / "Docs" / "en" / "reference" / "03_TODO.md"
+CHANGELOG_FILE = PROJECT_ROOT / "Docs" / "en" / "reference" / "04_CHANGELOG.md"
+ERROR_LOG = PROJECT_ROOT / "Docs" / "en" / "reference" / "05_ERROR_LOG.md"
+
+
+def get_git_status():
+    """Get current git status summary."""
+    try:
+        result = subprocess.run(
+            ["git", "status", "--short"],
+            cwd=PROJECT_ROOT,
+            capture_output=True,
+            text=True
+        )
+        lines = result.stdout.strip().split('\n') if result.stdout.strip() else []
+        return {
+            "uncommitted_files": len(lines),
+            "files": lines[:10]  # First 10 files
+        }
+    except:
+        return {"uncommitted_files": 0, "files": []}
+
+
+def get_recent_commits(n=5):
+    """Get recent commit messages."""
+    try:
+        result = subprocess.run(
+            ["git", "log", f"-{n}", "--oneline"],
+            cwd=PROJECT_ROOT,
+            capture_output=True,
+            text=True
+        )
+        return result.stdout.strip().split('\n') if result.stdout.strip() else []
+    except:
+        return []
+
+
+def get_todo_summary():
+    """Extract key items from TODO."""
+    if not TODO_FILE.exists():
+        return {"next_tasks": [], "in_progress": []}
+    
+    content = TODO_FILE.read_text()
+    
+    # Find "Next Session Required" section
+    next_tasks = []
+    in_progress = []
+    
+    lines = content.split('\n')
+    in_next_section = False
+    in_backlog = False
+    
+    for line in lines:
+        if "## Next Session Required" in line:
+            in_next_section = True
+            continue
+        if "## Backlog" in line:
+            in_next_section = False
+            in_backlog = True
+            continue
+        if line.startswith("## ") and in_next_section:
+            in_next_section = False
+        if line.startswith("## ") and in_backlog:
+            in_backlog = False
+            
+        if in_next_section and line.strip().startswith("###"):
+            next_tasks.append(line.strip().replace("### ", ""))
+        
+        if in_backlog and "| " in line and "WIP" in line:
+            in_progress.append(line.strip())
+    
+    return {
+        "next_tasks": next_tasks[:5],
+        "in_progress": in_progress[:3]
+    }
+
+
+def get_recent_changes():
+    """Extract recent changes from CHANGELOG."""
+    if not CHANGELOG_FILE.exists():
+        return []
+    
+    content = CHANGELOG_FILE.read_text()
+    changes = []
+    
+    lines = content.split('\n')
+    for i, line in enumerate(lines):
+        if line.startswith("### ["):
+            # Get the header and next few lines
+            changes.append(line)
+            if len(changes) >= 3:
+                break
+    
+    return changes
+
+
+def get_known_errors():
+    """Extract unresolved errors from ERROR_LOG."""
+    if not ERROR_LOG.exists():
+        return []
+    
+    content = ERROR_LOG.read_text()
+    errors = []
+    
+    # Look for UNRESOLVED errors
+    lines = content.split('\n')
+    for line in lines:
+        if "UNRESOLVED" in line or "[ ]" in line:
+            errors.append(line.strip())
+            if len(errors) >= 5:
+                break
+    
+    return errors
+
+
+def count_translations():
+    """Count translation entries."""
+    localization_dir = PROJECT_ROOT / "LOCALIZATION"
+    total = 0
+    
+    for json_file in localization_dir.rglob("*.json"):
+        try:
+            with open(json_file, 'r', encoding='utf-8') as f:
+                data = json.load(f)
+                # Count non-meta entries
+                total += sum(1 for k in data.keys() if not k.startswith('_'))
+        except:
+            pass
+    
+    return total
+
+
+def save_session():
+    """Save current session state."""
+    state = {
+        "timestamp": datetime.now().isoformat(),
+        "git": get_git_status(),
+        "recent_commits": get_recent_commits(),
+        "todo": get_todo_summary(),
+        "recent_changes": get_recent_changes(),
+        "known_errors": get_known_errors(),
+        "translation_count": count_translations()
+    }
+    
+    # Save JSON
+    with open(SESSION_JSON, 'w', encoding='utf-8') as f:
+        json.dump(state, f, ensure_ascii=False, indent=2)
+    
+    # Generate Markdown
+    md_content = generate_session_markdown(state)
+    SESSION_FILE.write_text(md_content)
+    
+    print(f"✅ Session state saved to:")
+    print(f"   - {SESSION_FILE}")
+    print(f"   - {SESSION_JSON}")
+    
+    return state
+
+
+def generate_session_markdown(state):
+    """Generate human-readable session state."""
+    md = f"""# 🔄 Session State (Auto-generated)
+
+> **Last Updated**: {state['timestamp']}
+> **Copy this to new chat for context handoff**
+
+---
+
+## 📊 Current Status
+
+| Metric | Value |
+|--------|-------|
+| Translation Entries | {state['translation_count']} |
+| Uncommitted Files | {state['git']['uncommitted_files']} |
+
+## 🎯 Next Tasks (from TODO)
+
+"""
+    
+    if state['todo']['next_tasks']:
+        for task in state['todo']['next_tasks']:
+            md += f"- {task}\n"
+    else:
+        md += "- No pending tasks\n"
+    
+    md += "\n## 📝 Recent Changes\n\n"
+    
+    if state['recent_changes']:
+        for change in state['recent_changes']:
+            md += f"{change}\n"
+    else:
+        md += "- No recent changes\n"
+    
+    md += "\n## 🔀 Recent Commits\n\n```\n"
+    for commit in state['recent_commits']:
+        md += f"{commit}\n"
+    md += "```\n"
+    
+    if state['known_errors']:
+        md += "\n## ⚠️ Known Issues\n\n"
+        for error in state['known_errors']:
+            md += f"- {error}\n"
+    
+    if state['git']['uncommitted_files'] > 0:
+        md += "\n## 📁 Uncommitted Files\n\n```\n"
+        for f in state['git']['files']:
+            md += f"{f}\n"
+        md += "```\n"
+    
+    md += """
+---
+
+## 🚀 Quick Start Commands
+
+```bash
+# Check current status
+python3 tools/session_manager.py status
+
+# After work, save session
+python3 tools/session_manager.py save
+
+# Validate and commit
+python3 tools/project_tool.py && bash tools/quick-save.sh
+```
+
+## 📋 Handoff Prompt
+
+Copy and paste this to start a new chat session:
+
+```
+이전 세션에서 이어서 작업합니다. SESSION_STATE.md를 읽고 맥락을 파악한 후 다음 작업을 진행해주세요.
+```
+"""
+    
+    return md
+
+
+def load_session():
+    """Load and display previous session state."""
+    if not SESSION_JSON.exists():
+        print("❌ No previous session found. Run 'save' first.")
+        return None
+    
+    with open(SESSION_JSON, 'r', encoding='utf-8') as f:
+        state = json.load(f)
+    
+    print("=" * 60)
+    print("📂 PREVIOUS SESSION STATE")
+    print("=" * 60)
+    print(f"Saved: {state['timestamp']}")
+    print(f"Translations: {state['translation_count']}")
+    print()
+    
+    print("🎯 Next Tasks:")
+    for task in state['todo']['next_tasks']:
+        print(f"  - {task}")
+    print()
+    
+    print("📝 Recent Changes:")
+    for change in state['recent_changes']:
+        print(f"  {change}")
+    print()
+    
+    print("🔀 Recent Commits:")
+    for commit in state['recent_commits']:
+        print(f"  {commit}")
+    
+    if state['known_errors']:
+        print()
+        print("⚠️ Known Issues:")
+        for error in state['known_errors']:
+            print(f"  - {error}")
+    
+    print("=" * 60)
+    
+    return state
+
+
+def show_status():
+    """Show current project status."""
+    print("=" * 60)
+    print("📊 CURRENT PROJECT STATUS")
+    print("=" * 60)
+    
+    # Translation count
+    count = count_translations()
+    print(f"Translation Entries: {count}")
+    
+    # Git status
+    git = get_git_status()
+    print(f"Uncommitted Files: {git['uncommitted_files']}")
+    
+    # Recent commits
+    print("\n🔀 Recent Commits:")
+    for commit in get_recent_commits(3):
+        print(f"  {commit}")
+    
+    # Next tasks
+    todo = get_todo_summary()
+    if todo['next_tasks']:
+        print("\n🎯 Next Tasks:")
+        for task in todo['next_tasks']:
+            print(f"  - {task}")
+    
+    print("=" * 60)
+
+
+def main():
+    if len(sys.argv) < 2:
+        print("Usage: python3 session_manager.py [save|load|status]")
+        sys.exit(1)
+    
+    command = sys.argv[1].lower()
+    
+    if command == "save":
+        save_session()
+    elif command == "load":
+        load_session()
+    elif command == "status":
+        show_status()
+    else:
+        print(f"Unknown command: {command}")
+        print("Available: save, load, status")
+        sys.exit(1)
+
+
+if __name__ == "__main__":
+    main()

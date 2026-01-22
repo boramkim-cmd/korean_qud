@@ -1,20 +1,33 @@
-폰트 이슈는 아닐건데 appleGothic 사용 해# Caves of Qud Korean Localization - AI Instructions
-# Version: 2.1 | Updated: 2026-01-22
+# Caves of Qud Korean Localization - AI Instructions
+# Version: 2.2 | Updated: 2026-01-22
 # This file is automatically read by GitHub Copilot at every session.
 # SSOT (Single Source of Truth) - AI_SESSION_START.md is deprecated
 
 ################################################################################
-# LAYER 0: SESSION START CHECKLIST (Read First!)
+# LAYER 0: SESSION HANDOFF (New Chat? Read This!)
 ################################################################################
 
-## 🚨 BEFORE STARTING ANY WORK, DO THIS:
-# 1. Read TODO for pending tasks and test requirements:
+## 🔄 IF CONTINUING FROM PREVIOUS SESSION:
+# 1. Read session state for context:
+#    cat Docs/SESSION_STATE.md
+# 2. Or run: python3 tools/session_manager.py load
+
+## 🚨 BEFORE STARTING ANY WORK:
+# 1. Read TODO for pending tasks:
 #    cat Docs/en/reference/03_TODO.md | head -150
 # 2. Read CHANGELOG for recent changes:
 #    cat Docs/en/reference/04_CHANGELOG.md | head -100
 # 3. Read ERROR_LOG for known issues:
 #    cat Docs/en/reference/05_ERROR_LOG.md | head -100
-# 4. Check if previous session has UNTESTED changes that need verification
+
+## ✅ BEFORE ENDING SESSION:
+# 1. Save session state for next chat:
+#    python3 tools/session_manager.py save
+# 2. Validate and commit:
+#    python3 tools/project_tool.py && bash tools/quick-save.sh
+
+## 📋 SESSION HANDOFF PROMPT (Copy to new chat):
+# "이전 세션에서 이어서 작업합니다. SESSION_STATE.md를 읽고 맥락을 파악한 후 다음 작업을 진행해주세요."
 
 ################################################################################
 # LAYER 0.5: LANGUAGE RULES (Highest Priority)
@@ -192,4 +205,5 @@
 # [ ] python3 tools/project_tool.py validation passed
 # [ ] Errors logged in Docs/en/reference/05_ERROR_LOG.md (if any)
 # [ ] Changes logged in Docs/en/reference/04_CHANGELOG.md
+# [ ] python3 tools/session_manager.py save (for next session handoff)
 # [ ] bash tools/sync-and-deploy.sh deployment complete
