@@ -62,14 +62,19 @@ namespace QudKRTranslation.Patches
             if (line == null) return;
             
             // Fix: Access context via Reflection (Traverse) to avoid CS1061 error
-            var go = Traverse.Create(line).Field("context").Field("data").Field("go").GetValue<GameObject>();
+            // CRITICAL: Force type explicitly to avoid ambiguity, or just use Traverse for properties
+            var goTraverse = Traverse.Create(line).Field("context").Field("data").Field("go");
+            var go = goTraverse.GetValue<UnityEngine.Object>(); // Get as base object just to check null
             
-            if (go == null) 
-                return;
+            if (go == null) return;
 
-            string blueprint = go.Blueprint;
-            // Use the GameObject's name as source of truth for "Original English Name" to match against
-            string goDisplayName = go.GetDisplayName(NoColor: true);
+            // Use Traverse to get properties from the runtime object (XRL.World.GameObject)
+            string blueprint = goTraverse.Property("Blueprint").GetValue<string>();
+            
+            // Invoke GetDisplayName via Traverse (method)
+            // Signature: GetDisplayName(bool NoColor = false, ...)
+            // We need to pass arguments.
+            string goDisplayName = goTraverse.Method("GetDisplayName", new object[] { true }).GetValue<string>();
 
             var texts = trigger.Tooltip.GameObject.GetComponentsInChildren<TextMeshProUGUI>(true);
             foreach (var tmpro in texts)

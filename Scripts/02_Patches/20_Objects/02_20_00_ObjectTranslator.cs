@@ -161,9 +161,11 @@ namespace QudKorean.Objects
                         string suffixKo = TranslateStateSuffix(suffix);
                         translated = RestoreFormatting(originalName, noStateSuffix, baseNameKo, suffix, suffixKo);
                         
-                        if (string.IsNullOrEmpty(translated)) continue;
-                        _displayNameCache[cacheKey] = translated;
-                        return true;
+                        if (!string.IsNullOrEmpty(translated))
+                        {
+                            _displayNameCache[cacheKey] = translated;
+                            return true;
+                        }
                     }
                 }
                 
