@@ -2,7 +2,7 @@
 > **Purpose**: Standardized issue tracking and documentation  
 > **Location**: `Docs/Issues/`  
 > **Naming Convention**: `[STATUS_]ISSUE_YYYYMMDD_SHORT_DESCRIPTION.md`  
-> **Management System**: See [07_ISSUE_RULES.md](../en/reference/07_ISSUE_RULES.md)
+> **Management System**: See [05_ISSUE_RULES.md](../reference/05_ISSUE_RULES.md)
 
 ---
 
@@ -33,8 +33,8 @@
 
 | Date | Description | Priority | Category | File |
 |------|-------------|----------|----------|------|
-| 2026-01-19 | Options Panel Translation (Root Fix) | High | UI | [CLEAR_ISSUE_20260119_OPTIONS_PANEL_TRANSLATION.md](CLEAR_ISSUE_20260119_OPTIONS_PANEL_TRANSLATION.md) |
-| 2026-01-19 | Code Analysis 16 Fixes | High | Bug | [CLEAR_ISSUE_20260119_CODE_ANALYSIS_16_FIXES.md](CLEAR_ISSUE_20260119_CODE_ANALYSIS_16_FIXES.md) |
+| 2026-01-19 | Options Panel Translation (Root Fix) | High | UI | [01_ISSUE_20260119_OPTIONS_PANEL.md](02_ISSUE_20260119_OPTIONS_PANEL.md) |
+| 2026-01-19 | Code Analysis 16 Fixes | High | Bug | [01_ISSUE_20260119_CODE_ANALYSIS.md](01_ISSUE_20260119_CODE_ANALYSIS.md) |
 
 ## Blocked Issues
 
@@ -160,6 +160,6 @@ When creating new issue reports, follow this structure:
 ---
 
 ## Related Documents
-- [05_ERROR_LOG.md](../05_ERROR_LOG.md) - Critical error history (ERR-XXX)
-- [04_CHANGELOG.md](../04_CHANGELOG.md) - Version change history
-- [CODE_ANALYSIS_REPORT_20260119.md](../CODE_ANALYSIS_REPORT_20260119.md) - Source analysis
+- [03_ERROR_LOG.md](../reference/03_ERROR_LOG.md) - Critical error history (ERR-XXX)
+- [02_CHANGELOG.md](../reference/02_CHANGELOG.md) - Version change history
+- [02_CODE_ANALYSIS_REPORT_20260119.md](../reports/02_CODE_ANALYSIS_REPORT_20260119.md) - Source analysis

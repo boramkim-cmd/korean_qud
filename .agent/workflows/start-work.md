@@ -6,70 +6,38 @@ description: 한글화 프로젝트 작업 시작 전 필수 문서 읽기 및 �
 
 이 워크플로우는 모든 한글화 작업 전에 실행해야 합니다.
 
-## 0. 현재 상태 빠른 파악 (NEW!)
+## 1. 필수 문서 읽기
 
-// turbo
 ```bash
-cat CONTEXT.yaml
+cat Docs/MASTER.md
 ```
-> 기계 판독 가능한 현재 상태 - 진행 중 작업, 차단 이슈, 최근 변경 확인
+> 프로젝트 현황 확인
 
-## 1. 필수 문서 읽기 (순서대로)
-
-// turbo
 ```bash
-cat Docs/00_PRINCIPLES.md
+cat Docs/guides/01_PRINCIPLES.md
 ```
-> 대원칙 문서 - 전체 읽기 필수
+> 대원칙 문서
 
-// turbo
 ```bash
-cat Docs/03_TODO.md
+cat Docs/reference/01_TODO.md
 ```
 > 현재 진행 중인 작업 확인
 
-// turbo
-```bash
-cat Docs/05_ERROR_LOG.md | head -100
-```
-> 알려진 이슈 및 해결 방법 확인 (최근 100줄)
-
 ## 2. 프로젝트 상태 검증
 
-// turbo
 ```bash
 python3 tools/project_tool.py
 ```
 > 코드 및 JSON 무결성 확인
 
-## 3. 작업 선택
+## 3. 작업 완료 후
 
-`03_TODO.md`에서 진행할 작업 선택 후:
-- 해당 항목 상태를 `[ ]` → `[/]`로 변경
-- 시작일 기록
-
-## 4. 상세 가이드 참조 (필요 시)
-
-작업 유형에 따라 `10_DEVELOPMENT_GUIDE.md`의 해당 Part 참조:
-- 새 화면 번역: Part L (AI 에이전트 가이드)
-- API 참조: Part C
-- 스타일 가이드: Part H
-- QA: Part I
-
-## 5. 작업 완료 후
-
-// turbo
 ```bash
 python3 tools/project_tool.py
+./deploy.sh
 ```
-> 코드 및 JSON 무결성 검증
-
-// turbo
-```bash
-./tools/deploy-mods.sh
-```
-> 게임 모드 폴더로 자동 배포 (작업 완료 시 필수!)
+> 검증 후 배포
 
 1. 게임 재시작하여 테스트
-2. `03_TODO.md` 상태 업데이트 (`[/]` → `[x]`)
-3. 에러 발생 시 `05_ERROR_LOG.md` 기록
+2. `01_TODO.md` 상태 업데이트 (`[/]` → `[x]`)
+3. 에러 발생 시 `03_ERROR_LOG.md` 기록

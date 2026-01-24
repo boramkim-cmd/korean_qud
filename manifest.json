@@ -8,7 +8,6 @@
   "preloadScripts": [
     "Scripts/00_Core/00_00_04_TMPFallbackFontBundle.cs",
     "Scripts/02_Patches/10_UI/02_10_17_TooltipFallback.cs",
-    "Scripts/00_Core/00_00_99_QudKREngine.cs",
-    "Scripts/99_Utils/99_99_TorchTest.cs"
+    "Scripts/00_Core/00_00_99_QudKREngine.cs"
   ]
 }

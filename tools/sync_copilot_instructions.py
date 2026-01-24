@@ -18,7 +18,7 @@ from pathlib import Path
 
 # Paths
 PROJECT_ROOT = Path(__file__).parent.parent
-ERROR_LOG_PATH = PROJECT_ROOT / "Docs" / "en" / "reference" / "05_ERROR_LOG.md"
+ERROR_LOG_PATH = PROJECT_ROOT / "Docs" / "reference" / "03_ERROR_LOG.md"
 INSTRUCTIONS_PATH = PROJECT_ROOT / ".github" / "copilot-instructions.md"
 
 # Markers in instructions file

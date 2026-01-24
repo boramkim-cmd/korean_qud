@@ -23,9 +23,9 @@ PROJECT_ROOT = Path(__file__).parent.parent
 SESSION_FILE = PROJECT_ROOT / "Docs" / "SESSION_STATE.md"
 SESSION_JSON = PROJECT_ROOT / "tools" / "session_state.json"
 CONTEXT_FILE = PROJECT_ROOT / "CONTEXT.yaml"  # Main vectorized context (project root)
-TODO_FILE = PROJECT_ROOT / "Docs" / "en" / "reference" / "03_TODO.md"
-CHANGELOG_FILE = PROJECT_ROOT / "Docs" / "en" / "reference" / "04_CHANGELOG.md"
-ERROR_LOG = PROJECT_ROOT / "Docs" / "en" / "reference" / "05_ERROR_LOG.md"
+TODO_FILE = PROJECT_ROOT / "Docs" / "reference" / "01_TODO.md"
+CHANGELOG_FILE = PROJECT_ROOT / "Docs" / "reference" / "02_CHANGELOG.md"
+ERROR_LOG = PROJECT_ROOT / "Docs" / "reference" / "03_ERROR_LOG.md"
 
 
 def get_git_status():

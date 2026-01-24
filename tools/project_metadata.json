@@ -1,5 +1,5 @@
 {
-  "generated": "2026-01-22 13:54:08",
+  "generated": "2026-01-24 21:58:08",
   "scripts": {
     "Scripts/99_Utils/99_00_03_StructureTranslator.cs": {
       "classification": "Util",
@@ -255,7 +255,7 @@
         "UITextSkin_Apply_Patch",
         "TextMeshProUGUI_OnEnable_Patch",
         "TextMeshPro_OnEnable_Patch",
-        "TextMeshProUGUI_Awake_Patch",
+        "TextMeshProUGUI_Awake_Patch_DISABLED",
         "MessageLogPatch",
         "ArticleKillerPatch",
         "PluralizeKillerPatch",
@@ -268,6 +268,11 @@
       "methods": [
         {
           "name": "GetKoreanFont",
+          "return": "TMP_FontAsset",
+          "params": ""
+        },
+        {
+          "name": "GetKoreanTMPFont",
           "return": "TMP_FontAsset",
           "params": ""
         },
@@ -287,11 +292,6 @@
           "params": ""
         },
         {
-          "name": "GetKoreanTMPFont",
-          "return": "TMP_FontAsset",
-          "params": ""
-        },
-        {
           "name": "TranslateMainMenuOptions",
           "return": "void",
           "params": ""
@@ -307,6 +307,15 @@
           "params": "string text"
         }
       ]
+    },
+    "Scripts/00_Core/00_00_04_TMPFallbackFontBundle.cs": {
+      "classification": "Core",
+      "role": "한글 TMP 폰트 번들을 로드하고, 매 프레임 fallback 적용을 확인하여 동적 UI에도 한글이 표시되도록 함",
+      "namespace": "QudKRTranslation.Core",
+      "classes": [
+        "TMPFallbackFontBundle"
+      ],
+      "methods": []
     },
     "Scripts/02_Patches/10_UI/02_10_01_Options.cs": {
       "classification": "UI Patch",
@@ -400,33 +409,25 @@
       ],
       "methods": []
     },
-    "Scripts/02_Patches/10_UI/02_10_07_Inventory.cs": {
-      "classification": "UI Patch",
-      "role": "인벤토리 화면의 메뉴, 카테고리, 도움말 텍스트를 번역합니다.",
-      "namespace": "QudKRTranslation.Patches.UI",
-      "classes": [
-        "Patch_GameObject_GetInventoryCategory",
-        "Patch_InventoryScreen_ShowScreen",
-        "Patch_InventoryScreen_UpdateView"
-      ],
-      "methods": []
-    },
     "Scripts/02_Patches/10_UI/02_10_02_Tooltip.cs": {
       "classification": "UI Patch",
       "role": "ModelShark Tooltip 시스템의 텍스트를 번역합니다.",
       "namespace": "QudKRTranslation.Patches",
       "classes": [
-        "Tooltip_Patch",
-        "Tooltip_ShowManually_Patch",
-        "BaseLineWithTooltip_StartTooltip_Patch"
+        "TooltipManager_SetTextAndSize_Patch",
+        "Look_GenerateTooltipInformation_Patch",
+        "Tooltip_Patch"
       ],
-      "methods": [
-        {
-          "name": "ApplyKoreanFontToTooltip",
-          "return": "void",
-          "params": "TooltipTrigger trigger"
-        }
-      ]
+      "methods": []
+    },
+    "Scripts/02_Patches/10_UI/02_10_17_TooltipFallback.cs": {
+      "classification": "Patches/UI",
+      "role": "툴팁(ModelShark.Tooltip)이 표시될 때 한글 fallback 폰트를 적용",
+      "namespace": "QudKRTranslation.Patches.UI",
+      "classes": [
+        "TooltipTMPFallbackApply"
+      ],
+      "methods": []
     },
     "Scripts/02_Patches/10_UI/02_10_03_UITextSkin.cs": {
       "classification": "UI Patch",
@@ -536,6 +537,11 @@
           "name": "ClearCache",
           "return": "void",
           "params": ""
+        },
+        {
+          "name": "InvestigateFont",
+          "return": "void",
+          "params": ""
         }
       ]
     },
@@ -581,6 +587,11 @@
           "name": "TryGetDescription",
           "return": "bool",
           "params": "string blueprint, out string translated"
+        },
+        {
+          "name": "TryTranslateDescriptionExact",
+          "return": "bool",
+          "params": "string blueprint, string currentText, out string translated"
         },
         {
           "name": "HasTranslation",
@@ -646,7 +657,7 @@
     },
     "sync_copilot_instructions.py": {
       "type": "script",
-      "size": 6530
+      "size": 6523
     },
     "sync_options_translations.py": {
       "type": "script",
@@ -654,7 +665,7 @@
     },
     "project_tool.py": {
       "type": "script",
-      "size": 21008
+      "size": 20314
     },
     "get_deploy_path.py": {
       "type": "script",
@@ -662,7 +673,7 @@
     },
     "session_manager.py": {
       "type": "script",
-      "size": 15203
+      "size": 15182
     },
     "analyze_glossary.py": {
       "type": "script",
@@ -671,27 +682,20 @@
     "sort_json.py": {
       "type": "script",
       "size": 2136
-    },
-    "HarmonyAnalyzer": {
-      "type": "tool_folder"
-    },
-    "generate_csproj.py": {
-      "type": "script",
-      "size": 1699
     }
   },
   "docs": {
-    "SESSION_STATE.md": {
-      "modified": "2026-01-22"
+    "MASTER.md": {
+      "modified": "2026-01-24"
     },
     "README.md": {
-      "modified": "2026-01-22"
+      "modified": "2026-01-24"
     },
     "01_CORE_PROJECT_INDEX.md": {
-      "modified": "2026-01-22"
+      "modified": "2026-01-24"
     },
     "02_CORE_QUICK_REFERENCE.md": {
-      "modified": "2026-01-22"
+      "modified": "2026-01-24"
     }
   },
   "localization": {
@@ -815,12 +819,6 @@
         "powers"
       ],
       "entries": 223
-    },
-    "glossary_proto.json": {
-      "categories": [
-        "chargen_proto"
-      ],
-      "entries": 40
     },
     "03_explore.json": {
       "categories": [
@@ -2916,7 +2914,6 @@
     "tools.json": {
       "categories": [
         "_meta",
-        "Torch",
         "Glowsphere",
         "Pickaxe",
         "Shovel",
@@ -2926,7 +2923,7 @@
         "Compass Bracelet",
         "Geomagnetic Disc"
       ],
-      "entries": 67
+      "entries": 60
     },
     "books.json": {
       "categories": [

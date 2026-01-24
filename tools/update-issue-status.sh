@@ -135,8 +135,8 @@ echo ""
 echo -e "${YELLOW}Don't forget to:${NC}"
 echo "1. Update Docs/Issues/00_INDEX.md"
 if [ "$NEW_STATUS" == "clear" ]; then
-    echo "2. Update Docs/en/reference/05_ERROR_LOG.md (if applicable)"
-    echo "3. Update Docs/en/reference/04_CHANGELOG.md"
+    echo "2. Update Docs/reference/03_ERROR_LOG.md (if applicable)"
+    echo "3. Update Docs/reference/02_CHANGELOG.md"
     echo "4. Commit changes: bash tools/quick-commit.sh"
 fi
 

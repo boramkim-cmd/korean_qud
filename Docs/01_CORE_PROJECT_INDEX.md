@@ -1,6 +1,6 @@
 # 📚 프로젝트 완전 인덱스 (자동 생성)
 
-**생성**: 2026-01-22 13:54:08
+**생성**: 2026-01-24 21:58:08
 
 이 문서는 프로젝트의 모든 파일과 메서드 시그니처를 포함합니다. **새로운 기능을 만들기 전, 반드시 여기서 기존 메서드를 검색하십시오.**
 
@@ -51,6 +51,10 @@
   bool HasTerm(string category, string key)
   ```
 
+### `Scripts/00_Core/00_00_04_TMPFallbackFontBundle.cs`
+- **역할**: 한글 TMP 폰트 번들을 로드하고, 매 프레임 fallback 적용을 확인하여 동적 UI에도 한글이 표시되도록 함
+- **Namespace**: `QudKRTranslation.Core`
+
 ### `Scripts/00_Core/00_00_05_GlossaryExtensions.cs`
 - **역할**: 문자열 보간으로 간단하게 용어 사용
 - **Namespace**: `QudKRTranslation.Core`
@@ -73,10 +77,10 @@
 - **공개 메서드 (Public Methods)**:
   ```csharp
   TMP_FontAsset GetKoreanFont()
+  TMP_FontAsset GetKoreanTMPFont()
   void ApplyKoreanFont()
   void ApplyFallbackToTMPComponent(TMPro.TMP_Text txt, bool forceLog = false)
   void ApplyFallbackToAllTMPComponents()
-  TMP_FontAsset GetKoreanTMPFont()
   void TranslateMainMenuOptions()
   bool HasJongsung(char c)
   string ResolveJosa(string text)
@@ -114,6 +118,7 @@
   void ClearCache()
   bool TryGetDisplayName(string blueprint, string originalName, out string translated)
   bool TryGetDescription(string blueprint, out string translated)
+  bool TryTranslateDescriptionExact(string blueprint, string currentText, out string translated)
   bool HasTranslation(string blueprint)
   string GetStats()
   ```
@@ -131,6 +136,12 @@
 ### `Scripts/02_Patches/20_Objects/02_20_02_DescriptionPatch.cs`
 - **역할**: Description.GetShortDescription() 패치로 설명 한글화
 - **Namespace**: `QudKorean.Objects`
+
+## 📂 [Patches/UI]
+
+### `Scripts/02_Patches/10_UI/02_10_17_TooltipFallback.cs`
+- **역할**: 툴팁(ModelShark.Tooltip)이 표시될 때 한글 fallback 폰트를 적용
+- **Namespace**: `QudKRTranslation.Patches.UI`
 
 ## 📂 [UI Patch]
 
@@ -154,10 +165,6 @@
 ### `Scripts/02_Patches/10_UI/02_10_02_Tooltip.cs`
 - **역할**: ModelShark Tooltip 시스템의 텍스트를 번역합니다.
 - **Namespace**: `QudKRTranslation.Patches`
-- **공개 메서드 (Public Methods)**:
-  ```csharp
-  void ApplyKoreanFontToTooltip(TooltipTrigger trigger)
-  ```
 
 ### `Scripts/02_Patches/10_UI/02_10_03_UITextSkin.cs`
 - **역할**: UITextSkin.Apply 메서드를 패치하여 TMPro 기반 UI 텍스트를 번역합니다.
@@ -166,10 +173,6 @@
 ### `Scripts/02_Patches/10_UI/02_10_04_ListScroller.cs`
 - **역할**: FrameworkScroller가 프리팹(각 줄의 UI)을 설정할 때 즉시 번역을 적용합니다.
 - **Namespace**: `QudKRTranslation.Patches`
-
-### `Scripts/02_Patches/10_UI/02_10_07_Inventory.cs`
-- **역할**: 인벤토리 화면의 메뉴, 카테고리, 도움말 텍스트를 번역합니다.
-- **Namespace**: `QudKRTranslation.Patches.UI`
 
 ### `Scripts/02_Patches/10_UI/02_10_08_Status.cs`
 - **역할**: 상태창(인벤토리, 장비, 캐릭터 시트 등 포함)이 열릴 때
@@ -231,6 +234,7 @@
   void ListUntranslated()
   void ShowStats()
   void ClearCache()
+  void InvestigateFont()
   ```
 
 ## 📂 [Utils]

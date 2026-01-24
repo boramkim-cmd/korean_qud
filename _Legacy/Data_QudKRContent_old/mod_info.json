@@ -1,8 +1,0 @@
-{
-  "name": "[Data] Qud-KR Content",
-  "version": "0.1.0",
-  "author": "Boram",
-  "description": "Korean translation data. Requires [Core] Qud-KR Engine.",
-  "tags": ["Translation", "Script"],
-  "RequireMod": ["[Core] Qud-KR Engine"]
-}

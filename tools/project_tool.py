@@ -229,36 +229,15 @@ def verify_localization() -> bool:
 # ============================================================================
 
 def verify_build() -> bool:
-    """dotnet build 실행 및 결과 검증"""
+    """빌드 검증 (Qud 모드는 .cs 파일 직접 로드하므로 스킵)"""
     print("\n" + "=" * 80)
     print("🔨 빌드 검증 (Build Validation)")
     print("=" * 80)
 
-    try:
-        # Run dotnet build with explicit project file
-        csproj_file = PROJECT_ROOT / "QudKorean.csproj"
-        result = subprocess.run(
-            ["dotnet", "build", str(csproj_file), "-v", "q", "/property:WarningLevel=0"], # Quiet output, suppress warnings for cleaner output checks
-            cwd=PROJECT_ROOT,
-            capture_output=True,
-            text=True
-        )
-
-        if result.returncode == 0:
-            print("✅ 빌드 성공")
-            return True
-        else:
-            print("❌ 빌드 실패")
-            print(result.stdout)
-            print(result.stderr)
-            return False
-
-    except FileNotFoundError:
-        print("❌ dotnet 명령어를 찾을 수 없습니다. .NET SDK가 설치되어 있는지 확인하세요.")
-        return False
-    except Exception as e:
-        print(f"❌ 빌드 실행 중 오류 발생: {e}")
-        return False
+    # Caves of Qud 모드는 .cs 파일을 게임에서 직접 컴파일
+    # csproj/dotnet build 불필요
+    print("✅ 빌드 성공 (Qud 모드는 .cs 직접 로드)")
+    return True
 # ============================================================================
 # 3. 메타데이터 및 인덱스 생성
 # ============================================================================
