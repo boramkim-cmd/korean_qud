@@ -2,8 +2,9 @@
   "_meta": {
     "category": "artifacts/grenades",
     "description": "Throwable explosives and grenades",
-    "version": "2.0",
-    "updated": "2026-01-22"
+    "version": "2.1",
+    "updated": "2026-01-25",
+    "phase": "Phase1-Grenades"
   },
 
   "HE Grenade Mk I": {
@@ -114,6 +115,30 @@
     "description_ko": "기절 가스를 방출하는 수류탄."
   },
 
+  "Stun Gas Grenade Mk II": {
+    "tier": 4,
+    "category": "artifact",
+    "slot": "hand",
+    "tags": ["grenade", "gas", "stun"],
+    "names": {
+      "stun gas grenade mk II": "기절 가스 수류탄 Mk II"
+    },
+    "description": "An improved grenade that releases stunning gas.",
+    "description_ko": "개량된 기절 가스 수류탄."
+  },
+
+  "Stun Gas Grenade Mk III": {
+    "tier": 5,
+    "category": "artifact",
+    "slot": "hand",
+    "tags": ["grenade", "gas", "stun"],
+    "names": {
+      "stun gas grenade mk III": "기절 가스 수류탄 Mk III"
+    },
+    "description": "An advanced grenade that releases stunning gas.",
+    "description_ko": "고급 기절 가스 수류탄."
+  },
+
   "Poison Gas Grenade Mk I": {
     "tier": 3,
     "category": "artifact",
@@ -124,5 +149,533 @@
     },
     "description": "A grenade that releases toxic gas.",
     "description_ko": "독성 가스를 방출하는 수류탄."
+  },
+
+  "Poison Gas Grenade Mk II": {
+    "tier": 4,
+    "category": "artifact",
+    "slot": "hand",
+    "tags": ["grenade", "gas", "poison"],
+    "names": {
+      "poison gas grenade mk II": "독가스 수류탄 Mk II"
+    },
+    "description": "An improved grenade that releases toxic gas.",
+    "description_ko": "개량된 독가스 수류탄."
+  },
+
+  "Poison Gas Grenade Mk III": {
+    "tier": 5,
+    "category": "artifact",
+    "slot": "hand",
+    "tags": ["grenade", "gas", "poison"],
+    "names": {
+      "poison gas grenade mk III": "독가스 수류탄 Mk III"
+    },
+    "description": "An advanced grenade that releases toxic gas.",
+    "description_ko": "고급 독가스 수류탄."
+  },
+
+  "Flashbang Grenade Mk I": {
+    "tier": 3,
+    "category": "artifact",
+    "slot": "hand",
+    "tags": ["grenade", "light", "stun"],
+    "names": {
+      "flashbang grenade mk I": "섬광탄 Mk I"
+    },
+    "description": "A grenade that creates a blinding flash and loud bang.",
+    "description_ko": "눈부신 섬광과 큰 폭음을 만드는 수류탄."
+  },
+
+  "Flashbang Grenade Mk II": {
+    "tier": 4,
+    "category": "artifact",
+    "slot": "hand",
+    "tags": ["grenade", "light", "stun"],
+    "names": {
+      "flashbang grenade mk II": "섬광탄 Mk II"
+    },
+    "description": "An improved flashbang grenade.",
+    "description_ko": "개량된 섬광탄."
+  },
+
+  "Flashbang Grenade Mk III": {
+    "tier": 5,
+    "category": "artifact",
+    "slot": "hand",
+    "tags": ["grenade", "light", "stun"],
+    "names": {
+      "flashbang grenade mk III": "섬광탄 Mk III"
+    },
+    "description": "An advanced flashbang grenade.",
+    "description_ko": "고급 섬광탄."
+  },
+
+  "Acid Gas Grenade Mk I": {
+    "tier": 3,
+    "category": "artifact",
+    "slot": "hand",
+    "tags": ["grenade", "gas", "acid"],
+    "names": {
+      "acid gas grenade mk I": "산성 가스 수류탄 Mk I"
+    },
+    "description": "A grenade that releases corrosive acid gas.",
+    "description_ko": "부식성 산성 가스를 방출하는 수류탄."
+  },
+
+  "Acid Gas Grenade Mk II": {
+    "tier": 4,
+    "category": "artifact",
+    "slot": "hand",
+    "tags": ["grenade", "gas", "acid"],
+    "names": {
+      "acid gas grenade mk II": "산성 가스 수류탄 Mk II"
+    },
+    "description": "An improved acid gas grenade.",
+    "description_ko": "개량된 산성 가스 수류탄."
+  },
+
+  "Acid Gas Grenade Mk III": {
+    "tier": 5,
+    "category": "artifact",
+    "slot": "hand",
+    "tags": ["grenade", "gas", "acid"],
+    "names": {
+      "acid gas grenade mk III": "산성 가스 수류탄 Mk III"
+    },
+    "description": "An advanced acid gas grenade.",
+    "description_ko": "고급 산성 가스 수류탄."
+  },
+
+  "Smoke Grenade Mk I": {
+    "tier": 2,
+    "category": "artifact",
+    "slot": "hand",
+    "tags": ["grenade", "smoke", "concealment"],
+    "names": {
+      "smoke grenade mk I": "연막탄 Mk I"
+    },
+    "description": "A grenade that releases obscuring smoke.",
+    "description_ko": "시야를 가리는 연막을 방출하는 수류탄."
+  },
+
+  "Smoke Grenade Mk II": {
+    "tier": 3,
+    "category": "artifact",
+    "slot": "hand",
+    "tags": ["grenade", "smoke", "concealment"],
+    "names": {
+      "smoke grenade mk II": "연막탄 Mk II"
+    },
+    "description": "An improved smoke grenade.",
+    "description_ko": "개량된 연막탄."
+  },
+
+  "Smoke Grenade Mk III": {
+    "tier": 4,
+    "category": "artifact",
+    "slot": "hand",
+    "tags": ["grenade", "smoke", "concealment"],
+    "names": {
+      "smoke grenade mk III": "연막탄 Mk III"
+    },
+    "description": "An advanced smoke grenade.",
+    "description_ko": "고급 연막탄."
+  },
+
+  "Incendiary Grenade Mk I": {
+    "tier": 3,
+    "category": "artifact",
+    "slot": "hand",
+    "tags": ["grenade", "fire", "incendiary"],
+    "names": {
+      "incendiary grenade mk I": "소이탄 Mk I"
+    },
+    "description": "A grenade that spreads burning gel.",
+    "description_ko": "불타는 젤을 퍼뜨리는 수류탄."
+  },
+
+  "Incendiary Grenade Mk II": {
+    "tier": 4,
+    "category": "artifact",
+    "slot": "hand",
+    "tags": ["grenade", "fire", "incendiary"],
+    "names": {
+      "incendiary grenade mk II": "소이탄 Mk II"
+    },
+    "description": "An improved incendiary grenade.",
+    "description_ko": "개량된 소이탄."
+  },
+
+  "Incendiary Grenade Mk III": {
+    "tier": 5,
+    "category": "artifact",
+    "slot": "hand",
+    "tags": ["grenade", "fire", "incendiary"],
+    "names": {
+      "incendiary grenade mk III": "소이탄 Mk III"
+    },
+    "description": "An advanced incendiary grenade.",
+    "description_ko": "고급 소이탄."
+  },
+
+  "Sleep Gas Grenade Mk I": {
+    "tier": 3,
+    "category": "artifact",
+    "slot": "hand",
+    "tags": ["grenade", "gas", "sleep"],
+    "names": {
+      "sleep gas grenade mk I": "수면 가스 수류탄 Mk I"
+    },
+    "description": "A grenade that releases sleep-inducing gas.",
+    "description_ko": "수면을 유발하는 가스를 방출하는 수류탄."
+  },
+
+  "Sleep Gas Grenade Mk II": {
+    "tier": 4,
+    "category": "artifact",
+    "slot": "hand",
+    "tags": ["grenade", "gas", "sleep"],
+    "names": {
+      "sleep gas grenade mk II": "수면 가스 수류탄 Mk II"
+    },
+    "description": "An improved sleep gas grenade.",
+    "description_ko": "개량된 수면 가스 수류탄."
+  },
+
+  "Sleep Gas Grenade Mk III": {
+    "tier": 5,
+    "category": "artifact",
+    "slot": "hand",
+    "tags": ["grenade", "gas", "sleep"],
+    "names": {
+      "sleep gas grenade mk III": "수면 가스 수류탄 Mk III"
+    },
+    "description": "An advanced sleep gas grenade.",
+    "description_ko": "고급 수면 가스 수류탄."
+  },
+
+  "Normality Gas Grenade Mk I": {
+    "tier": 4,
+    "category": "artifact",
+    "slot": "hand",
+    "tags": ["grenade", "gas", "normality"],
+    "names": {
+      "normality gas grenade mk I": "정상성 가스 수류탄 Mk I"
+    },
+    "description": "A grenade that releases reality-stabilizing gas.",
+    "description_ko": "현실을 안정시키는 가스를 방출하는 수류탄."
+  },
+
+  "Normality Gas Grenade Mk II": {
+    "tier": 5,
+    "category": "artifact",
+    "slot": "hand",
+    "tags": ["grenade", "gas", "normality"],
+    "names": {
+      "normality gas grenade mk II": "정상성 가스 수류탄 Mk II"
+    },
+    "description": "An improved normality gas grenade.",
+    "description_ko": "개량된 정상성 가스 수류탄."
+  },
+
+  "Normality Gas Grenade Mk III": {
+    "tier": 6,
+    "category": "artifact",
+    "slot": "hand",
+    "tags": ["grenade", "gas", "normality"],
+    "names": {
+      "normality gas grenade mk III": "정상성 가스 수류탄 Mk III"
+    },
+    "description": "An advanced normality gas grenade.",
+    "description_ko": "고급 정상성 가스 수류탄."
+  },
+
+  "Gravity Grenade Mk I": {
+    "tier": 4,
+    "category": "artifact",
+    "slot": "hand",
+    "tags": ["grenade", "gravity"],
+    "names": {
+      "gravity grenade mk I": "중력 수류탄 Mk I"
+    },
+    "description": "A grenade that creates a localized gravity well.",
+    "description_ko": "국지적인 중력장을 만드는 수류탄."
+  },
+
+  "Gravity Grenade Mk II": {
+    "tier": 5,
+    "category": "artifact",
+    "slot": "hand",
+    "tags": ["grenade", "gravity"],
+    "names": {
+      "gravity grenade mk II": "중력 수류탄 Mk II"
+    },
+    "description": "An improved gravity grenade.",
+    "description_ko": "개량된 중력 수류탄."
+  },
+
+  "Gravity Grenade Mk III": {
+    "tier": 6,
+    "category": "artifact",
+    "slot": "hand",
+    "tags": ["grenade", "gravity"],
+    "names": {
+      "gravity grenade mk III": "중력 수류탄 Mk III"
+    },
+    "description": "An advanced gravity grenade.",
+    "description_ko": "고급 중력 수류탄."
+  },
+
+  "Phase Grenade Mk I": {
+    "tier": 5,
+    "category": "artifact",
+    "slot": "hand",
+    "tags": ["grenade", "phase"],
+    "names": {
+      "phase grenade mk I": "위상 수류탄 Mk I"
+    },
+    "description": "A grenade that disrupts phase alignment.",
+    "description_ko": "위상 정렬을 방해하는 수류탄."
+  },
+
+  "Phase Grenade Mk II": {
+    "tier": 6,
+    "category": "artifact",
+    "slot": "hand",
+    "tags": ["grenade", "phase"],
+    "names": {
+      "phase grenade mk II": "위상 수류탄 Mk II"
+    },
+    "description": "An improved phase grenade.",
+    "description_ko": "개량된 위상 수류탄."
+  },
+
+  "Phase Grenade Mk III": {
+    "tier": 7,
+    "category": "artifact",
+    "slot": "hand",
+    "tags": ["grenade", "phase"],
+    "names": {
+      "phase grenade mk III": "위상 수류탄 Mk III"
+    },
+    "description": "An advanced phase grenade.",
+    "description_ko": "고급 위상 수류탄."
+  },
+
+  "Shrapnel Grenade Mk I": {
+    "tier": 3,
+    "category": "artifact",
+    "slot": "hand",
+    "tags": ["grenade", "shrapnel"],
+    "names": {
+      "shrapnel grenade mk I": "파편 수류탄 Mk I"
+    },
+    "description": "A grenade that releases deadly shrapnel.",
+    "description_ko": "치명적인 파편을 방출하는 수류탄."
+  },
+
+  "Shrapnel Grenade Mk II": {
+    "tier": 4,
+    "category": "artifact",
+    "slot": "hand",
+    "tags": ["grenade", "shrapnel"],
+    "names": {
+      "shrapnel grenade mk II": "파편 수류탄 Mk II"
+    },
+    "description": "An improved shrapnel grenade.",
+    "description_ko": "개량된 파편 수류탄."
+  },
+
+  "Shrapnel Grenade Mk III": {
+    "tier": 5,
+    "category": "artifact",
+    "slot": "hand",
+    "tags": ["grenade", "shrapnel"],
+    "names": {
+      "shrapnel grenade mk III": "파편 수류탄 Mk III"
+    },
+    "description": "An advanced shrapnel grenade.",
+    "description_ko": "고급 파편 수류탄."
+  },
+
+  "Glittermensch Grenade Mk I": {
+    "tier": 4,
+    "category": "artifact",
+    "slot": "hand",
+    "tags": ["grenade", "hologram"],
+    "names": {
+      "glittermensch grenade mk I": "글리터멘쉬 수류탄 Mk I"
+    },
+    "description": "A grenade that creates holographic decoys.",
+    "description_ko": "홀로그램 미끼를 생성하는 수류탄."
+  },
+
+  "Glittermensch Grenade Mk II": {
+    "tier": 5,
+    "category": "artifact",
+    "slot": "hand",
+    "tags": ["grenade", "hologram"],
+    "names": {
+      "glittermensch grenade mk II": "글리터멘쉬 수류탄 Mk II"
+    },
+    "description": "An improved holographic decoy grenade.",
+    "description_ko": "개량된 홀로그램 미끼 수류탄."
+  },
+
+  "Glittermensch Grenade Mk III": {
+    "tier": 6,
+    "category": "artifact",
+    "slot": "hand",
+    "tags": ["grenade", "hologram"],
+    "names": {
+      "glittermensch grenade mk III": "글리터멘쉬 수류탄 Mk III"
+    },
+    "description": "An advanced holographic decoy grenade.",
+    "description_ko": "고급 홀로그램 미끼 수류탄."
+  },
+
+  "Freeze Grenade Mk I": {
+    "tier": 3,
+    "category": "artifact",
+    "slot": "hand",
+    "tags": ["grenade", "cold"],
+    "names": {
+      "freeze grenade mk I": "냉동 수류탄 Mk I"
+    },
+    "description": "A grenade that freezes everything nearby.",
+    "description_ko": "주변 모든 것을 얼리는 수류탄."
+  },
+
+  "Freeze Grenade Mk II": {
+    "tier": 4,
+    "category": "artifact",
+    "slot": "hand",
+    "tags": ["grenade", "cold"],
+    "names": {
+      "freeze grenade mk II": "냉동 수류탄 Mk II"
+    },
+    "description": "An improved freezing grenade.",
+    "description_ko": "개량된 냉동 수류탄."
+  },
+
+  "Freeze Grenade Mk III": {
+    "tier": 5,
+    "category": "artifact",
+    "slot": "hand",
+    "tags": ["grenade", "cold"],
+    "names": {
+      "freeze grenade mk III": "냉동 수류탄 Mk III"
+    },
+    "description": "An advanced freezing grenade.",
+    "description_ko": "고급 냉동 수류탄."
+  },
+
+  "Plasma Grenade Mk I": {
+    "tier": 5,
+    "category": "artifact",
+    "slot": "hand",
+    "tags": ["grenade", "plasma"],
+    "names": {
+      "plasma grenade mk I": "플라즈마 수류탄 Mk I"
+    },
+    "description": "A grenade that creates a plasma explosion.",
+    "description_ko": "플라즈마 폭발을 만드는 수류탄."
+  },
+
+  "Plasma Grenade Mk II": {
+    "tier": 6,
+    "category": "artifact",
+    "slot": "hand",
+    "tags": ["grenade", "plasma"],
+    "names": {
+      "plasma grenade mk II": "플라즈마 수류탄 Mk II"
+    },
+    "description": "An improved plasma grenade.",
+    "description_ko": "개량된 플라즈마 수류탄."
+  },
+
+  "Plasma Grenade Mk III": {
+    "tier": 7,
+    "category": "artifact",
+    "slot": "hand",
+    "tags": ["grenade", "plasma"],
+    "names": {
+      "plasma grenade mk III": "플라즈마 수류탄 Mk III"
+    },
+    "description": "An advanced plasma grenade.",
+    "description_ko": "고급 플라즈마 수류탄."
+  },
+
+  "Resonance Grenade Mk I": {
+    "tier": 4,
+    "category": "artifact",
+    "slot": "hand",
+    "tags": ["grenade", "sonic"],
+    "names": {
+      "resonance grenade mk I": "공명 수류탄 Mk I"
+    },
+    "description": "A grenade that creates harmful sonic vibrations.",
+    "description_ko": "해로운 음파 진동을 만드는 수류탄."
+  },
+
+  "Resonance Grenade Mk II": {
+    "tier": 5,
+    "category": "artifact",
+    "slot": "hand",
+    "tags": ["grenade", "sonic"],
+    "names": {
+      "resonance grenade mk II": "공명 수류탄 Mk II"
+    },
+    "description": "An improved sonic grenade.",
+    "description_ko": "개량된 공명 수류탄."
+  },
+
+  "Resonance Grenade Mk III": {
+    "tier": 6,
+    "category": "artifact",
+    "slot": "hand",
+    "tags": ["grenade", "sonic"],
+    "names": {
+      "resonance grenade mk III": "공명 수류탄 Mk III"
+    },
+    "description": "An advanced sonic grenade.",
+    "description_ko": "고급 공명 수류탄."
+  },
+
+  "Confusion Gas Grenade Mk I": {
+    "tier": 3,
+    "category": "artifact",
+    "slot": "hand",
+    "tags": ["grenade", "gas", "confusion"],
+    "names": {
+      "confusion gas grenade mk I": "혼란 가스 수류탄 Mk I"
+    },
+    "description": "A grenade that releases confusion-inducing gas.",
+    "description_ko": "혼란을 유발하는 가스를 방출하는 수류탄."
+  },
+
+  "Confusion Gas Grenade Mk II": {
+    "tier": 4,
+    "category": "artifact",
+    "slot": "hand",
+    "tags": ["grenade", "gas", "confusion"],
+    "names": {
+      "confusion gas grenade mk II": "혼란 가스 수류탄 Mk II"
+    },
+    "description": "An improved confusion gas grenade.",
+    "description_ko": "개량된 혼란 가스 수류탄."
+  },
+
+  "Confusion Gas Grenade Mk III": {
+    "tier": 5,
+    "category": "artifact",
+    "slot": "hand",
+    "tags": ["grenade", "gas", "confusion"],
+    "names": {
+      "confusion gas grenade mk III": "혼란 가스 수류탄 Mk III"
+    },
+    "description": "An advanced confusion gas grenade.",
+    "description_ko": "고급 혼란 가스 수류탄."
   }
 }

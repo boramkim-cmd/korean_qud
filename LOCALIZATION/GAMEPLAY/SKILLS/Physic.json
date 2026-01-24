@@ -1,0 +1,25 @@
+{
+  "names": {
+    "Physic": "의술"
+  },
+  "description": "You are skilled at physicking.",
+  "description_ko": "당신은 의술에 숙달되어 있습니다.",
+  "powers": {
+    "staunch wounds": {
+      "name": "상처 지혈",
+      "desc": "적용한 붕대가 출혈을 멈추는 데 훨씬 효과적입니다."
+    },
+    "nostrums": {
+      "name": "비방",
+      "desc": "캠프파이어에서 자신과 동료의 출혈, 중독, 질병, 감염 초기 증상을 치료할 수 있습니다."
+    },
+    "amputate limb": {
+      "name": "사지 절단",
+      "desc": "자신의 사지와 감염된 동료의 사지를 자발적으로 절단할 수 있습니다."
+    },
+    "apothecary": {
+      "name": "약제사",
+      "desc": "적용한 치유 토닉이 1라운드 더 지속됩니다."
+    }
+  }
+}

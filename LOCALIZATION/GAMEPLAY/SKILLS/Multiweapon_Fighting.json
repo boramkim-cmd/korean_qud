@@ -1,0 +1,25 @@
+{
+  "names": {
+    "Multiweapon Fighting": "다중 무기 전투"
+  },
+  "description": "You are skilled at multiweapon fighting. Your chance to attack with offhand weapons is increased.",
+  "description_ko": "당신은 다중 무기 전투에 숙달되어 있습니다. 보조 무기로 공격할 확률이 증가합니다.",
+  "powers": {
+    "flurry": {
+      "name": "연타",
+      "desc": "활성화; 재사용 대기시간 60. 돌연변이나 기술로 얻은 추가 팔을 포함하여 무기를 든 모든 팔로 공격합니다."
+    },
+    "multiweapon proficiency": {
+      "name": "다중 무기 숙련",
+      "desc": "각 보조 무기로 공격할 확률이 20% 증가합니다."
+    },
+    "multiweapon expertise": {
+      "name": "다중 무기 전문화",
+      "desc": "각 보조 무기로 공격할 확률이 35% 증가합니다."
+    },
+    "multiweapon mastery": {
+      "name": "다중 무기 달인",
+      "desc": "각 보조 무기로 공격할 확률이 50% 증가합니다."
+    }
+  }
+}

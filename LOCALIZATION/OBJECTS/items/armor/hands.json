@@ -3,7 +3,21 @@
     "category": "armor/hands",
     "description": "Hand armor - gloves, gauntlets",
     "version": "2.0",
-    "updated": "2026-01-22"
+    "created": "2026-01-22",
+    "updated": "2026-01-24",
+    "phase": "Phase2-Items"
+  },
+
+  "Cloth Wraps": {
+    "tier": 1,
+    "category": "armor",
+    "slot": "hands",
+    "tags": ["hands", "light", "cloth"],
+    "names": {
+      "cloth wraps": "천 붕대"
+    },
+    "description": "Simple cloth wrapped around the hands.",
+    "description_ko": "손에 감은 간단한 천."
   },
 
   "Leather Gloves": {
@@ -18,6 +32,18 @@
     "description_ko": "가죽으로 만든 간단한 장갑."
   },
 
+  "Studded Leather Gloves": {
+    "tier": 2,
+    "category": "armor",
+    "slot": "hands",
+    "tags": ["hands", "light", "studded"],
+    "names": {
+      "studded leather gloves": "징박힌 가죽 장갑"
+    },
+    "description": "Leather gloves reinforced with metal studs.",
+    "description_ko": "금속 징으로 보강된 가죽 장갑."
+  },
+
   "Iron Gauntlets": {
     "tier": 2,
     "category": "armor",
@@ -28,6 +54,18 @@
     },
     "description": "Gauntlets forged from iron.",
     "description_ko": "철로 제련된 건틀릿."
+  },
+
+  "Bronze Gauntlets": {
+    "tier": 2,
+    "category": "armor",
+    "slot": "hands",
+    "tags": ["hands", "medium", "metal"],
+    "names": {
+      "bronze gauntlets": "청동 건틀릿"
+    },
+    "description": "Gauntlets forged from bronze.",
+    "description_ko": "청동으로 제련된 건틀릿."
   },
 
   "Steel Gauntlets": {
@@ -42,6 +80,42 @@
     "description_ko": "강철로 제련된 튼튼한 건틀릿."
   },
 
+  "Chain Gloves": {
+    "tier": 3,
+    "category": "armor",
+    "slot": "hands",
+    "tags": ["hands", "medium", "metal"],
+    "names": {
+      "chain gloves": "사슬 장갑"
+    },
+    "description": "Gloves made of interlocking metal rings.",
+    "description_ko": "서로 맞물린 금속 고리로 만든 장갑."
+  },
+
+  "Plastifer Gloves": {
+    "tier": 4,
+    "category": "armor",
+    "slot": "hands",
+    "tags": ["hands", "light", "synthetic"],
+    "names": {
+      "plastifer gloves": "플라스티퍼 장갑"
+    },
+    "description": "Lightweight gloves made from plastifer polymers.",
+    "description_ko": "플라스티퍼 폴리머로 만든 가벼운 장갑."
+  },
+
+  "Fullerite Gauntlets": {
+    "tier": 5,
+    "category": "armor",
+    "slot": "hands",
+    "tags": ["hands", "heavy", "fullerite"],
+    "names": {
+      "fullerite gauntlets": "풀러라이트 건틀릿"
+    },
+    "description": "Gauntlets made from fullerite.",
+    "description_ko": "풀러라이트로 만든 건틀릿."
+  },
+
   "Carbide Gauntlets": {
     "tier": 6,
     "category": "armor",
@@ -54,6 +128,30 @@
     "description_ko": "초경질 카바이드로 만든 건틀릿."
   },
 
+  "Crysteel Gauntlets": {
+    "tier": 7,
+    "category": "armor",
+    "slot": "hands",
+    "tags": ["hands", "heavy", "crysteel"],
+    "names": {
+      "crysteel gauntlets": "크리스틸 건틀릿"
+    },
+    "description": "Gauntlets made from crysteel.",
+    "description_ko": "크리스틸로 만든 건틀릿."
+  },
+
+  "Flawless Crysteel Gauntlets": {
+    "tier": 8,
+    "category": "armor",
+    "slot": "hands",
+    "tags": ["hands", "heavy", "crysteel", "flawless"],
+    "names": {
+      "flawless crysteel gauntlets": "완벽한 크리스틸 건틀릿"
+    },
+    "description": "Gauntlets made from flawless crysteel.",
+    "description_ko": "완벽한 크리스틸로 만든 건틀릿."
+  },
+
   "Helping Hands": {
     "tier": 7,
     "category": "armor",
@@ -64,5 +162,41 @@
     },
     "description": "Mechanical hands that assist with manual tasks.",
     "description_ko": "수작업을 보조하는 기계 손."
+  },
+
+  "Spiked Gauntlets": {
+    "tier": 4,
+    "category": "armor",
+    "slot": "hands",
+    "tags": ["hands", "medium", "metal", "spiked"],
+    "names": {
+      "spiked gauntlets": "가시 건틀릿"
+    },
+    "description": "Gauntlets with metal spikes for added damage.",
+    "description_ko": "추가 피해를 위한 금속 가시가 달린 건틀릿."
+  },
+
+  "Powered Exoframe Gauntlets": {
+    "tier": 6,
+    "category": "armor",
+    "slot": "hands",
+    "tags": ["hands", "heavy", "powered"],
+    "names": {
+      "powered exoframe gauntlets": "동력 외골격 건틀릿"
+    },
+    "description": "Powered gauntlets that are part of an exoframe suit.",
+    "description_ko": "외골격 슈트의 일부인 동력 건틀릿."
+  },
+
+  "Fingerless Gloves": {
+    "tier": 1,
+    "category": "armor",
+    "slot": "hands",
+    "tags": ["hands", "light"],
+    "names": {
+      "fingerless gloves": "손가락 없는 장갑"
+    },
+    "description": "Gloves with the fingers cut off for dexterity.",
+    "description_ko": "손재주를 위해 손가락 부분을 잘라낸 장갑."
   }
 }

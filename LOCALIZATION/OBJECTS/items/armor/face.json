@@ -2,8 +2,9 @@
   "_meta": {
     "category": "armor/face",
     "description": "Face slot armor - masks, goggles, visors",
-    "version": "2.0",
-    "updated": "2026-01-22"
+    "version": "2.1",
+    "updated": "2026-01-25",
+    "phase": "Phase1-Armor"
   },
 
   "Goggles": {
@@ -88,5 +89,116 @@
     },
     "description": "A mask with tractor beam technology.",
     "description_ko": "트랙터 빔 기술이 탑재된 마스크."
+  },
+
+  "Cloth Veil": {
+    "tier": 0,
+    "category": "armor",
+    "slot": "face",
+    "tags": ["face", "cloth"],
+    "names": {
+      "cloth veil": "천 베일"
+    },
+    "description": "A simple cloth covering for the face.",
+    "description_ko": "얼굴을 가리는 간단한 천."
+  },
+
+  "Steel Visor": {
+    "tier": 3,
+    "category": "armor",
+    "slot": "face",
+    "tags": ["face", "metal", "protection"],
+    "names": {
+      "{{Y|steel}} visor": "{{Y|강철}} 바이저",
+      "steel visor": "강철 바이저"
+    },
+    "description": "A visor made from steel for face protection.",
+    "description_ko": "얼굴 보호를 위한 강철 바이저."
+  },
+
+  "Carbide Visor": {
+    "tier": 5,
+    "category": "armor",
+    "slot": "face",
+    "tags": ["face", "carbide", "protection"],
+    "names": {
+      "{{b|carbide}} visor": "{{b|카바이드}} 바이저",
+      "carbide visor": "카바이드 바이저"
+    },
+    "description": "A visor made from ultra-hard carbide.",
+    "description_ko": "초경질 카바이드로 만든 바이저."
+  },
+
+  "Crysteel Visor": {
+    "tier": 7,
+    "category": "armor",
+    "slot": "face",
+    "tags": ["face", "crysteel", "protection"],
+    "names": {
+      "{{K|{{crysteel|crysteel}} visor}}": "{{K|{{crysteel|크리스틸}} 바이저}}",
+      "crysteel visor": "크리스틸 바이저"
+    },
+    "description": "A visor made from crysteel.",
+    "description_ko": "크리스틸로 만든 바이저."
+  },
+
+  "Rebreather": {
+    "tier": 4,
+    "category": "armor",
+    "slot": "face",
+    "tags": ["face", "artifact", "breathing"],
+    "names": {
+      "rebreather": "리브리더"
+    },
+    "description": "A device that recycles exhaled air for breathing.",
+    "description_ko": "내쉰 공기를 재활용하여 호흡하는 장치."
+  },
+
+  "Psionic Amplifier": {
+    "tier": 6,
+    "category": "armor",
+    "slot": "face",
+    "tags": ["face", "artifact", "psionic"],
+    "names": {
+      "psionic amplifier": "사이오닉 증폭기"
+    },
+    "description": "A device that amplifies mental powers.",
+    "description_ko": "정신력을 증폭시키는 장치."
+  },
+
+  "Iron Visor": {
+    "tier": 2,
+    "category": "armor",
+    "slot": "face",
+    "tags": ["face", "metal", "protection"],
+    "names": {
+      "iron visor": "철 바이저"
+    },
+    "description": "A simple visor made from iron.",
+    "description_ko": "철로 만든 간단한 바이저."
+  },
+
+  "Bioscan Visor": {
+    "tier": 5,
+    "category": "armor",
+    "slot": "face",
+    "tags": ["face", "artifact", "scanner"],
+    "names": {
+      "bioscan visor": "바이오스캔 바이저"
+    },
+    "description": "A visor that can scan and analyze biological entities.",
+    "description_ko": "생물학적 존재를 스캔하고 분석할 수 있는 바이저."
+  },
+
+  "Thermal Visor": {
+    "tier": 5,
+    "category": "armor",
+    "slot": "face",
+    "tags": ["face", "artifact", "thermal"],
+    "names": {
+      "thermal visor": "열화상 바이저"
+    },
+    "description": "A visor that allows thermal vision.",
+    "description_ko": "열화상 시야를 가능하게 하는 바이저."
   }
 }

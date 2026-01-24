@@ -3,7 +3,9 @@
     "category": "insects/beetles",
     "description": "Beetle creatures",
     "version": "2.0",
-    "updated": "2026-01-22"
+    "created": "2026-01-22",
+    "updated": "2026-01-24",
+    "phase": "Phase2-Creatures"
   },
 
   "ClockworkBeetle": {
@@ -15,5 +17,191 @@
     },
     "description": "Shining black elytra flitter on the back of a goat-sized bug.",
     "description_ko": "염소만 한 크기의 벌레 등에서 반짝이는 검은 딱지날개가 파르르 떨린다."
+  },
+
+  "Clockwork Beetle Corpse": {
+    "tier": 2,
+    "category": "corpse",
+    "tags": ["beetle"],
+    "names": {
+      "clockwork beetle corpse": "클락워크 비틀 시체"
+    }
+  },
+
+  "Barkbiter": {
+    "tier": 2,
+    "category": "insect",
+    "tags": ["beetle", "hostile", "common"],
+    "names": {
+      "barkbiter": "나무껍질벌레"
+    },
+    "description": "A beetle with mandibles designed for tearing through tree bark.",
+    "description_ko": "나무 껍질을 찢기 위해 설계된 턱을 가진 딱정벌레."
+  },
+
+  "Barkbiter Corpse": {
+    "tier": 2,
+    "category": "corpse",
+    "tags": ["beetle"],
+    "names": {
+      "barkbiter corpse": "나무껍질벌레 시체"
+    }
+  },
+
+  "Fire Beetle": {
+    "tier": 2,
+    "category": "insect",
+    "tags": ["beetle", "hostile", "fire"],
+    "names": {
+      "fire beetle": "불딱정벌레"
+    },
+    "description": "A beetle with a glowing abdomen that can spit fire.",
+    "description_ko": "불을 뿜을 수 있는 빛나는 복부를 가진 딱정벌레."
+  },
+
+  "Fire Beetle Corpse": {
+    "tier": 2,
+    "category": "corpse",
+    "tags": ["beetle", "fire"],
+    "names": {
+      "fire beetle corpse": "불딱정벌레 시체"
+    }
+  },
+
+  "Rhinoceros Beetle": {
+    "tier": 3,
+    "category": "insect",
+    "tags": ["beetle", "hostile", "large"],
+    "names": {
+      "rhinoceros beetle": "코뿔소딱정벌레"
+    },
+    "description": "A massive beetle with a prominent horn used for combat.",
+    "description_ko": "전투에 사용되는 눈에 띄는 뿔을 가진 거대한 딱정벌레."
+  },
+
+  "Rhinoceros Beetle Corpse": {
+    "tier": 3,
+    "category": "corpse",
+    "tags": ["beetle"],
+    "names": {
+      "rhinoceros beetle corpse": "코뿔소딱정벌레 시체"
+    }
+  },
+
+  "Stag Beetle": {
+    "tier": 3,
+    "category": "insect",
+    "tags": ["beetle", "hostile", "common"],
+    "names": {
+      "stag beetle": "사슴벌레"
+    },
+    "description": "A beetle with large mandibles resembling stag antlers.",
+    "description_ko": "사슴뿔을 닮은 커다란 턱을 가진 딱정벌레."
+  },
+
+  "Stag Beetle Corpse": {
+    "tier": 3,
+    "category": "corpse",
+    "tags": ["beetle"],
+    "names": {
+      "stag beetle corpse": "사슴벌레 시체"
+    }
+  },
+
+  "Scarab Beetle": {
+    "tier": 2,
+    "category": "insect",
+    "tags": ["beetle", "neutral", "common"],
+    "names": {
+      "scarab beetle": "풍뎅이"
+    },
+    "description": "A dung beetle that rolls balls of refuse across the sands.",
+    "description_ko": "모래 위로 배설물 공을 굴리는 쇠똥구리."
+  },
+
+  "Dung Beetle": {
+    "tier": 1,
+    "category": "insect",
+    "tags": ["beetle", "neutral", "common"],
+    "names": {
+      "dung beetle": "쇠똥구리"
+    },
+    "description": "A humble beetle that feeds on waste.",
+    "description_ko": "쓰레기를 먹고 사는 소박한 딱정벌레."
+  },
+
+  "Bombardier Beetle": {
+    "tier": 3,
+    "category": "insect",
+    "tags": ["beetle", "hostile", "chemical"],
+    "names": {
+      "bombardier beetle": "폭탄먼지벌레"
+    },
+    "description": "A beetle that sprays boiling chemicals from its abdomen.",
+    "description_ko": "복부에서 끓는 화학물질을 분사하는 딱정벌레."
+  },
+
+  "Glowing Beetle": {
+    "tier": 2,
+    "category": "insect",
+    "tags": ["beetle", "neutral", "luminous"],
+    "names": {
+      "glowing beetle": "빛나는 딱정벌레"
+    },
+    "description": "A bioluminescent beetle that lights up the darkness.",
+    "description_ko": "어둠을 밝히는 생물 발광 딱정벌레."
+  },
+
+  "Sap Beetle": {
+    "tier": 2,
+    "category": "insect",
+    "tags": ["beetle", "hostile", "common"],
+    "names": {
+      "sap beetle": "수액벌레"
+    },
+    "description": "A beetle attracted to tree sap and sweet fluids.",
+    "description_ko": "나무 수액과 달콤한 액체에 끌리는 딱정벌레."
+  },
+
+  "Jewel Beetle": {
+    "tier": 3,
+    "category": "insect",
+    "tags": ["beetle", "neutral", "rare"],
+    "names": {
+      "jewel beetle": "보석딱정벌레"
+    },
+    "description": "A beetle with iridescent elytra that shimmer like gemstones.",
+    "description_ko": "보석처럼 반짝이는 무지개빛 딱지날개를 가진 딱정벌레."
+  },
+
+  "Giant Beetle": {
+    "tier": 4,
+    "category": "insect",
+    "tags": ["beetle", "hostile", "giant"],
+    "names": {
+      "giant beetle": "거대 딱정벌레"
+    },
+    "description": "A beetle grown to enormous proportions.",
+    "description_ko": "거대하게 자란 딱정벌레."
+  },
+
+  "Giant Beetle Corpse": {
+    "tier": 4,
+    "category": "corpse",
+    "tags": ["beetle", "giant"],
+    "names": {
+      "giant beetle corpse": "거대 딱정벌레 시체"
+    }
+  },
+
+  "Beetle Larva": {
+    "tier": 1,
+    "category": "insect",
+    "tags": ["beetle", "weak", "larva"],
+    "names": {
+      "beetle larva": "딱정벌레 유충"
+    },
+    "description": "The larval stage of a beetle, soft and vulnerable.",
+    "description_ko": "딱정벌레의 유충 단계로, 부드럽고 취약하다."
   }
 }

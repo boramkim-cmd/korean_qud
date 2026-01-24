@@ -135,5 +135,256 @@
     },
     "description": "A large equine creature adapted to the harsh Qud environment.",
     "description_ko": "말과 비슷한 대형 초식동물."
+  },
+
+  "Equimax Corpse": {
+    "tier": 3,
+    "category": "corpse",
+    "tags": ["mammal"],
+    "names": {
+      "equimax corpse": "에퀴맥스 시체"
+    }
+  },
+
+  "Goat": {
+    "tier": 1,
+    "category": "animal",
+    "tags": ["mammal", "neutral", "common"],
+    "names": {
+      "goat": "염소"
+    },
+    "description": "A common domesticated goat.",
+    "description_ko": "흔한 가축 염소."
+  },
+
+  "Goat Corpse": {
+    "tier": 1,
+    "category": "corpse",
+    "tags": ["mammal"],
+    "names": {
+      "goat corpse": "염소 시체"
+    }
+  },
+
+  "Wild Goat": {
+    "tier": 2,
+    "category": "animal",
+    "tags": ["mammal", "hostile", "common"],
+    "names": {
+      "wild goat": "야생 염소"
+    },
+    "description": "A goat adapted to the wilds, more aggressive than its domestic cousin.",
+    "description_ko": "야생에 적응한 염소로, 가축 사촌보다 더 공격적이다."
+  },
+
+  "Mountain Goat": {
+    "tier": 2,
+    "category": "animal",
+    "tags": ["mammal", "neutral", "mountain"],
+    "names": {
+      "mountain goat": "산양"
+    },
+    "description": "A goat adapted to treacherous mountain terrain.",
+    "description_ko": "험준한 산악 지형에 적응한 염소."
+  },
+
+  "Dawnglider": {
+    "tier": 4,
+    "category": "animal",
+    "tags": ["mammal", "flying", "rare"],
+    "names": {
+      "dawnglider": "새벽활공수"
+    },
+    "description": "A flying mammal that glides on thermal currents at dawn.",
+    "description_ko": "새벽에 열상승 기류를 타고 활공하는 비행 포유류."
+  },
+
+  "Dawnglider Corpse": {
+    "tier": 4,
+    "category": "corpse",
+    "tags": ["mammal", "flying"],
+    "names": {
+      "dawnglider corpse": "새벽활공수 시체"
+    }
+  },
+
+  "Dog": {
+    "tier": 1,
+    "category": "animal",
+    "tags": ["mammal", "neutral", "domestic"],
+    "names": {
+      "dog": "개"
+    },
+    "description": "A loyal canine companion.",
+    "description_ko": "충성스러운 개과 동반자."
+  },
+
+  "Dog Corpse": {
+    "tier": 1,
+    "category": "corpse",
+    "tags": ["mammal"],
+    "names": {
+      "dog corpse": "개 시체"
+    }
+  },
+
+  "Hyena": {
+    "tier": 2,
+    "category": "animal",
+    "tags": ["mammal", "hostile", "pack"],
+    "names": {
+      "hyena": "하이에나"
+    },
+    "description": "A scavenging pack animal with powerful jaws.",
+    "description_ko": "강력한 턱을 가진 떼를 지어 사는 청소동물."
+  },
+
+  "Hyena Corpse": {
+    "tier": 2,
+    "category": "corpse",
+    "tags": ["mammal"],
+    "names": {
+      "hyena corpse": "하이에나 시체"
+    }
+  },
+
+  "Dire Wolf": {
+    "tier": 3,
+    "category": "animal",
+    "tags": ["mammal", "hostile", "pack"],
+    "names": {
+      "dire wolf": "다이어울프"
+    },
+    "description": "A massive wolf of terrifying power.",
+    "description_ko": "무시무시한 힘을 가진 거대한 늑대."
+  },
+
+  "Dire Wolf Corpse": {
+    "tier": 3,
+    "category": "corpse",
+    "tags": ["mammal"],
+    "names": {
+      "dire wolf corpse": "다이어울프 시체"
+    }
+  },
+
+  "Black Puma": {
+    "tier": 3,
+    "category": "animal",
+    "tags": ["mammal", "hostile", "stealth"],
+    "names": {
+      "black puma": "검은 퓨마"
+    },
+    "description": "A sleek black feline predator that stalks in shadow.",
+    "description_ko": "그림자 속에서 잠복하는 날렵한 검은 고양이과 포식자."
+  },
+
+  "Black Puma Corpse": {
+    "tier": 3,
+    "category": "corpse",
+    "tags": ["mammal"],
+    "names": {
+      "black puma corpse": "검은 퓨마 시체"
+    }
+  },
+
+  "Rhinox": {
+    "tier": 4,
+    "category": "animal",
+    "tags": ["mammal", "hostile", "large"],
+    "names": {
+      "rhinox": "라이녹스"
+    },
+    "description": "A massive rhino-like beast with multiple horns.",
+    "description_ko": "여러 개의 뿔을 가진 거대한 코뿔소 같은 짐승."
+  },
+
+  "Rhinox Corpse": {
+    "tier": 4,
+    "category": "corpse",
+    "tags": ["mammal"],
+    "names": {
+      "rhinox corpse": "라이녹스 시체"
+    }
+  },
+
+  "Rat": {
+    "tier": 1,
+    "category": "animal",
+    "tags": ["mammal", "neutral", "common", "swarm"],
+    "names": {
+      "rat": "쥐"
+    },
+    "description": "A common rodent found throughout Qud.",
+    "description_ko": "쿠드 전역에서 발견되는 흔한 설치류."
+  },
+
+  "Rat Corpse": {
+    "tier": 1,
+    "category": "corpse",
+    "tags": ["mammal"],
+    "names": {
+      "rat corpse": "쥐 시체"
+    }
+  },
+
+  "Giant Rat": {
+    "tier": 2,
+    "category": "animal",
+    "tags": ["mammal", "hostile", "giant"],
+    "names": {
+      "giant rat": "거대 쥐"
+    },
+    "description": "A rat grown to disturbing proportions.",
+    "description_ko": "불안할 정도로 큰 크기로 자란 쥐."
+  },
+
+  "Giant Rat Corpse": {
+    "tier": 2,
+    "category": "corpse",
+    "tags": ["mammal", "giant"],
+    "names": {
+      "giant rat corpse": "거대 쥐 시체"
+    }
+  },
+
+  "Rabbit": {
+    "tier": 1,
+    "category": "animal",
+    "tags": ["mammal", "neutral", "common"],
+    "names": {
+      "rabbit": "토끼"
+    },
+    "description": "A small, timid herbivore.",
+    "description_ko": "작고 소심한 초식동물."
+  },
+
+  "Rabbit Corpse": {
+    "tier": 1,
+    "category": "corpse",
+    "tags": ["mammal"],
+    "names": {
+      "rabbit corpse": "토끼 시체"
+    }
+  },
+
+  "Bop": {
+    "tier": 3,
+    "category": "animal",
+    "tags": ["mammal", "hostile", "unique"],
+    "names": {
+      "bop": "밥"
+    },
+    "description": "A strange mammalian creature native to Qud.",
+    "description_ko": "쿠드 토착의 기이한 포유류 생물."
+  },
+
+  "Bop Corpse": {
+    "tier": 3,
+    "category": "corpse",
+    "tags": ["mammal"],
+    "names": {
+      "bop corpse": "밥 시체"
+    }
   }
 }

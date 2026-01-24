@@ -1,0 +1,460 @@
+{
+  "_meta": {
+    "category": "terrain/zone",
+    "description": "Zone terrain - floors, ground types, zone-level features",
+    "version": "2.0",
+    "created": "2026-01-24",
+    "updated": "2026-01-24",
+    "phase": "Phase2-Terrain"
+  },
+
+  "Floor": {
+    "tier": 0,
+    "category": "terrain",
+    "tags": ["base", "floor"],
+    "names": {
+      "floor": "바닥"
+    }
+  },
+
+  "Dirt": {
+    "tier": 0,
+    "category": "terrain",
+    "tags": ["floor", "natural"],
+    "names": {
+      "dirt": "흙"
+    }
+  },
+
+  "Grass": {
+    "tier": 0,
+    "category": "terrain",
+    "tags": ["floor", "natural", "plant"],
+    "names": {
+      "grass": "풀"
+    }
+  },
+
+  "Sand": {
+    "tier": 0,
+    "category": "terrain",
+    "tags": ["floor", "natural"],
+    "names": {
+      "sand": "모래"
+    }
+  },
+
+  "Salt": {
+    "tier": 0,
+    "category": "terrain",
+    "tags": ["floor", "natural"],
+    "names": {
+      "salt": "소금"
+    }
+  },
+
+  "Mud": {
+    "tier": 0,
+    "category": "terrain",
+    "tags": ["floor", "natural", "water"],
+    "names": {
+      "mud": "진흙"
+    }
+  },
+
+  "Stone Floor": {
+    "tier": 1,
+    "category": "terrain",
+    "tags": ["floor", "constructed"],
+    "names": {
+      "stone floor": "돌바닥"
+    }
+  },
+
+  "Brick Floor": {
+    "tier": 1,
+    "category": "terrain",
+    "tags": ["floor", "constructed"],
+    "names": {
+      "brick floor": "벽돌 바닥"
+    }
+  },
+
+  "Metal Floor": {
+    "tier": 2,
+    "category": "terrain",
+    "tags": ["floor", "constructed", "metal"],
+    "names": {
+      "metal floor": "금속 바닥"
+    }
+  },
+
+  "Rubble": {
+    "tier": 0,
+    "category": "terrain",
+    "tags": ["floor", "debris"],
+    "names": {
+      "rubble": "잔해"
+    }
+  },
+
+  "Shallow Water": {
+    "tier": 1,
+    "category": "terrain",
+    "tags": ["water", "shallow"],
+    "names": {
+      "shallow water": "얕은 물"
+    }
+  },
+
+  "Deep Water": {
+    "tier": 2,
+    "category": "terrain",
+    "tags": ["water", "deep"],
+    "names": {
+      "deep water": "깊은 물"
+    }
+  },
+
+  "Freshwater Pool": {
+    "tier": 1,
+    "category": "terrain",
+    "tags": ["water", "fresh"],
+    "names": {
+      "freshwater pool": "담수 웅덩이"
+    }
+  },
+
+  "Saltwater Pool": {
+    "tier": 1,
+    "category": "terrain",
+    "tags": ["water", "salt"],
+    "names": {
+      "saltwater pool": "소금물 웅덩이"
+    }
+  },
+
+  "Acid Pool": {
+    "tier": 3,
+    "category": "terrain",
+    "tags": ["liquid", "acid", "hazard"],
+    "names": {
+      "acid pool": "산성 웅덩이"
+    }
+  },
+
+  "Lava Pool": {
+    "tier": 4,
+    "category": "terrain",
+    "tags": ["liquid", "lava", "hazard"],
+    "names": {
+      "lava pool": "용암 웅덩이"
+    }
+  },
+
+  "Pit": {
+    "tier": 1,
+    "category": "terrain",
+    "tags": ["hole", "hazard"],
+    "names": {
+      "pit": "구덩이"
+    }
+  },
+
+  "Chasm": {
+    "tier": 2,
+    "category": "terrain",
+    "tags": ["hole", "hazard"],
+    "names": {
+      "chasm": "협곡"
+    }
+  },
+
+  "Stairs Up": {
+    "tier": 1,
+    "category": "terrain",
+    "tags": ["stairs", "up"],
+    "names": {
+      "stairs up": "위로 가는 계단"
+    }
+  },
+
+  "Stairs Down": {
+    "tier": 1,
+    "category": "terrain",
+    "tags": ["stairs", "down"],
+    "names": {
+      "stairs down": "아래로 가는 계단"
+    }
+  },
+
+  "Ladder Up": {
+    "tier": 1,
+    "category": "terrain",
+    "tags": ["ladder", "up"],
+    "names": {
+      "ladder up": "위로 가는 사다리"
+    }
+  },
+
+  "Ladder Down": {
+    "tier": 1,
+    "category": "terrain",
+    "tags": ["ladder", "down"],
+    "names": {
+      "ladder down": "아래로 가는 사다리"
+    }
+  },
+
+  "Fungal Floor": {
+    "tier": 2,
+    "category": "terrain",
+    "tags": ["floor", "fungal"],
+    "names": {
+      "fungal floor": "균류 바닥"
+    }
+  },
+
+  "Slime Floor": {
+    "tier": 2,
+    "category": "terrain",
+    "tags": ["floor", "organic"],
+    "names": {
+      "slime floor": "점액 바닥"
+    }
+  },
+
+  "Carpet": {
+    "tier": 1,
+    "category": "terrain",
+    "tags": ["floor", "cloth"],
+    "names": {
+      "carpet": "카펫"
+    }
+  },
+
+  "Ice": {
+    "tier": 2,
+    "category": "terrain",
+    "tags": ["floor", "frozen", "hazard"],
+    "names": {
+      "ice": "얼음"
+    }
+  },
+
+  "Snow": {
+    "tier": 1,
+    "category": "terrain",
+    "tags": ["floor", "cold"],
+    "names": {
+      "snow": "눈"
+    }
+  },
+
+  "Ash": {
+    "tier": 1,
+    "category": "terrain",
+    "tags": ["floor", "debris"],
+    "names": {
+      "ash": "재"
+    }
+  },
+
+  "Gravel": {
+    "tier": 0,
+    "category": "terrain",
+    "tags": ["floor", "natural"],
+    "names": {
+      "gravel": "자갈"
+    }
+  },
+
+  "Cobblestone": {
+    "tier": 1,
+    "category": "terrain",
+    "tags": ["floor", "constructed"],
+    "names": {
+      "cobblestone": "조약돌 바닥"
+    }
+  },
+
+  "Marble Floor": {
+    "tier": 2,
+    "category": "terrain",
+    "tags": ["floor", "constructed"],
+    "names": {
+      "marble floor": "대리석 바닥"
+    }
+  },
+
+  "Wood Floor": {
+    "tier": 1,
+    "category": "terrain",
+    "tags": ["floor", "constructed"],
+    "names": {
+      "wood floor": "나무 바닥"
+    }
+  },
+
+  "Oil Pool": {
+    "tier": 2,
+    "category": "terrain",
+    "tags": ["liquid", "hazard"],
+    "names": {
+      "oil pool": "기름 웅덩이"
+    }
+  },
+
+  "Tar Pool": {
+    "tier": 2,
+    "category": "terrain",
+    "tags": ["liquid", "hazard"],
+    "names": {
+      "tar pool": "타르 웅덩이"
+    }
+  },
+
+  "Honey Pool": {
+    "tier": 1,
+    "category": "terrain",
+    "tags": ["liquid"],
+    "names": {
+      "honey pool": "꿀 웅덩이"
+    }
+  },
+
+  "Wine Pool": {
+    "tier": 1,
+    "category": "terrain",
+    "tags": ["liquid"],
+    "names": {
+      "wine pool": "와인 웅덩이"
+    }
+  },
+
+  "Poison Pool": {
+    "tier": 3,
+    "category": "terrain",
+    "tags": ["liquid", "hazard", "poison"],
+    "names": {
+      "poison pool": "독 웅덩이"
+    }
+  },
+
+  "Blood Pool": {
+    "tier": 1,
+    "category": "terrain",
+    "tags": ["liquid", "gore"],
+    "names": {
+      "blood pool": "피 웅덩이"
+    }
+  },
+
+  "Fungal Growth": {
+    "tier": 2,
+    "category": "terrain",
+    "tags": ["floor", "fungal"],
+    "names": {
+      "fungal growth": "균류 성장체"
+    }
+  },
+
+  "Moss": {
+    "tier": 0,
+    "category": "terrain",
+    "tags": ["floor", "natural", "plant"],
+    "names": {
+      "moss": "이끼"
+    }
+  },
+
+  "Vine Floor": {
+    "tier": 1,
+    "category": "terrain",
+    "tags": ["floor", "plant"],
+    "names": {
+      "vine floor": "덩굴 바닥"
+    }
+  },
+
+  "Crystal Floor": {
+    "tier": 3,
+    "category": "terrain",
+    "tags": ["floor", "crystal"],
+    "names": {
+      "crystal floor": "수정 바닥"
+    }
+  },
+
+  "Tech Floor": {
+    "tier": 3,
+    "category": "terrain",
+    "tags": ["floor", "tech"],
+    "names": {
+      "tech floor": "기술 바닥"
+    }
+  },
+
+  "Holographic Floor": {
+    "tier": 4,
+    "category": "terrain",
+    "tags": ["floor", "tech", "hologram"],
+    "names": {
+      "holographic floor": "홀로그램 바닥"
+    }
+  },
+
+  "Force Field Floor": {
+    "tier": 5,
+    "category": "terrain",
+    "tags": ["floor", "energy"],
+    "names": {
+      "force field floor": "역장 바닥"
+    }
+  },
+
+  "Sludge Pool": {
+    "tier": 2,
+    "category": "terrain",
+    "tags": ["liquid", "hazard"],
+    "names": {
+      "sludge pool": "슬러지 웅덩이"
+    }
+  },
+
+  "Quicksand": {
+    "tier": 2,
+    "category": "terrain",
+    "tags": ["floor", "hazard", "natural"],
+    "names": {
+      "quicksand": "유사"
+    }
+  },
+
+  "Rope Bridge": {
+    "tier": 1,
+    "category": "terrain",
+    "tags": ["bridge"],
+    "names": {
+      "rope bridge": "밧줄 다리"
+    }
+  },
+
+  "Stone Bridge": {
+    "tier": 2,
+    "category": "terrain",
+    "tags": ["bridge"],
+    "names": {
+      "stone bridge": "돌 다리"
+    }
+  },
+
+  "Metal Bridge": {
+    "tier": 3,
+    "category": "terrain",
+    "tags": ["bridge", "metal"],
+    "names": {
+      "metal bridge": "금속 다리"
+    }
+  }
+}

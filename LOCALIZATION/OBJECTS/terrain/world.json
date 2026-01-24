@@ -1,0 +1,205 @@
+{
+  "_meta": {
+    "category": "terrain/world",
+    "description": "World terrain - regions, biomes, world map locations",
+    "version": "2.0",
+    "created": "2026-01-24",
+    "updated": "2026-01-24",
+    "phase": "Phase2-Terrain"
+  },
+
+  "Terrain": {
+    "tier": 0,
+    "category": "terrain",
+    "tags": ["base"],
+    "names": {
+      "terrain": "지형"
+    }
+  },
+
+  "TerrainDesertCanyon": {
+    "tier": 1,
+    "category": "terrain",
+    "tags": ["region", "desert"],
+    "names": {
+      "desert canyons": "사막 협곡"
+    },
+    "description": "Long ago the rivers themselves were ravenous, and they feasted on shale and limestone before taking bloated respite in the Great Salt Sea. Now the fissure-wounds have rotted to crimson and salt.",
+    "description_ko": "오래전 강들 자체가 탐욕스러웠고, 대염해에서 부푼 휴식을 취하기 전에 셰일과 석회암을 탐식했다. 이제 균열 상처는 진홍색과 소금으로 썩어갔다."
+  },
+
+  "TerrainSaltmarsh": {
+    "tier": 0,
+    "category": "terrain",
+    "tags": ["region", "marsh"],
+    "names": {
+      "salt marsh": "염습지"
+    },
+    "description": "In stagnant pools, luminous lilies compete with the ribbon of stars in the night sky. Under the salt sun, though, they shrink into the shade of brine weed.",
+    "description_ko": "정체된 웅덩이에서 빛나는 백합이 밤하늘의 별 띠와 경쟁한다. 하지만 소금 태양 아래에서, 그것들은 소금물 잡초의 그늘로 움츠러든다."
+  },
+
+  "TerrainSaltdunes": {
+    "tier": 2,
+    "category": "terrain",
+    "tags": ["region", "desert"],
+    "names": {
+      "salt dunes": "소금 모래언덕"
+    },
+    "description": "The ivory sea's dunes are like waves frozen in place. There are cracks in the salt from where the earth, blistered by the jeweled sun, contracted and broke. The horizon melts the sky together with the vast plain of Moghra'yi, the Great Salt Desert.",
+    "description_ko": "상아색 바다의 모래언덕은 제자리에 얼어붙은 파도 같다. 보석 태양에 물집이 생긴 대지가 수축하고 부서진 곳에서 소금에 균열이 있다. 수평선은 하늘을 위대한 소금 사막, 모그라'이의 광활한 평원과 함께 녹인다."
+  },
+
+  "TerrainFlowerfields": {
+    "tier": 2,
+    "category": "terrain",
+    "tags": ["region", "plains"],
+    "names": {
+      "flower fields": "꽃밭"
+    },
+    "description": "Prismatic filament colonizes the cracks between the salted rot. There are meadows here, She says.",
+    "description_ko": "프리즘 필라멘트가 소금 부패 사이의 틈을 식민화한다. 여기에 초원이 있다, 그녀가 말한다."
+  },
+
+  "TerrainJungle": {
+    "tier": 3,
+    "category": "terrain",
+    "tags": ["region", "jungle"],
+    "names": {
+      "jungle": "정글"
+    },
+    "description": "Braids of roots and ribbons of fronds dimensionalize the flat loam. Something's home a discarded leaf makes.",
+    "description_ko": "뿌리의 땋은 줄과 잎사귀의 리본이 평평한 양토를 입체화한다. 버려진 잎이 무언가의 집이 된다."
+  },
+
+  "TerrainDeepJungle": {
+    "tier": 6,
+    "category": "terrain",
+    "tags": ["region", "jungle", "deep"],
+    "names": {
+      "deep jungle": "깊은 정글"
+    },
+    "description": "Thriving florae pack the loam with maze-dense roots, and a high-wreath canopy chokes off the last beams of light.",
+    "description_ko": "번성하는 식물군이 미로처럼 빽빽한 뿌리로 양토를 채우고, 높은 화환 캐노피가 마지막 빛줄기를 차단한다."
+  },
+
+  "TerrainFungal": {
+    "tier": 5,
+    "category": "terrain",
+    "tags": ["region", "fungal"],
+    "names": {
+      "Rainbow Wood": "무지개 숲"
+    },
+    "description": "Spores dance in eddies across kaleidoscopic fungal bonnets. Rivers of primordial soup, cast in the light of lava, gurgle a quickening melody.",
+    "description_ko": "포자가 만화경 같은 균류 보닛을 가로질러 소용돌이 속에서 춤춘다. 용암의 빛에 비친 원시 수프의 강이 빨라지는 멜로디를 졸졸 노래한다."
+  },
+
+  "TerrainMoonStair": {
+    "tier": 8,
+    "category": "terrain",
+    "tags": ["region", "exotic"],
+    "names": {
+      "Moon Stair": "달 계단"
+    },
+    "description": "Hex prisms burst out of black marble beds, and their edges decohere as warm static dew. The Stair purrs at low frequency.",
+    "description_ko": "육각 프리즘이 검은 대리석 침대에서 터져 나오고, 그 가장자리는 따뜻한 정적 이슬로 비간섭화된다. 계단이 저주파로 그르릉거린다."
+  },
+
+  "TerrainHills": {
+    "tier": 2,
+    "category": "terrain",
+    "tags": ["region", "hills"],
+    "names": {
+      "hills": "언덕"
+    },
+    "description": "Blips in the wave graph of stone over time.",
+    "description_ko": "시간에 따른 돌의 파형 그래프에서의 점들."
+  },
+
+  "TerrainMountains": {
+    "tier": 4,
+    "category": "terrain",
+    "tags": ["region", "mountains"],
+    "names": {
+      "mountains": "산"
+    },
+    "description": "In the wave graph of stone over time, where the world plates once vexed themselves into war, a quiet peace has settled.",
+    "description_ko": "시간에 따른 돌의 파형 그래프에서, 세계의 판들이 한때 전쟁으로 괴로워했던 곳에, 조용한 평화가 자리 잡았다."
+  },
+
+  "TerrainCraters": {
+    "tier": 2,
+    "category": "terrain",
+    "tags": ["region", "volcanic"],
+    "names": {
+      "craters": "분화구"
+    }
+  },
+
+  "TerrainRuins": {
+    "tier": 3,
+    "category": "terrain",
+    "tags": ["region", "ruins"],
+    "names": {
+      "ruins": "폐허"
+    },
+    "description": "The remains of a once-great civilization.",
+    "description_ko": "한때 위대했던 문명의 유적."
+  },
+
+  "TerrainBaroqueRuins": {
+    "tier": 4,
+    "category": "terrain",
+    "tags": ["region", "ruins", "baroque"],
+    "names": {
+      "baroque ruins": "바로크 폐허"
+    },
+    "description": "Ornate ruins of an elaborate past.",
+    "description_ko": "정교한 과거의 화려한 폐허."
+  },
+
+  "TerrainLake": {
+    "tier": 2,
+    "category": "terrain",
+    "tags": ["water", "lake"],
+    "names": {
+      "lake": "호수"
+    }
+  },
+
+  "TerrainRiver": {
+    "tier": 1,
+    "category": "terrain",
+    "tags": ["water", "river"],
+    "names": {
+      "river": "강"
+    }
+  },
+
+  "TerrainOcean": {
+    "tier": 3,
+    "category": "terrain",
+    "tags": ["water", "ocean"],
+    "names": {
+      "ocean": "바다"
+    }
+  },
+
+  "TerrainPallidReef": {
+    "tier": 5,
+    "category": "terrain",
+    "tags": ["water", "reef", "exotic"],
+    "names": {
+      "Pallid Reef": "창백한 암초"
+    }
+  },
+
+  "TerrainAsphaltMines": {
+    "tier": 4,
+    "category": "terrain",
+    "tags": ["underground", "mines"],
+    "names": {
+      "Asphalt Mines": "아스팔트 광산"
+    }
+  }
+}

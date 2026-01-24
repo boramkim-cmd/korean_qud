@@ -1,0 +1,120 @@
+{
+  "_meta": {
+    "category": "furniture/containers",
+    "description": "Chests, storage containers, shelves",
+    "version": "2.0",
+    "created": "2026-01-24",
+    "updated": "2026-01-24",
+    "phase": "Phase2-Furniture"
+  },
+
+  "Chest": {
+    "tier": 1,
+    "category": "furniture",
+    "tags": ["container", "storage"],
+    "names": {
+      "chest": "상자"
+    },
+    "description": "A wooden storage chest.",
+    "description_ko": "나무 저장 상자."
+  },
+
+  "Metal Chest": {
+    "tier": 2,
+    "category": "furniture",
+    "tags": ["container", "storage", "metal"],
+    "names": {
+      "metal chest": "금속 상자"
+    },
+    "description": "A sturdy metal storage chest.",
+    "description_ko": "튼튼한 금속 저장 상자."
+  },
+
+  "Bookshelf": {
+    "tier": 1,
+    "category": "furniture",
+    "tags": ["container", "storage", "books"],
+    "names": {
+      "bookshelf": "책장"
+    },
+    "description": "A shelf for storing books.",
+    "description_ko": "책을 보관하는 선반."
+  },
+
+  "Crate": {
+    "tier": 1,
+    "category": "furniture",
+    "tags": ["container", "storage"],
+    "names": {
+      "crate": "나무 상자"
+    },
+    "description": "A wooden crate for storage.",
+    "description_ko": "저장을 위한 나무 상자."
+  },
+
+  "Barrel": {
+    "tier": 1,
+    "category": "furniture",
+    "tags": ["container", "storage", "liquid"],
+    "names": {
+      "barrel": "통"
+    },
+    "description": "A barrel for storing liquids or goods.",
+    "description_ko": "액체나 물품을 저장하는 통."
+  },
+
+  "Locker": {
+    "tier": 2,
+    "category": "furniture",
+    "tags": ["container", "storage", "metal"],
+    "names": {
+      "locker": "사물함"
+    },
+    "description": "A metal storage locker.",
+    "description_ko": "금속 저장 사물함."
+  },
+
+  "Footlocker": {
+    "tier": 1,
+    "category": "furniture",
+    "tags": ["container", "storage"],
+    "names": {
+      "footlocker": "트렁크"
+    },
+    "description": "A small storage trunk.",
+    "description_ko": "작은 저장 트렁크."
+  },
+
+  "Storage Tank": {
+    "tier": 3,
+    "category": "furniture",
+    "tags": ["container", "storage", "liquid", "tech"],
+    "names": {
+      "storage tank": "저장 탱크"
+    },
+    "description": "A large tank for liquid storage.",
+    "description_ko": "액체 저장을 위한 큰 탱크."
+  },
+
+  "Cabinet": {
+    "tier": 1,
+    "category": "furniture",
+    "tags": ["container", "storage"],
+    "names": {
+      "cabinet": "캐비닛"
+    },
+    "description": "A storage cabinet.",
+    "description_ko": "저장 캐비닛."
+  },
+
+  "Shelf": {
+    "tier": 1,
+    "category": "furniture",
+    "tags": ["storage"],
+    "names": {
+      "shelf": "선반"
+    },
+    "description": "A simple shelf.",
+    "description_ko": "단순한 선반."
+  }
+}

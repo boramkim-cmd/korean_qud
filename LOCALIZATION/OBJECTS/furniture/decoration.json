@@ -1,0 +1,142 @@
+{
+  "_meta": {
+    "category": "furniture/decoration",
+    "description": "Decorative items - statues, art, signs",
+    "version": "2.0",
+    "created": "2026-01-24",
+    "updated": "2026-01-24",
+    "phase": "Phase2-Furniture"
+  },
+
+  "Statue": {
+    "tier": 2,
+    "category": "furniture",
+    "tags": ["decoration", "statue"],
+    "names": {
+      "statue": "조각상"
+    },
+    "description": "A decorative statue.",
+    "description_ko": "장식용 조각상."
+  },
+
+  "Marble Dais": {
+    "tier": 3,
+    "category": "furniture",
+    "tags": ["decoration", "platform"],
+    "names": {
+      "marble dais": "대리석 단상"
+    },
+    "description": "Smooth cerulean marble looks like holographic light annealed into solid rock. It's edged and cornered with gold.",
+    "description_ko": "매끄러운 하늘색 대리석이 단단한 바위에 굳은 홀로그램 빛처럼 보인다. 가장자리와 모서리가 금으로 장식되어 있다."
+  },
+
+  "Sacred Well": {
+    "tier": 4,
+    "category": "furniture",
+    "tags": ["decoration", "sacred", "water"],
+    "names": {
+      "sacred well": "성스러운 우물"
+    },
+    "description": "Sphinx scenes of post-Edification glamour are arrayed in gold and sunken relief around the lip of the black marble fount.",
+    "description_ko": "계몽 이후 화려함의 스핑크스 장면이 검은 대리석 분수의 가장자리 주위에 금과 음각 부조로 배열되어 있다."
+  },
+
+  "Bell of Rest": {
+    "tier": 4,
+    "category": "furniture",
+    "tags": ["decoration", "sacred"],
+    "names": {
+      "Bell of Rest": "휴식의 종"
+    },
+    "description": "A sacred bell that brings rest.",
+    "description_ko": "휴식을 가져다주는 성스러운 종."
+  },
+
+  "Sign": {
+    "tier": 1,
+    "category": "furniture",
+    "tags": ["decoration", "sign"],
+    "names": {
+      "sign": "표지판"
+    },
+    "description": "A sign with writing.",
+    "description_ko": "글이 적힌 표지판."
+  },
+
+  "Poster": {
+    "tier": 1,
+    "category": "furniture",
+    "tags": ["decoration"],
+    "names": {
+      "poster": "포스터"
+    },
+    "description": "A decorative poster.",
+    "description_ko": "장식용 포스터."
+  },
+
+  "Tapestry": {
+    "tier": 2,
+    "category": "furniture",
+    "tags": ["decoration", "cloth"],
+    "names": {
+      "tapestry": "태피스트리"
+    },
+    "description": "A woven tapestry.",
+    "description_ko": "짜여진 태피스트리."
+  },
+
+  "Hologram": {
+    "tier": 5,
+    "category": "furniture",
+    "tags": ["decoration", "tech", "hologram"],
+    "names": {
+      "hologram": "홀로그램"
+    },
+    "description": "A holographic display.",
+    "description_ko": "홀로그램 디스플레이."
+  },
+
+  "Rug": {
+    "tier": 1,
+    "category": "furniture",
+    "tags": ["decoration", "cloth"],
+    "names": {
+      "rug": "양탄자"
+    },
+    "description": "A decorative floor covering.",
+    "description_ko": "장식용 바닥 덮개."
+  },
+
+  "Monument": {
+    "tier": 3,
+    "category": "furniture",
+    "tags": ["decoration", "statue", "large"],
+    "names": {
+      "monument": "기념비"
+    },
+    "description": "A large commemorative structure.",
+    "description_ko": "큰 기념 구조물."
+  },
+
+  "Tombstone": {
+    "tier": 2,
+    "category": "furniture",
+    "tags": ["decoration", "burial"],
+    "names": {
+      "tombstone": "묘비"
+    },
+    "description": "A grave marker.",
+    "description_ko": "무덤 표지."
+  },
+
+  "Sarcophagus": {
+    "tier": 3,
+    "category": "furniture",
+    "tags": ["decoration", "burial", "container"],
+    "names": {
+      "sarcophagus": "석관"
+    },
+    "description": "A stone coffin.",
+    "description_ko": "돌로 된 관."
+  }
+}

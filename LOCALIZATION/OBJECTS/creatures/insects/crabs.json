@@ -3,17 +3,176 @@
     "category": "insects/crabs",
     "description": "Crab and crustacean creatures",
     "version": "2.0",
-    "updated": "2026-01-22"
+    "created": "2026-01-22",
+    "updated": "2026-01-24",
+    "phase": "Phase2-Creatures"
   },
 
   "Eyeless Crab": {
     "tier": 2,
-    "category": "insect",
+    "category": "crustacean",
     "tags": ["crustacean", "hostile", "blind"],
     "names": {
       "eyeless crab": "눈먼 게"
     },
     "description": "A crustacean without eyes that hunts by detecting vibrations.",
     "description_ko": "눈이 없는 갑각류. 진동을 감지하여 사냥한다."
+  },
+
+  "Eyeless Crab Corpse": {
+    "tier": 2,
+    "category": "corpse",
+    "tags": ["crustacean"],
+    "names": {
+      "eyeless crab corpse": "눈먼 게 시체"
+    }
+  },
+
+  "Eyeless King Crab": {
+    "tier": 4,
+    "category": "crustacean",
+    "tags": ["crustacean", "hostile", "blind", "elite"],
+    "names": {
+      "eyeless king crab": "눈먼 왕게"
+    },
+    "description": "A massive eyeless crab with crushing claws and thick carapace.",
+    "description_ko": "으스러뜨리는 집게발과 두꺼운 갑각을 가진 거대한 눈먼 게."
+  },
+
+  "Eyeless King Crab Corpse": {
+    "tier": 4,
+    "category": "corpse",
+    "tags": ["crustacean"],
+    "names": {
+      "eyeless king crab corpse": "눈먼 왕게 시체"
+    }
+  },
+
+  "Cave Spider Crab": {
+    "tier": 3,
+    "category": "crustacean",
+    "tags": ["crustacean", "hostile", "spider-like"],
+    "names": {
+      "cave spider crab": "동굴거미게"
+    },
+    "description": "A crab with long spindly legs like a spider, dwelling in caves.",
+    "description_ko": "거미처럼 길고 가느다란 다리를 가진 동굴에 사는 게."
+  },
+
+  "Cave Spider Crab Corpse": {
+    "tier": 3,
+    "category": "corpse",
+    "tags": ["crustacean"],
+    "names": {
+      "cave spider crab corpse": "동굴거미게 시체"
+    }
+  },
+
+  "Hermit Crab": {
+    "tier": 2,
+    "category": "crustacean",
+    "tags": ["crustacean", "neutral", "common"],
+    "names": {
+      "hermit crab": "소라게"
+    },
+    "description": "A small crab that lives in salvaged shells.",
+    "description_ko": "주운 조개껍데기에 사는 작은 게."
+  },
+
+  "Giant Hermit Crab": {
+    "tier": 4,
+    "category": "crustacean",
+    "tags": ["crustacean", "hostile", "giant"],
+    "names": {
+      "giant hermit crab": "거대 소라게"
+    },
+    "description": "A hermit crab grown large enough to use machinery as its shell.",
+    "description_ko": "기계를 껍데기로 사용할 만큼 커진 소라게."
+  },
+
+  "Giant Hermit Crab Corpse": {
+    "tier": 4,
+    "category": "corpse",
+    "tags": ["crustacean"],
+    "names": {
+      "giant hermit crab corpse": "거대 소라게 시체"
+    }
+  },
+
+  "Mud Crab": {
+    "tier": 1,
+    "category": "crustacean",
+    "tags": ["crustacean", "neutral", "common"],
+    "names": {
+      "mud crab": "진흙게"
+    },
+    "description": "A small crab that burrows in muddy riverbanks.",
+    "description_ko": "진흙 강둑에 굴을 파는 작은 게."
+  },
+
+  "Rock Crab": {
+    "tier": 2,
+    "category": "crustacean",
+    "tags": ["crustacean", "hostile", "camouflage"],
+    "names": {
+      "rock crab": "바위게"
+    },
+    "description": "A crab with a shell that resembles a stone.",
+    "description_ko": "돌과 비슷한 껍데기를 가진 게."
+  },
+
+  "Snapping Crab": {
+    "tier": 3,
+    "category": "crustacean",
+    "tags": ["crustacean", "hostile", "common"],
+    "names": {
+      "snapping crab": "딱총새우게"
+    },
+    "description": "A crab with one oversized claw that makes a snapping sound.",
+    "description_ko": "딱 소리를 내는 커다란 집게발을 가진 게."
+  },
+
+  "Coral Crab": {
+    "tier": 2,
+    "category": "crustacean",
+    "tags": ["crustacean", "neutral", "common"],
+    "names": {
+      "coral crab": "산호게"
+    },
+    "description": "A colorful crab that lives among coral formations.",
+    "description_ko": "산호 사이에 사는 화려한 색의 게."
+  },
+
+  "Crab Swarm": {
+    "tier": 3,
+    "category": "swarm",
+    "tags": ["crustacean", "hostile", "swarm"],
+    "names": {
+      "crab swarm": "게 떼"
+    },
+    "description": "A scuttling mass of crabs moving as one.",
+    "description_ko": "하나처럼 움직이는 게 무리."
+  },
+
+  "Albino Crab": {
+    "tier": 3,
+    "category": "crustacean",
+    "tags": ["crustacean", "hostile", "cave"],
+    "names": {
+      "albino crab": "백색 게"
+    },
+    "description": "A pale cave-dwelling crab with sensitive antennae.",
+    "description_ko": "민감한 더듬이를 가진 창백한 동굴 서식 게."
+  },
+
+  "Glowing Crab": {
+    "tier": 3,
+    "category": "crustacean",
+    "tags": ["crustacean", "hostile", "luminous"],
+    "names": {
+      "glowing crab": "빛나는 게"
+    },
+    "description": "A bioluminescent crab that illuminates the depths.",
+    "description_ko": "심해를 밝히는 생물 발광 게."
   }
 }

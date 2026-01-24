@@ -1,0 +1,41 @@
+{
+  "names": {
+    "Pistol": "권총"
+  },
+  "description": "You are skilled with pistols of various kinds.",
+  "description_ko": "당신은 다양한 종류의 권총에 숙달되어 있습니다.",
+  "powers": {
+    "steady hand": {
+      "name": "안정된 손",
+      "desc": "권총의 정확도를 결정할 때 민첩이 4점 더 높은 것으로 취급됩니다."
+    },
+    "akimbo": {
+      "name": "아킴보",
+      "desc": "여러 총을 들고 원거리 공격을 할 때마다 각 총으로 한 발씩 발사합니다."
+    },
+    "weak spotter": {
+      "name": "약점 포착",
+      "desc": "권총으로 치명타를 가할 확률이 5% 증가합니다(기본 확률 5%)."
+    },
+    "sling and run": {
+      "name": "쏘고 달리기",
+      "desc": "달리는 중에 권총을 발사해도 정확도 페널티를 받지 않습니다."
+    },
+    "disarming shot": {
+      "name": "무장 해제 사격",
+      "desc": "권총으로 명중할 때 민첩 기반 확률로 적의 무장을 해제합니다."
+    },
+    "dead shot": {
+      "name": "데드 샷",
+      "desc": "권총으로 가한 치명타가 더 치명적입니다."
+    },
+    "empty the clips": {
+      "name": "탄창 비우기",
+      "desc": "재사용 대기시간 200. 20라운드 동안 권총 발사에 한 턴 대신 반 턴만 소요됩니다."
+    },
+    "fastest gun in the rust": {
+      "name": "녹슨 땅의 총잡이",
+      "desc": "권총 발사의 행동 비용이 25% 감소합니다."
+    }
+  }
+}

@@ -1,0 +1,120 @@
+{
+  "_meta": {
+    "category": "furniture/lighting",
+    "description": "Light sources - torches, lamps, fires",
+    "version": "2.0",
+    "created": "2026-01-24",
+    "updated": "2026-01-24",
+    "phase": "Phase2-Furniture"
+  },
+
+  "Torch Sconce": {
+    "tier": 1,
+    "category": "furniture",
+    "tags": ["light", "fire"],
+    "names": {
+      "torch sconce": "횃불 거치대"
+    },
+    "description": "A wall-mounted holder for a torch.",
+    "description_ko": "횃불을 위한 벽걸이 거치대."
+  },
+
+  "Campfire": {
+    "tier": 1,
+    "category": "furniture",
+    "tags": ["light", "fire", "heat"],
+    "names": {
+      "campfire": "모닥불"
+    },
+    "description": "A crackling fire for warmth and light.",
+    "description_ko": "따뜻함과 빛을 위한 타닥거리는 불."
+  },
+
+  "Brazier": {
+    "tier": 2,
+    "category": "furniture",
+    "tags": ["light", "fire", "metal"],
+    "names": {
+      "brazier": "화로"
+    },
+    "description": "A metal container for holding fire.",
+    "description_ko": "불을 담는 금속 용기."
+  },
+
+  "Glowsphere": {
+    "tier": 4,
+    "category": "furniture",
+    "tags": ["light", "tech"],
+    "names": {
+      "glowsphere": "빛나는 구체"
+    },
+    "description": "An illuminating sphere of tech origin.",
+    "description_ko": "기술로 만든 조명 구체."
+  },
+
+  "Luminous Hoarshroom": {
+    "tier": 2,
+    "category": "furniture",
+    "tags": ["light", "fungus", "natural"],
+    "names": {
+      "luminous hoarshroom": "빛나는 서리버섯"
+    },
+    "description": "A glowing fungus that provides soft light.",
+    "description_ko": "부드러운 빛을 제공하는 빛나는 균류."
+  },
+
+  "Lantern": {
+    "tier": 2,
+    "category": "furniture",
+    "tags": ["light", "portable"],
+    "names": {
+      "lantern": "랜턴"
+    },
+    "description": "A portable light source.",
+    "description_ko": "휴대용 광원."
+  },
+
+  "Oil Lamp": {
+    "tier": 1,
+    "category": "furniture",
+    "tags": ["light", "oil"],
+    "names": {
+      "oil lamp": "기름 등잔"
+    },
+    "description": "A lamp that burns oil for light.",
+    "description_ko": "빛을 위해 기름을 태우는 등잔."
+  },
+
+  "Candle": {
+    "tier": 1,
+    "category": "furniture",
+    "tags": ["light"],
+    "names": {
+      "candle": "양초"
+    },
+    "description": "A simple wax candle.",
+    "description_ko": "단순한 밀랍 양초."
+  },
+
+  "Holographic Light": {
+    "tier": 5,
+    "category": "furniture",
+    "tags": ["light", "tech", "hologram"],
+    "names": {
+      "holographic light": "홀로그램 조명"
+    },
+    "description": "A high-tech holographic light source.",
+    "description_ko": "하이테크 홀로그램 광원."
+  },
+
+  "Bioluminescent Panel": {
+    "tier": 4,
+    "category": "furniture",
+    "tags": ["light", "bio"],
+    "names": {
+      "bioluminescent panel": "생물발광 패널"
+    },
+    "description": "A panel that glows through biological processes.",
+    "description_ko": "생물학적 과정으로 빛나는 패널."
+  }
+}

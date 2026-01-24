@@ -1,0 +1,388 @@
+{
+  "_meta": {
+    "category": "widgets",
+    "description": "Widgets - zone mutators, UI elements, floor painters, builders",
+    "version": "2.0",
+    "created": "2026-01-24",
+    "updated": "2026-01-24",
+    "phase": "Phase2-Widgets"
+  },
+
+  "Widget": {
+    "tier": 0,
+    "category": "widget",
+    "tags": ["base"],
+    "names": {
+      "widget": "위젯"
+    }
+  },
+
+  "ZoneMusic": {
+    "tier": 0,
+    "category": "widget",
+    "tags": ["zone", "audio"],
+    "names": {
+      "zone music": "구역 음악"
+    }
+  },
+
+  "AmbientLight": {
+    "tier": 0,
+    "category": "widget",
+    "tags": ["zone", "light"],
+    "names": {
+      "ambient light": "주변광"
+    }
+  },
+
+  "SpindleLight": {
+    "tier": 0,
+    "category": "widget",
+    "tags": ["zone", "light"],
+    "names": {
+      "spindle light": "방추체 빛"
+    }
+  },
+
+  "DaylightWidget": {
+    "tier": 0,
+    "category": "widget",
+    "tags": ["zone", "light"],
+    "names": {
+      "daylight": "일광"
+    }
+  },
+
+  "HolyPlaceWidget": {
+    "tier": 0,
+    "category": "widget",
+    "tags": ["zone", "sacred"],
+    "names": {
+      "holy place": "성지"
+    }
+  },
+
+  "Trashy": {
+    "tier": 0,
+    "category": "widget",
+    "tags": ["floor", "painter"],
+    "names": {
+      "trashy": "쓰레기 투성이"
+    }
+  },
+
+  "Dirty": {
+    "tier": 0,
+    "category": "widget",
+    "tags": ["floor", "painter"],
+    "names": {
+      "dirty": "더러운"
+    }
+  },
+
+  "Flowery": {
+    "tier": 0,
+    "category": "widget",
+    "tags": ["floor", "painter"],
+    "names": {
+      "flowery": "꽃이 핀"
+    }
+  },
+
+  "Mushroomy": {
+    "tier": 0,
+    "category": "widget",
+    "tags": ["floor", "painter"],
+    "names": {
+      "mushroomy": "버섯이 핀"
+    }
+  },
+
+  "Grassy": {
+    "tier": 0,
+    "category": "widget",
+    "tags": ["floor", "painter"],
+    "names": {
+      "grassy": "풀이 난"
+    }
+  },
+
+  "Rocky": {
+    "tier": 0,
+    "category": "widget",
+    "tags": ["floor", "painter"],
+    "names": {
+      "rocky": "바위투성이"
+    }
+  },
+
+  "Kelpy": {
+    "tier": 0,
+    "category": "widget",
+    "tags": ["floor", "painter"],
+    "names": {
+      "kelpy": "다시마 덮인"
+    }
+  },
+
+  "ConcreteFloor": {
+    "tier": 0,
+    "category": "widget",
+    "tags": ["floor", "painter"],
+    "names": {
+      "concrete floor": "콘크리트 바닥"
+    }
+  },
+
+  "BlueTile": {
+    "tier": 0,
+    "category": "widget",
+    "tags": ["floor", "painter"],
+    "names": {
+      "blue tile": "파란 타일"
+    }
+  },
+
+  "RedTile": {
+    "tier": 0,
+    "category": "widget",
+    "tags": ["floor", "painter"],
+    "names": {
+      "red tile": "빨간 타일"
+    }
+  },
+
+  "GreenTile": {
+    "tier": 0,
+    "category": "widget",
+    "tags": ["floor", "painter"],
+    "names": {
+      "green tile": "녹색 타일"
+    }
+  },
+
+  "WhiteTile": {
+    "tier": 0,
+    "category": "widget",
+    "tags": ["floor", "painter"],
+    "names": {
+      "white tile": "흰 타일"
+    }
+  },
+
+  "BlackTile": {
+    "tier": 0,
+    "category": "widget",
+    "tags": ["floor", "painter"],
+    "names": {
+      "black tile": "검은 타일"
+    }
+  },
+
+  "WoodFloor": {
+    "tier": 0,
+    "category": "widget",
+    "tags": ["floor", "painter"],
+    "names": {
+      "wood floor": "나무 바닥"
+    }
+  },
+
+  "MarbleFloor": {
+    "tier": 0,
+    "category": "widget",
+    "tags": ["floor", "painter"],
+    "names": {
+      "marble floor": "대리석 바닥"
+    }
+  },
+
+  "SandFloor": {
+    "tier": 0,
+    "category": "widget",
+    "tags": ["floor", "painter"],
+    "names": {
+      "sand floor": "모래 바닥"
+    }
+  },
+
+  "WaterDropper": {
+    "tier": 0,
+    "category": "widget",
+    "tags": ["liquid", "painter"],
+    "names": {
+      "water dropper": "물방울 뿌리기"
+    }
+  },
+
+  "AcidDropper": {
+    "tier": 0,
+    "category": "widget",
+    "tags": ["liquid", "painter"],
+    "names": {
+      "acid dropper": "산성 뿌리기"
+    }
+  },
+
+  "SlimeDropper": {
+    "tier": 0,
+    "category": "widget",
+    "tags": ["liquid", "painter"],
+    "names": {
+      "slime dropper": "점액 뿌리기"
+    }
+  },
+
+  "TorchPlacer": {
+    "tier": 0,
+    "category": "widget",
+    "tags": ["light", "builder"],
+    "names": {
+      "torch placer": "횃불 배치"
+    }
+  },
+
+  "RuinedWalls": {
+    "tier": 0,
+    "category": "widget",
+    "tags": ["wall", "builder"],
+    "names": {
+      "ruined walls": "폐허 벽"
+    }
+  },
+
+  "CrumblingWalls": {
+    "tier": 0,
+    "category": "widget",
+    "tags": ["wall", "builder"],
+    "names": {
+      "crumbling walls": "무너지는 벽"
+    }
+  },
+
+  "VineCoveredWalls": {
+    "tier": 0,
+    "category": "widget",
+    "tags": ["wall", "builder"],
+    "names": {
+      "vine-covered walls": "덩굴 덮인 벽"
+    }
+  },
+
+  "WeatheredFloor": {
+    "tier": 0,
+    "category": "widget",
+    "tags": ["floor", "painter"],
+    "names": {
+      "weathered floor": "풍화된 바닥"
+    }
+  },
+
+  "BloodSplatter": {
+    "tier": 0,
+    "category": "widget",
+    "tags": ["floor", "painter", "gore"],
+    "names": {
+      "blood splatter": "피 흔적"
+    }
+  },
+
+  "CorpsePile": {
+    "tier": 0,
+    "category": "widget",
+    "tags": ["decoration", "gore"],
+    "names": {
+      "corpse pile": "시체 더미"
+    }
+  },
+
+  "BonePile": {
+    "tier": 0,
+    "category": "widget",
+    "tags": ["decoration", "bone"],
+    "names": {
+      "bone pile": "뼈 더미"
+    }
+  },
+
+  "FurniturePopulator": {
+    "tier": 0,
+    "category": "widget",
+    "tags": ["builder"],
+    "names": {
+      "furniture populator": "가구 배치"
+    }
+  },
+
+  "CreaturePopulator": {
+    "tier": 0,
+    "category": "widget",
+    "tags": ["builder"],
+    "names": {
+      "creature populator": "생물 배치"
+    }
+  },
+
+  "LootPopulator": {
+    "tier": 0,
+    "category": "widget",
+    "tags": ["builder"],
+    "names": {
+      "loot populator": "전리품 배치"
+    }
+  },
+
+  "SecretDoorPlacer": {
+    "tier": 0,
+    "category": "widget",
+    "tags": ["door", "builder"],
+    "names": {
+      "secret door placer": "비밀문 배치"
+    }
+  },
+
+  "TrapPlacer": {
+    "tier": 0,
+    "category": "widget",
+    "tags": ["trap", "builder"],
+    "names": {
+      "trap placer": "함정 배치"
+    }
+  },
+
+  "FogEffect": {
+    "tier": 0,
+    "category": "widget",
+    "tags": ["effect", "atmosphere"],
+    "names": {
+      "fog effect": "안개 효과"
+    }
+  },
+
+  "RainEffect": {
+    "tier": 0,
+    "category": "widget",
+    "tags": ["effect", "weather"],
+    "names": {
+      "rain effect": "비 효과"
+    }
+  },
+
+  "SnowEffect": {
+    "tier": 0,
+    "category": "widget",
+    "tags": ["effect", "weather"],
+    "names": {
+      "snow effect": "눈 효과"
+    }
+  },
+
+  "StormEffect": {
+    "tier": 0,
+    "category": "widget",
+    "tags": ["effect", "weather"],
+    "names": {
+      "storm effect": "폭풍 효과"
+    }
+  }
+}

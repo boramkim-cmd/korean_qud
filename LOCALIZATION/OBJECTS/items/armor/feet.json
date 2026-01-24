@@ -3,19 +3,21 @@
     "category": "armor/feet",
     "description": "Foot armor - boots, sandals",
     "version": "2.0",
-    "updated": "2026-01-22"
+    "created": "2026-01-22",
+    "updated": "2026-01-24",
+    "phase": "Phase2-Items"
   },
 
-  "Leather Boots": {
+  "Cloth Footwraps": {
     "tier": 1,
     "category": "armor",
     "slot": "feet",
-    "tags": ["feet", "light"],
+    "tags": ["feet", "light", "cloth"],
     "names": {
-      "leather boots": "가죽 장화"
+      "cloth footwraps": "천 발싸개"
     },
-    "description": "Simple boots made from leather.",
-    "description_ko": "가죽으로 만든 간단한 장화."
+    "description": "Simple cloth wrapped around the feet.",
+    "description_ko": "발에 감은 간단한 천."
   },
 
   "Sandals": {
@@ -30,6 +32,30 @@
     "description_ko": "개방형 디자인의 간단한 신발."
   },
 
+  "Leather Boots": {
+    "tier": 1,
+    "category": "armor",
+    "slot": "feet",
+    "tags": ["feet", "light"],
+    "names": {
+      "leather boots": "가죽 장화"
+    },
+    "description": "Simple boots made from leather.",
+    "description_ko": "가죽으로 만든 간단한 장화."
+  },
+
+  "Studded Leather Boots": {
+    "tier": 2,
+    "category": "armor",
+    "slot": "feet",
+    "tags": ["feet", "light", "studded"],
+    "names": {
+      "studded leather boots": "징박힌 가죽 장화"
+    },
+    "description": "Leather boots reinforced with metal studs.",
+    "description_ko": "금속 징으로 보강된 가죽 장화."
+  },
+
   "Iron Boots": {
     "tier": 2,
     "category": "armor",
@@ -40,6 +66,18 @@
     },
     "description": "Boots reinforced with iron.",
     "description_ko": "철로 보강된 장화."
+  },
+
+  "Bronze Boots": {
+    "tier": 2,
+    "category": "armor",
+    "slot": "feet",
+    "tags": ["feet", "medium", "metal"],
+    "names": {
+      "bronze boots": "청동 장화"
+    },
+    "description": "Boots forged from bronze.",
+    "description_ko": "청동으로 제련된 장화."
   },
 
   "Steel Boots": {
@@ -54,6 +92,42 @@
     "description_ko": "강철로 만든 튼튼한 장화."
   },
 
+  "Chain Boots": {
+    "tier": 3,
+    "category": "armor",
+    "slot": "feet",
+    "tags": ["feet", "medium", "metal"],
+    "names": {
+      "chain boots": "사슬 장화"
+    },
+    "description": "Boots reinforced with chain mail.",
+    "description_ko": "사슬 갑옷으로 보강된 장화."
+  },
+
+  "Plastifer Boots": {
+    "tier": 4,
+    "category": "armor",
+    "slot": "feet",
+    "tags": ["feet", "light", "synthetic"],
+    "names": {
+      "plastifer boots": "플라스티퍼 장화"
+    },
+    "description": "Lightweight boots made from plastifer polymers.",
+    "description_ko": "플라스티퍼 폴리머로 만든 가벼운 장화."
+  },
+
+  "Fullerite Boots": {
+    "tier": 5,
+    "category": "armor",
+    "slot": "feet",
+    "tags": ["feet", "heavy", "fullerite"],
+    "names": {
+      "fullerite boots": "풀러라이트 장화"
+    },
+    "description": "Boots made from fullerite.",
+    "description_ko": "풀러라이트로 만든 장화."
+  },
+
   "Carbide Boots": {
     "tier": 6,
     "category": "armor",
@@ -66,6 +140,30 @@
     "description_ko": "초경질 카바이드로 만든 장화."
   },
 
+  "Crysteel Boots": {
+    "tier": 7,
+    "category": "armor",
+    "slot": "feet",
+    "tags": ["feet", "heavy", "crysteel"],
+    "names": {
+      "crysteel boots": "크리스틸 장화"
+    },
+    "description": "Boots made from crysteel.",
+    "description_ko": "크리스틸로 만든 장화."
+  },
+
+  "Flawless Crysteel Boots": {
+    "tier": 8,
+    "category": "armor",
+    "slot": "feet",
+    "tags": ["feet", "heavy", "crysteel", "flawless"],
+    "names": {
+      "flawless crysteel boots": "완벽한 크리스틸 장화"
+    },
+    "description": "Boots made from flawless crysteel.",
+    "description_ko": "완벽한 크리스틸로 만든 장화."
+  },
+
   "Springturret Feet": {
     "tier": 7,
     "category": "armor",
@@ -76,5 +174,41 @@
     },
     "description": "Cybernetic feet with spring mechanisms for enhanced mobility.",
     "description_ko": "향상된 기동력을 위한 스프링 메커니즘이 달린 사이버네틱 발."
+  },
+
+  "Powered Exoframe Boots": {
+    "tier": 6,
+    "category": "armor",
+    "slot": "feet",
+    "tags": ["feet", "heavy", "powered"],
+    "names": {
+      "powered exoframe boots": "동력 외골격 장화"
+    },
+    "description": "Powered boots that are part of an exoframe suit.",
+    "description_ko": "외골격 슈트의 일부인 동력 장화."
+  },
+
+  "Hoverpods": {
+    "tier": 7,
+    "category": "armor",
+    "slot": "feet",
+    "tags": ["feet", "light", "artifact", "hover"],
+    "names": {
+      "hoverpods": "호버포드"
+    },
+    "description": "Anti-gravity boots that allow hovering.",
+    "description_ko": "공중 부양을 가능하게 하는 반중력 장화."
+  },
+
+  "Thigh-High Boots": {
+    "tier": 2,
+    "category": "armor",
+    "slot": "feet",
+    "tags": ["feet", "light"],
+    "names": {
+      "thigh-high boots": "허벅지 장화"
+    },
+    "description": "Tall boots that reach up to the thigh.",
+    "description_ko": "허벅지까지 올라오는 긴 장화."
   }
 }

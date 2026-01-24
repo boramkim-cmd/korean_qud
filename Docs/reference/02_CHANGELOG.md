@@ -1,10 +1,78 @@
 # Caves of Qud Korean Localization - Changelog
 
-> **Version**: 6.3 | **Last Updated**: 2026-01-22
+> **Version**: 6.6 | **Last Updated**: 2026-01-25
 
 ---
 
 ## Recent Changes
+
+### [2026-01-25] Skills JSON Restructure & Patch System
+- **구조 재설계**: skills.json → 개별 스킬 파일 분리 (뮤테이션 패턴 적용)
+  - 기존: `LOCALIZATION/GAMEPLAY/skills.json` (하나의 거대한 파일)
+  - 신규: `LOCALIZATION/GAMEPLAY/SKILLS/*.json` (20개 개별 파일)
+- **새 JSON 구조**: powers와 power_desc를 한 세트로 묶음
+  ```json
+  {
+    "names": { "Axe": "도끼" },
+    "description": "You are skilled with axes.",
+    "description_ko": "당신은 도끼에 숙달되어 있습니다.",
+    "powers": {
+      "axe proficiency": {
+        "name": "도끼 숙련",
+        "desc": "도끼로 공격할 때 명중에 +2 보너스를 받습니다."
+      }
+    }
+  }
+  ```
+- **생성된 스킬 파일** (20개):
+  - Acrobatics, Axe, Bow_and_Rifle, Cooking_and_Gathering, Cudgel
+  - Customs_and_Folklore, Endurance, Heavy_Weapon, Long_Blade, Multiweapon_Fighting
+  - Persuasion, Physic, Pistol, Self_Discipline, Shield
+  - Short_Blade, Single_Weapon_Fighting, Tactics, Tinkering, Wayfaring
+- **패치 코드 생성**: `Scripts/02_Patches/10_UI/02_10_12_Skills.cs`
+  - `SkillLocalizationManager`: SKILLS/*.json 파일 로드 및 파싱
+  - `Patch_SkillFactory`: SkillFactory 로드 후 번역 자동 적용
+- **LocalizationManager 업데이트**: skills.json 참조 제거
+- **검증**: project_tool.py 통과, 총 7,037개 번역 항목
+
+### [2026-01-25] Items Translation Extension
+- **Weapons 확장**:
+  - `weapons/melee/cudgels.json`: 20 → 32 항목 (+12)
+  - `weapons/melee/blades.json`: 9 → 20 항목 (+11)
+  - `weapons/melee/axes.json`: 16 → 24 항목 (+8)
+  - `weapons/melee/long_blades.json`: 11 → 26 항목 (+15)
+  - `weapons/ranged/guns.json`: 23 → 26 항목 (+3)
+  - `weapons/ranged/bows.json`: 2 → 12 항목 (+10)
+- **Armor 확장**:
+  - `armor/body.json`: 7 → 22 항목 (+15)
+  - `armor/face.json`: 7 → 16 항목 (+9)
+  - `armor/back.json`: 7 → 16 항목 (+9)
+- **Grenades 확장**:
+  - `artifacts/grenades.json`: 10 → 56 항목 (+46, mk I/II/III 시리즈)
+- **검증**: project_tool.py 통과, 총 6,956개 번역 항목 (+787)
+
+### [2026-01-24] Objects Translation Major Expansion
+- **Creatures 확장** (21.8% → ~45%):
+  - `insects/ants.json`: 1 → 16 항목
+  - `insects/beetles.json`: 1 → 18 항목
+  - `insects/crabs.json`: 1 → 16 항목
+  - `insects/hoppers.json`: 1 → 14 항목
+  - `insects/moths.json`: 3 → 22 항목
+  - `insects/spiders.json`: 3 → 24 항목
+  - `insects/worms.json`: 5 → 21 항목
+  - `humanoids/goatfolk.json`: 4 → 18 항목
+  - `humanoids/others.json`: 4 → 32 항목 (Baetyl, 골렘, 트롤 등)
+  - `animals/mammals.json`: 13 → 38 항목
+- **Items 확장** (30.8% → ~48%):
+  - `armor/head.json`: 6 → 20 항목 (전 티어 투구)
+  - `armor/hands.json`: 5 → 18 항목 (전 티어 장갑)
+  - `armor/feet.json`: 6 → 19 항목 (전 티어 장화)
+  - `weapons/melee/axes.json`: 5 → 18 항목
+  - `weapons/melee/cudgels.json`: 9 → 22 항목
+  - `weapons/ranged/guns.json`: 7 → 24 항목
+- **Widgets 확장**: 15 → 44 항목
+- **Terrain 확장**: zone.json 26 → 52 항목
+- **검증**: project_tool.py 통과, 총 6,169개 번역 항목
 
 ### [2026-01-22] Item Tooltip Localization Complete
 - **Patches Created/Modified**:
@@ -80,18 +148,21 @@
 | 01-17~22 | Mutation JSON restructure (81 files) |
 | 01-21 | Tutorial translation system |
 
-### Phase 2: Gameplay (75%)
+### Phase 2: Gameplay (90%)
 | Date | Work |
 |------|----- |
 | 01-22 | Object localization system (Phases 0-4) |
 | 01-22 | Message Log Patch (P2-01) |
+| 01-24 | Objects Translation Major Expansion (67 files, 6,169 entries) |
+| 01-25 | Items Translation Extension (weapons, armor, grenades) (+787 entries) |
 
 ---
 
 ## Statistics
-- Total translation entries: 4,130+
+- Total translation entries: 7,037
 - Mutation files: 81
-- Object files: 57
+- Skill files: 20
+- Object files: 67
 - Message patterns: 50+
 - Build status: Success
 

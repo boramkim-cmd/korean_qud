@@ -52,7 +52,7 @@ namespace QudKRTranslation.Core
             LoadJsonFile(Path.Combine(modDir, "LOCALIZATION/CHARGEN/factions.json"));
 
             // GAMEPLAY
-            LoadJsonFile(Path.Combine(modDir, "LOCALIZATION/GAMEPLAY/skills.json"));
+            // Note: skills.json is removed - skills are now in SKILLS/*.json and handled by SkillLocalizationManager
             LoadJsonFile(Path.Combine(modDir, "LOCALIZATION/GAMEPLAY/cybernetics.json"));
 
             // UI

@@ -1,8 +1,8 @@
 # Object Translations
 
-> **Last Modified**: 2026-01-22 08:08:46
+> **Last Modified**: 2026-01-24 | **Total Entries**: 6,169
 
-This folder contains translation data for creatures and items.
+This folder contains translation data for creatures, items, furniture, terrain, and widgets.
 
 ## ⚠️ ISOLATION POLICY
 
@@ -13,16 +13,29 @@ Do not move files between these folders.
 
 ```
 OBJECTS/
-├── creatures/          # Creature translations
-│   ├── _common.json    # Common terms (corpse, species)
-│   ├── tutorial.json   # Tutorial creatures
-│   └── *.json          # Other creature files
+├── creatures/              # Creature translations
+│   ├── _common.json        # Common terms (corpse, species)
+│   ├── tutorial.json       # Tutorial creatures
+│   ├── animals/            # Bears, mammals, etc.
+│   ├── humanoids/          # Goatfolk, others (Baetyl, golems, trolls)
+│   └── insects/            # Ants, beetles, crabs, hoppers, moths, spiders, worms
 │
-└── items/              # Item translations
-    ├── _common.json    # Materials, prefixes, modifiers
-    ├── tutorial.json   # Tutorial items
-    └── *.json          # Other item files
+├── items/                  # Item translations
+│   ├── _common.json        # Materials, prefixes, modifiers
+│   ├── tutorial.json       # Tutorial items
+│   ├── armor/              # head, hands, feet (all tiers)
+│   ├── weapons/            # melee (axes, cudgels), ranged (guns)
+│   ├── ammo/               # Ammunition
+│   └── books/              # Books and scrolls
+│
+├── furniture/              # Furniture translations
+│   └── widgets.json        # 44 widget entries
+│
+└── terrain/                # Terrain translations
+    └── zone.json           # 52 zone entries
 ```
+
+**Total Files**: 67 JSON files
 
 ## JSON Schema
 
@@ -58,5 +71,6 @@ Use `Ctrl+W` → `kr:reload` to reload all JSON files without restarting the gam
 
 ## Version
 
-- Version: 2.0
+- Version: 3.0
 - Created: 2026-01-22
+- Updated: 2026-01-24 (Major expansion: 67 files, 6,169 entries)

@@ -2,8 +2,9 @@
   "_meta": {
     "category": "armor/back",
     "description": "Back slot armor - cloaks, capes, backpacks",
-    "version": "2.0",
-    "updated": "2026-01-22"
+    "version": "2.1",
+    "updated": "2026-01-25",
+    "phase": "Phase1-Armor"
   },
 
   "Cloak": {
@@ -88,5 +89,113 @@
     },
     "description": "A cloak that regulates body temperature.",
     "description_ko": "체온을 조절하는 망토."
+  },
+
+  "Tattered Cape": {
+    "tier": 0,
+    "category": "armor",
+    "slot": "back",
+    "tags": ["back", "cloth", "ragged"],
+    "names": {
+      "tattered cape": "너덜너덜한 망토"
+    },
+    "description": "A worn and ragged cape.",
+    "description_ko": "낡고 너덜너덜한 망토."
+  },
+
+  "Leather Cape": {
+    "tier": 1,
+    "category": "armor",
+    "slot": "back",
+    "tags": ["back", "leather"],
+    "names": {
+      "leather cape": "가죽 망토"
+    },
+    "description": "A cape made from treated leather.",
+    "description_ko": "처리된 가죽으로 만든 망토."
+  },
+
+  "Wooly Cape": {
+    "tier": 1,
+    "category": "armor",
+    "slot": "back",
+    "tags": ["back", "cloth", "warm"],
+    "names": {
+      "wooly cape": "양모 망토"
+    },
+    "description": "A warm cape made from wool.",
+    "description_ko": "양모로 만든 따뜻한 망토."
+  },
+
+  "Large Backpack": {
+    "tier": 2,
+    "category": "armor",
+    "slot": "back",
+    "tags": ["back", "container", "storage"],
+    "names": {
+      "large backpack": "대형 배낭"
+    },
+    "description": "A large pack with extra carrying capacity.",
+    "description_ko": "추가 운반 용량을 가진 대형 가방."
+  },
+
+  "Invisibility Cloak": {
+    "tier": 7,
+    "category": "armor",
+    "slot": "back",
+    "tags": ["back", "artifact", "stealth"],
+    "names": {
+      "invisibility cloak": "투명 망토"
+    },
+    "description": "A cloak that bends light to render the wearer invisible.",
+    "description_ko": "빛을 굴절시켜 착용자를 투명하게 만드는 망토."
+  },
+
+  "Jetpack": {
+    "tier": 6,
+    "category": "armor",
+    "slot": "back",
+    "tags": ["back", "artifact", "flight"],
+    "names": {
+      "jetpack": "제트팩"
+    },
+    "description": "A personal propulsion device worn on the back.",
+    "description_ko": "등에 착용하는 개인용 추진 장치."
+  },
+
+  "Anti-Gravity Harness": {
+    "tier": 7,
+    "category": "armor",
+    "slot": "back",
+    "tags": ["back", "artifact", "flight"],
+    "names": {
+      "anti-gravity harness": "반중력 하네스"
+    },
+    "description": "A harness that manipulates gravity for flight.",
+    "description_ko": "비행을 위해 중력을 조종하는 하네스."
+  },
+
+  "Shield Cape": {
+    "tier": 4,
+    "category": "armor",
+    "slot": "back",
+    "tags": ["back", "metal", "defense"],
+    "names": {
+      "shield cape": "방패 망토"
+    },
+    "description": "A cape with integrated metal plates for protection.",
+    "description_ko": "보호를 위한 금속판이 통합된 망토."
+  },
+
+  "Troll Cape": {
+    "tier": 3,
+    "category": "armor",
+    "slot": "back",
+    "tags": ["back", "organic", "regeneration"],
+    "names": {
+      "troll cape": "트롤 망토"
+    },
+    "description": "A cape made from troll hide that retains regenerative properties.",
+    "description_ko": "재생 특성을 유지하는 트롤 가죽으로 만든 망토."
   }
 }

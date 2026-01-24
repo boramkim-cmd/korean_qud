@@ -1,0 +1,291 @@
+{
+  "_meta": {
+    "category": "terrain/walls",
+    "description": "Walls - natural and constructed walls",
+    "version": "2.0",
+    "created": "2026-01-24",
+    "updated": "2026-01-24",
+    "phase": "Phase2-Terrain"
+  },
+
+  "Wall": {
+    "tier": 0,
+    "category": "wall",
+    "tags": ["base"],
+    "names": {
+      "wall": "벽"
+    }
+  },
+
+  "Rock Wall": {
+    "tier": 0,
+    "category": "wall",
+    "tags": ["natural", "rock"],
+    "names": {
+      "rock wall": "바위 벽"
+    }
+  },
+
+  "Stone Wall": {
+    "tier": 1,
+    "category": "wall",
+    "tags": ["constructed", "stone"],
+    "names": {
+      "stone wall": "돌 벽"
+    }
+  },
+
+  "Brick Wall": {
+    "tier": 1,
+    "category": "wall",
+    "tags": ["constructed", "brick"],
+    "names": {
+      "brick wall": "벽돌 벽"
+    }
+  },
+
+  "Metal Wall": {
+    "tier": 2,
+    "category": "wall",
+    "tags": ["constructed", "metal"],
+    "names": {
+      "metal wall": "금속 벽"
+    }
+  },
+
+  "Wood Wall": {
+    "tier": 0,
+    "category": "wall",
+    "tags": ["constructed", "wood"],
+    "names": {
+      "wood wall": "나무 벽"
+    }
+  },
+
+  "Mud Wall": {
+    "tier": 0,
+    "category": "wall",
+    "tags": ["natural", "mud"],
+    "names": {
+      "mud wall": "진흙 벽"
+    }
+  },
+
+  "Granite Wall": {
+    "tier": 1,
+    "category": "wall",
+    "tags": ["natural", "granite"],
+    "names": {
+      "granite wall": "화강암 벽"
+    }
+  },
+
+  "Marble Wall": {
+    "tier": 1,
+    "category": "wall",
+    "tags": ["natural", "marble"],
+    "names": {
+      "marble wall": "대리석 벽"
+    }
+  },
+
+  "Black Marble": {
+    "tier": 2,
+    "category": "wall",
+    "tags": ["natural", "marble", "exotic"],
+    "names": {
+      "black marble": "검은 대리석"
+    }
+  },
+
+  "Crystal Wall": {
+    "tier": 3,
+    "category": "wall",
+    "tags": ["natural", "crystal"],
+    "names": {
+      "crystal wall": "수정 벽"
+    }
+  },
+
+  "Glass Wall": {
+    "tier": 3,
+    "category": "wall",
+    "tags": ["constructed", "glass"],
+    "names": {
+      "glass wall": "유리 벽"
+    }
+  },
+
+  "Circuit Wall": {
+    "tier": 4,
+    "category": "wall",
+    "tags": ["constructed", "tech"],
+    "names": {
+      "circuit wall": "회로 벽"
+    }
+  },
+
+  "Cyber Wall": {
+    "tier": 5,
+    "category": "wall",
+    "tags": ["constructed", "tech"],
+    "names": {
+      "cyber wall": "사이버 벽"
+    }
+  },
+
+  "Secure Wall": {
+    "tier": 4,
+    "category": "wall",
+    "tags": ["constructed", "metal", "security"],
+    "names": {
+      "secure wall": "보안 벽"
+    }
+  },
+
+  "Fluted Wall": {
+    "tier": 2,
+    "category": "wall",
+    "tags": ["constructed", "decorative"],
+    "names": {
+      "fluted wall": "홈이 파인 벽"
+    }
+  },
+
+  "Bone Wall": {
+    "tier": 0,
+    "category": "wall",
+    "tags": ["organic", "bone"],
+    "names": {
+      "bone wall": "뼈 벽"
+    }
+  },
+
+  "Flower Wall": {
+    "tier": 0,
+    "category": "wall",
+    "tags": ["organic", "plant"],
+    "names": {
+      "flower wall": "꽃 벽"
+    }
+  },
+
+  "Scale Wall": {
+    "tier": 1,
+    "category": "wall",
+    "tags": ["organic", "scale"],
+    "names": {
+      "scale wall": "비늘 벽"
+    }
+  },
+
+  "Mushroom Flesh": {
+    "tier": 0,
+    "category": "wall",
+    "tags": ["organic", "fungal"],
+    "names": {
+      "mushroom flesh": "버섯 살"
+    },
+    "description": "Spore-rich slime glistens on the cage-like fruiting body, trimmed like a hedge to conform with the ordered angles of domesticity.",
+    "description_ko": "포자가 풍부한 점액이 울타리처럼 잘린 새장 같은 자실체에서 반짝이며, 가정적인 질서 있는 각도에 맞춰져 있다."
+  },
+
+  "Plant Wall": {
+    "tier": 0,
+    "category": "wall",
+    "tags": ["organic", "plant"],
+    "names": {
+      "plant wall": "식물 벽"
+    }
+  },
+
+  "Sandstone": {
+    "tier": 0,
+    "category": "wall",
+    "tags": ["natural", "sedimentary"],
+    "names": {
+      "sandstone": "사암"
+    }
+  },
+
+  "Limestone": {
+    "tier": 1,
+    "category": "wall",
+    "tags": ["natural", "sedimentary"],
+    "names": {
+      "limestone": "석회암"
+    }
+  },
+
+  "Shale": {
+    "tier": 0,
+    "category": "wall",
+    "tags": ["natural", "sedimentary"],
+    "names": {
+      "shale": "셰일"
+    }
+  },
+
+  "Basalt": {
+    "tier": 1,
+    "category": "wall",
+    "tags": ["natural", "volcanic"],
+    "names": {
+      "basalt": "현무암"
+    }
+  },
+
+  "Quartzite": {
+    "tier": 2,
+    "category": "wall",
+    "tags": ["natural", "metamorphic"],
+    "names": {
+      "quartzite": "규암"
+    }
+  },
+
+  "Halite": {
+    "tier": 1,
+    "category": "wall",
+    "tags": ["natural", "salt"],
+    "names": {
+      "halite": "암염"
+    }
+  },
+
+  "Marl": {
+    "tier": 0,
+    "category": "wall",
+    "tags": ["natural", "clay"],
+    "names": {
+      "marl": "이회토"
+    }
+  },
+
+  "Mudroot": {
+    "tier": 0,
+    "category": "wall",
+    "tags": ["natural", "organic"],
+    "names": {
+      "mudroot": "진흙뿌리"
+    }
+  },
+
+  "Fulcrete": {
+    "tier": 3,
+    "category": "wall",
+    "tags": ["constructed", "tech"],
+    "names": {
+      "fulcrete": "풀크리트"
+    }
+  },
+
+  "Mainframe Wall": {
+    "tier": 5,
+    "category": "wall",
+    "tags": ["constructed", "tech", "computer"],
+    "names": {
+      "mainframe wall": "메인프레임 벽"
+    }
+  }
+}

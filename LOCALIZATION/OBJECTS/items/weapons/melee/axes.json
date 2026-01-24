@@ -2,70 +2,318 @@
   "_meta": {
     "category": "weapons/melee/axes",
     "description": "Axe melee weapons",
-    "version": "2.0",
-    "updated": "2026-01-22"
+    "version": "2.1",
+    "created": "2026-01-22",
+    "updated": "2026-01-25",
+    "phase": "Phase1-MeleeWeapons"
+  },
+
+  "Battle Axe": {
+    "tier": 0,
+    "category": "weapon",
+    "slot": "hand",
+    "tags": ["axe", "one-handed", "bronze"],
+    "names": {
+      "{{w|bronze}} battle axe": "{{w|청동}} 전투 도끼",
+      "bronze battle axe": "청동 전투 도끼"
+    },
+    "description": "Damp leather wraps the wood haft up to a sharpened bit of bell bronze.",
+    "description_ko": "축축한 가죽이 나무 자루를 감아 올라가 날카롭게 다듬어진 벨 청동 날에 연결된다."
   },
 
   "Hand Axe": {
-    "tier": 2,
+    "tier": 0,
     "category": "weapon",
     "slot": "hand",
     "tags": ["axe", "one-handed"],
     "names": {
       "hand axe": "손도끼"
     },
-    "description": "A rough head of iron is seated on an oiled haft.",
-    "description_ko": "거친 철 머리가 기름칠한 자루에 박혀 있다."
+    "description": "An axe edge is dressed with splinter hairs of brinestalk.",
+    "description_ko": "도끼 날이 브라인스톡의 쪼개진 털로 다듬어져 있다."
   },
 
-  "BattleAxe2": {
+  "Iron Vinereaper": {
+    "tier": 1,
+    "category": "weapon",
+    "slot": "hand",
+    "tags": ["axe", "farming", "one-handed", "iron"],
+    "names": {
+      "iron vinereaper": "철 덩굴낫"
+    },
+    "description": "Wrought iron was moulded to a crescent for scything the rough hides of watervine.",
+    "description_ko": "연철을 초승달 모양으로 주조하여 워터바인의 거친 껍질을 베어낸다."
+  },
+
+  "Battle Axe2": {
     "tier": 2,
     "category": "weapon",
     "slot": "hand",
-    "tags": ["axe", "two-handed"],
-    "names": {
-      "{{w|bronze}} battle axe": "{{w|청동}} 전투 도끼",
-      "bronze battle axe": "청동 전투 도끼",
-      "battle axe": "전투 도끼"
-    },
-    "description": "Damp leather wraps the wood haft up to a sharpened bit of bell bronze.",
-    "description_ko": "축축한 가죽이 나무 자루를 감아 올라가 날카롭게 다듬어진 벨 청동 날에 연결된다."
-  },
-
-  "BattleAxe3": {
-    "tier": 3,
-    "category": "weapon",
-    "slot": "hand",
-    "tags": ["axe", "two-handed"],
+    "tags": ["axe", "one-handed", "iron"],
     "names": {
       "iron battle axe": "철 전투 도끼"
     },
-    "description": "Forge marks scar the blade like potholes on an iron steppe.",
-    "description_ko": "단조 자국이 철 초원의 웅덩이처럼 칼날에 상처를 남긴다."
+    "description": "Hairline rust ribbons the bit from hook to hook on the year-weary axe.",
+    "description_ko": "머리카락 같은 녹이 해가 닳은 도끼의 갈고리에서 갈고리까지 줄무늬를 그린다."
   },
 
   "Steel Battle Axe": {
-    "tier": 4,
+    "tier": 2,
     "category": "weapon",
     "slot": "hand",
-    "tags": ["axe", "two-handed"],
+    "tags": ["axe", "one-handed", "steel"],
     "names": {
       "{{Y|steel}} battle axe": "{{Y|강철}} 전투 도끼",
       "steel battle axe": "강철 전투 도끼"
     },
-    "description": "A bright crescent glints above the polished haft.",
-    "description_ko": "밝은 초승달이 광택 난 자루 위에서 반짝인다."
+    "description": "Its polished steel glistens on a flat plane, and skin oil stains the straps of its leathery haft.",
+    "description_ko": "광택 난 강철이 평면에서 반짝이고, 피부 기름이 가죽 자루의 끈을 얼룩지게 한다."
   },
 
-  "Iron Vinereaper": {
+  "Steel Battle Axeth": {
     "tier": 2,
     "category": "weapon",
     "slot": "hand",
-    "tags": ["axe", "farming", "one-handed"],
+    "tags": ["axe", "two-handed", "steel"],
     "names": {
-      "iron vinereaper": "철 덩굴낫"
+      "two-handed {{Y|steel}} battle axe": "양손 {{Y|강철}} 전투 도끼",
+      "two-handed steel battle axe": "양손 강철 전투 도끼"
     },
-    "description": "The reaper's blade cuts watervine back from the farm's hard-won earth.",
-    "description_ko": "낫의 칼날이 농장의 힘들게 일군 땅에서 워터바인을 베어낸다."
+    "description": "Its polished steel glistens on a flat twin plane, and skin oil stains the straps of its long leathery haft.",
+    "description_ko": "광택 난 강철이 쌍면에서 반짝이고, 피부 기름이 긴 가죽 자루의 끈을 얼룩지게 한다."
+  },
+
+  "Steel Hand Axe": {
+    "tier": 2,
+    "category": "weapon",
+    "slot": "hand",
+    "tags": ["axe", "one-handed", "steel"],
+    "names": {
+      "{{Y|steel}} hand axe": "{{Y|강철}} 손도끼",
+      "steel hand axe": "강철 손도끼"
+    },
+    "description": "A block of bright steel was sharpened to an edge.",
+    "description_ko": "밝은 강철 덩어리가 날카롭게 연마되었다."
+  },
+
+  "Steel Vinereaper": {
+    "tier": 2,
+    "category": "weapon",
+    "slot": "hand",
+    "tags": ["axe", "farming", "one-handed", "steel"],
+    "names": {
+      "{{Y|steel}} vinereaper": "{{Y|강철}} 덩굴낫",
+      "steel vinereaper": "강철 덩굴낫"
+    },
+    "description": "Bright steel was moulded to a crescent for scything the rough hides of watervine.",
+    "description_ko": "밝은 강철을 초승달 모양으로 주조하여 워터바인의 거친 껍질을 베어낸다."
+  },
+
+  "Opal-Pommeled Steel Axe": {
+    "tier": 2,
+    "category": "weapon",
+    "slot": "hand",
+    "tags": ["axe", "one-handed", "steel", "decorated"],
+    "names": {
+      "opal-pommeled {{Y|steel}} battle axe": "오팔 장식 {{Y|강철}} 전투 도끼",
+      "opal-pommeled steel battle axe": "오팔 장식 강철 전투 도끼"
+    },
+    "description": "Its polished steel glistens on a flat plane, and skin oil stains the straps of its leathery haft. The pommel is capped with a glittering opal.",
+    "description_ko": "광택 난 강철이 평면에서 반짝이고, 피부 기름이 가죽 자루의 끈을 얼룩지게 한다. 손잡이 끝이 반짝이는 오팔로 장식되어 있다."
+  },
+
+  "Battle Axe3": {
+    "tier": 3,
+    "category": "weapon",
+    "slot": "hand",
+    "tags": ["axe", "one-handed", "carbide"],
+    "names": {
+      "{{b|carbide}} battle axe": "{{b|카바이드}} 전투 도끼",
+      "carbide battle axe": "카바이드 전투 도끼"
+    },
+    "description": "The luster of the azure edge fades to shadow at the beard of the bit, and a backspike balances the whole bladed volume.",
+    "description_ko": "푸른 날의 광택이 날의 턱 부분에서 그림자로 희미해지고, 뒷가시가 전체 날의 무게중심을 잡는다."
+  },
+
+  "Battle Axe3th": {
+    "tier": 3,
+    "category": "weapon",
+    "slot": "hand",
+    "tags": ["axe", "two-handed", "carbide"],
+    "names": {
+      "two-handed {{b|carbide}} battle axe": "양손 {{b|카바이드}} 전투 도끼",
+      "two-handed carbide battle axe": "양손 카바이드 전투 도끼"
+    },
+    "description": "The luster of the wide azure edge fades to shadow at the beard of the twin bits. Hairline cracks ribbon the haft.",
+    "description_ko": "넓은 푸른 날의 광택이 쌍날의 턱 부분에서 그림자로 희미해진다. 머리카락 같은 금이 자루에 줄무늬를 그린다."
+  },
+
+  "Battle Axe4": {
+    "tier": 4,
+    "category": "weapon",
+    "slot": "hand",
+    "tags": ["axe", "one-handed", "carbide", "folded"],
+    "names": {
+      "{{B|folded carbide}} battle axe": "{{B|접힌 카바이드}} 전투 도끼",
+      "folded carbide battle axe": "접힌 카바이드 전투 도끼"
+    },
+    "description": "Bright azure metal edges out into an elegant half-circle bound to a steel shaft.",
+    "description_ko": "밝은 푸른 금속이 우아한 반원으로 날카로워지며 강철 자루에 연결된다."
+  },
+
+  "Battle Axe4th": {
+    "tier": 4,
+    "category": "weapon",
+    "slot": "hand",
+    "tags": ["axe", "two-handed", "carbide", "folded"],
+    "names": {
+      "two-handed {{B|folded carbide}} battle axe": "양손 {{B|접힌 카바이드}} 전투 도끼",
+      "two-handed folded carbide battle axe": "양손 접힌 카바이드 전투 도끼"
+    },
+    "description": "Bright azure metal edges out into two elegant half-circles bound to a long steel shaft.",
+    "description_ko": "밝은 푸른 금속이 두 개의 우아한 반원으로 날카로워지며 긴 강철 자루에 연결된다."
+  },
+
+  "Battle Axe5": {
+    "tier": 5,
+    "category": "weapon",
+    "slot": "hand",
+    "tags": ["axe", "one-handed", "fullerite"],
+    "names": {
+      "{{K|fullerite}} battle axe": "{{K|풀러라이트}} 전투 도끼",
+      "fullerite battle axe": "풀러라이트 전투 도끼"
+    },
+    "description": "A razored wedge of dusky metal was welded to a steel haft.",
+    "description_ko": "어두운 금속의 날카로운 쐐기가 강철 자루에 용접되었다."
+  },
+
+  "Battle Axe5th": {
+    "tier": 5,
+    "category": "weapon",
+    "slot": "hand",
+    "tags": ["axe", "two-handed", "fullerite"],
+    "names": {
+      "{{K|fullerite}} two-handed axe": "{{K|풀러라이트}} 양손 도끼",
+      "fullerite two-handed axe": "풀러라이트 양손 도끼"
+    },
+    "description": "A wide razored wedge of dusky metal was welded to a great steel haft.",
+    "description_ko": "어두운 금속의 넓고 날카로운 쐐기가 거대한 강철 자루에 용접되었다."
+  },
+
+  "Battle Axe6": {
+    "tier": 6,
+    "category": "weapon",
+    "slot": "hand",
+    "tags": ["axe", "one-handed", "crysteel"],
+    "names": {
+      "{{K|{{crysteel|crysteel}} battle axe}}": "{{K|{{crysteel|크리스틸}} 전투 도끼}}",
+      "crysteel battle axe": "크리스틸 전투 도끼"
+    },
+    "description": "Blast furnaces sucked the tidal energy out of the planet, heated carbon to solar temperatures, and poured it into hexagonal molds.",
+    "description_ko": "용광로가 행성의 조석 에너지를 빨아들여 탄소를 태양 온도로 가열하고 육각형 주형에 부었다."
+  },
+
+  "Battle Axe6th": {
+    "tier": 6,
+    "category": "weapon",
+    "slot": "hand",
+    "tags": ["axe", "two-handed", "crysteel"],
+    "names": {
+      "{{K|{{crysteel|crysteel}} halberd}}": "{{K|{{crysteel|크리스틸}} 할버드}}",
+      "crysteel halberd": "크리스틸 할버드"
+    },
+    "description": "Blast furnaces sucked the tidal energy out of the planet, heated carbon to solar temperatures, and poured it into hexagonal molds.",
+    "description_ko": "용광로가 행성의 조석 에너지를 빨아들여 탄소를 태양 온도로 가열하고 육각형 주형에 부었다."
+  },
+
+  "Battle Axe7": {
+    "tier": 7,
+    "category": "weapon",
+    "slot": "hand",
+    "tags": ["axe", "one-handed", "crysteel", "flawless"],
+    "names": {
+      "{{K|flawless {{crysteel|crysteel}} battle axe}}": "{{K|완벽한 {{crysteel|크리스틸}} 전투 도끼}}",
+      "flawless crysteel battle axe": "완벽한 크리스틸 전투 도끼"
+    },
+    "description": "Casts mottled with dust particles were culled and fed to lithovores, leaving only the perfect hexagonal prisms.",
+    "description_ko": "먼지 입자로 얼룩진 주물은 골라내어 암식자에게 먹이고, 완벽한 육각형 프리즘만 남겼다."
+  },
+
+  "Battle Axe7th": {
+    "tier": 7,
+    "category": "weapon",
+    "slot": "hand",
+    "tags": ["axe", "two-handed", "crysteel", "flawless"],
+    "names": {
+      "{{K|flawless {{crysteel|crysteel}} halberd}}": "{{K|완벽한 {{crysteel|크리스틸}} 할버드}}",
+      "flawless crysteel halberd": "완벽한 크리스틸 할버드"
+    },
+    "description": "Casts mottled with dust particles were culled and fed to lithovores, leaving only the perfect hexagonal prisms.",
+    "description_ko": "먼지 입자로 얼룩진 주물은 골라내어 암식자에게 먹이고, 완벽한 육각형 프리즘만 남겼다."
+  },
+
+  "Battle Axe8": {
+    "tier": 8,
+    "category": "weapon",
+    "slot": "hand",
+    "tags": ["axe", "one-handed", "zetachrome"],
+    "names": {
+      "{{zetachrome|zetachrome}} battle axe": "{{zetachrome|제타크롬}} 전투 도끼",
+      "zetachrome battle axe": "제타크롬 전투 도끼"
+    },
+    "description": "Quark-gluon plasma rapidly cooled and was extinguished on the voidpeaks of the early universe.",
+    "description_ko": "쿼크-글루온 플라즈마가 빠르게 냉각되어 초기 우주의 공허한 봉우리에서 소멸되었다."
+  },
+
+  "Battle Axe8th": {
+    "tier": 8,
+    "category": "weapon",
+    "slot": "hand",
+    "tags": ["axe", "two-handed", "zetachrome"],
+    "names": {
+      "{{zetachrome|zetachrome}} halberd": "{{zetachrome|제타크롬}} 할버드",
+      "zetachrome halberd": "제타크롬 할버드"
+    },
+    "description": "Quark-gluon plasma rapidly cooled and was extinguished on the voidpeaks of the early universe.",
+    "description_ko": "쿼크-글루온 플라즈마가 빠르게 냉각되어 초기 우주의 공허한 봉우리에서 소멸되었다."
+  },
+
+  "Shayna": {
+    "tier": 4,
+    "category": "weapon",
+    "slot": "hand",
+    "tags": ["axe", "one-handed", "unique", "hindren", "electrified"],
+    "names": {
+      "{{w-w-Y-w-w-w sequence|Shayna}}": "{{w-w-Y-w-w-w sequence|샤이나}}",
+      "Shayna": "샤이나"
+    },
+    "description": "What was once merely a carbide axe is now a florid work of art. Curling wires wind around the haft of the weapon as the creeping vine of a rose plant.",
+    "description_ko": "한때 단순한 카바이드 도끼였던 것이 이제는 화려한 예술품이 되었다. 감기는 전선이 장미 덩굴처럼 무기의 자루를 감싸고 있다."
+  },
+
+  "Ari": {
+    "tier": 4,
+    "category": "weapon",
+    "slot": "hand",
+    "tags": ["axe", "one-handed", "unique", "hindren", "flaming"],
+    "names": {
+      "{{R-W-Y sequence|Ari}}": "{{R-W-Y sequence|아리}}",
+      "Ari": "아리"
+    },
+    "description": "The air swims around the axe's triangular head like the heat off the high salt sun.",
+    "description_ko": "공기가 높은 소금 태양의 열기처럼 도끼의 삼각형 머리 주위를 헤엄친다."
+  },
+
+  "Yal": {
+    "tier": 4,
+    "category": "weapon",
+    "slot": "hand",
+    "tags": ["axe", "one-handed", "unique", "hindren", "freezing"],
+    "names": {
+      "{{B-C-Y sequence|Yal}}": "{{B-C-Y sequence|얄}}",
+      "Yal": "얄"
+    },
+    "description": "Half battle axe and half vinereaper, the ancestral tool called Yal evokes the struggle between the hindren cultivators and the cruelty of a harsh winter.",
+    "description_ko": "반은 전투 도끼이고 반은 덩굴낫인, 얄이라 불리는 조상의 도구는 힌드렌 경작자들과 혹독한 겨울의 잔인함 사이의 투쟁을 연상시킨다."
   }
 }

@@ -1,6 +1,6 @@
 # Caves of Qud Korean Localization - TODO
 
-> **Version**: 3.2 | **Last Updated**: 2026-01-22
+> **Version**: 3.5 | **Last Updated**: 2026-01-25
 
 ---
 
@@ -8,11 +8,11 @@
 
 | Phase | Done | WIP | Todo | Progress |
 |-------|------|-----|------|----------|
-| Phase 1: Stabilization | 6 | 0 | 0 | 100% |
-| Phase 2: Gameplay | 3 | 0 | 1 | 75% |
+| Phase 1: Stabilization | 7 | 0 | 0 | 100% |
+| Phase 2: Gameplay | 5 | 0 | 1 | 90% |
 | Phase 3: Optimization | 1 | 0 | 5 | 17% |
 | Phase 4: Community | 0 | 0 | 3 | 0% |
-| **Total** | **10** | **0** | **9** | **53%** |
+| **Total** | **13** | **0** | **9** | **59%** |
 
 ---
 
@@ -50,6 +50,16 @@
 
 **Test Path**: New game - True Kin - Select caste - Attribute screen
 
+### Game Test: Skills & Powers (NEW - 01-25)
+| Item | Expected | Status |
+|------|----------|--------|
+| Skill names | 도끼, 곤봉, 롱 블레이드 등 | [ ] |
+| Power names | 도끼 숙련, 쪼개기, 돌격 타격 등 | [ ] |
+| Skill descriptions | 한글 설명 표시 | [ ] |
+| Power descriptions | 한글 상세 설명 표시 | [ ] |
+
+**Test Path**: New game - Character screen (C) - Skills tab
+
 ---
 
 ## Backlog
@@ -81,7 +91,7 @@
 
 ## Completed
 
-### Phase 1 (6/6)
+### Phase 1 (7/7)
 | Task | Date |
 |------|------|
 | Inventory "*All" Filter | 01-16 |
@@ -90,13 +100,16 @@
 | Missing Mutation Desc | 01-16 |
 | Mutation JSON Restructure (81 files) | 01-22 |
 | Tutorial Translation (ERR-018) | 01-21 |
+| Skills JSON Restructure (20 files) + Patch | 01-25 |
 
-### Phase 2 (3/4)
+### Phase 2 (5/6)
 | Task | Date |
 |------|------|
 | Object Blueprint System | 01-22 |
 | Object/Creature Translation (57 files, 321+ entries) | 01-22 |
 | Message Log Patch (P2-01) | 01-22 |
+| Objects Translation Major Expansion (67 files, 6,169 entries) | 01-24 |
+| Items Translation Extension (weapons, armor, grenades) (+787 entries) | 01-25 |
 
 ---
 

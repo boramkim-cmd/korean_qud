@@ -1,0 +1,186 @@
+{
+  "_meta": {
+    "category": "furniture/misc",
+    "description": "Miscellaneous furniture - beds, chairs, tables, ovens",
+    "version": "2.0",
+    "created": "2026-01-24",
+    "updated": "2026-01-24",
+    "phase": "Phase2-Furniture"
+  },
+
+  "Bed": {
+    "tier": 1,
+    "category": "furniture",
+    "tags": ["bed", "rest"],
+    "names": {
+      "bed": "침대"
+    },
+    "description": "A place to sleep.",
+    "description_ko": "잠을 자는 곳."
+  },
+
+  "Bedroll": {
+    "tier": 1,
+    "category": "furniture",
+    "tags": ["bed", "rest", "portable"],
+    "names": {
+      "bedroll": "침낭"
+    },
+    "description": "A portable sleeping roll.",
+    "description_ko": "휴대용 수면 롤."
+  },
+
+  "Hammock": {
+    "tier": 1,
+    "category": "furniture",
+    "tags": ["bed", "rest"],
+    "names": {
+      "hammock": "해먹"
+    },
+    "description": "A hanging bed made of cloth.",
+    "description_ko": "천으로 만든 매달린 침대."
+  },
+
+  "Chair": {
+    "tier": 1,
+    "category": "furniture",
+    "tags": ["chair", "seat"],
+    "names": {
+      "chair": "의자"
+    },
+    "description": "A place to sit.",
+    "description_ko": "앉는 곳."
+  },
+
+  "Stool": {
+    "tier": 1,
+    "category": "furniture",
+    "tags": ["chair", "seat"],
+    "names": {
+      "stool": "걸상"
+    },
+    "description": "A simple seat without a back.",
+    "description_ko": "등받이 없는 단순한 좌석."
+  },
+
+  "Bench": {
+    "tier": 1,
+    "category": "furniture",
+    "tags": ["chair", "seat"],
+    "names": {
+      "bench": "벤치"
+    },
+    "description": "A long seat for multiple people.",
+    "description_ko": "여러 사람을 위한 긴 좌석."
+  },
+
+  "Throne": {
+    "tier": 3,
+    "category": "furniture",
+    "tags": ["chair", "seat", "royal"],
+    "names": {
+      "throne": "왕좌"
+    },
+    "description": "A ceremonial seat of power.",
+    "description_ko": "권력의 의식용 좌석."
+  },
+
+  "Table": {
+    "tier": 1,
+    "category": "furniture",
+    "tags": ["table", "surface"],
+    "names": {
+      "table": "테이블"
+    },
+    "description": "A flat surface for various uses.",
+    "description_ko": "다양한 용도의 평평한 표면."
+  },
+
+  "Workbench": {
+    "tier": 2,
+    "category": "furniture",
+    "tags": ["table", "crafting"],
+    "names": {
+      "workbench": "작업대"
+    },
+    "description": "A sturdy table for crafting work.",
+    "description_ko": "제작 작업을 위한 튼튼한 테이블."
+  },
+
+  "Oven": {
+    "tier": 2,
+    "category": "furniture",
+    "tags": ["cooking", "heat"],
+    "names": {
+      "oven": "오븐"
+    },
+    "description": "A device for cooking with heat.",
+    "description_ko": "열로 요리하는 장치."
+  },
+
+  "Campfire Pit": {
+    "tier": 1,
+    "category": "furniture",
+    "tags": ["cooking", "fire"],
+    "names": {
+      "campfire pit": "모닥불 구덩이"
+    },
+    "description": "A pit for making campfires.",
+    "description_ko": "모닥불을 피우기 위한 구덩이."
+  },
+
+  "Liquid Vessel": {
+    "tier": 1,
+    "category": "furniture",
+    "tags": ["container", "liquid"],
+    "names": {
+      "liquid vessel": "액체 용기"
+    },
+    "description": "A container for holding liquids.",
+    "description_ko": "액체를 담는 용기."
+  },
+
+  "Water Basin": {
+    "tier": 1,
+    "category": "furniture",
+    "tags": ["container", "water"],
+    "names": {
+      "water basin": "물대야"
+    },
+    "description": "A basin for holding water.",
+    "description_ko": "물을 담는 대야."
+  },
+
+  "Altar": {
+    "tier": 2,
+    "category": "furniture",
+    "tags": ["sacred", "ritual"],
+    "names": {
+      "altar": "제단"
+    },
+    "description": "A sacred surface for rituals.",
+    "description_ko": "의식을 위한 신성한 표면."
+  },
+
+  "Anvil": {
+    "tier": 2,
+    "category": "furniture",
+    "tags": ["crafting", "metal"],
+    "names": {
+      "anvil": "모루"
+    },
+    "description": "A heavy metal block for smithing.",
+    "description_ko": "대장간일을 위한 무거운 금속 블록."
+  },
+
+  "Loom": {
+    "tier": 2,
+    "category": "furniture",
+    "tags": ["crafting", "cloth"],
+    "names": {
+      "loom": "베틀"
+    },
+    "description": "A device for weaving cloth.",
+    "description_ko": "천을 짜는 장치."
+  }
+}

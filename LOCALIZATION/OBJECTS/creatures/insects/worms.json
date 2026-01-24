@@ -3,12 +3,14 @@
     "category": "insects/worms",
     "description": "Worm and leech creatures",
     "version": "2.0",
-    "updated": "2026-01-22"
+    "created": "2026-01-22",
+    "updated": "2026-01-24",
+    "phase": "Phase2-Creatures"
   },
 
   "Knollworm": {
     "tier": 2,
-    "category": "insect",
+    "category": "worm",
     "tags": ["worm", "hostile", "burrowing"],
     "names": {
       "knollworm": "구릉지렁이"
@@ -17,20 +19,38 @@
     "description_ko": "구릉지대에 서식하는 지렁이. 게를 으깨는 강력한 부리를 가지고 있다."
   },
 
+  "Knollworm Corpse": {
+    "tier": 2,
+    "category": "corpse",
+    "tags": ["worm"],
+    "names": {
+      "knollworm corpse": "구릉지렁이 시체"
+    }
+  },
+
   "Leech": {
     "tier": 2,
-    "category": "insect",
+    "category": "worm",
     "tags": ["worm", "hostile", "blood-drain"],
     "names": {
-      "{{r|leech}}": "{{r|거머리}}"
+      "leech": "거머리"
     },
     "description": "A blood-sucking annelid that drains health when attached.",
     "description_ko": "피를 빠는 환형동물. 부착되면 지속적으로 체력을 빼앗는다."
   },
 
+  "Leech Corpse": {
+    "tier": 2,
+    "category": "corpse",
+    "tags": ["worm"],
+    "names": {
+      "leech corpse": "거머리 시체"
+    }
+  },
+
   "Seedsprout Worm": {
     "tier": 1,
-    "category": "insect",
+    "category": "worm",
     "tags": ["worm", "neutral", "symbiotic"],
     "names": {
       "seedsprout worm": "새싹지렁이"
@@ -41,10 +61,10 @@
 
   "Segmented Mirthworm": {
     "tier": 2,
-    "category": "insect",
+    "category": "worm",
     "tags": ["worm", "neutral", "strange"],
     "names": {
-      "{{w|segmented mirthworm}}": "{{w|마디환희지렁이}}"
+      "segmented mirthworm": "마디환희지렁이"
     },
     "description": "A strange multi-segmented worm.",
     "description_ko": "여러 마디로 이루어진 기이한 지렁이."
@@ -52,12 +72,183 @@
 
   "Agolmaggot": {
     "tier": 3,
-    "category": "insect",
+    "category": "worm",
     "tags": ["worm", "hostile", "large"],
     "names": {
       "agolmaggot": "아골 구더기"
     },
     "description": "A giant maggot found in the Agol region.",
     "description_ko": "아골 지역에서 서식하는 거대한 구더기."
+  },
+
+  "Agolmaggot Corpse": {
+    "tier": 3,
+    "category": "corpse",
+    "tags": ["worm"],
+    "names": {
+      "agolmaggot corpse": "아골 구더기 시체"
+    }
+  },
+
+  "Earthworm": {
+    "tier": 1,
+    "category": "worm",
+    "tags": ["worm", "neutral", "common"],
+    "names": {
+      "earthworm": "지렁이"
+    },
+    "description": "A common worm that burrows through soil.",
+    "description_ko": "흙을 파고 다니는 흔한 지렁이."
+  },
+
+  "Giant Earthworm": {
+    "tier": 3,
+    "category": "worm",
+    "tags": ["worm", "hostile", "giant"],
+    "names": {
+      "giant earthworm": "거대 지렁이"
+    },
+    "description": "An earthworm grown to monstrous size.",
+    "description_ko": "괴물 같은 크기로 자란 지렁이."
+  },
+
+  "Giant Earthworm Corpse": {
+    "tier": 3,
+    "category": "corpse",
+    "tags": ["worm", "giant"],
+    "names": {
+      "giant earthworm corpse": "거대 지렁이 시체"
+    }
+  },
+
+  "Sandworm": {
+    "tier": 5,
+    "category": "worm",
+    "tags": ["worm", "hostile", "giant", "desert"],
+    "names": {
+      "sandworm": "모래지렁이"
+    },
+    "description": "A massive worm that burrows through desert sands.",
+    "description_ko": "사막 모래를 파고 다니는 거대한 지렁이."
+  },
+
+  "Sandworm Corpse": {
+    "tier": 5,
+    "category": "corpse",
+    "tags": ["worm", "giant"],
+    "names": {
+      "sandworm corpse": "모래지렁이 시체"
+    }
+  },
+
+  "Rot Grub": {
+    "tier": 2,
+    "category": "worm",
+    "tags": ["worm", "hostile", "disease"],
+    "names": {
+      "rot grub": "썩음 구더기"
+    },
+    "description": "A parasitic larva that burrows into flesh.",
+    "description_ko": "살 속으로 파고드는 기생 유충."
+  },
+
+  "Rot Grub Corpse": {
+    "tier": 2,
+    "category": "corpse",
+    "tags": ["worm"],
+    "names": {
+      "rot grub corpse": "썩음 구더기 시체"
+    }
+  },
+
+  "Brain Worm": {
+    "tier": 4,
+    "category": "worm",
+    "tags": ["worm", "hostile", "psychic", "parasite"],
+    "names": {
+      "brain worm": "뇌지렁이"
+    },
+    "description": "A horrifying worm that infests the brain of its host.",
+    "description_ko": "숙주의 뇌에 기생하는 끔찍한 지렁이."
+  },
+
+  "Brain Worm Corpse": {
+    "tier": 4,
+    "category": "corpse",
+    "tags": ["worm", "psychic"],
+    "names": {
+      "brain worm corpse": "뇌지렁이 시체"
+    }
+  },
+
+  "Glowworm": {
+    "tier": 2,
+    "category": "worm",
+    "tags": ["worm", "neutral", "luminous"],
+    "names": {
+      "glowworm": "빛나는 지렁이"
+    },
+    "description": "A bioluminescent worm that lights up cave ceilings.",
+    "description_ko": "동굴 천장을 밝히는 생물 발광 지렁이."
+  },
+
+  "Carrion Worm": {
+    "tier": 3,
+    "category": "worm",
+    "tags": ["worm", "hostile", "scavenger"],
+    "names": {
+      "carrion worm": "시체 지렁이"
+    },
+    "description": "A worm that feeds on decaying corpses.",
+    "description_ko": "썩어가는 시체를 먹는 지렁이."
+  },
+
+  "Carrion Worm Corpse": {
+    "tier": 3,
+    "category": "corpse",
+    "tags": ["worm"],
+    "names": {
+      "carrion worm corpse": "시체 지렁이 시체"
+    }
+  },
+
+  "Voider": {
+    "tier": 5,
+    "category": "worm",
+    "tags": ["worm", "hostile", "void", "elite"],
+    "names": {
+      "voider": "보이더"
+    },
+    "description": "A worm-like creature that can create rifts in reality.",
+    "description_ko": "현실에 균열을 만들 수 있는 지렁이 같은 생물."
+  },
+
+  "Voider Corpse": {
+    "tier": 5,
+    "category": "corpse",
+    "tags": ["worm", "void"],
+    "names": {
+      "voider corpse": "보이더 시체"
+    }
+  },
+
+  "Giant Leech": {
+    "tier": 4,
+    "category": "worm",
+    "tags": ["worm", "hostile", "blood-drain", "giant"],
+    "names": {
+      "giant leech": "거대 거머리"
+    },
+    "description": "A leech grown to horrifying proportions.",
+    "description_ko": "끔찍한 크기로 자란 거머리."
+  },
+
+  "Giant Leech Corpse": {
+    "tier": 4,
+    "category": "corpse",
+    "tags": ["worm", "giant"],
+    "names": {
+      "giant leech corpse": "거대 거머리 시체"
+    }
   }
 }

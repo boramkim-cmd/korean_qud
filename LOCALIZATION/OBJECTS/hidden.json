@@ -1,0 +1,224 @@
+{
+  "_meta": {
+    "category": "hidden",
+    "description": "Hidden objects - endgame content, special objects, Spindle objects",
+    "version": "2.0",
+    "created": "2026-01-24",
+    "updated": "2026-01-24",
+    "phase": "Phase2-Hidden"
+  },
+
+  "Ehalcodon": {
+    "tier": 8,
+    "category": "creature",
+    "tags": ["nephilim", "endgame", "boss"],
+    "names": {
+      "Ehalcodon": "에할코돈"
+    },
+    "description": "A creature of immensity mounts the upper eyeline and radiates Godlight. Haunches dusted with Spindle glitter support a creature-shape sketched to being by the sentient background radiation of this plane, and wide, banded wings are edged to soar on stellar winds.",
+    "description_ko": "거대한 생명체가 시선 위에 올라 신의 빛을 방사한다. 방추체 반짝임으로 덮인 넓적다리가 이 차원의 지각 있는 배경 복사로 스케치된 생명체 형태를 지탱하고, 넓고 띠가 있는 날개는 항성풍을 타고 날 수 있다."
+  },
+
+  "Starprint Hoof": {
+    "tier": 8,
+    "category": "weapon",
+    "tags": ["natural", "nephilim"],
+    "names": {
+      "starprint hoof": "별자국 발굽"
+    }
+  },
+
+  "Prism Girshling": {
+    "tier": 7,
+    "category": "creature",
+    "tags": ["nephilim", "girshling"],
+    "names": {
+      "prism girshling": "프리즘 거쉴링"
+    }
+  },
+
+  "Prism Girshling Cresh": {
+    "tier": 6,
+    "category": "creature",
+    "tags": ["nephilim", "girshling"],
+    "names": {
+      "prism cresh": "프리즘 크레쉬"
+    }
+  },
+
+  "Circle of Light Ehalcodon": {
+    "tier": 8,
+    "category": "item",
+    "tags": ["relic", "nephilim"],
+    "names": {
+      "circle of light in the chord of Ehalcodon": "에할코돈 화음의 빛의 원"
+    },
+    "description": "Minarets of starburst ejecta from the proto-universe wheel about a zeropoint and blur in the iridescence of a nondeterministic God.",
+    "description_ko": "원시 우주의 별폭발 분출물의 첨탑이 영점을 중심으로 돌며 비결정론적 신의 무지갯빛 속에서 흐릿해진다."
+  },
+
+  "Shrine to the Great Machine": {
+    "tier": 6,
+    "category": "furniture",
+    "tags": ["sacred", "eater"],
+    "names": {
+      "shrine to the Great Machine": "대기계의 신전"
+    },
+    "description": "Marble eaters kneel in priestly concordance with the Great Machine, drawing levers and priming hydrants to steer and be steered by the Computed Will. A dais of crystal diodes gives a dashboard view to the churning of geocultures hundreds of thousands of light years away.",
+    "description_ko": "대리석 먹는 자들이 대기계와 사제적 일치를 이루며 무릎을 꿇고, 레버를 당기고 소화전을 준비하여 계산된 의지에 의해 조종하고 조종받는다. 수정 다이오드의 단상이 수십만 광년 떨어진 지질문화의 혼란에 대한 대시보드 시야를 제공한다."
+  },
+
+  "Globe in Suspense": {
+    "tier": 8,
+    "category": "furniture",
+    "tags": ["eater", "exotic"],
+    "names": {
+      "globe in suspense": "정지된 지구본"
+    },
+    "description": "In high relief, folds and knots of sandy hued shapes crown the sapphire surface of the spherical model. The juxtaposition of scales, the proportion of sea to land, and the collective wisdom harnessed to devise such a thing make your head spin.",
+    "description_ko": "고부조로, 모래색 형태의 주름과 매듭이 구형 모델의 사파이어 표면을 왕관처럼 장식한다. 척도의 병치, 바다와 육지의 비율, 그리고 이것을 고안하기 위해 활용된 집단 지혜가 머리를 어지럽게 한다."
+  },
+
+  "Tethering Arm": {
+    "tier": 7,
+    "category": "furniture",
+    "tags": ["spindle", "structure"],
+    "names": {
+      "tethering arm": "계류 팔"
+    },
+    "description": "Flanged ursteel anchors secure the tapered ribbon of Gjaus to its low earth point.",
+    "description_ko": "플랜지가 있는 원초강철 앵커가 가우스의 끝이 가늘어지는 리본을 저지구 지점에 고정한다."
+  },
+
+  "Graphene Ribbon": {
+    "tier": 7,
+    "category": "furniture",
+    "tags": ["spindle", "structure"],
+    "names": {
+      "graphene ribbon": "그래핀 리본"
+    },
+    "description": "A bubbled ribbon of carbon motes lathed to the thickness of paper combs against its anchoring mechanisms and disappears skyward to a tapered nothing.",
+    "description_ko": "종이 두께로 깎인 탄소 입자의 기포 리본이 고정 메커니즘에 빗질되며 하늘로 가늘어지며 사라진다."
+  },
+
+  "TerrainCosmos": {
+    "tier": 8,
+    "category": "terrain",
+    "tags": ["space", "exotic"],
+    "names": {
+      "jeweled cosmos": "보석 우주"
+    },
+    "description": "The viewing frustum fills with a rainbow mosaic of stellar candles, softened by the isles of dust across their impossible gulfs, and winking in fusil motion.",
+    "description_ko": "시야 절두체가 별의 촛불들의 무지개 모자이크로 채워지며, 불가능한 심연을 가로지르는 먼지 섬들로 부드러워지고, 물레 운동으로 깜빡인다."
+  },
+
+  "TerrainWorld": {
+    "tier": 8,
+    "category": "terrain",
+    "tags": ["space", "planet"],
+    "names": {
+      "blue marble world": "푸른 대리석 세계"
+    },
+    "description": "Great shelves of ice melt and feed the sapphire seas, which lap the drifting honeycombs of basalt and lime.",
+    "description_ko": "거대한 얼음 선반이 녹아 사파이어 바다를 먹이고, 그것은 떠다니는 현무암과 석회의 벌집을 핥는다."
+  },
+
+  "TerrainHalo": {
+    "tier": 8,
+    "category": "terrain",
+    "tags": ["space", "atmosphere"],
+    "names": {
+      "atmospheric halo": "대기 후광"
+    },
+    "description": "An aura of airy fuzz swirls above the marble, peeling together and dissolving apart in unending seasons.",
+    "description_ko": "공기의 보풀 오라가 대리석 위에서 소용돌이치며, 끝없는 계절 속에서 함께 벗겨지고 따로 녹는다."
+  },
+
+  "TerrainExtrasolarFungi": {
+    "tier": 8,
+    "category": "terrain",
+    "tags": ["space", "fungal"],
+    "names": {
+      "extrasolar fungi": "외계 태양계 균류"
+    },
+    "description": "Gigantic fruiting bodies in rich, unearthly hues stick to sponge forks and burp spores.",
+    "description_ko": "풍부하고 비현세적인 색조의 거대한 자실체가 스펀지 포크에 붙어 포자를 트림한다."
+  },
+
+  "TerrainSolarRibbon": {
+    "tier": 7,
+    "category": "terrain",
+    "tags": ["space", "tech"],
+    "names": {
+      "solar ribbon": "태양 리본"
+    },
+    "description": "Superellipses of flat, sundrunk conductors tessellate a braided strip that is curved to best catch sunlight and its reflected runoff.",
+    "description_ko": "평평하고 태양에 취한 도체의 초타원이 햇빛과 그 반사 유출을 가장 잘 잡기 위해 곡선 처리된 땋은 띠를 테셀레이션한다."
+  },
+
+  "TerrainSpindleTether": {
+    "tier": 7,
+    "category": "terrain",
+    "tags": ["space", "spindle"],
+    "names": {
+      "Spindle tether": "방추체 계류줄"
+    },
+    "description": "A ribbon of bubbled agate bows northwise and plunges through the well of clouds, blurring with a shelf of slouching landmass below.",
+    "description_ko": "기포 마노의 리본이 북쪽으로 구부러지고 구름 우물을 통과하여 아래 축 늘어진 육지와 흐릿해진다."
+  },
+
+  "TerrainArrivarium": {
+    "tier": 7,
+    "category": "terrain",
+    "tags": ["space", "spindle"],
+    "names": {
+      "Arrivarium": "도착관"
+    },
+    "description": "The Sheva-wise length of the Spindle tether is clasped in the locking mechanisms of the arrival chamber.",
+    "description_ko": "방추체 계류줄의 셰바 방향 길이가 도착실의 잠금 메커니즘에 잠겨 있다."
+  },
+
+  "TerrainEarthGate": {
+    "tier": 7,
+    "category": "terrain",
+    "tags": ["space", "spindle"],
+    "names": {
+      "Earth Gate": "지구 문"
+    },
+    "description": "A shouldered arch and gate reify the flow from terrestrial tree and sand to star perch, and vice versa.",
+    "description_ko": "어깨가 있는 아치와 문이 지상의 나무와 모래에서 별의 높은 곳으로, 그리고 그 반대로의 흐름을 구체화한다."
+  },
+
+  "TerrainTifaret": {
+    "tier": 7,
+    "category": "terrain",
+    "tags": ["space", "location"],
+    "names": {
+      "Point of Tifaret": "티파레트 지점"
+    },
+    "description": "The sinnorot intersect at a middle point and, plied by their golden ecliptics in the Blue Shul, heave movers to and from the heart of the North Sheva.",
+    "description_ko": "신노로트가 중간 지점에서 교차하고, 푸른 슐의 황금 황도로 운행되어 북셰바의 심장으로 이동체들을 밀어낸다."
+  },
+
+  "Mover Rail": {
+    "tier": 6,
+    "category": "terrain",
+    "tags": ["space", "transport"],
+    "names": {
+      "mover rail": "이동체 레일"
+    },
+    "description": "Long lines of superconductive timber transsect the North Sheva and magnetically levitate movers to skybent stops.",
+    "description_ko": "초전도 목재의 긴 선이 북셰바를 가로지르며 이동체를 하늘로 향하는 정류장으로 자기 부양시킨다."
+  },
+
+  "Mover Stop": {
+    "tier": 6,
+    "category": "terrain",
+    "tags": ["space", "transport"],
+    "names": {
+      "mover stop": "이동체 정류장"
+    },
+    "description": "The latching diamond achieves magnetic lock with the legs of a mover palaquin and concludes the ritual of going.",
+    "description_ko": "잠금 다이아몬드가 이동체 가마의 다리와 자기 잠금을 달성하고 이동의 의식을 마무리한다."
+  }
+}

@@ -1,0 +1,25 @@
+{
+  "names": {
+    "Acrobatics": "곡예"
+  },
+  "description": "You are skilled at acrobatics.",
+  "description_ko": "당신은 곡예에 숙달되어 있습니다.",
+  "powers": {
+    "swift reflexes": {
+      "name": "빠른 반사신경",
+      "desc": "미사일 공격을 피할 때 DV에 +5 보너스를 받습니다."
+    },
+    "spry": {
+      "name": "활발함",
+      "desc": "DV에 +2 보너스를 받습니다."
+    },
+    "jump": {
+      "name": "도약",
+      "desc": "사거리 2 내의 빈 칸으로 점프합니다. 비행 등의 능력이 없으면 생물이 있는 칸을 넘을 수 없습니다."
+    },
+    "tumble": {
+      "name": "공중제비",
+      "desc": "DV에 +1 보너스를 받습니다. 추가로 쥬크의 재사용 대기시간이 20으로 감소합니다."
+    }
+  }
+}

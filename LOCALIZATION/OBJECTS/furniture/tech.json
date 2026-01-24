@@ -1,0 +1,131 @@
+{
+  "_meta": {
+    "category": "furniture/tech",
+    "description": "Tech furniture - power, grid, machinery",
+    "version": "2.0",
+    "created": "2026-01-24",
+    "updated": "2026-01-24",
+    "phase": "Phase2-Furniture"
+  },
+
+  "Communications Panel": {
+    "tier": 4,
+    "category": "furniture",
+    "tags": ["tech", "communication"],
+    "names": {
+      "communications panel": "통신 패널"
+    },
+    "description": "Metal slats diffuse the volume of a two-way speaker. A small button pops from the bottom corner.",
+    "description_ko": "금속 판이 양방향 스피커의 소리를 분산시킨다. 하단 모서리에서 작은 버튼이 튀어나와 있다."
+  },
+
+  "Switch": {
+    "tier": 1,
+    "category": "furniture",
+    "tags": ["tech", "control"],
+    "names": {
+      "switch": "스위치"
+    },
+    "description": "A simple control switch.",
+    "description_ko": "단순한 제어 스위치."
+  },
+
+  "Control Switch": {
+    "tier": 2,
+    "category": "furniture",
+    "tags": ["tech", "control"],
+    "names": {
+      "control switch": "제어 스위치"
+    },
+    "description": "Buttons are set in a vertical pair across a rectangle of scrawled-on metal.",
+    "description_ko": "버튼이 긁힌 금속 직사각형에 수직 쌍으로 배치되어 있다."
+  },
+
+  "Chrome Platform": {
+    "tier": 3,
+    "category": "furniture",
+    "tags": ["tech", "platform"],
+    "names": {
+      "chrome platform": "크롬 플랫폼"
+    },
+    "description": "A black and grated metal platform is meadowed with the dust of time. It's crisscrossed with the tracks of tiny lifethings.",
+    "description_ko": "검은색 격자 금속 플랫폼이 시간의 먼지로 덮여 있다. 작은 생명체들의 흔적이 엇갈려 있다."
+  },
+
+  "Power Conduit": {
+    "tier": 3,
+    "category": "furniture",
+    "tags": ["tech", "power"],
+    "names": {
+      "power conduit": "전력 도관"
+    },
+    "description": "A conduit for transmitting electrical power.",
+    "description_ko": "전기 동력을 전송하는 도관."
+  },
+
+  "Generator": {
+    "tier": 4,
+    "category": "furniture",
+    "tags": ["tech", "power", "machine"],
+    "names": {
+      "generator": "발전기"
+    },
+    "description": "A machine that generates electrical power.",
+    "description_ko": "전기 동력을 생성하는 기계."
+  },
+
+  "Solar Collector": {
+    "tier": 4,
+    "category": "furniture",
+    "tags": ["tech", "power", "solar"],
+    "names": {
+      "solar collector": "태양열 집열기"
+    },
+    "description": "A device that collects solar energy.",
+    "description_ko": "태양 에너지를 수집하는 장치."
+  },
+
+  "Terminal": {
+    "tier": 4,
+    "category": "furniture",
+    "tags": ["tech", "computer"],
+    "names": {
+      "terminal": "터미널"
+    },
+    "description": "A computer terminal interface.",
+    "description_ko": "컴퓨터 터미널 인터페이스."
+  },
+
+  "Recharging Station": {
+    "tier": 4,
+    "category": "furniture",
+    "tags": ["tech", "power", "charge"],
+    "names": {
+      "recharging station": "충전소"
+    },
+    "description": "A station for recharging power cells.",
+    "description_ko": "파워 셀을 충전하는 스테이션."
+  },
+
+  "Data Terminal": {
+    "tier": 5,
+    "category": "furniture",
+    "tags": ["tech", "computer", "data"],
+    "names": {
+      "data terminal": "데이터 터미널"
+    },
+    "description": "A terminal for accessing data systems.",
+    "description_ko": "데이터 시스템에 접근하는 터미널."
+  },
+
+  "Mainframe Panel": {
+    "tier": 5,
+    "category": "furniture",
+    "tags": ["tech", "computer", "mainframe"],
+    "names": {
+      "mainframe panel": "메인프레임 패널"
+    },
+    "description": "A panel of a large mainframe computer system.",
+    "description_ko": "대형 메인프레임 컴퓨터 시스템의 패널."
+  }
+}

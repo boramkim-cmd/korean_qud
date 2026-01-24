@@ -2,139 +2,330 @@
   "_meta": {
     "category": "weapons/melee/long_blades",
     "description": "Long blade weapons - swords, longswords, two-handed swords",
-    "version": "2.0",
-    "updated": "2026-01-22"
+    "version": "2.1",
+    "updated": "2026-01-25",
+    "phase": "Phase1-MeleeWeapons"
   },
 
-  "Bronze Sword": {
-    "tier": 1,
+  "Long Sword": {
+    "tier": 0,
     "category": "weapon",
     "slot": "hand",
     "tags": ["long blade", "one-handed", "bronze"],
     "names": {
-      "bronze sword": "청동 검"
+      "{{w|bronze}} long sword": "{{w|청동}} 장검",
+      "bronze long sword": "청동 장검"
     },
-    "description": "A sword forged from bronze.",
-    "description_ko": "청동으로 제련된 검."
+    "description": "Scratches checker the length of edged bell bronze, and skin oil dampens the leather grip.",
+    "description_ko": "긁힌 자국이 날카로운 벨 청동의 길이를 체크무늬로 덮고, 피부 기름이 가죽 손잡이를 축축하게 한다."
   },
 
-  "Iron Sword": {
-    "tier": 2,
-    "category": "weapon",
-    "slot": "hand",
-    "tags": ["long blade", "one-handed", "iron"],
-    "names": {
-      "iron sword": "철 검"
-    },
-    "description": "A sword forged from iron.",
-    "description_ko": "철로 제련된 검."
-  },
-
-  "Steel Sword": {
-    "tier": 3,
-    "category": "weapon",
-    "slot": "hand",
-    "tags": ["long blade", "one-handed", "steel"],
-    "names": {
-      "steel sword": "강철 검"
-    },
-    "description": "A sword forged from steel.",
-    "description_ko": "강철로 제련된 검."
-  },
-
-  "Carbide Sword": {
-    "tier": 5,
-    "category": "weapon",
-    "slot": "hand",
-    "tags": ["long blade", "one-handed", "carbide"],
-    "names": {
-      "carbide sword": "카바이드 검"
-    },
-    "description": "A sword forged from ultra-hard carbide.",
-    "description_ko": "초경질 카바이드로 제련된 검."
-  },
-
-  "Folded Carbide Sword": {
-    "tier": 6,
-    "category": "weapon",
-    "slot": "hand",
-    "tags": ["long blade", "one-handed", "carbide", "folded"],
-    "names": {
-      "folded carbide sword": "접힌 카바이드 검"
-    },
-    "description": "A sword of folded carbide with exceptional sharpness.",
-    "description_ko": "뛰어난 날카로움을 가진 접힌 카바이드 검."
-  },
-
-  "Bronze Two-Handed Sword": {
-    "tier": 1,
+  "Two-Handed Sword": {
+    "tier": 0,
     "category": "weapon",
     "slot": "hand",
     "tags": ["long blade", "two-handed", "bronze"],
     "names": {
+      "{{w|bronze}} two-handed sword": "{{w|청동}} 양손검",
       "bronze two-handed sword": "청동 양손검"
     },
-    "description": "A large two-handed sword forged from bronze.",
-    "description_ko": "청동으로 제련된 대형 양손검."
+    "description": "Scratches checker the broad length of edged bell bronze, and skin oil dampens the double-handed leather grip.",
+    "description_ko": "긁힌 자국이 날카로운 벨 청동의 넓은 길이를 체크무늬로 덮고, 피부 기름이 양손 가죽 손잡이를 축축하게 한다."
   },
 
-  "Iron Two-Handed Sword": {
-    "tier": 2,
+  "Long Sword2": {
+    "tier": 1,
+    "category": "weapon",
+    "slot": "hand",
+    "tags": ["long blade", "one-handed", "iron"],
+    "names": {
+      "iron long sword": "철 장검"
+    },
+    "description": "Pits mark the length of the blade like craters on an iron edge-world.",
+    "description_ko": "구덩이들이 철 세계의 분화구처럼 칼날의 길이를 따라 새겨져 있다."
+  },
+
+  "Long Sword2th": {
+    "tier": 1,
     "category": "weapon",
     "slot": "hand",
     "tags": ["long blade", "two-handed", "iron"],
     "names": {
-      "iron two-handed sword": "철 양손검"
+      "two-handed iron long sword": "양손 철 장검"
     },
-    "description": "A large two-handed sword forged from iron.",
-    "description_ko": "철로 제련된 대형 양손검."
+    "description": "Pits mark the broad length of the blade like craters on an iron edge-world.",
+    "description_ko": "구덩이들이 철 세계의 분화구처럼 칼날의 넓은 길이를 따라 새겨져 있다."
   },
 
-  "Steel Two-Handed Sword": {
-    "tier": 3,
+  "Steel Long Sword": {
+    "tier": 2,
+    "category": "weapon",
+    "slot": "hand",
+    "tags": ["long blade", "one-handed", "steel"],
+    "names": {
+      "{{Y|steel}} long sword": "{{Y|강철}} 장검",
+      "steel long sword": "강철 장검"
+    },
+    "description": "The long edge is bright and polished.",
+    "description_ko": "긴 날이 밝고 광택이 난다."
+  },
+
+  "Steel Long Swordth": {
+    "tier": 2,
     "category": "weapon",
     "slot": "hand",
     "tags": ["long blade", "two-handed", "steel"],
     "names": {
-      "steel two-handed sword": "강철 양손검"
+      "two-handed {{Y|steel}} long sword": "양손 {{Y|강철}} 장검",
+      "two-handed steel long sword": "양손 강철 장검"
     },
-    "description": "A large two-handed sword forged from steel.",
-    "description_ko": "강철로 제련된 대형 양손검."
+    "description": "The long edge is bright and polished. A wide grip is stained with dozens of oily fingerprints.",
+    "description_ko": "긴 날이 밝고 광택이 난다. 넓은 손잡이가 수십 개의 기름진 지문으로 얼룩져 있다."
   },
 
-  "Carbide Two-Handed Sword": {
-    "tier": 5,
+  "Long Sword3": {
+    "tier": 3,
+    "category": "weapon",
+    "slot": "hand",
+    "tags": ["long blade", "one-handed", "carbide"],
+    "names": {
+      "{{b|carbide}} long sword": "{{b|카바이드}} 장검",
+      "carbide long sword": "카바이드 장검"
+    },
+    "description": "Salt and scars form a comet's tail along the length of the azure blade's edge.",
+    "description_ko": "소금과 상처가 푸른 칼날의 길이를 따라 혜성의 꼬리를 형성한다."
+  },
+
+  "Long Sword3th": {
+    "tier": 3,
     "category": "weapon",
     "slot": "hand",
     "tags": ["long blade", "two-handed", "carbide"],
     "names": {
-      "carbide two-handed sword": "카바이드 양손검"
+      "two-handed {{b|carbide}} long sword": "양손 {{b|카바이드}} 장검",
+      "two-handed carbide long sword": "양손 카바이드 장검"
     },
-    "description": "A massive two-handed sword of ultra-hard carbide.",
-    "description_ko": "초경질 카바이드로 만든 거대한 양손검."
+    "description": "Salt and scars form a comet's tail along the broad length of the azure blade's edge.",
+    "description_ko": "소금과 상처가 푸른 칼날의 넓은 길이를 따라 혜성의 꼬리를 형성한다."
   },
 
-  "Scimitar": {
-    "tier": 3,
+  "Long Sword4": {
+    "tier": 4,
     "category": "weapon",
     "slot": "hand",
-    "tags": ["long blade", "one-handed", "curved"],
+    "tags": ["long blade", "one-handed", "carbide", "folded"],
     "names": {
-      "scimitar": "시미터"
+      "{{B|folded carbide}} long sword": "{{B|접힌 카바이드}} 장검",
+      "folded carbide long sword": "접힌 카바이드 장검"
     },
-    "description": "A curved sword with a single-edged blade.",
-    "description_ko": "외날의 곡선형 검."
+    "description": "Bright metal is polished to a ghost shine. Streaks of shaded blue show where the blade was carbon-folded on the forge.",
+    "description_ko": "밝은 금속이 유령 같은 광택으로 연마되어 있다. 그늘진 푸른 줄무늬가 칼날이 단조에서 탄소 접힘된 곳을 보여준다."
   },
 
-  "Sabre": {
-    "tier": 3,
+  "Long Sword4th": {
+    "tier": 4,
     "category": "weapon",
     "slot": "hand",
-    "tags": ["long blade", "one-handed", "cavalry"],
+    "tags": ["long blade", "two-handed", "carbide", "folded"],
     "names": {
-      "sabre": "사브르"
+      "two-handed {{B|folded carbide}} long sword": "양손 {{B|접힌 카바이드}} 장검",
+      "two-handed folded carbide long sword": "양손 접힌 카바이드 장검"
     },
-    "description": "A single-edged cavalry sword.",
-    "description_ko": "외날의 기병용 검."
+    "description": "Bright and wide metal is polished to a ghost shine. Streaks of shaded blue show where the large blade was carbon-folded on the forge.",
+    "description_ko": "밝고 넓은 금속이 유령 같은 광택으로 연마되어 있다. 그늘진 푸른 줄무늬가 큰 칼날이 단조에서 탄소 접힘된 곳을 보여준다."
+  },
+
+  "Long Sword5": {
+    "tier": 5,
+    "category": "weapon",
+    "slot": "hand",
+    "tags": ["long blade", "one-handed", "fullerite"],
+    "names": {
+      "{{K|fullerite}} long sword": "{{K|풀러라이트}} 장검",
+      "fullerite long sword": "풀러라이트 장검"
+    },
+    "description": "A razored edge of matte and starless alloy lengthens from point to welded shaft of steel.",
+    "description_ko": "무광택이고 별이 없는 합금의 날카로운 날이 끝에서 용접된 강철 자루까지 길어진다."
+  },
+
+  "Long Sword5th": {
+    "tier": 5,
+    "category": "weapon",
+    "slot": "hand",
+    "tags": ["long blade", "two-handed", "fullerite"],
+    "names": {
+      "two-handed {{K|fullerite}} long sword": "양손 {{K|풀러라이트}} 장검",
+      "two-handed fullerite long sword": "양손 풀러라이트 장검"
+    },
+    "description": "A wide and razored edge of matte and starless alloy lengthens from point to welded shaft of steel.",
+    "description_ko": "무광택이고 별이 없는 합금의 넓고 날카로운 날이 끝에서 용접된 강철 자루까지 길어진다."
+  },
+
+  "Long Sword6": {
+    "tier": 6,
+    "category": "weapon",
+    "slot": "hand",
+    "tags": ["long blade", "one-handed", "crysteel"],
+    "names": {
+      "{{K|{{crysteel|crysteel}} long sword}}": "{{K|{{crysteel|크리스틸}} 장검}}",
+      "crysteel long sword": "크리스틸 장검"
+    },
+    "description": "Blast furnaces sucked the tidal energy out of the planet, heated carbon to solar temperatures, and poured it into hexagonal molds.",
+    "description_ko": "용광로가 행성의 조석 에너지를 빨아들여 탄소를 태양 온도로 가열하고 육각형 주형에 부었다."
+  },
+
+  "Long Sword6th": {
+    "tier": 6,
+    "category": "weapon",
+    "slot": "hand",
+    "tags": ["long blade", "two-handed", "crysteel"],
+    "names": {
+      "{{K|{{crysteel|crysteel}} great sword}}": "{{K|{{crysteel|크리스틸}} 대검}}",
+      "crysteel great sword": "크리스틸 대검"
+    },
+    "description": "Blast furnaces sucked the tidal energy out of the planet, heated carbon to solar temperatures, and poured it into hexagonal molds.",
+    "description_ko": "용광로가 행성의 조석 에너지를 빨아들여 탄소를 태양 온도로 가열하고 육각형 주형에 부었다."
+  },
+
+  "Long Sword7": {
+    "tier": 7,
+    "category": "weapon",
+    "slot": "hand",
+    "tags": ["long blade", "one-handed", "crysteel", "flawless"],
+    "names": {
+      "{{K|flawless {{crysteel|crysteel}} long sword}}": "{{K|완벽한 {{crysteel|크리스틸}} 장검}}",
+      "flawless crysteel long sword": "완벽한 크리스틸 장검"
+    },
+    "description": "Casts mottled with dust particles were culled and fed to lithovores, leaving only the perfect hexagonal prisms.",
+    "description_ko": "먼지 입자로 얼룩진 주물은 골라내어 암식자에게 먹이고, 완벽한 육각형 프리즘만 남겼다."
+  },
+
+  "Long Sword7th": {
+    "tier": 7,
+    "category": "weapon",
+    "slot": "hand",
+    "tags": ["long blade", "two-handed", "crysteel", "flawless"],
+    "names": {
+      "{{K|flawless {{crysteel|crysteel}} great sword}}": "{{K|완벽한 {{crysteel|크리스틸}} 대검}}",
+      "flawless crysteel great sword": "완벽한 크리스틸 대검"
+    },
+    "description": "Casts mottled with dust particles were culled and fed to lithovores, leaving only the perfect hexagonal prisms.",
+    "description_ko": "먼지 입자로 얼룩진 주물은 골라내어 암식자에게 먹이고, 완벽한 육각형 프리즘만 남겼다."
+  },
+
+  "Long Sword8": {
+    "tier": 8,
+    "category": "weapon",
+    "slot": "hand",
+    "tags": ["long blade", "one-handed", "zetachrome"],
+    "names": {
+      "{{zetachrome|zetachrome}} long sword": "{{zetachrome|제타크롬}} 장검",
+      "zetachrome long sword": "제타크롬 장검"
+    },
+    "description": "Quark-gluon plasma rapidly cooled and was extinguished on the voidpeaks of the early universe.",
+    "description_ko": "쿼크-글루온 플라즈마가 빠르게 냉각되어 초기 우주의 공허한 봉우리에서 소멸되었다."
+  },
+
+  "Long Sword8th": {
+    "tier": 8,
+    "category": "weapon",
+    "slot": "hand",
+    "tags": ["long blade", "two-handed", "zetachrome"],
+    "names": {
+      "two-handed {{zetachrome|zetachrome}} long sword": "양손 {{zetachrome|제타크롬}} 장검",
+      "two-handed zetachrome long sword": "양손 제타크롬 장검"
+    },
+    "description": "Quark-gluon plasma rapidly cooled and was extinguished on the voidpeaks of the early universe.",
+    "description_ko": "쿼크-글루온 플라즈마가 빠르게 냉각되어 초기 우주의 공허한 봉우리에서 소멸되었다."
+  },
+
+  "Vibro Blade": {
+    "tier": 5,
+    "category": "weapon",
+    "slot": "hand",
+    "tags": ["long blade", "one-handed", "artifact", "vibro"],
+    "names": {
+      "{{c|vibro blade}}": "{{c|바이브로 블레이드}}",
+      "vibro blade": "바이브로 블레이드"
+    },
+    "description": "A long, matte blade of ionic plastifer sits on a finger-rest hilt. When charged it blurs in high-width motion and jostles its material obstacles out of the way.",
+    "description_ko": "이온 플라스티퍼의 길고 무광택인 칼날이 손가락 받침 손잡이 위에 있다. 충전되면 고폭 동작으로 흐려지고 물질적 장애물을 밀쳐낸다."
+  },
+
+  "Gaslight Sword": {
+    "tier": 4,
+    "category": "weapon",
+    "slot": "hand",
+    "tags": ["long blade", "one-handed", "artifact", "gaslight"],
+    "names": {
+      "{{gaslight|gaslight}} flyssa": "{{gaslight|가스라이트}} 플리사",
+      "gaslight flyssa": "가스라이트 플리사"
+    },
+    "description": "Through a bore in the wood grip draws a long and tapered beam of pale light. In motion it heats to steel-melting temperature and whirrs matter away.",
+    "description_ko": "나무 손잡이의 구멍을 통해 길고 점점 가늘어지는 창백한 빛의 광선이 그려진다. 움직이면 강철을 녹이는 온도로 가열되어 물질을 휘몰아낸다."
+  },
+
+  "Sharpened Polyp": {
+    "tier": 7,
+    "category": "weapon",
+    "slot": "hand",
+    "tags": ["long blade", "one-handed", "organic", "bleeding"],
+    "names": {
+      "sharpened {{r|polyp}}": "날카롭게 간 {{r|폴립}}",
+      "sharpened polyp": "날카롭게 간 폴립"
+    },
+    "description": "Skeletal coral was torn off its reef-home and chewed to a cutting edge.",
+    "description_ko": "골격 산호가 산호초에서 뜯어져 베는 날로 씹혔다."
+  },
+
+  "Ceremonial Khopesh": {
+    "tier": 7,
+    "category": "weapon",
+    "slot": "hand",
+    "tags": ["long blade", "one-handed", "artifact", "vibro", "unique"],
+    "names": {
+      "ceremonial vibrokhopesh": "의식용 바이브로코페쉬"
+    },
+    "description": "A ribbon of azzurum runs through the hilt and pilots the outer arc of phantom steel. The blade's edge blurs into the script of a dead stanza.",
+    "description_ko": "아주룸의 리본이 손잡이를 관통하여 유령 강철의 바깥 호를 조종한다. 칼날의 날이 죽은 시의 문자로 흐릿해진다."
+  },
+
+  "Caslainard": {
+    "tier": 4,
+    "category": "weapon",
+    "slot": "hand",
+    "tags": ["long blade", "one-handed", "unique", "sven"],
+    "names": {
+      "{{B-B-b-w-W-Y-W-w-b-B sequence|Caslainard}}": "{{B-B-b-w-W-Y-W-w-b-B sequence|카슬라이나드}}",
+      "Caslainard": "카슬라이나드"
+    },
+    "description": "A unique blade forged by Sven.",
+    "description_ko": "스벤이 단조한 독특한 검."
+  },
+
+  "Polluxus": {
+    "tier": 4,
+    "category": "weapon",
+    "slot": "hand",
+    "tags": ["long blade", "one-handed", "unique", "sven"],
+    "names": {
+      "{{w-W-Y-W-w-b-B-B sequence|Polluxus}}": "{{w-W-Y-W-w-b-B-B sequence|폴룩서스}}",
+      "Polluxus": "폴룩서스"
+    },
+    "description": "A unique blade forged by Sven.",
+    "description_ko": "스벤이 단조한 독특한 검."
+  },
+
+  "La Jeunesse": {
+    "tier": 6,
+    "category": "weapon",
+    "slot": "hand",
+    "tags": ["long blade", "two-handed", "unique", "relic"],
+    "names": {
+      "{{r|La}} {{r-R-R-W-W-w-w sequence|Jeunesse}}": "{{r|라}} {{r-R-R-W-W-w-w sequence|주네스}}",
+      "La Jeunesse": "라 주네스"
+    },
+    "description": "The hilt was broken and remade, pieced together from iron, jewel, and leather across the prism-scatter of the past and forever becoming something new.",
+    "description_ko": "손잡이가 부서졌다가 다시 만들어졌다. 과거의 프리즘 분산을 가로질러 철, 보석, 가죽으로 조립되어 영원히 새로운 것이 되어간다."
   }
 }

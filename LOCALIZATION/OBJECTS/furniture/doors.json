@@ -1,0 +1,165 @@
+{
+  "_meta": {
+    "category": "furniture/doors",
+    "description": "Doors, archways, security doors",
+    "version": "2.0",
+    "created": "2026-01-24",
+    "updated": "2026-01-24",
+    "phase": "Phase2-Furniture"
+  },
+
+  "Archway": {
+    "tier": 1,
+    "category": "furniture",
+    "tags": ["door", "passage"],
+    "names": {
+      "archway": "아치형 통로"
+    },
+    "description": "It's an open portal of stacked stone.",
+    "description_ko": "쌓인 돌로 된 열린 통로다."
+  },
+
+  "Door": {
+    "tier": 1,
+    "category": "furniture",
+    "tags": ["door"],
+    "names": {
+      "door": "문"
+    },
+    "description": "The slate is touched with years of handprints and a ring of rust flakes off the top of the hinges. The door continues, though, its stubborn assertion of 'in' and 'out'.",
+    "description_ko": "석판에는 수년간의 손자국이 남아 있고 경첩 위에서 녹이 떨어진다. 그러나 문은 '안'과 '밖'을 고집스럽게 주장하며 계속 서 있다."
+  },
+
+  "Windowed Door": {
+    "tier": 2,
+    "category": "furniture",
+    "tags": ["door", "window"],
+    "names": {
+      "windowed door": "창문 달린 문"
+    },
+    "description": "At some moment in the door's past, an indweller unspooled their will to curiosity and cut an aperture for sight through the boundary.",
+    "description_ko": "문의 과거 어느 순간, 거주자가 호기심에 경계를 통해 시야를 위한 구멍을 뚫었다."
+  },
+
+  "Striped Door": {
+    "tier": 1,
+    "category": "furniture",
+    "tags": ["door", "metal"],
+    "names": {
+      "striped door": "줄무늬 문"
+    },
+    "description": "Rail to rail panels are bulwarked by a crossbar for reinforcement of the in and out margin.",
+    "description_ko": "레일에서 레일까지의 패널이 안팎 경계를 강화하기 위한 가로대로 보강되어 있다."
+  },
+
+  "Wavy Door": {
+    "tier": 1,
+    "category": "furniture",
+    "tags": ["door", "metal"],
+    "names": {
+      "wavy door": "물결 모양 문"
+    },
+    "description": "Metals cut by the cosine saw were fit-welded and put to steel frame. The lock stile is padded in chrome.",
+    "description_ko": "코사인 톱으로 자른 금속을 끼워 용접하고 강철 프레임에 넣었다. 잠금 기둥은 크롬으로 덧대어졌다."
+  },
+
+  "Metal Door": {
+    "tier": 2,
+    "category": "furniture",
+    "tags": ["door", "metal"],
+    "names": {
+      "metal door": "금속 문"
+    },
+    "description": "A furrowed metal plate is fit to the arch of the doorway, and a slide panel is cut from its center.",
+    "description_ko": "주름진 금속판이 문틀 아치에 맞춰졌고, 중앙에서 슬라이드 패널이 잘렸다."
+  },
+
+  "Double Door": {
+    "tier": 1,
+    "category": "furniture",
+    "tags": ["door", "double"],
+    "names": {
+      "double door": "양문"
+    },
+    "description": "The two slates are touched with years of with handprints and a ring of rust flakes off the top of all its the hinges.",
+    "description_ko": "두 석판에는 수년간의 손자국이 남아 있고 모든 경첩 위에서 녹이 떨어진다."
+  },
+
+  "Glass Door": {
+    "tier": 4,
+    "category": "furniture",
+    "tags": ["door", "glass"],
+    "names": {
+      "glass door": "유리문"
+    },
+    "description": "Panes of see-through and polished glass are fit on a slide rail.",
+    "description_ko": "투명하게 연마된 유리 판이 슬라이드 레일에 맞춰져 있다."
+  },
+
+  "Tinted Glass Door": {
+    "tier": 4,
+    "category": "furniture",
+    "tags": ["door", "glass", "tinted"],
+    "names": {
+      "tinted glass door": "착색 유리문"
+    },
+    "description": "Panes of polished glass were frosted dark and fit on a slide rail.",
+    "description_ko": "연마된 유리 판이 어둡게 불투명 처리되어 슬라이드 레일에 맞춰져 있다."
+  },
+
+  "Security Door": {
+    "tier": 5,
+    "category": "furniture",
+    "tags": ["door", "metal", "security"],
+    "names": {
+      "security door": "보안 문"
+    },
+    "description": "A furrowed metal plate is fit to the arch of the doorway, and a sliding panel sits recessed in the center. The panel is impressed with the mold of a key card.",
+    "description_ko": "주름진 금속판이 문틀 아치에 맞춰졌고, 슬라이드 패널이 중앙에 움푹 들어가 있다. 패널에는 키 카드 모양이 찍혀 있다."
+  },
+
+  "Red Security Door": {
+    "tier": 5,
+    "category": "furniture",
+    "tags": ["door", "security", "red"],
+    "names": {
+      "red security door": "빨간 보안 문"
+    }
+  },
+
+  "Yellow Security Door": {
+    "tier": 5,
+    "category": "furniture",
+    "tags": ["door", "security", "yellow"],
+    "names": {
+      "yellow security door": "노란 보안 문"
+    }
+  },
+
+  "Green Security Door": {
+    "tier": 5,
+    "category": "furniture",
+    "tags": ["door", "security", "green"],
+    "names": {
+      "green security door": "초록 보안 문"
+    }
+  },
+
+  "Blue Security Door": {
+    "tier": 5,
+    "category": "furniture",
+    "tags": ["door", "security", "blue"],
+    "names": {
+      "blue security door": "파란 보안 문"
+    }
+  },
+
+  "Purple Security Door": {
+    "tier": 5,
+    "category": "furniture",
+    "tags": ["door", "security", "purple"],
+    "names": {
+      "purple security door": "보라 보안 문"
+    }
+  }
+}

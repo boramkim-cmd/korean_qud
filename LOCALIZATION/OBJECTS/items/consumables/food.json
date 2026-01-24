@@ -1,123 +1,52 @@
 {
   "_meta": {
     "category": "consumables/food",
-    "description": "Food items - cooking recipes, raw foods, mushrooms",
+    "description": "Food items - cooking recipes, raw foods, mushrooms, organs, preservables",
     "version": "2.0",
-    "updated": "2026-01-22"
+    "created": "2026-01-22",
+    "updated": "2026-01-24",
+    "phase": "Phase1-Foods"
   },
 
-  "Yuckwheat Stem": {
-    "tier": 1,
+  "Food": {
+    "tier": 0,
     "category": "food",
-    "slot": "hand",
-    "tags": ["ingredient", "plant", "raw"],
+    "tags": ["base"],
     "names": {
-      "yuckwheat stem": "역겨운밀 줄기"
-    },
-    "description": "A fibrous stem from a yuckwheat plant.",
-    "description_ko": "역겨운밀 식물의 섬유질 줄기."
+      "food": "음식"
+    }
   },
 
-  "Witchwood Bark": {
-    "tier": 2,
+  "Organ": {
+    "tier": 0,
     "category": "food",
-    "slot": "hand",
-    "tags": ["ingredient", "plant", "medicinal"],
+    "tags": ["base", "organ"],
     "names": {
-      "witchwood bark": "마녀나무 껍질"
-    },
-    "description": "Bark stripped from a witchwood tree.",
-    "description_ko": "마녀나무에서 벗겨낸 껍질."
+      "organ": "장기"
+    }
   },
 
-  "Spine Fruit": {
-    "tier": 1,
+  "Snack": {
+    "tier": 0,
     "category": "food",
-    "slot": "hand",
-    "tags": ["fruit", "plant"],
+    "tags": ["base", "snack"],
     "names": {
-      "spine fruit": "가시 열매"
-    },
-    "description": "A spiny fruit with edible flesh.",
-    "description_ko": "먹을 수 있는 과육이 있는 가시 열매."
+      "snack": "간식"
+    }
   },
 
-  "Watervine": {
-    "tier": 1,
+  "Preservable": {
+    "tier": 0,
     "category": "food",
-    "slot": "hand",
-    "tags": ["ingredient", "plant", "water"],
+    "tags": ["base", "preservable"],
     "names": {
-      "watervine": "물덩굴"
-    },
-    "description": "A vine that stores fresh water.",
-    "description_ko": "신선한 물을 저장하는 덩굴."
-  },
-
-  "Starapple": {
-    "tier": 2,
-    "category": "food",
-    "slot": "hand",
-    "tags": ["fruit", "plant"],
-    "names": {
-      "starapple": "별사과"
-    },
-    "description": "A star-shaped apple with sweet flesh.",
-    "description_ko": "달콤한 과육의 별 모양 사과."
-  },
-
-  "Umber Mushroom": {
-    "tier": 2,
-    "category": "food",
-    "slot": "hand",
-    "tags": ["mushroom", "fungus"],
-    "names": {
-      "umber mushroom": "암갈색 버섯"
-    },
-    "description": "A dark brown mushroom found in caves.",
-    "description_ko": "동굴에서 발견되는 어두운 갈색 버섯."
-  },
-
-  "Vinewafer": {
-    "tier": 2,
-    "category": "food",
-    "slot": "hand",
-    "tags": ["cooked", "prepared"],
-    "names": {
-      "vinewafer": "덩굴과자"
-    },
-    "description": "A crispy wafer made from processed vines.",
-    "description_ko": "가공된 덩굴로 만든 바삭한 과자."
-  },
-
-  "Eyeball": {
-    "tier": 2,
-    "category": "food",
-    "slot": "hand",
-    "tags": ["meat", "organ"],
-    "names": {
-      "eyeball": "안구"
-    },
-    "description": "A harvested eyeball.",
-    "description_ko": "채취한 안구."
-  },
-
-  "Cooked Meat": {
-    "tier": 1,
-    "category": "food",
-    "slot": "hand",
-    "tags": ["meat", "cooked"],
-    "names": {
-      "cooked meat": "조리된 고기"
-    },
-    "description": "Meat cooked over a fire.",
-    "description_ko": "불에 조리한 고기."
+      "preservable": "저장식품"
+    }
   },
 
   "Raw Meat": {
     "tier": 1,
     "category": "food",
-    "slot": "hand",
     "tags": ["meat", "raw"],
     "names": {
       "raw meat": "생고기"
@@ -126,10 +55,735 @@
     "description_ko": "크리처에서 얻은 익히지 않은 고기."
   },
 
+  "Raw Bear Meat": {
+    "tier": 1,
+    "category": "food",
+    "tags": ["meat", "raw"],
+    "names": {
+      "raw bear meat": "생 곰고기"
+    },
+    "description": "Raw bear flesh is tinctured in its own spilled blood.",
+    "description_ko": "생 곰고기가 흘린 피에 물들어 있다."
+  },
+
+  "Raw Pig Meat": {
+    "tier": 1,
+    "category": "food",
+    "tags": ["meat", "raw"],
+    "names": {
+      "raw pig meat": "생 돼지고기"
+    },
+    "description": "Raw pig flesh is tinctured in its own spilled blood.",
+    "description_ko": "생 돼지고기가 흘린 피에 물들어 있다."
+  },
+
+  "Raw Boar Meat": {
+    "tier": 1,
+    "category": "food",
+    "tags": ["meat", "raw"],
+    "names": {
+      "raw boar meat": "생 멧돼지고기"
+    },
+    "description": "Raw boar flesh is tinctured in its own spilled blood.",
+    "description_ko": "생 멧돼지고기가 흘린 피에 물들어 있다."
+  },
+
+  "Raw Barkbiter Meat": {
+    "tier": 1,
+    "category": "food",
+    "tags": ["meat", "raw"],
+    "names": {
+      "raw barkbiter meat": "생 나무좀고기"
+    },
+    "description": "Raw barkbiter flesh is tinctured in its own spilled blood.",
+    "description_ko": "생 나무좀 고기가 흘린 피에 물들어 있다."
+  },
+
+  "Raw Beetle Meat": {
+    "tier": 1,
+    "category": "food",
+    "tags": ["meat", "raw", "insect"],
+    "names": {
+      "raw beetle meat": "생 딱정벌레고기"
+    },
+    "description": "Bug muscle is heaped and plated on broken shell.",
+    "description_ko": "벌레 근육이 부서진 껍질 위에 쌓여 있다."
+  },
+
+  "Raw Goat Meat": {
+    "tier": 1,
+    "category": "food",
+    "tags": ["meat", "raw"],
+    "names": {
+      "raw goat meat": "생 염소고기"
+    },
+    "description": "Raw goat flesh is tinctured in its own spilled blood.",
+    "description_ko": "생 염소고기가 흘린 피에 물들어 있다."
+  },
+
+  "Raw Scorpiock Meat": {
+    "tier": 1,
+    "category": "food",
+    "tags": ["meat", "raw", "insect"],
+    "names": {
+      "raw scorpiock meat": "생 전갈닭고기"
+    },
+    "description": "Bug muscle is heaped and plated on broken exobone.",
+    "description_ko": "벌레 근육이 부서진 외골격 위에 쌓여 있다."
+  },
+
+  "Raw Frog Meat": {
+    "tier": 1,
+    "category": "food",
+    "tags": ["meat", "raw"],
+    "names": {
+      "raw frog meat": "생 개구리고기"
+    },
+    "description": "Frog leg is tinctured in its own spilled blood.",
+    "description_ko": "개구리 다리가 흘린 피에 물들어 있다."
+  },
+
+  "Raw Fish Meat": {
+    "tier": 1,
+    "category": "food",
+    "tags": ["meat", "raw"],
+    "names": {
+      "raw fish meat": "생 물고기살"
+    },
+    "description": "Flesh of cheek and jowl is tinged with the smell of salt.",
+    "description_ko": "볼과 턱살에서 소금 냄새가 난다."
+  },
+
+  "Raw Worm Meat": {
+    "tier": 1,
+    "category": "food",
+    "tags": ["meat", "raw"],
+    "names": {
+      "raw worm meat": "생 벌레고기"
+    },
+    "description": "Worm flesh is tinctured in its own spilled slick.",
+    "description_ko": "벌레 고기가 흘린 점액에 물들어 있다."
+  },
+
+  "Dawnglider Tail": {
+    "tier": 2,
+    "category": "food",
+    "tags": ["meat", "organ", "special"],
+    "names": {
+      "dawnglider tail": "새벽활강꾼 꼬리"
+    },
+    "description": "A mosaic of keeled scales coils like a wound rope. It's crusted with char and smells like smoke.",
+    "description_ko": "용골 비늘의 모자이크가 감긴 밧줄처럼 뭉쳐 있다. 숯이 덮여 있고 연기 냄새가 난다."
+  },
+
+  "Albino Ape Heart": {
+    "tier": 3,
+    "category": "food",
+    "tags": ["meat", "organ", "special"],
+    "names": {
+      "albino ape heart": "알비노 유인원 심장"
+    },
+    "description": "A four-chambered slab of wet and raw tissue slumps under its own sopping weight.",
+    "description_ko": "네 개의 방으로 된 축축하고 생생한 조직 덩어리가 자신의 무게에 눌려 늘어져 있다."
+  },
+
+  "Ogre Ape Heart": {
+    "tier": 6,
+    "category": "food",
+    "tags": ["meat", "organ", "special"],
+    "names": {
+      "ogre ape heart": "오거 유인원 심장"
+    },
+    "description": "A four-chambered slab of wet and raw tissue slumps under its own sopping weight.",
+    "description_ko": "네 개의 방으로 된 축축하고 생생한 조직 덩어리가 자신의 무게에 눌려 늘어져 있다."
+  },
+
+  "Black Puma Haunch": {
+    "tier": 3,
+    "category": "food",
+    "tags": ["meat", "special"],
+    "names": {
+      "black puma haunch": "검은 퓨마 넓적다리"
+    },
+    "description": "Pinches of opal black fur stick to the wet leg meat.",
+    "description_ko": "오팔빛 검은 털 조각이 축축한 다리살에 붙어 있다."
+  },
+
+  "Tongue Twist": {
+    "tier": 2,
+    "category": "food",
+    "tags": ["meat", "organ"],
+    "names": {
+      "tongue twist": "혀 꼬임"
+    },
+    "description": "A triad of tongues are twined together in a fibrous twist. They gleam with a coat of saliva.",
+    "description_ko": "세 개의 혀가 섬유질로 꼬여 있다. 침으로 반짝인다."
+  },
+
+  "Eyeless Crab Legs": {
+    "tier": 1,
+    "category": "food",
+    "tags": ["meat", "snack"],
+    "names": {
+      "eyeless crab legs": "눈없는 게 다리"
+    },
+    "description": "Jointed and spined legs are arrayed in a pool of bone jelly.",
+    "description_ko": "관절과 가시가 있는 다리가 뼈 젤리 웅덩이에 놓여 있다."
+  },
+
+  "Eyeless King Crab Legs": {
+    "tier": 2,
+    "category": "food",
+    "tags": ["meat", "snack"],
+    "names": {
+      "eyeless king crab legs": "눈없는 왕게 다리"
+    },
+    "description": "Enormous jointed and spined legs are arrayed in a pool of bone jelly.",
+    "description_ko": "거대한 관절과 가시가 있는 다리가 뼈 젤리 웅덩이에 놓여 있다."
+  },
+
+  "Fire Ant Gaster": {
+    "tier": 2,
+    "category": "food",
+    "tags": ["organ", "heat"],
+    "names": {
+      "fire ant gaster": "불개미 배마디"
+    },
+    "description": "A halo of smoke lifts off the calcified orb.",
+    "description_ko": "석회화된 구체에서 연기 고리가 피어오른다."
+  },
+
+  "Spark Tick Scutum": {
+    "tier": 2,
+    "category": "food",
+    "tags": ["organ", "electric"],
+    "names": {
+      "spark tick scutum": "스파크 진드기 방패판"
+    },
+    "description": "A paper-thin bowl of bone is etched with the bright and furcate marks of lightning.",
+    "description_ko": "종이처럼 얇은 뼈 그릇에 밝고 갈라진 번개 자국이 새겨져 있다."
+  },
+
+  "Voider Gland": {
+    "tier": 3,
+    "category": "food",
+    "tags": ["organ", "teleport"],
+    "names": {
+      "voider gland": "보이더 분비샘"
+    },
+    "description": "Space is partitioned across three displacement chambers to create negative pressure around the shunting organ.",
+    "description_ko": "공간이 세 개의 전이 방으로 분할되어 전환 기관 주위에 음압을 생성한다."
+  },
+
+  "Psychal Gland": {
+    "tier": 3,
+    "category": "food",
+    "tags": ["organ", "mental"],
+    "names": {
+      "psychal gland": "정신 분비샘"
+    },
+    "description": "A labyrinth of nerves poke through their limpid tissue wrapper.",
+    "description_ko": "신경의 미로가 투명한 조직 껍질을 뚫고 나와 있다."
+  },
+
+  "Compacted Bone Matter": {
+    "tier": 1,
+    "category": "food",
+    "tags": ["snack"],
+    "names": {
+      "compacted bone matter": "압축된 뼈 물질"
+    },
+    "description": "Ageless bone was pulverized and compacted inside the scarred intestine of a bone worm.",
+    "description_ko": "오래된 뼈가 뼈 벌레의 상처 입은 창자 안에서 분쇄되고 압축되었다."
+  },
+
+  "FireBreatherGland": {
+    "tier": 2,
+    "category": "food",
+    "tags": ["organ", "breather", "fire"],
+    "names": {
+      "flamebeard gland": "화염수염 분비샘"
+    },
+    "description": "Aromatic dew dampens the deflated flaps of tissue and scorches the surrounding air.",
+    "description_ko": "향기로운 이슬이 수축된 조직 판막을 적시고 주변 공기를 태운다."
+  },
+
+  "ElderFireBreatherGland": {
+    "tier": 3,
+    "category": "food",
+    "tags": ["organ", "breather", "fire", "elder"],
+    "names": {
+      "elder flamebeard gland": "장로 화염수염 분비샘"
+    },
+    "description": "Aromatic dew dampens the deflated flaps of tissue and scorches the surrounding air.",
+    "description_ko": "향기로운 이슬이 수축된 조직 판막을 적시고 주변 공기를 태운다."
+  },
+
+  "IceBreatherGland": {
+    "tier": 2,
+    "category": "food",
+    "tags": ["organ", "breather", "cold"],
+    "names": {
+      "sleetbeard gland": "진눈깨비수염 분비샘"
+    },
+    "description": "Aromatic dew dampens the deflated flaps of tissue and freezes the surrounding air.",
+    "description_ko": "향기로운 이슬이 수축된 조직 판막을 적시고 주변 공기를 얼린다."
+  },
+
+  "ElderIceBreatherGland": {
+    "tier": 3,
+    "category": "food",
+    "tags": ["organ", "breather", "cold", "elder"],
+    "names": {
+      "elder sleetbeard gland": "장로 진눈깨비수염 분비샘"
+    },
+    "description": "Aromatic dew dampens the deflated flaps of tissue and freezes the surrounding air.",
+    "description_ko": "향기로운 이슬이 수축된 조직 판막을 적시고 주변 공기를 얼린다."
+  },
+
+  "CorrosiveBreatherGland": {
+    "tier": 2,
+    "category": "food",
+    "tags": ["organ", "breather", "acid"],
+    "names": {
+      "tartbeard gland": "신맛수염 분비샘"
+    },
+    "description": "Aromatic dew dampens the deflated flaps of tissue and stings the surrounding air.",
+    "description_ko": "향기로운 이슬이 수축된 조직 판막을 적시고 주변 공기를 찌른다."
+  },
+
+  "ElderCorrosiveBreatherGland": {
+    "tier": 3,
+    "category": "food",
+    "tags": ["organ", "breather", "acid", "elder"],
+    "names": {
+      "elder tartbeard gland": "장로 신맛수염 분비샘"
+    },
+    "description": "Aromatic dew dampens the deflated flaps of tissue and stings the surrounding air.",
+    "description_ko": "향기로운 이슬이 수축된 조직 판막을 적시고 주변 공기를 찌른다."
+  },
+
+  "NormalityBreatherGland": {
+    "tier": 2,
+    "category": "food",
+    "tags": ["organ", "breather", "normality"],
+    "names": {
+      "nullbeard gland": "무효수염 분비샘"
+    },
+    "description": "Aromatic dew dampens the deflated flaps of tissue and polarizes the surrounding air.",
+    "description_ko": "향기로운 이슬이 수축된 조직 판막을 적시고 주변 공기를 분극화한다."
+  },
+
+  "ElderNormalityBreatherGland": {
+    "tier": 3,
+    "category": "food",
+    "tags": ["organ", "breather", "normality", "elder"],
+    "names": {
+      "elder nullbeard gland": "장로 무효수염 분비샘"
+    },
+    "description": "Aromatic dew dampens the deflated flaps of tissue and polarizes the surrounding air.",
+    "description_ko": "향기로운 이슬이 수축된 조직 판막을 적시고 주변 공기를 분극화한다."
+  },
+
+  "PoisonBreatherGland": {
+    "tier": 2,
+    "category": "food",
+    "tags": ["organ", "breather", "poison"],
+    "names": {
+      "gallbeard gland": "쓸개수염 분비샘"
+    },
+    "description": "Aromatic dew dampens the deflated flaps of tissue and stings the surrounding air.",
+    "description_ko": "향기로운 이슬이 수축된 조직 판막을 적시고 주변 공기를 찌른다."
+  },
+
+  "ElderPoisonBreatherGland": {
+    "tier": 3,
+    "category": "food",
+    "tags": ["organ", "breather", "poison", "elder"],
+    "names": {
+      "elder gallbeard gland": "장로 쓸개수염 분비샘"
+    },
+    "description": "Aromatic dew dampens the deflated flaps of tissue and stings the surrounding air.",
+    "description_ko": "향기로운 이슬이 수축된 조직 판막을 적시고 주변 공기를 찌른다."
+  },
+
+  "SleepBreatherGland": {
+    "tier": 2,
+    "category": "food",
+    "tags": ["organ", "breather", "sleep"],
+    "names": {
+      "dreambeard gland": "꿈수염 분비샘"
+    },
+    "description": "Aromatic dew dampens the deflated flaps of tissue and makes humid the surrounding air.",
+    "description_ko": "향기로운 이슬이 수축된 조직 판막을 적시고 주변 공기를 습하게 만든다."
+  },
+
+  "ElderSleepBreatherGland": {
+    "tier": 3,
+    "category": "food",
+    "tags": ["organ", "breather", "sleep", "elder"],
+    "names": {
+      "elder dreambeard gland": "장로 꿈수염 분비샘"
+    },
+    "description": "Aromatic dew dampens the deflated flaps of tissue and makes humid the surrounding air.",
+    "description_ko": "향기로운 이슬이 수축된 조직 판막을 적시고 주변 공기를 습하게 만든다."
+  },
+
+  "StunBreatherGland": {
+    "tier": 2,
+    "category": "food",
+    "tags": ["organ", "breather", "stun"],
+    "names": {
+      "stillbeard gland": "정지수염 분비샘"
+    },
+    "description": "Aromatic dew dampens the deflated flaps of tissue and arrests the surrounding air.",
+    "description_ko": "향기로운 이슬이 수축된 조직 판막을 적시고 주변 공기를 멈추게 한다."
+  },
+
+  "ElderStunBreatherGland": {
+    "tier": 3,
+    "category": "food",
+    "tags": ["organ", "breather", "stun", "elder"],
+    "names": {
+      "elder stillbeard gland": "장로 정지수염 분비샘"
+    },
+    "description": "Aromatic dew dampens the deflated flaps of tissue and arrests the surrounding air.",
+    "description_ko": "향기로운 이슬이 수축된 조직 판막을 적시고 주변 공기를 멈추게 한다."
+  },
+
+  "ConfusionBreatherGland": {
+    "tier": 2,
+    "category": "food",
+    "tags": ["organ", "breather", "confusion"],
+    "names": {
+      "mazebeard gland": "미로수염 분비샘"
+    },
+    "description": "Aromatic dew dampens the deflated flaps of tissue and obfuscates the surrounding air.",
+    "description_ko": "향기로운 이슬이 수축된 조직 판막을 적시고 주변 공기를 혼란스럽게 만든다."
+  },
+
+  "ElderConfusionBreatherGland": {
+    "tier": 3,
+    "category": "food",
+    "tags": ["organ", "breather", "confusion", "elder"],
+    "names": {
+      "elder mazebeard gland": "장로 미로수염 분비샘"
+    },
+    "description": "Aromatic dew dampens the deflated flaps of tissue and obfuscates the surrounding air.",
+    "description_ko": "향기로운 이슬이 수축된 조직 판막을 적시고 주변 공기를 혼란스럽게 만든다."
+  },
+
+  "Yondercane": {
+    "tier": 3,
+    "category": "food",
+    "tags": ["plant", "teleport"],
+    "names": {
+      "yondercane": "저 너머 지팡이"
+    },
+    "description": "The fluted stem of tassled yonderbrush bends to a farpoint out of focus.",
+    "description_ko": "술 달린 저 너머 덤불의 홈이 파인 줄기가 초점 밖의 먼 지점으로 휘어진다."
+  },
+
+  "Vinewafer": {
+    "tier": 1,
+    "category": "food",
+    "tags": ["plant", "water"],
+    "names": {
+      "vinewafer": "덩굴과자"
+    },
+    "description": "A little nub of cork swells with moisture. It was watered over hot weeks by a splayed frond, vested with inhuman patience, who sucked one mote of rain from a hundred-mile wind.",
+    "description_ko": "작은 코르크 덩어리가 수분으로 부풀어 있다. 비인간적인 인내심을 가진 펼쳐진 잎사귀가 100마일의 바람에서 빗방울 하나를 빨아들여 뜨거운 몇 주 동안 물을 주었다."
+  },
+
+  "Dreadroot Tuber": {
+    "tier": 2,
+    "category": "food",
+    "tags": ["plant", "fear"],
+    "names": {
+      "dreadroot tuber": "공포뿌리 덩이줄기"
+    },
+    "description": "Earth scars brook the cinnamon bulb, warped by the pressures of soil and chrome to a shape that encodes a chiliad of ruin.",
+    "description_ko": "흙의 흉터가 계피색 구근을 가르며, 토양과 금속의 압력에 의해 천 년의 파멸을 담은 형태로 뒤틀렸다."
+  },
+
+  "Starapple": {
+    "tier": 1,
+    "category": "food",
+    "tags": ["fruit", "plant"],
+    "names": {
+      "starapple": "별사과"
+    },
+    "description": "Juice drips off the bright skin sheathing the quincunx core. To eyes wet with hunger, it shines like a garnet in the vulcan salt.",
+    "description_ko": "다섯 개의 씨앗 배열을 감싼 밝은 껍질에서 즙이 떨어진다. 배고픈 눈에는 화산 소금 속의 석류석처럼 빛난다."
+  },
+
+  "Spine Fruit": {
+    "tier": 1,
+    "category": "food",
+    "tags": ["fruit", "plant"],
+    "names": {
+      "spine fruit": "가시 열매"
+    },
+    "description": "A rib of fractus shoots a wet and pointy pear off its sunbloated greenery.",
+    "description_ko": "프락투스의 갈비뼈가 햇빛에 부푼 푸른 잎에서 축축하고 뾰족한 배를 쏘아낸다."
+  },
+
+  "Plump Mushroom": {
+    "tier": 1,
+    "category": "food",
+    "tags": ["mushroom", "fungus"],
+    "names": {
+      "plump mushroom": "통통한 버섯"
+    },
+    "description": "Beneath a cap of spread gills, the stem contours to a bursting waist. The fungus is fat on the dead of its sliver of loam.",
+    "description_ko": "펼쳐진 주름 갓 아래, 줄기가 터질 듯한 허리로 굽어진다. 이 균류는 양토 조각의 죽은 것들로 살찌었다."
+  },
+
+  "Smoldered Mushroom": {
+    "tier": 2,
+    "category": "food",
+    "tags": ["mushroom", "fungus"],
+    "names": {
+      "smoldered mushroom": "그을린 버섯"
+    },
+    "description": "The truffle is encrusted with a wine-colored char residue born of gases unknown to the world-surface. Deep, deep in the earth and across the Pale Sea, it was smoldered to succulence.",
+    "description_ko": "송로버섯이 지표면에 알려지지 않은 가스에서 태어난 포도주색 숯 잔여물로 덮여 있다. 땅속 깊은 곳과 창백한 바다 건너에서, 맛있게 그을렸다."
+  },
+
+  "Hoarshroom": {
+    "tier": 3,
+    "category": "food",
+    "tags": ["mushroom", "fungus", "tonic", "cold"],
+    "names": {
+      "luminous hoarshroom": "빛나는 서리버섯"
+    },
+    "description": "Rime sparkles on the lampshade cap that glows with soft biolumin.",
+    "description_ko": "부드러운 생물발광으로 빛나는 전등갓 모양의 갓에서 서리가 반짝인다."
+  },
+
+  "Godshroom Cap": {
+    "tier": 4,
+    "category": "food",
+    "tags": ["mushroom", "fungus", "special"],
+    "names": {
+      "Eater's flesh": "먹는 자의 살"
+    },
+    "description": "Sight senses blur on spongent craters of a swollen coral moon. Is this the flesh of gods?",
+    "description_ko": "부풀어 오른 산호 달의 해면질 분화구에서 시각이 흐릿해진다. 이것이 신들의 살인가?"
+  },
+
+  "Lah Petals": {
+    "tier": 2,
+    "category": "food",
+    "tags": ["plant", "herb"],
+    "names": {
+      "lah petals": "라 꽃잎"
+    },
+    "description": "Pungent, ochre-toned petals look like an aromatic herb, but their savory flavor is closer to broth than tisane.",
+    "description_ko": "자극적인 황토색 꽃잎은 향기로운 허브처럼 보이지만, 그 풍미는 허브차보다 국물에 가깝다."
+  },
+
+  "Clump of Grave Moss": {
+    "tier": 2,
+    "category": "food",
+    "tags": ["plant", "moss"],
+    "names": {
+      "clump of grave moss": "무덤 이끼 덩어리"
+    },
+    "description": "Bleached cyan grave moss has grown into a rare and supple clump.",
+    "description_ko": "표백된 청록색 무덤 이끼가 희귀하고 유연한 덩어리로 자랐다."
+  },
+
+  "Banana": {
+    "tier": 1,
+    "category": "food",
+    "tags": ["fruit", "plant"],
+    "names": {
+      "banana": "바나나"
+    },
+    "description": "Its spline is richly hued in ripeness, and Spindle glitter dots the peel.",
+    "description_ko": "등이 익어서 풍부한 색조를 띠고, 방추체 반짝임이 껍질에 점점이 박혀 있다."
+  },
+
+  "Yuckwheat Stem": {
+    "tier": 1,
+    "category": "food",
+    "tags": ["plant", "medicinal"],
+    "names": {
+      "yuckwheat stem": "역겨운밀 줄기"
+    },
+    "description": "Children cry at the crisp snip of a yuckwheat stem, as they have for hundreds of years.",
+    "description_ko": "아이들은 수백 년 동안 그래왔듯이 역겨운밀 줄기가 딱 잘리는 소리에 운다."
+  },
+
+  "Lagroot Tuber": {
+    "tier": 3,
+    "category": "food",
+    "tags": ["plant", "cooldown"],
+    "names": {
+      "lagroot tuber": "지연뿌리 덩이줄기"
+    },
+    "description": "Starchy dendrites were slashed from the earth and shaved down.",
+    "description_ko": "녹말질 수상돌기가 땅에서 베어져 깎였다."
+  },
+
+  "Vanta Petals": {
+    "tier": 3,
+    "category": "food",
+    "tags": ["plant", "dark"],
+    "names": {
+      "vanta petals": "반타 꽃잎"
+    },
+    "description": "Light drips off the lunes' boundaries of influence and seeps into the void.",
+    "description_ko": "빛이 반달 영향의 경계에서 떨어져 공허로 스며든다."
+  },
+
+  "Urberry": {
+    "tier": 6,
+    "category": "food",
+    "tags": ["fruit", "plant", "healing"],
+    "names": {
+      "urberry": "원형열매"
+    },
+    "description": "Earth-dense juice pressures the berry skin into a perfect and light-curving sphere. Inside, a pip encodes a millionfold instruction set for the shape of shapes.",
+    "description_ko": "땅처럼 밀도 높은 즙이 열매 껍질을 완벽하고 빛을 굽히는 구체로 압축한다. 안에는 씨앗이 형태들의 형태를 위한 백만 배의 지시 세트를 담고 있다."
+  },
+
+  "Arsplice Seed": {
+    "tier": 7,
+    "category": "food",
+    "tags": ["seed", "healing"],
+    "names": {
+      "arsplice seed": "아르스플라이스 씨앗"
+    },
+    "description": "Millennia of chymified metropolis that's fed the grass-coral-fungi hybrid shadow-forking in its guts are resorbed inside the seed coat of an eco wad.",
+    "description_ko": "수천 년간 화학화된 대도시가 내장에서 그림자 분기하는 풀-산호-균류 혼합체를 먹여왔고, 생태 덩어리의 종피 안에 재흡수되었다."
+  },
+
+  "Bop Cheek": {
+    "tier": 2,
+    "category": "food",
+    "tags": ["meat", "special", "jump"],
+    "names": {
+      "bop cheek": "밥 볼살"
+    },
+    "description": "It's a choice cut of laminated sponge. It jiggles to the touch.",
+    "description_ko": "라미네이트 스폰지의 선택된 부위다. 만지면 흔들린다."
+  },
+
+  "Mirror Shard": {
+    "tier": 3,
+    "category": "food",
+    "tags": ["special", "reflect"],
+    "names": {
+      "mirror shard": "거울 파편"
+    },
+    "description": "A shard of glass shines on sharp edges, its crack patterns characteristic of geologic pressure-tempering.",
+    "description_ko": "유리 파편이 날카로운 모서리에서 빛나며, 균열 패턴은 지질학적 압력 단련의 특징을 보인다."
+  },
+
+  "Bundle of Noisegrass": {
+    "tier": 2,
+    "category": "food",
+    "tags": ["plant"],
+    "names": {
+      "bundle of noisegrass": "소음풀 다발"
+    },
+    "description": "Starbright grass peaked at a local maximum of meaning and then was cut and bundled.",
+    "description_ko": "별빛 풀이 의미의 지역 최대치에 도달한 후 베어져 묶였다."
+  },
+
+  "Qudzu Stem": {
+    "tier": 1,
+    "category": "food",
+    "tags": ["plant"],
+    "names": {
+      "qudzu stem": "쿠드주 줄기"
+    },
+    "description": "A stalk of red celery is floured in the abraded dust of centuries.",
+    "description_ko": "붉은 셀러리 줄기가 수세기의 마모된 먼지로 덮여 있다."
+  },
+
+  "Lover's Blossom": {
+    "tier": 2,
+    "category": "food",
+    "tags": ["plant", "flower"],
+    "names": {
+      "lover's blossom": "연인의 꽃"
+    },
+    "description": "The heart of the jilted lover burns under embered petals, pinched to anguish in citrine anthers and laid on a weeping bed of sepal jade.",
+    "description_ko": "버림받은 연인의 심장이 불씨 꽃잎 아래 타오르며, 황수정 꽃밥에서 고통으로 조여지고 옥녹색 꽃받침의 눈물 어린 침대에 놓여 있다."
+  },
+
+  "Humble Pie": {
+    "tier": 2,
+    "category": "food",
+    "tags": ["cooked", "special"],
+    "names": {
+      "humble pie": "겸손 파이"
+    },
+    "description": "Seasoning the minced meat that's trapped under the crust is a smidge of yyffur dust, shaved from the stalk of the eponymous mushroom and finely ground.",
+    "description_ko": "껍질 아래 갇힌 다진 고기에 양념으로 동명의 버섯 줄기에서 깎아 곱게 간 이퓨르 가루가 약간 들어있다."
+  },
+
+  "Ripe Cucumber": {
+    "tier": 1,
+    "category": "food",
+    "tags": ["plant", "vegetable"],
+    "names": {
+      "ripe cucumber": "잘 익은 오이"
+    },
+    "description": "A long and warted neck of mint green was fruited on a fertile vine and picked crisp.",
+    "description_ko": "민트색의 길고 혹이 있는 목이 비옥한 덩굴에서 열렸고 아삭하게 따졌다."
+  },
+
+  "Taco Suprema": {
+    "tier": 5,
+    "category": "food",
+    "tags": ["cooked", "special"],
+    "names": {
+      "taco suprema": "타코 수프레마"
+    },
+    "description": "Thin and ancient paper, a palimpsest of grease, wraps the crisp saddle of fried wafer. Seven strata of congealed nectar fill the crispy cleft.",
+    "description_ko": "얇고 오래된 종이, 기름의 양피지가 튀긴 웨이퍼의 바삭한 안장을 감싼다. 일곱 층의 굳은 과즙이 바삭한 틈을 채운다."
+  },
+
+  "Crystal of Eve": {
+    "tier": 8,
+    "category": "food",
+    "tags": ["special", "cooldown"],
+    "names": {
+      "crystal of Eve": "이브의 결정"
+    },
+    "description": "Psychal energy hovers near the zero-point as soft fuzz but peaks in the tetrahedral habit. This crystal was cracked off a root-bouquet before the system could develop chime-sentience.",
+    "description_ko": "정신 에너지가 부드러운 보풀처럼 영점 근처를 맴돌다가 사면체 형태에서 정점에 달한다. 이 결정은 시스템이 종소리 지각을 발달시키기 전에 뿌리 다발에서 깨졌다."
+  },
+
+  "Hunk of Cheese": {
+    "tier": 1,
+    "category": "food",
+    "tags": ["dairy", "snack"],
+    "names": {
+      "hunk of cheese": "치즈 덩어리"
+    },
+    "description": "Cheesecloth sticks to the greasy faces of a pigwrought cuboid. For two years microbes have colonized its faces, ripening it to high taste.",
+    "description_ko": "치즈 천이 돼지가 만든 직육면체의 기름진 면에 붙어 있다. 2년 동안 미생물이 그 면에 정착하여 높은 풍미로 숙성시켰다."
+  },
+
+  "Rubber Tree Seed": {
+    "tier": 1,
+    "category": "food",
+    "tags": ["plant", "seed"],
+    "names": {
+      "rubber tree seed": "고무나무 씨앗"
+    },
+    "description": "Smooth and sunstriped shells insulate the explosive treeshoot to come.",
+    "description_ko": "매끄럽고 햇빛 줄무늬가 있는 껍질이 폭발할 나무싹을 단열한다."
+  },
+
   "Bear Jerky": {
     "tier": 2,
     "category": "food",
-    "slot": "hand",
     "tags": ["meat", "preserved", "jerky"],
     "names": {
       "bear jerky": "곰 육포"
@@ -138,10 +792,108 @@
     "description_ko": "곰고기를 깔끔한 조각으로 잘라 소금에 절이고 훈제했다."
   },
 
+  "Boar Jerky": {
+    "tier": 2,
+    "category": "food",
+    "tags": ["meat", "preserved", "jerky"],
+    "names": {
+      "boar jerky": "멧돼지 육포"
+    },
+    "description": "Boar flesh was cut into neat strips, salted, and smoked.",
+    "description_ko": "멧돼지고기를 깔끔한 조각으로 잘라 소금에 절이고 훈제했다."
+  },
+
+  "Barkbiter Jerky": {
+    "tier": 2,
+    "category": "food",
+    "tags": ["meat", "preserved", "jerky"],
+    "names": {
+      "barkbiter jerky": "나무좀 육포"
+    },
+    "description": "Barkbiter flesh was cut into neat strips, salted, and smoked.",
+    "description_ko": "나무좀 고기를 깔끔한 조각으로 잘라 소금에 절이고 훈제했다."
+  },
+
+  "Beetle Jerky": {
+    "tier": 2,
+    "category": "food",
+    "tags": ["meat", "preserved", "jerky"],
+    "names": {
+      "beetle jerky": "딱정벌레 육포"
+    },
+    "description": "Beetle meat was cut into neat strips, salted, and smoked.",
+    "description_ko": "딱정벌레 고기를 깔끔한 조각으로 잘라 소금에 절이고 훈제했다."
+  },
+
+  "Goat Jerky": {
+    "tier": 2,
+    "category": "food",
+    "tags": ["meat", "preserved", "jerky"],
+    "names": {
+      "goat jerky": "염소 육포"
+    },
+    "description": "Goat flesh was cut into neat strips, salted, and smoked.",
+    "description_ko": "염소고기를 깔끔한 조각으로 잘라 소금에 절이고 훈제했다."
+  },
+
+  "Scorpiock Jerky": {
+    "tier": 2,
+    "category": "food",
+    "tags": ["meat", "preserved", "jerky"],
+    "names": {
+      "scorpiock jerky": "전갈닭 육포"
+    },
+    "description": "Scorpiock flesh was cut into neat strips, salted, and smoked.",
+    "description_ko": "전갈닭 고기를 깔끔한 조각으로 잘라 소금에 절이고 훈제했다."
+  },
+
+  "Frog Jerky": {
+    "tier": 2,
+    "category": "food",
+    "tags": ["meat", "preserved", "jerky"],
+    "names": {
+      "frog jerky": "개구리 육포"
+    },
+    "description": "Frog flesh was cut into neat strips, salted, and smoked.",
+    "description_ko": "개구리 고기를 깔끔한 조각으로 잘라 소금에 절이고 훈제했다."
+  },
+
+  "Fish Jerky": {
+    "tier": 2,
+    "category": "food",
+    "tags": ["meat", "preserved", "jerky"],
+    "names": {
+      "fish jerky": "생선 육포"
+    },
+    "description": "Fish flesh was cut into neat strips, salted, and smoked.",
+    "description_ko": "생선살을 깔끔한 조각으로 잘라 소금에 절이고 훈제했다."
+  },
+
+  "Worm Jerky": {
+    "tier": 2,
+    "category": "food",
+    "tags": ["meat", "preserved", "jerky"],
+    "names": {
+      "worm jerky": "벌레 육포"
+    },
+    "description": "Worm flesh was cut into neat strips, salted, and smoked.",
+    "description_ko": "벌레 고기를 깔끔한 조각으로 잘라 소금에 절이고 훈제했다."
+  },
+
+  "Crab Jerky": {
+    "tier": 2,
+    "category": "food",
+    "tags": ["meat", "preserved", "jerky"],
+    "names": {
+      "crab jerky": "게 육포"
+    },
+    "description": "Crab flesh was cut into neat strips, salted, and smoked.",
+    "description_ko": "게살을 깔끔한 조각으로 잘라 소금에 절이고 훈제했다."
+  },
+
   "Jerky": {
     "tier": 2,
     "category": "food",
-    "slot": "hand",
     "tags": ["meat", "preserved", "jerky"],
     "names": {
       "jerky": "육포"
@@ -153,7 +905,6 @@
   "Haunch": {
     "tier": 1,
     "category": "food",
-    "slot": "hand",
     "tags": ["meat", "raw"],
     "names": {
       "haunch": "넓적다리"
@@ -165,12 +916,517 @@
   "Preserved Meat": {
     "tier": 2,
     "category": "food",
-    "slot": "hand",
     "tags": ["meat", "preserved"],
     "names": {
       "preserved meat": "절임 고기"
     },
     "description": "Meat preserved for long storage.",
     "description_ko": "장기 보관을 위해 절인 고기."
+  },
+
+  "Cooked Meat": {
+    "tier": 1,
+    "category": "food",
+    "tags": ["meat", "cooked"],
+    "names": {
+      "cooked meat": "조리된 고기"
+    },
+    "description": "Meat cooked over a fire.",
+    "description_ko": "불에 조리한 고기."
+  },
+
+  "Eyeball": {
+    "tier": 2,
+    "category": "food",
+    "tags": ["meat", "organ"],
+    "names": {
+      "eyeball": "안구"
+    },
+    "description": "A harvested eyeball.",
+    "description_ko": "채취한 안구."
+  },
+
+  "Witchwood Bark": {
+    "tier": 2,
+    "category": "food",
+    "tags": ["ingredient", "plant", "medicinal"],
+    "names": {
+      "witchwood bark": "마녀나무 껍질"
+    },
+    "description": "Bark stripped from a witchwood tree.",
+    "description_ko": "마녀나무에서 벗겨낸 껍질."
+  },
+
+  "Watervine": {
+    "tier": 1,
+    "category": "food",
+    "tags": ["ingredient", "plant", "water"],
+    "names": {
+      "watervine": "물덩굴"
+    },
+    "description": "A vine that stores fresh water.",
+    "description_ko": "신선한 물을 저장하는 덩굴."
+  },
+
+  "Umber Mushroom": {
+    "tier": 2,
+    "category": "food",
+    "tags": ["mushroom", "fungus"],
+    "names": {
+      "umber mushroom": "암갈색 버섯"
+    },
+    "description": "A dark brown mushroom found in caves.",
+    "description_ko": "동굴에서 발견되는 어두운 갈색 버섯."
+  },
+
+  "Starapple Preserves": {
+    "tier": 1,
+    "category": "food",
+    "tags": ["preservable", "fruit"],
+    "names": {
+      "starapple jam": "별사과 잼"
+    },
+    "description": "Sweet starapples were mashed, set over an open flame, left out to cool, and jarred for later use.",
+    "description_ko": "달콤한 별사과를 으깨고 불에 올려 식힌 후 나중에 쓰려고 병에 담았다."
+  },
+
+  "Spine Fruit Jam": {
+    "tier": 1,
+    "category": "food",
+    "tags": ["preservable", "fruit"],
+    "names": {
+      "spine fruit jam": "가시 열매 잼"
+    },
+    "description": "The spiny fruit of fracti were mashed, set over an open flame, left out to cool, and jarred for later use.",
+    "description_ko": "프락투스의 가시 열매를 으깨고 불에 올려 식힌 후 나중에 쓰려고 병에 담았다."
+  },
+
+  "Vinewafer Sheaf": {
+    "tier": 1,
+    "category": "food",
+    "tags": ["preservable", "plant"],
+    "names": {
+      "vinewafer sheaf": "덩굴과자 다발"
+    },
+    "description": "Bunched wafers reaped from the moisture-sucking watervine plant and bound by twine.",
+    "description_ko": "수분을 빨아들이는 물덩굴 식물에서 수확한 과자를 끈으로 묶었다."
+  },
+
+  "Pickled Mushrooms": {
+    "tier": 1,
+    "category": "food",
+    "tags": ["preservable", "fungus"],
+    "names": {
+      "pickled mushrooms": "절인 버섯"
+    },
+    "description": "Plucked from the dirt, they live their new lives wading in the brine.",
+    "description_ko": "흙에서 뽑혀 소금물에 잠긴 새 삶을 산다."
+  },
+
+  "Freeze-Dried Hoarshrooms": {
+    "tier": 2,
+    "category": "food",
+    "tags": ["preservable", "fungus", "cold"],
+    "names": {
+      "freeze-dried hoarshrooms": "동결건조 서리버섯"
+    },
+    "description": "Wrinkled toadstools were cooled and dehydrated in their own hoarfrost.",
+    "description_ko": "주름진 독버섯이 자신의 서리로 냉각되고 탈수되었다."
+  },
+
+  "Pickles": {
+    "tier": 1,
+    "category": "food",
+    "tags": ["preservable", "vegetable"],
+    "names": {
+      "pickles": "피클"
+    },
+    "description": "Warted fruits are set as islands in an ocean of brine and jarred in a world glass.",
+    "description_ko": "혹이 있는 열매가 소금물 바다의 섬처럼 세계의 유리병에 담겼다."
+  },
+
+  "Fire Ant Gaster Paste": {
+    "tier": 2,
+    "category": "food",
+    "tags": ["preservable", "heat"],
+    "names": {
+      "fire ant gaster paste": "불개미 배마디 페이스트"
+    },
+    "description": "Calefaction was ground in a mortar, simmered in brine, and congealed.",
+    "description_ko": "발열체를 절구에 갈아 소금물에 끓이고 굳혔다."
+  },
+
+  "Cured Dawnglider Tail": {
+    "tier": 2,
+    "category": "food",
+    "tags": ["preservable", "meat", "heat"],
+    "names": {
+      "cured dawnglider tail": "절인 새벽활강꾼 꼬리"
+    },
+    "description": "Salt has blanched the prism of colors out of the cuts of coiled meat, but a tinge of the smell of smoke remains.",
+    "description_ko": "소금이 감긴 고기 조각에서 프리즘 색상을 탈색시켰지만, 연기 냄새의 기미가 남아있다."
+  },
+
+  "Phase Silk": {
+    "tier": 3,
+    "category": "food",
+    "tags": ["preservable", "phase"],
+    "names": {
+      "phase silk": "위상 비단"
+    },
+    "description": "Spooled thread cut from the dual-dimensional hearth-mesh of a phase spider.",
+    "description_ko": "위상 거미의 이중 차원 화로 그물에서 잘라낸 실패에 감긴 실."
+  },
+
+  "Fermented Yondercane": {
+    "tier": 2,
+    "category": "food",
+    "tags": ["preservable", "teleport"],
+    "names": {
+      "fermented yondercane": "발효된 저 너머 지팡이"
+    },
+    "description": "Weeks old salt crystals line the fluted valleys of a wet stalk.",
+    "description_ko": "몇 주 된 소금 결정이 축축한 줄기의 홈이 파인 골짜기를 따라 늘어서 있다."
+  },
+
+  "Fermented Yuckwheat Stem": {
+    "tier": 2,
+    "category": "food",
+    "tags": ["preservable", "medicinal"],
+    "names": {
+      "fermented yuckwheat stem": "발효된 역겨운밀 줄기"
+    },
+    "description": "Weeks old salt crystals huddle in the stem's elbowed forks.",
+    "description_ko": "몇 주 된 소금 결정이 줄기의 팔꿈치 갈림길에 모여 있다."
+  },
+
+  "Voider Gland Paste": {
+    "tier": 3,
+    "category": "food",
+    "tags": ["preservable", "teleport"],
+    "names": {
+      "voider gland paste": "보이더 분비샘 페이스트"
+    },
+    "description": "Displacement was ground in a mortar, simmered in brine, and congealed.",
+    "description_ko": "전이체를 절구에 갈아 소금물에 끓이고 굳혔다."
+  },
+
+  "Psychal Gland Paste": {
+    "tier": 3,
+    "category": "food",
+    "tags": ["preservable", "mental"],
+    "names": {
+      "psychal gland paste": "정신 분비샘 페이스트"
+    },
+    "description": "Psychal matter was ground in a mortar, simmered in brine, and congealed.",
+    "description_ko": "정신 물질을 절구에 갈아 소금물에 끓이고 굳혔다."
+  },
+
+  "Fermented Tongue": {
+    "tier": 2,
+    "category": "food",
+    "tags": ["preservable", "meat"],
+    "names": {
+      "fermented tongue": "발효된 혀"
+    },
+    "description": "Tongue was salted and left to ferment.",
+    "description_ko": "혀를 소금에 절여 발효시켰다."
+  },
+
+  "Salthopper Chip": {
+    "tier": 1,
+    "category": "food",
+    "tags": ["preservable", "meat"],
+    "names": {
+      "salthopper chip": "소금메뚜기 칩"
+    },
+    "description": "Chitin was shaved from the exoskeletal flank of a caught salthopper and dry-beaten to a snappy crisp.",
+    "description_ko": "잡은 소금메뚜기의 외골격 옆구리에서 키틴을 깎아 건조 타격으로 아삭하게 만들었다."
+  },
+
+  "Compacted Bone Meal": {
+    "tier": 1,
+    "category": "food",
+    "tags": ["preservable"],
+    "names": {
+      "compacted bone meal": "압축 뼛가루"
+    },
+    "description": "Compacted bone was ground into a fine meal.",
+    "description_ko": "압축된 뼈를 곱게 갈아 만들었다."
+  },
+
+  "Mashed Lag": {
+    "tier": 2,
+    "category": "food",
+    "tags": ["preservable", "cooldown"],
+    "names": {
+      "mashed lag": "으깬 지연"
+    },
+    "description": "Lagroot tuber was mashed into a paste.",
+    "description_ko": "지연뿌리 덩이줄기를 으깨서 페이스트로 만들었다."
+  },
+
+  "Dried Lah Petals": {
+    "tier": 2,
+    "category": "food",
+    "tags": ["preservable", "herb"],
+    "names": {
+      "dried lah petals": "말린 라 꽃잎"
+    },
+    "description": "Lah petals were dried in the sun.",
+    "description_ko": "라 꽃잎을 햇볕에 말렸다."
+  },
+
+  "Dried Vanta Petals": {
+    "tier": 3,
+    "category": "food",
+    "tags": ["preservable", "dark"],
+    "names": {
+      "dried vanta petals": "말린 반타 꽃잎"
+    },
+    "description": "Vanta petals were dried in darkness.",
+    "description_ko": "반타 꽃잎을 어둠 속에서 말렸다."
+  },
+
+  "Crushed Grave Moss": {
+    "tier": 2,
+    "category": "food",
+    "tags": ["preservable", "moss"],
+    "names": {
+      "crushed grave moss": "으깬 무덤 이끼"
+    },
+    "description": "Grave moss was crushed into a powder.",
+    "description_ko": "무덤 이끼를 으깨서 가루로 만들었다."
+  },
+
+  "Sun-Dried Banana": {
+    "tier": 1,
+    "category": "food",
+    "tags": ["preservable", "fruit"],
+    "names": {
+      "sun-dried banana": "햇볕에 말린 바나나"
+    },
+    "description": "A banana dried in the sun.",
+    "description_ko": "햇볕에 말린 바나나."
+  },
+
+  "Wild Rice": {
+    "tier": 1,
+    "category": "food",
+    "tags": ["preservable", "grain"],
+    "names": {
+      "wild rice": "야생 쌀"
+    },
+    "description": "Wild grains were harvested and dried.",
+    "description_ko": "야생 곡물을 수확해서 말렸다."
+  },
+
+  "Sliced Bop Cheek": {
+    "tier": 2,
+    "category": "food",
+    "tags": ["preservable", "meat", "jump"],
+    "names": {
+      "sliced bop cheek": "썬 밥 볼살"
+    },
+    "description": "Bop cheek was sliced thin for preservation.",
+    "description_ko": "밥 볼살을 보존을 위해 얇게 썰었다."
+  },
+
+  "Mirror Dust": {
+    "tier": 3,
+    "category": "food",
+    "tags": ["preservable", "reflect"],
+    "names": {
+      "mirror dust": "거울 가루"
+    },
+    "description": "Mirror shards were ground to a fine dust.",
+    "description_ko": "거울 파편을 곱게 갈아 가루로 만들었다."
+  },
+
+  "FireBreatherGlandPaste": {
+    "tier": 2,
+    "category": "food",
+    "tags": ["preservable", "breather", "fire"],
+    "names": {
+      "flamebeard gland paste": "화염수염 분비샘 페이스트"
+    },
+    "description": "Flamebeard gland was ground in a mortar, simmered in brine, and congealed.",
+    "description_ko": "화염수염 분비샘을 절구에 갈아 소금물에 끓이고 굳혔다."
+  },
+
+  "ElderFireBreatherGlandPaste": {
+    "tier": 3,
+    "category": "food",
+    "tags": ["preservable", "breather", "fire", "elder"],
+    "names": {
+      "elder flamebeard gland paste": "장로 화염수염 분비샘 페이스트"
+    },
+    "description": "Elder flamebeard gland was ground in a mortar, simmered in brine, and congealed.",
+    "description_ko": "장로 화염수염 분비샘을 절구에 갈아 소금물에 끓이고 굳혔다."
+  },
+
+  "IceBreatherGlandPaste": {
+    "tier": 2,
+    "category": "food",
+    "tags": ["preservable", "breather", "cold"],
+    "names": {
+      "sleetbeard gland paste": "진눈깨비수염 분비샘 페이스트"
+    },
+    "description": "Sleetbeard gland was ground in a mortar, simmered in brine, and congealed.",
+    "description_ko": "진눈깨비수염 분비샘을 절구에 갈아 소금물에 끓이고 굳혔다."
+  },
+
+  "ElderIceBreatherGlandPaste": {
+    "tier": 3,
+    "category": "food",
+    "tags": ["preservable", "breather", "cold", "elder"],
+    "names": {
+      "elder sleetbeard gland paste": "장로 진눈깨비수염 분비샘 페이스트"
+    },
+    "description": "Elder sleetbeard gland was ground in a mortar, simmered in brine, and congealed.",
+    "description_ko": "장로 진눈깨비수염 분비샘을 절구에 갈아 소금물에 끓이고 굳혔다."
+  },
+
+  "CorrosiveBreatherGlandPaste": {
+    "tier": 2,
+    "category": "food",
+    "tags": ["preservable", "breather", "acid"],
+    "names": {
+      "tartbeard gland paste": "신맛수염 분비샘 페이스트"
+    },
+    "description": "Tartbeard gland was ground in a mortar, simmered in brine, and congealed.",
+    "description_ko": "신맛수염 분비샘을 절구에 갈아 소금물에 끓이고 굳혔다."
+  },
+
+  "ElderCorrosiveBreatherGlandPaste": {
+    "tier": 3,
+    "category": "food",
+    "tags": ["preservable", "breather", "acid", "elder"],
+    "names": {
+      "elder tartbeard gland paste": "장로 신맛수염 분비샘 페이스트"
+    },
+    "description": "Elder tartbeard gland was ground in a mortar, simmered in brine, and congealed.",
+    "description_ko": "장로 신맛수염 분비샘을 절구에 갈아 소금물에 끓이고 굳혔다."
+  },
+
+  "NormalityBreatherGlandPaste": {
+    "tier": 2,
+    "category": "food",
+    "tags": ["preservable", "breather", "normality"],
+    "names": {
+      "nullbeard gland paste": "무효수염 분비샘 페이스트"
+    },
+    "description": "Nullbeard gland was ground in a mortar, simmered in brine, and congealed.",
+    "description_ko": "무효수염 분비샘을 절구에 갈아 소금물에 끓이고 굳혔다."
+  },
+
+  "ElderNormalityBreatherGlandPaste": {
+    "tier": 3,
+    "category": "food",
+    "tags": ["preservable", "breather", "normality", "elder"],
+    "names": {
+      "elder nullbeard gland paste": "장로 무효수염 분비샘 페이스트"
+    },
+    "description": "Elder nullbeard gland was ground in a mortar, simmered in brine, and congealed.",
+    "description_ko": "장로 무효수염 분비샘을 절구에 갈아 소금물에 끓이고 굳혔다."
+  },
+
+  "PoisonBreatherGlandPaste": {
+    "tier": 2,
+    "category": "food",
+    "tags": ["preservable", "breather", "poison"],
+    "names": {
+      "gallbeard gland paste": "쓸개수염 분비샘 페이스트"
+    },
+    "description": "Gallbeard gland was ground in a mortar, simmered in brine, and congealed.",
+    "description_ko": "쓸개수염 분비샘을 절구에 갈아 소금물에 끓이고 굳혔다."
+  },
+
+  "ElderPoisonBreatherGlandPaste": {
+    "tier": 3,
+    "category": "food",
+    "tags": ["preservable", "breather", "poison", "elder"],
+    "names": {
+      "elder gallbeard gland paste": "장로 쓸개수염 분비샘 페이스트"
+    },
+    "description": "Elder gallbeard gland was ground in a mortar, simmered in brine, and congealed.",
+    "description_ko": "장로 쓸개수염 분비샘을 절구에 갈아 소금물에 끓이고 굳혔다."
+  },
+
+  "SleepBreatherGlandPaste": {
+    "tier": 2,
+    "category": "food",
+    "tags": ["preservable", "breather", "sleep"],
+    "names": {
+      "dreambeard gland paste": "꿈수염 분비샘 페이스트"
+    },
+    "description": "Dreambeard gland was ground in a mortar, simmered in brine, and congealed.",
+    "description_ko": "꿈수염 분비샘을 절구에 갈아 소금물에 끓이고 굳혔다."
+  },
+
+  "ElderSleepBreatherGlandPaste": {
+    "tier": 3,
+    "category": "food",
+    "tags": ["preservable", "breather", "sleep", "elder"],
+    "names": {
+      "elder dreambeard gland paste": "장로 꿈수염 분비샘 페이스트"
+    },
+    "description": "Elder dreambeard gland was ground in a mortar, simmered in brine, and congealed.",
+    "description_ko": "장로 꿈수염 분비샘을 절구에 갈아 소금물에 끓이고 굳혔다."
+  },
+
+  "StunBreatherGlandPaste": {
+    "tier": 2,
+    "category": "food",
+    "tags": ["preservable", "breather", "stun"],
+    "names": {
+      "stillbeard gland paste": "정지수염 분비샘 페이스트"
+    },
+    "description": "Stillbeard gland was ground in a mortar, simmered in brine, and congealed.",
+    "description_ko": "정지수염 분비샘을 절구에 갈아 소금물에 끓이고 굳혔다."
+  },
+
+  "ElderStunBreatherGlandPaste": {
+    "tier": 3,
+    "category": "food",
+    "tags": ["preservable", "breather", "stun", "elder"],
+    "names": {
+      "elder stillbeard gland paste": "장로 정지수염 분비샘 페이스트"
+    },
+    "description": "Elder stillbeard gland was ground in a mortar, simmered in brine, and congealed.",
+    "description_ko": "장로 정지수염 분비샘을 절구에 갈아 소금물에 끓이고 굳혔다."
+  },
+
+  "ConfusionBreatherGlandPaste": {
+    "tier": 2,
+    "category": "food",
+    "tags": ["preservable", "breather", "confusion"],
+    "names": {
+      "mazebeard gland paste": "미로수염 분비샘 페이스트"
+    },
+    "description": "Mazebeard gland was ground in a mortar, simmered in brine, and congealed.",
+    "description_ko": "미로수염 분비샘을 절구에 갈아 소금물에 끓이고 굳혔다."
+  },
+
+  "ElderConfusionBreatherGlandPaste": {
+    "tier": 3,
+    "category": "food",
+    "tags": ["preservable", "breather", "confusion", "elder"],
+    "names": {
+      "elder mazebeard gland paste": "장로 미로수염 분비샘 페이스트"
+    },
+    "description": "Elder mazebeard gland was ground in a mortar, simmered in brine, and congealed.",
+    "description_ko": "장로 미로수염 분비샘을 절구에 갈아 소금물에 끓이고 굳혔다."
+  },
+
+  "Spark Tick Plasma": {
+    "tier": 2,
+    "category": "food",
+    "tags": ["preservable", "electric"],
+    "names": {
+      "spark tick plasma": "스파크 진드기 플라즈마"
+    },
+    "description": "Electric plasma was extracted and preserved.",
+    "description_ko": "전기 플라즈마를 추출하고 보존했다."
   }
 }

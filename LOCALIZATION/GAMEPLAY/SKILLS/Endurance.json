@@ -1,0 +1,37 @@
+{
+  "names": {
+    "Endurance": "지구력"
+  },
+  "description": "You are skilled at enduring harsh conditions and situations.",
+  "description_ko": "당신은 가혹한 환경과 상황을 견디는 데 숙달되어 있습니다.",
+  "powers": {
+    "shake it off": {
+      "name": "털어내기",
+      "desc": "혼미 또는 기절 상태인 매 라운드마다 (건강-10)% 확률로 효과를 털어냅니다. 또한 독 피해를 25% 적게 받습니다."
+    },
+    "swimming": {
+      "name": "수영",
+      "desc": "수영 시 이동속도 페널티(일반적으로 50)가 25 감소합니다."
+    },
+    "poison tolerance": {
+      "name": "독 내성",
+      "desc": "독 피해를 25% 적게 받습니다."
+    },
+    "weathered": {
+      "name": "단련된 피부",
+      "desc": "가열 및 냉각 효과로 인한 피해를 15% 적게 받습니다. 추가로 온도를 변화시키는 효과의 심각도가 15% 감소합니다."
+    },
+    "juicer": {
+      "name": "주서",
+      "desc": "이미 복용한 토닉에 부작용 없이 토닉을 하나 더 복용할 수 있습니다."
+    },
+    "calloused": {
+      "name": "굳은살",
+      "desc": "기본 AV가 1로 향상됩니다."
+    },
+    "longstrider": {
+      "name": "장거리 질주",
+      "desc": "10턴 더 오래 질주할 수 있습니다."
+    }
+  }
+}

@@ -3,7 +3,21 @@
     "category": "armor/head",
     "description": "Head armor - helmets, hats, hoods",
     "version": "2.0",
-    "updated": "2026-01-22"
+    "created": "2026-01-22",
+    "updated": "2026-01-24",
+    "phase": "Phase2-Items"
+  },
+
+  "Cloth Cap": {
+    "tier": 1,
+    "category": "armor",
+    "slot": "head",
+    "tags": ["head", "light", "cloth"],
+    "names": {
+      "cloth cap": "천 모자"
+    },
+    "description": "A simple cap made from cloth.",
+    "description_ko": "천으로 만든 간단한 모자."
   },
 
   "Leather Cap": {
@@ -18,6 +32,30 @@
     "description_ko": "가죽으로 만든 간단한 모자."
   },
 
+  "Iron Helmet": {
+    "tier": 2,
+    "category": "armor",
+    "slot": "head",
+    "tags": ["head", "medium", "metal"],
+    "names": {
+      "iron helmet": "철 투구"
+    },
+    "description": "A helmet forged from iron.",
+    "description_ko": "철로 제련된 투구."
+  },
+
+  "Bronze Helmet": {
+    "tier": 2,
+    "category": "armor",
+    "slot": "head",
+    "tags": ["head", "medium", "metal"],
+    "names": {
+      "bronze helmet": "청동 투구"
+    },
+    "description": "A helmet forged from bronze.",
+    "description_ko": "청동으로 제련된 투구."
+  },
+
   "Steel Helmet": {
     "tier": 3,
     "category": "armor",
@@ -30,16 +68,16 @@
     "description_ko": "강철로 제련된 튼튼한 투구."
   },
 
-  "Iron Helmet": {
-    "tier": 2,
+  "Great Helm": {
+    "tier": 3,
     "category": "armor",
     "slot": "head",
-    "tags": ["head", "medium", "metal"],
+    "tags": ["head", "heavy", "metal"],
     "names": {
-      "iron helmet": "철 투구"
+      "great helm": "그레이트헬름"
     },
-    "description": "A helmet forged from iron.",
-    "description_ko": "철로 제련된 투구."
+    "description": "A large bucket-shaped helmet offering maximum protection.",
+    "description_ko": "최대 방어력을 제공하는 큰 양동이 모양의 투구."
   },
 
   "Plastifer Bonnet": {
@@ -54,6 +92,30 @@
     "description_ko": "플라스티퍼로 만든 가벼운 보닛."
   },
 
+  "Chain Coif": {
+    "tier": 4,
+    "category": "armor",
+    "slot": "head",
+    "tags": ["head", "medium", "metal"],
+    "names": {
+      "chain coif": "사슬 코이프"
+    },
+    "description": "A hood of interlocking metal rings.",
+    "description_ko": "서로 맞물린 금속 고리로 만든 두건."
+  },
+
+  "Fullerite Helmet": {
+    "tier": 5,
+    "category": "armor",
+    "slot": "head",
+    "tags": ["head", "heavy", "fullerite"],
+    "names": {
+      "fullerite helmet": "풀러라이트 투구"
+    },
+    "description": "A helmet made from fullerite.",
+    "description_ko": "풀러라이트로 만든 투구."
+  },
+
   "Carbide Helmet": {
     "tier": 6,
     "category": "armor",
@@ -66,6 +128,30 @@
     "description_ko": "초경질 카바이드로 만든 투구."
   },
 
+  "Crysteel Helmet": {
+    "tier": 7,
+    "category": "armor",
+    "slot": "head",
+    "tags": ["head", "heavy", "crysteel"],
+    "names": {
+      "crysteel helmet": "크리스틸 투구"
+    },
+    "description": "A helmet made from crysteel.",
+    "description_ko": "크리스틸로 만든 투구."
+  },
+
+  "Flawless Crysteel Helmet": {
+    "tier": 8,
+    "category": "armor",
+    "slot": "head",
+    "tags": ["head", "heavy", "crysteel", "flawless"],
+    "names": {
+      "flawless crysteel helmet": "완벽한 크리스틸 투구"
+    },
+    "description": "A helmet made from flawless crysteel.",
+    "description_ko": "완벽한 크리스틸로 만든 투구."
+  },
+
   "Stopsvalinn": {
     "tier": 8,
     "category": "armor",
@@ -76,5 +162,77 @@
     },
     "description": "The legendary shield-helm of ancient heroes.",
     "description_ko": "고대 영웅의 전설적인 방패투구."
+  },
+
+  "Circlet": {
+    "tier": 3,
+    "category": "armor",
+    "slot": "head",
+    "tags": ["head", "light", "metal"],
+    "names": {
+      "circlet": "서클릿"
+    },
+    "description": "A thin metal band worn around the head.",
+    "description_ko": "머리에 두르는 얇은 금속 띠."
+  },
+
+  "Crown": {
+    "tier": 5,
+    "category": "armor",
+    "slot": "head",
+    "tags": ["head", "light", "royal"],
+    "names": {
+      "crown": "왕관"
+    },
+    "description": "A regal crown denoting royalty.",
+    "description_ko": "왕족을 나타내는 위엄 있는 왕관."
+  },
+
+  "Hood": {
+    "tier": 1,
+    "category": "armor",
+    "slot": "head",
+    "tags": ["head", "light", "cloth"],
+    "names": {
+      "hood": "두건"
+    },
+    "description": "A simple cloth hood.",
+    "description_ko": "간단한 천 두건."
+  },
+
+  "Face Mask": {
+    "tier": 2,
+    "category": "armor",
+    "slot": "head",
+    "tags": ["head", "light", "mask"],
+    "names": {
+      "face mask": "얼굴 가리개"
+    },
+    "description": "A mask that covers the face.",
+    "description_ko": "얼굴을 가리는 가면."
+  },
+
+  "Gas Mask": {
+    "tier": 4,
+    "category": "armor",
+    "slot": "head",
+    "tags": ["head", "medium", "gas-protection"],
+    "names": {
+      "gas mask": "방독면"
+    },
+    "description": "A mask that filters toxic gases.",
+    "description_ko": "독가스를 걸러주는 마스크."
+  },
+
+  "Powered Exoframe Helmet": {
+    "tier": 6,
+    "category": "armor",
+    "slot": "head",
+    "tags": ["head", "heavy", "powered"],
+    "names": {
+      "powered exoframe helmet": "동력 외골격 투구"
+    },
+    "description": "A powered helmet that is part of an exoframe suit.",
+    "description_ko": "외골격 슈트의 일부인 동력 투구."
   }
 }

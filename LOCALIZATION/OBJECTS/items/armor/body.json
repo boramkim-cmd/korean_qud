@@ -2,8 +2,9 @@
   "_meta": {
     "category": "armor/body",
     "description": "Body armor - chest, torso protection",
-    "version": "2.0",
-    "updated": "2026-01-22"
+    "version": "2.1",
+    "updated": "2026-01-25",
+    "phase": "Phase1-Armor"
   },
 
   "Leather Armor": {
@@ -16,6 +17,18 @@
     },
     "description": "A suit of armor made from treated animal hides.",
     "description_ko": "처리된 동물 가죽으로 만든 갑옷."
+  },
+
+  "Studded Leather Armor": {
+    "tier": 2,
+    "category": "armor",
+    "slot": "body",
+    "tags": ["body", "light", "studded"],
+    "names": {
+      "studded leather armor": "징박힌 가죽 갑옷"
+    },
+    "description": "Leather armor reinforced with metal studs.",
+    "description_ko": "금속 징으로 보강된 가죽 갑옷."
   },
 
   "Chain Mail": {
@@ -66,27 +79,201 @@
     "description_ko": "단단한 금속판으로 만든 중갑."
   },
 
+  "Iron Plate Armor": {
+    "tier": 2,
+    "category": "armor",
+    "slot": "body",
+    "tags": ["body", "heavy", "metal", "iron"],
+    "names": {
+      "iron plate armor": "철판 갑옷"
+    },
+    "description": "Heavy armor made from iron plates.",
+    "description_ko": "철판으로 만든 중갑."
+  },
+
+  "Bronze Plate Armor": {
+    "tier": 2,
+    "category": "armor",
+    "slot": "body",
+    "tags": ["body", "heavy", "metal", "bronze"],
+    "names": {
+      "bronze plate armor": "청동판 갑옷"
+    },
+    "description": "Heavy armor made from bronze plates.",
+    "description_ko": "청동판으로 만든 중갑."
+  },
+
+  "Steel Plate Armor": {
+    "tier": 3,
+    "category": "armor",
+    "slot": "body",
+    "tags": ["body", "heavy", "metal", "steel"],
+    "names": {
+      "{{Y|steel}} plate armor": "{{Y|강철}}판 갑옷",
+      "steel plate armor": "강철판 갑옷"
+    },
+    "description": "Heavy armor made from steel plates.",
+    "description_ko": "강철판으로 만든 중갑."
+  },
+
+  "Nanoweave Vest": {
+    "tier": 5,
+    "category": "armor",
+    "slot": "body",
+    "tags": ["body", "light", "artifact"],
+    "names": {
+      "nanoweave vest": "나노직조 조끼"
+    },
+    "description": "A vest woven from nanoscale fibers.",
+    "description_ko": "나노 규모의 섬유로 짠 조끼."
+  },
+
+  "Recycling Suit": {
+    "tier": 5,
+    "category": "armor",
+    "slot": "body",
+    "tags": ["body", "medium", "artifact", "environmental"],
+    "names": {
+      "recycling suit": "재활용 슈트"
+    },
+    "description": "An environmental suit that recycles bodily waste.",
+    "description_ko": "신체 노폐물을 재활용하는 환경 슈트."
+  },
+
   "Carbide Plate Armor": {
     "tier": 6,
     "category": "armor",
     "slot": "body",
     "tags": ["body", "heavy", "carbide"],
     "names": {
-      "carbide plate armor": "카바이드 판금 갑옷"
+      "{{b|carbide}} plate armor": "{{b|카바이드}}판 갑옷",
+      "carbide plate armor": "카바이드판 갑옷"
     },
     "description": "Heavy armor made from ultra-hard carbide plates.",
     "description_ko": "초경질 카바이드 판으로 만든 중갑."
+  },
+
+  "Fullerite Plate Armor": {
+    "tier": 5,
+    "category": "armor",
+    "slot": "body",
+    "tags": ["body", "heavy", "fullerite"],
+    "names": {
+      "{{K|fullerite}} plate armor": "{{K|풀러라이트}}판 갑옷",
+      "fullerite plate armor": "풀러라이트판 갑옷"
+    },
+    "description": "Heavy armor made from fullerite plates.",
+    "description_ko": "풀러라이트 판으로 만든 중갑."
+  },
+
+  "Crysteel Shardmail": {
+    "tier": 6,
+    "category": "armor",
+    "slot": "body",
+    "tags": ["body", "heavy", "crysteel"],
+    "names": {
+      "{{K|{{crysteel|crysteel}} shardmail}}": "{{K|{{crysteel|크리스틸}} 파편갑옷}}",
+      "crysteel shardmail": "크리스틸 파편갑옷"
+    },
+    "description": "Armor made from interlocking crysteel shards.",
+    "description_ko": "맞물린 크리스틸 파편으로 만든 갑옷."
   },
 
   "Flawless Crysteel Shardmail": {
     "tier": 7,
     "category": "armor",
     "slot": "body",
-    "tags": ["body", "heavy", "crysteel", "artifact"],
+    "tags": ["body", "heavy", "crysteel", "flawless"],
     "names": {
+      "{{K|flawless {{crysteel|crysteel}} shardmail}}": "{{K|완벽한 {{crysteel|크리스틸}} 파편갑옷}}",
       "flawless crysteel shardmail": "완벽한 크리스틸 파편갑옷"
     },
     "description": "Armor forged from flawless crysteel, offering supreme protection.",
     "description_ko": "완벽한 크리스틸로 제련된 갑옷, 최고의 방어력을 제공한다."
+  },
+
+  "Zetachrome Plate Armor": {
+    "tier": 8,
+    "category": "armor",
+    "slot": "body",
+    "tags": ["body", "heavy", "zetachrome"],
+    "names": {
+      "{{zetachrome|zetachrome}} plate armor": "{{zetachrome|제타크롬}}판 갑옷",
+      "zetachrome plate armor": "제타크롬판 갑옷"
+    },
+    "description": "Heavy armor made from zetachrome, the rarest metal in the universe.",
+    "description_ko": "우주에서 가장 희귀한 금속인 제타크롬으로 만든 중갑."
+  },
+
+  "Powered Exoframe": {
+    "tier": 6,
+    "category": "armor",
+    "slot": "body",
+    "tags": ["body", "heavy", "powered", "artifact"],
+    "names": {
+      "powered exoframe": "동력 외골격"
+    },
+    "description": "A powered exoskeleton suit that enhances strength and protection.",
+    "description_ko": "힘과 방어력을 향상시키는 동력 외골격 슈트."
+  },
+
+  "Robe": {
+    "tier": 0,
+    "category": "armor",
+    "slot": "body",
+    "tags": ["body", "light", "cloth"],
+    "names": {
+      "robe": "로브"
+    },
+    "description": "A simple flowing garment.",
+    "description_ko": "단순한 흐르는 의복."
+  },
+
+  "Woven Tunic": {
+    "tier": 1,
+    "category": "armor",
+    "slot": "body",
+    "tags": ["body", "light", "cloth"],
+    "names": {
+      "woven tunic": "짠 튜닉"
+    },
+    "description": "A simple tunic woven from plant fibers.",
+    "description_ko": "식물 섬유로 짠 간단한 튜닉."
+  },
+
+  "Boiled Leather Armor": {
+    "tier": 2,
+    "category": "armor",
+    "slot": "body",
+    "tags": ["body", "medium"],
+    "names": {
+      "boiled leather armor": "삶은 가죽 갑옷"
+    },
+    "description": "Leather that has been hardened by boiling.",
+    "description_ko": "삶아서 경화시킨 가죽."
+  },
+
+  "Fur Vest": {
+    "tier": 1,
+    "category": "armor",
+    "slot": "body",
+    "tags": ["body", "light", "fur", "cold resistance"],
+    "names": {
+      "fur vest": "모피 조끼"
+    },
+    "description": "A vest made from animal fur, providing warmth.",
+    "description_ko": "따뜻함을 제공하는 동물 모피로 만든 조끼."
+  },
+
+  "Brigandine": {
+    "tier": 3,
+    "category": "armor",
+    "slot": "body",
+    "tags": ["body", "medium", "metal"],
+    "names": {
+      "brigandine": "브리간딘"
+    },
+    "description": "A garment with metal plates riveted between layers of cloth.",
+    "description_ko": "천 층 사이에 금속판이 리벳으로 고정된 의복."
   }
 }

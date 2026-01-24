@@ -3,12 +3,14 @@
     "category": "insects/spiders",
     "description": "Spider and arachnid creatures",
     "version": "2.0",
-    "updated": "2026-01-22"
+    "created": "2026-01-22",
+    "updated": "2026-01-24",
+    "phase": "Phase2-Creatures"
   },
 
   "Cave Spider": {
     "tier": 1,
-    "category": "insect",
+    "category": "arachnid",
     "tags": ["arachnid", "hostile", "common"],
     "names": {
       "cave spider": "동굴 거미"
@@ -28,12 +30,232 @@
 
   "Electrofuge": {
     "tier": 3,
-    "category": "insect",
+    "category": "arachnid",
     "tags": ["arachnid", "hostile", "electric"],
     "names": {
       "electrofuge": "전기거미"
     },
     "description": "An arachnid that stores and discharges electrical energy.",
     "description_ko": "전기를 축적하고 방출하는 거미류. 접촉 시 감전될 수 있다."
+  },
+
+  "Electrofuge Corpse": {
+    "tier": 3,
+    "category": "corpse",
+    "tags": ["arachnid", "electric"],
+    "names": {
+      "electrofuge corpse": "전기거미 시체"
+    }
+  },
+
+  "Trapdoor Spider": {
+    "tier": 2,
+    "category": "arachnid",
+    "tags": ["arachnid", "hostile", "ambush"],
+    "names": {
+      "trapdoor spider": "덫문 거미"
+    },
+    "description": "A spider that waits in a hidden burrow to ambush prey.",
+    "description_ko": "숨겨진 굴에서 먹이를 기습하며 기다리는 거미."
+  },
+
+  "Trapdoor Spider Corpse": {
+    "tier": 2,
+    "category": "corpse",
+    "tags": ["arachnid"],
+    "names": {
+      "trapdoor spider corpse": "덫문 거미 시체"
+    }
+  },
+
+  "Wolf Spider": {
+    "tier": 2,
+    "category": "arachnid",
+    "tags": ["arachnid", "hostile", "hunter"],
+    "names": {
+      "wolf spider": "늑대거미"
+    },
+    "description": "A fast-moving spider that actively hunts its prey.",
+    "description_ko": "먹이를 적극적으로 사냥하는 빠르게 움직이는 거미."
+  },
+
+  "Wolf Spider Corpse": {
+    "tier": 2,
+    "category": "corpse",
+    "tags": ["arachnid"],
+    "names": {
+      "wolf spider corpse": "늑대거미 시체"
+    }
+  },
+
+  "Giant Spider": {
+    "tier": 4,
+    "category": "arachnid",
+    "tags": ["arachnid", "hostile", "giant"],
+    "names": {
+      "giant spider": "거대 거미"
+    },
+    "description": "A spider of monstrous proportions.",
+    "description_ko": "괴물 같은 크기의 거미."
+  },
+
+  "Giant Spider Corpse": {
+    "tier": 4,
+    "category": "corpse",
+    "tags": ["arachnid", "giant"],
+    "names": {
+      "giant spider corpse": "거대 거미 시체"
+    }
+  },
+
+  "Phase Spider": {
+    "tier": 5,
+    "category": "arachnid",
+    "tags": ["arachnid", "hostile", "phase", "teleport"],
+    "names": {
+      "phase spider": "위상 거미"
+    },
+    "description": "A spider that can phase in and out of reality.",
+    "description_ko": "현실 안팎을 위상 이동할 수 있는 거미."
+  },
+
+  "Phase Spider Corpse": {
+    "tier": 5,
+    "category": "corpse",
+    "tags": ["arachnid", "phase"],
+    "names": {
+      "phase spider corpse": "위상 거미 시체"
+    }
+  },
+
+  "Orb Weaver": {
+    "tier": 2,
+    "category": "arachnid",
+    "tags": ["arachnid", "hostile", "web"],
+    "names": {
+      "orb weaver": "왕거미"
+    },
+    "description": "A spider known for its intricate circular webs.",
+    "description_ko": "정교한 원형 거미줄로 유명한 거미."
+  },
+
+  "Orb Weaver Corpse": {
+    "tier": 2,
+    "category": "corpse",
+    "tags": ["arachnid"],
+    "names": {
+      "orb weaver corpse": "왕거미 시체"
+    }
+  },
+
+  "Jumping Spider": {
+    "tier": 2,
+    "category": "arachnid",
+    "tags": ["arachnid", "hostile", "agile"],
+    "names": {
+      "jumping spider": "깡충거미"
+    },
+    "description": "A small but agile spider that pounces on prey.",
+    "description_ko": "먹이에게 덤벼드는 작지만 민첩한 거미."
+  },
+
+  "Tarantula": {
+    "tier": 3,
+    "category": "arachnid",
+    "tags": ["arachnid", "hostile", "large"],
+    "names": {
+      "tarantula": "타란튤라"
+    },
+    "description": "A large hairy spider with a venomous bite.",
+    "description_ko": "독이 있는 물림을 가진 큰 털이 많은 거미."
+  },
+
+  "Tarantula Corpse": {
+    "tier": 3,
+    "category": "corpse",
+    "tags": ["arachnid"],
+    "names": {
+      "tarantula corpse": "타란튤라 시체"
+    }
+  },
+
+  "Widow Spider": {
+    "tier": 3,
+    "category": "arachnid",
+    "tags": ["arachnid", "hostile", "venomous"],
+    "names": {
+      "widow spider": "과부거미"
+    },
+    "description": "A spider with potent neurotoxic venom.",
+    "description_ko": "강력한 신경독 독을 가진 거미."
+  },
+
+  "Widow Spider Corpse": {
+    "tier": 3,
+    "category": "corpse",
+    "tags": ["arachnid", "venomous"],
+    "names": {
+      "widow spider corpse": "과부거미 시체"
+    }
+  },
+
+  "Scorpion": {
+    "tier": 3,
+    "category": "arachnid",
+    "tags": ["arachnid", "hostile", "venomous"],
+    "names": {
+      "scorpion": "전갈"
+    },
+    "description": "An arachnid with pincers and a venomous stinger.",
+    "description_ko": "집게발과 독침을 가진 거미류."
+  },
+
+  "Scorpion Corpse": {
+    "tier": 3,
+    "category": "corpse",
+    "tags": ["arachnid"],
+    "names": {
+      "scorpion corpse": "전갈 시체"
+    }
+  },
+
+  "Giant Scorpion": {
+    "tier": 5,
+    "category": "arachnid",
+    "tags": ["arachnid", "hostile", "giant", "venomous"],
+    "names": {
+      "giant scorpion": "거대 전갈"
+    },
+    "description": "A scorpion grown to tremendous proportions.",
+    "description_ko": "엄청난 크기로 자란 전갈."
+  },
+
+  "Giant Scorpion Corpse": {
+    "tier": 5,
+    "category": "corpse",
+    "tags": ["arachnid", "giant"],
+    "names": {
+      "giant scorpion corpse": "거대 전갈 시체"
+    }
+  },
+
+  "Scorpiock": {
+    "tier": 4,
+    "category": "arachnid",
+    "tags": ["arachnid", "hostile", "elite"],
+    "names": {
+      "scorpiock": "스콜피옥"
+    },
+    "description": "A massive desert scorpion with deadly venom.",
+    "description_ko": "치명적인 독을 가진 거대한 사막 전갈."
+  },
+
+  "Scorpiock Corpse": {
+    "tier": 4,
+    "category": "corpse",
+    "tags": ["arachnid"],
+    "names": {
+      "scorpiock corpse": "스콜피옥 시체"
+    }
   }
 }

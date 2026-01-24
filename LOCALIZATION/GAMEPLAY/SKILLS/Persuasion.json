@@ -1,0 +1,33 @@
+{
+  "names": {
+    "Persuasion": "설득"
+  },
+  "description": "You are skilled at convincing others.",
+  "description_ko": "당신은 타인을 설득하는 데 숙달되어 있습니다.",
+  "powers": {
+    "menacing stare": {
+      "name": "위협적인 눈빛",
+      "desc": "근처의 적을 노려보아 공포에 질려 도망치게 합니다."
+    },
+    "intimidate": {
+      "name": "위협",
+      "desc": "재사용 대기시간 50. 인접한 적대적 생물을 공포에 질리게 하려 시도합니다(1d8 + 자아 수정치 관통 굴림 vs MA). 성공하면 겁먹은 생물이 6d4 라운드 동안 도망칩니다."
+    },
+    "berate": {
+      "name": "질책",
+      "desc": "재사용 대기시간 50. 근처 생물을 6d6 라운드 동안 수치스럽게 하여 DV, 명중, 자아, 의지에 -4 페널티와 신속에 -10% 페널티를 줍니다."
+    },
+    "snake oiler": {
+      "name": "가짜 약장수",
+      "desc": "흥정 목적상 자아가 4점 더 높은 것으로 취급됩니다."
+    },
+    "proselytize": {
+      "name": "개종",
+      "desc": "지능이 있는 생물을 설득하여 합류시킵니다."
+    },
+    "inspiring presence": {
+      "name": "고무적인 존재감",
+      "desc": "당신의 말이 동료들을 고무시킵니다."
+    }
+  }
+}

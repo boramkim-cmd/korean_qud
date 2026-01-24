@@ -2,12 +2,13 @@
   "_meta": {
     "category": "weapons/melee/cudgels",
     "description": "Cudgel melee weapons - clubs, maces, hammers",
-    "version": "2.0",
-    "updated": "2026-01-22"
+    "version": "2.1",
+    "updated": "2026-01-25",
+    "phase": "Phase1-MeleeWeapons"
   },
 
   "Club": {
-    "tier": 1,
+    "tier": 0,
     "category": "weapon",
     "slot": "hand",
     "tags": ["cudgel", "blunt", "one-handed"],
@@ -19,7 +20,7 @@
   },
 
   "Wrench": {
-    "tier": 1,
+    "tier": 0,
     "category": "weapon",
     "slot": "hand",
     "tags": ["cudgel", "blunt", "tool", "one-handed"],
@@ -31,7 +32,7 @@
   },
 
   "Pestle": {
-    "tier": 1,
+    "tier": 0,
     "category": "weapon",
     "slot": "hand",
     "tags": ["cudgel", "blunt", "tool", "one-handed"],
@@ -43,10 +44,10 @@
   },
 
   "Staff": {
-    "tier": 1,
+    "tier": 0,
     "category": "weapon",
     "slot": "hand",
-    "tags": ["cudgel", "blunt", "two-handed"],
+    "tags": ["cudgel", "blunt", "one-handed"],
     "names": {
       "staff": "지팡이"
     },
@@ -55,7 +56,7 @@
   },
 
   "Walking Stick": {
-    "tier": 1,
+    "tier": 0,
     "category": "weapon",
     "slot": "hand",
     "tags": ["cudgel", "blunt", "one-handed"],
@@ -67,24 +68,23 @@
   },
 
   "Mace2": {
-    "tier": 2,
+    "tier": 0,
     "category": "weapon",
     "slot": "hand",
-    "tags": ["cudgel", "blunt", "one-handed"],
+    "tags": ["cudgel", "blunt", "one-handed", "bronze"],
     "names": {
       "{{w|bronze}} mace": "{{w|청동}} 메이스",
-      "bronze mace": "청동 메이스",
-      "mace": "메이스"
+      "bronze mace": "청동 메이스"
     },
     "description": "A corm of bell bronze is screw-fitted to a scarred wooden shaft.",
     "description_ko": "벨 청동 구근이 상처 난 나무 자루에 나사로 고정되어 있다."
   },
 
   "Warhammer2": {
-    "tier": 2,
+    "tier": 1,
     "category": "weapon",
     "slot": "hand",
-    "tags": ["cudgel", "blunt", "one-handed"],
+    "tags": ["cudgel", "blunt", "one-handed", "iron"],
     "names": {
       "iron mace": "철 메이스"
     },
@@ -93,16 +93,350 @@
   },
 
   "Steel War Hammer": {
-    "tier": 3,
+    "tier": 2,
     "category": "weapon",
     "slot": "hand",
-    "tags": ["cudgel", "blunt", "one-handed"],
+    "tags": ["cudgel", "blunt", "one-handed", "steel"],
     "names": {
       "{{Y|steel}} war hammer": "{{Y|강철}} 워해머",
-      "steel war hammer": "강철 워해머",
-      "war hammer": "워해머"
+      "steel war hammer": "강철 워해머"
     },
     "description": "Hand grease shines on the pole, and a volume of polished steel weights one end.",
     "description_ko": "손때가 막대에서 빛나고, 광택 난 강철 덩어리가 한쪽 끝에 무게를 더한다."
+  },
+
+  "Steel War Hammerth": {
+    "tier": 2,
+    "category": "weapon",
+    "slot": "hand",
+    "tags": ["cudgel", "blunt", "two-handed", "steel"],
+    "names": {
+      "two-handed {{Y|steel}} war hammer": "양손 {{Y|강철}} 워해머",
+      "two-handed steel war hammer": "양손 강철 워해머"
+    },
+    "description": "Hand grease shines on the tall pole, and a hefty volume of polished steel weighs one end.",
+    "description_ko": "손때가 긴 막대에서 빛나고, 육중한 광택 난 강철 덩어리가 한쪽 끝에 무게를 더한다."
+  },
+
+  "Steel Hammer": {
+    "tier": 2,
+    "category": "weapon",
+    "slot": "hand",
+    "tags": ["cudgel", "blunt", "one-handed", "steel"],
+    "names": {
+      "{{Y|steel}} mace": "{{Y|강철}} 메이스",
+      "steel mace": "강철 메이스"
+    },
+    "description": "A corm of polished steel is blown out of a combat-pecked rod.",
+    "description_ko": "광택 난 강철 구근이 전투로 찍힌 막대에서 뻗어 나온다."
+  },
+
+  "Shillelagh": {
+    "tier": 0,
+    "category": "weapon",
+    "slot": "hand",
+    "tags": ["cudgel", "blunt", "one-handed", "special"],
+    "names": {
+      "shillelagh": "실렐라"
+    },
+    "description": "Across Moghra'yi, wood was hewn from the trunk of a boreal titan and shaved into a stick by practitioners of the foreign art.",
+    "description_ko": "모그라이 전역에서, 북방 타이탄의 몸통에서 벤 나무를 이국의 기술 수련자들이 막대로 깎았다."
+  },
+
+  "Cudgel3": {
+    "tier": 3,
+    "category": "weapon",
+    "slot": "hand",
+    "tags": ["cudgel", "blunt", "one-handed", "carbide"],
+    "names": {
+      "{{b|carbide}} hammer": "{{b|카바이드}} 해머",
+      "carbide hammer": "카바이드 해머"
+    },
+    "description": "The shaft widens to a rigid polygon of azure metal. Nicks and scores tally on its surface.",
+    "description_ko": "자루가 푸른 금속의 단단한 다각형으로 넓어진다. 흠집과 긁힌 자국이 표면에 새겨져 있다."
+  },
+
+  "Cudgel3th": {
+    "tier": 3,
+    "category": "weapon",
+    "slot": "hand",
+    "tags": ["cudgel", "blunt", "two-handed", "carbide"],
+    "names": {
+      "two-handed {{b|carbide}} hammer": "양손 {{b|카바이드}} 해머",
+      "two-handed carbide hammer": "양손 카바이드 해머"
+    },
+    "description": "The long shaft widens to a rigid and symmetric polygon of azure metal. Nicks and scores tally on its two heads.",
+    "description_ko": "긴 자루가 푸른 금속의 단단하고 대칭적인 다각형으로 넓어진다. 흠집과 긁힌 자국이 양쪽 머리에 새겨져 있다."
+  },
+
+  "Cudgel4": {
+    "tier": 4,
+    "category": "weapon",
+    "slot": "hand",
+    "tags": ["cudgel", "blunt", "one-handed", "carbide", "folded"],
+    "names": {
+      "{{B|carbide}} folding hammer": "{{B|카바이드}} 폴딩 해머",
+      "carbide folding hammer": "카바이드 폴딩 해머"
+    },
+    "description": "The hammer shaft is capped by a head of bright and azure metal. Darker stripes across its face and throat note where it struck and beat softer carbide down.",
+    "description_ko": "해머 자루가 밝은 푸른 금속 머리로 마감되어 있다. 얼굴과 목 부분의 어두운 줄무늬는 더 연한 카바이드를 쳐서 눌린 곳을 나타낸다."
+  },
+
+  "Cudgel4th": {
+    "tier": 4,
+    "category": "weapon",
+    "slot": "hand",
+    "tags": ["cudgel", "blunt", "two-handed", "carbide", "folded"],
+    "names": {
+      "two-handed {{B|carbide}} folding hammer": "양손 {{B|카바이드}} 폴딩 해머",
+      "two-handed carbide folding hammer": "양손 카바이드 폴딩 해머"
+    },
+    "description": "The hammer pole is capped by a twin-head of bright and azure metal. Darker stripes across its faces and throats note where it struck and beat softer carbide down.",
+    "description_ko": "해머 기둥이 밝은 푸른 금속 쌍두로 마감되어 있다. 양면과 목 부분의 어두운 줄무늬는 더 연한 카바이드를 쳐서 눌린 곳을 나타낸다."
+  },
+
+  "Cudgel5": {
+    "tier": 5,
+    "category": "weapon",
+    "slot": "hand",
+    "tags": ["cudgel", "blunt", "one-handed", "fullerite"],
+    "names": {
+      "{{K|fullerite}} maul": "{{K|풀러라이트}} 몰",
+      "fullerite maul": "풀러라이트 몰"
+    },
+    "description": "A dusky mass of gravid metal, like a meteorite, is welded to a steel shaft.",
+    "description_ko": "운석 같은 무거운 금속의 어두운 덩어리가 강철 자루에 용접되어 있다."
+  },
+
+  "Cudgel5th": {
+    "tier": 5,
+    "category": "weapon",
+    "slot": "hand",
+    "tags": ["cudgel", "blunt", "two-handed", "fullerite"],
+    "names": {
+      "two-handed {{K|fullerite}} maul": "양손 {{K|풀러라이트}} 몰",
+      "two-handed fullerite maul": "양손 풀러라이트 몰"
+    },
+    "description": "A dusky and twin-faced mass of gravid metal, like a meteorite, is welded to a steel pole.",
+    "description_ko": "운석 같은 무거운 금속의 어둡고 쌍면을 가진 덩어리가 강철 기둥에 용접되어 있다."
+  },
+
+  "Cudgel6": {
+    "tier": 6,
+    "category": "weapon",
+    "slot": "hand",
+    "tags": ["cudgel", "blunt", "one-handed", "crysteel"],
+    "names": {
+      "{{K|{{crysteel|crysteel}} mace}}": "{{K|{{crysteel|크리스틸}} 메이스}}",
+      "crysteel mace": "크리스틸 메이스"
+    },
+    "description": "Blast furnaces sucked the tidal energy out of the planet, heated carbon to solar temperatures, and poured it into hexagonal molds.",
+    "description_ko": "용광로가 행성의 조석 에너지를 빨아들여 탄소를 태양 온도로 가열하고 육각형 주형에 부었다."
+  },
+
+  "Cudgel6th": {
+    "tier": 6,
+    "category": "weapon",
+    "slot": "hand",
+    "tags": ["cudgel", "blunt", "two-handed", "crysteel"],
+    "names": {
+      "{{K|{{crysteel|crysteel}} warhammer}}": "{{K|{{crysteel|크리스틸}} 워해머}}",
+      "crysteel warhammer": "크리스틸 워해머"
+    },
+    "description": "Blast furnaces sucked the tidal energy out of the planet, heated carbon to solar temperatures, and poured it into hexagonal molds.",
+    "description_ko": "용광로가 행성의 조석 에너지를 빨아들여 탄소를 태양 온도로 가열하고 육각형 주형에 부었다."
+  },
+
+  "Cudgel7": {
+    "tier": 7,
+    "category": "weapon",
+    "slot": "hand",
+    "tags": ["cudgel", "blunt", "one-handed", "crysteel", "flawless"],
+    "names": {
+      "{{K|flawless {{crysteel|crysteel}} mace}}": "{{K|완벽한 {{crysteel|크리스틸}} 메이스}}",
+      "flawless crysteel mace": "완벽한 크리스틸 메이스"
+    },
+    "description": "Casts mottled with dust particles were culled and fed to lithovores, leaving only the perfect hexagonal prisms.",
+    "description_ko": "먼지 입자로 얼룩진 주물은 골라내어 암식자에게 먹이고, 완벽한 육각형 프리즘만 남겼다."
+  },
+
+  "Cudgel7th": {
+    "tier": 7,
+    "category": "weapon",
+    "slot": "hand",
+    "tags": ["cudgel", "blunt", "two-handed", "crysteel", "flawless"],
+    "names": {
+      "{{K|flawless {{crysteel|crysteel}} warhammer}}": "{{K|완벽한 {{crysteel|크리스틸}} 워해머}}",
+      "flawless crysteel warhammer": "완벽한 크리스틸 워해머"
+    },
+    "description": "Casts mottled with dust particles were culled and fed to lithovores, leaving only the perfect hexagonal prisms.",
+    "description_ko": "먼지 입자로 얼룩진 주물은 골라내어 암식자에게 먹이고, 완벽한 육각형 프리즘만 남겼다."
+  },
+
+  "Cudgel8": {
+    "tier": 8,
+    "category": "weapon",
+    "slot": "hand",
+    "tags": ["cudgel", "blunt", "one-handed", "zetachrome"],
+    "names": {
+      "{{zetachrome|zetachrome}} hammer": "{{zetachrome|제타크롬}} 해머",
+      "zetachrome hammer": "제타크롬 해머"
+    },
+    "description": "Quark-gluon plasma rapidly cooled and was extinguished on the voidpeaks of the early universe.",
+    "description_ko": "쿼크-글루온 플라즈마가 빠르게 냉각되어 초기 우주의 공허한 봉우리에서 소멸되었다."
+  },
+
+  "Cudgel8th": {
+    "tier": 8,
+    "category": "weapon",
+    "slot": "hand",
+    "tags": ["cudgel", "blunt", "two-handed", "zetachrome"],
+    "names": {
+      "{{zetachrome|zetachrome}} warhammer": "{{zetachrome|제타크롬}} 워해머",
+      "zetachrome warhammer": "제타크롬 워해머"
+    },
+    "description": "Quark-gluon plasma rapidly cooled and was extinguished on the voidpeaks of the early universe.",
+    "description_ko": "쿼크-글루온 플라즈마가 빠르게 냉각되어 초기 우주의 공허한 봉우리에서 소멸되었다."
+  },
+
+  "Maghammer": {
+    "tier": 5,
+    "category": "weapon",
+    "slot": "hand",
+    "tags": ["cudgel", "blunt", "two-handed", "artifact", "magnetic"],
+    "names": {
+      "{{c-C-Y-W alternation|maghammer}}": "{{c-C-Y-W alternation|마그해머}}",
+      "maghammer": "마그해머"
+    },
+    "description": "Bands of aquamarine lodestone tori wrap around the hitting part of a hefty, double-fisted truncheon.",
+    "description_ko": "옥색 자석 고리 띠가 육중한 양손 경봉의 타격 부분을 감싸고 있다."
+  },
+
+  "Rhinox-Skull Maul": {
+    "tier": 6,
+    "category": "weapon",
+    "slot": "hand",
+    "tags": ["cudgel", "blunt", "two-handed", "organic"],
+    "names": {
+      "{{g|rhinox-skull}} maul": "{{g|라이녹스 두개골}} 몰",
+      "rhinox-skull maul": "라이녹스 두개골 몰"
+    },
+    "description": "Thick and diamond-hard headbone with three horn holes functions as the jumbo head of a bludgeon.",
+    "description_ko": "세 개의 뿔 구멍이 있는 두껍고 다이아몬드처럼 단단한 머리뼈가 거대한 둔기 머리 역할을 한다."
+  },
+
+  "Stun Rod": {
+    "tier": 1,
+    "category": "weapon",
+    "slot": "hand",
+    "tags": ["cudgel", "blunt", "one-handed", "artifact", "electric"],
+    "names": {
+      "{{c|stun}} rod": "{{c|기절}} 막대",
+      "stun rod": "기절 막대"
+    },
+    "description": "A long slate rod flares out at the collar to hold capacitors and a concussive corm.",
+    "description_ko": "긴 슬레이트 막대가 목 부분에서 넓어져 축전기와 충격 구근을 담고 있다."
+  },
+
+  "Prayer Rod": {
+    "tier": 4,
+    "category": "weapon",
+    "slot": "hand",
+    "tags": ["cudgel", "blunt", "one-handed", "artifact", "electric"],
+    "names": {
+      "{{c|prayer}} rod": "{{c|기도}} 막대",
+      "prayer rod": "기도 막대"
+    },
+    "description": "A long slate rod flares out at the collar to hold capacitors and an electrified corm for searing liturgy to memory.",
+    "description_ko": "긴 슬레이트 막대가 목 부분에서 넓어져 축전기와 전기가 흐르는 구근을 담아 기억에 전례를 새긴다."
+  },
+
+  "Syphon Baton": {
+    "tier": 5,
+    "category": "weapon",
+    "slot": "hand",
+    "tags": ["cudgel", "blunt", "one-handed", "artifact", "energy-drain"],
+    "names": {
+      "{{syphon|syphon}} baton": "{{syphon|사이펀}} 배턴",
+      "syphon baton": "사이펀 배턴"
+    },
+    "description": "Ring magnets form a cylindric mace-head to bash against objects and syphon their electron juice into a battery slotted on the shaft.",
+    "description_ko": "링 자석이 원통형 메이스 머리를 형성하여 물체를 때리고 전자 주스를 자루에 장착된 배터리로 빨아들인다."
+  },
+
+  "Amber-Tipped Staff": {
+    "tier": 0,
+    "category": "weapon",
+    "slot": "hand",
+    "tags": ["cudgel", "blunt", "one-handed", "special"],
+    "names": {
+      "amber-tipped staff": "호박 끝 지팡이"
+    },
+    "description": "It's a gnarled, acacia staff set with a small orb of primordial amber.",
+    "description_ko": "원시 호박의 작은 구슬이 박힌 울퉁불퉁한 아카시아 지팡이다."
+  },
+
+  "Billowing Conch of the Aji": {
+    "tier": 3,
+    "category": "weapon",
+    "slot": "hand",
+    "tags": ["cudgel", "blunt", "one-handed", "special"],
+    "names": {
+      "billowing conch of the {{r|Aji}}": "{{r|아지}}의 휘날리는 소라",
+      "billowing conch of the Aji": "아지의 휘날리는 소라"
+    },
+    "description": "A fist-sized snail shell is coiled in soft spirals, blackened with soot, and stinks of sulfur.",
+    "description_ko": "주먹 크기의 달팽이 껍데기가 부드러운 나선형으로 감겨 있고, 검댕으로 검게 되어 유황 냄새가 난다."
+  },
+
+  "Grandfather Horn": {
+    "tier": 3,
+    "category": "weapon",
+    "slot": "hand",
+    "tags": ["cudgel", "blunt", "one-handed", "special"],
+    "names": {
+      "grandfather horn": "할아버지 뿔"
+    },
+    "description": "It's the hoary, bowing horn of a wizened mangoat, wind-etched and gilded with scarlet tassels.",
+    "description_ko": "늙은 맨고트의 희끗희끗하고 휘어진 뿔이다. 바람에 식각되고 진홍색 술로 도금되어 있다."
+  },
+
+  "Fist of the Ape God": {
+    "tier": 8,
+    "category": "weapon",
+    "slot": "hand",
+    "tags": ["cudgel", "blunt", "two-handed", "relic", "unique"],
+    "names": {
+      "{{r|Fist}} of the {{Y|Ape God}}": "{{Y|유인원 신}}의 {{r|주먹}}",
+      "Fist of the Ape God": "유인원 신의 주먹"
+    },
+    "description": "Lifeblood the color of amaranth and dried in moonlight paints the clenched and giant fist of the dead forest Saad.",
+    "description_ko": "아마란스 색깔의 피가 달빛에 말라 죽은 숲 사아드의 움켜쥔 거대한 주먹을 물들이고 있다."
+  },
+
+  "Leather Whip": {
+    "tier": 1,
+    "category": "weapon",
+    "slot": "hand",
+    "tags": ["whip", "one-handed", "latch"],
+    "names": {
+      "{{w|leather}} whip": "{{w|가죽}} 채찍",
+      "leather whip": "가죽 채찍"
+    },
+    "description": "Leather was braided through a ring knot to a coiling thong. There are blood stains on the cracker tip.",
+    "description_ko": "가죽이 고리 매듭을 통해 감기는 끈으로 엮어졌다. 채찍 끝에 핏자국이 있다."
+  },
+
+  "Stun Whip": {
+    "tier": 1,
+    "category": "weapon",
+    "slot": "hand",
+    "tags": ["whip", "one-handed", "artifact", "electric"],
+    "names": {
+      "{{c|stun whip}}": "{{c|기절 채찍}}",
+      "stun whip": "기절 채찍"
+    },
+    "description": "A thong of banded metal jitters with concussive potential. The plastifer handle is slotted on the heel knot with an battery case.",
+    "description_ko": "줄무늬 금속 끈이 충격 잠재력으로 떨린다. 플라스티퍼 손잡이는 배터리 케이스와 함께 발뒤꿈치 매듭에 끼워져 있다."
   }
 }

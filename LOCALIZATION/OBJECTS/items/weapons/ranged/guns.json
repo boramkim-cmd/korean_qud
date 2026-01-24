@@ -1,9 +1,10 @@
 {
   "_meta": {
     "category": "weapons/ranged/guns",
-    "description": "Gun ranged weapons - pistols, rifles, shotguns",
-    "version": "2.0",
-    "updated": "2026-01-22"
+    "description": "Gun ranged weapons - pistols, rifles, shotguns, energy weapons",
+    "version": "2.1",
+    "updated": "2026-01-25",
+    "phase": "Phase1-RangedWeapons"
   },
 
   "Pistol": {
@@ -30,16 +31,180 @@
     "description_ko": "회전 실린더가 달린 화기."
   },
 
-  "Rifle": {
-    "tier": 4,
+  "Musket": {
+    "tier": 1,
+    "category": "weapon",
+    "slot": "hand",
+    "tags": ["gun", "ranged", "two-handed", "primitive"],
+    "names": {
+      "musket": "머스킷"
+    },
+    "description": "A smoothbore barrel of found steel is blackened by pocks of gunpowder mess.",
+    "description_ko": "발견된 강철의 활강 총신이 화약 얼룩으로 검게 물들어 있다."
+  },
+
+  "Issachar Rifle": {
+    "tier": 2,
     "category": "weapon",
     "slot": "hand",
     "tags": ["gun", "ranged", "two-handed"],
     "names": {
-      "rifle": "소총"
+      "Issachar rifle": "잇사갈 소총"
     },
-    "description": "A long-barreled firearm for accurate shooting.",
-    "description_ko": "정밀 사격을 위한 긴 총신의 화기."
+    "description": "Pocks sprinkle the barrel steel from a hundred salt storms. The stock is spoon carved from fibrous brinestalk in the style of the Issachari dune tribe.",
+    "description_ko": "백 번의 소금 폭풍에서 총신 강철에 얼룩이 뿌려졌다. 개머리판은 잇사카리 모래언덕 부족 스타일로 섬유질 브라인스톡에서 스푼 모양으로 깎였다."
+  },
+
+  "Carbine": {
+    "tier": 3,
+    "category": "weapon",
+    "slot": "hand",
+    "tags": ["gun", "ranged", "two-handed", "automatic"],
+    "names": {
+      "carbine": "카빈"
+    },
+    "description": "Carbon steel gleams on its sawed muzzle. A dented butt stock cuts at right angle to the shoulder.",
+    "description_ko": "탄소강이 톱질된 총구에서 빛난다. 찌그러진 개머리판이 어깨에 직각으로 닿는다."
+  },
+
+  "Sniper Rifle": {
+    "tier": 3,
+    "category": "weapon",
+    "slot": "hand",
+    "tags": ["gun", "ranged", "two-handed", "precision"],
+    "names": {
+      "sniper rifle": "저격 소총"
+    },
+    "description": "Expert rifling grooved its carbon steel barrel to helical precision. Smudges are printed on the scope glass.",
+    "description_ko": "전문가의 강선이 탄소강 총신을 나선 정밀도로 홈을 팠다. 조준경 유리에 얼룩이 찍혀 있다."
+  },
+
+  "Laser Pistol": {
+    "tier": 4,
+    "category": "weapon",
+    "slot": "hand",
+    "tags": ["energy", "ranged", "one-handed", "laser"],
+    "names": {
+      "{{C|laser}} pistol": "{{C|레이저}} 권총",
+      "laser pistol": "레이저 권총"
+    },
+    "description": "A pistol that fires concentrated light beams.",
+    "description_ko": "집중된 광선을 발사하는 권총."
+  },
+
+  "Laser Rifle": {
+    "tier": 4,
+    "category": "weapon",
+    "slot": "hand",
+    "tags": ["energy", "ranged", "two-handed", "laser"],
+    "names": {
+      "{{C|laser}} rifle": "{{C|레이저}} 소총",
+      "laser rifle": "레이저 소총"
+    },
+    "description": "Telescoped cylinders pinch the mirror point, and under them grows a sylph-like stock of sea-ferried nutwood.",
+    "description_ko": "망원경 실린더가 거울 지점을 조인다. 그 아래에 바다를 건너온 견과목의 실피 같은 개머리판이 자란다."
+  },
+
+  "Chain Laser": {
+    "tier": 5,
+    "category": "weapon",
+    "slot": "hand",
+    "tags": ["energy", "ranged", "two-handed", "laser", "automatic", "heavy"],
+    "names": {
+      "chain {{C|laser}}": "체인 {{C|레이저}}",
+      "chain laser": "체인 레이저"
+    },
+    "description": "Three carbon steel barrels fit together into an arc-edged triangle of luminous ritualism. They pinch the mirror point inside.",
+    "description_ko": "세 개의 탄소강 총신이 빛나는 의식주의의 호 모서리 삼각형으로 결합된다. 내부의 거울 지점을 조인다."
+  },
+
+  "Eigenrifle": {
+    "tier": 5,
+    "category": "weapon",
+    "slot": "hand",
+    "tags": ["energy", "ranged", "two-handed", "eigen"],
+    "names": {
+      "eigenrifle": "아이겐라이플"
+    },
+    "description": "Perpendicular to the neon azure barrel is a square-plated scope inset with a large ocular lens. The sight through the lens distorts as the gun tilts.",
+    "description_ko": "네온 푸른 총신에 수직으로 큰 안구 렌즈가 끼워진 사각 판 조준경이 있다. 총이 기울면 렌즈를 통한 시야가 왜곡된다."
+  },
+
+  "Nullray Pistol": {
+    "tier": 6,
+    "category": "weapon",
+    "slot": "hand",
+    "tags": ["energy", "ranged", "one-handed", "nullray"],
+    "names": {
+      "{{K|nullray}} pistol": "{{K|널레이}} 권총",
+      "nullray pistol": "널레이 권총"
+    },
+    "description": "A pistol that fires rays of pure nothing.",
+    "description_ko": "순수한 무의 광선을 발사하는 권총."
+  },
+
+  "Freeze Ray": {
+    "tier": 5,
+    "category": "weapon",
+    "slot": "hand",
+    "tags": ["energy", "ranged", "two-handed", "cold"],
+    "names": {
+      "{{freezing|freeze}} ray": "{{freezing|냉동}} 광선총",
+      "freeze ray": "냉동 광선총"
+    },
+    "description": "Gaseous coolant billows through a chiffon tube, putting dew on the wide and planar barrel chrome. It spills out onto the air from a ice-chipped muzzle.",
+    "description_ko": "기체 냉각수가 시폰 튜브를 통해 일렁이며 넓고 평평한 총신 크롬에 이슬을 맺는다. 얼음 조각이 박힌 총구에서 공기 중으로 쏟아진다."
+  },
+
+  "Hypertractor": {
+    "tier": 6,
+    "category": "weapon",
+    "slot": "hand",
+    "tags": ["energy", "ranged", "two-handed", "pull"],
+    "names": {
+      "{{hypertractor|hypertractor}}": "{{hypertractor|하이퍼트랙터}}",
+      "hypertractor": "하이퍼트랙터"
+    },
+    "description": "A rifled prism refracts and refocuses light to tunnel things toward its wielder. Sophists call it a 'here ray'.",
+    "description_ko": "강선 프리즘이 빛을 굴절하고 재초점시켜 물체를 소유자 쪽으로 터널링한다. 소피스트들은 이것을 '여기 광선'이라 부른다."
+  },
+
+  "Light Rail": {
+    "tier": 6,
+    "category": "weapon",
+    "slot": "hand",
+    "tags": ["energy", "ranged", "two-handed", "railgun"],
+    "names": {
+      "{{W|light}} rail": "{{W|빛}} 레일",
+      "light rail": "빛 레일"
+    },
+    "description": "Artisanally carved wood castles a sextet of parallel conductors and a sliding photon armature. The grain is scorched black on the rifle's stock.",
+    "description_ko": "장인이 깎은 나무가 여섯 개의 평행 전도체와 미끄러지는 광자 전기자를 감싼다. 소총 개머리판의 나뭇결이 검게 그을려 있다."
+  },
+
+  "Spaser Rifle": {
+    "tier": 7,
+    "category": "weapon",
+    "slot": "hand",
+    "tags": ["energy", "ranged", "two-handed", "plasma"],
+    "names": {
+      "{{spaser|spaser}} rifle": "{{spaser|스페이저}} 소총",
+      "spaser rifle": "스페이저 소총"
+    },
+    "description": "Hue-vapored crysteel cocoons the gold/water mechanism that pinches light from wavelength to waveshort. Plasmon slag bubbles on the crest of the barrel.",
+    "description_ko": "빛깔 증기를 뿜는 크리스틸이 파장에서 단파장으로 빛을 조이는 금/물 메커니즘을 감싼다. 플라즈몬 슬래그가 총신 꼭대기에서 거품을 일으킨다."
+  },
+
+  "Phase Cannon": {
+    "tier": 8,
+    "category": "weapon",
+    "slot": "hand",
+    "tags": ["energy", "ranged", "two-handed", "heavy", "disintegrate"],
+    "names": {
+      "phase cannon": "위상 캐논"
+    },
+    "description": "Astralgals demarcate the phasic slits along the frustum's length. Noise is sucked out of time in expectancy of cross-plane fusion.",
+    "description_ko": "아스트랄갈이 절두체 길이를 따라 위상 틈새를 구분한다. 교차 평면 융합을 기대하며 소음이 시간에서 빨려 나간다."
   },
 
   "Shotgun": {
@@ -66,27 +231,98 @@
     "description_ko": "펌프 액션 산탄총."
   },
 
-  "Laser Pistol": {
+  "Combat Shotgun": {
     "tier": 5,
     "category": "weapon",
     "slot": "hand",
-    "tags": ["energy", "ranged", "one-handed"],
+    "tags": ["gun", "ranged", "two-handed", "spread", "automatic"],
     "names": {
-      "laser pistol": "레이저 권총"
+      "combat shotgun": "전투 산탄총"
     },
-    "description": "A pistol that fires concentrated light beams.",
-    "description_ko": "집중된 광선을 발사하는 권총."
+    "description": "A semi-automatic shotgun designed for combat.",
+    "description_ko": "전투용으로 설계된 반자동 산탄총."
   },
 
-  "Laser Rifle": {
+  "Flamethrower": {
+    "tier": 5,
+    "category": "weapon",
+    "slot": "hand",
+    "tags": ["special", "ranged", "two-handed", "fire"],
+    "names": {
+      "flamethrower": "화염방사기"
+    },
+    "description": "A weapon that projects streams of fire.",
+    "description_ko": "화염 줄기를 방사하는 무기."
+  },
+
+  "Chaingun": {
     "tier": 6,
     "category": "weapon",
     "slot": "hand",
-    "tags": ["energy", "ranged", "two-handed"],
+    "tags": ["gun", "ranged", "two-handed", "automatic", "heavy"],
     "names": {
-      "laser rifle": "레이저 소총"
+      "chaingun": "체인건"
     },
-    "description": "A rifle that fires concentrated light beams.",
-    "description_ko": "집중된 광선을 발사하는 소총."
+    "description": "A multi-barreled automatic weapon with extremely high rate of fire.",
+    "description_ko": "매우 높은 발사 속도를 가진 다중 총신 자동 무기."
+  },
+
+  "Blunderbuss": {
+    "tier": 2,
+    "category": "weapon",
+    "slot": "hand",
+    "tags": ["gun", "ranged", "two-handed", "spread", "primitive"],
+    "names": {
+      "blunderbuss": "블런더버스"
+    },
+    "description": "A short muzzle-loaded firearm with a flared barrel.",
+    "description_ko": "나팔형 총신을 가진 짧은 전장식 화기."
+  },
+
+  "Chain Pistol": {
+    "tier": 4,
+    "category": "weapon",
+    "slot": "hand",
+    "tags": ["gun", "ranged", "one-handed", "automatic"],
+    "names": {
+      "chain pistol": "체인 피스톨"
+    },
+    "description": "A rapid-fire pistol with multiple barrels.",
+    "description_ko": "여러 총신을 가진 속사 권총."
+  },
+
+  "Masterwork Carbine": {
+    "tier": 3,
+    "category": "weapon",
+    "slot": "hand",
+    "tags": ["gun", "ranged", "two-handed", "automatic", "masterwork"],
+    "names": {
+      "masterwork carbine": "명품 카빈"
+    },
+    "description": "A masterfully crafted carbine with enhanced accuracy.",
+    "description_ko": "향상된 정확도를 가진 명장이 제작한 카빈."
+  },
+
+  "Eigenpistol": {
+    "tier": 5,
+    "category": "weapon",
+    "slot": "hand",
+    "tags": ["energy", "ranged", "one-handed", "eigen"],
+    "names": {
+      "eigenpistol": "아이겐피스톨"
+    },
+    "description": "A handheld eigenweapon that fires disintegrating vectors.",
+    "description_ko": "분해 벡터를 발사하는 휴대용 아이겐 무기."
+  },
+
+  "Lead Slug": {
+    "tier": 1,
+    "category": "ammo",
+    "tags": ["ammo", "bullet"],
+    "names": {
+      "lead slug": "납탄"
+    },
+    "description": "Lead is cast to a cylindric lump shaved to a point.",
+    "description_ko": "납을 원통형 덩어리로 주조하여 끝을 뾰족하게 깎았다."
   }
 }

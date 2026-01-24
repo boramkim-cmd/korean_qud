@@ -1,0 +1,28 @@
+{
+  "_meta": {
+    "category": "furniture/_common",
+    "description": "Common furniture base types and shared items",
+    "version": "2.0",
+    "created": "2026-01-24",
+    "updated": "2026-01-24",
+    "phase": "Phase2-Furniture"
+  },
+
+  "Furniture": {
+    "tier": 0,
+    "category": "furniture",
+    "tags": ["base"],
+    "names": {
+      "furniture": "가구"
+    }
+  },
+
+  "MountedFurniture": {
+    "tier": 0,
+    "category": "furniture",
+    "tags": ["base", "mounted"],
+    "names": {
+      "mounted furniture": "부착된 가구"
+    }
+  }
+}

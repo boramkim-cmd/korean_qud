@@ -3,7 +3,9 @@
     "category": "humanoids/goatfolk",
     "description": "Goatfolk humanoid creatures",
     "version": "2.0",
-    "updated": "2026-01-22"
+    "created": "2026-01-22",
+    "updated": "2026-01-24",
+    "phase": "Phase2-Creatures"
   },
 
   "Goatfolk": {
@@ -15,6 +17,15 @@
     },
     "description": "A goat-like humanoid that dwells in mountainous regions.",
     "description_ko": "염소 형상의 인간형 종족. 산악 지역에 서식한다."
+  },
+
+  "Goatfolk Corpse": {
+    "tier": 2,
+    "category": "corpse",
+    "tags": ["goatfolk"],
+    "names": {
+      "goatfolk corpse": "염소족 시체"
+    }
   },
 
   "Goatfolk Sower": {
@@ -48,5 +59,133 @@
     },
     "description": "A goatfolk warrior responsible for defending the tribe's camp.",
     "description_ko": "염소족 부락의 방어를 담당하는 전사."
+  },
+
+  "Goatfolk Pilgrim": {
+    "tier": 2,
+    "category": "humanoid",
+    "tags": ["goatfolk", "neutral", "tribal", "wanderer"],
+    "names": {
+      "goatfolk pilgrim": "염소족 순례자"
+    },
+    "description": "A goatfolk on a spiritual journey across the wastes.",
+    "description_ko": "황무지를 가로지르는 영적 여행 중인 염소족."
+  },
+
+  "Goatfolk Bully": {
+    "tier": 3,
+    "category": "humanoid",
+    "tags": ["goatfolk", "hostile", "tribal", "warrior"],
+    "names": {
+      "goatfolk bully": "염소족 건달"
+    },
+    "description": "A large and aggressive goatfolk that intimidates others.",
+    "description_ko": "다른 이들을 협박하는 크고 공격적인 염소족."
+  },
+
+  "Goatfolk Slaver": {
+    "tier": 3,
+    "category": "humanoid",
+    "tags": ["goatfolk", "hostile", "tribal", "slaver"],
+    "names": {
+      "goatfolk slaver": "염소족 노예상"
+    },
+    "description": "A goatfolk that captures and trades in slaves.",
+    "description_ko": "노예를 포획하고 거래하는 염소족."
+  },
+
+  "Goatfolk Slave": {
+    "tier": 1,
+    "category": "humanoid",
+    "tags": ["goatfolk", "neutral", "slave"],
+    "names": {
+      "goatfolk slave": "염소족 노예"
+    },
+    "description": "A goatfolk enslaved by their own kind or others.",
+    "description_ko": "자기 종족이나 다른 이들에게 노예가 된 염소족."
+  },
+
+  "Goatfolk Omen": {
+    "tier": 4,
+    "category": "humanoid",
+    "tags": ["goatfolk", "hostile", "tribal", "psionic", "elite"],
+    "names": {
+      "goatfolk omen": "염소족 예언자"
+    },
+    "description": "A goatfolk prophet with powerful mental abilities.",
+    "description_ko": "강력한 정신 능력을 가진 염소족 예언자."
+  },
+
+  "Goatfolk Savage": {
+    "tier": 3,
+    "category": "humanoid",
+    "tags": ["goatfolk", "hostile", "tribal", "berserker"],
+    "names": {
+      "goatfolk savage": "염소족 야만인"
+    },
+    "description": "A goatfolk driven by primal rage.",
+    "description_ko": "원시적인 분노에 이끌리는 염소족."
+  },
+
+  "Goatfolk Chieftain": {
+    "tier": 4,
+    "category": "humanoid",
+    "tags": ["goatfolk", "hostile", "tribal", "leader"],
+    "names": {
+      "goatfolk chieftain": "염소족 족장"
+    },
+    "description": "The leader of a goatfolk tribe.",
+    "description_ko": "염소족 부족의 지도자."
+  },
+
+  "Goatfolk Harbinger": {
+    "tier": 4,
+    "category": "humanoid",
+    "tags": ["goatfolk", "hostile", "tribal", "psionic"],
+    "names": {
+      "goatfolk harbinger": "염소족 전조자"
+    },
+    "description": "A goatfolk that heralds doom and change.",
+    "description_ko": "파멸과 변화를 예고하는 염소족."
+  },
+
+  "Goatfolk Worshipper": {
+    "tier": 2,
+    "category": "humanoid",
+    "tags": ["goatfolk", "hostile", "tribal", "religious"],
+    "names": {
+      "goatfolk worshipper": "염소족 숭배자"
+    },
+    "description": "A goatfolk devoted to strange gods.",
+    "description_ko": "기이한 신들에게 헌신하는 염소족."
+  },
+
+  "Goatfolk Hunter": {
+    "tier": 2,
+    "category": "humanoid",
+    "tags": ["goatfolk", "hostile", "tribal", "ranged"],
+    "names": {
+      "goatfolk hunter": "염소족 사냥꾼"
+    },
+    "description": "A goatfolk skilled in tracking and ranged combat.",
+    "description_ko": "추적과 원거리 전투에 능한 염소족."
+  },
+
+  "Goatfolk Hero 0": {
+    "tier": 5,
+    "category": "humanoid",
+    "tags": ["goatfolk", "hostile", "hero"],
+    "names": {
+      "legendary goatfolk": "전설의 염소족"
+    }
+  },
+
+  "Goatfolk Hero 1": {
+    "tier": 5,
+    "category": "humanoid",
+    "tags": ["goatfolk", "hostile", "hero"],
+    "names": {
+      "legendary goatfolk": "전설의 염소족"
+    }
   }
 }

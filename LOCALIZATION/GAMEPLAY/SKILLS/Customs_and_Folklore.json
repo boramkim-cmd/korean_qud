@@ -1,0 +1,17 @@
+{
+  "names": {
+    "Customs and Folklore": "풍습 및 민속"
+  },
+  "description": "You are familiar with the customs and folklore of Qud.",
+  "description_ko": "당신은 쿼드의 풍습과 민속에 정통합니다.",
+  "powers": {
+    "tactful": {
+      "name": "사교적",
+      "desc": "새로운 생물과 물 의식을 시작할 때마다 25 보너스 평판을 얻습니다. 이미 교류한 생물이 있다면 다음 교류 시 25 보너스 평판을 얻습니다."
+    },
+    "trash divining": {
+      "name": "쓰레기 점술",
+      "desc": "쓰레기를 뒤질 때마다 5% 확률로 단서를 맞춰 무작위 비밀을 배웁니다."
+    }
+  }
+}

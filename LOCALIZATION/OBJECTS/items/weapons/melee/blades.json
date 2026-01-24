@@ -1,65 +1,27 @@
 {
   "_meta": {
     "category": "weapons/melee/blades",
-    "description": "Blade melee weapons - daggers, swords, knives",
-    "version": "2.0",
-    "updated": "2026-01-22"
+    "description": "Blade melee weapons - daggers, swords, knives (short blades)",
+    "version": "2.1",
+    "updated": "2026-01-25",
+    "phase": "Phase1-MeleeWeapons"
   },
 
   "Dagger": {
-    "tier": 1,
+    "tier": 0,
     "category": "weapon",
     "slot": "hand",
-    "tags": ["blade", "short", "one-handed"],
+    "tags": ["blade", "short", "one-handed", "bronze"],
     "names": {
       "{{w|bronze}} dagger": "{{w|청동}} 단검",
-      "bronze dagger": "청동 단검",
-      "dagger": "단검"
+      "bronze dagger": "청동 단검"
     },
     "description": "Bell bronze is shaped to a point and its handle wrapped in leather.",
     "description_ko": "벨 청동이 뾰족하게 다듬어지고 손잡이는 가죽으로 감싸져 있다."
   },
 
-  "Dagger2": {
-    "tier": 2,
-    "category": "weapon",
-    "slot": "hand",
-    "tags": ["blade", "short", "one-handed"],
-    "names": {
-      "iron dagger": "철 단검"
-    },
-    "description": "Pits mark the blade like craters on an iron edge-world.",
-    "description_ko": "구덩이들이 철 세계의 분화구처럼 칼날에 새겨져 있다."
-  },
-
-  "Steel Dagger": {
-    "tier": 3,
-    "category": "weapon",
-    "slot": "hand",
-    "tags": ["blade", "short", "one-handed"],
-    "names": {
-      "{{Y|steel}} dagger": "{{Y|강철}} 단검",
-      "steel dagger": "강철 단검"
-    },
-    "description": "The edge is bright and polished.",
-    "description_ko": "날이 밝고 광택이 난다."
-  },
-
-  "Dagger3": {
-    "tier": 4,
-    "category": "weapon",
-    "slot": "hand",
-    "tags": ["blade", "short", "one-handed"],
-    "names": {
-      "{{b|carbide}} dagger": "{{b|카바이드}} 단검",
-      "carbide dagger": "카바이드 단검"
-    },
-    "description": "Salt and scars form a comet's tail along the azure blade edge.",
-    "description_ko": "소금과 상처가 푸른 칼날을 따라 혜성의 꼬리를 형성한다."
-  },
-
   "Desert Kris": {
-    "tier": 2,
+    "tier": 1,
     "category": "weapon",
     "slot": "hand",
     "tags": ["blade", "short", "one-handed", "exotic"],
@@ -70,29 +32,52 @@
     "description_ko": "철이 암염 손잡이에서 구불구불 나온다."
   },
 
-  "Steel Kukri": {
-    "tier": 3,
+  "Dagger2": {
+    "tier": 2,
     "category": "weapon",
     "slot": "hand",
-    "tags": ["blade", "short", "one-handed"],
+    "tags": ["blade", "short", "one-handed", "iron"],
+    "names": {
+      "iron dagger": "철 단검"
+    },
+    "description": "Pits mark the blade like craters on an iron edge-world.",
+    "description_ko": "구덩이들이 철 세계의 분화구처럼 칼날에 새겨져 있다."
+  },
+
+  "Steel Kukri": {
+    "tier": 2,
+    "category": "weapon",
+    "slot": "hand",
+    "tags": ["blade", "short", "one-handed", "steel"],
     "names": {
       "{{Y|steel}} kukri": "{{Y|강철}} 쿠크리",
-      "steel kukri": "강철 쿠크리",
-      "kukri": "쿠크리"
+      "steel kukri": "강철 쿠크리"
     },
     "description": "Bright metal spills out the leather fuzz hilt along the killer's recurve.",
     "description_ko": "빛나는 금속이 가죽 보풀 손잡이에서 살인자의 곡선을 따라 쏟아진다."
+  },
+
+  "Steel Dagger": {
+    "tier": 2,
+    "category": "weapon",
+    "slot": "hand",
+    "tags": ["blade", "short", "one-handed", "steel"],
+    "names": {
+      "{{Y|steel}} dagger": "{{Y|강철}} 단검",
+      "steel dagger": "강철 단검"
+    },
+    "description": "The edge is bright and polished.",
+    "description_ko": "날이 밝고 광택이 난다."
   },
 
   "Steel Utility Knife": {
     "tier": 2,
     "category": "weapon",
     "slot": "hand",
-    "tags": ["blade", "tool", "one-handed"],
+    "tags": ["blade", "tool", "one-handed", "steel"],
     "names": {
-      "{{Y|steel}} utility knife": "{{Y|강철}} 공구 칼",
-      "steel utility knife": "강철 공구 칼",
-      "utility knife": "공구 칼"
+      "{{Y|steel}} utility knife": "{{Y|강철}} 다용도 칼",
+      "steel utility knife": "강철 다용도 칼"
     },
     "description": "A use-dull and finger-smudged knife folds in on itself.",
     "description_ko": "사용으로 무뎌지고 손가락 자국이 묻은 칼이 접혀 있다."
@@ -102,11 +87,10 @@
     "tier": 2,
     "category": "weapon",
     "slot": "hand",
-    "tags": ["blade", "tool", "one-handed"],
+    "tags": ["blade", "tool", "one-handed", "steel"],
     "names": {
       "{{Y|steel}} potter's knife": "{{Y|강철}} 도공의 칼",
-      "steel potter's knife": "강철 도공의 칼",
-      "potter's knife": "도공의 칼"
+      "steel potter's knife": "강철 도공의 칼"
     },
     "description": "Wet clay dresses the edge and dirt cakes the hilt.",
     "description_ko": "젖은 점토가 날을 덮고 흙이 손잡이에 붙어 있다."
@@ -116,13 +100,167 @@
     "tier": 2,
     "category": "weapon",
     "slot": "hand",
-    "tags": ["blade", "tool", "one-handed"],
+    "tags": ["blade", "tool", "one-handed", "steel"],
     "names": {
       "{{Y|steel}} butcher knife": "{{Y|강철}} 정육점 칼",
-      "steel butcher knife": "강철 정육점 칼",
-      "butcher knife": "정육점 칼"
+      "steel butcher knife": "강철 정육점 칼"
     },
     "description": "A wide and bright blade has been painted with entrails.",
     "description_ko": "넓고 빛나는 칼날이 내장으로 물들어 있다."
+  },
+
+  "Dagger3": {
+    "tier": 3,
+    "category": "weapon",
+    "slot": "hand",
+    "tags": ["blade", "short", "one-handed", "carbide"],
+    "names": {
+      "{{b|carbide}} dagger": "{{b|카바이드}} 단검",
+      "carbide dagger": "카바이드 단검"
+    },
+    "description": "Salt and scars form a comet's tail along the azure blade edge.",
+    "description_ko": "소금과 상처가 푸른 칼날을 따라 혜성의 꼬리를 형성한다."
+  },
+
+  "Obsidian Kris": {
+    "tier": 3,
+    "category": "weapon",
+    "slot": "hand",
+    "tags": ["blade", "short", "one-handed", "obsidian"],
+    "names": {
+      "{{K|obsidian}} kris": "{{K|흑요석}} 크리스",
+      "obsidian kris": "흑요석 크리스"
+    },
+    "description": "Volcanic glass was fished from Fuming God Sea and chipped to shape along the Icepyres.",
+    "description_ko": "화산 유리를 훈증하는 신의 바다에서 건져 올려 빙화 봉우리를 따라 형태로 깎았다."
+  },
+
+  "Dagger4": {
+    "tier": 4,
+    "category": "weapon",
+    "slot": "hand",
+    "tags": ["blade", "short", "one-handed", "carbide", "folded"],
+    "names": {
+      "{{B|folded carbide}} dagger": "{{B|접힌 카바이드}} 단검",
+      "folded carbide dagger": "접힌 카바이드 단검"
+    },
+    "description": "Blue and shining metal narrows to a sticking point.",
+    "description_ko": "푸르고 빛나는 금속이 찌르는 끝으로 좁아진다."
+  },
+
+  "ArmDagger4": {
+    "tier": 4,
+    "category": "weapon",
+    "slot": "arm",
+    "tags": ["blade", "short", "arm-slot", "carbide", "folded"],
+    "names": {
+      "{{B|folded carbide}} wristblade": "{{B|접힌 카바이드}} 손목칼",
+      "folded carbide wristblade": "접힌 카바이드 손목칼"
+    },
+    "description": "A ribbon of leather is looped through the hilt of a bright blade.",
+    "description_ko": "가죽 리본이 밝은 칼날의 손잡이에 고리 모양으로 끼워져 있다."
+  },
+
+  "Dagger5": {
+    "tier": 5,
+    "category": "weapon",
+    "slot": "hand",
+    "tags": ["blade", "short", "one-handed", "fullerite"],
+    "names": {
+      "{{K|fullerite}} dagger": "{{K|풀러라이트}} 단검",
+      "fullerite dagger": "풀러라이트 단검"
+    },
+    "description": "A razor edge of dense and dusky metal zigzags in shape. Its face is matte and starless.",
+    "description_ko": "촘촘하고 어두운 금속의 날카로운 날이 지그재그 형태를 이룬다. 표면은 무광택이고 별이 없다."
+  },
+
+  "Dagger6": {
+    "tier": 6,
+    "category": "weapon",
+    "slot": "hand",
+    "tags": ["blade", "short", "one-handed", "crysteel"],
+    "names": {
+      "{{K|{{crysteel|crysteel}} dagger}}": "{{K|{{crysteel|크리스틸}} 단검}}",
+      "crysteel dagger": "크리스틸 단검"
+    },
+    "description": "Blast furnaces sucked the tidal energy out of the planet, heated carbon to solar temperatures, and poured it into hexagonal molds.",
+    "description_ko": "용광로가 행성의 조석 에너지를 빨아들여 탄소를 태양 온도로 가열하고 육각형 주형에 부었다."
+  },
+
+  "Dagger7": {
+    "tier": 7,
+    "category": "weapon",
+    "slot": "hand",
+    "tags": ["blade", "short", "one-handed", "crysteel", "flawless"],
+    "names": {
+      "{{K|flawless {{crysteel|crysteel}} dagger}}": "{{K|완벽한 {{crysteel|크리스틸}} 단검}}",
+      "flawless crysteel dagger": "완벽한 크리스틸 단검"
+    },
+    "description": "Casts mottled with dust particles were culled and fed to lithovores, leaving only the perfect hexagonal prisms.",
+    "description_ko": "먼지 입자로 얼룩진 주물은 골라내어 암식자에게 먹이고, 완벽한 육각형 프리즘만 남겼다."
+  },
+
+  "Dagger8": {
+    "tier": 8,
+    "category": "weapon",
+    "slot": "hand",
+    "tags": ["blade", "short", "one-handed", "zetachrome"],
+    "names": {
+      "{{zetachrome|zetachrome}} dagger": "{{zetachrome|제타크롬}} 단검",
+      "zetachrome dagger": "제타크롬 단검"
+    },
+    "description": "Quark-gluon plasma rapidly cooled and was extinguished on the voidpeaks of the early universe.",
+    "description_ko": "쿼크-글루온 플라즈마가 빠르게 냉각되어 초기 우주의 공허한 봉우리에서 소멸되었다."
+  },
+
+  "Vibro Dagger": {
+    "tier": 4,
+    "category": "weapon",
+    "slot": "hand",
+    "tags": ["blade", "short", "one-handed", "artifact", "vibro"],
+    "names": {
+      "{{c|vibro dagger}}": "{{c|바이브로 단검}}",
+      "vibro dagger": "바이브로 단검"
+    },
+    "description": "A matte blade of ionic plastifer sits on a finger-rest hilt. When charged it blurs in high-width motion and jostles its material obstacles out of the way.",
+    "description_ko": "이온 플라스티퍼의 무광택 칼날이 손가락 받침 손잡이 위에 있다. 충전되면 고폭 동작으로 흐려지고 물질적 장애물을 밀쳐낸다."
+  },
+
+  "Gaslight Dagger": {
+    "tier": 4,
+    "category": "weapon",
+    "slot": "hand",
+    "tags": ["blade", "short", "one-handed", "artifact", "gaslight"],
+    "names": {
+      "{{gaslight|gaslight}} kris": "{{gaslight|가스라이트}} 크리스",
+      "gaslight kris": "가스라이트 크리스"
+    },
+    "description": "Through a bore in the wood grip draws a crinkled beam of pale light. In motion it heats to steel-melting temperature and whirrs matter away.",
+    "description_ko": "나무 손잡이의 구멍을 통해 창백한 빛의 주름진 광선이 그려진다. 움직이면 강철을 녹이는 온도로 가열되어 물질을 휘몰아낸다."
+  },
+
+  "Gaslight Chisel": {
+    "tier": 4,
+    "category": "weapon",
+    "slot": "hand",
+    "tags": ["blade", "short", "one-handed", "artifact", "gaslight", "tool"],
+    "names": {
+      "{{gaslight|gaslight}} chisel": "{{gaslight|가스라이트}} 끌",
+      "gaslight chisel": "가스라이트 끌"
+    },
+    "description": "Through a bore in the wood grip draws a stout beam of pale light. In motion it heats to steel-melting temperature and whirrs matter away.",
+    "description_ko": "나무 손잡이의 구멍을 통해 창백한 빛의 튼튼한 광선이 그려진다. 움직이면 강철을 녹이는 온도로 가열되어 물질을 휘몰아낸다."
+  },
+
+  "Difucila": {
+    "tier": 4,
+    "category": "weapon",
+    "slot": "hand",
+    "tags": ["blade", "short", "one-handed", "unique"],
+    "names": {
+      "etched cleaver": "새긴 식칼"
+    },
+    "description": "Beautiful ribbons of leaf are etched along the edges of the broad and oiled blade. The pine handle is carved with its name: Difucila.",
+    "description_ko": "아름다운 잎사귀 리본이 넓고 기름칠된 칼날의 가장자리를 따라 새겨져 있다. 소나무 손잡이에 이름이 새겨져 있다: 디푸실라."
   }
 }

@@ -1,32 +1,151 @@
 {
   "_meta": {
     "category": "weapons/ranged/bows",
-    "description": "Bow ranged weapons",
-    "version": "2.0",
-    "updated": "2026-01-22"
+    "description": "Bow ranged weapons - bows, crossbows, dart guns",
+    "version": "2.1",
+    "updated": "2026-01-25",
+    "phase": "Phase1-RangedWeapons"
   },
 
-  "Bow": {
-    "tier": 2,
+  "Short Bow": {
+    "tier": 0,
     "category": "weapon",
     "slot": "hand",
     "tags": ["bow", "ranged", "two-handed"],
     "names": {
-      "bow": "활"
+      "short bow": "단궁"
     },
-    "description": "A curved piece of wood strung with sinew.",
-    "description_ko": "힘줄로 팽팽하게 당긴 휘어진 나무."
+    "description": "The hind bone of a salthopper was scorched clean and bent to a recurve bow. Sinew is strung on the nocks.",
+    "description_ko": "솔트호퍼의 뒷다리 뼈가 깨끗이 그을려 만곡궁으로 휘어졌다. 힘줄이 활시위 걸이에 매어져 있다."
   },
 
   "Compound Bow": {
-    "tier": 4,
+    "tier": 3,
     "category": "weapon",
     "slot": "hand",
     "tags": ["bow", "ranged", "two-handed", "mechanical"],
     "names": {
       "compound bow": "컴파운드 보우"
     },
-    "description": "A complex bow with pulleys and cables for greater power.",
-    "description_ko": "풀리와 케이블로 더 강한 힘을 내는 복잡한 활."
+    "description": "Idler wheels were tinkered to the limbs, and wound cables stiffen to accentuate the archer's strength.",
+    "description_ko": "아이들러 휠이 활 끝에 달려 있고, 감긴 케이블이 뻣뻣해져 궁수의 힘을 강조한다."
+  },
+
+  "Dart Gun": {
+    "tier": 1,
+    "category": "weapon",
+    "slot": "hand",
+    "tags": ["bow", "ranged", "one-handed", "dart"],
+    "names": {
+      "dart gun": "다트건"
+    },
+    "description": "A pig sinew bow string is notched behind a brinestalk rail narrowed for a dart to fit.",
+    "description_ko": "돼지 힘줄 활 시위가 다트가 맞도록 좁혀진 브라인스톡 레일 뒤에 홈이 파여 있다."
+  },
+
+  "Electrobow": {
+    "tier": 3,
+    "category": "weapon",
+    "slot": "hand",
+    "tags": ["bow", "ranged", "two-handed", "energy"],
+    "names": {
+      "{{W|electro}}{{c|bow}}": "{{W|일렉트로}}{{c|보우}}",
+      "electrobow": "일렉트로보우"
+    },
+    "description": "Magnets on the string nocks hum and a slender curve of metal hums back. The air crackles as fingers approach the arrow rest.",
+    "description_ko": "시위 걸이의 자석이 윙윙거리고 가느다란 금속 곡선이 윙윙거리며 응답한다. 손가락이 화살 받침대에 다가가면 공기가 지직거린다."
+  },
+
+  "Turbow": {
+    "tier": 5,
+    "category": "weapon",
+    "slot": "hand",
+    "tags": ["bow", "ranged", "two-handed", "mechanical", "powered"],
+    "names": {
+      "{{turbow|turbow}}": "{{turbow|터보우}}",
+      "turbow": "터보우"
+    },
+    "description": "Servos click on the wheeling groves and a miniature air turbine exaggerates the pull of the bowstring.",
+    "description_ko": "서보가 회전 홈에서 딸깍거리고 소형 공기 터빈이 활 시위의 당김을 과장한다."
+  },
+
+  "Arrow": {
+    "tier": 0,
+    "category": "ammo",
+    "tags": ["ammo", "arrow"],
+    "names": {
+      "arrow": "화살"
+    },
+    "description": "A wooden shaft fletched with feathers and tipped with a point.",
+    "description_ko": "깃털로 깃을 단 나무 화살대에 촉이 달려 있다."
+  },
+
+  "Steel-Tipped Arrow": {
+    "tier": 1,
+    "category": "ammo",
+    "tags": ["ammo", "arrow", "steel"],
+    "names": {
+      "{{Y|steel}}-tipped arrow": "{{Y|강철}} 촉 화살",
+      "steel-tipped arrow": "강철 촉 화살"
+    },
+    "description": "A wooden shaft fletched with feathers and tipped with steel.",
+    "description_ko": "깃털로 깃을 단 나무 화살대에 강철 촉이 달려 있다."
+  },
+
+  "Carbide-Tipped Arrow": {
+    "tier": 3,
+    "category": "ammo",
+    "tags": ["ammo", "arrow", "carbide"],
+    "names": {
+      "{{b|carbide}}-tipped arrow": "{{b|카바이드}} 촉 화살",
+      "carbide-tipped arrow": "카바이드 촉 화살"
+    },
+    "description": "A wooden shaft fletched with feathers and tipped with ultra-hard carbide.",
+    "description_ko": "깃털로 깃을 단 나무 화살대에 초경질 카바이드 촉이 달려 있다."
+  },
+
+  "Crossbow": {
+    "tier": 2,
+    "category": "weapon",
+    "slot": "hand",
+    "tags": ["crossbow", "ranged", "two-handed"],
+    "names": {
+      "crossbow": "석궁"
+    },
+    "description": "A horizontal bow mounted on a stock with a trigger mechanism.",
+    "description_ko": "방아쇠 장치가 달린 개머리판에 수평으로 장착된 활."
+  },
+
+  "Dart": {
+    "tier": 0,
+    "category": "ammo",
+    "tags": ["ammo", "dart"],
+    "names": {
+      "dart": "다트"
+    },
+    "description": "A small pointed missile designed to be thrown or shot.",
+    "description_ko": "던지거나 발사하도록 설계된 작은 뾰족한 투사체."
+  },
+
+  "Sleep Dart": {
+    "tier": 1,
+    "category": "ammo",
+    "tags": ["ammo", "dart", "sleep"],
+    "names": {
+      "sleep dart": "수면 다트"
+    },
+    "description": "A dart coated with a soporific agent.",
+    "description_ko": "수면제가 묻은 다트."
+  },
+
+  "Poison Dart": {
+    "tier": 2,
+    "category": "ammo",
+    "tags": ["ammo", "dart", "poison"],
+    "names": {
+      "poison dart": "독 다트"
+    },
+    "description": "A dart coated with deadly poison.",
+    "description_ko": "치명적인 독이 묻은 다트."
   }
 }

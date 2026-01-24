@@ -3,7 +3,9 @@
     "category": "insects/ants",
     "description": "Ant creatures",
     "version": "2.0",
-    "updated": "2026-01-22"
+    "created": "2026-01-22",
+    "updated": "2026-01-24",
+    "phase": "Phase2-Creatures"
   },
 
   "Fire Ant": {
@@ -15,5 +17,166 @@
     },
     "description": "A small but aggressive ant that attacks in swarms.",
     "description_ko": "작지만 공격적인 개미로, 무리 지어 다닌다."
+  },
+
+  "Fire Ant Worker": {
+    "tier": 1,
+    "category": "insect",
+    "tags": ["ant", "hostile", "swarm", "fire"],
+    "names": {
+      "fire ant worker": "불개미 일꾼"
+    },
+    "description": "The lowest caste of fire ant, responsible for maintaining the colony.",
+    "description_ko": "불개미 중 가장 낮은 계급으로, 군락 유지를 담당한다."
+  },
+
+  "Fire Ant Soldier": {
+    "tier": 2,
+    "category": "insect",
+    "tags": ["ant", "hostile", "swarm", "fire", "warrior"],
+    "names": {
+      "fire ant soldier": "불개미 병사"
+    },
+    "description": "A larger fire ant with powerful mandibles, bred for combat.",
+    "description_ko": "전투용으로 태어난 강력한 턱을 가진 대형 불개미."
+  },
+
+  "Fire Ant Queen": {
+    "tier": 4,
+    "category": "insect",
+    "tags": ["ant", "hostile", "fire", "queen", "unique"],
+    "names": {
+      "fire ant queen": "불개미 여왕"
+    },
+    "description": "The bloated matriarch of the fire ant colony, laying eggs endlessly.",
+    "description_ko": "불개미 군락의 팽창된 여왕으로, 끊임없이 알을 낳는다."
+  },
+
+  "Seed Ant": {
+    "tier": 1,
+    "category": "insect",
+    "tags": ["ant", "hostile", "swarm"],
+    "names": {
+      "seed ant": "씨앗개미"
+    },
+    "description": "A hardy ant that collects and stores seeds.",
+    "description_ko": "씨앗을 모으고 저장하는 튼튼한 개미."
+  },
+
+  "Harvester Ant": {
+    "tier": 1,
+    "category": "insect",
+    "tags": ["ant", "hostile", "swarm"],
+    "names": {
+      "harvester ant": "수확개미"
+    },
+    "description": "An industrious ant species known for gathering plant material.",
+    "description_ko": "식물 재료를 모으는 것으로 알려진 부지런한 개미."
+  },
+
+  "Soldier Ant": {
+    "tier": 2,
+    "category": "insect",
+    "tags": ["ant", "hostile", "swarm", "warrior"],
+    "names": {
+      "soldier ant": "병정개미"
+    },
+    "description": "A large ant with oversized mandibles for colony defense.",
+    "description_ko": "군락 방어를 위한 커다란 턱을 가진 대형 개미."
+  },
+
+  "Leafcutter Ant": {
+    "tier": 2,
+    "category": "insect",
+    "tags": ["ant", "hostile", "swarm"],
+    "names": {
+      "leafcutter ant": "잎꾼개미"
+    },
+    "description": "An ant that cuts leaves to cultivate fungus gardens.",
+    "description_ko": "버섯 정원을 가꾸기 위해 잎을 자르는 개미."
+  },
+
+  "Giant Ant": {
+    "tier": 3,
+    "category": "insect",
+    "tags": ["ant", "hostile", "giant"],
+    "names": {
+      "giant ant": "거대 개미"
+    },
+    "description": "An ant grown to monstrous proportions by the strange energies of Qud.",
+    "description_ko": "쿠드의 이상한 에너지로 거대하게 자란 개미."
+  },
+
+  "Acid Ant": {
+    "tier": 3,
+    "category": "insect",
+    "tags": ["ant", "hostile", "swarm", "acid"],
+    "names": {
+      "acid ant": "산성개미"
+    },
+    "description": "An ant that spits corrosive acid at its enemies.",
+    "description_ko": "적에게 부식성 산을 뿜는 개미."
+  },
+
+  "Red Ant": {
+    "tier": 2,
+    "category": "insect",
+    "tags": ["ant", "hostile", "swarm"],
+    "names": {
+      "red ant": "붉은개미"
+    },
+    "description": "An aggressive red-colored ant with a painful sting.",
+    "description_ko": "고통스러운 쏘임을 가진 공격적인 붉은색 개미."
+  },
+
+  "Black Ant": {
+    "tier": 1,
+    "category": "insect",
+    "tags": ["ant", "neutral", "swarm"],
+    "names": {
+      "black ant": "검은개미"
+    },
+    "description": "A common black ant, mostly harmless unless provoked.",
+    "description_ko": "흔한 검은 개미로, 자극하지 않으면 대체로 무해하다."
+  },
+
+  "Glowing Ant": {
+    "tier": 3,
+    "category": "insect",
+    "tags": ["ant", "hostile", "swarm", "luminous"],
+    "names": {
+      "glowing ant": "빛나는 개미"
+    },
+    "description": "An ant that emits a soft bioluminescent glow.",
+    "description_ko": "부드러운 생물 발광을 내는 개미."
+  },
+
+  "Ant Colony": {
+    "tier": 2,
+    "category": "swarm",
+    "tags": ["ant", "hostile", "swarm", "group"],
+    "names": {
+      "ant colony": "개미 군락"
+    },
+    "description": "A teeming mass of ants moving as one.",
+    "description_ko": "하나처럼 움직이는 개미 떼."
+  },
+
+  "Fire Ant Corpse": {
+    "tier": 1,
+    "category": "corpse",
+    "tags": ["ant", "fire"],
+    "names": {
+      "fire ant corpse": "불개미 시체"
+    }
+  },
+
+  "Giant Ant Corpse": {
+    "tier": 3,
+    "category": "corpse",
+    "tags": ["ant", "giant"],
+    "names": {
+      "giant ant corpse": "거대 개미 시체"
+    }
   }
 }

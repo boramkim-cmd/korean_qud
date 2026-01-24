@@ -1,0 +1,21 @@
+{
+  "names": {
+    "Heavy Weapon": "중화기"
+  },
+  "description": "You are skilled with heavy weapons.",
+  "description_ko": "당신은 중화기에 숙달되어 있습니다.",
+  "powers": {
+    "strapping shoulders": {
+      "name": "튼튼한 어깨",
+      "desc": "어깨에 무기를 더 효과적으로 멥니다. 중화기는 무게의 절반만 부담으로 계산됩니다."
+    },
+    "tank": {
+      "name": "탱크",
+      "desc": "중화기를 들고 있을 때 이동 페널티를 받지 않습니다."
+    },
+    "sweep": {
+      "name": "휩쓸기",
+      "desc": "중화기로 5발을 90도 부채꼴로 휩쓸며 발사합니다. 각 발사 전에 중화기가 재장전됩니다."
+    }
+  }
+}

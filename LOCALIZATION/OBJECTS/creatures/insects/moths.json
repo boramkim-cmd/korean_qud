@@ -3,7 +3,9 @@
     "category": "insects/moths",
     "description": "Moth and flying insect creatures",
     "version": "2.0",
-    "updated": "2026-01-22"
+    "created": "2026-01-22",
+    "updated": "2026-01-24",
+    "phase": "Phase2-Creatures"
   },
 
   "Glowmoth": {
@@ -17,6 +19,15 @@
     "description_ko": "네온빛을 발산하는 나방. 섬광으로 적을 눈멀게 할 수 있다."
   },
 
+  "Glowmoth Corpse": {
+    "tier": 2,
+    "category": "corpse",
+    "tags": ["flying", "moth"],
+    "names": {
+      "glowmoth corpse": "발광나방 시체"
+    }
+  },
+
   "Agolfly": {
     "tier": 2,
     "category": "insect",
@@ -28,6 +39,15 @@
     "description_ko": "기괴한 파리 종. 질병을 옮길 수 있다."
   },
 
+  "Agolfly Corpse": {
+    "tier": 2,
+    "category": "corpse",
+    "tags": ["flying"],
+    "names": {
+      "agolfly corpse": "아골파리 시체"
+    }
+  },
+
   "Plasmafly": {
     "tier": 4,
     "category": "insect",
@@ -37,5 +57,169 @@
     },
     "description": "A dangerous fly that spits plasma.",
     "description_ko": "플라즈마를 내뿜는 위험한 파리."
+  },
+
+  "Plasmafly Corpse": {
+    "tier": 4,
+    "category": "corpse",
+    "tags": ["flying", "plasma"],
+    "names": {
+      "plasmafly corpse": "플라즈마 파리 시체"
+    }
+  },
+
+  "Moth": {
+    "tier": 1,
+    "category": "insect",
+    "tags": ["flying", "neutral", "common"],
+    "names": {
+      "moth": "나방"
+    },
+    "description": "A common moth attracted to light sources.",
+    "description_ko": "광원에 끌리는 흔한 나방."
+  },
+
+  "Giant Moth": {
+    "tier": 3,
+    "category": "insect",
+    "tags": ["flying", "hostile", "giant"],
+    "names": {
+      "giant moth": "거대 나방"
+    },
+    "description": "A moth grown to tremendous size.",
+    "description_ko": "엄청난 크기로 자란 나방."
+  },
+
+  "Giant Moth Corpse": {
+    "tier": 3,
+    "category": "corpse",
+    "tags": ["flying", "moth"],
+    "names": {
+      "giant moth corpse": "거대 나방 시체"
+    }
+  },
+
+  "Silkmoth": {
+    "tier": 2,
+    "category": "insect",
+    "tags": ["flying", "neutral", "silk"],
+    "names": {
+      "silkmoth": "누에나방"
+    },
+    "description": "A moth that produces valuable silk.",
+    "description_ko": "귀중한 비단을 생산하는 나방."
+  },
+
+  "Death's Head Moth": {
+    "tier": 3,
+    "category": "insect",
+    "tags": ["flying", "hostile", "fear"],
+    "names": {
+      "death's head moth": "해골나방"
+    },
+    "description": "A sinister moth with skull-like markings on its thorax.",
+    "description_ko": "가슴에 해골 같은 무늬가 있는 불길한 나방."
+  },
+
+  "Dragonfly": {
+    "tier": 2,
+    "category": "insect",
+    "tags": ["flying", "neutral", "common"],
+    "names": {
+      "dragonfly": "잠자리"
+    },
+    "description": "An agile flying insect with large compound eyes.",
+    "description_ko": "큰 겹눈을 가진 민첩한 비행 곤충."
+  },
+
+  "Giant Dragonfly": {
+    "tier": 4,
+    "category": "insect",
+    "tags": ["flying", "hostile", "giant"],
+    "names": {
+      "giant dragonfly": "거대 잠자리"
+    },
+    "description": "A dragonfly grown to fearsome proportions.",
+    "description_ko": "무시무시한 크기로 자란 잠자리."
+  },
+
+  "Giant Dragonfly Corpse": {
+    "tier": 4,
+    "category": "corpse",
+    "tags": ["flying"],
+    "names": {
+      "giant dragonfly corpse": "거대 잠자리 시체"
+    }
+  },
+
+  "Wasp": {
+    "tier": 2,
+    "category": "insect",
+    "tags": ["flying", "hostile", "venomous"],
+    "names": {
+      "wasp": "말벌"
+    },
+    "description": "An aggressive flying insect with a painful sting.",
+    "description_ko": "고통스러운 침을 가진 공격적인 비행 곤충."
+  },
+
+  "Wasp Corpse": {
+    "tier": 2,
+    "category": "corpse",
+    "tags": ["flying"],
+    "names": {
+      "wasp corpse": "말벌 시체"
+    }
+  },
+
+  "Giant Wasp": {
+    "tier": 4,
+    "category": "insect",
+    "tags": ["flying", "hostile", "giant", "venomous"],
+    "names": {
+      "giant wasp": "거대 말벌"
+    },
+    "description": "A wasp grown to terrifying size with a deadly stinger.",
+    "description_ko": "치명적인 침을 가진 무시무시한 크기의 말벌."
+  },
+
+  "Giant Wasp Corpse": {
+    "tier": 4,
+    "category": "corpse",
+    "tags": ["flying"],
+    "names": {
+      "giant wasp corpse": "거대 말벌 시체"
+    }
+  },
+
+  "Hornet": {
+    "tier": 3,
+    "category": "insect",
+    "tags": ["flying", "hostile", "venomous"],
+    "names": {
+      "hornet": "장수말벌"
+    },
+    "description": "A large and aggressive wasp with a potent sting.",
+    "description_ko": "강력한 침을 가진 크고 공격적인 말벌."
+  },
+
+  "Hornet Corpse": {
+    "tier": 3,
+    "category": "corpse",
+    "tags": ["flying"],
+    "names": {
+      "hornet corpse": "장수말벌 시체"
+    }
+  },
+
+  "Firefly": {
+    "tier": 1,
+    "category": "insect",
+    "tags": ["flying", "neutral", "luminous"],
+    "names": {
+      "firefly": "반딧불이"
+    },
+    "description": "A beetle that produces bioluminescent light.",
+    "description_ko": "생물 발광을 내는 딱정벌레."
   }
 }
