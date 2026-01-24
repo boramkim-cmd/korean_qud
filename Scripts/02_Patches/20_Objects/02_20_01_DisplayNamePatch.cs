@@ -54,19 +54,7 @@ namespace QudKorean.Objects
                 string blueprint = Object.Blueprint;
                 if (string.IsNullOrEmpty(blueprint)) return;
 
-                // [TEST MODE] Torch만 번역 테스트
-                if (blueprint != "Torch" && blueprint != "TutorialTorch")
-                {
-                    return;
-                }
-
-                // DEBUG: Log first few translation attempts - 원본 텍스트 상세 로그
-                if (_logCount < 20)
-                {
-                    _logCount++;
-                    bool hasColorTags = __result.Contains("{{") || __result.Contains("&");
-                    UnityEngine.Debug.Log($"{LOG_PREFIX} [BEFORE] blueprint='{blueprint}', hasColorTags={hasColorTags}, raw='{__result}'");
-                }
+                // 모든 오브젝트 번역 (테스트 모드 해제됨)
                 
                 // Attempt translation
                 if (ObjectTranslator.TryGetDisplayName(blueprint, __result, out string translated))
@@ -74,13 +62,7 @@ namespace QudKorean.Objects
                     // CRITICAL: Final safety check - never replace with empty string
                     if (!string.IsNullOrEmpty(translated))
                     {
-                        bool resultHasTags = translated.Contains("{{") || translated.Contains("&");
-                        UnityEngine.Debug.Log($"{LOG_PREFIX} [AFTER] '{__result}' -> '{translated}' (hasTags={resultHasTags})");
                         __result = translated;
-                    }
-                    else
-                    {
-                        UnityEngine.Debug.LogWarning($"{LOG_PREFIX} Empty translation for '{blueprint}', keeping original: '{__result}'");
                     }
                 }
             }
@@ -90,9 +72,7 @@ namespace QudKorean.Objects
                 UnityEngine.Debug.LogError($"{LOG_PREFIX} GetFor_Postfix error: {ex.Message}");
             }
         }
-        
-        private static int _logCount = 0;
-        
+
         /// <summary>
         /// Clears the translation cache. Called on game load.
         /// </summary>
