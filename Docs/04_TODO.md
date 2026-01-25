@@ -1,6 +1,6 @@
 # Caves of Qud Korean Localization - TODO
 
-> **Version**: 3.5 | **Last Updated**: 2026-01-25
+> **Version**: 3.6 | **Last Updated**: 2026-01-26
 
 ---
 
@@ -18,15 +18,29 @@
 
 ## Next Session Required
 
+### CRITICAL: Python 테스트 vs C# 실제 동작 검증
+> **문제**: Python 테스트 스크립트(test_object_translator.py, test_display_contexts.py)는
+> JSON 사전 기반으로 번역 로직을 **시뮬레이션**할 뿐, 실제 C# 코드를 검증하지 않음.
+
+| 위험 요소 | 설명 | 대응 |
+|-----------|------|------|
+| **로직 동기화 불일치** | Python 로직 수정 시 C# 미반영 가능 | C# 코드 직접 확인 필요 |
+| **런타임 차이** | 게임 내 이벤트 순서, 캐싱 등 Python에서 재현 불가 | 게임 테스트 필수 |
+| **V2 미구현** | V2(Pipeline 패턴)는 Python에만 존재, C#은 여전히 V1 | V2 C# 구현 필요 여부 판단 |
+
+**권장 작업**:
+1. `./deploy.sh` 후 실제 게임에서 아래 항목 직접 확인
+2. Python 테스트 100% 통과가 게임 동작 보장 아님을 인지
+
 ### Game Test: PRD v2 버그 수정 검증 - HIGH PRIORITY
-| Item | Expected | Status |
-|------|----------|--------|
-| `{{c|basic toolkit}}` | 기본 공구함 | [ ] |
-| `{{w|copper nugget}}` | 구리 덩어리 | [ ] |
-| `{{m|violet}} tube` | 보라색 튜브 | [ ] |
-| `ape fur cloak` | 유인원 모피 망토 | [ ] |
-| `sandals of the river-wives` | 강 아내들의 샌들 | [ ] |
-| `fried processing core` | 튀긴 처리 코어 | [ ] |
+| Item | Expected | Python 테스트 | 게임 테스트 |
+|------|----------|---------------|-------------|
+| `{{c|basic toolkit}}` | 기본 공구함 | ✅ Pass | [ ] |
+| `{{w|copper nugget}}` | 구리 덩어리 | ✅ Pass | [ ] |
+| `{{m|violet}} tube` | 보라색 튜브 | ✅ Pass | [ ] |
+| `ape fur cloak` | 유인원 모피 망토 | ✅ Pass | [ ] |
+| `sandals of the river-wives` | 강 아내들의 샌들 | ✅ Pass | [ ] |
+| `fried processing core` | 튀긴 처리 코어 | ✅ Pass | [ ] |
 
 **Test Path**: `kr:stats` 확인 후 wish 명령어로 개별 아이템 테스트
 
@@ -138,6 +152,48 @@
 python3 tools/project_tool.py   # Required!
 bash tools/sync-and-deploy.sh   # Deploy
 ```
+
+---
+
+---
+
+## Critical Assessment: 다음 세션 우선순위
+
+### 반드시 해야 할 것 (MUST)
+| 순위 | 작업 | 이유 |
+|------|------|------|
+| 1 | **게임 테스트** | Python 테스트는 시뮬레이션일 뿐, 실제 C# 동작 확인 필수 |
+| 2 | **C# 코드 리뷰** | `ObjectTranslator.cs`가 Python 로직과 동기화되었는지 확인 |
+| 3 | **V2 C# 구현 판단** | Pipeline 패턴이 실제로 필요한지, 현재 V1 C#로 충분한지 결정 |
+
+### 하면 좋은 것 (SHOULD)
+| 작업 | 이유 |
+|------|------|
+| `Scripts/02_Patches/20_Objects/V2/` 폴더 정리 | 미완성 V2 C# 코드가 있으면 삭제 또는 완성 |
+| 엣지 케이스 추가 | 현재 테스트에 없는 패턴 (예: 3단 중첩 색상태그) |
+| 성능 프로파일링 | 번역 캐시 효율성 확인 |
+
+### 하지 않아도 되는 것 (NICE TO HAVE)
+| 작업 | 이유 |
+|------|------|
+| V2 Python 더 확장 | Python은 검증용, 이미 100% 통과 |
+| 추가 테스트 케이스 100개 더 | 기존 100개로 충분한 커버리지 |
+
+### 경고: 잠재적 문제
+1. **Python-C# 괴리**: Python 테스트 통과 ≠ 게임 동작 보장
+2. **V2 C# 코드 존재**: `Scripts/02_Patches/20_Objects/V2/` 폴더에 미완성 C# V2 구현 있음
+   ```
+   V2/
+   ├── Core/           # 코어 인터페이스?
+   ├── Data/           # 데이터 구조?
+   ├── ObjectTranslatorV2.cs  # 6.8KB 메인 파일
+   ├── Patterns/       # 패턴 핸들러?
+   ├── Pipeline/       # 파이프라인 구조?
+   └── Processing/     # 처리 로직?
+   ```
+   **결정 필요**: 이 V2 C#을 완성할 것인가, 삭제할 것인가?
+3. **캐시 문제**: 게임 내 캐시와 Python 테스트의 캐시 로직이 다를 수 있음
+4. **이중 관리 부담**: V1 C# + V2 C# + V1 Python + V2 Python = 4개 버전 관리
 
 ---
 

@@ -1,7 +1,7 @@
 # QUD_KOREAN 프로젝트 컨텍스트
 
 > **이 파일은 Claude Code가 세션 시작 시 반드시 읽어야 하는 핵심 문서입니다.**
-> 최종 업데이트: 2026-01-26 03:30
+> 최종 업데이트: 2026-01-26 04:45
 
 ---
 
@@ -28,6 +28,7 @@
 - 오브젝트 번역 (아이템/생물명)
 - 메시지 로그 패치
 - **ObjectTranslator 테스트 스크립트** (100개 테스트 케이스, 100% 통과)
+- **V1 vs V2 컨텍스트별 테스트** (`tools/test_display_contexts.py`, 100개 케이스)
 
 ### 최근 이슈 (2026-01-25)
 | 이슈 | 상태 | 원인 | 해결 |
@@ -98,6 +99,11 @@ python3 tools/project_tool.py
 # ObjectTranslator 번역 테스트 (100개 케이스)
 python3 tools/test_object_translator.py
 
+# V1 vs V2 컨텍스트별 테스트 (100개 케이스, 4개 컨텍스트)
+python3 tools/test_display_contexts.py
+python3 tools/test_display_contexts.py --verbose   # 상세 출력
+python3 tools/test_display_contexts.py --context inventory  # 특정 컨텍스트
+
 # 게임 내 디버그 (Ctrl+W → Wish)
 kr:reload       # JSON 리로드
 kr:stats        # 번역 통계
@@ -117,6 +123,7 @@ kr:check <id>   # 특정 블루프린트 확인
 | UI 패치 | `Scripts/02_Patches/10_UI/` |
 | 번역 JSON | `LOCALIZATION/` |
 | **번역 테스트 스크립트** | `tools/test_object_translator.py` |
+| **V1 vs V2 컨텍스트 테스트** | `tools/test_display_contexts.py` |
 
 ---
 

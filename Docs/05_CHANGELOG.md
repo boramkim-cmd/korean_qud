@@ -6,6 +6,28 @@
 
 ## Recent Changes
 
+### [2026-01-26] V1 vs V2 컨텍스트별 검증 테스트 스크립트 생성
+- **새 파일**: `tools/test_display_contexts.py` (~590줄)
+- **목적**: V1(기존)과 V2(리팩토링) 번역 결과 동등성 비교 + 게임 컨텍스트별 검증
+- **V2 아키텍처**: Pipeline/Strategy 패턴
+  - 7개 핸들러: ColorTag, OfPattern, PrefixSuffix, DirectMatch, DynamicPattern, ColorTagContent, Fallback
+  - 각 핸들러가 `can_handle()` + `handle()` 메서드로 독립 처리
+- **테스트 케이스**: 100개 (4개 컨텍스트별 25개씩)
+  | 컨텍스트 | 테스트 항목 |
+  |----------|-------------|
+  | INVENTORY | 색상태그, 수량, 접두사, +X 수식어 |
+  | TOOLTIP | 상태(lit/unburnt), drams 패턴, 멀티워드 태그 |
+  | SHOP | 재료 접두사, 무기 타입, 수류탄 |
+  | LOOK | 시체, 음식, 부위, 소유격 |
+- **결과**: V1 vs V2 동등: 100/100 (100.0%)
+- **사용법**:
+  ```bash
+  python3 tools/test_display_contexts.py              # 기본 실행
+  python3 tools/test_display_contexts.py --verbose    # 상세 출력
+  python3 tools/test_display_contexts.py --context inventory  # 특정 컨텍스트
+  python3 tools/test_display_contexts.py --failures-only      # 실패만
+  ```
+
 ### [2026-01-26] ObjectTranslator 종합 테스트 스크립트 생성
 - **새 파일**: `tools/test_object_translator.py`
 - **목적**: JSON 사전 파일들을 읽어 번역 로직 시뮬레이션 및 검증
