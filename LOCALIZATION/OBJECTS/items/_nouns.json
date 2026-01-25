@@ -41,7 +41,15 @@
     "_comment_postmortem": "포스트모템 전수 조사 추가",
     "cannon": "대포",
     "gun": "총",
-    "knife": "칼"
+    "knife": "칼",
+
+    "_comment_audit": "전수조사 추가",
+    "blade": "블레이드",
+    "whip": "채찍",
+    "dart": "다트",
+    "polearm": "장병기",
+    "railgun": "레일건",
+    "vine": "덩굴"
   },
 
   "armor": {
@@ -188,7 +196,8 @@
     "missile": "미사일",
     "pump": "펌프",
     "wire": "와이어",
-    "applicator": "적용기"
+    "applicator": "적용기",
+    "arc": "아크"
   },
 
   "artifacts": {
@@ -250,7 +259,13 @@
   "compound_weapons": {
     "_comment": "복합 무기 이름 (Compound weapon names) - Phase 미번역 버그 수정",
     "war hammer": "전투 해머",
-    "battle axe": "전투 도끼"
+    "battle axe": "전투 도끼",
+
+    "_comment_audit": "전수조사 추가",
+    "vibro blade": "바이브로 블레이드",
+    "vibro dagger": "바이브로 단검",
+    "stun whip": "기절 채찍",
+    "seed-spitting vine": "씨앗발사 덩굴"
   },
 
   "headwear": {

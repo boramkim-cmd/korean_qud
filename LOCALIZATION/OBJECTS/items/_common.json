@@ -301,7 +301,22 @@
     "great": "대형",
     "rough": "거친",
     "smooth": "매끄러운",
-    "security": "보안"
+    "security": "보안",
+
+    "_comment_creature_modifiers": "생물 형용사 (포스트모템 추가)",
+    "bloated": "부풀어오른",
+    "burrowing": "굴파는",
+    "chitinous": "키틴질의",
+    "cryptic": "신비로운",
+
+    "_comment_weapon_modifiers": "무기 수식어 (전수조사 추가)",
+    "vibro": "바이브로",
+    "electric": "전기",
+    "magnetic": "자기",
+    "plasma": "플라즈마",
+    "eigen": "아이겐",
+    "nullray": "널레이",
+    "seed-spitting": "씨앗발사"
   },
 
   "tonics": {
@@ -369,6 +384,13 @@
     "ruby": "루비색",
     "ivory": "상아색",
     "onyx": "오닉스색",
-    "pearl": "진주색"
+    "pearl": "진주색",
+
+    "_comment_gemstones": "보석 색상 (포스트모템 추가)",
+    "agate": "마노",
+    "amethyst": "자수정",
+    "jasper": "벽옥",
+    "peridot": "페리도트",
+    "topaz": "토파즈"
   }
 }

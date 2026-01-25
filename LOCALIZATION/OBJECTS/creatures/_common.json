@@ -181,7 +181,20 @@
     "vinewafer": "덩굴 웨이퍼",
     "dreadroot": "공포뿌리",
     "starapple": "별사과",
-    "Issachari": "이사카리"
+    "Issachari": "이사카리",
+
+    "_section_postmortem_animals": "일반 생물 (포스트모템 추가)",
+    "antelope": "영양",
+    "basilisk": "바실리스크",
+    "centipede": "지네",
+    "clam": "조개",
+    "dragonfly": "잠자리",
+    "scorpion": "전갈",
+
+    "_section_postmortem_qud": "쿠드 고유 생물 (포스트모템 추가)",
+    "barathrumite": "바라스룸인",
+    "mopango": "모팡고",
+    "cherub": "케루브"
   },
 
   "creature_classes": {

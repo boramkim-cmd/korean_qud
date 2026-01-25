@@ -257,10 +257,12 @@ namespace QudKorean.Objects
             }
 
             // [X drams of Y] pattern → [Y X드램]
+            // BUG FIX: Strip color tags before lookup (e.g., "{{G|fresh water}}" → "fresh water")
             result = Regex.Replace(result, @"\[(\d+) drams? of ([^\]]+)\]", m => {
                 string amount = m.Groups[1].Value;
                 string liquid = m.Groups[2].Value.Trim();
-                string liquidKo = _liquidsLoaded.TryGetValue(liquid, out var ko) ? ko : liquid;
+                string liquidStripped = StripColorTags(liquid);
+                string liquidKo = _liquidsLoaded.TryGetValue(liquidStripped, out var ko) ? ko : liquid;
                 return $"[{liquidKo} {amount}드램]";
             }, RegexOptions.IgnoreCase);
 
@@ -725,10 +727,12 @@ namespace QudKorean.Objects
             }
 
             // [X drams of Y] pattern → [Y X드램] using loaded liquids
+            // BUG FIX: Strip color tags before lookup (e.g., "{{G|fresh water}}" → "fresh water")
             result = Regex.Replace(result, @"\[(\d+) drams? of ([^\]]+)\]", m => {
                 string amount = m.Groups[1].Value;
                 string liquid = m.Groups[2].Value.Trim();
-                string liquidKo = _liquidsLoaded.TryGetValue(liquid, out var ko) ? ko : liquid;
+                string liquidStripped = StripColorTags(liquid);
+                string liquidKo = _liquidsLoaded.TryGetValue(liquidStripped, out var ko) ? ko : liquid;
                 return $"[{liquidKo} {amount}드램]";
             }, RegexOptions.IgnoreCase);
 
@@ -1429,7 +1433,7 @@ namespace QudKorean.Objects
                 _allPrefixesSortedLoaded = allPrefixes.ToList();
                 _allPrefixesSortedLoaded.Sort((a, b) => b.Key.Length.CompareTo(a.Key.Length));
 
-                // 컬러 태그 내부용 (재료 + 품질 + 토닉 + 수류탄 + 색상)
+                // 컬러 태그 내부용 (재료 + 품질 + 토닉 + 수류탄 + 색상 + 액체 + of패턴 + 신체부위)
                 var colorTagVocab = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase);
                 MergeInto(colorTagVocab, _materialsLoaded);
                 MergeInto(colorTagVocab, _qualitiesLoaded);
@@ -1437,6 +1441,10 @@ namespace QudKorean.Objects
                 MergeInto(colorTagVocab, _grenadesLoaded);
                 MergeInto(colorTagVocab, _modifiersLoaded); // modifiers에도 컬러 태그에서 쓰이는 것들 있음
                 MergeInto(colorTagVocab, _colorsLoaded);    // BUG #2: 색상 형용사 추가 (violet tube 등)
+                // BUG FIX: 추가 복합어 사전 병합 (컬러태그 내 번역용)
+                MergeInto(colorTagVocab, _liquidsLoaded);      // 액체: "fresh water" 등
+                MergeInto(colorTagVocab, _ofPatternsLoaded);   // of 패턴: "of the river-wives" 등
+                MergeInto(colorTagVocab, _bodyPartsLoaded);    // 신체부위 복합어
 
                 _colorTagVocabSortedLoaded = colorTagVocab.ToList();
                 _colorTagVocabSortedLoaded.Sort((a, b) => b.Key.Length.CompareTo(a.Key.Length));
