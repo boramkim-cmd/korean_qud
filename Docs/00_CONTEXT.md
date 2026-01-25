@@ -1,7 +1,7 @@
 # QUD_KOREAN 프로젝트 컨텍스트
 
 > **이 파일은 Claude Code가 세션 시작 시 반드시 읽어야 하는 핵심 문서입니다.**
-> 최종 업데이트: 2026-01-25 20:35
+> 최종 업데이트: 2026-01-26 03:30
 
 ---
 
@@ -27,6 +27,7 @@
 - 튜토리얼 팝업
 - 오브젝트 번역 (아이템/생물명)
 - 메시지 로그 패치
+- **ObjectTranslator 테스트 스크립트** (100개 테스트 케이스, 100% 통과)
 
 ### 최근 이슈 (2026-01-25)
 | 이슈 | 상태 | 원인 | 해결 |
@@ -94,6 +95,9 @@ tail -f "/Users/ben/Library/Logs/Freehold Games/CavesOfQud/Player.log" | grep -i
 # 검증
 python3 tools/project_tool.py
 
+# ObjectTranslator 번역 테스트 (100개 케이스)
+python3 tools/test_object_translator.py
+
 # 게임 내 디버그 (Ctrl+W → Wish)
 kr:reload       # JSON 리로드
 kr:stats        # 번역 통계
@@ -112,6 +116,7 @@ kr:check <id>   # 특정 블루프린트 확인
 | 공통 어휘 (재료/품질/수식어) | `LOCALIZATION/OBJECTS/items/_common.json` |
 | UI 패치 | `Scripts/02_Patches/10_UI/` |
 | 번역 JSON | `LOCALIZATION/` |
+| **번역 테스트 스크립트** | `tools/test_object_translator.py` |
 
 ---
 

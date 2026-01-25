@@ -1,10 +1,40 @@
 # Caves of Qud Korean Localization - Changelog
 
-> **Version**: 6.7 | **Last Updated**: 2026-01-25
+> **Version**: 6.8 | **Last Updated**: 2026-01-26
 
 ---
 
 ## Recent Changes
+
+### [2026-01-26] ObjectTranslator 종합 테스트 스크립트 생성
+- **새 파일**: `tools/test_object_translator.py`
+- **목적**: JSON 사전 파일들을 읽어 번역 로직 시뮬레이션 및 검증
+- **테스트 케이스**: 100개 (단순→복잡 점진적 테스트)
+- **성공률**: 100% (100/100 통과)
+- **테스트 카테고리**:
+  | 카테고리 | 개수 | 예시 |
+  |----------|------|------|
+  | 단순 명사 | 10 | `mace` → `메이스` |
+  | 단일 접두사 | 10 | `bronze mace` → `청동 메이스` |
+  | 복합 접두사 | 10 | `engraved bronze mace` → `새겨진 청동 메이스` |
+  | 상태 접미사 | 10 | `torch (lit)` → `횃불 (점화됨)` |
+  | drams 패턴 | 5 | `canteen [32 drams of water]` → `수통 [물 32드램]` |
+  | 컬러 태그 | 10 | `{{w|bronze}} mace` → `{{w|청동}} 메이스` |
+  | 동적 식품 | 8 | `bear jerky` → `곰 육포` |
+  | 동적 부위 | 8 | `wolf hide` → `늑대 가죽` |
+  | 소유격 | 5 | `panther's claw` → `표범의 발톱` |
+  | of 패턴 | 5 | `sword of fire` → `불의 검` |
+  | 시체 | 3 | `bear corpse` → `곰 시체` |
+  | 신규 어휘 | 10 | `plasma rifle` → `플라즈마 라이플` |
+  | 복합 케이스 | 6 | `flawless crysteel sword of fire` → `완벽한 크리스틸 불의 검` |
+- **사용법**: `python3 tools/test_object_translator.py`
+- **기능**:
+  - JSON 사전 자동 로드 (items/_common.json, _nouns.json, creatures/_common.json, _suffixes.json)
+  - 접두사/접미사 추출 및 번역
+  - 컬러 태그 보존
+  - 한국어 어순 변환 (of 패턴)
+  - 동적 패턴 처리 (food, parts, corpse, possessive)
+  - 컬러 출력 (PASS/FAIL 시각화)
 
 ### [2026-01-25] 번역 불일치 및 누락 근본 수정 (PRD v2)
 - **BUG #1 수정: 색상 태그 내 명사 미번역**
@@ -201,6 +231,7 @@
 - Skill files: 20
 - Object files: 67
 - Message patterns: 50+
+- **Test coverage**: 100 cases (100% pass)
 - Build status: Success
 
 ---
