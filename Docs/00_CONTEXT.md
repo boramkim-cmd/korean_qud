@@ -1,7 +1,7 @@
 # QUD_KOREAN 프로젝트 컨텍스트
 
 > **이 파일은 Claude Code가 세션 시작 시 반드시 읽어야 하는 핵심 문서입니다.**
-> 최종 업데이트: 2026-01-25 21:30
+> 최종 업데이트: 2026-01-25 22:20
 
 ---
 
@@ -31,15 +31,19 @@
 ### 최근 이슈 (2026-01-25)
 | 이슈 | 상태 | 원인 | 해결 |
 |------|------|------|------|
+| 캐시 키 불일치 | CLEAR | 컬러 태그/수량 유무에 따라 캐시 키 불일치 | `NormalizeCacheKey()` 메서드 추가 |
+| 부분 매칭 시 접두사 미번역 | CLEAR | partial match 경로에서 접두사 번역 누락 | 모든 경로에 `TranslateBaseNounsOutsideTags()` 적용 |
+| 명사 누락 (hat, stinger, plate mail) | CLEAR | _nouns.json 미등록 | headwear, body_parts, compound_armor 섹션 추가 |
 | 미번역 아이템 버그 | CLEAR | fallback에서 접두사 번역 누락 | `TranslatePrefixesInText()` 추가, modifier/noun 데이터 보강 |
 | 어휘 사전 JSON 이전 | CLEAR | 하드코딩된 사전 중복 | `items/_common.json` 생성, 하드코딩 제거 |
-| Dictionary 중복 키 버그 | CLEAR | `_descriptivePrefixes`에 중복 키 3개 | 중복 항목 삭제 |
-| 소유격 패턴 미처리 | CLEAR | `panther's claw` 등 `'s` 패턴 | TryTranslatePossessive 메서드 추가 |
 
-### 테스트 필요 항목
-- [ ] 툴팁 헤더: "현재 아이템" / "장착 아이템"
-- [ ] 아이템 이름: "횃불", "물주머니 [비어있음]"
-- [ ] 스킬/파워: 도끼, 곤봉, 롱 블레이드 등
+### 테스트 필요 항목 (캐시 키 정규화 후)
+- [ ] `painted 강철 정육점 칼` → `칠해진 강철 정육점 칼` (인벤토리/툴팁 일관성)
+- [ ] `구리 nugget` → `구리 덩어리`
+- [ ] `stinger` → `독침`
+- [ ] `챙 넓은 hat` → `챙 넓은 모자`
+- [ ] `강철 plate mail` → `강철 판금 갑옷`
+- [ ] `ape 모피 hat` → `유인원 모피 모자`
 
 ---
 

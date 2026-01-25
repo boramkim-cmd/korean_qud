@@ -185,5 +185,21 @@
     "_comment": "복합 무기 이름 (Compound weapon names) - Phase 미번역 버그 수정",
     "war hammer": "전투 해머",
     "battle axe": "전투 도끼"
+  },
+
+  "headwear": {
+    "_comment": "머리 장비 (Headwear) - Phase 번역 불일치 수정",
+    "hat": "모자",
+    "cap": "캡"
+  },
+
+  "body_parts": {
+    "_comment": "신체 부위 (Body parts) - Phase 번역 불일치 수정",
+    "stinger": "독침"
+  },
+
+  "compound_armor": {
+    "_comment": "복합 방어구 이름 (Compound armor names) - Phase 번역 불일치 수정",
+    "plate mail": "판금 갑옷"
   }
 }

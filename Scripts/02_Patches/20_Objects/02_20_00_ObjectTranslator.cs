@@ -289,6 +289,34 @@ namespace QudKorean.Objects
             if (string.IsNullOrEmpty(id)) return id;
             return id.Replace(" ", "").ToLowerInvariant();
         }
+
+        /// <summary>
+        /// Normalizes display names for cache key consistency.
+        /// This ensures the same item returns the same cache key regardless of:
+        /// - Color tags: {{Y|steel}} → steel
+        /// - Quantity suffixes: x15, x100 → removed
+        /// - State suffixes: [empty], (lit) → removed
+        /// - Case differences: Steel → steel
+        /// </summary>
+        private static string NormalizeCacheKey(string originalName)
+        {
+            if (string.IsNullOrEmpty(originalName))
+                return originalName;
+
+            string normalized = originalName;
+
+            // 1. Strip color tags: {{Y|steel}} → steel
+            normalized = StripColorTags(normalized);
+
+            // 2. Remove quantity suffixes: "x15", "x100"
+            normalized = Regex.Replace(normalized, @"\s*x\d+$", "");
+
+            // 3. Strip state suffixes: [empty], (lit), weapon stats
+            normalized = StripStateSuffix(normalized);
+
+            // 4. Normalize case
+            return normalized.ToLowerInvariant().Trim();
+        }
         
         #endregion
         
@@ -374,7 +402,10 @@ namespace QudKorean.Objects
             EnsureInitialized();
 
             // Fast path: display name cache
-            string cacheKey = $"{blueprint}:{originalName}";
+            // Use normalized cache key for consistency across different contexts
+            // (inventory, tooltip, shop - may have different color tags, quantities, etc.)
+            string normalizedName = NormalizeCacheKey(originalName);
+            string cacheKey = $"{blueprint}:{normalizedName}";
             if (_displayNameCache.TryGetValue(cacheKey, out translated))
             {
                 // CRITICAL: Don't return empty strings as successful translations
@@ -426,24 +457,31 @@ namespace QudKorean.Objects
                     // In this case, strippedOriginal IS the core name found in DB
                     translated = RestoreFormatting(originalName, strippedOriginal, koreanName, "", "");
                     if (string.IsNullOrEmpty(translated)) return false;
+
+                    // Also translate any remaining prefixes/nouns for consistency
+                    translated = TranslateBaseNounsOutsideTags(translated);
+
                     _displayNameCache[cacheKey] = translated;
                     return true;
                 }
-                
+
                 // PRIORITY: Check state suffix BEFORE partial matching
                 // This ensures "waterskin [empty]" -> "물주머니 [비어있음]" not "물주머니 [empty]"
                 string noStateSuffix = StripStateSuffix(strippedOriginal);
                 if (noStateSuffix != strippedOriginal)
                 {
                     string suffix = strippedOriginal.Substring(noStateSuffix.Length);
-                    
+
                     if (data.Names.TryGetValue(noStateSuffix, out string baseNameKo) && !string.IsNullOrEmpty(baseNameKo))
                     {
                         string suffixKo = TranslateStateSuffix(suffix);
                         translated = RestoreFormatting(originalName, noStateSuffix, baseNameKo, suffix, suffixKo);
-                        
+
                         if (!string.IsNullOrEmpty(translated))
                         {
+                            // Also translate any remaining prefixes/nouns for consistency
+                            translated = TranslateBaseNounsOutsideTags(translated);
+
                             _displayNameCache[cacheKey] = translated;
                             return true;
                         }
@@ -474,6 +512,11 @@ namespace QudKorean.Objects
                             }
 
                             if (string.IsNullOrEmpty(translated)) continue;
+
+                            // CRITICAL FIX: Also translate remaining prefixes and nouns
+                            // "painted 정육점 칼" → "칠해진 정육점 칼"
+                            translated = TranslateBaseNounsOutsideTags(translated);
+
                             _displayNameCache[cacheKey] = translated;
                             return true;
                         }
@@ -501,6 +544,10 @@ namespace QudKorean.Objects
                                 string suffixKo = TranslateStateSuffix(globalSuffix);
                                 // Use withTranslatedMaterials to preserve Korean materials in color tags
                                 translated = RestoreFormatting(withTranslatedMaterials, globalNoSuffix, namePair.Value, globalSuffix, suffixKo);
+
+                                // CRITICAL FIX: Also translate remaining prefixes and nouns
+                                translated = TranslateBaseNounsOutsideTags(translated);
+
                                 _displayNameCache[cacheKey] = translated;
                                 return true;
                             }
