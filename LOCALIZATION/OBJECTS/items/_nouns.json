@@ -25,7 +25,19 @@
     "flail": "도리깨",
     "halberd": "미늘창",
     "pike": "장창",
-    "cudgel": "몽둥이"
+    "cudgel": "몽둥이",
+    "_comment_audit": "전수 조사 추가",
+    "kukri": "쿠크리",
+    "kris": "크리스",
+    "flyssa": "플리싸",
+    "maul": "대형 망치",
+    "warhammer": "워해머",
+    "baton": "경찰봉",
+    "rod": "로드",
+    "vinereaper": "덩굴낫",
+    "shillelagh": "실렐라",
+    "chisel": "끌",
+    "cleaver": "식칼"
   },
 
   "armor": {
@@ -43,7 +55,13 @@
     "greaves": "정강이받이",
     "cloak": "망토",
     "cape": "케이프",
-    "robe": "로브"
+    "robe": "로브",
+    "_comment_audit": "전수 조사 추가",
+    "bracer": "완갑",
+    "coif": "코이프",
+    "gorget": "목보호대",
+    "pauldrons": "어깨보호대",
+    "vambraces": "팔보호대"
   },
 
   "clothing": {
@@ -64,7 +82,12 @@
     "pants": "바지",
     "skirt": "치마",
     "belt": "벨트",
-    "sash": "허리띠"
+    "sash": "허리띠",
+    "_comment_audit": "전수 조사 추가",
+    "apron": "앞치마",
+    "mantle": "망토",
+    "jerkin": "저킨",
+    "doublet": "더블릿"
   },
 
   "consumables": {
@@ -89,7 +112,9 @@
     "lantern": "랜턴",
     "lamp": "램프",
     "key": "열쇠",
-    "lockpick": "자물쇠따개"
+    "lockpick": "자물쇠따개",
+    "_comment_audit": "전수 조사 추가",
+    "toolkit": "공구함"
   },
 
   "misc": {
@@ -107,7 +132,11 @@
     "ingot": "주괴",
     "bar": "바",
     "chunk": "덩어리",
-    "lump": "덩어리"
+    "lump": "덩어리",
+    "_comment_audit": "전수 조사 추가",
+    "figurine": "조각상",
+    "manacles": "수갑",
+    "netting": "그물"
   },
 
   "mechanical": {
@@ -122,7 +151,10 @@
     "tank": "탱크",
     "pack": "팩",
     "bodypack": "바디팩",
-    "backpack": "배낭"
+    "backpack": "배낭",
+    "_comment_audit": "전수 조사 추가",
+    "recoiler": "귀환 장치",
+    "wings": "날개"
   },
 
   "artifacts": {
