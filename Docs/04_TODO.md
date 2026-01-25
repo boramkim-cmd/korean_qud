@@ -10,9 +10,15 @@
 |-------|------|-----|------|----------|
 | Phase 1: Stabilization | 7 | 0 | 0 | 100% |
 | Phase 2: Gameplay | 5 | 0 | 1 | 90% |
-| Phase 3: Optimization | 1 | 0 | 5 | 17% |
+| Phase 3: Optimization | 2 | 0 | 4 | 33% |
 | Phase 4: Community | 0 | 0 | 3 | 0% |
-| **Total** | **13** | **0** | **9** | **59%** |
+| **Total** | **14** | **0** | **8** | **64%** |
+
+### Test Coverage
+| 스크립트 | 케이스 | 통과율 | 목적 |
+|----------|--------|--------|------|
+| `test_object_translator.py` | 100 | 100% | JSON 사전 기반 번역 로직 검증 |
+| `test_display_contexts.py` | 100 | 100% | V1 vs V2 동등성 + 컨텍스트별 검증 |
 
 ---
 
@@ -96,7 +102,7 @@
 | P2-01 | Message Log Patch | 8h | Medium | ✅ Done |
 | P2-04 | NPC Dialogue (Conversations.xml 647KB) | 16h | Medium | Todo |
 
-### Phase 3: Optimization  
+### Phase 3: Optimization
 | ID | Task | Hours | Priority | Status |
 |----|------|-------|----------|--------|
 | P3-01 | Translation Caching (LRU) | 4h | Low | Todo |
@@ -105,6 +111,7 @@
 | P3-04 | Performance Profiling | 4h | Low | Todo |
 | P3-05 | Glossary Conflict Resolution | 12h | High | Todo |
 | P3-06 | Tool Scripts Consolidation | 4h | High | ✅ Done |
+| P3-07 | V1 vs V2 테스트 스크립트 | 2h | Medium | ✅ Done |
 
 ### Phase 4: Community
 | ID | Task | Priority |
@@ -137,6 +144,12 @@
 | Objects Translation Major Expansion (67 files, 6,169 entries) | 01-24 |
 | Items Translation Extension (weapons, armor, grenades) (+787 entries) | 01-25 |
 
+### Testing & Tooling
+| Task | Date |
+|------|------|
+| ObjectTranslator 종합 테스트 (100개 케이스) | 01-26 |
+| V1 vs V2 컨텍스트별 검증 테스트 (100개 케이스, Pipeline 패턴) | 01-26 |
+
 ---
 
 ## Critical Rules
@@ -152,8 +165,6 @@
 python3 tools/project_tool.py   # Required!
 bash tools/sync-and-deploy.sh   # Deploy
 ```
-
----
 
 ---
 
