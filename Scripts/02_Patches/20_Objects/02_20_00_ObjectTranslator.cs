@@ -215,16 +215,16 @@ namespace QudKorean.Objects
                 result = result.Substring(0, armorStatsMatch.Index);
             }
 
-            // 5. Extract "+X" suffixes: +1, +2, +3, etc. (Phase 2.2)
-            var plusMatch = Regex.Match(result, @"(\s*\+\d+)$");
+            // 5. Extract "+X" or "-X" suffixes: +1, +2, -1, etc. (Phase 2.2, BUG FIX: support negative)
+            var plusMatch = Regex.Match(result, @"(\s*[+-]\d+)$");
             if (plusMatch.Success)
             {
                 extractedSuffixes.Insert(0, plusMatch.Value);
                 result = result.Substring(0, plusMatch.Index);
             }
 
-            // 5. Extract "of X" suffixes: "of fire", "of frost", etc. (Phase 2.2)
-            var ofMatch = Regex.Match(result, @"(\s+of\s+[\w\s]+)$", RegexOptions.IgnoreCase);
+            // 5. Extract "of X" suffixes: "of fire", "of frost", "of the river-wives", etc. (Phase 2.2, BUG FIX: support hyphens/apostrophes)
+            var ofMatch = Regex.Match(result, @"(\s+of\s+[\w\s\-']+)$", RegexOptions.IgnoreCase);
             if (ofMatch.Success)
             {
                 extractedSuffixes.Insert(0, ofMatch.Value);
@@ -267,8 +267,8 @@ namespace QudKorean.Objects
             // [X servings] pattern → [X인분]
             result = Regex.Replace(result, @"\[(\d+) servings?\]", "[$1인분]", RegexOptions.IgnoreCase);
 
-            // "of X" pattern → "의 X번역" (Phase 2.2)
-            result = Regex.Replace(result, @"\s+of\s+([\w\s]+)$", m => {
+            // "of X" pattern → "의 X번역" (Phase 2.2, BUG FIX: support hyphens/apostrophes)
+            result = Regex.Replace(result, @"\s+of\s+([\w\s\-']+)$", m => {
                 string element = m.Groups[1].Value.Trim();
                 string elementKo = _ofPatternsLoaded.TryGetValue(element, out var ko) ? ko : element;
                 return $"의 {elementKo}";
@@ -898,15 +898,27 @@ namespace QudKorean.Objects
                 }
             }
 
-            // 일반 "{creature} {part}" 패턴 처리
+            // 일반 "{creature} {part}" 패턴 처리 (BUG FIX: elder 접두사 지원 추가)
             foreach (var kvp in partPatterns)
             {
                 if (stripped.EndsWith(kvp.Key, StringComparison.OrdinalIgnoreCase))
                 {
                     string creaturePart = stripped.Substring(0, stripped.Length - kvp.Key.Length);
-                    if (TryGetCreatureTranslation(creaturePart, out string creatureKo))
+
+                    // elder 접두사 처리: "elder bear skull" → "장로 곰 두개골"
+                    if (creaturePart.StartsWith("elder ", StringComparison.OrdinalIgnoreCase))
                     {
-                        translated = $"{creatureKo}{kvp.Value}";
+                        string actualCreature = creaturePart.Substring("elder ".Length);
+                        if (TryGetCreatureTranslation(actualCreature, out string creatureKo))
+                        {
+                            translated = $"장로 {creatureKo}{kvp.Value}";
+                            return true;
+                        }
+                    }
+
+                    if (TryGetCreatureTranslation(creaturePart, out string creatureKo2))
+                    {
+                        translated = $"{creatureKo2}{kvp.Value}";
                         return true;
                     }
                 }

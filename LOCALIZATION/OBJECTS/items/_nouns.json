@@ -37,7 +37,11 @@
     "vinereaper": "덩굴낫",
     "shillelagh": "실렐라",
     "chisel": "끌",
-    "cleaver": "식칼"
+    "cleaver": "식칼",
+    "_comment_postmortem": "포스트모템 전수 조사 추가",
+    "cannon": "대포",
+    "gun": "총",
+    "knife": "칼"
   },
 
   "armor": {
@@ -89,7 +93,10 @@
     "apron": "앞치마",
     "mantle": "망토",
     "jerkin": "저킨",
-    "doublet": "더블릿"
+    "doublet": "더블릿",
+    "_comment_postmortem": "포스트모템 전수 조사 추가",
+    "skin": "스킨",
+    "suit": "수트"
   },
 
   "consumables": {
@@ -149,7 +156,11 @@
     "_comment_v4": "v4 버그 수정 추가",
     "mill": "분쇄기",
     "bladder": "주머니",
-    "token": "토큰"
+    "token": "토큰",
+    "_comment_postmortem": "포스트모템 전수 조사 추가",
+    "skull": "두개골",
+    "chain": "사슬",
+    "strand": "가닥"
   },
 
   "mechanical": {
@@ -168,7 +179,16 @@
     "backpack": "배낭",
     "_comment_audit": "전수 조사 추가",
     "recoiler": "귀환 장치",
-    "wings": "날개"
+    "wings": "날개",
+    "_comment_postmortem": "포스트모템 전수 조사 추가",
+    "energy": "에너지",
+    "relay": "중계기",
+    "beam": "빔",
+    "laser": "레이저",
+    "missile": "미사일",
+    "pump": "펌프",
+    "wire": "와이어",
+    "applicator": "적용기"
   },
 
   "artifacts": {
