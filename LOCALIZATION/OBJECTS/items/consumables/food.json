@@ -1428,5 +1428,29 @@
     },
     "description": "Electric plasma was extracted and preserved.",
     "description_ko": "전기 플라즈마를 추출하고 보존했다."
+  },
+
+  "Ekuemekiyyen Greens": {
+    "tier": 2,
+    "category": "food",
+    "tags": ["plant", "vegetable", "exotic"],
+    "names": {
+      "{{g|Ekuemekiyyen greens}}": "{{g|에쿠에메키옌 채소}}",
+      "Ekuemekiyyen greens": "에쿠에메키옌 채소"
+    },
+    "description": "Leafy greens from the Ekuemekiyyen region.",
+    "description_ko": "에쿠에메키옌 지역에서 자라는 잎채소."
+  },
+
+  "Defoliant Grenade Mk I": {
+    "tier": 2,
+    "category": "grenade",
+    "tags": ["grenade", "defoliant"],
+    "names": {
+      "{{defoliant|defoliant}} grenade mk I": "{{defoliant|고엽제}} 수류탄 mk I",
+      "defoliant grenade mk I": "고엽제 수류탄 mk I"
+    },
+    "description": "A grenade that releases defoliant chemicals.",
+    "description_ko": "고엽제 화학물질을 방출하는 수류탄."
   }
 }

@@ -12,7 +12,7 @@
     "slot": "hand",
     "tags": ["container", "liquid"],
     "names": {
-      "waterskin": "물통"
+      "waterskin": "물주머니"
     },
     "description": "A container for carrying liquids.",
     "description_ko": "액체를 운반하기 위한 용기."

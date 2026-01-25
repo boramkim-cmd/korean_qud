@@ -12,7 +12,10 @@
     "category": "ammo",
     "tags": ["bow", "projectile"],
     "names": {
-      "arrow": "화살"
+      "arrow": "화살",
+      "arrows": "화살",
+      "wooden arrow": "나무 화살",
+      "wooden arrows": "나무 화살"
     },
     "description": "A standard arrow for bows.",
     "description_ko": "활에 사용하는 표준 화살."
@@ -23,10 +26,47 @@
     "category": "ammo",
     "tags": ["bow", "projectile"],
     "names": {
-      "steel arrow": "강철 화살"
+      "steel arrow": "강철 화살",
+      "steel arrows": "강철 화살"
     },
     "description": "A steel-tipped arrow.",
     "description_ko": "강철 촉이 달린 화살."
+  },
+
+  "Iron Arrow": {
+    "tier": 1,
+    "category": "ammo",
+    "tags": ["bow", "projectile"],
+    "names": {
+      "iron arrow": "철 화살",
+      "iron arrows": "철 화살"
+    },
+    "description": "An iron-tipped arrow.",
+    "description_ko": "철 촉이 달린 화살."
+  },
+
+  "Bronze Arrow": {
+    "tier": 1,
+    "category": "ammo",
+    "tags": ["bow", "projectile"],
+    "names": {
+      "bronze arrow": "청동 화살",
+      "bronze arrows": "청동 화살"
+    },
+    "description": "A bronze-tipped arrow.",
+    "description_ko": "청동 촉이 달린 화살."
+  },
+
+  "Carbide Arrow": {
+    "tier": 3,
+    "category": "ammo",
+    "tags": ["bow", "projectile"],
+    "names": {
+      "carbide arrow": "카바이드 화살",
+      "carbide arrows": "카바이드 화살"
+    },
+    "description": "A carbide-tipped arrow.",
+    "description_ko": "카바이드 촉이 달린 화살."
   },
 
   "Lead Slug": {

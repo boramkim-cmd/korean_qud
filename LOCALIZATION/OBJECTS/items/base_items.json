@@ -1,0 +1,145 @@
+{
+  "_meta": {
+    "category": "base_items",
+    "description": "Base item names for prefix/suffix system",
+    "version": "1.0"
+  },
+
+  "BaseArrow": {
+    "names": { "arrow": "화살", "arrows": "화살" }
+  },
+  "BaseTorch": {
+    "names": { "torch": "횃불" }
+  },
+  "BaseVest": {
+    "names": { "vest": "조끼" }
+  },
+  "BaseMask": {
+    "names": { "mask": "마스크", "sap mask": "수액 마스크" }
+  },
+  "BaseSheet": {
+    "names": { "metal sheet": "금속판", "sheet": "판" }
+  },
+  "BaseLens": {
+    "names": { "lens": "렌즈" }
+  },
+  "BaseToolkit": {
+    "names": { "toolkit": "도구함" }
+  },
+  "BaseNugget": {
+    "names": { "nugget": "덩어리" }
+  },
+  "BaseGrenade": {
+    "names": {
+      "grenade": "수류탄",
+      "grenade mk I": "수류탄 Mk I",
+      "grenade mk II": "수류탄 Mk II",
+      "grenade mk III": "수류탄 Mk III"
+    }
+  },
+  "BaseDagger": {
+    "names": { "dagger": "단검" }
+  },
+  "BaseSword": {
+    "names": { "sword": "검", "long sword": "장검", "short sword": "단검" }
+  },
+  "BaseAxe": {
+    "names": { "axe": "도끼", "battle axe": "전투 도끼" }
+  },
+  "BaseSpear": {
+    "names": { "spear": "창" }
+  },
+  "BaseMace": {
+    "names": { "mace": "철퇴" }
+  },
+  "BaseShield": {
+    "names": { "shield": "방패", "buckler": "버클러" }
+  },
+  "BaseHelmet": {
+    "names": { "helmet": "투구", "cap": "모자", "hood": "두건" }
+  },
+  "BaseArmor": {
+    "names": { "armor": "갑옷", "mail": "사슬갑옷", "plate": "판금갑옷" }
+  },
+  "BaseGloves": {
+    "names": { "gloves": "장갑", "gauntlets": "건틀릿" }
+  },
+  "BaseBoots": {
+    "names": { "boots": "장화", "sandals": "샌들", "shoes": "신발" }
+  },
+  "BaseCloak": {
+    "names": { "cloak": "망토", "cape": "케이프" }
+  },
+  "BaseBow": {
+    "names": { "bow": "활", "crossbow": "석궁" }
+  },
+  "BaseRifle": {
+    "names": { "rifle": "소총", "musket": "머스킷" }
+  },
+  "BasePistol": {
+    "names": { "pistol": "권총", "revolver": "리볼버" }
+  },
+  "BaseContainer": {
+    "names": {
+      "waterskin": "물주머니",
+      "canteen": "수통",
+      "jug": "물통",
+      "phial": "약병",
+      "flask": "플라스크"
+    }
+  },
+  "BaseMaterial": {
+    "names": {
+      "ingot": "주괴",
+      "bar": "막대",
+      "ore": "광석",
+      "gem": "보석",
+      "crystal": "수정"
+    }
+  },
+  "BaseFurniture": {
+    "names": {
+      "yurtmat": "유르트 매트",
+      "mat": "매트",
+      "cushion": "쿠션",
+      "floor cushion": "바닥 쿠션"
+    }
+  },
+  "BaseStorage": {
+    "names": {
+      "bodypack": "바디팩",
+      "backpack": "배낭",
+      "sack": "자루",
+      "bag": "가방"
+    }
+  },
+  "BaseMisc": {
+    "names": {
+      "trinket": "장신구",
+      "tube": "튜브",
+      "microchip": "마이크로칩",
+      "bandage": "붕대",
+      "rope": "밧줄",
+      "wire": "철사"
+    }
+  },
+  "BaseClothing": {
+    "names": {
+      "suit": "슈트",
+      "robe": "로브",
+      "hat": "모자",
+      "fur hat": "모피 모자",
+      "turban": "터번"
+    }
+  },
+  "BaseInjector": {
+    "names": {
+      "injector": "주사기"
+    }
+  },
+  "BaseFood": {
+    "names": {
+      "Have-It-All": "만능음식"
+    }
+  }
+}

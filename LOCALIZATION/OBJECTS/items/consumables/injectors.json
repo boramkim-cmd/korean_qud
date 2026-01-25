@@ -2,8 +2,9 @@
   "_meta": {
     "category": "consumables/injectors",
     "description": "Injectors and tonics - medical and combat drugs",
-    "version": "2.0",
-    "updated": "2026-01-22"
+    "version": "2.1",
+    "updated": "2026-01-25",
+    "notes": "Added color tag versions for in-game display"
   },
 
   "Salve Injector": {
@@ -12,6 +13,7 @@
     "slot": "hand",
     "tags": ["injector", "healing"],
     "names": {
+      "{{Y|salve}} injector": "{{Y|연고}} 주사기",
       "salve injector": "연고 주사기"
     },
     "description": "An injector containing healing salve.",
@@ -24,6 +26,7 @@
     "slot": "hand",
     "tags": ["injector", "healing", "rare"],
     "names": {
+      "{{ubernostrum|ubernostrum}} injector": "{{ubernostrum|우버노스트룸}} 주사기",
       "ubernostrum injector": "우버노스트룸 주사기"
     },
     "description": "A powerful healing injector.",
@@ -36,10 +39,24 @@
     "slot": "hand",
     "tags": ["injector", "combat", "fire"],
     "names": {
+      "{{blaze|blaze}} injector": "{{blaze|블레이즈}} 주사기",
       "blaze injector": "블레이즈 주사기"
     },
     "description": "An injector that grants fire resistance.",
     "description_ko": "화염 저항을 부여하는 주사기."
+  },
+
+  "Love Injector": {
+    "tier": 4,
+    "category": "consumable",
+    "slot": "hand",
+    "tags": ["injector", "social"],
+    "names": {
+      "{{love|love}} injector": "{{love|사랑}} 주사기",
+      "love injector": "사랑 주사기"
+    },
+    "description": "An injector that makes creatures friendly.",
+    "description_ko": "생물을 우호적으로 만드는 주사기."
   },
 
   "Shade Oil Injector": {
@@ -48,10 +65,50 @@
     "slot": "hand",
     "tags": ["injector", "stealth"],
     "names": {
+      "{{shade|shade oil}} injector": "{{shade|그림자 기름}} 주사기",
       "shade oil injector": "그림자 기름 주사기"
     },
     "description": "An injector that enhances stealth.",
     "description_ko": "은신 능력을 향상시키는 주사기."
+  },
+
+  "Skulk Injector": {
+    "tier": 4,
+    "category": "consumable",
+    "slot": "hand",
+    "tags": ["injector", "stealth"],
+    "names": {
+      "{{skulk|skulk}} injector": "{{skulk|스컬크}} 주사기",
+      "skulk injector": "스컬크 주사기"
+    },
+    "description": "An injector that enhances sneaking ability.",
+    "description_ko": "잠행 능력을 향상시키는 주사기."
+  },
+
+  "Sphynx Salt Injector": {
+    "tier": 5,
+    "category": "consumable",
+    "slot": "hand",
+    "tags": ["injector", "mental"],
+    "names": {
+      "{{sphynx|sphynx}} {{Y|salt}} injector": "{{sphynx|스핑크스}} {{Y|소금}} 주사기",
+      "sphynx salt injector": "스핑크스 소금 주사기"
+    },
+    "description": "An injector containing crystallized psychic salt.",
+    "description_ko": "결정화된 정신적 소금이 담긴 주사기."
+  },
+
+  "Hulk Honey Injector": {
+    "tier": 5,
+    "category": "consumable",
+    "slot": "hand",
+    "tags": ["injector", "strength"],
+    "names": {
+      "{{G|hulk}} {{w|honey}} injector": "{{G|헐크}} {{w|꿀}} 주사기",
+      "hulk honey injector": "헐크 꿀 주사기"
+    },
+    "description": "An injector containing mutant bee honey.",
+    "description_ko": "돌연변이 벌꿀이 담긴 주사기."
   },
 
   "Eater's Nectar Injector": {
@@ -60,6 +117,8 @@
     "slot": "hand",
     "tags": ["injector", "rare", "mutation"],
     "names": {
+      "{{eater|Eaters'}} {{nectar|nectar}} injector": "{{eater|식자의}} {{nectar|넥타}} 주사기",
+      "Eaters' nectar injector": "식자의 넥타 주사기",
       "Eater's nectar injector": "식자의 넥타 주사기"
     },
     "description": "A rare injector containing the nectar of Eaters.",
@@ -72,10 +131,24 @@
     "slot": "hand",
     "tags": ["injector", "defense"],
     "names": {
+      "{{rubbergum|rubbergum}} injector": "{{rubbergum|러버검}} 주사기",
       "rubbergum injector": "러버검 주사기"
     },
     "description": "An injector that makes flesh rubbery and flexible.",
     "description_ko": "살을 고무처럼 유연하게 만드는 주사기."
+  },
+
+  "Empty Injector": {
+    "tier": 0,
+    "category": "consumable",
+    "slot": "hand",
+    "tags": ["injector", "empty"],
+    "names": {
+      "{{K|empty}} injector": "{{K|빈}} 주사기",
+      "empty injector": "빈 주사기"
+    },
+    "description": "An empty injector.",
+    "description_ko": "빈 주사기."
   },
 
   "Desalination Pill": {

@@ -1,6 +1,6 @@
 # 📚 프로젝트 완전 인덱스 (자동 생성)
 
-**생성**: 2026-01-24 21:58:08
+**생성**: 2026-01-25 11:26:24
 
 이 문서는 프로젝트의 모든 파일과 메서드 시그니처를 포함합니다. **새로운 기능을 만들기 전, 반드시 여기서 기존 메서드를 검색하십시오.**
 
@@ -192,6 +192,21 @@
 - **공개 메서드 (Public Methods)**:
   ```csharp
   void DestroyOverlay()
+  ```
+
+### `Scripts/02_Patches/10_UI/02_10_12_Skills.cs`
+- **역할**: SkillFactory에서 로드된 스킬/파워의 이름과 설명을 번역합니다.
+- **Namespace**: `QudKRTranslation.Patches.UI`
+- **공개 메서드 (Public Methods)**:
+  ```csharp
+  void EnsureLoaded()
+  void Reload()
+  string GetSkillName(string englishName)
+  string GetSkillDescription(string englishDesc)
+  string GetPowerName(string englishName)
+  string GetPowerDescription(string powerKey)
+  bool TryGetPowerName(string englishName, out string korean)
+  bool TryGetPowerDescription(string powerKey, out string korean)
   ```
 
 ### `Scripts/02_Patches/10_UI/02_10_15_EmbarkOverlay.cs`

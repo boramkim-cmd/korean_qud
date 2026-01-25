@@ -1,6 +1,6 @@
 # 🚀 프로젝트 빠른 참조 (자동 생성)
 
-**생성**: 2026-01-24 21:58:08
+**생성**: 2026-01-25 11:26:24
 
 ## ⭐ 핵심 경로
 ```
@@ -16,6 +16,7 @@ LOCALIZATION/**/*.json              → 용어집 데이터
 - `03_explore.json`: 33개 항목
 - `04_surface.json`: 27개 항목
 - `05_joppa.json`: 11개 항목
+- `Acrobatics.json`: 5개 항목
 - `Adrenal_Control.json`: 1개 항목
 - `Air_Current_Microsensor.json`: 1개 항목
 - `Albino.json`: 1개 항목
@@ -26,6 +27,7 @@ LOCALIZATION/**/*.json              → 용어집 데이터
 - `Apostle.json`: 1개 항목
 - `Arconaut.json`: 1개 항목
 - `Artifex.json`: 1개 항목
+- `Axe.json`: 8개 항목
 - `Beak.json`: 1개 항목
 - `Beautiful_Visage.json`: 1개 항목
 - `Beguiling.json`: 1개 항목
@@ -35,6 +37,7 @@ LOCALIZATION/**/*.json              → 용어집 데이터
 - `Bionic_Heart.json`: 1개 항목
 - `Bionic_Liver.json`: 1개 항목
 - `Blinking_Tic.json`: 1개 항목
+- `Bow_and_Rifle.json`: 10개 항목
 - `Brittle_Bones.json`: 1개 항목
 - `Burgeoning.json`: 1개 항목
 - `Burrowing_Claws.json`: 1개 항목
@@ -55,10 +58,13 @@ LOCALIZATION/**/*.json              → 용어집 데이터
 - `Communications_Interlock.json`: 1개 항목
 - `Confusion.json`: 1개 항목
 - `Consul.json`: 1개 항목
+- `Cooking_and_Gathering.json`: 6개 항목
 - `Corrosive_Gas_Generation.json`: 1개 항목
 - `Cryokinesis.json`: 1개 항목
 - `Crysteel_Hand_Bones.json`: 1개 항목
+- `Cudgel.json`: 7개 항목
 - `Custom_Visage.json`: 1개 항목
+- `Customs_and_Folklore.json`: 3개 항목
 - `Dermal_Insulation.json`: 1개 항목
 - `Dermal_Plating.json`: 1개 항목
 - `Disintegration.json`: 1개 항목
@@ -71,6 +77,7 @@ LOCALIZATION/**/*.json              → 용어집 데이터
 - `Electromagnetic_Impulse.json`: 1개 항목
 - `Electromagnetic_Pulse.json`: 1개 항목
 - `Electromagnetic_Sensor.json`: 1개 항목
+- `Endurance.json`: 8개 항목
 - `Equipment_Rack.json`: 1개 항목
 - `Esper.json`: 1개 항목
 - `Eunuch.json`: 1개 항목
@@ -89,6 +96,7 @@ LOCALIZATION/**/*.json              → 용어집 데이터
 - `Grounding_Shunts.json`: 1개 항목
 - `Gun_Rack.json`: 1개 항목
 - `Gunslinger.json`: 1개 항목
+- `Heavy_Weapon.json`: 4개 항목
 - `Heightened_Hearing.json`: 1개 항목
 - `Heightened_Speed.json`: 1개 항목
 - `High-Fidelity_Matter_Recompositer.json`: 1개 항목
@@ -103,6 +111,7 @@ LOCALIZATION/**/*.json              → 용어집 데이터
 - `Irritable_Genome.json`: 1개 항목
 - `Kindle.json`: 1개 항목
 - `Light_Manipulation.json`: 1개 항목
+- `Long_Blade.json`: 9개 항목
 - `Magnetic_Core.json`: 1개 항목
 - `Marauder.json`: 1개 항목
 - `Mass_Mind.json`: 1개 항목
@@ -113,6 +122,7 @@ LOCALIZATION/**/*.json              → 용어집 데이터
 - `Motorized_Treads.json`: 1개 항목
 - `Multiple_Arms.json`: 1개 항목
 - `Multiple_Legs.json`: 1개 항목
+- `Multiweapon_Fighting.json`: 5개 항목
 - `Mutated_Human.json`: 1개 항목
 - `Myopic.json`: 1개 항목
 - `Narcolepsy.json`: 1개 항목
@@ -129,11 +139,14 @@ LOCALIZATION/**/*.json              → 용어집 데이터
 - `Parabolic_Muscular_Subroutine.json`: 1개 항목
 - `Penetrating_Radar.json`: 1개 항목
 - `Pentaceps.json`: 1개 항목
+- `Persuasion.json`: 7개 항목
 - `Phase-Adaptive_Scope.json`: 1개 항목
 - `Phase_Harmonic_Modulator.json`: 1개 항목
 - `Phasing.json`: 1개 항목
 - `Photosynthetic_Skin.json`: 1개 항목
+- `Physic.json`: 5개 항목
 - `Pilgrim.json`: 1개 항목
+- `Pistol.json`: 9개 항목
 - `Pneumatic_Pistons.json`: 1개 항목
 - `Praetorian.json`: 1개 항목
 - `Precision_Force_Lathe.json`: 1개 항목
@@ -152,7 +165,11 @@ LOCALIZATION/**/*.json              → 용어집 데이터
 - `Schemasoft_2.json`: 1개 항목
 - `Scholar.json`: 1개 항목
 - `Security_Interlock.json`: 1개 항목
+- `Self_Discipline.json`: 7개 항목
 - `Sense_Psychic.json`: 1개 항목
+- `Shield.json`: 7개 항목
+- `Short_Blade.json`: 8개 항목
+- `Single_Weapon_Fighting.json`: 5개 항목
 - `Skillsoft_1.json`: 1개 항목
 - `Skillsoft_2.json`: 1개 항목
 - `Skin_Glitter_1.json`: 1개 항목
@@ -174,6 +191,7 @@ LOCALIZATION/**/*.json              → 용어집 데이터
 - `Sunder_Mind.json`: 1개 항목
 - `Syphon_Vim.json`: 1개 항목
 - `Syzygyrior.json`: 1개 항목
+- `Tactics.json`: 6개 항목
 - `Telepathy.json`: 1개 항목
 - `Teleport_Other.json`: 1개 항목
 - `Teleportation.json`: 1개 항목
@@ -182,6 +200,7 @@ LOCALIZATION/**/*.json              → 용어집 데이터
 - `Tibular_Hydrojets.json`: 1개 항목
 - `Time_Dilation.json`: 1개 항목
 - `Tinker.json`: 1개 항목
+- `Tinkering.json`: 11개 항목
 - `Tonic_Allergy.json`: 1개 항목
 - `Translucent_Skin.json`: 1개 항목
 - `Transparent_Skin.json`: 1개 항목
@@ -194,68 +213,75 @@ LOCALIZATION/**/*.json              → 용어집 데이터
 - `Warden.json`: 1개 항목
 - `Water_Merchant.json`: 1개 항목
 - `Watervine_Farmer.json`: 1개 항목
+- `Wayfaring.json`: 12개 항목
 - `Wings.json`: 1개 항목
 - `_common.json`: 62개 항목
-- `ammo.json`: 41개 항목
-- `ants.json`: 10개 항목
+- `ammo.json`: 59개 항목
+- `ants.json`: 98개 항목
 - `attributes.json`: 7개 항목
-- `axes.json`: 39개 항목
-- `back.json`: 53개 항목
+- `axes.json`: 174개 항목
+- `back.json`: 117개 항목
+- `base_items.json`: 34개 항목
 - `bats.json`: 14개 항목
-- `beetles.json`: 10개 항목
+- `beetles.json`: 108개 항목
 - `birds.json`: 29개 항목
-- `blades.json`: 67개 항목
-- `body.json`: 53개 항목
+- `blades.json`: 145개 항목
+- `body.json`: 159개 항목
 - `books.json`: 35개 항목
-- `bows.json`: 18개 항목
+- `bows.json`: 83개 항목
 - `cats.json`: 18개 항목
 - `cells.json`: 60개 항목
 - `common.json`: 192개 항목
-- `crabs.json`: 10개 항목
-- `cudgels.json`: 60개 항목
+- `containers.json`: 66개 항목
+- `crabs.json`: 94개 항목
+- `cudgels.json`: 243개 항목
 - `cybernetics.json`: 60개 항목
+- `decoration.json`: 78개 항목
 - `descriptions.json`: 25개 항목
 - `display.json`: 32개 항목
+- `doors.json`: 86개 항목
 - `drinks.json`: 60개 항목
 - `dromad.json`: 10개 항목
 - `drones.json`: 52개 항목
-- `face.json`: 53개 항목
+- `face.json`: 117개 항목
 - `factions.json`: 53개 항목
 - `farmers.json`: 29개 항목
-- `feet.json`: 46개 항목
+- `feet.json`: 125개 항목
 - `fish.json`: 10개 항목
-- `food.json`: 102개 항목
+- `food.json`: 790개 항목
 - `fungi.json`: 10개 항목
 - `glossary_worldgen.json`: 40개 항목
-- `goatfolk.json`: 28개 항목
-- `grenades.json`: 74개 항목
-- `guns.json`: 53개 항목
-- `hands.json`: 39개 항목
-- `head.json`: 46개 항목
+- `goatfolk.json`: 102개 항목
+- `grenades.json`: 397개 항목
+- `guns.json`: 186개 항목
+- `hands.json`: 118개 항목
+- `head.json`: 139개 항목
+- `hidden.json`: 120개 항목
 - `hindren.json`: 10개 항목
-- `hoppers.json`: 10개 항목
-- `injectors.json`: 53개 항목
+- `hoppers.json`: 82개 항목
+- `injectors.json`: 89개 항목
 - `jells.json`: 46개 항목
 - `joppa.json`: 86개 항목
+- `lighting.json`: 66개 항목
 - `locations.json`: 22개 항목
-- `long_blades.json`: 81개 항목
-- `mammals.json`: 70개 항목
+- `long_blades.json`: 180개 항목
+- `mammals.json`: 196개 항목
 - `messages.json`: 71개 항목
 - `misc.json`: 53개 항목
 - `modes.json`: 6개 항목
-- `moths.json`: 22개 항목
+- `moths.json`: 116개 항목
 - `naphtaali.json`: 16개 항목
 - `options.json`: 454개 항목
-- `others.json`: 28개 항목
+- `others.json`: 180개 항목
 - `relics.json`: 60개 항목
 - `reptiles.json`: 29개 항목
 - `seedsprout.json`: 17개 항목
-- `skills.json`: 223개 항목
 - `snapjaws.json`: 124개 항목
 - `spears.json`: 67개 항목
-- `spiders.json`: 20개 항목
+- `spiders.json`: 132개 항목
 - `stats.json`: 2개 항목
 - `svardym.json`: 28개 항목
+- `tech.json`: 72개 항목
 - `templars.json`: 22개 항목
 - `terms.json`: 35개 항목
 - `tools.json`: 60개 항목
@@ -263,7 +289,11 @@ LOCALIZATION/**/*.json              → 용어집 데이터
 - `tutorial.json`: 21개 항목
 - `ui.json`: 8개 항목
 - `vines.json`: 16개 항목
-- `worms.json`: 34개 항목
+- `walls.json`: 132개 항목
+- `widgets.json`: 174개 항목
+- `world.json`: 106개 항목
+- `worms.json`: 130개 항목
+- `zone.json`: 206개 항목
 
 ## ⛔ 절대 금지 (DO NOT)
 ```

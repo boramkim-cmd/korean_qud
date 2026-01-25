@@ -1,5 +1,5 @@
 {
-  "generated": "2026-01-24 21:58:08",
+  "generated": "2026-01-25 11:26:24",
   "scripts": {
     "Scripts/99_Utils/99_00_03_StructureTranslator.cs": {
       "classification": "Util",
@@ -453,6 +453,57 @@
         }
       ]
     },
+    "Scripts/02_Patches/10_UI/02_10_12_Skills.cs": {
+      "classification": "UI Patch",
+      "role": "SkillFactory에서 로드된 스킬/파워의 이름과 설명을 번역합니다.",
+      "namespace": "QudKRTranslation.Patches.UI",
+      "classes": [
+        "SkillLocalizationManager",
+        "Patch_SkillFactory"
+      ],
+      "methods": [
+        {
+          "name": "EnsureLoaded",
+          "return": "void",
+          "params": ""
+        },
+        {
+          "name": "Reload",
+          "return": "void",
+          "params": ""
+        },
+        {
+          "name": "GetSkillName",
+          "return": "string",
+          "params": "string englishName"
+        },
+        {
+          "name": "GetSkillDescription",
+          "return": "string",
+          "params": "string englishDesc"
+        },
+        {
+          "name": "GetPowerName",
+          "return": "string",
+          "params": "string englishName"
+        },
+        {
+          "name": "GetPowerDescription",
+          "return": "string",
+          "params": "string powerKey"
+        },
+        {
+          "name": "TryGetPowerName",
+          "return": "bool",
+          "params": "string englishName, out string korean"
+        },
+        {
+          "name": "TryGetPowerDescription",
+          "return": "bool",
+          "params": "string powerKey, out string korean"
+        }
+      ]
+    },
     "Scripts/02_Patches/10_UI/02_10_08_Status.cs": {
       "classification": "UI Patch",
       "role": "상태창(인벤토리, 장비, 캐릭터 시트 등 포함)이 열릴 때",
@@ -686,7 +737,7 @@
   },
   "docs": {
     "MASTER.md": {
-      "modified": "2026-01-24"
+      "modified": "2026-01-25"
     },
     "README.md": {
       "modified": "2026-01-24"
@@ -776,6 +827,80 @@
       ],
       "entries": 7
     },
+    "hidden.json": {
+      "categories": [
+        "_meta",
+        "Ehalcodon",
+        "Starprint Hoof",
+        "Prism Girshling",
+        "Prism Girshling Cresh",
+        "Circle of Light Ehalcodon",
+        "Shrine to the Great Machine",
+        "Globe in Suspense",
+        "Tethering Arm",
+        "Graphene Ribbon",
+        "TerrainCosmos",
+        "TerrainWorld",
+        "TerrainHalo",
+        "TerrainExtrasolarFungi",
+        "TerrainSolarRibbon",
+        "TerrainSpindleTether",
+        "TerrainArrivarium",
+        "TerrainEarthGate",
+        "TerrainTifaret",
+        "Mover Rail",
+        "Mover Stop"
+      ],
+      "entries": 120
+    },
+    "widgets.json": {
+      "categories": [
+        "_meta",
+        "Widget",
+        "ZoneMusic",
+        "AmbientLight",
+        "SpindleLight",
+        "DaylightWidget",
+        "HolyPlaceWidget",
+        "Trashy",
+        "Dirty",
+        "Flowery",
+        "Mushroomy",
+        "Grassy",
+        "Rocky",
+        "Kelpy",
+        "ConcreteFloor",
+        "BlueTile",
+        "RedTile",
+        "GreenTile",
+        "WhiteTile",
+        "BlackTile",
+        "WoodFloor",
+        "MarbleFloor",
+        "SandFloor",
+        "WaterDropper",
+        "AcidDropper",
+        "SlimeDropper",
+        "TorchPlacer",
+        "RuinedWalls",
+        "CrumblingWalls",
+        "VineCoveredWalls",
+        "WeatheredFloor",
+        "BloodSplatter",
+        "CorpsePile",
+        "BonePile",
+        "FurniturePopulator",
+        "CreaturePopulator",
+        "LootPopulator",
+        "SecretDoorPlacer",
+        "TrapPlacer",
+        "FogEffect",
+        "RainEffect",
+        "SnowEffect",
+        "StormEffect"
+      ],
+      "entries": 174
+    },
     "cybernetics.json": {
       "categories": [
         "_meta",
@@ -802,23 +927,6 @@
         "system"
       ],
       "entries": 71
-    },
-    "skills.json": {
-      "categories": [
-        "skill",
-        "power_axe_desc",
-        "power_general",
-        "power_general_desc",
-        "power_pistol",
-        "power_pistol_desc",
-        "power_tinkering",
-        "power_tinkering_desc",
-        "power_wayfaring",
-        "power_wayfaring_desc",
-        "skill_desc",
-        "powers"
-      ],
-      "entries": 223
     },
     "03_explore.json": {
       "categories": [
@@ -866,6 +974,186 @@
         "tutorial_intro"
       ],
       "entries": 5
+    },
+    "Wayfaring.json": {
+      "categories": [
+        "names",
+        "description",
+        "description_ko",
+        "powers"
+      ],
+      "entries": 12
+    },
+    "Customs_and_Folklore.json": {
+      "categories": [
+        "names",
+        "description",
+        "description_ko",
+        "powers"
+      ],
+      "entries": 3
+    },
+    "Self_Discipline.json": {
+      "categories": [
+        "names",
+        "description",
+        "description_ko",
+        "powers"
+      ],
+      "entries": 7
+    },
+    "Multiweapon_Fighting.json": {
+      "categories": [
+        "names",
+        "description",
+        "description_ko",
+        "powers"
+      ],
+      "entries": 5
+    },
+    "Pistol.json": {
+      "categories": [
+        "names",
+        "description",
+        "description_ko",
+        "powers"
+      ],
+      "entries": 9
+    },
+    "Tinkering.json": {
+      "categories": [
+        "names",
+        "description",
+        "description_ko",
+        "powers"
+      ],
+      "entries": 11
+    },
+    "Single_Weapon_Fighting.json": {
+      "categories": [
+        "names",
+        "description",
+        "description_ko",
+        "powers"
+      ],
+      "entries": 5
+    },
+    "Long_Blade.json": {
+      "categories": [
+        "names",
+        "description",
+        "description_ko",
+        "powers"
+      ],
+      "entries": 9
+    },
+    "Physic.json": {
+      "categories": [
+        "names",
+        "description",
+        "description_ko",
+        "powers"
+      ],
+      "entries": 5
+    },
+    "Shield.json": {
+      "categories": [
+        "names",
+        "description",
+        "description_ko",
+        "powers"
+      ],
+      "entries": 7
+    },
+    "Short_Blade.json": {
+      "categories": [
+        "names",
+        "description",
+        "description_ko",
+        "powers"
+      ],
+      "entries": 8
+    },
+    "Cooking_and_Gathering.json": {
+      "categories": [
+        "names",
+        "description",
+        "description_ko",
+        "powers"
+      ],
+      "entries": 6
+    },
+    "Persuasion.json": {
+      "categories": [
+        "names",
+        "description",
+        "description_ko",
+        "powers"
+      ],
+      "entries": 7
+    },
+    "Endurance.json": {
+      "categories": [
+        "names",
+        "description",
+        "description_ko",
+        "powers"
+      ],
+      "entries": 8
+    },
+    "Acrobatics.json": {
+      "categories": [
+        "names",
+        "description",
+        "description_ko",
+        "powers"
+      ],
+      "entries": 5
+    },
+    "Bow_and_Rifle.json": {
+      "categories": [
+        "names",
+        "description",
+        "description_ko",
+        "powers"
+      ],
+      "entries": 10
+    },
+    "Tactics.json": {
+      "categories": [
+        "names",
+        "description",
+        "description_ko",
+        "powers"
+      ],
+      "entries": 6
+    },
+    "Heavy_Weapon.json": {
+      "categories": [
+        "names",
+        "description",
+        "description_ko",
+        "powers"
+      ],
+      "entries": 4
+    },
+    "Cudgel.json": {
+      "categories": [
+        "names",
+        "description",
+        "description_ko",
+        "powers"
+      ],
+      "entries": 7
+    },
+    "Axe.json": {
+      "categories": [
+        "names",
+        "description",
+        "description_ko",
+        "powers"
+      ],
+      "entries": 8
     },
     "Clairvoyance.json": {
       "categories": [
@@ -2541,6 +2829,262 @@
       ],
       "entries": 1
     },
+    "decoration.json": {
+      "categories": [
+        "_meta",
+        "Statue",
+        "Marble Dais",
+        "Sacred Well",
+        "Bell of Rest",
+        "Sign",
+        "Poster",
+        "Tapestry",
+        "Hologram",
+        "Rug",
+        "Monument",
+        "Tombstone",
+        "Sarcophagus"
+      ],
+      "entries": 78
+    },
+    "misc.json": {
+      "categories": [
+        "_meta",
+        "Waterskin",
+        "Canteen",
+        "Prayer Book",
+        "Technical Manual",
+        "Cracked Security Disc",
+        "Data Disc",
+        "Recall Recoiler"
+      ],
+      "entries": 53
+    },
+    "tech.json": {
+      "categories": [
+        "_meta",
+        "Communications Panel",
+        "Switch",
+        "Control Switch",
+        "Chrome Platform",
+        "Power Conduit",
+        "Generator",
+        "Solar Collector",
+        "Terminal",
+        "Recharging Station",
+        "Data Terminal",
+        "Mainframe Panel"
+      ],
+      "entries": 72
+    },
+    "containers.json": {
+      "categories": [
+        "_meta",
+        "Chest",
+        "Metal Chest",
+        "Bookshelf",
+        "Crate",
+        "Barrel",
+        "Locker",
+        "Footlocker",
+        "Storage Tank",
+        "Cabinet",
+        "Shelf"
+      ],
+      "entries": 66
+    },
+    "lighting.json": {
+      "categories": [
+        "_meta",
+        "Torch Sconce",
+        "Campfire",
+        "Brazier",
+        "Glowsphere",
+        "Luminous Hoarshroom",
+        "Lantern",
+        "Oil Lamp",
+        "Candle",
+        "Holographic Light",
+        "Bioluminescent Panel"
+      ],
+      "entries": 66
+    },
+    "doors.json": {
+      "categories": [
+        "_meta",
+        "Archway",
+        "Door",
+        "Windowed Door",
+        "Striped Door",
+        "Wavy Door",
+        "Metal Door",
+        "Double Door",
+        "Glass Door",
+        "Tinted Glass Door",
+        "Security Door",
+        "Red Security Door",
+        "Yellow Security Door",
+        "Green Security Door",
+        "Blue Security Door",
+        "Purple Security Door"
+      ],
+      "entries": 86
+    },
+    "zone.json": {
+      "categories": [
+        "_meta",
+        "Floor",
+        "Dirt",
+        "Grass",
+        "Sand",
+        "Salt",
+        "Mud",
+        "Stone Floor",
+        "Brick Floor",
+        "Metal Floor",
+        "Rubble",
+        "Shallow Water",
+        "Deep Water",
+        "Freshwater Pool",
+        "Saltwater Pool",
+        "Acid Pool",
+        "Lava Pool",
+        "Pit",
+        "Chasm",
+        "Stairs Up",
+        "Stairs Down",
+        "Ladder Up",
+        "Ladder Down",
+        "Fungal Floor",
+        "Slime Floor",
+        "Carpet",
+        "Ice",
+        "Snow",
+        "Ash",
+        "Gravel",
+        "Cobblestone",
+        "Marble Floor",
+        "Wood Floor",
+        "Oil Pool",
+        "Tar Pool",
+        "Honey Pool",
+        "Wine Pool",
+        "Poison Pool",
+        "Blood Pool",
+        "Fungal Growth",
+        "Moss",
+        "Vine Floor",
+        "Crystal Floor",
+        "Tech Floor",
+        "Holographic Floor",
+        "Force Field Floor",
+        "Sludge Pool",
+        "Quicksand",
+        "Rope Bridge",
+        "Stone Bridge",
+        "Metal Bridge"
+      ],
+      "entries": 206
+    },
+    "world.json": {
+      "categories": [
+        "_meta",
+        "Terrain",
+        "TerrainDesertCanyon",
+        "TerrainSaltmarsh",
+        "TerrainSaltdunes",
+        "TerrainFlowerfields",
+        "TerrainJungle",
+        "TerrainDeepJungle",
+        "TerrainFungal",
+        "TerrainMoonStair",
+        "TerrainHills",
+        "TerrainMountains",
+        "TerrainCraters",
+        "TerrainRuins",
+        "TerrainBaroqueRuins",
+        "TerrainLake",
+        "TerrainRiver",
+        "TerrainOcean",
+        "TerrainPallidReef",
+        "TerrainAsphaltMines"
+      ],
+      "entries": 106
+    },
+    "walls.json": {
+      "categories": [
+        "_meta",
+        "Wall",
+        "Rock Wall",
+        "Stone Wall",
+        "Brick Wall",
+        "Metal Wall",
+        "Wood Wall",
+        "Mud Wall",
+        "Granite Wall",
+        "Marble Wall",
+        "Black Marble",
+        "Crystal Wall",
+        "Glass Wall",
+        "Circuit Wall",
+        "Cyber Wall",
+        "Secure Wall",
+        "Fluted Wall",
+        "Bone Wall",
+        "Flower Wall",
+        "Scale Wall",
+        "Mushroom Flesh",
+        "Plant Wall",
+        "Sandstone",
+        "Limestone",
+        "Shale",
+        "Basalt",
+        "Quartzite",
+        "Halite",
+        "Marl",
+        "Mudroot",
+        "Fulcrete",
+        "Mainframe Wall"
+      ],
+      "entries": 132
+    },
+    "base_items.json": {
+      "categories": [
+        "_meta",
+        "BaseArrow",
+        "BaseTorch",
+        "BaseVest",
+        "BaseMask",
+        "BaseSheet",
+        "BaseLens",
+        "BaseToolkit",
+        "BaseNugget",
+        "BaseGrenade",
+        "BaseDagger",
+        "BaseSword",
+        "BaseAxe",
+        "BaseSpear",
+        "BaseMace",
+        "BaseShield",
+        "BaseHelmet",
+        "BaseArmor",
+        "BaseGloves",
+        "BaseBoots",
+        "BaseCloak",
+        "BaseBow",
+        "BaseRifle",
+        "BasePistol",
+        "BaseContainer",
+        "BaseMaterial",
+        "BaseFurniture",
+        "BaseStorage",
+        "BaseMisc",
+        "BaseClothing",
+        "BaseInjector",
+        "BaseFood"
+      ],
+      "entries": 34
+    },
     "tutorial.json": {
       "categories": [
         "_meta",
@@ -2557,11 +3101,24 @@
       "categories": [
         "_meta",
         "Goatfolk",
+        "Goatfolk Corpse",
         "Goatfolk Sower",
         "Goatfolk Shaman",
-        "Goatfolk Yurtwarden"
+        "Goatfolk Yurtwarden",
+        "Goatfolk Pilgrim",
+        "Goatfolk Bully",
+        "Goatfolk Slaver",
+        "Goatfolk Slave",
+        "Goatfolk Omen",
+        "Goatfolk Savage",
+        "Goatfolk Chieftain",
+        "Goatfolk Harbinger",
+        "Goatfolk Worshipper",
+        "Goatfolk Hunter",
+        "Goatfolk Hero 0",
+        "Goatfolk Hero 1"
       ],
-      "entries": 28
+      "entries": 102
     },
     "snapjaws.json": {
       "categories": [
@@ -2640,11 +3197,40 @@
       "categories": [
         "_meta",
         "Cannibal",
+        "Cannibal Corpse",
         "Mechanimist",
+        "Mechanimist Corpse",
         "Woodsprog",
-        "Dawning Ape"
+        "Woodsprog Corpse",
+        "Dawning Ape",
+        "Dawning Ape Corpse",
+        "Baetyl",
+        "Rainbow Baetyl",
+        "Troll",
+        "Troll Corpse",
+        "Troll King",
+        "Golem",
+        "Stone Golem",
+        "Stone Golem Corpse",
+        "Clay Golem",
+        "Iron Golem",
+        "Crysteel Golem",
+        "Chrome Pyramid",
+        "Chrome Pyramid Corpse",
+        "Albino Ape",
+        "Albino Ape Corpse",
+        "Ogre Ape",
+        "Ogre Ape Corpse",
+        "Girshling",
+        "Girshling Corpse",
+        "Putus Templar",
+        "Putus Templar Corpse",
+        "Mamon",
+        "Crazed Hermit",
+        "Urshiib",
+        "Urshiib Corpse"
       ],
-      "entries": 28
+      "entries": 180
     },
     "hindren.json": {
       "categories": [
@@ -2760,9 +3346,34 @@
         "Hulking Baboon",
         "Shrewd Baboon",
         "Baboon Hero 1",
-        "Equimax"
+        "Equimax",
+        "Equimax Corpse",
+        "Goat",
+        "Goat Corpse",
+        "Wild Goat",
+        "Mountain Goat",
+        "Dawnglider",
+        "Dawnglider Corpse",
+        "Dog",
+        "Dog Corpse",
+        "Hyena",
+        "Hyena Corpse",
+        "Dire Wolf",
+        "Dire Wolf Corpse",
+        "Black Puma",
+        "Black Puma Corpse",
+        "Rhinox",
+        "Rhinox Corpse",
+        "Rat",
+        "Rat Corpse",
+        "Giant Rat",
+        "Giant Rat Corpse",
+        "Rabbit",
+        "Rabbit Corpse",
+        "Bop",
+        "Bop Corpse"
       ],
-      "entries": 70
+      "entries": 196
     },
     "cats.json": {
       "categories": [
@@ -2778,57 +3389,177 @@
         "_meta",
         "Cave Spider",
         "Cave Spider Corpse",
-        "Electrofuge"
+        "Electrofuge",
+        "Electrofuge Corpse",
+        "Trapdoor Spider",
+        "Trapdoor Spider Corpse",
+        "Wolf Spider",
+        "Wolf Spider Corpse",
+        "Giant Spider",
+        "Giant Spider Corpse",
+        "Phase Spider",
+        "Phase Spider Corpse",
+        "Orb Weaver",
+        "Orb Weaver Corpse",
+        "Jumping Spider",
+        "Tarantula",
+        "Tarantula Corpse",
+        "Widow Spider",
+        "Widow Spider Corpse",
+        "Scorpion",
+        "Scorpion Corpse",
+        "Giant Scorpion",
+        "Giant Scorpion Corpse",
+        "Scorpiock",
+        "Scorpiock Corpse"
       ],
-      "entries": 20
+      "entries": 132
     },
     "crabs.json": {
       "categories": [
         "_meta",
-        "Eyeless Crab"
+        "Eyeless Crab",
+        "Eyeless Crab Corpse",
+        "Eyeless King Crab",
+        "Eyeless King Crab Corpse",
+        "Cave Spider Crab",
+        "Cave Spider Crab Corpse",
+        "Hermit Crab",
+        "Giant Hermit Crab",
+        "Giant Hermit Crab Corpse",
+        "Mud Crab",
+        "Rock Crab",
+        "Snapping Crab",
+        "Coral Crab",
+        "Crab Swarm",
+        "Albino Crab",
+        "Glowing Crab"
       ],
-      "entries": 10
+      "entries": 94
     },
     "hoppers.json": {
       "categories": [
         "_meta",
-        "Salthopper"
+        "Salthopper",
+        "Salthopper Corpse",
+        "Grasshopper",
+        "Giant Grasshopper",
+        "Giant Grasshopper Corpse",
+        "Locust",
+        "Locust Swarm",
+        "Spark Tick",
+        "Spark Tick Corpse",
+        "Flea",
+        "Giant Flea",
+        "Giant Flea Corpse",
+        "Cricket",
+        "Mole Cricket"
       ],
-      "entries": 10
+      "entries": 82
     },
     "worms.json": {
       "categories": [
         "_meta",
         "Knollworm",
+        "Knollworm Corpse",
         "Leech",
+        "Leech Corpse",
         "Seedsprout Worm",
         "Segmented Mirthworm",
-        "Agolmaggot"
+        "Agolmaggot",
+        "Agolmaggot Corpse",
+        "Earthworm",
+        "Giant Earthworm",
+        "Giant Earthworm Corpse",
+        "Sandworm",
+        "Sandworm Corpse",
+        "Rot Grub",
+        "Rot Grub Corpse",
+        "Brain Worm",
+        "Brain Worm Corpse",
+        "Glowworm",
+        "Carrion Worm",
+        "Carrion Worm Corpse",
+        "Voider",
+        "Voider Corpse",
+        "Giant Leech",
+        "Giant Leech Corpse"
       ],
-      "entries": 34
+      "entries": 130
     },
     "moths.json": {
       "categories": [
         "_meta",
         "Glowmoth",
+        "Glowmoth Corpse",
         "Agolfly",
-        "Plasmafly"
+        "Agolfly Corpse",
+        "Plasmafly",
+        "Plasmafly Corpse",
+        "Moth",
+        "Giant Moth",
+        "Giant Moth Corpse",
+        "Silkmoth",
+        "Death's Head Moth",
+        "Dragonfly",
+        "Giant Dragonfly",
+        "Giant Dragonfly Corpse",
+        "Wasp",
+        "Wasp Corpse",
+        "Giant Wasp",
+        "Giant Wasp Corpse",
+        "Hornet",
+        "Hornet Corpse",
+        "Firefly"
       ],
-      "entries": 22
+      "entries": 116
     },
     "ants.json": {
       "categories": [
         "_meta",
-        "Fire Ant"
+        "Fire Ant",
+        "Fire Ant Worker",
+        "Fire Ant Soldier",
+        "Fire Ant Queen",
+        "Seed Ant",
+        "Harvester Ant",
+        "Soldier Ant",
+        "Leafcutter Ant",
+        "Giant Ant",
+        "Acid Ant",
+        "Red Ant",
+        "Black Ant",
+        "Glowing Ant",
+        "Ant Colony",
+        "Fire Ant Corpse",
+        "Giant Ant Corpse"
       ],
-      "entries": 10
+      "entries": 98
     },
     "beetles.json": {
       "categories": [
         "_meta",
-        "ClockworkBeetle"
+        "ClockworkBeetle",
+        "Clockwork Beetle Corpse",
+        "Barkbiter",
+        "Barkbiter Corpse",
+        "Fire Beetle",
+        "Fire Beetle Corpse",
+        "Rhinoceros Beetle",
+        "Rhinoceros Beetle Corpse",
+        "Stag Beetle",
+        "Stag Beetle Corpse",
+        "Scarab Beetle",
+        "Dung Beetle",
+        "Bombardier Beetle",
+        "Glowing Beetle",
+        "Sap Beetle",
+        "Jewel Beetle",
+        "Giant Beetle",
+        "Giant Beetle Corpse",
+        "Beetle Larva"
       ],
-      "entries": 10
+      "entries": 108
     },
     "turrets.json": {
       "categories": [
@@ -2868,19 +3599,6 @@
       ],
       "entries": 60
     },
-    "misc.json": {
-      "categories": [
-        "_meta",
-        "Waterskin",
-        "Canteen",
-        "Prayer Book",
-        "Technical Manual",
-        "Cracked Security Disc",
-        "Data Disc",
-        "Recall Recoiler"
-      ],
-      "entries": 53
-    },
     "grenades.json": {
       "categories": [
         "_meta",
@@ -2893,9 +3611,55 @@
         "Thermal Grenade",
         "Freeze Grenade",
         "Stun Gas Grenade Mk I",
-        "Poison Gas Grenade Mk I"
+        "Stun Gas Grenade Mk II",
+        "Stun Gas Grenade Mk III",
+        "Poison Gas Grenade Mk I",
+        "Poison Gas Grenade Mk II",
+        "Poison Gas Grenade Mk III",
+        "Flashbang Grenade Mk I",
+        "Flashbang Grenade Mk II",
+        "Flashbang Grenade Mk III",
+        "Acid Gas Grenade Mk I",
+        "Acid Gas Grenade Mk II",
+        "Acid Gas Grenade Mk III",
+        "Smoke Grenade Mk I",
+        "Smoke Grenade Mk II",
+        "Smoke Grenade Mk III",
+        "Incendiary Grenade Mk I",
+        "Incendiary Grenade Mk II",
+        "Incendiary Grenade Mk III",
+        "Sleep Gas Grenade Mk I",
+        "Sleep Gas Grenade Mk II",
+        "Sleep Gas Grenade Mk III",
+        "Normality Gas Grenade Mk I",
+        "Normality Gas Grenade Mk II",
+        "Normality Gas Grenade Mk III",
+        "Gravity Grenade Mk I",
+        "Gravity Grenade Mk II",
+        "Gravity Grenade Mk III",
+        "Phase Grenade Mk I",
+        "Phase Grenade Mk II",
+        "Phase Grenade Mk III",
+        "Shrapnel Grenade Mk I",
+        "Shrapnel Grenade Mk II",
+        "Shrapnel Grenade Mk III",
+        "Glittermensch Grenade Mk I",
+        "Glittermensch Grenade Mk II",
+        "Glittermensch Grenade Mk III",
+        "Freeze Grenade Mk I",
+        "Freeze Grenade Mk II",
+        "Freeze Grenade Mk III",
+        "Plasma Grenade Mk I",
+        "Plasma Grenade Mk II",
+        "Plasma Grenade Mk III",
+        "Resonance Grenade Mk I",
+        "Resonance Grenade Mk II",
+        "Resonance Grenade Mk III",
+        "Confusion Gas Grenade Mk I",
+        "Confusion Gas Grenade Mk II",
+        "Confusion Gas Grenade Mk III"
       ],
-      "entries": 74
+      "entries": 397
     },
     "relics.json": {
       "categories": [
@@ -2939,37 +3703,72 @@
     "hands.json": {
       "categories": [
         "_meta",
+        "Cloth Wraps",
         "Leather Gloves",
+        "Studded Leather Gloves",
         "Iron Gauntlets",
+        "Bronze Gauntlets",
         "Steel Gauntlets",
+        "Chain Gloves",
+        "Plastifer Gloves",
+        "Fullerite Gauntlets",
         "Carbide Gauntlets",
-        "Helping Hands"
+        "Crysteel Gauntlets",
+        "Flawless Crysteel Gauntlets",
+        "Helping Hands",
+        "Spiked Gauntlets",
+        "Powered Exoframe Gauntlets",
+        "Fingerless Gloves"
       ],
-      "entries": 39
+      "entries": 118
     },
     "head.json": {
       "categories": [
         "_meta",
+        "Cloth Cap",
         "Leather Cap",
-        "Steel Helmet",
         "Iron Helmet",
+        "Bronze Helmet",
+        "Steel Helmet",
+        "Great Helm",
         "Plastifer Bonnet",
+        "Chain Coif",
+        "Fullerite Helmet",
         "Carbide Helmet",
-        "Stopsvalinn"
+        "Crysteel Helmet",
+        "Flawless Crysteel Helmet",
+        "Stopsvalinn",
+        "Circlet",
+        "Crown",
+        "Hood",
+        "Face Mask",
+        "Gas Mask",
+        "Powered Exoframe Helmet"
       ],
-      "entries": 46
+      "entries": 139
     },
     "feet.json": {
       "categories": [
         "_meta",
-        "Leather Boots",
+        "Cloth Footwraps",
         "Sandals",
+        "Leather Boots",
+        "Studded Leather Boots",
         "Iron Boots",
+        "Bronze Boots",
         "Steel Boots",
+        "Chain Boots",
+        "Plastifer Boots",
+        "Fullerite Boots",
         "Carbide Boots",
-        "Springturret Feet"
+        "Crysteel Boots",
+        "Flawless Crysteel Boots",
+        "Springturret Feet",
+        "Powered Exoframe Boots",
+        "Hoverpods",
+        "Thigh-High Boots"
       ],
-      "entries": 46
+      "entries": 125
     },
     "face.json": {
       "categories": [
@@ -2980,9 +3779,18 @@
         "Leather Mask",
         "Gas Mask",
         "Polarized Visor",
-        "Hypertractor Mask"
+        "Hypertractor Mask",
+        "Cloth Veil",
+        "Steel Visor",
+        "Carbide Visor",
+        "Crysteel Visor",
+        "Rebreather",
+        "Psionic Amplifier",
+        "Iron Visor",
+        "Bioscan Visor",
+        "Thermal Visor"
       ],
-      "entries": 53
+      "entries": 117
     },
     "back.json": {
       "categories": [
@@ -2993,54 +3801,199 @@
         "Backpack",
         "Mechanical Wings",
         "Quiver",
-        "Thermo Cloak"
+        "Thermo Cloak",
+        "Tattered Cape",
+        "Leather Cape",
+        "Wooly Cape",
+        "Large Backpack",
+        "Invisibility Cloak",
+        "Jetpack",
+        "Anti-Gravity Harness",
+        "Shield Cape",
+        "Troll Cape"
       ],
-      "entries": 53
+      "entries": 117
     },
     "body.json": {
       "categories": [
         "_meta",
         "Leather Armor",
+        "Studded Leather Armor",
         "Chain Mail",
         "Scale Mail",
         "Plastifer Jerkin",
         "Plate Mail",
+        "Iron Plate Armor",
+        "Bronze Plate Armor",
+        "Steel Plate Armor",
+        "Nanoweave Vest",
+        "Recycling Suit",
         "Carbide Plate Armor",
-        "Flawless Crysteel Shardmail"
+        "Fullerite Plate Armor",
+        "Crysteel Shardmail",
+        "Flawless Crysteel Shardmail",
+        "Zetachrome Plate Armor",
+        "Powered Exoframe",
+        "Robe",
+        "Woven Tunic",
+        "Boiled Leather Armor",
+        "Fur Vest",
+        "Brigandine"
       ],
-      "entries": 53
+      "entries": 159
     },
     "ammo.json": {
       "categories": [
         "_meta",
         "Arrow",
         "Steel Arrow",
+        "Iron Arrow",
+        "Bronze Arrow",
+        "Carbide Arrow",
         "Lead Slug",
         "Steel Slug",
         "Shotgun Shell",
         "Missile"
       ],
-      "entries": 41
+      "entries": 59
     },
     "food.json": {
       "categories": [
         "_meta",
-        "Yuckwheat Stem",
-        "Witchwood Bark",
-        "Spine Fruit",
-        "Watervine",
-        "Starapple",
-        "Umber Mushroom",
-        "Vinewafer",
-        "Eyeball",
-        "Cooked Meat",
+        "Food",
+        "Organ",
+        "Snack",
+        "Preservable",
         "Raw Meat",
+        "Raw Bear Meat",
+        "Raw Pig Meat",
+        "Raw Boar Meat",
+        "Raw Barkbiter Meat",
+        "Raw Beetle Meat",
+        "Raw Goat Meat",
+        "Raw Scorpiock Meat",
+        "Raw Frog Meat",
+        "Raw Fish Meat",
+        "Raw Worm Meat",
+        "Dawnglider Tail",
+        "Albino Ape Heart",
+        "Ogre Ape Heart",
+        "Black Puma Haunch",
+        "Tongue Twist",
+        "Eyeless Crab Legs",
+        "Eyeless King Crab Legs",
+        "Fire Ant Gaster",
+        "Spark Tick Scutum",
+        "Voider Gland",
+        "Psychal Gland",
+        "Compacted Bone Matter",
+        "FireBreatherGland",
+        "ElderFireBreatherGland",
+        "IceBreatherGland",
+        "ElderIceBreatherGland",
+        "CorrosiveBreatherGland",
+        "ElderCorrosiveBreatherGland",
+        "NormalityBreatherGland",
+        "ElderNormalityBreatherGland",
+        "PoisonBreatherGland",
+        "ElderPoisonBreatherGland",
+        "SleepBreatherGland",
+        "ElderSleepBreatherGland",
+        "StunBreatherGland",
+        "ElderStunBreatherGland",
+        "ConfusionBreatherGland",
+        "ElderConfusionBreatherGland",
+        "Yondercane",
+        "Vinewafer",
+        "Dreadroot Tuber",
+        "Starapple",
+        "Spine Fruit",
+        "Plump Mushroom",
+        "Smoldered Mushroom",
+        "Hoarshroom",
+        "Godshroom Cap",
+        "Lah Petals",
+        "Clump of Grave Moss",
+        "Banana",
+        "Yuckwheat Stem",
+        "Lagroot Tuber",
+        "Vanta Petals",
+        "Urberry",
+        "Arsplice Seed",
+        "Bop Cheek",
+        "Mirror Shard",
+        "Bundle of Noisegrass",
+        "Qudzu Stem",
+        "Lover's Blossom",
+        "Humble Pie",
+        "Ripe Cucumber",
+        "Taco Suprema",
+        "Crystal of Eve",
+        "Hunk of Cheese",
+        "Rubber Tree Seed",
         "Bear Jerky",
+        "Boar Jerky",
+        "Barkbiter Jerky",
+        "Beetle Jerky",
+        "Goat Jerky",
+        "Scorpiock Jerky",
+        "Frog Jerky",
+        "Fish Jerky",
+        "Worm Jerky",
+        "Crab Jerky",
         "Jerky",
         "Haunch",
-        "Preserved Meat"
+        "Preserved Meat",
+        "Cooked Meat",
+        "Eyeball",
+        "Witchwood Bark",
+        "Watervine",
+        "Umber Mushroom",
+        "Starapple Preserves",
+        "Spine Fruit Jam",
+        "Vinewafer Sheaf",
+        "Pickled Mushrooms",
+        "Freeze-Dried Hoarshrooms",
+        "Pickles",
+        "Fire Ant Gaster Paste",
+        "Cured Dawnglider Tail",
+        "Phase Silk",
+        "Fermented Yondercane",
+        "Fermented Yuckwheat Stem",
+        "Voider Gland Paste",
+        "Psychal Gland Paste",
+        "Fermented Tongue",
+        "Salthopper Chip",
+        "Compacted Bone Meal",
+        "Mashed Lag",
+        "Dried Lah Petals",
+        "Dried Vanta Petals",
+        "Crushed Grave Moss",
+        "Sun-Dried Banana",
+        "Wild Rice",
+        "Sliced Bop Cheek",
+        "Mirror Dust",
+        "FireBreatherGlandPaste",
+        "ElderFireBreatherGlandPaste",
+        "IceBreatherGlandPaste",
+        "ElderIceBreatherGlandPaste",
+        "CorrosiveBreatherGlandPaste",
+        "ElderCorrosiveBreatherGlandPaste",
+        "NormalityBreatherGlandPaste",
+        "ElderNormalityBreatherGlandPaste",
+        "PoisonBreatherGlandPaste",
+        "ElderPoisonBreatherGlandPaste",
+        "SleepBreatherGlandPaste",
+        "ElderSleepBreatherGlandPaste",
+        "StunBreatherGlandPaste",
+        "ElderStunBreatherGlandPaste",
+        "ConfusionBreatherGlandPaste",
+        "ElderConfusionBreatherGlandPaste",
+        "Spark Tick Plasma",
+        "Ekuemekiyyen Greens",
+        "Defoliant Grenade Mk I"
       ],
-      "entries": 102
+      "entries": 790
     },
     "drinks.json": {
       "categories": [
@@ -3062,12 +4015,17 @@
         "Salve Injector",
         "Ubernostrum Injector",
         "Blaze Injector",
+        "Love Injector",
         "Shade Oil Injector",
+        "Skulk Injector",
+        "Sphynx Salt Injector",
+        "Hulk Honey Injector",
         "Eater's Nectar Injector",
         "Rubbergum Injector",
+        "Empty Injector",
         "Desalination Pill"
       ],
-      "entries": 53
+      "entries": 89
     },
     "spears.json": {
       "categories": [
@@ -3087,13 +4045,32 @@
     "axes.json": {
       "categories": [
         "_meta",
+        "Battle Axe",
         "Hand Axe",
-        "BattleAxe2",
-        "BattleAxe3",
+        "Iron Vinereaper",
+        "Battle Axe2",
         "Steel Battle Axe",
-        "Iron Vinereaper"
+        "Steel Battle Axeth",
+        "Steel Hand Axe",
+        "Steel Vinereaper",
+        "Opal-Pommeled Steel Axe",
+        "Battle Axe3",
+        "Battle Axe3th",
+        "Battle Axe4",
+        "Battle Axe4th",
+        "Battle Axe5",
+        "Battle Axe5th",
+        "Battle Axe6",
+        "Battle Axe6th",
+        "Battle Axe7",
+        "Battle Axe7th",
+        "Battle Axe8",
+        "Battle Axe8th",
+        "Shayna",
+        "Ari",
+        "Yal"
       ],
-      "entries": 39
+      "entries": 174
     },
     "cudgels.json": {
       "categories": [
@@ -3105,62 +4082,142 @@
         "Walking Stick",
         "Mace2",
         "Warhammer2",
-        "Steel War Hammer"
+        "Steel War Hammer",
+        "Steel War Hammerth",
+        "Steel Hammer",
+        "Shillelagh",
+        "Cudgel3",
+        "Cudgel3th",
+        "Cudgel4",
+        "Cudgel4th",
+        "Cudgel5",
+        "Cudgel5th",
+        "Cudgel6",
+        "Cudgel6th",
+        "Cudgel7",
+        "Cudgel7th",
+        "Cudgel8",
+        "Cudgel8th",
+        "Maghammer",
+        "Rhinox-Skull Maul",
+        "Stun Rod",
+        "Prayer Rod",
+        "Syphon Baton",
+        "Amber-Tipped Staff",
+        "Billowing Conch of the Aji",
+        "Grandfather Horn",
+        "Fist of the Ape God",
+        "Leather Whip",
+        "Stun Whip"
       ],
-      "entries": 60
+      "entries": 243
     },
     "long_blades.json": {
       "categories": [
         "_meta",
-        "Bronze Sword",
-        "Iron Sword",
-        "Steel Sword",
-        "Carbide Sword",
-        "Folded Carbide Sword",
-        "Bronze Two-Handed Sword",
-        "Iron Two-Handed Sword",
-        "Steel Two-Handed Sword",
-        "Carbide Two-Handed Sword",
-        "Scimitar",
-        "Sabre"
+        "Long Sword",
+        "Two-Handed Sword",
+        "Long Sword2",
+        "Long Sword2th",
+        "Steel Long Sword",
+        "Steel Long Swordth",
+        "Long Sword3",
+        "Long Sword3th",
+        "Long Sword4",
+        "Long Sword4th",
+        "Long Sword5",
+        "Long Sword5th",
+        "Long Sword6",
+        "Long Sword6th",
+        "Long Sword7",
+        "Long Sword7th",
+        "Long Sword8",
+        "Long Sword8th",
+        "Vibro Blade",
+        "Gaslight Sword",
+        "Sharpened Polyp",
+        "Ceremonial Khopesh",
+        "Caslainard",
+        "Polluxus",
+        "La Jeunesse"
       ],
-      "entries": 81
+      "entries": 180
     },
     "blades.json": {
       "categories": [
         "_meta",
         "Dagger",
-        "Dagger2",
-        "Steel Dagger",
-        "Dagger3",
         "Desert Kris",
+        "Dagger2",
         "Steel Kukri",
+        "Steel Dagger",
         "Steel Utility Knife",
         "Steel Potter's Knife",
-        "Steel Butcher Knife"
+        "Steel Butcher Knife",
+        "Dagger3",
+        "Obsidian Kris",
+        "Dagger4",
+        "ArmDagger4",
+        "Dagger5",
+        "Dagger6",
+        "Dagger7",
+        "Dagger8",
+        "Vibro Dagger",
+        "Gaslight Dagger",
+        "Gaslight Chisel",
+        "Difucila"
       ],
-      "entries": 67
+      "entries": 145
     },
     "bows.json": {
       "categories": [
         "_meta",
-        "Bow",
-        "Compound Bow"
+        "Short Bow",
+        "Compound Bow",
+        "Dart Gun",
+        "Electrobow",
+        "Turbow",
+        "Arrow",
+        "Steel-Tipped Arrow",
+        "Carbide-Tipped Arrow",
+        "Crossbow",
+        "Dart",
+        "Sleep Dart",
+        "Poison Dart"
       ],
-      "entries": 18
+      "entries": 83
     },
     "guns.json": {
       "categories": [
         "_meta",
         "Pistol",
         "Revolver",
-        "Rifle",
+        "Musket",
+        "Issachar Rifle",
+        "Carbine",
+        "Sniper Rifle",
+        "Laser Pistol",
+        "Laser Rifle",
+        "Chain Laser",
+        "Eigenrifle",
+        "Nullray Pistol",
+        "Freeze Ray",
+        "Hypertractor",
+        "Light Rail",
+        "Spaser Rifle",
+        "Phase Cannon",
         "Shotgun",
         "Pump Shotgun",
-        "Laser Pistol",
-        "Laser Rifle"
+        "Combat Shotgun",
+        "Flamethrower",
+        "Chaingun",
+        "Blunderbuss",
+        "Chain Pistol",
+        "Masterwork Carbine",
+        "Eigenpistol",
+        "Lead Slug"
       ],
-      "entries": 53
+      "entries": 186
     },
     "descriptions.json": {
       "categories": [
