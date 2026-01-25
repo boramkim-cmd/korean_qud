@@ -61,5 +61,16 @@
     },
     "description": "A book of cooking recipes.",
     "description_ko": "요리 레시피가 담긴 책."
+  },
+
+  "HeirloomsOfQud": {
+    "tier": 3,
+    "category": "book",
+    "tags": ["readable", "unique"],
+    "names": {
+      "Heirlooms of Qud": "쿠드의 가보"
+    },
+    "description": "A book about the heirlooms of Qud.",
+    "description_ko": "쿠드의 가보에 관한 책."
   }
 }

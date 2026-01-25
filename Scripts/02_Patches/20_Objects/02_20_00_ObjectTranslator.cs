@@ -560,8 +560,8 @@ namespace QudKorean.Objects
 
             // === Prefix/Suffix System ===
             // Extract all suffixes first, then try to match prefixes
-            // Use material-translated version so "{{w|청동}} mace" gets processed correctly
-            string strippedForPrefix = StripColorTags(withTranslatedMaterials);
+            // Use original English name for prefix matching (keys are English)
+            string strippedForPrefix = StripColorTags(originalName);
             string baseNameForPrefix = ExtractAllSuffixes(strippedForPrefix, out string allSuffixes);
 
             // Try with prefixes
@@ -577,15 +577,30 @@ namespace QudKorean.Objects
                     _displayNameCache[cacheKey] = translated;
                     return true;
                 }
+
+                // BUG #1 FIX: remainder에서 추가 접두사(재료) 추출 시도
+                // "engraved bronze mace" → prefixKo="새겨진", remainder="bronze mace"
+                // → materialKo="청동", baseOnly="mace" → "새겨진 청동 메이스"
+                if (TryExtractAndTranslatePrefixes(remainder, out string materialKo, out string baseOnly))
+                {
+                    if (TryGetItemTranslation(baseOnly, out string baseKo2) ||
+                        TryGetCreatureTranslation(baseOnly, out baseKo2))
+                    {
+                        string suffixKo = TranslateAllSuffixes(allSuffixes);
+                        translated = $"{prefixKo} {materialKo} {baseKo2}{suffixKo}";
+                        _displayNameCache[cacheKey] = translated;
+                        return true;
+                    }
+                }
             }
 
             // Try base item name lookup (handles both simple items and items with suffixes)
             // This covers: "torch" -> "횃불", "torch (unburnt)" -> "횃불 (미사용)"
-            if (TryGetItemTranslation(baseNameForPrefix, out string baseKo2) ||
-                TryGetCreatureTranslation(baseNameForPrefix, out baseKo2))
+            if (TryGetItemTranslation(baseNameForPrefix, out string baseKo3) ||
+                TryGetCreatureTranslation(baseNameForPrefix, out baseKo3))
             {
                 string suffixKo = TranslateAllSuffixes(allSuffixes);
-                translated = string.IsNullOrEmpty(suffixKo) ? baseKo2 : $"{baseKo2}{suffixKo}";
+                translated = string.IsNullOrEmpty(suffixKo) ? baseKo3 : $"{baseKo3}{suffixKo}";
                 _displayNameCache[cacheKey] = translated;
                 return true;
             }
@@ -630,6 +645,18 @@ namespace QudKorean.Objects
             // "{{w|bronze}} mace" → "{{w|청동}} 메이스"
             if (withTranslatedMaterials != originalName)
             {
+                // BUG #2 FIX: "of X" 패턴 먼저 확인 (원본 영어 사용)
+                // "{{C|sandals}} of the river-wives" → "강 아내들의 샌들"
+                string strippedForOf = StripColorTags(originalName);
+                if (strippedForOf.Contains(" of "))
+                {
+                    if (TryTranslateOfPattern(strippedForOf, out translated))
+                    {
+                        _displayNameCache[cacheKey] = translated;
+                        return true;
+                    }
+                }
+
                 // Also translate base nouns outside the color tags
                 translated = TranslateBaseNounsOutsideTags(withTranslatedMaterials);
                 _displayNameCache[cacheKey] = translated;

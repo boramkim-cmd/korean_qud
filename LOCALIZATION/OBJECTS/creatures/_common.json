@@ -26,6 +26,7 @@
     "_section_basic": "기본 생물",
     "bear": "곰",
     "bat": "박쥐",
+    "firefly": "반딧불이",
     "pig": "돼지",
     "boar": "멧돼지",
     "baboon": "비비",
@@ -106,6 +107,7 @@
     "ogre": "오우거",
 
     "_section_common_animals": "일반 동물",
+    "camel": "낙타",
     "goat": "염소",
     "horse": "말",
     "mule": "노새",

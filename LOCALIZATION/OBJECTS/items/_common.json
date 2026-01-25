@@ -54,7 +54,8 @@
     "charcoal": "숯",
     "sulfur": "유황",
     "ash": "재",
-    "lead-acid": "납산"
+    "lead-acid": "납산",
+    "sap": "수액"
   },
 
   "qualities": {
@@ -194,6 +195,12 @@
     "fried": "튀긴",
     "sun": "태양",
     "vanta": "반타",
+    "symbiotic": "공생",
+    "solar": "솔라",
+    "fidget": "피젯",
+    "elastyne": "엘라스틴",
+    "bark": "나무껍질",
+    "gas": "가스",
 
     "_comment_hyphenated": "하이픈 접두사 (Phase 미번역 버그 수정)",
     "bio-scanning": "바이오스캐닝",
