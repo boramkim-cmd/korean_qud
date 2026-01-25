@@ -157,6 +157,7 @@
     "slot": "hand",
     "tags": ["pill", "water"],
     "names": {
+      "{{Y|desalination}} pill": "{{Y|탈염}} 정제",
       "desalination pill": "탈염 정제"
     },
     "description": "A pill that neutralizes salt in the body.",
