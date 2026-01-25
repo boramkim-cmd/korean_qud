@@ -55,11 +55,27 @@ namespace QudKorean.Objects
         private static Dictionary<string, string> _grenadesLoaded = new(StringComparer.OrdinalIgnoreCase);
         private static Dictionary<string, string> _marksLoaded = new(StringComparer.OrdinalIgnoreCase);
 
+        // creatures/_common.json에서 로드된 species 사전
+        private static Dictionary<string, string> _speciesLoaded = new(StringComparer.OrdinalIgnoreCase);
+
+        // items/_nouns.json에서 로드된 base noun 사전
+        private static Dictionary<string, string> _baseNounsLoaded = new(StringComparer.OrdinalIgnoreCase);
+
+        // _suffixes.json에서 로드된 접미사 사전들
+        private static Dictionary<string, string> _statesLoaded = new(StringComparer.OrdinalIgnoreCase);
+        private static Dictionary<string, string> _liquidsLoaded = new(StringComparer.OrdinalIgnoreCase);
+        private static Dictionary<string, string> _ofPatternsLoaded = new(StringComparer.OrdinalIgnoreCase);
+        private static Dictionary<string, string> _bodyPartsLoaded = new(StringComparer.OrdinalIgnoreCase);
+        private static List<KeyValuePair<string, string>> _partSuffixesLoaded = null;
+
         // 통합 접두사 사전 (긴 것 우선 정렬) - JSON에서 로드
         private static List<KeyValuePair<string, string>> _allPrefixesSortedLoaded = null;
 
         // 컬러 태그 내부용 (materials + qualities + tonics + grenades) - JSON에서 로드
         private static List<KeyValuePair<string, string>> _colorTagVocabSortedLoaded = null;
+
+        // JSON에서 로드된 base nouns 정렬 캐시
+        private static List<KeyValuePair<string, string>> _baseNounsSortedLoaded = null;
 
         #endregion
 
@@ -212,6 +228,7 @@ namespace QudKorean.Objects
         /// Translates all suffix patterns to Korean.
         /// Handles compound suffixes like " x15 (unburnt)" → " x15 (미사용)"
         /// Also handles "of X" patterns like " of fire" → "의 불"
+        /// Uses loaded dictionaries from _suffixes.json
         /// </summary>
         private static string TranslateAllSuffixes(string suffixes)
         {
@@ -219,84 +236,8 @@ namespace QudKorean.Objects
 
             string result = suffixes;
 
-            // State translations
-            var stateTranslations = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase)
-            {
-                // Bracket states
-                { "[empty]", "[비어있음]" },
-                { "[full]", "[가득 참]" },
-                { "[loaded]", "[장전됨]" },
-
-                // Parenthesis states
-                { "(lit)", "(점화됨)" },
-                { "(unlit)", "(꺼짐)" },
-                { "(unburnt)", "(미사용)" }
-            };
-
-            // Liquid translations for [X drams of Y] pattern
-            var liquidTranslations = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase)
-            {
-                { "fresh water", "신선한 물" },
-                { "salt water", "소금물" },
-                { "acid", "산" },
-                { "oil", "기름" },
-                { "water", "물" },
-                { "blood", "피" },
-                { "slime", "점액" },
-                { "honey", "꿀" },
-                { "wine", "와인" },
-                { "cider", "사과주" },
-                { "sap", "수액" },
-                { "gel", "젤" },
-                { "ink", "잉크" },
-                { "lava", "용암" },
-                { "putrid", "부패액" },
-                { "cloning draught", "복제 음료" },
-                { "brain brine", "뇌 염수" },
-                { "neutron flux", "중성자 플럭스" }
-            };
-
-            // "of X" element/attribute translations (Phase 2.2)
-            var ofTranslations = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase)
-            {
-                // 원소 (Elements)
-                { "fire", "불" },
-                { "flame", "불꽃" },
-                { "frost", "서리" },
-                { "ice", "얼음" },
-                { "cold", "냉기" },
-                { "lightning", "번개" },
-                { "thunder", "천둥" },
-                { "electricity", "전기" },
-                { "acid", "산" },
-                { "poison", "독" },
-                { "venom", "독액" },
-                // 속성 (Attributes)
-                { "strength", "힘" },
-                { "agility", "민첩" },
-                { "toughness", "강인함" },
-                { "intelligence", "지능" },
-                { "willpower", "의지력" },
-                { "ego", "자아" },
-                // 효과 (Effects)
-                { "bleeding", "출혈" },
-                { "confusion", "혼란" },
-                { "stunning", "기절" },
-                { "dismemberment", "절단" },
-                { "slaying", "처치" },
-                { "speed", "속도" },
-                { "healing", "치유" },
-                { "regeneration", "재생" },
-                // 기타 (Misc)
-                { "light", "빛" },
-                { "darkness", "어둠" },
-                { "shadow", "그림자" },
-                { "the void", "공허" },
-                { "the ancients", "고대인" }
-            };
-
-            // Apply simple state translations
-            foreach (var kvp in stateTranslations)
+            // Apply state translations from _suffixes.json
+            foreach (var kvp in _statesLoaded)
             {
                 if (result.IndexOf(kvp.Key, StringComparison.OrdinalIgnoreCase) >= 0)
                 {
@@ -308,7 +249,7 @@ namespace QudKorean.Objects
             result = Regex.Replace(result, @"\[(\d+) drams? of ([^\]]+)\]", m => {
                 string amount = m.Groups[1].Value;
                 string liquid = m.Groups[2].Value.Trim();
-                string liquidKo = liquidTranslations.TryGetValue(liquid, out var ko) ? ko : liquid;
+                string liquidKo = _liquidsLoaded.TryGetValue(liquid, out var ko) ? ko : liquid;
                 return $"[{liquidKo} {amount}드램]";
             }, RegexOptions.IgnoreCase);
 
@@ -318,7 +259,7 @@ namespace QudKorean.Objects
             // "of X" pattern → "의 X번역" (Phase 2.2)
             result = Regex.Replace(result, @"\s+of\s+([\w\s]+)$", m => {
                 string element = m.Groups[1].Value.Trim();
-                string elementKo = ofTranslations.TryGetValue(element, out var ko) ? ko : element;
+                string elementKo = _ofPatternsLoaded.TryGetValue(element, out var ko) ? ko : element;
                 return $"의 {elementKo}";
             }, RegexOptions.IgnoreCase);
 
@@ -384,6 +325,16 @@ namespace QudKorean.Objects
             _marksLoaded.Clear();
             _allPrefixesSortedLoaded = null;
             _colorTagVocabSortedLoaded = null;
+
+            // Clear JSON-loaded species, nouns, suffixes
+            _speciesLoaded.Clear();
+            _baseNounsLoaded.Clear();
+            _statesLoaded.Clear();
+            _liquidsLoaded.Clear();
+            _ofPatternsLoaded.Clear();
+            _bodyPartsLoaded.Clear();
+            _partSuffixesLoaded = null;
+            _baseNounsSortedLoaded = null;
 
             _initialized = false;
             EnsureInitialized();
@@ -663,6 +614,7 @@ namespace QudKorean.Objects
         /// <summary>
         /// Translates common state suffixes to Korean.
         /// Supports compound suffixes like " x15 (unburnt)" -> " x15 (미사용)"
+        /// Uses loaded dictionaries from _suffixes.json
         /// </summary>
         private static string TranslateStateSuffix(string suffix)
         {
@@ -670,19 +622,8 @@ namespace QudKorean.Objects
 
             string result = suffix;
 
-            // State translations - keys without leading space for Contains() matching
-            var stateTranslations = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase)
-            {
-                { "[empty]", "[비어있음]" },
-                { "[full]", "[가득 참]" },
-                { "[loaded]", "[장전됨]" },
-                { "(lit)", "(점화됨)" },
-                { "(unlit)", "(꺼짐)" },
-                { "(unburnt)", "(미사용)" }
-            };
-
-            // Iterate through patterns and replace any that are contained (supports compound suffixes)
-            foreach (var kvp in stateTranslations)
+            // State translations from _suffixes.json
+            foreach (var kvp in _statesLoaded)
             {
                 if (result.IndexOf(kvp.Key, StringComparison.OrdinalIgnoreCase) >= 0)
                 {
@@ -690,35 +631,11 @@ namespace QudKorean.Objects
                 }
             }
 
-            // Liquid translations for [X drams of Y] pattern
-            var liquidTranslations = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase)
-            {
-                { "fresh water", "신선한 물" },
-                { "salt water", "소금물" },
-                { "acid", "산" },
-                { "oil", "기름" },
-                { "water", "물" },
-                { "blood", "피" },
-                { "slime", "점액" },
-                { "honey", "꿀" },
-                { "wine", "와인" },
-                { "cider", "사과주" },
-                { "sap", "수액" },
-                { "gel", "젤" },
-                { "ink", "잉크" },
-                { "lava", "용암" },
-                { "putrid", "부패액" },
-                { "convalessence", "회복액" },
-                { "cloning draught", "복제 음료" },
-                { "brain brine", "뇌 염수" },
-                { "neutron flux", "중성자 플럭스" }
-            };
-
-            // [X drams of Y] pattern → [Y X드램]
+            // [X drams of Y] pattern → [Y X드램] using loaded liquids
             result = Regex.Replace(result, @"\[(\d+) drams? of ([^\]]+)\]", m => {
                 string amount = m.Groups[1].Value;
                 string liquid = m.Groups[2].Value.Trim();
-                string liquidKo = liquidTranslations.TryGetValue(liquid, out var ko) ? ko : liquid;
+                string liquidKo = _liquidsLoaded.TryGetValue(liquid, out var ko) ? ko : liquid;
                 return $"[{liquidKo} {amount}드램]";
             }, RegexOptions.IgnoreCase);
 
@@ -863,51 +780,25 @@ namespace QudKorean.Objects
             translated = null;
             string stripped = StripColorTags(originalName);
 
-            // 부위 패턴 목록 (Part patterns) - 길이순 정렬 필요
-            var partPatterns = new (string suffix, string korean)[]
+            // 부위 패턴 목록 - _suffixes.json의 part_suffixes에서 로드
+            var partPatterns = GetPartSuffixesSorted();
+            if (partPatterns == null || partPatterns.Count == 0)
             {
-                // 복수형 먼저 (longer matches first)
-                (" feathers", " 깃털"),
-                (" scales", " 비늘"),
-                (" horns", " 뿔"),
-                (" bones", " 뼈"),
-                (" teeth", " 이빨"),
-                (" claws", " 발톱"),
-                (" wings", " 날개"),
-                // 단수형
-                (" feather", " 깃털"),
-                (" scale", " 비늘"),
-                (" skull", " 두개골"),
-                (" horn", " 뿔"),
-                (" bone", " 뼈"),
-                (" hide", " 가죽"),
-                (" pelt", " 모피"),
-                (" skin", " 피부"),
-                (" tooth", " 이빨"),
-                (" fang", " 송곳니"),
-                (" claw", " 발톱"),
-                (" talon", " 발톱"),
-                (" tail", " 꼬리"),
-                (" wing", " 날개"),
-                (" beak", " 부리"),
-                (" shell", " 껍데기"),
-                (" carapace", " 갑각"),
-                (" egg", " 알"),
-                (" eggs", " 알")
-            };
+                return false;
+            }
 
             // "raw {creature} {part}" 패턴 처리
             if (stripped.StartsWith("raw ", StringComparison.OrdinalIgnoreCase))
             {
                 string remainder = stripped.Substring("raw ".Length);
-                foreach (var (suffix, korean) in partPatterns)
+                foreach (var kvp in partPatterns)
                 {
-                    if (remainder.EndsWith(suffix, StringComparison.OrdinalIgnoreCase))
+                    if (remainder.EndsWith(kvp.Key, StringComparison.OrdinalIgnoreCase))
                     {
-                        string creaturePart = remainder.Substring(0, remainder.Length - suffix.Length);
+                        string creaturePart = remainder.Substring(0, remainder.Length - kvp.Key.Length);
                         if (TryGetCreatureTranslation(creaturePart, out string creatureKo))
                         {
-                            translated = $"생 {creatureKo}{korean}";
+                            translated = $"생 {creatureKo}{kvp.Value}";
                             return true;
                         }
                     }
@@ -915,14 +806,14 @@ namespace QudKorean.Objects
             }
 
             // 일반 "{creature} {part}" 패턴 처리
-            foreach (var (suffix, korean) in partPatterns)
+            foreach (var kvp in partPatterns)
             {
-                if (stripped.EndsWith(suffix, StringComparison.OrdinalIgnoreCase))
+                if (stripped.EndsWith(kvp.Key, StringComparison.OrdinalIgnoreCase))
                 {
-                    string creaturePart = stripped.Substring(0, stripped.Length - suffix.Length);
+                    string creaturePart = stripped.Substring(0, stripped.Length - kvp.Key.Length);
                     if (TryGetCreatureTranslation(creaturePart, out string creatureKo))
                     {
-                        translated = $"{creatureKo}{korean}";
+                        translated = $"{creatureKo}{kvp.Value}";
                         return true;
                     }
                 }
@@ -957,8 +848,8 @@ namespace QudKorean.Objects
             // Try to translate part (using item or part patterns)
             string partKo = null;
 
-            // Check base noun translations first
-            if (_baseNounTranslations.TryGetValue(part, out partKo))
+            // Check base noun translations first (from items/_nouns.json)
+            if (_baseNounsLoaded.TryGetValue(part, out partKo))
             {
                 translated = $"{creatureKo}의 {partKo}";
                 return true;
@@ -971,37 +862,8 @@ namespace QudKorean.Objects
                 return true;
             }
 
-            // Try common body parts directly
-            var bodyParts = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase)
-            {
-                { "claw", "발톱" }, { "claws", "발톱" },
-                { "fang", "송곳니" }, { "fangs", "송곳니" },
-                { "tooth", "이빨" }, { "teeth", "이빨" },
-                { "horn", "뿔" }, { "horns", "뿔" },
-                { "tail", "꼬리" }, { "tails", "꼬리" },
-                { "hide", "가죽" }, { "pelt", "모피" },
-                { "bone", "뼈" }, { "bones", "뼈" },
-                { "skull", "두개골" },
-                { "eye", "눈" }, { "eyes", "눈" },
-                { "heart", "심장" },
-                { "blood", "피" },
-                { "liver", "간" },
-                { "brain", "뇌" },
-                { "tongue", "혀" },
-                { "ear", "귀" }, { "ears", "귀" },
-                { "wing", "날개" }, { "wings", "날개" },
-                { "feather", "깃털" }, { "feathers", "깃털" },
-                { "scale", "비늘" }, { "scales", "비늘" },
-                { "shell", "껍데기" },
-                { "beak", "부리" },
-                { "talon", "발톱" }, { "talons", "발톱" },
-                { "mane", "갈기" },
-                { "fur", "털" },
-                { "whisker", "수염" }, { "whiskers", "수염" },
-                { "tusk", "엄니" }, { "tusks", "엄니" }
-            };
-
-            if (bodyParts.TryGetValue(part, out partKo))
+            // Try body parts from JSON (_suffixes.json)
+            if (_bodyPartsLoaded.TryGetValue(part, out partKo))
             {
                 translated = $"{creatureKo}의 {partKo}";
                 return true;
@@ -1030,12 +892,12 @@ namespace QudKorean.Objects
                 }
             }
             
-            // Fallback: common species names
-            if (_commonSpeciesTranslations.TryGetValue(creatureName.ToLowerInvariant(), out translated))
+            // Fallback: species from creatures/_common.json
+            if (_speciesLoaded.TryGetValue(creatureName, out translated))
             {
                 return true;
             }
-            
+
             return false;
         }
         
@@ -1059,142 +921,18 @@ namespace QudKorean.Objects
                 }
             }
 
-            // Fallback: check base noun translations (for arrow, mace, dagger, etc.)
-            if (_baseNounTranslations.TryGetValue(itemName, out translated))
+            // Fallback: check base noun translations from items/_nouns.json
+            if (_baseNounsLoaded.TryGetValue(itemName, out translated))
             {
                 return true;
             }
 
             return false;
         }
-        
-        // Common species translations for dynamic food items and parts
-        private static readonly Dictionary<string, string> _commonSpeciesTranslations = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase)
-        {
-            // 기존 생물 (Existing creatures)
-            { "bear", "곰" }, { "bat", "박쥐" }, { "pig", "돼지" }, { "boar", "멧돼지" },
-            { "baboon", "비비" }, { "crab", "게" }, { "spider", "거미" }, { "beetle", "딱정벌레" },
-            { "ant", "개미" }, { "fish", "물고기" }, { "worm", "벌레" }, { "bird", "새" },
-            { "dog", "개" }, { "cat", "고양이" }, { "snapjaw", "스냅조" }, { "goatfolk", "염소인" },
-            { "dromad", "드로마드" }, { "hindren", "힌드렌" }, { "leech", "거머리" },
-            { "glowmoth", "발광나방" }, { "salthopper", "소금메뚜기" }, { "knollworm", "구릉지렁이" },
-            { "electrofuge", "전기거미" }, { "eyeless crab", "눈먼 게" }, { "slug", "민달팽이" },
-            { "girshling", "거슐링" }, { "tortoise", "거북" }, { "issachari", "이사차리" },
-            { "albino ape", "흰알비노 유인원" }, { "ape", "유인원" }, { "croc", "악어" },
-            { "crocodile", "악어" }, { "segmented mirthworm", "마디 웃음벌레" },
 
-            // 추가 생물 (Additional creatures) - Phase 1.2
-            { "rhinox", "라이녹스" },
-            { "phase spider", "위상 거미" },
-            { "great saltback", "대형 소금등" },
-            { "saltback", "소금등" },
-            { "dawnglider", "새벽활강꾼" },
-            { "eyeless king crab", "눈먼 왕게" },
-            { "bone worm", "뼈 벌레" },
-            { "traipsing mortar", "배회하는 박격포" },
-            { "chrome pyramid", "크롬 피라미드" },
-            { "madpole", "미친극지" },
-            { "qudzu", "쿠드주" },
-            { "seedsprout", "싹틔움" },
-            { "voider", "보이더" },
-            { "waydrotter", "길부패꾼" },
-            { "worm of the earth", "대지의 벌레" },
-            { "cave spider", "동굴 거미" },
-            { "jilted lover", "버림받은 연인" },
-            { "lurking beth", "잠복 베스" },
-            { "fire ant", "불개미" },
-            { "ice frog", "얼음 개구리" },
-            { "frog", "개구리" },
-            { "quillipede", "가시지네" },
-            { "slumberling", "졸음이" },
-            { "snapjaw scavenger", "스냅조 청소부" },
-            { "snapjaw hunter", "스냅조 사냥꾼" },
-            { "snapjaw warrior", "스냅조 전사" },
-            { "snapjaw brute", "스냅조 야수" },
-            { "snapjaw warlord", "스냅조 전쟁군주" },
-            { "chitinous puma", "키틴질 퓨마" },
-            { "puma", "퓨마" },
-            { "sawhander", "톱손이" },
-            { "chainsaw", "전기톱" },
-            { "yempuris", "옘푸리스" },
-            { "agolfly", "아골파리" },
-            { "plasmafly", "플라즈마파리" },
-            { "urshiib", "우르시브" },
-            { "naphtaali", "나프탈리" },
-            { "watervine", "물덩굴" },
-            { "young ivory", "어린 상아" },
-            { "ivory", "상아" },
-            { "slog", "슬로그" },
-            { "troll", "트롤" },
-            { "ogre", "오우거" },
-            { "goat", "염소" },
-            { "horse", "말" },
-            { "mule", "노새" },
-            { "donkey", "당나귀" },
-            { "hawk", "매" },
-            { "eagle", "독수리" },
-            { "owl", "올빼미" },
-            { "raven", "까마귀" },
-            { "crow", "까마귀" },
-            { "chicken", "닭" },
-            { "turkey", "칠면조" },
-            { "duck", "오리" },
-            { "swan", "백조" },
-            { "rat", "쥐" },
-            { "mouse", "생쥐" },
-            { "hare", "산토끼" },
-            { "rabbit", "토끼" },
-            { "fox", "여우" },
-            { "wolf", "늑대" },
-            { "deer", "사슴" },
-            { "stag", "수사슴" },
-            { "elk", "엘크" },
-            { "moose", "무스" },
-            { "snake", "뱀" },
-            { "serpent", "뱀" },
-            { "lizard", "도마뱀" },
-            { "gecko", "게코" },
-            { "salamander", "도롱뇽" },
-            { "newt", "영원" },
+        // NOTE: _commonSpeciesTranslations removed - now loaded from creatures/_common.json
+        // See: LOCALIZATION/OBJECTS/creatures/_common.json "species" section
 
-            // 대형 포식자 (Large predators) - Phase 소유격 패턴
-            { "panther", "표범" },
-            { "lion", "사자" },
-            { "tiger", "호랑이" },
-            { "leopard", "표범" },
-            { "jaguar", "재규어" },
-            { "cougar", "쿠거" },
-            { "lynx", "스라소니" },
-            { "hyena", "하이에나" },
-            { "jackal", "자칼" },
-            { "wolverine", "울버린" },
-            { "badger", "오소리" },
-            { "weasel", "족제비" },
-            { "otter", "수달" },
-            { "mink", "밍크" },
-            { "beaver", "비버" },
-            { "buffalo", "물소" },
-            { "bison", "들소" },
-            { "rhino", "코뿔소" },
-            { "hippo", "하마" },
-            { "elephant", "코끼리" },
-            { "mammoth", "매머드" },
-
-            // 세력/고유명사 (Factions/Proper Names) - Phase 2차 번역 확장
-            { "Praetorian", "프라이토리안" },
-            { "Issachar", "이사카르" },
-
-            // 수염 생물 (Beard creatures for glands) - Phase 6.3
-            { "flamebeard", "불수염" },
-            { "sleetbeard", "진눈깨비수염" },
-            { "tartbeard", "타르수염" },
-            { "nullbeard", "허무수염" },
-            { "gallbeard", "담즙수염" },
-            { "dreambeard", "꿈수염" },
-            { "stillbeard", "고요수염" },
-            { "mazebeard", "미로수염" }
-        };
-        
         /// <summary>
         /// Attempts to translate corpse names using pattern: "{creature} corpse" -> "{creature_ko} 시체"
         /// </summary>
@@ -1299,7 +1037,12 @@ namespace QudKorean.Objects
         {
             EnsureInitialized();
             int vocabCount = _allPrefixesSortedLoaded?.Count ?? 0;
-            return $"Creatures: {_creatureCache.Count}, Items: {_itemCache.Count}, Vocab: {vocabCount}, Cached: {_displayNameCache.Count}";
+            int speciesCount = _speciesLoaded?.Count ?? 0;
+            int nounsCount = _baseNounsLoaded?.Count ?? 0;
+            int suffixesCount = (_statesLoaded?.Count ?? 0) + (_liquidsLoaded?.Count ?? 0) +
+                               (_ofPatternsLoaded?.Count ?? 0) + (_bodyPartsLoaded?.Count ?? 0) +
+                               (_partSuffixesLoaded?.Count ?? 0);
+            return $"Creatures: {_creatureCache.Count}, Items: {_itemCache.Count}, Vocab: {vocabCount}, Species: {speciesCount}, Nouns: {nounsCount}, Suffixes: {suffixesCount}, Cached: {_displayNameCache.Count}";
         }
         
         #endregion
@@ -1395,6 +1138,15 @@ namespace QudKorean.Objects
 
             // Load common vocabulary (materials, qualities, etc.)
             LoadItemCommon();
+
+            // Load species from creatures/_common.json
+            LoadCreatureCommon();
+
+            // Load base nouns from items/_nouns.json
+            LoadItemNouns();
+
+            // Load suffixes from _suffixes.json
+            LoadSuffixes();
         }
         
         private static void LoadJsonFile(string filePath, Dictionary<string, ObjectData> cache)
@@ -1528,6 +1280,119 @@ namespace QudKorean.Objects
             }
         }
 
+        /// <summary>
+        /// creatures/_common.json에서 species를 로드합니다.
+        /// </summary>
+        private static void LoadCreatureCommon()
+        {
+            string modDir = GetModDirectory();
+            if (string.IsNullOrEmpty(modDir)) return;
+
+            string path = Path.Combine(modDir, "LOCALIZATION", "OBJECTS", "creatures", "_common.json");
+            if (!File.Exists(path))
+            {
+                UnityEngine.Debug.Log($"{LOG_PREFIX} creatures/_common.json not found, species translation disabled");
+                return;
+            }
+
+            try
+            {
+                var root = JObject.Parse(File.ReadAllText(path));
+                LoadSection(root["species"] as JObject, _speciesLoaded);
+                UnityEngine.Debug.Log($"{LOG_PREFIX} Loaded creatures/_common.json: {_speciesLoaded.Count} species");
+            }
+            catch (Exception ex)
+            {
+                UnityEngine.Debug.LogError($"{LOG_PREFIX} Failed to load creatures/_common.json: {ex.Message}");
+            }
+        }
+
+        /// <summary>
+        /// items/_nouns.json에서 기본 명사를 로드합니다.
+        /// </summary>
+        private static void LoadItemNouns()
+        {
+            string modDir = GetModDirectory();
+            if (string.IsNullOrEmpty(modDir)) return;
+
+            string path = Path.Combine(modDir, "LOCALIZATION", "OBJECTS", "items", "_nouns.json");
+            if (!File.Exists(path))
+            {
+                UnityEngine.Debug.Log($"{LOG_PREFIX} items/_nouns.json not found, base noun translation disabled");
+                return;
+            }
+
+            try
+            {
+                var root = JObject.Parse(File.ReadAllText(path));
+
+                // 모든 카테고리에서 명사 로드
+                foreach (var prop in root.Properties())
+                {
+                    if (prop.Name.StartsWith("_")) continue;
+                    LoadSection(prop.Value as JObject, _baseNounsLoaded);
+                }
+
+                // 정렬된 캐시 생성 (긴 것 우선)
+                _baseNounsSortedLoaded = _baseNounsLoaded.ToList();
+                _baseNounsSortedLoaded.Sort((a, b) => b.Key.Length.CompareTo(a.Key.Length));
+
+                UnityEngine.Debug.Log($"{LOG_PREFIX} Loaded items/_nouns.json: {_baseNounsLoaded.Count} nouns");
+            }
+            catch (Exception ex)
+            {
+                UnityEngine.Debug.LogError($"{LOG_PREFIX} Failed to load items/_nouns.json: {ex.Message}");
+            }
+        }
+
+        /// <summary>
+        /// _suffixes.json에서 접미사 사전들을 로드합니다.
+        /// </summary>
+        private static void LoadSuffixes()
+        {
+            string modDir = GetModDirectory();
+            if (string.IsNullOrEmpty(modDir)) return;
+
+            string path = Path.Combine(modDir, "LOCALIZATION", "OBJECTS", "_suffixes.json");
+            if (!File.Exists(path))
+            {
+                UnityEngine.Debug.Log($"{LOG_PREFIX} _suffixes.json not found, suffix translation disabled");
+                return;
+            }
+
+            try
+            {
+                var root = JObject.Parse(File.ReadAllText(path));
+
+                LoadSection(root["states"] as JObject, _statesLoaded);
+                LoadSection(root["liquids"] as JObject, _liquidsLoaded);
+                LoadSection(root["of_patterns"] as JObject, _ofPatternsLoaded);
+                LoadSection(root["body_parts"] as JObject, _bodyPartsLoaded);
+
+                // part_suffixes 로드 및 정렬 (긴 것 우선)
+                var partSuffixes = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase);
+                LoadSection(root["part_suffixes"] as JObject, partSuffixes);
+                _partSuffixesLoaded = partSuffixes.ToList();
+                _partSuffixesLoaded.Sort((a, b) => b.Key.Length.CompareTo(a.Key.Length));
+
+                int totalLoaded = _statesLoaded.Count + _liquidsLoaded.Count + _ofPatternsLoaded.Count +
+                                  _bodyPartsLoaded.Count + _partSuffixesLoaded.Count;
+                UnityEngine.Debug.Log($"{LOG_PREFIX} Loaded _suffixes.json: {totalLoaded} entries");
+            }
+            catch (Exception ex)
+            {
+                UnityEngine.Debug.LogError($"{LOG_PREFIX} Failed to load _suffixes.json: {ex.Message}");
+            }
+        }
+
+        /// <summary>
+        /// part_suffixes의 정렬된 목록을 반환합니다.
+        /// </summary>
+        private static List<KeyValuePair<string, string>> GetPartSuffixesSorted()
+        {
+            return _partSuffixesLoaded;
+        }
+
         #endregion
 
         #region Tag Handling (Own implementation - not shared)
@@ -1617,163 +1482,25 @@ namespace QudKorean.Objects
             return result;
         }
 
-        /// <summary>
-        /// 기본 명사 번역 사전 (Phase 3.2)
-        /// 색상 태그 외부의 아이템 명사를 번역합니다.
-        /// </summary>
-        private static readonly Dictionary<string, string> _baseNounTranslations = new(StringComparer.OrdinalIgnoreCase)
-        {
-            // 무기 (Weapons)
-            { "dagger", "단검" },
-            { "sword", "검" },
-            { "long sword", "장검" },
-            { "short sword", "단검" },
-            { "mace", "메이스" },
-            { "hammer", "해머" },
-            { "axe", "도끼" },
-            { "spear", "창" },
-            { "staff", "지팡이" },
-            { "bow", "활" },
-            { "crossbow", "석궁" },
-            { "arrow", "화살" },
-            { "bolt", "볼트" },
-            { "club", "곤봉" },
-            { "flail", "도리깨" },
-            { "halberd", "미늘창" },
-            { "pike", "장창" },
-            { "cudgel", "몽둥이" },
-
-            // 방어구 (Armor)
-            { "helmet", "투구" },
-            { "helm", "투구" },
-            { "shield", "방패" },
-            { "buckler", "버클러" },
-            { "armor", "갑옷" },
-            { "mail", "사슬갑옷" },
-            { "plate", "판금갑옷" },
-            { "gloves", "장갑" },
-            { "gauntlets", "건틀릿" },
-            { "boots", "부츠" },
-            { "greaves", "정강이받이" },
-            { "cloak", "망토" },
-            { "cape", "케이프" },
-            { "robe", "로브" },
-
-            // 소비품 (Consumables)
-            { "injector", "주사기" },
-            { "tonic", "토닉" },
-            { "grenade", "수류탄" },
-            { "torch", "횃불" },
-            { "canteen", "수통" },
-            { "waterskin", "물주머니" },
-            { "ration", "식량" },
-            { "bandage", "붕대" },
-            { "salve", "연고" },
-
-            // 도구 (Tools)
-            { "pick", "곡괭이" },
-            { "pickaxe", "곡괭이" },
-            { "shovel", "삽" },
-            { "rope", "밧줄" },
-            { "lantern", "랜턴" },
-            { "lamp", "램프" },
-            { "key", "열쇠" },
-            { "lockpick", "자물쇠따개" },
-
-            // 기타 (Misc)
-            { "book", "책" },
-            { "scroll", "두루마리" },
-            { "ring", "반지" },
-            { "amulet", "부적" },
-            { "bracelet", "팔찌" },
-            { "necklace", "목걸이" },
-            { "gem", "보석" },
-            { "coin", "동전" },
-            { "corpse", "시체" },
-            { "nugget", "덩어리" },
-            { "ingot", "주괴" },
-            { "bar", "바" },
-            { "chunk", "덩어리" },
-            { "lump", "덩어리" },
-
-            // 추가 방어구/의류 (Additional armor/clothing)
-            { "moccasins", "모카신" },
-            { "sandals", "샌들" },
-            { "shoes", "신발" },
-            { "slippers", "슬리퍼" },
-            { "wreath", "화환" },
-            { "crown", "왕관" },
-            { "circlet", "관" },
-            { "headband", "머리띠" },
-            { "mask", "가면" },
-            { "goggles", "고글" },
-            { "vest", "조끼" },
-            { "tunic", "튜닉" },
-            { "shirt", "셔츠" },
-            { "pants", "바지" },
-            { "skirt", "치마" },
-            { "belt", "벨트" },
-            { "sash", "허리띠" },
-
-            // 기계/전자 (Mechanical/Electronic)
-            { "cell", "전지" },
-            { "battery", "배터리" },
-            { "headlamp", "헤드램프" },
-            { "flashlight", "손전등" },
-            { "tube", "튜브" },
-            { "canister", "용기" },
-            { "tank", "탱크" },
-            { "pack", "팩" },
-            { "bodypack", "바디팩" },
-            { "backpack", "배낭" },
-
-            // 유물/특수 (Artifacts/Special)
-            { "artifact", "유물" },
-            { "relic", "유물" },
-            { "charm", "부적" },
-            { "talisman", "부적" },
-            { "totem", "토템" },
-            { "idol", "우상" },
-            { "food cube", "식품 큐브" },
-            { "cube", "큐브" },
-            { "sphere", "구체" },
-            { "orb", "오브" },
-            { "crystal", "수정" },
-            { "shard", "조각" },
-            { "fragment", "파편" },
-            { "pill", "알약" },
-            { "capsule", "캡슐" },
-            { "vial", "약병" },
-            { "bottle", "병" },
-            { "jar", "단지" },
-            { "flask", "플라스크" },
-            { "phial", "소병" },
-
-            // 총기류 (Firearms) - Phase 2차 번역 확장
-            { "revolver", "리볼버" },
-            { "rifle", "라이플" },
-            { "pistol", "권총" },
-            { "shotgun", "산탄총" },
-            { "carbine", "카빈총" },
-            { "blunderbuss", "나팔총" },
-            { "musket", "머스킷" },
-            { "arquebus", "아르케부스" },
-
-            // 추가 명사 (Additional Nouns) - Phase 2차 번역 확장
-            { "tubes", "튜브" },
-            { "processing core", "처리 코어" },
-            { "core", "코어" }
-        };
+        // NOTE: _baseNounTranslations removed - now loaded from items/_nouns.json
+        // See: LOCALIZATION/OBJECTS/items/_nouns.json
 
         // Cached sorted list for longest-first matching
         private static List<KeyValuePair<string, string>> _baseNounsSorted = null;
 
         private static List<KeyValuePair<string, string>> GetBaseNounsSorted()
         {
+            // Use JSON-loaded data
+            if (_baseNounsSortedLoaded != null && _baseNounsSortedLoaded.Count > 0)
+            {
+                return _baseNounsSortedLoaded;
+            }
+
+            // Fallback: return empty list with warning
             if (_baseNounsSorted == null)
             {
-                _baseNounsSorted = new List<KeyValuePair<string, string>>(_baseNounTranslations);
-                _baseNounsSorted.Sort((a, b) => b.Key.Length.CompareTo(a.Key.Length));
+                UnityEngine.Debug.LogWarning($"{LOG_PREFIX} GetBaseNounsSorted: items/_nouns.json not loaded, base noun translation disabled");
+                _baseNounsSorted = new List<KeyValuePair<string, string>>();
             }
             return _baseNounsSorted;
         }
