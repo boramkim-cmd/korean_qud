@@ -33,6 +33,7 @@
 
 | Date | Description | Priority | Category | File |
 |------|-------------|----------|----------|------|
+| 2026-01-25 | Dictionary Duplicate Key Bug | Critical | Bug | [03_ISSUE_20260125_DICTIONARY_DUPLICATE_KEY.md](03_ISSUE_20260125_DICTIONARY_DUPLICATE_KEY.md) |
 | 2026-01-19 | Options Panel Translation (Root Fix) | High | UI | [01_ISSUE_20260119_OPTIONS_PANEL.md](02_ISSUE_20260119_OPTIONS_PANEL.md) |
 | 2026-01-19 | Code Analysis 16 Fixes | High | Bug | [01_ISSUE_20260119_CODE_ANALYSIS.md](01_ISSUE_20260119_CODE_ANALYSIS.md) |
 
@@ -75,10 +76,10 @@ bash tools/list-issues.sh blocked   # Blocked only
 |--------|-------|
 | 🟡 Active | 0 |
 | 🟡 WIP | 0 |
-| 🟢 Resolved | 2 |
+| 🟢 Resolved | 3 |
 | 🔴 Blocked | 0 |
 | ⚫ Deprecated | 0 |
-| **Total** | **2** |
+| **Total** | **3** |
 
 ---
 
