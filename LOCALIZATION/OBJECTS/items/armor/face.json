@@ -200,5 +200,18 @@
     },
     "description": "A visor that allows thermal vision.",
     "description_ko": "열화상 시야를 가능하게 하는 바이저."
+  },
+
+  "SunAndMoonMask": {
+    "tier": 6,
+    "category": "armor",
+    "slot": "face",
+    "tags": ["face", "artifact", "unique"],
+    "names": {
+      "sun and moon mask": "해와 달 가면",
+      "Sun and Moon Mask": "해와 달 가면"
+    },
+    "description": "Hot fire on soapstone bleeds into the twilight terminus of a wet night.",
+    "description_ko": "비누석 위의 뜨거운 불이 습한 밤의 황혼 종착지로 피를 흘린다."
   }
 }

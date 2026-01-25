@@ -62,6 +62,13 @@ namespace QudKorean.Objects
             { "bronze", "청동" },
             { "steel", "강철" },
             { "copper", "구리" },
+            { "oil", "기름" },
+            { "wax", "왁스" },
+            { "salt", "소금" },
+            { "coal", "석탄" },
+            { "charcoal", "숯" },
+            { "sulfur", "유황" },
+            { "ash", "재" },
             { "carbide", "카바이드" },
             { "fullerite", "풀러라이트" },
             { "crysteel", "크리스틸" },
@@ -100,7 +107,17 @@ namespace QudKorean.Objects
             { "flawless", "완벽한" },
             { "masterwork", "명품" },
             { "basic", "기본" },
-            { "crude", "조잡한" }
+            { "crude", "조잡한" },
+            { "perfect", "완벽한" },
+            { "pristine", "완전무결한" },
+            { "fine", "고급" },
+            { "excellent", "뛰어난" },
+            { "superior", "우수한" },
+            { "legendary", "전설적인" },
+            { "epic", "서사적인" },
+            { "rare", "희귀한" },
+            { "common", "일반" },
+            { "uncommon", "비범한" }
         };
 
         // 처리/가공 접두사 (Processing Prefixes)
@@ -152,7 +169,7 @@ namespace QudKorean.Objects
             { "scaled", "비늘" },
             { "defoliant", "고엽제" },
             { "boomrose", "붐로즈" },
-            // Injector prefixes
+            // Injector/Tonic prefixes (for non-color-tagged items)
             { "salve", "연고" },
             { "blaze", "블레이즈" },
             { "rubbergum", "러버검" },
@@ -161,6 +178,17 @@ namespace QudKorean.Objects
             { "ubernostrum", "우버노스트룸" },
             { "hulk honey", "헐크 꿀" },
             { "eater's nectar", "식자의 넥타" },
+            { "love", "사랑" },
+            { "skulk", "스컬크" },
+            { "sprint", "질주" },
+            { "might", "강력" },
+            { "willforce", "의지력" },
+            { "empty", "빈" },
+            { "honey", "꿀" },
+            { "hulk", "헐크" },
+            { "sphynx", "스핑크스" },
+            { "shade", "그림자" },
+            { "eater", "식자" },
 
             // 상태 접두사 (State Prefixes) - Phase 2.1
             { "bloodied", "피 묻은" },
@@ -752,6 +780,13 @@ namespace QudKorean.Objects
                 return true;
             }
 
+            // Possessive pattern: "panther's claw" → "표범의 발톱" (Phase 소유격)
+            if (TryTranslatePossessive(originalName, out translated))
+            {
+                _displayNameCache[cacheKey] = translated;
+                return true;
+            }
+
             // === Final Fallback: 색상 태그 내 재료 및 외부 명사 번역 (Phase 3.2) ===
             // If materials in color tags were translated, also try to translate base nouns outside
             // "{{w|bronze}} mace" → "{{w|청동}} 메이스"
@@ -1074,7 +1109,86 @@ namespace QudKorean.Objects
 
             return false;
         }
-        
+
+        /// <summary>
+        /// 소유격 패턴 번역 (Phase 소유격)
+        /// - "{creature}'s {part}" → "{creature_ko}의 {part_ko}"
+        /// - "panther's claw" → "표범의 발톱"
+        /// </summary>
+        private static bool TryTranslatePossessive(string originalName, out string translated)
+        {
+            translated = null;
+            string stripped = StripColorTags(originalName);
+
+            // Pattern: "{creature}'s {part}"
+            var match = Regex.Match(stripped, @"^(.+)'s\s+(.+)$", RegexOptions.IgnoreCase);
+            if (!match.Success) return false;
+
+            string creature = match.Groups[1].Value.Trim();
+            string part = match.Groups[2].Value.Trim();
+
+            // Try to translate creature
+            if (!TryGetCreatureTranslation(creature, out string creatureKo))
+            {
+                return false;
+            }
+
+            // Try to translate part (using item or part patterns)
+            string partKo = null;
+
+            // Check base noun translations first
+            if (_baseNounTranslations.TryGetValue(part, out partKo))
+            {
+                translated = $"{creatureKo}의 {partKo}";
+                return true;
+            }
+
+            // Check item cache
+            if (TryGetItemTranslation(part, out partKo))
+            {
+                translated = $"{creatureKo}의 {partKo}";
+                return true;
+            }
+
+            // Try common body parts directly
+            var bodyParts = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase)
+            {
+                { "claw", "발톱" }, { "claws", "발톱" },
+                { "fang", "송곳니" }, { "fangs", "송곳니" },
+                { "tooth", "이빨" }, { "teeth", "이빨" },
+                { "horn", "뿔" }, { "horns", "뿔" },
+                { "tail", "꼬리" }, { "tails", "꼬리" },
+                { "hide", "가죽" }, { "pelt", "모피" },
+                { "bone", "뼈" }, { "bones", "뼈" },
+                { "skull", "두개골" },
+                { "eye", "눈" }, { "eyes", "눈" },
+                { "heart", "심장" },
+                { "blood", "피" },
+                { "liver", "간" },
+                { "brain", "뇌" },
+                { "tongue", "혀" },
+                { "ear", "귀" }, { "ears", "귀" },
+                { "wing", "날개" }, { "wings", "날개" },
+                { "feather", "깃털" }, { "feathers", "깃털" },
+                { "scale", "비늘" }, { "scales", "비늘" },
+                { "shell", "껍데기" },
+                { "beak", "부리" },
+                { "talon", "발톱" }, { "talons", "발톱" },
+                { "mane", "갈기" },
+                { "fur", "털" },
+                { "whisker", "수염" }, { "whiskers", "수염" },
+                { "tusk", "엄니" }, { "tusks", "엄니" }
+            };
+
+            if (bodyParts.TryGetValue(part, out partKo))
+            {
+                translated = $"{creatureKo}의 {partKo}";
+                return true;
+            }
+
+            return false;
+        }
+
         /// <summary>
         /// Tries to find a creature translation from cache or common species list
         /// </summary>
@@ -1221,6 +1335,30 @@ namespace QudKorean.Objects
             { "gecko", "게코" },
             { "salamander", "도롱뇽" },
             { "newt", "영원" },
+
+            // 대형 포식자 (Large predators) - Phase 소유격 패턴
+            { "panther", "표범" },
+            { "lion", "사자" },
+            { "tiger", "호랑이" },
+            { "leopard", "표범" },
+            { "jaguar", "재규어" },
+            { "cougar", "쿠거" },
+            { "lynx", "스라소니" },
+            { "hyena", "하이에나" },
+            { "jackal", "자칼" },
+            { "wolverine", "울버린" },
+            { "badger", "오소리" },
+            { "weasel", "족제비" },
+            { "otter", "수달" },
+            { "mink", "밍크" },
+            { "beaver", "비버" },
+            { "boar", "멧돼지" },
+            { "buffalo", "물소" },
+            { "bison", "들소" },
+            { "rhino", "코뿔소" },
+            { "hippo", "하마" },
+            { "elephant", "코끼리" },
+            { "mammoth", "매머드" },
 
             // 수염 생물 (Beard creatures for glands) - Phase 6.3
             { "flamebeard", "불수염" },
@@ -1518,6 +1656,13 @@ namespace QudKorean.Objects
             { "plastic", "플라스틱" },
             { "rubber", "고무" },
             { "nylon", "나일론" },
+            { "oil", "기름" },
+            { "wax", "왁스" },
+            { "salt", "소금" },
+            { "coal", "석탄" },
+            { "charcoal", "숯" },
+            { "sulfur", "유황" },
+            { "ash", "재" },
 
             // 품질 접두사 (Quality)
             { "flawless", "완벽한" },
@@ -1720,6 +1865,11 @@ namespace QudKorean.Objects
             { "gem", "보석" },
             { "coin", "동전" },
             { "corpse", "시체" },
+            { "nugget", "덩어리" },
+            { "ingot", "주괴" },
+            { "bar", "바" },
+            { "chunk", "덩어리" },
+            { "lump", "덩어리" },
 
             // 추가 방어구/의류 (Additional armor/clothing)
             { "moccasins", "모카신" },

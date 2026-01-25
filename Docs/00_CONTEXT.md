@@ -32,6 +32,10 @@
 | 이슈 | 상태 | 원인 | 해결 |
 |------|------|------|------|
 | Dictionary 중복 키 버그 | CLEAR | `_descriptivePrefixes`에 중복 키 3개 | 중복 항목 삭제 |
+| 소유격 패턴 미처리 | CLEAR | `panther's claw` 등 `'s` 패턴 | TryTranslatePossessive 메서드 추가 |
+| nugget 조합 미처리 | CLEAR | `oil nugget` 등 nugget 패턴 | _baseNounTranslations에 추가 |
+| 주사기 접두사 미번역 | CLEAR | `love injector` 등 | _descriptivePrefixes에 추가 |
+| sun and moon mask 미번역 | CLEAR | 고유 아이템 누락 | face.json에 추가 |
 
 ### 테스트 필요 항목
 - [ ] 툴팁 헤더: "현재 아이템" / "장착 아이템"

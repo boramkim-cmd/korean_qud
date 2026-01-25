@@ -200,5 +200,32 @@
     "equipped item": "장착 아이템",
     "This Item": "현재 아이템",
     "Equipped Item": "장착 아이템"
+  },
+  "quality": {
+    "Perfect": "완벽",
+    "Broken": "고장",
+    "Worn": "낡음",
+    "Rusted": "녹슴",
+    "Cracked": "금감",
+    "Damaged": "손상",
+    "Flawless": "완벽한",
+    "Masterwork": "명품",
+    "Pristine": "완전무결",
+    "Tattered": "해진",
+    "Bent": "휜"
+  },
+  "categories": {
+    "Water Containers": "물 용기",
+    "Trade Goods": "교역품",
+    "Tonics": "토닉",
+    "Artifacts": "유물",
+    "Weapons": "무기",
+    "Armor": "방어구",
+    "Food": "음식",
+    "Books": "책",
+    "Ammo": "탄약",
+    "Grenades": "수류탄",
+    "Tools": "도구",
+    "Miscellaneous": "기타"
   }
 }
