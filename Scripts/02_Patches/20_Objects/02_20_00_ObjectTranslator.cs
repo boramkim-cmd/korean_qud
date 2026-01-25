@@ -9,6 +9,7 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Text.RegularExpressions;
 using Newtonsoft.Json.Linq;
 using XRL;
@@ -42,226 +43,31 @@ namespace QudKorean.Objects
         
         private static bool _initialized = false;
         private static string _modDirectory = null;
-        
+
         private const string LOG_PREFIX = "[QudKR-Objects]";
+
+        // JSON에서 로드된 어휘 사전
+        private static Dictionary<string, string> _materialsLoaded = new(StringComparer.OrdinalIgnoreCase);
+        private static Dictionary<string, string> _qualitiesLoaded = new(StringComparer.OrdinalIgnoreCase);
+        private static Dictionary<string, string> _modifiersLoaded = new(StringComparer.OrdinalIgnoreCase);
+        private static Dictionary<string, string> _processingLoaded = new(StringComparer.OrdinalIgnoreCase);
+        private static Dictionary<string, string> _tonicsLoaded = new(StringComparer.OrdinalIgnoreCase);
+        private static Dictionary<string, string> _grenadesLoaded = new(StringComparer.OrdinalIgnoreCase);
+        private static Dictionary<string, string> _marksLoaded = new(StringComparer.OrdinalIgnoreCase);
+
+        // 통합 접두사 사전 (긴 것 우선 정렬) - JSON에서 로드
+        private static List<KeyValuePair<string, string>> _allPrefixesSortedLoaded = null;
+
+        // 컬러 태그 내부용 (materials + qualities + tonics + grenades) - JSON에서 로드
+        private static List<KeyValuePair<string, string>> _colorTagVocabSortedLoaded = null;
 
         #endregion
 
         #region Prefix/Suffix Dictionaries
 
-        // 재료 접두사 (Material Prefixes)
-        private static readonly Dictionary<string, string> _materialPrefixes = new(StringComparer.OrdinalIgnoreCase)
-        {
-            // 복합 재료 (먼저 체크)
-            { "folded carbide", "접힌 카바이드" },
-            { "flawless crysteel", "완벽한 크리스틸" },
-
-            // 단일 재료
-            { "wooden", "나무" },
-            { "iron", "철" },
-            { "bronze", "청동" },
-            { "steel", "강철" },
-            { "copper", "구리" },
-            { "oil", "기름" },
-            { "wax", "왁스" },
-            { "salt", "소금" },
-            { "coal", "석탄" },
-            { "charcoal", "숯" },
-            { "sulfur", "유황" },
-            { "ash", "재" },
-            { "carbide", "카바이드" },
-            { "fullerite", "풀러라이트" },
-            { "crysteel", "크리스틸" },
-            { "zetachrome", "제타크롬" },
-            { "obsidian", "흑요석" },
-            { "leather", "가죽" },
-            { "plastifer", "플라스티퍼" },
-            { "nanoweave", "나노직조" },
-            { "vinewood", "덩굴나무" },
-            { "rubber", "고무" },
-            { "nylon", "나일론" },
-            { "lead", "납" },
-            { "cloth", "천" },
-            { "lead-acid", "납산" },
-            { "bone", "뼈" },
-            { "stone", "돌" },
-            { "clay", "점토" },
-            { "glass", "유리" },
-            { "gold", "금" },
-            { "silver", "은" },
-            { "witchwood", "마녀나무" },
-            { "woven", "직조" },
-            { "silk", "비단" },
-            { "cotton", "면" },
-            { "wool", "양모" },
-            { "linen", "아마" },
-            { "fur", "모피" },
-            { "snakeskin", "뱀가죽" },
-            { "feather", "깃털" },
-            { "chitin", "키틴" }
-        };
-
-        // 품질 접두사 (Quality Prefixes)
-        private static readonly Dictionary<string, string> _qualityPrefixes = new(StringComparer.OrdinalIgnoreCase)
-        {
-            { "flawless", "완벽한" },
-            { "masterwork", "명품" },
-            { "basic", "기본" },
-            { "crude", "조잡한" },
-            { "perfect", "완벽한" },
-            { "pristine", "완전무결한" },
-            { "fine", "고급" },
-            { "excellent", "뛰어난" },
-            { "superior", "우수한" },
-            { "legendary", "전설적인" },
-            { "epic", "서사적인" },
-            { "rare", "희귀한" },
-            { "common", "일반" },
-            { "uncommon", "비범한" }
-        };
-
-        // 처리/가공 접두사 (Processing Prefixes)
-        private static readonly Dictionary<string, string> _processingPrefixes = new(StringComparer.OrdinalIgnoreCase)
-        {
-            { "freeze-dried", "동결건조" },
-            { "sun-dried", "햇볕에 말린" },
-            { "raw", "생" },
-            { "preserved", "절임" },
-            { "cooked", "조리된" },
-            { "dried", "말린" },
-            { "crushed", "으깬" },
-            { "cured", "절인" },
-            { "fermented", "발효된" },
-            { "smoldered", "그을린" },
-            { "sliced", "썬" },
-            { "pickled", "절인" },
-            { "mashed", "으깬" },
-            { "compacted", "압축된" },
-            { "canned", "통조림" }
-        };
-
-        // 설명 접두사 (Descriptive Prefixes)
-        private static readonly Dictionary<string, string> _descriptivePrefixes = new(StringComparer.OrdinalIgnoreCase)
-        {
-            { "high explosive", "고폭" },
-            { "two-handed", "양손" },
-            { "boiled", "삶은" },
-            { "studded", "징박힌" },
-            { "bent", "휜" },
-            { "cracked", "금간" },
-            { "elder", "장로" },
-            { "albino", "흰알비노" },
-            { "luminous", "빛나는" },
-            { "ripe", "잘 익은" },
-            { "plump", "통통한" },
-            { "pocketed", "주머니" },
-            { "grassy", "풀로 덮인" },
-            { "small", "작은" },
-            { "large", "큰" },
-            { "fractured", "금간" },
-            { "broken", "부서진" },
-            { "rusted", "녹슨" },
-            { "worn", "낡은" },
-            { "odd", "이상한" },
-            { "weird", "이상한" },
-            { "muddy", "진흙투성이" },
-            { "lacquered", "칠한" },
-            { "scaled", "비늘" },
-            { "defoliant", "고엽제" },
-            { "boomrose", "붐로즈" },
-            // Injector/Tonic prefixes (for non-color-tagged items)
-            { "salve", "연고" },
-            { "blaze", "블레이즈" },
-            { "rubbergum", "러버검" },
-            { "shade oil", "그림자 기름" },
-            { "sphynx salt", "스핑크스 소금" },
-            { "ubernostrum", "우버노스트룸" },
-            { "hulk honey", "헐크 꿀" },
-            { "eater's nectar", "식자의 넥타" },
-            { "love", "사랑" },
-            { "skulk", "스컬크" },
-            { "sprint", "질주" },
-            { "might", "강력" },
-            { "willforce", "의지력" },
-            { "empty", "빈" },
-            { "honey", "꿀" },
-            { "hulk", "헐크" },
-            { "sphynx", "스핑크스" },
-            { "shade", "그림자" },
-            { "eater", "식자" },
-
-            // 상태 접두사 (State Prefixes) - Phase 2.1
-            { "bloodied", "피 묻은" },
-            { "burnt", "타버린" },
-            { "frozen", "얼어붙은" },
-            { "rotted", "썩은" },
-            { "moldy", "곰팡이 핀" },
-            { "stale", "상한" },
-            { "fresh", "신선한" },
-            { "warm", "따뜻한" },
-            { "cold", "차가운" },
-            { "hot", "뜨거운" },
-
-            // 마법/특수 접두사 (Magic/Special Prefixes)
-            { "cursed", "저주받은" },
-            { "blessed", "축복받은" },
-            { "enchanted", "마법이 깃든" },
-            { "glowing", "빛나는" },
-            { "pulsing", "맥동하는" },
-            { "humming", "윙윙거리는" },
-
-            // 상태 접두사 (Condition Prefixes)
-            { "ancient", "고대의" },
-            { "pristine", "완전무결한" },
-            { "battered", "낡은" },
-            { "repaired", "수리된" },
-            { "modified", "개조된" },
-            { "makeshift", "임시 변통의" },
-
-            // 무기 특성 접두사 (Weapon Attribute Prefixes)
-            { "serrated", "톱니 달린" },
-            { "electrified", "전기가 흐르는" },
-            { "poisoned", "독 묻은" },
-            { "flaming", "불타는" },
-            { "icy", "얼음의" },
-            { "acidic", "산성의" },
-            { "sharp", "날카로운" },
-            { "blunt", "무딘" },
-            { "heavy", "무거운" },
-            { "light", "가벼운" },
-
-            // 추가 무기/장비 접두사 (Additional Weapon/Armor Prefixes) - Phase 6.2
-            { "sharpened", "날카롭게 갈린" },
-            { "ceremonial", "의식용" },
-            { "painted", "칠해진" },
-            { "reinforced", "강화된" },
-            { "spiked", "가시 달린" },
-            { "hooked", "갈고리 달린" },
-            { "barbed", "미늘 달린" },
-            { "tempered", "담금질된" },
-            { "polished", "광택나는" },
-            { "ornate", "화려한" },
-            { "engraved", "새겨진" },
-            { "gilded", "금박입힌" },
-            { "silvered", "은도금된" },
-            { "unholy", "불경한" },
-            { "holy", "신성한" },
-            { "counterweighted", "균형추" },
-            { "sturdy", "튼튼한" },
-            { "tattered", "해진" },
-            { "faded", "바랜" },
-            { "stained", "얼룩진" },
-            { "dirty", "더러운" },
-            { "clean", "깨끗한" },
-            { "scratched", "긁힌" },
-            { "dented", "찌그러진" },
-            { "gold-flecked", "금박 점박이" },
-            { "smokey", "연기빛" },
-            { "smoky", "연기빛" },
-            { "strange", "기이한" },
-            { "mysterious", "신비로운" },
-            { "unknown", "미지의" }
-        };
+        // NOTE: Hardcoded prefix dictionaries removed - now loaded from items/_common.json
+        // See: LOCALIZATION/OBJECTS/items/_common.json
+        // Removed: _materialPrefixes, _qualityPrefixes, _processingPrefixes, _descriptivePrefixes
 
         // Cached list of all prefixes sorted by length (longest first)
         private static List<KeyValuePair<string, string>> _allPrefixesSorted = null;
@@ -272,14 +78,17 @@ namespace QudKorean.Objects
         /// </summary>
         private static List<KeyValuePair<string, string>> GetAllPrefixesSorted()
         {
+            // Use JSON-loaded data
+            if (_allPrefixesSortedLoaded != null && _allPrefixesSortedLoaded.Count > 0)
+            {
+                return _allPrefixesSortedLoaded;
+            }
+
+            // Fallback: return empty list with warning
             if (_allPrefixesSorted == null)
             {
+                UnityEngine.Debug.LogWarning($"{LOG_PREFIX} GetAllPrefixesSorted: items/_common.json not loaded, prefix translation disabled");
                 _allPrefixesSorted = new List<KeyValuePair<string, string>>();
-                _allPrefixesSorted.AddRange(_materialPrefixes);
-                _allPrefixesSorted.AddRange(_qualityPrefixes);
-                _allPrefixesSorted.AddRange(_processingPrefixes);
-                _allPrefixesSorted.AddRange(_descriptivePrefixes);
-                _allPrefixesSorted.Sort((a, b) => b.Key.Length.CompareTo(a.Key.Length));
             }
             return _allPrefixesSorted;
         }
@@ -564,6 +373,18 @@ namespace QudKorean.Objects
             _allPrefixesSorted = null; // Clear prefix cache
             _colorTagMaterialsSorted = null; // Clear color tag materials cache
             _baseNounsSorted = null; // Clear base nouns cache (Phase 3.2)
+
+            // Clear JSON-loaded vocabulary
+            _materialsLoaded.Clear();
+            _qualitiesLoaded.Clear();
+            _modifiersLoaded.Clear();
+            _processingLoaded.Clear();
+            _tonicsLoaded.Clear();
+            _grenadesLoaded.Clear();
+            _marksLoaded.Clear();
+            _allPrefixesSortedLoaded = null;
+            _colorTagVocabSortedLoaded = null;
+
             _initialized = false;
             EnsureInitialized();
             UnityEngine.Debug.Log($"{LOG_PREFIX} Reloaded!");
@@ -1359,6 +1180,10 @@ namespace QudKorean.Objects
             { "elephant", "코끼리" },
             { "mammoth", "매머드" },
 
+            // 세력/고유명사 (Factions/Proper Names) - Phase 2차 번역 확장
+            { "Praetorian", "프라이토리안" },
+            { "Issachar", "이사카르" },
+
             // 수염 생물 (Beard creatures for glands) - Phase 6.3
             { "flamebeard", "불수염" },
             { "sleetbeard", "진눈깨비수염" },
@@ -1473,7 +1298,8 @@ namespace QudKorean.Objects
         public static string GetStats()
         {
             EnsureInitialized();
-            return $"Creatures: {_creatureCache.Count}, Items: {_itemCache.Count}, Cached: {_displayNameCache.Count}";
+            int vocabCount = _allPrefixesSortedLoaded?.Count ?? 0;
+            return $"Creatures: {_creatureCache.Count}, Items: {_itemCache.Count}, Vocab: {vocabCount}, Cached: {_displayNameCache.Count}";
         }
         
         #endregion
@@ -1560,9 +1386,15 @@ namespace QudKorean.Objects
             {
                 foreach (var file in Directory.GetFiles(itemsPath, "*.json", SearchOption.AllDirectories))
                 {
+                    // Skip _common.json - it has a different structure and is loaded separately
+                    if (Path.GetFileName(file).StartsWith("_"))
+                        continue;
                     LoadJsonFile(file, _itemCache);
                 }
             }
+
+            // Load common vocabulary (materials, qualities, etc.)
+            LoadItemCommon();
         }
         
         private static void LoadJsonFile(string filePath, Dictionary<string, ObjectData> cache)
@@ -1615,117 +1447,112 @@ namespace QudKorean.Objects
                 UnityEngine.Debug.LogError($"{LOG_PREFIX} Failed to load {filePath}: {ex.Message}");
             }
         }
-        
+
+        /// <summary>
+        /// items/_common.json에서 공통 어휘를 로드합니다.
+        /// </summary>
+        private static void LoadItemCommon()
+        {
+            string modDir = GetModDirectory();
+            if (string.IsNullOrEmpty(modDir)) return;
+
+            string path = Path.Combine(modDir, "LOCALIZATION", "OBJECTS", "items", "_common.json");
+            if (!File.Exists(path))
+            {
+                UnityEngine.Debug.Log($"{LOG_PREFIX} items/_common.json not found, using hardcoded dictionaries");
+                return;
+            }
+
+            try
+            {
+                var root = JObject.Parse(File.ReadAllText(path));
+
+                LoadSection(root["materials"] as JObject, _materialsLoaded);
+                LoadSection(root["qualities"] as JObject, _qualitiesLoaded);
+                LoadSection(root["modifiers"] as JObject, _modifiersLoaded);
+                LoadSection(root["processing"] as JObject, _processingLoaded);
+                LoadSection(root["tonics"] as JObject, _tonicsLoaded);
+                LoadSection(root["grenades"] as JObject, _grenadesLoaded);
+                LoadSection(root["marks"] as JObject, _marksLoaded);
+
+                // 통합 접두사 사전 구축 (모든 카테고리)
+                var allPrefixes = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase);
+                MergeInto(allPrefixes, _materialsLoaded);
+                MergeInto(allPrefixes, _qualitiesLoaded);
+                MergeInto(allPrefixes, _modifiersLoaded);
+                MergeInto(allPrefixes, _processingLoaded);
+                MergeInto(allPrefixes, _tonicsLoaded);
+                MergeInto(allPrefixes, _grenadesLoaded);
+                MergeInto(allPrefixes, _marksLoaded);
+
+                _allPrefixesSortedLoaded = allPrefixes.ToList();
+                _allPrefixesSortedLoaded.Sort((a, b) => b.Key.Length.CompareTo(a.Key.Length));
+
+                // 컬러 태그 내부용 (재료 + 품질 + 토닉 + 수류탄)
+                var colorTagVocab = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase);
+                MergeInto(colorTagVocab, _materialsLoaded);
+                MergeInto(colorTagVocab, _qualitiesLoaded);
+                MergeInto(colorTagVocab, _tonicsLoaded);
+                MergeInto(colorTagVocab, _grenadesLoaded);
+                MergeInto(colorTagVocab, _modifiersLoaded); // modifiers에도 컬러 태그에서 쓰이는 것들 있음
+
+                _colorTagVocabSortedLoaded = colorTagVocab.ToList();
+                _colorTagVocabSortedLoaded.Sort((a, b) => b.Key.Length.CompareTo(a.Key.Length));
+
+                UnityEngine.Debug.Log($"{LOG_PREFIX} Loaded items/_common.json: {allPrefixes.Count} prefixes, {colorTagVocab.Count} color tag vocab");
+            }
+            catch (Exception ex)
+            {
+                UnityEngine.Debug.LogError($"{LOG_PREFIX} Failed to load items/_common.json: {ex.Message}");
+            }
+        }
+
+        private static void LoadSection(JObject section, Dictionary<string, string> target)
+        {
+            if (section == null) return;
+            foreach (var prop in section.Properties())
+            {
+                if (prop.Name.StartsWith("_")) continue; // Skip comments
+                target[prop.Name] = prop.Value.ToString();
+            }
+        }
+
+        private static void MergeInto(Dictionary<string, string> target, Dictionary<string, string> source)
+        {
+            foreach (var kvp in source)
+            {
+                if (!target.ContainsKey(kvp.Key))
+                {
+                    target[kvp.Key] = kvp.Value;
+                }
+            }
+        }
+
         #endregion
-        
+
         #region Tag Handling (Own implementation - not shared)
 
         #region Material Translation in Color Tags
 
-        /// <summary>
-        /// 색상 태그 내의 재료/셰이더 텍스트를 번역합니다.
-        /// "{{w|bronze}} mace" → "{{w|청동}} mace"
-        /// "{{K|{{crysteel|crysteel}} mace}}" → "{{K|{{crysteel|크리스틸}} mace}}"
-        /// </summary>
-        private static readonly Dictionary<string, string> _colorTagMaterialTranslations = new(StringComparer.OrdinalIgnoreCase)
-        {
-            // 기본 재료 (Materials) - 길이순 정렬 중요
-            { "folded carbide", "접힌 카바이드" },
-            { "flawless crysteel", "완벽한 크리스틸" },
-            { "bronze", "청동" },
-            { "steel", "강철" },
-            { "iron", "철" },
-            { "copper", "구리" },
-            { "lead", "납" },
-            { "carbide", "카바이드" },
-            { "fullerite", "풀러라이트" },
-            { "crysteel", "크리스틸" },
-            { "zetachrome", "제타크롬" },
-            { "obsidian", "흑요석" },
-            { "wooden", "나무" },
-            { "wood", "나무" },
-            { "leather", "가죽" },
-            { "bone", "뼈" },
-            { "glass", "유리" },
-            { "stone", "돌" },
-            { "clay", "점토" },
-            { "gold", "금" },
-            { "silver", "은" },
-            { "platinum", "백금" },
-            { "plastic", "플라스틱" },
-            { "rubber", "고무" },
-            { "nylon", "나일론" },
-            { "oil", "기름" },
-            { "wax", "왁스" },
-            { "coal", "석탄" },
-            { "charcoal", "숯" },
-            { "sulfur", "유황" },
-            { "ash", "재" },
-
-            // 품질 접두사 (Quality)
-            { "flawless", "완벽한" },
-            { "masterwork", "명품" },
-            { "crude", "조잡한" },
-
-            // 인젝터/토닉 셰이더 (Injector shaders)
-            { "love", "사랑" },
-            { "blaze", "블레이즈" },
-            { "hulk", "헐크" },
-            { "hulk honey", "헐크 꿀" },
-            { "honey", "꿀" },
-            { "salve", "연고" },
-            { "skulk", "스컬크" },
-            { "sphynx", "스핑크스" },
-            { "sphynx salt", "스핑크스 소금" },
-            { "salt", "소금" },
-            { "shade", "그림자" },
-            { "shade oil", "그림자 기름" },
-            { "ubernostrum", "우버노스트룸" },
-            { "rubbergum", "러버검" },
-            { "eater's nectar", "식자의 넥타" },
-            { "eater", "식자" },
-            { "Eaters'", "식자의" },
-            { "nectar", "넥타" },
-            { "empty", "빈" },
-            { "sprint", "질주" },
-            { "might", "강력" },
-            { "willforce", "의지력" },
-
-            // 수류탄/기타 셰이더 (Grenade shaders)
-            { "defoliant", "고엽제" },
-            { "stun", "기절" },
-            { "thermal", "열" },
-            { "phase", "위상" },
-            { "high explosive", "고폭" },
-            { "freeze", "냉동" },
-            { "flashbang", "섬광" },
-            { "poison gas", "독가스" },
-            { "acid gas", "산성 가스" },
-            { "emp", "EMP" },
-            { "gravity", "중력" },
-            { "normality", "정상화" },
-
-            // 기타 (Misc)
-            { "lacquered", "칠한" },
-            { "luminous", "빛나는" },
-            { "elder", "장로" },
-            { "two-handed", "양손" },
-            { "boomrose", "붐로즈" },
-            { "glowing", "빛나는" },
-            { "rusted", "녹슨" },
-            { "broken", "부서진" },
-            { "cracked", "금간" }
-        };
+        // NOTE: _colorTagMaterialTranslations removed - now loaded from items/_common.json
+        // See: LOCALIZATION/OBJECTS/items/_common.json
 
         // Cached sorted list for longest-first matching
         private static List<KeyValuePair<string, string>> _colorTagMaterialsSorted = null;
 
         private static List<KeyValuePair<string, string>> GetColorTagMaterialsSorted()
         {
+            // Use JSON-loaded data
+            if (_colorTagVocabSortedLoaded != null && _colorTagVocabSortedLoaded.Count > 0)
+            {
+                return _colorTagVocabSortedLoaded;
+            }
+
+            // Fallback: return empty list with warning
             if (_colorTagMaterialsSorted == null)
             {
-                _colorTagMaterialsSorted = new List<KeyValuePair<string, string>>(_colorTagMaterialTranslations);
-                _colorTagMaterialsSorted.Sort((a, b) => b.Key.Length.CompareTo(a.Key.Length));
+                UnityEngine.Debug.LogWarning($"{LOG_PREFIX} GetColorTagMaterialsSorted: items/_common.json not loaded, color tag translation disabled");
+                _colorTagMaterialsSorted = new List<KeyValuePair<string, string>>();
             }
             return _colorTagMaterialsSorted;
         }
@@ -1920,7 +1747,22 @@ namespace QudKorean.Objects
             { "bottle", "병" },
             { "jar", "단지" },
             { "flask", "플라스크" },
-            { "phial", "소병" }
+            { "phial", "소병" },
+
+            // 총기류 (Firearms) - Phase 2차 번역 확장
+            { "revolver", "리볼버" },
+            { "rifle", "라이플" },
+            { "pistol", "권총" },
+            { "shotgun", "산탄총" },
+            { "carbine", "카빈총" },
+            { "blunderbuss", "나팔총" },
+            { "musket", "머스킷" },
+            { "arquebus", "아르케부스" },
+
+            // 추가 명사 (Additional Nouns) - Phase 2차 번역 확장
+            { "tubes", "튜브" },
+            { "processing core", "처리 코어" },
+            { "core", "코어" }
         };
 
         // Cached sorted list for longest-first matching
