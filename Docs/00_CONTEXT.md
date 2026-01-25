@@ -1,7 +1,7 @@
 # QUD_KOREAN 프로젝트 컨텍스트
 
 > **이 파일은 Claude Code가 세션 시작 시 반드시 읽어야 하는 핵심 문서입니다.**
-> 최종 업데이트: 2026-01-25 22:20
+> 최종 업데이트: 2026-01-25 20:35
 
 ---
 
@@ -31,19 +31,20 @@
 ### 최근 이슈 (2026-01-25)
 | 이슈 | 상태 | 원인 | 해결 |
 |------|------|------|------|
-| 캐시 키 불일치 | CLEAR | 컬러 태그/수량 유무에 따라 캐시 키 불일치 | `NormalizeCacheKey()` 메서드 추가 |
-| 부분 매칭 시 접두사 미번역 | CLEAR | partial match 경로에서 접두사 번역 누락 | 모든 경로에 `TranslateBaseNounsOutsideTags()` 적용 |
-| 명사 누락 (hat, stinger, plate mail) | CLEAR | _nouns.json 미등록 | headwear, body_parts, compound_armor 섹션 추가 |
-| 미번역 아이템 버그 | CLEAR | fallback에서 접두사 번역 누락 | `TranslatePrefixesInText()` 추가, modifier/noun 데이터 보강 |
-| 어휘 사전 JSON 이전 | CLEAR | 하드코딩된 사전 중복 | `items/_common.json` 생성, 하드코딩 제거 |
+| 캐시 키 불일치 | ✅ CLEAR | 컬러 태그/수량 유무에 따라 캐시 키 불일치 | `NormalizeCacheKey()` 메서드 추가 |
+| 부분 매칭 시 접두사 미번역 | ✅ CLEAR | partial match 경로에서 접두사 번역 누락 | 모든 경로에 `TranslateBaseNounsOutsideTags()` 적용 |
+| **색상 태그 내 명사 미번역 (BUG#1)** | ✅ CLEAR | `TranslateBaseNounsOutsideTags`가 태그 내부 미처리 | `TranslateMaterialsInColorTags()`에서 명사도 번역 |
+| **색상 형용사 누락 (BUG#2)** | ✅ CLEAR | violet, milky 등 tube 수식어 없음 | `_common.json`에 colors 섹션 추가 |
+| **species 접두사 미번역** | ✅ CLEAR | species가 allPrefixes에 미병합 | `LoadCreatureCommon()`에서 allPrefixes에도 병합 |
+| **"of X" 어순 미처리** | ✅ CLEAR | 한국어 어순 변환 로직 없음 | `TryTranslateOfPattern()` 메서드 추가 |
 
-### 테스트 필요 항목 (캐시 키 정규화 후)
-- [ ] `painted 강철 정육점 칼` → `칠해진 강철 정육점 칼` (인벤토리/툴팁 일관성)
-- [ ] `구리 nugget` → `구리 덩어리`
-- [ ] `stinger` → `독침`
-- [ ] `챙 넓은 hat` → `챙 넓은 모자`
-- [ ] `강철 plate mail` → `강철 판금 갑옷`
-- [ ] `ape 모피 hat` → `유인원 모피 모자`
+### 테스트 필요 항목 (v2.0 버그 수정 후)
+- [ ] `{{c|basic toolkit}}` → `기본 공구함` (색상 태그 내 명사)
+- [ ] `{{w|copper nugget}}` → `구리 덩어리` (색상 태그 내 명사)
+- [ ] `{{m|violet}} tube` → `보라색 튜브` (색상 형용사)
+- [ ] `ape fur cloak` → `유인원 모피 망토` (species 접두사)
+- [ ] `sandals of the river-wives` → `강 아내들의 샌들` (of 패턴 어순)
+- [ ] `fried processing core` → `튀긴 처리 코어` (신규 modifier)
 
 ---
 

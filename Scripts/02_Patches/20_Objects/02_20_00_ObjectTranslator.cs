@@ -54,6 +54,7 @@ namespace QudKorean.Objects
         private static Dictionary<string, string> _tonicsLoaded = new(StringComparer.OrdinalIgnoreCase);
         private static Dictionary<string, string> _grenadesLoaded = new(StringComparer.OrdinalIgnoreCase);
         private static Dictionary<string, string> _marksLoaded = new(StringComparer.OrdinalIgnoreCase);
+        private static Dictionary<string, string> _colorsLoaded = new(StringComparer.OrdinalIgnoreCase);
 
         // creatures/_common.json에서 로드된 species 사전
         private static Dictionary<string, string> _speciesLoaded = new(StringComparer.OrdinalIgnoreCase);
@@ -361,6 +362,7 @@ namespace QudKorean.Objects
             _tonicsLoaded.Clear();
             _grenadesLoaded.Clear();
             _marksLoaded.Clear();
+            _colorsLoaded.Clear();
             _allPrefixesSortedLoaded = null;
             _colorTagVocabSortedLoaded = null;
 
@@ -604,6 +606,13 @@ namespace QudKorean.Objects
 
             // Dynamic parts patterns: egg, hide, bone, skull, horn, feather, scale (Phase 1.1)
             if (TryTranslateDynamicParts(originalName, out translated))
+            {
+                _displayNameCache[cacheKey] = translated;
+                return true;
+            }
+
+            // "of X" pattern: "sandals of the river-wives" → "강 아내들의 샌들" (Step 5 어순 처리)
+            if (TryTranslateOfPattern(originalName, out translated))
             {
                 _displayNameCache[cacheKey] = translated;
                 return true;
@@ -927,6 +936,80 @@ namespace QudKorean.Objects
             }
 
             return false;
+        }
+
+        /// <summary>
+        /// "X of Y" 패턴을 한국어 어순 "Y의 X"로 변환 (Step 5)
+        /// "sandals of the river-wives" → "강 아내들의 샌들"
+        /// "banner of the Holy Rhombus" → "성스러운 마름모의 깃발"
+        /// </summary>
+        private static bool TryTranslateOfPattern(string originalName, out string translated)
+        {
+            translated = null;
+            string stripped = StripColorTags(originalName);
+
+            // "X of Y" 패턴 매칭 - "of the Y" 또는 "of Y" 형태
+            var match = Regex.Match(stripped, @"^(.+?)\s+of\s+(?:the\s+)?(.+)$", RegexOptions.IgnoreCase);
+            if (!match.Success)
+                return false;
+
+            string itemPart = match.Groups[1].Value.Trim();  // "sandals"
+            string ofPart = match.Groups[2].Value.Trim();    // "river-wives" or "Holy Rhombus"
+
+            // 1. of_patterns 사전에서 전체 "of X" 매칭 시도
+            string ofKo = null;
+            string fullOfPatternWithThe = $"of the {ofPart}";
+            string fullOfPattern = $"of {ofPart}";
+
+            if (_ofPatternsLoaded.TryGetValue(fullOfPatternWithThe, out ofKo))
+            {
+                // ofKo = "강 아내들의" (이미 "의" 포함)
+            }
+            else if (_ofPatternsLoaded.TryGetValue(fullOfPattern, out ofKo))
+            {
+                // ofKo = "~의" 형태
+            }
+            else if (_ofPatternsLoaded.TryGetValue(ofPart, out ofKo))
+            {
+                // 기존 of_patterns (원소만 있는 경우)
+                ofKo = $"{ofKo}의";
+            }
+            else
+            {
+                // 사전에 없으면 기본 번역 시도
+                string ofPartTranslated = TranslateNounsInText(ofPart);
+                ofPartTranslated = TranslatePrefixesInText(ofPartTranslated);
+
+                // 번역이 안 됐으면 실패
+                if (ofPartTranslated == ofPart)
+                    return false;
+
+                ofKo = $"{ofPartTranslated}의";
+            }
+
+            // 2. 아이템 부분 번역
+            string itemKo = itemPart;
+            if (TryGetItemTranslation(itemPart, out string itemTranslated))
+            {
+                itemKo = itemTranslated;
+            }
+            else
+            {
+                string nounTranslated = TranslateNounsInText(itemPart);
+                nounTranslated = TranslatePrefixesInText(nounTranslated);
+
+                // 아이템 부분도 번역 안 됐으면 부분 번역이라도 시도
+                if (nounTranslated != itemPart)
+                {
+                    itemKo = nounTranslated;
+                }
+            }
+
+            // 3. 한국어 어순으로 조합: "Y의 X"
+            translated = $"{ofKo} {itemKo}".Trim();
+
+            // 원본 색상 태그 복원은 하지 않음 (태그 제거 후 번역)
+            return true;
         }
 
         /// <summary>
@@ -1291,6 +1374,7 @@ namespace QudKorean.Objects
                 LoadSection(root["tonics"] as JObject, _tonicsLoaded);
                 LoadSection(root["grenades"] as JObject, _grenadesLoaded);
                 LoadSection(root["marks"] as JObject, _marksLoaded);
+                LoadSection(root["colors"] as JObject, _colorsLoaded);  // BUG #2 수정: 색상 형용사 로드
 
                 // 통합 접두사 사전 구축 (모든 카테고리)
                 var allPrefixes = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase);
@@ -1301,22 +1385,24 @@ namespace QudKorean.Objects
                 MergeInto(allPrefixes, _tonicsLoaded);
                 MergeInto(allPrefixes, _grenadesLoaded);
                 MergeInto(allPrefixes, _marksLoaded);
+                MergeInto(allPrefixes, _colorsLoaded);  // BUG #2: colors도 접두사로 사용 가능
 
                 _allPrefixesSortedLoaded = allPrefixes.ToList();
                 _allPrefixesSortedLoaded.Sort((a, b) => b.Key.Length.CompareTo(a.Key.Length));
 
-                // 컬러 태그 내부용 (재료 + 품질 + 토닉 + 수류탄)
+                // 컬러 태그 내부용 (재료 + 품질 + 토닉 + 수류탄 + 색상)
                 var colorTagVocab = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase);
                 MergeInto(colorTagVocab, _materialsLoaded);
                 MergeInto(colorTagVocab, _qualitiesLoaded);
                 MergeInto(colorTagVocab, _tonicsLoaded);
                 MergeInto(colorTagVocab, _grenadesLoaded);
                 MergeInto(colorTagVocab, _modifiersLoaded); // modifiers에도 컬러 태그에서 쓰이는 것들 있음
+                MergeInto(colorTagVocab, _colorsLoaded);    // BUG #2: 색상 형용사 추가 (violet tube 등)
 
                 _colorTagVocabSortedLoaded = colorTagVocab.ToList();
                 _colorTagVocabSortedLoaded.Sort((a, b) => b.Key.Length.CompareTo(a.Key.Length));
 
-                UnityEngine.Debug.Log($"{LOG_PREFIX} Loaded items/_common.json: {allPrefixes.Count} prefixes, {colorTagVocab.Count} color tag vocab");
+                UnityEngine.Debug.Log($"{LOG_PREFIX} Loaded items/_common.json: {allPrefixes.Count} prefixes, {colorTagVocab.Count} color tag vocab, {_colorsLoaded.Count} colors");
             }
             catch (Exception ex)
             {
@@ -1364,6 +1450,34 @@ namespace QudKorean.Objects
             {
                 var root = JObject.Parse(File.ReadAllText(path));
                 LoadSection(root["species"] as JObject, _speciesLoaded);
+
+                // Step 4: species를 color tag vocab 및 allPrefixes에 병합
+                // _colorTagVocabSortedLoaded와 _allPrefixesSortedLoaded는 LoadItemCommon()에서 이미 생성됨
+                if (_speciesLoaded.Count > 0)
+                {
+                    // colorTagVocab에 병합 (Issachari 등 파벌명 번역)
+                    if (_colorTagVocabSortedLoaded != null)
+                    {
+                        var colorTagVocab = _colorTagVocabSortedLoaded.ToDictionary(
+                            kvp => kvp.Key, kvp => kvp.Value, StringComparer.OrdinalIgnoreCase);
+                        MergeInto(colorTagVocab, _speciesLoaded);
+                        _colorTagVocabSortedLoaded = colorTagVocab.ToList();
+                        _colorTagVocabSortedLoaded.Sort((a, b) => b.Key.Length.CompareTo(a.Key.Length));
+                    }
+
+                    // allPrefixes에도 병합 (ape fur cloak → 유인원 모피 망토)
+                    if (_allPrefixesSortedLoaded != null)
+                    {
+                        var allPrefixes = _allPrefixesSortedLoaded.ToDictionary(
+                            kvp => kvp.Key, kvp => kvp.Value, StringComparer.OrdinalIgnoreCase);
+                        MergeInto(allPrefixes, _speciesLoaded);
+                        _allPrefixesSortedLoaded = allPrefixes.ToList();
+                        _allPrefixesSortedLoaded.Sort((a, b) => b.Key.Length.CompareTo(a.Key.Length));
+                    }
+
+                    UnityEngine.Debug.Log($"{LOG_PREFIX} Merged {_speciesLoaded.Count} species into vocabularies");
+                }
+
                 UnityEngine.Debug.Log($"{LOG_PREFIX} Loaded creatures/_common.json: {_speciesLoaded.Count} species");
             }
             catch (Exception ex)
@@ -1488,8 +1602,9 @@ namespace QudKorean.Objects
         }
 
         /// <summary>
-        /// 색상 태그 내의 재료를 번역합니다. (Phase 3.1 개선)
+        /// 색상 태그 내의 재료와 명사를 번역합니다. (Phase 3.1 개선 + BUG #1 수정)
         /// Handles: {{color|material}}, {{shader|text}}, nested tags, and multiple sequential tags.
+        /// Also translates nouns inside tags: {{c|basic toolkit}} → {{c|기본 공구함}}
         /// "{{G|hulk}} {{w|honey}} injector" → "{{G|헐크}} {{w|꿀}} injector"
         /// </summary>
         private static string TranslateMaterialsInColorTags(string text)
@@ -1506,6 +1621,7 @@ namespace QudKorean.Objects
             {
                 string previous = result;
 
+                // Step 1: 재료/수식어 번역
                 foreach (var mat in GetColorTagMaterialsSorted())
                 {
                     // Pattern 1: 태그 내용 시작 부분에서 매칭: {{X|material}} or {{X|material word...}}
@@ -1519,6 +1635,29 @@ namespace QudKorean.Objects
                     string pattern2 = $@"(\{{\{{[^|{{}}]+\|[^{{}}]*\s)({Regex.Escape(mat.Key)})(\s|\}}\}})";
                     result = Regex.Replace(result, pattern2, m =>
                         m.Groups[1].Value + mat.Value + m.Groups[3].Value,
+                        RegexOptions.IgnoreCase);
+                }
+
+                // Step 2: 명사 번역 (BUG #1 수정 - 태그 내부 명사도 번역)
+                // {{c|basic toolkit}} → {{c|기본 toolkit}} → {{c|기본 공구함}}
+                foreach (var noun in GetBaseNounsSorted())
+                {
+                    // Pattern: {{X|something noun}} - 태그 내용 끝에서 명사 매칭
+                    string pattern1 = $@"(\{{\{{[^|{{}}]+\|[^{{}}]*\s)({Regex.Escape(noun.Key)})(\}}\}})";
+                    result = Regex.Replace(result, pattern1, m =>
+                        m.Groups[1].Value + noun.Value + m.Groups[3].Value,
+                        RegexOptions.IgnoreCase);
+
+                    // Pattern: {{X|noun}} - 명사만 있는 경우 (태그 시작 부분)
+                    string pattern2 = $@"(\{{\{{[^|{{}}]+\|)({Regex.Escape(noun.Key)})(\}}\}})";
+                    result = Regex.Replace(result, pattern2, m =>
+                        m.Groups[1].Value + noun.Value + m.Groups[3].Value,
+                        RegexOptions.IgnoreCase);
+
+                    // Pattern: {{X|noun something}} - 명사가 시작 부분에 있는 경우
+                    string pattern3 = $@"(\{{\{{[^|{{}}]+\|)({Regex.Escape(noun.Key)})(\s[^{{}}]*\}}\}})";
+                    result = Regex.Replace(result, pattern3, m =>
+                        m.Groups[1].Value + noun.Value + m.Groups[3].Value,
                         RegexOptions.IgnoreCase);
                 }
 

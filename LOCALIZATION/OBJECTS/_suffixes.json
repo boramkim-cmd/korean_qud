@@ -42,7 +42,7 @@
   },
 
   "of_patterns": {
-    "_comment": "'of X' 원소/속성 번역 (Phase 2.2)",
+    "_comment": "'of X' 원소/속성 번역 (Phase 2.2) + Step 5 어순 패턴 확장",
 
     "_section_elements": "원소 (Elements)",
     "fire": "불",
@@ -80,7 +80,28 @@
     "darkness": "어둠",
     "shadow": "그림자",
     "the void": "공허",
-    "the ancients": "고대인"
+    "the ancients": "고대인",
+
+    "_section_full_patterns": "전체 패턴 (Step 5 어순 처리 - 이미 '의' 포함)",
+    "of the river-wives": "강 아내들의",
+    "of the Holy Rhombus": "성스러운 마름모의",
+    "of the Aji": "아지의",
+    "of the Deep": "심연의",
+    "of All Moons": "모든 달의",
+    "of All Suns": "모든 태양의",
+    "of Eve": "이브의",
+    "of House Isner": "이스너 가문의",
+    "of Nectar": "넥타르의",
+    "of light": "빛의",
+    "of flowers": "꽃의",
+    "of fur": "모피의",
+    "of shot": "탄환의",
+    "of the Kasaphesence": "카사페선스의",
+    "of the Thin World": "얇은 세계의",
+    "of the Salt Marsh": "소금 습지의",
+    "of the Rust Wells": "녹슨 우물의",
+    "of the Six Day Stilt": "육일 죽마의",
+    "of the Seekers of the Sightless Way": "눈먼 길의 탐색자들의"
   },
 
   "body_parts": {

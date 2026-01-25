@@ -136,7 +136,14 @@
     "_comment_audit": "전수 조사 추가",
     "figurine": "조각상",
     "manacles": "수갑",
-    "netting": "그물"
+    "netting": "그물",
+    "_comment_step6": "Step 6 누락 어휘 추가",
+    "banner": "깃발",
+    "petals": "꽃잎",
+    "quills": "가시",
+    "veil": "베일",
+    "petal": "꽃잎",
+    "quill": "가시"
   },
 
   "mechanical": {

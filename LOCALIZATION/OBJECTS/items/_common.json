@@ -189,6 +189,11 @@
     "HE": "고폭",
     "sleep": "수면",
     "empty": "빈",
+    "salt-encrusted": "소금이 붙은",
+    "dilute": "희석된",
+    "fried": "튀긴",
+    "sun": "태양",
+    "vanta": "반타",
 
     "_comment_hyphenated": "하이픈 접두사 (Phase 미번역 버그 수정)",
     "bio-scanning": "바이오스캐닝",
@@ -325,5 +330,28 @@
     "mk I": "mk I",
     "mk II": "mk II",
     "mk III": "mk III"
+  },
+
+  "colors": {
+    "_comment": "색상 형용사 (tube 등에 사용) - BUG #2 수정",
+    "violet": "보라색",
+    "milky": "우유빛",
+    "smokey": "연기빛",
+    "smoky": "연기빛",
+    "rosey": "장밋빛",
+    "turquoise": "청록색",
+    "cobalt": "코발트색",
+    "mossy": "이끼색",
+    "gold-flecked": "금박",
+    "muddy": "탁한",
+    "platinum": "백금색",
+    "amber": "호박색",
+    "crimson": "진홍색",
+    "emerald": "에메랄드색",
+    "sapphire": "사파이어색",
+    "ruby": "루비색",
+    "ivory": "상아색",
+    "onyx": "오닉스색",
+    "pearl": "진주색"
   }
 }

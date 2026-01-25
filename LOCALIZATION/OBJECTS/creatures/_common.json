@@ -171,7 +171,15 @@
     "gallbeard": "담즙수염",
     "dreambeard": "꿈수염",
     "stillbeard": "고요수염",
-    "mazebeard": "미로수염"
+    "mazebeard": "미로수염",
+
+    "_section_plants": "식물 (Plants) - Step 6 누락 어휘",
+    "lah": "라",
+    "witchwood": "마녀나무",
+    "vinewafer": "덩굴 웨이퍼",
+    "dreadroot": "공포뿌리",
+    "starapple": "별사과",
+    "Issachari": "이사카리"
   },
 
   "creature_classes": {

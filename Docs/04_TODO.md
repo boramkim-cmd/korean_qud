@@ -18,7 +18,19 @@
 
 ## Next Session Required
 
-### Game Test: Item Tooltip (P2-02) - HIGH PRIORITY
+### Game Test: PRD v2 버그 수정 검증 - HIGH PRIORITY
+| Item | Expected | Status |
+|------|----------|--------|
+| `{{c|basic toolkit}}` | 기본 공구함 | [ ] |
+| `{{w|copper nugget}}` | 구리 덩어리 | [ ] |
+| `{{m|violet}} tube` | 보라색 튜브 | [ ] |
+| `ape fur cloak` | 유인원 모피 망토 | [ ] |
+| `sandals of the river-wives` | 강 아내들의 샌들 | [ ] |
+| `fried processing core` | 튀긴 처리 코어 | [ ] |
+
+**Test Path**: `kr:stats` 확인 후 wish 명령어로 개별 아이템 테스트
+
+### Game Test: Item Tooltip (P2-02)
 | Item | Expected | Status |
 |------|----------|--------|
 | Tooltip header (comparison) | "현재 아이템" / "장착 아이템" | [ ] |

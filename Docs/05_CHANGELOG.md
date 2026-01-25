@@ -1,10 +1,33 @@
 # Caves of Qud Korean Localization - Changelog
 
-> **Version**: 6.6 | **Last Updated**: 2026-01-25
+> **Version**: 6.7 | **Last Updated**: 2026-01-25
 
 ---
 
 ## Recent Changes
+
+### [2026-01-25] 번역 불일치 및 누락 근본 수정 (PRD v2)
+- **BUG #1 수정: 색상 태그 내 명사 미번역**
+  - `TranslateMaterialsInColorTags()`에서 명사도 번역하도록 수정
+  - `{{c|basic toolkit}}` → `{{c|기본 공구함}}` 정상 번역
+  - `{{w|copper nugget}}` → `{{w|구리 덩어리}}` 정상 번역
+- **BUG #2 수정: 색상 형용사 누락**
+  - `items/_common.json`에 colors 섹션 추가
+  - violet, milky, smokey, rosey, turquoise, cobalt, mossy, muddy, platinum 등
+  - `{{m|violet}} tube` → `보라색 튜브` 정상 번역
+- **Step 4: species를 접두사 사전에 병합**
+  - `LoadCreatureCommon()`에서 species를 colorTagVocab과 allPrefixes 모두에 병합
+  - `ape fur cloak` → `유인원 모피 망토` 정상 번역
+- **Step 5: "of X" 패턴 어순 처리**
+  - `TryTranslateOfPattern()` 메서드 신규 추가
+  - 영어 "X of Y" → 한국어 "Y의 X" 어순 변환
+  - `_suffixes.json`에 of_patterns 확장 (river-wives, Holy Rhombus 등)
+  - `sandals of the river-wives` → `강 아내들의 샌들`
+- **Step 6: 누락 어휘 추가**
+  - `_common.json` modifiers: salt-encrusted, dilute, fried, sun, vanta
+  - `_nouns.json` misc: banner, petals, quills, veil
+  - `creatures/_common.json` species: lah, Issachari, witchwood 등
+- **검증**: 총 5개 파일 수정, 210줄 추가
 
 ### [2026-01-25] 미번역 아이템 버그 수정
 - **ObjectTranslator 개선**:
