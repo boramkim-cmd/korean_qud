@@ -220,19 +220,16 @@ namespace QudKorean.Objects
             { "holy", "신성한" },
             { "counterweighted", "균형추" },
             { "sturdy", "튼튼한" },
-            { "worn", "낡은" },
             { "tattered", "해진" },
             { "faded", "바랜" },
             { "stained", "얼룩진" },
             { "dirty", "더러운" },
             { "clean", "깨끗한" },
-            { "polished", "광택나는" },
             { "scratched", "긁힌" },
             { "dented", "찌그러진" },
             { "gold-flecked", "금박 점박이" },
             { "smokey", "연기빛" },
             { "smoky", "연기빛" },
-            { "weird", "이상한" },
             { "strange", "기이한" },
             { "mysterious", "신비로운" },
             { "unknown", "미지의" }
@@ -723,17 +720,15 @@ namespace QudKorean.Objects
                 }
             }
 
-            // Try without prefixes but with suffix handling (for items that have only suffixes)
-            if (!string.IsNullOrEmpty(allSuffixes) && baseNameForPrefix != strippedForPrefix)
+            // Try base item name lookup (handles both simple items and items with suffixes)
+            // This covers: "torch" -> "횃불", "torch (unburnt)" -> "횃불 (미사용)"
+            if (TryGetItemTranslation(baseNameForPrefix, out string baseKo2) ||
+                TryGetCreatureTranslation(baseNameForPrefix, out baseKo2))
             {
-                if (TryGetItemTranslation(baseNameForPrefix, out string baseKo) ||
-                    TryGetCreatureTranslation(baseNameForPrefix, out baseKo))
-                {
-                    string suffixKo = TranslateAllSuffixes(allSuffixes);
-                    translated = $"{baseKo}{suffixKo}";
-                    _displayNameCache[cacheKey] = translated;
-                    return true;
-                }
+                string suffixKo = TranslateAllSuffixes(allSuffixes);
+                translated = string.IsNullOrEmpty(suffixKo) ? baseKo2 : $"{baseKo2}{suffixKo}";
+                _displayNameCache[cacheKey] = translated;
+                return true;
             }
 
             // Corpse pattern handling: "{creature} corpse" -> "{creature_ko} 시체"
