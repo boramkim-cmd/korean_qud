@@ -6,6 +6,20 @@
 
 ## Recent Changes
 
+### [2026-01-25] 미번역 아이템 버그 수정
+- **ObjectTranslator 개선**:
+  - `TranslatePrefixesInText()` 메서드 추가: fallback 경로에서 접두사 번역 처리
+  - 디버그 로그 추가: 번역 실패 원인 추적 용이
+- **JSON 데이터 확장**:
+  - `items/_common.json`: 56개 modifier 추가
+    - 하이픈 접두사 24개 (e.g., ice-, fire-, lightning-)
+    - 동적 Mod 형용사 32개 (e.g., fitted, reinforced, serrated)
+  - `items/_nouns.json`: 16개 항목 추가
+    - furniture 카테고리 14개 (chair, table, bed 등)
+    - compound_weapons 2개 (spear-thrower, atlatl)
+  - `_suffixes.json`: 상태 접미사 2개 추가 (`(Full)`, `(Empty)`)
+- **수정된 아이템 예시**: leather moccasins, ice-slicked boots, fitted leather armor
+
 ### [2026-01-25] Skills JSON Restructure & Patch System
 - **구조 재설계**: skills.json → 개별 스킬 파일 분리 (뮤테이션 패턴 적용)
   - 기존: `LOCALIZATION/GAMEPLAY/skills.json` (하나의 거대한 파일)

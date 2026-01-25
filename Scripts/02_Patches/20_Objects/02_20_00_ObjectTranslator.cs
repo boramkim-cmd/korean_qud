@@ -119,6 +119,10 @@ namespace QudKorean.Objects
             prefixKo = null;
             remainder = name;
 
+            var allPrefixes = GetAllPrefixesSorted();
+            // Debug: Log prefix extraction attempt
+            // UnityEngine.Debug.Log($"{LOG_PREFIX} TryExtractAndTranslatePrefixes: input='{name}', prefixCount={allPrefixes.Count}");
+
             List<string> translatedPrefixes = new List<string>();
             string current = name;
 
@@ -127,13 +131,15 @@ namespace QudKorean.Objects
             while (foundAny)
             {
                 foundAny = false;
-                foreach (var prefix in GetAllPrefixesSorted())
+                foreach (var prefix in allPrefixes)
                 {
                     if (current.StartsWith(prefix.Key + " ", StringComparison.OrdinalIgnoreCase))
                     {
                         translatedPrefixes.Add(prefix.Value);
                         current = current.Substring(prefix.Key.Length + 1);
                         foundAny = true;
+                        // Debug: Log successful prefix match
+                        // UnityEngine.Debug.Log($"{LOG_PREFIX} TryExtractAndTranslatePrefixes: found prefix '{prefix.Key}' -> '{prefix.Value}', remainder='{current}'");
                         break; // Restart search with longest prefixes first
                     }
                 }
@@ -143,9 +149,13 @@ namespace QudKorean.Objects
             {
                 prefixKo = string.Join(" ", translatedPrefixes);
                 remainder = current;
+                // Debug: Log result
+                // UnityEngine.Debug.Log($"{LOG_PREFIX} TryExtractAndTranslatePrefixes: SUCCESS prefixKo='{prefixKo}', remainder='{remainder}'");
                 return true;
             }
 
+            // Debug: Log failure
+            // UnityEngine.Debug.Log($"{LOG_PREFIX} TryExtractAndTranslatePrefixes: FAILED for '{name}'");
             return false;
         }
 
@@ -907,6 +917,8 @@ namespace QudKorean.Objects
         private static bool TryGetItemTranslation(string itemName, out string translated)
         {
             translated = null;
+            // Debug: Log item translation attempt
+            // UnityEngine.Debug.Log($"{LOG_PREFIX} TryGetItemTranslation: looking for '{itemName}'");
 
             // First try JSON cache
             foreach (var kvp in _itemCache)
@@ -916,6 +928,8 @@ namespace QudKorean.Objects
                     if (namePair.Key.Equals(itemName, StringComparison.OrdinalIgnoreCase))
                     {
                         translated = namePair.Value;
+                        // Debug: Log success
+                        // UnityEngine.Debug.Log($"{LOG_PREFIX} TryGetItemTranslation: FOUND in itemCache '{itemName}' -> '{translated}'");
                         return true;
                     }
                 }
@@ -924,9 +938,13 @@ namespace QudKorean.Objects
             // Fallback: check base noun translations from items/_nouns.json
             if (_baseNounsLoaded.TryGetValue(itemName, out translated))
             {
+                // Debug: Log success
+                // UnityEngine.Debug.Log($"{LOG_PREFIX} TryGetItemTranslation: FOUND in baseNouns '{itemName}' -> '{translated}'");
                 return true;
             }
 
+            // Debug: Log failure
+            // UnityEngine.Debug.Log($"{LOG_PREFIX} TryGetItemTranslation: NOT FOUND '{itemName}', baseNounsLoaded.Count={_baseNounsLoaded.Count}");
             return false;
         }
 
@@ -1506,8 +1524,9 @@ namespace QudKorean.Objects
         }
 
         /// <summary>
-        /// 색상 태그 외부의 기본 명사를 번역합니다. (Phase 3.2 - 버그 수정)
+        /// 색상 태그 외부의 기본 명사와 접두사를 번역합니다. (Phase 3.2 - 버그 수정, Phase 미번역 버그 수정)
         /// "{{w|bronze}} mace" → "{{w|bronze}} 메이스"
+        /// "leather moccasins" → "가죽 모카신"
         /// 세그먼트 분할 방식으로 태그 내부/외부를 정확히 구분합니다.
         /// </summary>
         private static string TranslateBaseNounsOutsideTags(string text)
@@ -1515,10 +1534,11 @@ namespace QudKorean.Objects
             if (string.IsNullOrEmpty(text))
                 return text;
 
-            // 태그가 없으면 직접 교체
+            // 태그가 없으면 직접 교체 - 명사 먼저, 그 다음 접두사
             if (!text.Contains("{{"))
             {
-                return TranslateNounsInText(text);
+                string withNouns = TranslateNounsInText(text);
+                return TranslatePrefixesInText(withNouns);
             }
 
             // 태그가 있으면: 세그먼트로 분할 후 외부만 처리
@@ -1531,10 +1551,12 @@ namespace QudKorean.Objects
             {
                 if (i + 1 < text.Length && text[i] == '{' && text[i + 1] == '{')
                 {
-                    // 태그 시작 발견 - 이전 텍스트 처리
+                    // 태그 시작 발견 - 이전 텍스트 처리 (명사 + 접두사)
                     if (i > lastEnd)
                     {
-                        result.Append(TranslateNounsInText(text.Substring(lastEnd, i - lastEnd)));
+                        string segment = text.Substring(lastEnd, i - lastEnd);
+                        string withNouns = TranslateNounsInText(segment);
+                        result.Append(TranslatePrefixesInText(withNouns));
                     }
 
                     // 태그 끝 찾기 (중첩 고려)
@@ -1558,10 +1580,12 @@ namespace QudKorean.Objects
                 }
             }
 
-            // 남은 텍스트 처리
+            // 남은 텍스트 처리 (명사 + 접두사)
             if (lastEnd < text.Length)
             {
-                result.Append(TranslateNounsInText(text.Substring(lastEnd)));
+                string segment = text.Substring(lastEnd);
+                string withNouns = TranslateNounsInText(segment);
+                result.Append(TranslatePrefixesInText(withNouns));
             }
 
             return result.ToString();
@@ -1582,6 +1606,28 @@ namespace QudKorean.Objects
                 string pattern = $@"(^|\s)({Regex.Escape(noun.Key)})($|\s|[,.\[\]()])";
                 result = Regex.Replace(result, pattern, m =>
                     m.Groups[1].Value + noun.Value + m.Groups[3].Value,
+                    RegexOptions.IgnoreCase);
+            }
+            return result;
+        }
+
+        /// <summary>
+        /// 텍스트 내 접두사를 번역합니다 (Phase 미번역 버그 수정).
+        /// Final fallback에서 명사 번역 후 접두사도 번역합니다.
+        /// "leather 모카신" → "가죽 모카신"
+        /// </summary>
+        private static string TranslatePrefixesInText(string text)
+        {
+            if (string.IsNullOrEmpty(text))
+                return text;
+
+            string result = text;
+            foreach (var prefix in GetAllPrefixesSorted())
+            {
+                // 단어 경계에서만 매칭 - 접두사는 다음에 공백이 와야 함
+                string pattern = $@"(^|\s)({Regex.Escape(prefix.Key)})(\s)";
+                result = Regex.Replace(result, pattern, m =>
+                    m.Groups[1].Value + prefix.Value + m.Groups[3].Value,
                     RegexOptions.IgnoreCase);
             }
             return result;

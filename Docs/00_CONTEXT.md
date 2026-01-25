@@ -1,7 +1,7 @@
 # QUD_KOREAN 프로젝트 컨텍스트
 
 > **이 파일은 Claude Code가 세션 시작 시 반드시 읽어야 하는 핵심 문서입니다.**
-> 최종 업데이트: 2026-01-25 17:15
+> 최종 업데이트: 2026-01-25 21:30
 
 ---
 
@@ -31,6 +31,7 @@
 ### 최근 이슈 (2026-01-25)
 | 이슈 | 상태 | 원인 | 해결 |
 |------|------|------|------|
+| 미번역 아이템 버그 | CLEAR | fallback에서 접두사 번역 누락 | `TranslatePrefixesInText()` 추가, modifier/noun 데이터 보강 |
 | 어휘 사전 JSON 이전 | CLEAR | 하드코딩된 사전 중복 | `items/_common.json` 생성, 하드코딩 제거 |
 | Dictionary 중복 키 버그 | CLEAR | `_descriptivePrefixes`에 중복 키 3개 | 중복 항목 삭제 |
 | 소유격 패턴 미처리 | CLEAR | `panther's claw` 등 `'s` 패턴 | TryTranslatePossessive 메서드 추가 |

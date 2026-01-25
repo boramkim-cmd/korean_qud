@@ -161,5 +161,29 @@
     "blunderbuss": "나팔총",
     "musket": "머스킷",
     "arquebus": "아르케부스"
+  },
+
+  "furniture": {
+    "_comment": "가구 (Furniture) - Phase 미번역 버그 수정",
+    "bed": "침대",
+    "chair": "의자",
+    "table": "테이블",
+    "bookshelf": "책장",
+    "sconce": "벽등",
+    "hatch": "해치",
+    "chest": "상자",
+    "crate": "나무상자",
+    "cabinet": "캐비닛",
+    "desk": "책상",
+    "stool": "의자",
+    "bench": "벤치",
+    "shelf": "선반",
+    "rack": "선반"
+  },
+
+  "compound_weapons": {
+    "_comment": "복합 무기 이름 (Compound weapon names) - Phase 미번역 버그 수정",
+    "war hammer": "전투 해머",
+    "battle axe": "전투 도끼"
   }
 }
