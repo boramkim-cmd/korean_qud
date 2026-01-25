@@ -1,0 +1,171 @@
+# Caves of Qud Korean Localization - Changelog
+
+> **Version**: 6.6 | **Last Updated**: 2026-01-25
+
+---
+
+## Recent Changes
+
+### [2026-01-25] Skills JSON Restructure & Patch System
+- **구조 재설계**: skills.json → 개별 스킬 파일 분리 (뮤테이션 패턴 적용)
+  - 기존: `LOCALIZATION/GAMEPLAY/skills.json` (하나의 거대한 파일)
+  - 신규: `LOCALIZATION/GAMEPLAY/SKILLS/*.json` (20개 개별 파일)
+- **새 JSON 구조**: powers와 power_desc를 한 세트로 묶음
+  ```json
+  {
+    "names": { "Axe": "도끼" },
+    "description": "You are skilled with axes.",
+    "description_ko": "당신은 도끼에 숙달되어 있습니다.",
+    "powers": {
+      "axe proficiency": {
+        "name": "도끼 숙련",
+        "desc": "도끼로 공격할 때 명중에 +2 보너스를 받습니다."
+      }
+    }
+  }
+  ```
+- **생성된 스킬 파일** (20개):
+  - Acrobatics, Axe, Bow_and_Rifle, Cooking_and_Gathering, Cudgel
+  - Customs_and_Folklore, Endurance, Heavy_Weapon, Long_Blade, Multiweapon_Fighting
+  - Persuasion, Physic, Pistol, Self_Discipline, Shield
+  - Short_Blade, Single_Weapon_Fighting, Tactics, Tinkering, Wayfaring
+- **패치 코드 생성**: `Scripts/02_Patches/10_UI/02_10_12_Skills.cs`
+  - `SkillLocalizationManager`: SKILLS/*.json 파일 로드 및 파싱
+  - `Patch_SkillFactory`: SkillFactory 로드 후 번역 자동 적용
+- **LocalizationManager 업데이트**: skills.json 참조 제거
+- **검증**: project_tool.py 통과, 총 7,037개 번역 항목
+
+### [2026-01-25] Items Translation Extension
+- **Weapons 확장**:
+  - `weapons/melee/cudgels.json`: 20 → 32 항목 (+12)
+  - `weapons/melee/blades.json`: 9 → 20 항목 (+11)
+  - `weapons/melee/axes.json`: 16 → 24 항목 (+8)
+  - `weapons/melee/long_blades.json`: 11 → 26 항목 (+15)
+  - `weapons/ranged/guns.json`: 23 → 26 항목 (+3)
+  - `weapons/ranged/bows.json`: 2 → 12 항목 (+10)
+- **Armor 확장**:
+  - `armor/body.json`: 7 → 22 항목 (+15)
+  - `armor/face.json`: 7 → 16 항목 (+9)
+  - `armor/back.json`: 7 → 16 항목 (+9)
+- **Grenades 확장**:
+  - `artifacts/grenades.json`: 10 → 56 항목 (+46, mk I/II/III 시리즈)
+- **검증**: project_tool.py 통과, 총 6,956개 번역 항목 (+787)
+
+### [2026-01-24] Objects Translation Major Expansion
+- **Creatures 확장** (21.8% → ~45%):
+  - `insects/ants.json`: 1 → 16 항목
+  - `insects/beetles.json`: 1 → 18 항목
+  - `insects/crabs.json`: 1 → 16 항목
+  - `insects/hoppers.json`: 1 → 14 항목
+  - `insects/moths.json`: 3 → 22 항목
+  - `insects/spiders.json`: 3 → 24 항목
+  - `insects/worms.json`: 5 → 21 항목
+  - `humanoids/goatfolk.json`: 4 → 18 항목
+  - `humanoids/others.json`: 4 → 32 항목 (Baetyl, 골렘, 트롤 등)
+  - `animals/mammals.json`: 13 → 38 항목
+- **Items 확장** (30.8% → ~48%):
+  - `armor/head.json`: 6 → 20 항목 (전 티어 투구)
+  - `armor/hands.json`: 5 → 18 항목 (전 티어 장갑)
+  - `armor/feet.json`: 6 → 19 항목 (전 티어 장화)
+  - `weapons/melee/axes.json`: 5 → 18 항목
+  - `weapons/melee/cudgels.json`: 9 → 22 항목
+  - `weapons/ranged/guns.json`: 7 → 24 항목
+- **Widgets 확장**: 15 → 44 항목
+- **Terrain 확장**: zone.json 26 → 52 항목
+- **검증**: project_tool.py 통과, 총 6,169개 번역 항목
+
+### [2026-01-22] Item Tooltip Localization Complete
+- **Patches Created/Modified**:
+  - `02_10_02_Tooltip.cs` - ShowManually unified patch for all tooltip paths
+  - `02_20_00_ObjectTranslator.cs` - Dynamic food patterns + state suffix handling
+- **Features Added**:
+  - Tooltip header translation ("This Item" → "현재 아이템", "Equipped Item" → "장착 아이템")
+  - Dynamic food patterns: `{creature} jerky/meat/haunch` → Korean
+  - State suffix translation: `[empty]` → `[비어있음]`, `(lit)` → `(점화됨)`
+- **Bugs Fixed**:
+  - TooltipTrigger vs Tooltip.GameObject confusion (critical)
+  - State suffix processing order (waterskin [empty] now properly translated)
+  - Look.QueueLookerTooltip path not covered (world map tooltips)
+- **JSON Added**:
+  - `common.json`: tooltips section
+  - `food.json`: bear jerky, haunch, preserved meat entries
+- See: [10_ITEM_TOOLTIP_ANALYSIS.md](10_ITEM_TOOLTIP_ANALYSIS.md)
+
+### [2026-01-22] P3-06 Tool Scripts Consolidation
+- Upgraded `project_tool.py` to v2.0 with CLI subcommands
+  - `validate`, `build`, `glossary`, `stats`, `help`
+- Moved 3 legacy scripts to `tools/_legacy/`:
+  - `check_missing_translations.py` (XML-based, obsolete)
+  - `verify_structure_data.py` (integrated into project_tool)
+  - `fix_empty_descriptions.py` (one-time fix, complete)
+- Created `tools/README.md` documentation
+- Total legacy scripts: 13 (safely archived)
+
+### [2026-01-22] Object Translation Expansion
+- Added new creature categories: birds, reptiles, farmers, seedsprout
+- Added new item categories: ammo, books
+- Final stats: 57 JSON files, 321+ translation entries
+- Git synced: commit a6d9cf2
+
+### [2026-01-22] P2-01 Message Log Patch Complete
+- Created `02_10_16_MessageLog.cs` - Harmony patch for MessageQueue.AddPlayerMessage
+- Created `LOCALIZATION/GAMEPLAY/messages.json` - 50+ message patterns
+- Features: verb translation dictionary, Korean josa handling, pattern matching
+- Categories: flight, movement, items, combat, status, interaction, system
+
+### [2026-01-22] Mutation & Object Systems Complete
+- Verified all 81 mutation files translated (Physical/Mental/Defects/Morphotypes)
+- Object JSON reorganized: 51 files, 300+ entries (type-based structure)
+- Validation fixes: 0 empty translations, 0 duplicate keys
+
+### [2026-01-21] Tutorial Translation (ERR-018)
+- Fixed smart quote mismatch (U+2019 vs U+0027)
+- Added Korean text skip logic
+- Added missing plain text variations
+
+### [2026-01-20] Font System
+- Korean font bundle loading from StreamingAssets
+- TMP_FontAsset fallback registration
+- Tooltip Korean glyph support
+
+### [2026-01-19] Character Creation Fixes
+- ERR-017: Attribute screen multi-fix (breadcrumb, tooltip, descriptions)
+- ERR-016: Attribute tooltip/description localization
+- ERR-015: Chargen overlay scope fix
+- ERR-014: Toughness terminology (건강 not 지구력)
+- ERR-013: Caste stat/save modifiers
+- ERR-008: Attribute crash (Substring fix)
+- ERR-009: Bullet dot issues
+
+---
+
+## Summary by Phase
+
+### Phase 1: Stabilization (100%)
+| Date | Work |
+|------|------|
+| 01-16 | Inventory filter, Options values, Josa support, Mutation desc |
+| 01-17~22 | Mutation JSON restructure (81 files) |
+| 01-21 | Tutorial translation system |
+
+### Phase 2: Gameplay (90%)
+| Date | Work |
+|------|----- |
+| 01-22 | Object localization system (Phases 0-4) |
+| 01-22 | Message Log Patch (P2-01) |
+| 01-24 | Objects Translation Major Expansion (67 files, 6,169 entries) |
+| 01-25 | Items Translation Extension (weapons, armor, grenades) (+787 entries) |
+
+---
+
+## Statistics
+- Total translation entries: 7,037
+- Mutation files: 81
+- Skill files: 20
+- Object files: 67
+- Message patterns: 50+
+- Build status: Success
+
+---
+
+*Full history: _archive/02_CHANGELOG_full_20260122.md*
