@@ -1,7 +1,7 @@
 # QUD_KOREAN 프로젝트 컨텍스트
 
 > **이 파일은 Claude Code가 세션 시작 시 반드시 읽어야 하는 핵심 문서입니다.**
-> 최종 업데이트: 2026-01-25 13:40
+> 최종 업데이트: 2026-01-25 17:15
 
 ---
 
@@ -31,11 +31,9 @@
 ### 최근 이슈 (2026-01-25)
 | 이슈 | 상태 | 원인 | 해결 |
 |------|------|------|------|
+| 어휘 사전 JSON 이전 | CLEAR | 하드코딩된 사전 중복 | `items/_common.json` 생성, 하드코딩 제거 |
 | Dictionary 중복 키 버그 | CLEAR | `_descriptivePrefixes`에 중복 키 3개 | 중복 항목 삭제 |
 | 소유격 패턴 미처리 | CLEAR | `panther's claw` 등 `'s` 패턴 | TryTranslatePossessive 메서드 추가 |
-| nugget 조합 미처리 | CLEAR | `oil nugget` 등 nugget 패턴 | _baseNounTranslations에 추가 |
-| 주사기 접두사 미번역 | CLEAR | `love injector` 등 | _descriptivePrefixes에 추가 |
-| sun and moon mask 미번역 | CLEAR | 고유 아이템 누락 | face.json에 추가 |
 
 ### 테스트 필요 항목
 - [ ] 툴팁 헤더: "현재 아이템" / "장착 아이템"
@@ -105,6 +103,7 @@ kr:check <id>   # 특정 블루프린트 확인
 | 모드 진입점 | `Scripts/00_Core/00_00_00_ModEntry.cs` |
 | 번역 엔진 | `Scripts/00_Core/00_00_01_TranslationEngine.cs` |
 | 오브젝트 번역 | `Scripts/02_Patches/20_Objects/02_20_00_ObjectTranslator.cs` |
+| 공통 어휘 (재료/품질/수식어) | `LOCALIZATION/OBJECTS/items/_common.json` |
 | UI 패치 | `Scripts/02_Patches/10_UI/` |
 | 번역 JSON | `LOCALIZATION/` |
 
