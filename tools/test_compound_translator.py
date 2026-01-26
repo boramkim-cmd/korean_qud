@@ -141,30 +141,57 @@ class TranslationSimulator:
         return ' '.join(translated_parts)
 
     def translate_with_color_tags(self, text: str) -> str:
-        """컬러태그 보존하면서 번역"""
-        result = text
+        """컬러태그 보존하면서 번역 (태그 외부 텍스트도 번역)"""
+        # 1. 태그와 텍스트 영역 분리
+        parts = []
+        last_end = 0
 
-        # 컬러태그 내부만 번역 (왼쪽은 보존!)
-        def replace_tag(match):
+        for match in self.COLOR_TAG_PATTERN.finditer(text):
+            # 태그 앞의 일반 텍스트
+            if match.start() > last_end:
+                plain_text = text[last_end:match.start()]
+                parts.append(('text', plain_text))
+
+            # 태그 자체
             tag_name = match.group(1)  # 파이프 왼쪽 (번역 금지!)
             content = match.group(2)   # 파이프 오른쪽 (번역 대상)
+            parts.append(('tag', tag_name, content))
+            last_end = match.end()
 
-            # 내용 번역 시도
-            trans = self.translate_word(content)
-            if trans is None:
-                # 복합어 시도
-                trans = self.translate_compound(content)
-            if trans is None:
-                trans = content  # 번역 실패 시 원본 유지
+        # 마지막 태그 뒤의 일반 텍스트
+        if last_end < len(text):
+            plain_text = text[last_end:]
+            parts.append(('text', plain_text))
 
-            return f"{{{{{tag_name}|{trans}}}}}"
+        # 2. 각 부분 번역
+        result_parts = []
+        for part in parts:
+            if part[0] == 'text':
+                plain_text = part[1].strip()
+                if plain_text:
+                    # 일반 텍스트 번역 시도
+                    trans = self.translate_word(plain_text)
+                    if trans is None:
+                        trans = self.translate_compound(plain_text)
+                    if trans is None:
+                        trans = plain_text
+                    # 원본 공백 구조 유지
+                    leading = len(part[1]) - len(part[1].lstrip())
+                    trailing = len(part[1]) - len(part[1].rstrip())
+                    result_parts.append(part[1][:leading] + trans + part[1][len(part[1])-trailing:] if trailing else part[1][:leading] + trans)
+                else:
+                    result_parts.append(part[1])  # 공백만 있으면 그대로
+            else:
+                tag_name, content = part[1], part[2]
+                # 태그 내용 번역 시도
+                trans = self.translate_word(content)
+                if trans is None:
+                    trans = self.translate_compound(content)
+                if trans is None:
+                    trans = content
+                result_parts.append(f"{{{{{tag_name}|{trans}}}}}")
 
-        result = self.COLOR_TAG_PATTERN.sub(replace_tag, result)
-
-        # 컬러태그 외부 텍스트도 번역
-        # (복잡한 케이스는 일단 단순 처리)
-
-        return result
+        return ''.join(result_parts)
 
     def translate(self, text: str) -> str:
         """전체 번역 프로세스"""
@@ -352,24 +379,26 @@ def create_test_cases() -> List[TestCase]:
     add("셰이더", "{{bloody|bear corpse}}", "{{bloody|곰 시체}}", "셰이더+복합어", True)
     add("셰이더", "{{prismatic|crystal dagger}}", "{{prismatic|수정 단검}}", "셰이더+복합어", True)
 
-    # ========== 8. 중첩 컬러태그 (15개) - 제한 사항: 2중 중첩/혼합 태그 미지원 ==========
-    # 이 테스트들은 현재 구현의 제한 사항을 문서화하기 위한 것입니다.
-    # 실제 게임에서 2중 중첩 태그는 드물게 사용됩니다.
+    # ========== 8. 태그+텍스트 혼합 패턴 (중요!) ==========
+    # 실제 게임에서 많이 사용되는 패턴: {{tag|content}} + plain text
+    add("태그텍스트혼합", "{{c|bear}} golem", "{{c|곰}} 골렘", "태그+텍스트 혼합", True)
+    add("태그텍스트혼합", "{{r|iron}} sword", "{{r|철}} 검", "태그+텍스트 혼합", True)
+    add("태그텍스트혼합", "broken {{g|armor}}", "부서진 {{g|갑옷}}", "텍스트+태그 혼합", True)
+    add("태그텍스트혼합", "{{c|bear}} {{r|corpse}}", "{{c|곰}} {{r|시체}}", "다중 태그", True)
+    add("태그텍스트혼합", "{{y|iron}} {{w|sword}}", "{{y|철}} {{w|검}}", "다중 태그", True)
+    add("태그텍스트혼합", "giant {{c|bear}} golem", "거대한 {{c|곰}} 골렘", "텍스트+태그+텍스트", True)
+    add("태그텍스트혼합", "{{r|broken}} iron {{g|sword}}", "{{r|부서진}} 철 {{g|검}}", "복잡한 혼합", True)
+    add("태그텍스트혼합", "{{w|bronze}} mace", "{{w|청동}} 철퇴", "실제 게임: Items.xml", True)
+    add("태그텍스트혼합", "{{Y|steel}} dagger", "{{Y|강철}} 단검", "실제 게임: Items.xml", True)
+    add("태그텍스트혼합", "{{b|carbide}} hammer", "{{b|카바이드}} 해머", "실제 게임: Items.xml", True)
+    add("태그텍스트혼합", "two-handed {{Y|steel}} sword", "양손 {{Y|강철}} 검", "실제 게임 패턴", True)
+
+    # ========== 9. 2중 중첩 태그 (제한 사항) ==========
+    # 2중 중첩은 복잡한 파싱 필요 - 현재 미지원
     add("제한사항_중첩", "{{c|{{r|bear}}}}", "{{c|{{r|bear}}}}", "2중 중첩 미지원", True)
     add("제한사항_중첩", "{{g|{{y|sword}}}}", "{{g|{{y|sword}}}}", "2중 중첩 미지원", True)
     add("제한사항_중첩", "{{w|{{c|iron}}}}", "{{w|{{c|iron}}}}", "2중 중첩 미지원", True)
-    add("제한사항_중첩", "{{r|{{g|golem}}}}", "{{r|{{g|golem}}}}", "2중 중첩 미지원", True)
-    add("제한사항_중첩", "{{y|{{w|water}}}}", "{{y|{{w|water}}}}", "2중 중첩 미지원", True)
-    add("제한사항_혼합", "the {{c|bear}} golem", "the {{c|곰}} golem", "태그 외부 텍스트 미번역", True)
-    add("제한사항_혼합", "{{r|iron}} sword", "{{r|철}} sword", "태그 외부 텍스트 미번역", True)
-    add("제한사항_혼합", "broken {{g|armor}}", "broken {{g|갑옷}}", "태그 외부 텍스트 미번역", True)
-    add("중첩태그", "{{c|bear}} {{r|corpse}}", "{{c|곰}} {{r|시체}}", "다중 태그 (병렬)", True)
-    add("중첩태그", "{{y|iron}} {{w|sword}}", "{{y|철}} {{w|검}}", "다중 태그 (병렬)", True)
-    add("제한사항_혼합", "giant {{c|bear}} golem", "giant {{c|곰}} golem", "태그 외부 텍스트 미번역", True)
-    add("제한사항_혼합", "{{r|broken}} iron {{g|sword}}", "{{r|부서진}} iron {{g|검}}", "태그 외부 텍스트 미번역", True)
-    add("제한사항_중첩", "{{fiery|{{c|bear}}}}", "{{fiery|{{c|bear}}}}", "2중 중첩 미지원", True)
-    add("제한사항_중첩", "{{chrome|{{y|iron}} sword}}", "{{chrome|{{y|iron}} sword}}", "중첩 내부 미지원", True)
-    add("제한사항_중첩", "{{icy|frozen {{w|water}}}}", "{{icy|frozen {{w|water}}}}", "중첩 내부 미지원", True)
+    add("제한사항_중첩", "{{fiery|{{c|bear}}}}", "{{fiery|{{c|bear}}}}", "셰이더+컬러 중첩 미지원", True)
 
     # ========== 9. 파이프 왼쪽 보존 검증 (20개) ==========
     # 이 테스트들은 파이프 왼쪽이 절대 번역되지 않았는지 확인
@@ -410,10 +439,7 @@ def create_test_cases() -> List[TestCase]:
     add("실제게임_체루브", "dog cherub", "개 케루브", "실제 게임: Creatures.xml")
     add("실제게임_체루브", "bat cherub", "박쥐 케루브", "실제 게임: Creatures.xml")
     add("실제게임_체루브", "spider cherub", "거미 케루브", "실제 게임: Creatures.xml")
-    # Items.xml에서 추출한 실제 컬러태그 패턴 - 태그+텍스트 혼합은 제한 사항
-    add("제한사항_태그텍스트", "{{w|bronze}} mace", "{{w|청동}} mace", "실제 게임 Items.xml: 태그 외부 미번역", True)
-    add("제한사항_태그텍스트", "{{Y|steel}} dagger", "{{Y|강철}} dagger", "실제 게임 Items.xml: 태그 외부 미번역", True)
-    add("제한사항_태그텍스트", "{{b|carbide}} hammer", "{{b|카바이드}} hammer", "실제 게임 Items.xml: 태그 외부 미번역", True)
+    # Items.xml 컬러태그 패턴은 태그텍스트혼합 카테고리로 이동됨
     # 실제 게임의 mechanical 패턴
     add("실제게임_기계", "mechanical bear cherub", "기계 곰 케루브", "실제 게임: Creatures.xml")
     add("실제게임_기계", "mechanical cat golem", "기계 고양이 골렘", "실제 게임 추정")

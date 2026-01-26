@@ -5,12 +5,17 @@
  * 작성일: 2026-01-26
  *
  * 공백으로 분리된 복합어를 각 단어별로 번역 후 조합합니다.
+ * 컬러 태그가 있는 경우 태그 구조를 보존하면서 내용을 번역합니다.
  * 예: "bear golem" → "곰" + "골렘" → "곰 골렘"
+ *     "{{c|bear}} golem" → "{{c|곰}} 골렘"
  *     "antelope cherub" → "영양" + "체루브" → "영양 체루브"
  */
 
 using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Text.RegularExpressions;
 using QudKorean.Objects.V2.Core;
 using QudKorean.Objects.V2.Data;
 using QudKorean.Objects.V2.Processing;
@@ -20,6 +25,7 @@ namespace QudKorean.Objects.V2.Patterns
     /// <summary>
     /// Translates compound words by splitting and translating each part.
     /// Handles patterns like "{modifier} {noun}" or "{creature} {type}".
+    /// Preserves color tag structure while translating contents.
     /// </summary>
     public class CompoundTranslator : IPatternTranslator
     {
@@ -42,37 +48,188 @@ namespace QudKorean.Objects.V2.Patterns
 
         public TranslationResult Translate(string name, ITranslationContext context)
         {
+            // First, check if all words can be translated (using stripped version)
             string stripped = ColorTagProcessor.Strip(name);
             string[] parts = stripped.Split(new[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
 
             if (parts.Length < 2)
                 return TranslationResult.Miss();
 
-            var translatedParts = new List<string>();
-            bool allTranslated = true;
-
+            // Build translation map for all words
+            var translationMap = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase);
             foreach (string part in parts)
             {
-                if (TryTranslatePart(context.Repository, part, out string translated))
+                if (!TryTranslatePart(context.Repository, part, out string translated))
                 {
-                    translatedParts.Add(translated);
+                    // If any part fails, we can't complete the compound translation
+                    return TranslationResult.Miss();
+                }
+                if (!translationMap.ContainsKey(part))
+                {
+                    translationMap[part] = translated;
+                }
+            }
+
+            // Now translate with color tag preservation
+            string result;
+            if (name.Contains("{{"))
+            {
+                result = TranslateWithTags(name, translationMap);
+            }
+            else
+            {
+                // Simple case: no tags, just replace words
+                result = string.Join(" ", parts.Select(p => translationMap[p]));
+            }
+
+            return TranslationResult.Hit(result, Name);
+        }
+
+        /// <summary>
+        /// Translates text containing color tags, preserving tag structure.
+        /// Handles: "{{c|bear}} golem" → "{{c|곰}} 골렘"
+        /// </summary>
+        private string TranslateWithTags(string text, Dictionary<string, string> translationMap)
+        {
+            var result = new StringBuilder();
+            int i = 0;
+
+            while (i < text.Length)
+            {
+                // Check for tag start
+                if (i + 1 < text.Length && text[i] == '{' && text[i + 1] == '{')
+                {
+                    // Find tag end
+                    int tagStart = i;
+                    int depth = 1;
+                    i += 2;
+                    int pipePos = -1;
+
+                    while (i + 1 < text.Length && depth > 0)
+                    {
+                        if (text[i] == '{' && text[i + 1] == '{')
+                        {
+                            depth++;
+                            i += 2;
+                        }
+                        else if (text[i] == '}' && text[i + 1] == '}')
+                        {
+                            depth--;
+                            if (depth > 0) i += 2;
+                        }
+                        else
+                        {
+                            if (depth == 1 && text[i] == '|' && pipePos == -1)
+                            {
+                                pipePos = i;
+                            }
+                            i++;
+                        }
+                    }
+
+                    if (depth == 0)
+                    {
+                        // Complete tag found
+                        int tagEnd = i + 2;
+                        string fullTag = text.Substring(tagStart, tagEnd - tagStart);
+
+                        if (pipePos > tagStart)
+                        {
+                            // Extract tag name and content
+                            string tagName = text.Substring(tagStart + 2, pipePos - tagStart - 2);
+                            string content = text.Substring(pipePos + 1, i - pipePos - 1);
+
+                            // Translate words in content
+                            string translatedContent = TranslateWordsInText(content, translationMap);
+
+                            // Reconstruct tag (preserve tag name, translate content)
+                            result.Append("{{");
+                            result.Append(tagName);
+                            result.Append("|");
+                            result.Append(translatedContent);
+                            result.Append("}}");
+                        }
+                        else
+                        {
+                            // Malformed tag, keep as-is
+                            result.Append(fullTag);
+                        }
+
+                        i = tagEnd;
+                    }
+                    else
+                    {
+                        // Incomplete tag, keep as-is
+                        result.Append(text.Substring(tagStart, i - tagStart));
+                    }
                 }
                 else
                 {
-                    // If any part fails, we can't complete the compound translation
-                    allTranslated = false;
-                    break;
+                    // Find next tag or end of string
+                    int segmentStart = i;
+                    while (i < text.Length)
+                    {
+                        if (i + 1 < text.Length && text[i] == '{' && text[i + 1] == '{')
+                            break;
+                        i++;
+                    }
+
+                    // Translate words in this plain text segment
+                    string segment = text.Substring(segmentStart, i - segmentStart);
+                    result.Append(TranslateWordsInText(segment, translationMap));
                 }
             }
 
-            if (allTranslated && translatedParts.Count == parts.Length)
+            return result.ToString();
+        }
+
+        /// <summary>
+        /// Translates individual words in plain text using the translation map.
+        /// </summary>
+        private string TranslateWordsInText(string text, Dictionary<string, string> translationMap)
+        {
+            if (string.IsNullOrEmpty(text))
+                return text;
+
+            // Split by whitespace while preserving separators
+            var result = new StringBuilder();
+            var wordBuffer = new StringBuilder();
+
+            for (int i = 0; i <= text.Length; i++)
             {
-                // Combine translated parts (Korean typically keeps same order for compounds)
-                string result = string.Join(" ", translatedParts);
-                return TranslationResult.Hit(result, Name);
+                char c = i < text.Length ? text[i] : ' ';
+                bool isWordChar = char.IsLetterOrDigit(c) || c == '-' || c == '\'';
+
+                if (isWordChar && i < text.Length)
+                {
+                    wordBuffer.Append(c);
+                }
+                else
+                {
+                    // End of word
+                    if (wordBuffer.Length > 0)
+                    {
+                        string word = wordBuffer.ToString();
+                        if (translationMap.TryGetValue(word, out string translated))
+                        {
+                            result.Append(translated);
+                        }
+                        else
+                        {
+                            result.Append(word);
+                        }
+                        wordBuffer.Clear();
+                    }
+
+                    // Append separator
+                    if (i < text.Length)
+                    {
+                        result.Append(c);
+                    }
+                }
             }
 
-            return TranslationResult.Miss();
+            return result.ToString();
         }
 
         /// <summary>
