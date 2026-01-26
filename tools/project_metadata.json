@@ -1,5 +1,5 @@
 {
-  "generated": "2026-01-25 11:26:24",
+  "generated": "2026-01-26 20:53:33",
   "scripts": {
     "Scripts/99_Utils/99_00_03_StructureTranslator.cs": {
       "classification": "Util",
@@ -605,13 +605,56 @@
       ],
       "methods": []
     },
-    "Scripts/02_Patches/20_Objects/02_20_00_ObjectTranslator.cs": {
+    "Scripts/02_Patches/20_Objects/02_20_01_DisplayNamePatch.cs": {
       "classification": "Patch",
-      "role": "생물/아이템 이름 및 설명을 번역하는 독립 시스템",
+      "role": "GetDisplayNameEvent.GetFor() 패치로 생물/아이템 이름 한글화",
       "namespace": "QudKorean.Objects",
       "classes": [
-        "ObjectTranslator",
-        "ObjectData"
+        "Patch_ObjectDisplayName",
+        "CacheInvalidation"
+      ],
+      "methods": [
+        {
+          "name": "ClearCache",
+          "return": "void",
+          "params": ""
+        },
+        {
+          "name": "ReloadAndClear",
+          "return": "void",
+          "params": ""
+        },
+        {
+          "name": "OnGameLoaded",
+          "return": "void",
+          "params": ""
+        }
+      ]
+    },
+    "Scripts/02_Patches/00_Core/02_00_02_ScreenBuffer.cs": {
+      "classification": "Core Patch",
+      "role": "ScreenBuffer.Write 메서드를 패치하여 모든 화면의 텍스트를 번역합니다.",
+      "namespace": "QudKRTranslation.Patches",
+      "classes": [
+        "ScreenBuffer_Patch"
+      ],
+      "methods": []
+    },
+    "Scripts/02_Patches/00_Core/02_00_01_SteamGalaxy.cs": {
+      "classification": "Core Patch",
+      "role": "스팀 환경에서 GOG Galaxy 초기화 중 오류가 발생하는 것을 방지하기 위해 Galaxy 초기화를 건너뛰고 Steam만 초기화합니다.",
+      "namespace": "QudKRTranslation.Patches",
+      "classes": [
+        "SteamGalaxyPatch"
+      ],
+      "methods": []
+    },
+    "Scripts/02_Patches/20_Objects/V2/ObjectTranslatorV2.cs": {
+      "classification": "N/A",
+      "role": "ObjectTranslator V2 Public API",
+      "namespace": "QudKorean.Objects.V2",
+      "classes": [
+        "ObjectTranslatorV2"
       ],
       "methods": [
         {
@@ -656,52 +699,479 @@
         }
       ]
     },
-    "Scripts/02_Patches/20_Objects/02_20_01_DisplayNamePatch.cs": {
-      "classification": "Patch",
-      "role": "GetDisplayNameEvent.GetFor() 패치로 생물/아이템 이름 한글화",
-      "namespace": "QudKorean.Objects",
+    "Scripts/02_Patches/20_Objects/V2/Pipeline/ITranslationHandler.cs": {
+      "classification": "N/A",
+      "role": "Chain of Responsibility 핸들러 인터페이스",
+      "namespace": "QudKorean.Objects.V2.Pipeline",
+      "classes": [],
+      "methods": []
+    },
+    "Scripts/02_Patches/20_Objects/V2/Pipeline/TranslationPipeline.cs": {
+      "classification": "N/A",
+      "role": "번역 파이프라인 관리자",
+      "namespace": "QudKorean.Objects.V2.Pipeline",
       "classes": [
-        "Patch_ObjectDisplayName",
-        "CacheInvalidation"
+        "TranslationPipeline"
       ],
       "methods": [
         {
+          "name": "AddHandler",
+          "return": "TranslationPipeline",
+          "params": "ITranslationHandler handler"
+        },
+        {
+          "name": "Execute",
+          "return": "TranslationResult",
+          "params": "ITranslationContext context"
+        },
+        {
+          "name": "CreateDefault",
+          "return": "TranslationPipeline",
+          "params": "ITranslationRepository repo"
+        }
+      ]
+    },
+    "Scripts/02_Patches/20_Objects/V2/Core/TranslationContext.cs": {
+      "classification": "N/A",
+      "role": "번역 컨텍스트 구현",
+      "namespace": "QudKorean.Objects.V2.Core",
+      "classes": [
+        "TranslationContext"
+      ],
+      "methods": [
+        {
+          "name": "TryGetCached",
+          "return": "bool",
+          "params": "string key, out string value"
+        },
+        {
+          "name": "SetCached",
+          "return": "void",
+          "params": "string key, string value"
+        },
+        {
           "name": "ClearCache",
-          "return": "void",
-          "params": ""
-        },
-        {
-          "name": "ReloadAndClear",
-          "return": "void",
-          "params": ""
-        },
-        {
-          "name": "OnGameLoaded",
           "return": "void",
           "params": ""
         }
       ]
     },
-    "Scripts/02_Patches/00_Core/02_00_02_ScreenBuffer.cs": {
-      "classification": "Core Patch",
-      "role": "ScreenBuffer.Write 메서드를 패치하여 모든 화면의 텍스트를 번역합니다.",
-      "namespace": "QudKRTranslation.Patches",
+    "Scripts/02_Patches/20_Objects/V2/Core/TranslationResult.cs": {
+      "classification": "N/A",
+      "role": "번역 결과 객체",
+      "namespace": "QudKorean.Objects.V2.Core",
       "classes": [
-        "ScreenBuffer_Patch"
+        "TranslationResult"
+      ],
+      "methods": [
+        {
+          "name": "Hit",
+          "return": "TranslationResult",
+          "params": "string translated, string handler"
+        },
+        {
+          "name": "Miss",
+          "return": "TranslationResult",
+          "params": ""
+        },
+        {
+          "name": "Partial",
+          "return": "TranslationResult",
+          "params": "string partialResult, string handler"
+        }
+      ]
+    },
+    "Scripts/02_Patches/20_Objects/V2/Core/ITranslationContext.cs": {
+      "classification": "N/A",
+      "role": "번역 컨텍스트 인터페이스 정의",
+      "namespace": "QudKorean.Objects.V2.Core",
+      "classes": [],
+      "methods": []
+    },
+    "Scripts/02_Patches/20_Objects/V2/Patterns/PatternTranslatorRegistry.cs": {
+      "classification": "N/A",
+      "role": "패턴 번역기 등록 및 관리",
+      "namespace": "QudKorean.Objects.V2.Patterns",
+      "classes": [
+        "PatternTranslatorRegistry"
+      ],
+      "methods": [
+        {
+          "name": "Register",
+          "return": "void",
+          "params": "IPatternTranslator translator"
+        },
+        {
+          "name": "TryTranslate",
+          "return": "TranslationResult",
+          "params": "string name, ITranslationContext context"
+        },
+        {
+          "name": "CreateDefault",
+          "return": "PatternTranslatorRegistry",
+          "params": ""
+        }
+      ]
+    },
+    "Scripts/02_Patches/20_Objects/V2/Patterns/CorpseTranslator.cs": {
+      "classification": "N/A",
+      "role": "시체 패턴 번역기",
+      "namespace": "QudKorean.Objects.V2.Patterns",
+      "classes": [
+        "CorpseTranslator"
+      ],
+      "methods": [
+        {
+          "name": "CanHandle",
+          "return": "bool",
+          "params": "string name"
+        },
+        {
+          "name": "Translate",
+          "return": "TranslationResult",
+          "params": "string name, ITranslationContext context"
+        }
+      ]
+    },
+    "Scripts/02_Patches/20_Objects/V2/Patterns/PartsTranslator.cs": {
+      "classification": "N/A",
+      "role": "부위 패턴 번역기",
+      "namespace": "QudKorean.Objects.V2.Patterns",
+      "classes": [
+        "PartsTranslator"
+      ],
+      "methods": [
+        {
+          "name": "CanHandle",
+          "return": "bool",
+          "params": "string name"
+        },
+        {
+          "name": "Translate",
+          "return": "TranslationResult",
+          "params": "string name, ITranslationContext context"
+        }
+      ]
+    },
+    "Scripts/02_Patches/20_Objects/V2/Patterns/OfPatternTranslator.cs": {
+      "classification": "N/A",
+      "role": "\"of X\" 패턴 번역기",
+      "namespace": "QudKorean.Objects.V2.Patterns",
+      "classes": [
+        "OfPatternTranslator"
+      ],
+      "methods": [
+        {
+          "name": "CanHandle",
+          "return": "bool",
+          "params": "string name"
+        },
+        {
+          "name": "Translate",
+          "return": "TranslationResult",
+          "params": "string name, ITranslationContext context"
+        }
+      ]
+    },
+    "Scripts/02_Patches/20_Objects/V2/Patterns/IPatternTranslator.cs": {
+      "classification": "N/A",
+      "role": "Strategy 패턴 인터페이스 정의",
+      "namespace": "QudKorean.Objects.V2.Patterns",
+      "classes": [],
+      "methods": []
+    },
+    "Scripts/02_Patches/20_Objects/V2/Patterns/FoodTranslator.cs": {
+      "classification": "N/A",
+      "role": "음식 패턴 번역기",
+      "namespace": "QudKorean.Objects.V2.Patterns",
+      "classes": [
+        "FoodTranslator"
+      ],
+      "methods": [
+        {
+          "name": "CanHandle",
+          "return": "bool",
+          "params": "string name"
+        },
+        {
+          "name": "Translate",
+          "return": "TranslationResult",
+          "params": "string name, ITranslationContext context"
+        }
+      ]
+    },
+    "Scripts/02_Patches/20_Objects/V2/Patterns/PossessiveTranslator.cs": {
+      "classification": "N/A",
+      "role": "소유격 패턴 번역기",
+      "namespace": "QudKorean.Objects.V2.Patterns",
+      "classes": [
+        "PossessiveTranslator"
+      ],
+      "methods": [
+        {
+          "name": "CanHandle",
+          "return": "bool",
+          "params": "string name"
+        },
+        {
+          "name": "Translate",
+          "return": "TranslationResult",
+          "params": "string name, ITranslationContext context"
+        }
+      ]
+    },
+    "Scripts/02_Patches/20_Objects/V2/Processing/SuffixExtractor.cs": {
+      "classification": "N/A",
+      "role": "접미사 추출 및 번역 유틸리티",
+      "namespace": "QudKorean.Objects.V2.Processing",
+      "classes": [
+        "SuffixExtractor"
+      ],
+      "methods": [
+        {
+          "name": "ExtractAll",
+          "return": "string",
+          "params": "string name, out string suffixes"
+        },
+        {
+          "name": "TranslateAll",
+          "return": "string",
+          "params": "string suffixes, ITranslationRepository repo"
+        },
+        {
+          "name": "StripState",
+          "return": "string",
+          "params": "string name"
+        },
+        {
+          "name": "TranslateState",
+          "return": "string",
+          "params": "string suffix, ITranslationRepository repo"
+        }
+      ]
+    },
+    "Scripts/02_Patches/20_Objects/V2/Processing/ColorTagProcessor.cs": {
+      "classification": "N/A",
+      "role": "컬러 태그 처리 유틸리티",
+      "namespace": "QudKorean.Objects.V2.Processing",
+      "classes": [
+        "ColorTagProcessor"
+      ],
+      "methods": [
+        {
+          "name": "Strip",
+          "return": "string",
+          "params": "string text"
+        },
+        {
+          "name": "TranslatePossessivesInTags",
+          "return": "string",
+          "params": "string text, ITranslationRepository repo"
+        },
+        {
+          "name": "TranslateMaterials",
+          "return": "string",
+          "params": "string text, ITranslationRepository repo"
+        },
+        {
+          "name": "TranslateNounsOutsideTags",
+          "return": "string",
+          "params": "string text, ITranslationRepository repo"
+        },
+        {
+          "name": "RestoreFormatting",
+          "return": "string",
+          "params": "string original, string coreName, string translatedCore, string suffix, string translatedSuffix"
+        }
+      ]
+    },
+    "Scripts/02_Patches/20_Objects/V2/Processing/PrefixExtractor.cs": {
+      "classification": "N/A",
+      "role": "접두사 추출 및 번역 유틸리티",
+      "namespace": "QudKorean.Objects.V2.Processing",
+      "classes": [
+        "PrefixExtractor"
+      ],
+      "methods": [
+        {
+          "name": "TryExtract",
+          "return": "bool",
+          "params": "string name, ITranslationRepository repo, out string prefixKo, out string remainder"
+        },
+        {
+          "name": "TranslateInText",
+          "return": "string",
+          "params": "string text, ITranslationRepository repo"
+        }
+      ]
+    },
+    "Scripts/02_Patches/20_Objects/V2/Processing/TextNormalizer.cs": {
+      "classification": "N/A",
+      "role": "텍스트 정규화 유틸리티",
+      "namespace": "QudKorean.Objects.V2.Processing",
+      "classes": [
+        "TextNormalizer"
+      ],
+      "methods": [
+        {
+          "name": "NormalizeBlueprintId",
+          "return": "string",
+          "params": "string id"
+        },
+        {
+          "name": "NormalizeCacheKey",
+          "return": "string",
+          "params": "string originalName"
+        }
+      ]
+    },
+    "Scripts/02_Patches/20_Objects/V2/Data/DictionaryCache.cs": {
+      "classification": "N/A",
+      "role": "정렬된 사전 캐시 관리",
+      "namespace": "QudKorean.Objects.V2.Data",
+      "classes": [
+        "DictionaryCache"
+      ],
+      "methods": [
+        {
+          "name": "MergeInto",
+          "return": "void",
+          "params": "Dictionary<string, string> target, Dictionary<string, string> source"
+        }
+      ]
+    },
+    "Scripts/02_Patches/20_Objects/V2/Data/ITranslationRepository.cs": {
+      "classification": "N/A",
+      "role": "Repository 패턴 인터페이스 정의",
+      "namespace": "QudKorean.Objects.V2.Data",
+      "classes": [],
+      "methods": []
+    },
+    "Scripts/02_Patches/20_Objects/V2/Data/ObjectData.cs": {
+      "classification": "N/A",
+      "role": "오브젝트 데이터 모델",
+      "namespace": "QudKorean.Objects.V2.Data",
+      "classes": [
+        "ObjectData"
       ],
       "methods": []
     },
-    "Scripts/02_Patches/00_Core/02_00_01_SteamGalaxy.cs": {
-      "classification": "Core Patch",
-      "role": "스팀 환경에서 GOG Galaxy 초기화 중 오류가 발생하는 것을 방지하기 위해 Galaxy 초기화를 건너뛰고 Steam만 초기화합니다.",
-      "namespace": "QudKRTranslation.Patches",
+    "Scripts/02_Patches/20_Objects/V2/Data/JsonRepository.cs": {
+      "classification": "N/A",
+      "role": "JSON 파일 기반 Repository 구현",
+      "namespace": "QudKorean.Objects.V2.Data",
       "classes": [
-        "SteamGalaxyPatch"
+        "JsonRepository"
       ],
-      "methods": []
+      "methods": [
+        {
+          "name": "GetCreature",
+          "return": "ObjectData",
+          "params": "string id"
+        },
+        {
+          "name": "GetItem",
+          "return": "ObjectData",
+          "params": "string id"
+        },
+        {
+          "name": "Reload",
+          "return": "void",
+          "params": ""
+        },
+        {
+          "name": "GetStats",
+          "return": "string",
+          "params": ""
+        },
+        {
+          "name": "EnsureInitialized",
+          "return": "void",
+          "params": ""
+        }
+      ]
+    },
+    "Scripts/02_Patches/20_Objects/V2/Pipeline/Handlers/CacheHandler.cs": {
+      "classification": "N/A",
+      "role": "캐시 조회 핸들러",
+      "namespace": "QudKorean.Objects.V2.Pipeline.Handlers",
+      "classes": [
+        "CacheHandler"
+      ],
+      "methods": [
+        {
+          "name": "Handle",
+          "return": "TranslationResult",
+          "params": "ITranslationContext context"
+        }
+      ]
+    },
+    "Scripts/02_Patches/20_Objects/V2/Pipeline/Handlers/DirectMatchHandler.cs": {
+      "classification": "N/A",
+      "role": "직접 매칭 핸들러",
+      "namespace": "QudKorean.Objects.V2.Pipeline.Handlers",
+      "classes": [
+        "DirectMatchHandler"
+      ],
+      "methods": [
+        {
+          "name": "Handle",
+          "return": "TranslationResult",
+          "params": "ITranslationContext context"
+        }
+      ]
+    },
+    "Scripts/02_Patches/20_Objects/V2/Pipeline/Handlers/PatternHandler.cs": {
+      "classification": "N/A",
+      "role": "패턴 번역기 위임 핸들러",
+      "namespace": "QudKorean.Objects.V2.Pipeline.Handlers",
+      "classes": [
+        "PatternHandler"
+      ],
+      "methods": [
+        {
+          "name": "Handle",
+          "return": "TranslationResult",
+          "params": "ITranslationContext context"
+        }
+      ]
+    },
+    "Scripts/02_Patches/20_Objects/V2/Pipeline/Handlers/PrefixSuffixHandler.cs": {
+      "classification": "N/A",
+      "role": "접두사/접미사 처리 핸들러",
+      "namespace": "QudKorean.Objects.V2.Pipeline.Handlers",
+      "classes": [
+        "PrefixSuffixHandler"
+      ],
+      "methods": [
+        {
+          "name": "Handle",
+          "return": "TranslationResult",
+          "params": "ITranslationContext context"
+        }
+      ]
+    },
+    "Scripts/02_Patches/20_Objects/V2/Pipeline/Handlers/FallbackHandler.cs": {
+      "classification": "N/A",
+      "role": "최종 폴백 핸들러",
+      "namespace": "QudKorean.Objects.V2.Pipeline.Handlers",
+      "classes": [
+        "FallbackHandler"
+      ],
+      "methods": [
+        {
+          "name": "Handle",
+          "return": "TranslationResult",
+          "params": "ITranslationContext context"
+        }
+      ]
     }
   },
   "tools": {
+    "test_display_contexts.py": {
+      "type": "script",
+      "size": 55652
+    },
     "merge_options.py": {
       "type": "script",
       "size": 6712
@@ -730,23 +1200,39 @@
       "type": "script",
       "size": 11503
     },
+    "test_object_translator.py": {
+      "type": "script",
+      "size": 45056
+    },
     "sort_json.py": {
       "type": "script",
       "size": 2136
     }
   },
   "docs": {
-    "MASTER.md": {
+    "05_CHANGELOG.md": {
+      "modified": "2026-01-26"
+    },
+    "01_ARCHITECTURE.md": {
       "modified": "2026-01-25"
     },
-    "README.md": {
-      "modified": "2026-01-24"
+    "00_CONTEXT.md": {
+      "modified": "2026-01-26"
     },
-    "01_CORE_PROJECT_INDEX.md": {
-      "modified": "2026-01-24"
+    "03_DATA.md": {
+      "modified": "2026-01-25"
     },
-    "02_CORE_QUICK_REFERENCE.md": {
-      "modified": "2026-01-24"
+    "06_ERRORS.md": {
+      "modified": "2026-01-25"
+    },
+    "04_TODO.md": {
+      "modified": "2026-01-26"
+    },
+    "02_DEVELOPMENT.md": {
+      "modified": "2026-01-25"
+    },
+    "07_ObjectTranslator.md": {
+      "modified": "2026-01-26"
     }
   },
   "localization": {
@@ -762,9 +1248,11 @@
         "inventory",
         "status",
         "ui",
-        "tooltips"
+        "tooltips",
+        "quality",
+        "categories"
       ],
-      "entries": 192
+      "entries": 215
     },
     "display.json": {
       "categories": [
@@ -852,6 +1340,17 @@
         "Mover Stop"
       ],
       "entries": 120
+    },
+    "_suffixes.json": {
+      "categories": [
+        "_meta",
+        "states",
+        "liquids",
+        "of_patterns",
+        "body_parts",
+        "part_suffixes"
+      ],
+      "entries": 209
     },
     "widgets.json": {
       "categories": [
@@ -949,7 +1448,7 @@
         "roles",
         "honorifics"
       ],
-      "entries": 62
+      "entries": 212
     },
     "01_chest.json": {
       "categories": [
@@ -2856,9 +3355,11 @@
         "Technical Manual",
         "Cracked Security Disc",
         "Data Disc",
-        "Recall Recoiler"
+        "Recall Recoiler",
+        "Merchant's Token",
+        "Minstrel's Token"
       ],
-      "entries": 53
+      "entries": 67
     },
     "tech.json": {
       "categories": [
@@ -3047,6 +3548,28 @@
         "Mainframe Wall"
       ],
       "entries": 132
+    },
+    "_nouns.json": {
+      "categories": [
+        "_meta",
+        "weapons",
+        "armor",
+        "clothing",
+        "consumables",
+        "tools",
+        "misc",
+        "mechanical",
+        "artifacts",
+        "firearms",
+        "furniture",
+        "compound_weapons",
+        "headwear",
+        "body_parts",
+        "compound_armor",
+        "compound_mechanical",
+        "plant_parts"
+      ],
+      "entries": 252
     },
     "base_items.json": {
       "categories": [
@@ -3671,9 +4194,14 @@
         "Kesil Face",
         "Chrome Pyramid",
         "Cyclopean Prism",
-        "Amaranthine Prism"
+        "Amaranthine Prism",
+        "Nacham's Ribbon",
+        "Va'am's Lens",
+        "Dagasha's Spur",
+        "Kah's Loop",
+        "Slog's Annunclus"
       ],
-      "entries": 60
+      "entries": 95
     },
     "tools.json": {
       "categories": [
@@ -3696,9 +4224,10 @@
         "Schematic",
         "Data Disk",
         "Tome",
-        "Cookbook"
+        "Cookbook",
+        "HeirloomsOfQud"
       ],
-      "entries": 35
+      "entries": 41
     },
     "hands.json": {
       "categories": [
@@ -3743,9 +4272,10 @@
         "Hood",
         "Face Mask",
         "Gas Mask",
-        "Powered Exoframe Helmet"
+        "Powered Exoframe Helmet",
+        "Miner's Helmet"
       ],
-      "entries": 139
+      "entries": 146
     },
     "feet.json": {
       "categories": [
@@ -3766,9 +4296,11 @@
         "Springturret Feet",
         "Powered Exoframe Boots",
         "Hoverpods",
-        "Thigh-High Boots"
+        "Thigh-High Boots",
+        "Croccasins",
+        "Step Sowers"
       ],
-      "entries": 125
+      "entries": 139
     },
     "face.json": {
       "categories": [
@@ -3788,9 +4320,10 @@
         "Psionic Amplifier",
         "Iron Visor",
         "Bioscan Visor",
-        "Thermal Visor"
+        "Thermal Visor",
+        "SunAndMoonMask"
       ],
-      "entries": 117
+      "entries": 124
     },
     "back.json": {
       "categories": [
@@ -3810,9 +4343,11 @@
         "Jetpack",
         "Anti-Gravity Harness",
         "Shield Cape",
-        "Troll Cape"
+        "Troll Cape",
+        "Praetorian's Cloak",
+        "Panther's Cloak"
       ],
-      "entries": 117
+      "entries": 131
     },
     "body.json": {
       "categories": [
