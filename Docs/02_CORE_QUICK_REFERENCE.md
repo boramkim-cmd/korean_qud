@@ -1,6 +1,6 @@
 # 🚀 프로젝트 빠른 참조 (자동 생성)
 
-**생성**: 2026-01-26 20:53:33
+**생성**: 2026-01-26 23:53:47
 
 ## ⭐ 핵심 경로
 ```
@@ -215,12 +215,13 @@ LOCALIZATION/**/*.json              → 용어집 데이터
 - `Watervine_Farmer.json`: 1개 항목
 - `Wayfaring.json`: 12개 항목
 - `Wings.json`: 1개 항목
-- `_common.json`: 212개 항목
-- `_nouns.json`: 252개 항목
-- `_suffixes.json`: 209개 항목
+- `_common.json`: 389개 항목
+- `_nouns.json`: 520개 항목
+- `_suffixes.json`: 225개 항목
+- `_template_variables.json`: 19개 항목
 - `ammo.json`: 59개 항목
 - `ants.json`: 98개 항목
-- `attributes.json`: 7개 항목
+- `attributes.json`: 9개 항목
 - `axes.json`: 174개 항목
 - `back.json`: 131개 항목
 - `base_items.json`: 34개 항목
@@ -229,11 +230,12 @@ LOCALIZATION/**/*.json              → 용어집 데이터
 - `birds.json`: 29개 항목
 - `blades.json`: 145개 항목
 - `body.json`: 159개 항목
+- `body_parts.json`: 11개 항목
 - `books.json`: 41개 항목
 - `bows.json`: 83개 항목
 - `cats.json`: 18개 항목
 - `cells.json`: 60개 항목
-- `common.json`: 215개 항목
+- `common.json`: 203개 항목
 - `containers.json`: 66개 항목
 - `crabs.json`: 94개 항목
 - `cudgels.json`: 243개 항목
@@ -245,8 +247,8 @@ LOCALIZATION/**/*.json              → 용어집 데이터
 - `drinks.json`: 60개 항목
 - `dromad.json`: 10개 항목
 - `drones.json`: 52개 항목
-- `face.json`: 124개 항목
-- `factions.json`: 53개 항목
+- `face.json`: 173개 항목
+- `factions.json`: 33개 항목
 - `farmers.json`: 29개 항목
 - `feet.json`: 139개 항목
 - `fish.json`: 10개 항목
@@ -268,13 +270,17 @@ LOCALIZATION/**/*.json              → 용어집 데이터
 - `locations.json`: 22개 항목
 - `long_blades.json`: 180개 항목
 - `mammals.json`: 196개 항목
+- `materials.json`: 12개 항목
 - `messages.json`: 71개 항목
 - `misc.json`: 67개 항목
 - `modes.json`: 6개 항목
+- `modifiers.json`: 250개 항목
 - `moths.json`: 116개 항목
 - `naphtaali.json`: 16개 항목
 - `options.json`: 454개 항목
 - `others.json`: 180개 항목
+- `processing.json`: 7개 항목
+- `qualities.json`: 18개 항목
 - `relics.json`: 95개 항목
 - `reptiles.json`: 29개 항목
 - `seedsprout.json`: 17개 항목

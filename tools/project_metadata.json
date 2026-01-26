@@ -1,5 +1,5 @@
 {
-  "generated": "2026-01-26 20:53:33",
+  "generated": "2026-01-26 23:53:47",
   "scripts": {
     "Scripts/99_Utils/99_00_03_StructureTranslator.cs": {
       "classification": "Util",
@@ -138,7 +138,9 @@
       "namespace": "QudKRTranslation.Core",
       "classes": [
         "LocalizationManager",
-        "RecursiveJsonParser"
+        "RecursiveJsonParser",
+        "SharedJsonParser",
+        "SharedEntry"
       ],
       "methods": [
         {
@@ -1204,9 +1206,21 @@
       "type": "script",
       "size": 45056
     },
+    "extract_all_xml.py": {
+      "type": "script",
+      "size": 8112
+    },
     "sort_json.py": {
       "type": "script",
       "size": 2136
+    },
+    "compare_translations.py": {
+      "type": "script",
+      "size": 11675
+    },
+    "extract_all_displaynames.py": {
+      "type": "script",
+      "size": 2772
     }
   },
   "docs": {
@@ -1225,11 +1239,23 @@
     "06_ERRORS.md": {
       "modified": "2026-01-25"
     },
+    "01_CORE_PROJECT_INDEX.md": {
+      "modified": "2026-01-26"
+    },
+    "02_CORE_QUICK_REFERENCE.md": {
+      "modified": "2026-01-26"
+    },
     "04_TODO.md": {
+      "modified": "2026-01-26"
+    },
+    "07_TEMPLATE_VARIABLES.md": {
       "modified": "2026-01-26"
     },
     "02_DEVELOPMENT.md": {
       "modified": "2026-01-25"
+    },
+    "terminology_standard.md": {
+      "modified": "2026-01-26"
     },
     "07_ObjectTranslator.md": {
       "modified": "2026-01-26"
@@ -1244,6 +1270,7 @@
     },
     "common.json": {
       "categories": [
+        "_imports",
         "common",
         "inventory",
         "status",
@@ -1252,7 +1279,7 @@
         "quality",
         "categories"
       ],
-      "entries": 215
+      "entries": 203
     },
     "display.json": {
       "categories": [
@@ -1293,12 +1320,14 @@
     },
     "factions.json": {
       "categories": [
+        "_meta",
         "factions"
       ],
-      "entries": 53
+      "entries": 33
     },
     "ui.json": {
       "categories": [
+        "_imports",
         "chargen_ui"
       ],
       "entries": 8
@@ -1311,9 +1340,10 @@
     },
     "attributes.json": {
       "categories": [
-        "chargen_attributes"
+        "_meta",
+        "attributes"
       ],
-      "entries": 7
+      "entries": 9
     },
     "hidden.json": {
       "categories": [
@@ -1341,6 +1371,15 @@
       ],
       "entries": 120
     },
+    "_template_variables.json": {
+      "categories": [
+        "_meta",
+        "categories",
+        "summary",
+        "usage_in_display_names"
+      ],
+      "entries": 19
+    },
     "_suffixes.json": {
       "categories": [
         "_meta",
@@ -1350,7 +1389,7 @@
         "body_parts",
         "part_suffixes"
       ],
-      "entries": 209
+      "entries": 225
     },
     "widgets.json": {
       "categories": [
@@ -1427,6 +1466,27 @@
       ],
       "entries": 71
     },
+    "body_parts.json": {
+      "categories": [
+        "_meta",
+        "body_parts"
+      ],
+      "entries": 11
+    },
+    "materials.json": {
+      "categories": [
+        "_meta",
+        "materials"
+      ],
+      "entries": 12
+    },
+    "qualities.json": {
+      "categories": [
+        "_meta",
+        "qualities"
+      ],
+      "entries": 18
+    },
     "03_explore.json": {
       "categories": [
         "tutorial_explore"
@@ -1446,9 +1506,15 @@
         "species",
         "creature_classes",
         "roles",
-        "honorifics"
+        "honorifics",
+        "factions",
+        "creature_modifiers",
+        "species_extended",
+        "unique_names",
+        "creatures_final",
+        "modifiers_final"
       ],
-      "entries": 212
+      "entries": 389
     },
     "01_chest.json": {
       "categories": [
@@ -3567,9 +3633,31 @@
         "body_parts",
         "compound_armor",
         "compound_mechanical",
-        "plant_parts"
+        "plant_parts",
+        "creature_types",
+        "structures",
+        "natural_items",
+        "attack_types",
+        "body_parts_extended",
+        "occupations",
+        "misc_extended",
+        "equipment_extended",
+        "food_items",
+        "terrain_items",
+        "structures_extended",
+        "nature_extended",
+        "mechanical_extended",
+        "colors_basic",
+        "creatures_misc",
+        "modifiers_extended",
+        "tech_items",
+        "structure_items",
+        "game_terms",
+        "clothing_extended",
+        "final_coverage",
+        "final_push"
       ],
-      "entries": 252
+      "entries": 520
     },
     "base_items.json": {
       "categories": [
@@ -3619,6 +3707,30 @@
         "ClockworkBeetle"
       ],
       "entries": 21
+    },
+    "processing.json": {
+      "categories": [
+        "_meta",
+        "processing"
+      ],
+      "entries": 7
+    },
+    "modifiers.json": {
+      "categories": [
+        "_meta",
+        "damage",
+        "state",
+        "size",
+        "appearance",
+        "enchantment",
+        "weapon",
+        "effect",
+        "dynamic_mods",
+        "hyphenated",
+        "tinker_mods",
+        "misc"
+      ],
+      "entries": 250
     },
     "goatfolk.json": {
       "categories": [
@@ -4321,9 +4433,16 @@
         "Iron Visor",
         "Bioscan Visor",
         "Thermal Visor",
-        "SunAndMoonMask"
+        "SunAndMoonMask",
+        "Frowning Moon Mask",
+        "Smiling Sun Mask",
+        "Gentling Mask",
+        "Issachari Sun Veil",
+        "Vinewood Sap Mask",
+        "Mirrorshades",
+        "Telescopic Monocle"
       ],
-      "entries": 124
+      "entries": 173
     },
     "back.json": {
       "categories": [
