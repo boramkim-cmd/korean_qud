@@ -14,22 +14,63 @@ namespace QudKorean.Objects.V2.Patterns
 {
     /// <summary>
     /// Translates book titles with proper Korean word order:
-    /// - "Blood and Fear: On the Life Cycle of La" -> "피와 공포: 라의 생명 주기에 대하여"
-    /// - "On X" -> "X에 대하여"
-    /// - "X of Y" -> "Y의 X"
     /// - "X and Y" -> "X와 Y"
+    /// - "X of Y" -> "Y의 X"
+    /// - "On X" -> "X에 대하여"
+    /// - "X's Y" -> "X의 Y"
+    /// - "X with Y" -> "Y가 있는 X"
+    /// - "X without Y" -> "Y 없는 X"
+    /// - "X for Y" -> "Y를 위한 X"
+    /// - "X from Y" -> "Y로부터의 X"
+    /// - "X by Y" -> "Y의 X"
+    /// - "X in Y" -> "Y의 X"
+    /// - "X to Y" -> "Y로의 X"
+    /// - "X against Y" -> "Y에 대항하는 X"
+    /// - "X through Y" -> "Y를 통한 X"
+    /// - "X under Y" -> "Y 아래의 X"
+    /// - "X beyond Y" -> "Y 너머의 X"
+    /// - "X among Y" -> "Y 사이의 X"
+    /// - "A Guide to X" -> "X 안내서"
+    /// - "Introduction to X" -> "X 입문"
     /// </summary>
     public class BookTitleTranslator : IPatternTranslator
     {
         public string Name => "BookTitle";
         public int Priority => 45; // Higher priority than OfPattern (50)
 
+        // Prepositions that trigger word order transformation
+        private static readonly string[] Prepositions = {
+            " of ", " with ", " without ", " for ", " from ", " by ",
+            " in ", " to ", " against ", " through ", " under ", " beyond ", " among "
+        };
+
         public bool CanHandle(string name)
         {
-            // Book titles often have colons or "On the" pattern
+            // Book titles often have colons
             if (name.Contains(":")) return true;
+
+            // "On the X" pattern
             if (name.StartsWith("On ", StringComparison.OrdinalIgnoreCase)) return true;
+
+            // "A Guide to X", "Introduction to X" patterns
+            if (name.Contains(" Guide to ", StringComparison.OrdinalIgnoreCase)) return true;
+            if (name.Contains("Introduction to ", StringComparison.OrdinalIgnoreCase)) return true;
+
+            // "The X of Y" pattern
             if (name.StartsWith("The ", StringComparison.OrdinalIgnoreCase) && name.Contains(" of ")) return true;
+
+            // Any preposition pattern
+            foreach (var prep in Prepositions)
+            {
+                if (name.Contains(prep, StringComparison.OrdinalIgnoreCase)) return true;
+            }
+
+            // Possessive pattern
+            if (name.Contains("'s ") || name.Contains("' ")) return true;
+
+            // "X and Y" pattern
+            if (name.Contains(" and ", StringComparison.OrdinalIgnoreCase)) return true;
+
             return false;
         }
 
@@ -71,56 +112,160 @@ namespace QudKorean.Objects.V2.Patterns
             {
                 string owner = possMatch.Groups[1].Value.Trim();
                 string owned = possMatch.Groups[2].Value.Trim();
-
-                string ownerKo = TranslateWords(owner, repo);
-                string ownedKo = TranslateWords(owned, repo);
-
-                result = $"{ownerKo}의 {ownedKo}";
-                return result;
+                return $"{TranslateWords(owner, repo)}의 {TranslateWords(owned, repo)}";
             }
 
-            // 1. Handle "On the X of Y" -> "Y의 X에 대하여"
+            // 1. "A Guide to X" / "Guide to X" -> "X 안내서"
+            var guideMatch = Regex.Match(result, @"^(?:A\s+)?Guide\s+to\s+(?:the\s+)?(.+)$", RegexOptions.IgnoreCase);
+            if (guideMatch.Success)
+            {
+                return $"{TranslateWords(guideMatch.Groups[1].Value.Trim(), repo)} 안내서";
+            }
+
+            // 2. "Introduction to X" -> "X 입문"
+            var introMatch = Regex.Match(result, @"^(?:An?\s+)?Introduction\s+to\s+(?:the\s+)?(.+)$", RegexOptions.IgnoreCase);
+            if (introMatch.Success)
+            {
+                return $"{TranslateWords(introMatch.Groups[1].Value.Trim(), repo)} 입문";
+            }
+
+            // 3. "On the X of Y" -> "Y의 X에 대하여"
             var onOfMatch = Regex.Match(result, @"^On\s+(?:the\s+)?(.+?)\s+of\s+(?:the\s+)?(.+)$", RegexOptions.IgnoreCase);
             if (onOfMatch.Success)
             {
-                string subject = onOfMatch.Groups[1].Value.Trim();  // "Life Cycle"
-                string ofPart = onOfMatch.Groups[2].Value.Trim();   // "La"
-
-                string subjectKo = TranslateWords(subject, repo);
-                string ofPartKo = TranslateWords(ofPart, repo);
-
-                result = $"{ofPartKo}의 {subjectKo}에 대하여";
-                return result;
+                string subject = TranslateWords(onOfMatch.Groups[1].Value.Trim(), repo);
+                string ofPart = TranslateWords(onOfMatch.Groups[2].Value.Trim(), repo);
+                return $"{ofPart}의 {subject}에 대하여";
             }
 
-            // 2. Handle "On the X" -> "X에 대하여"
+            // 4. "On the X" -> "X에 대하여"
             var onMatch = Regex.Match(result, @"^On\s+(?:the\s+)?(.+)$", RegexOptions.IgnoreCase);
             if (onMatch.Success)
             {
-                string subject = onMatch.Groups[1].Value.Trim();
-                string subjectKo = TranslateWords(subject, repo);
-                result = $"{subjectKo}에 대하여";
-                return result;
+                return $"{TranslateWords(onMatch.Groups[1].Value.Trim(), repo)}에 대하여";
             }
 
-            // 3. Handle "X of Y" -> "Y의 X"
+            // 5. "X with Y" -> "Y가 있는 X"
+            var withMatch = Regex.Match(result, @"^(.+?)\s+with\s+(?:the\s+)?(.+)$", RegexOptions.IgnoreCase);
+            if (withMatch.Success)
+            {
+                string x = TranslateWords(withMatch.Groups[1].Value.Trim(), repo);
+                string y = TranslateWords(withMatch.Groups[2].Value.Trim(), repo);
+                return $"{y}가 있는 {x}";
+            }
+
+            // 6. "X without Y" -> "Y 없는 X"
+            var withoutMatch = Regex.Match(result, @"^(.+?)\s+without\s+(?:the\s+)?(.+)$", RegexOptions.IgnoreCase);
+            if (withoutMatch.Success)
+            {
+                string x = TranslateWords(withoutMatch.Groups[1].Value.Trim(), repo);
+                string y = TranslateWords(withoutMatch.Groups[2].Value.Trim(), repo);
+                return $"{y} 없는 {x}";
+            }
+
+            // 7. "X for Y" -> "Y를 위한 X"
+            var forMatch = Regex.Match(result, @"^(.+?)\s+for\s+(?:the\s+)?(.+)$", RegexOptions.IgnoreCase);
+            if (forMatch.Success)
+            {
+                string x = TranslateWords(forMatch.Groups[1].Value.Trim(), repo);
+                string y = TranslateWords(forMatch.Groups[2].Value.Trim(), repo);
+                return $"{y}를 위한 {x}";
+            }
+
+            // 8. "X from Y" -> "Y로부터의 X"
+            var fromMatch = Regex.Match(result, @"^(.+?)\s+from\s+(?:the\s+)?(.+)$", RegexOptions.IgnoreCase);
+            if (fromMatch.Success)
+            {
+                string x = TranslateWords(fromMatch.Groups[1].Value.Trim(), repo);
+                string y = TranslateWords(fromMatch.Groups[2].Value.Trim(), repo);
+                return $"{y}로부터의 {x}";
+            }
+
+            // 9. "X by Y" -> "Y의 X"
+            var byMatch = Regex.Match(result, @"^(.+?)\s+by\s+(?:the\s+)?(.+)$", RegexOptions.IgnoreCase);
+            if (byMatch.Success)
+            {
+                string x = TranslateWords(byMatch.Groups[1].Value.Trim(), repo);
+                string y = TranslateWords(byMatch.Groups[2].Value.Trim(), repo);
+                return $"{y}의 {x}";
+            }
+
+            // 10. "X in Y" -> "Y의 X" or "Y 안의 X"
+            var inMatch = Regex.Match(result, @"^(.+?)\s+in\s+(?:the\s+)?(.+)$", RegexOptions.IgnoreCase);
+            if (inMatch.Success)
+            {
+                string x = TranslateWords(inMatch.Groups[1].Value.Trim(), repo);
+                string y = TranslateWords(inMatch.Groups[2].Value.Trim(), repo);
+                return $"{y}의 {x}";
+            }
+
+            // 11. "X to Y" -> "Y로의 X"
+            var toMatch = Regex.Match(result, @"^(.+?)\s+to\s+(?:the\s+)?(.+)$", RegexOptions.IgnoreCase);
+            if (toMatch.Success)
+            {
+                string x = TranslateWords(toMatch.Groups[1].Value.Trim(), repo);
+                string y = TranslateWords(toMatch.Groups[2].Value.Trim(), repo);
+                return $"{y}로의 {x}";
+            }
+
+            // 12. "X against Y" -> "Y에 대항하는 X"
+            var againstMatch = Regex.Match(result, @"^(.+?)\s+against\s+(?:the\s+)?(.+)$", RegexOptions.IgnoreCase);
+            if (againstMatch.Success)
+            {
+                string x = TranslateWords(againstMatch.Groups[1].Value.Trim(), repo);
+                string y = TranslateWords(againstMatch.Groups[2].Value.Trim(), repo);
+                return $"{y}에 대항하는 {x}";
+            }
+
+            // 13. "X through Y" -> "Y를 통한 X"
+            var throughMatch = Regex.Match(result, @"^(.+?)\s+through\s+(?:the\s+)?(.+)$", RegexOptions.IgnoreCase);
+            if (throughMatch.Success)
+            {
+                string x = TranslateWords(throughMatch.Groups[1].Value.Trim(), repo);
+                string y = TranslateWords(throughMatch.Groups[2].Value.Trim(), repo);
+                return $"{y}를 통한 {x}";
+            }
+
+            // 14. "X under Y" -> "Y 아래의 X"
+            var underMatch = Regex.Match(result, @"^(.+?)\s+under\s+(?:the\s+)?(.+)$", RegexOptions.IgnoreCase);
+            if (underMatch.Success)
+            {
+                string x = TranslateWords(underMatch.Groups[1].Value.Trim(), repo);
+                string y = TranslateWords(underMatch.Groups[2].Value.Trim(), repo);
+                return $"{y} 아래의 {x}";
+            }
+
+            // 15. "X beyond Y" -> "Y 너머의 X"
+            var beyondMatch = Regex.Match(result, @"^(.+?)\s+beyond\s+(?:the\s+)?(.+)$", RegexOptions.IgnoreCase);
+            if (beyondMatch.Success)
+            {
+                string x = TranslateWords(beyondMatch.Groups[1].Value.Trim(), repo);
+                string y = TranslateWords(beyondMatch.Groups[2].Value.Trim(), repo);
+                return $"{y} 너머의 {x}";
+            }
+
+            // 16. "X among Y" -> "Y 사이의 X"
+            var amongMatch = Regex.Match(result, @"^(.+?)\s+among\s+(?:the\s+)?(.+)$", RegexOptions.IgnoreCase);
+            if (amongMatch.Success)
+            {
+                string x = TranslateWords(amongMatch.Groups[1].Value.Trim(), repo);
+                string y = TranslateWords(amongMatch.Groups[2].Value.Trim(), repo);
+                return $"{y} 사이의 {x}";
+            }
+
+            // 17. "X of Y" -> "Y의 X" (most common, check last among prepositions)
             var ofMatch = Regex.Match(result, @"^(.+?)\s+of\s+(?:the\s+)?(.+)$", RegexOptions.IgnoreCase);
             if (ofMatch.Success)
             {
-                string itemPart = ofMatch.Groups[1].Value.Trim();
-                string ofPart = ofMatch.Groups[2].Value.Trim();
-
-                string itemKo = TranslateWords(itemPart, repo);
-                string ofPartKo = TranslateWords(ofPart, repo);
-
-                result = $"{ofPartKo}의 {itemKo}";
-                return result;
+                string x = TranslateWords(ofMatch.Groups[1].Value.Trim(), repo);
+                string y = TranslateWords(ofMatch.Groups[2].Value.Trim(), repo);
+                return $"{y}의 {x}";
             }
 
-            // 4. Handle "X and Y" -> "X와 Y" (after other patterns)
+            // 18. Handle "X and Y" -> "X와 Y"
             result = TranslateAndPattern(result, repo);
 
-            // 5. Translate remaining words
+            // 19. Translate remaining words
             result = TranslateWords(result, repo);
 
             return result;
