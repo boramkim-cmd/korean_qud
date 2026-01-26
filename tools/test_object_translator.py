@@ -976,6 +976,27 @@ TEST_CASES = [
     # {{shaderName|displayText}} 패턴: 셰이더 이름 보존, 표시 텍스트만 번역
     (110, "{{glittering|glitter}} grenade mk I", "{{glittering|글리터}} 수류탄 mk I"),
     (111, "{{shimmering|crysteel}} sword", "{{shimmering|크리스틸}} 검"),
+
+    # === 18. 소유격 아이템 번역 테스트 (2026-01-26 추가) ===
+    # 단순 소유격 패턴 (Fallback 번역 테스트)
+    (112, "Praetorian's cloak", "프라이토리안의 망토"),
+    (113, "panther's cloak", "표범의 망토"),
+    (114, "miner's helmet", "광부의 투구"),  # helmet → 투구 (base_nouns)
+    (115, "merchant's token", "상인의 토큰"),
+    (116, "minstrel's token", "음유시인의 토큰"),
+
+    # Tomb Children 렐릭 (단순 형태)
+    (117, "Nacham's ribbon", "나참의 리본"),
+    (118, "Va'am's lens", "바암의 렌즈"),
+    (119, "Dagasha's spur", "다가샤의 박차"),
+    (120, "Kah's loop", "카의 고리"),
+    (121, "Slog's annunclus", "슬로그의 아눈클루스"),
+
+    # 색상 태그 포함 소유격 (JSON 직접 조회로 처리 - fallback은 태그 제거됨)
+    # 실제 게임에서는 JSON에서 직접 매칭되어 완전 번역됨
+    (122, "{{w|Praetorian's}} cloak", "프라이토리안의 망토"),  # fallback: 태그 제거
+    (123, "{{W|merchant's token}}", "{{W|상인의 토큰}}"),
+    (124, "{{Y|minstrel's token}}", "{{Y|minstrel's 토큰}} 또는 {{Y|음유시인의 토큰}}"),  # 태그 내 부분 번역
 ]
 
 
