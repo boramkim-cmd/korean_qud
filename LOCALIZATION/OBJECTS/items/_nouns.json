@@ -303,5 +303,77 @@
     "lah petals": "라 꽃잎",
     "vanta petals": "반타 꽃잎",
     "flower petals": "꽃잎"
+  },
+
+  "creature_types": {
+    "_comment": "생물 유형 (Creature types) - 번역 커버리지 확장 2026-01-26",
+    "golem": "골렘",
+    "weep": "위프",
+    "cherub": "케루브"
+  },
+
+  "structures": {
+    "_comment": "구조물/가구 (Structures) - 번역 커버리지 확장",
+    "wall": "벽",
+    "gate": "문",
+    "station": "스테이션",
+    "oven": "화덕",
+    "machine": "기계",
+    "seat": "좌석",
+    "turbine": "터빈",
+    "nest": "둥지",
+    "sculpture": "조각상",
+    "vents": "환기구",
+    "deposits": "침전물"
+  },
+
+  "natural_items": {
+    "_comment": "자연물 (Natural items) - 번역 커버리지 확장",
+    "gemstone": "보석",
+    "tree": "나무",
+    "frond": "잎사귀",
+    "egg": "알"
+  },
+
+  "attack_types": {
+    "_comment": "공격 유형 (Attack types) - 생물 공격 번역",
+    "bite": "물기",
+    "kick": "발차기",
+    "stomp": "밟기",
+    "peck": "쪼기",
+    "gaze": "응시",
+    "bands": "밴드",
+    "pseudopod": "위족",
+    "jaws": "턱",
+    "mandibles": "큰턱",
+    "snout": "주둥이",
+    "nodule": "혹"
+  },
+
+  "body_parts_extended": {
+    "_comment": "확장 신체 부위 (Extended body parts) - 생물 번역",
+    "foreleg": "앞다리",
+    "midleg": "중간다리",
+    "hoof": "발굽",
+    "spade": "삽",
+    "sap": "수액"
+  },
+
+  "occupations": {
+    "_comment": "직업 (Occupations) - NPC 번역",
+    "tinker": "땜장이",
+    "guard": "경비원",
+    "pilgrim": "순례자",
+    "priest": "사제",
+    "raider": "약탈자",
+    "villager": "마을주민",
+    "trader": "상인"
+  },
+
+  "misc_extended": {
+    "_comment": "기타 확장 (Misc extended) - 번역 커버리지 확장",
+    "paste": "페이스트",
+    "card": "카드",
+    "way": "길"
   }
 }

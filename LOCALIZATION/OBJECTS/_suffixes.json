@@ -192,7 +192,23 @@
     "thumb": "엄지",
     "palm": "손바닥",
     "sole": "발바닥",
-    "heel": "발뒤꿈치"
+    "heel": "발뒤꿈치",
+    "_comment_extended": "확장 신체 부위 - 번역 커버리지 확장 2026-01-26",
+    "pseudopod": "위족",
+    "hoof": "발굽",
+    "hooves": "발굽",
+    "snout": "주둥이",
+    "jaws": "턱",
+    "mandibles": "큰턱",
+    "foreleg": "앞다리",
+    "forelegs": "앞다리",
+    "midleg": "중간다리",
+    "midlegs": "중간다리",
+    "nodule": "혹",
+    "bands": "밴드",
+    "spines": "가시",
+    "pistil": "암술",
+    "stranglehold": "목조르기"
   },
 
   "part_suffixes": {
