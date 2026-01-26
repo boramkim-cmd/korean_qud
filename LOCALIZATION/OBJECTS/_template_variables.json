@@ -1,0 +1,128 @@
+{
+  "_meta": {
+    "description": "HistorySpice.json에서 추출한 템플릿 변수 값들",
+    "source": "Assets/StreamingAssets/Base/HistorySpice.json",
+    "usage": "=creatureRegionAdjective=, =creatureRegionNoun= 등의 변수가 런타임에 이 값들로 대체됨",
+    "note": "CreatureRegionSpice.cs에서 처리되며, 현재 번역되지 않음"
+  },
+
+  "terrain_regions": {
+    "Saltmarsh": {
+      "creatureRegionAdjective": [
+        "marsh",
+        "brine",
+        "lily",
+        "glade",
+        "mud",
+        "saltwater",
+        "sedge"
+      ],
+      "creatureRegionNoun": [
+        "marshdweller",
+        "brinestalker",
+        "lilyeater",
+        "marsheater",
+        "mudeater"
+      ],
+      "creatureAlteredLocale": ["the marsh"],
+      "creatureAlteredCast": ["a briny cast"],
+      "pluralRegionName": ["marshlands"]
+    },
+
+    "DesertCanyon": {
+      "creatureRegionAdjective": [
+        "canyon",
+        "trench",
+        "valley",
+        "cliff",
+        "gorge"
+      ],
+      "creatureRegionNoun": [
+        "gorgedweller",
+        "shale-eater",
+        "cliffling",
+        "sloper",
+        "erosionist"
+      ],
+      "creatureAlteredLocale": ["the canyons"],
+      "creatureAlteredCast": ["a shale-like cast"],
+      "pluralRegionName": ["desert canyons"]
+    },
+
+    "Hills": {
+      "creatureRegionAdjective": [
+        "hill",
+        "mound",
+        "sun",
+        "stone",
+        "rock",
+        "knoll"
+      ],
+      "creatureRegionNoun": [
+        "lime-eater",
+        "hilldweller",
+        "sunbaker",
+        "stone-eater",
+        "hillchild"
+      ],
+      "creatureAlteredLocale": ["the hills"],
+      "creatureAlteredCast": ["a stony cast"],
+      "pluralRegionName": ["hills"]
+    }
+  },
+
+  "all_adjectives": [
+    "marsh",
+    "brine",
+    "lily",
+    "glade",
+    "mud",
+    "saltwater",
+    "sedge",
+    "canyon",
+    "trench",
+    "valley",
+    "cliff",
+    "gorge",
+    "hill",
+    "mound",
+    "sun",
+    "stone",
+    "rock",
+    "knoll"
+  ],
+
+  "all_nouns": [
+    "marshdweller",
+    "brinestalker",
+    "lilyeater",
+    "marsheater",
+    "mudeater",
+    "gorgedweller",
+    "shale-eater",
+    "cliffling",
+    "sloper",
+    "erosionist",
+    "lime-eater",
+    "hilldweller",
+    "sunbaker",
+    "stone-eater",
+    "hillchild"
+  ],
+
+  "usage_examples": {
+    "_comment": "HiddenObjects.xml에서 사용되는 패턴 예시",
+    "patterns": [
+      "=creatureRegionAdjective= kudu",
+      "=creatureRegionAdjective= bear",
+      "baboon =creatureRegionNoun=",
+      "boar =creatureRegionNoun="
+    ],
+    "resolved_examples": [
+      "marsh kudu",
+      "canyon bear",
+      "baboon marshdweller",
+      "boar hilldweller"
+    ]
+  }
+}
