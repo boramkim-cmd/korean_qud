@@ -1,7 +1,7 @@
 # QUD_KOREAN 프로젝트 컨텍스트
 
 > **이 파일은 Claude Code가 세션 시작 시 반드시 읽어야 하는 핵심 문서입니다.**
-> 최종 업데이트: 2026-01-26 04:45
+> 최종 업데이트: 2026-01-26 15:35
 
 ---
 
@@ -25,7 +25,7 @@
 - 캐릭터 생성 UI
 - 옵션 화면
 - 튜토리얼 팝업
-- 오브젝트 번역 (아이템/생물명)
+- **ObjectTranslator V2** (Pipeline 아키텍처, 26개 모듈)
 - 메시지 로그 패치
 - **ObjectTranslator 테스트 스크립트** (100개 테스트 케이스, 100% 통과)
 - **V1 vs V2 컨텍스트별 테스트** (`tools/test_display_contexts.py`, 100개 케이스)
@@ -118,7 +118,7 @@ kr:check <id>   # 특정 블루프린트 확인
 |------|------|
 | 모드 진입점 | `Scripts/00_Core/00_00_00_ModEntry.cs` |
 | 번역 엔진 | `Scripts/00_Core/00_00_01_TranslationEngine.cs` |
-| 오브젝트 번역 | `Scripts/02_Patches/20_Objects/02_20_00_ObjectTranslator.cs` |
+| 오브젝트 번역 (V2) | `Scripts/02_Patches/20_Objects/V2/ObjectTranslatorV2.cs` |
 | 공통 어휘 (재료/품질/수식어) | `LOCALIZATION/OBJECTS/items/_common.json` |
 | UI 패치 | `Scripts/02_Patches/10_UI/` |
 | 번역 JSON | `LOCALIZATION/` |
