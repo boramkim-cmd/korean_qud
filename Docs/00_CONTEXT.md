@@ -59,6 +59,9 @@
 - ✅ 생물 어휘 확장 (golems, cherubs, NPCs)
 - ✅ FoodTranslator 개선 (congealed, concentrated 패턴)
 - ✅ 고유명사 추가 (Agolgot, Bethsaida, Qon 등)
+- ✅ **템플릿 변수 문서화** (`Docs/07_TEMPLATE_VARIABLES.md`)
+  - 34개 변수 유형, 8개 카테고리 분류
+  - creature_region만 번역 가능 (향후 패치 필요)
 
 ### 이전 작업 (2026-01-26)
 - ✅ XML vs JSON 번역 비교 스크립트 작성 (`tools/compare_translations.py`)
@@ -163,6 +166,7 @@ Docs/
 ├── 04_TODO.md               # 작업 목록
 ├── 05_CHANGELOG.md          # 변경 이력
 ├── 06_ERRORS.md             # 에러 기록
+├── 07_TEMPLATE_VARIABLES.md # 템플릿 변수 문서 (동적 생성)
 ├── terminology_standard.md  # 용어 표준
 ├── Issues/                  # 이슈 리포트
 │   ├── untranslated_report.md
