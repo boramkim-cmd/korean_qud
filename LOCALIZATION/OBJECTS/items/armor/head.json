@@ -234,5 +234,17 @@
     },
     "description": "A powered helmet that is part of an exoframe suit.",
     "description_ko": "외골격 슈트의 일부인 동력 투구."
+  },
+
+  "Miner's Helmet": {
+    "tier": 3,
+    "category": "armor",
+    "slot": "head",
+    "tags": ["head", "helmet", "light"],
+    "names": {
+      "miner's helmet": "광부의 헬멧"
+    },
+    "description": "A dome of iron and hardened pulp contains its own source of illumination.",
+    "description_ko": "철과 굳어진 펄프로 만든 돔이 자체 조명원을 포함하고 있다."
   }
 }

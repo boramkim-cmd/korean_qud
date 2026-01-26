@@ -224,7 +224,13 @@
     "flask": "플라스크",
     "phial": "소병",
     "processing core": "처리 코어",
-    "core": "코어"
+    "core": "코어",
+    "_comment_possessive": "소유격 아이템 누락 명사",
+    "ribbon": "리본",
+    "lens": "렌즈",
+    "spur": "박차",
+    "loop": "고리",
+    "annunclus": "아눈클루스"
   },
 
   "firearms": {

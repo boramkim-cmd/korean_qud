@@ -100,5 +100,70 @@
     },
     "description": "A prism of eternal unfading color.",
     "description_ko": "영원히 바래지 않는 색의 프리즘."
+  },
+
+  "Nacham's Ribbon": {
+    "tier": 6,
+    "category": "relic",
+    "slot": "back",
+    "tags": ["relic", "unique", "tomb-children"],
+    "names": {
+      "{{K-K-K-K-K-c-C-Y sequence|Nacham's}} {{C-c-K-K-K-K sequence|ribbon}}": "{{K-K-K-K-K-c-C-Y sequence|나참의}} {{C-c-K-K-K-K sequence|리본}}",
+      "Nacham's ribbon": "나참의 리본"
+    },
+    "description": "A curtain of thrumming cables make a mantle for hunched shoulders. They pitch at neuronal frequencies long dormant.",
+    "description_ko": "웅웅거리는 케이블의 커튼이 구부린 어깨를 위한 망토를 만든다. 오랫동안 휴면 상태였던 신경 주파수에 맞춰 떨린다."
+  },
+
+  "Va'am's Lens": {
+    "tier": 6,
+    "category": "relic",
+    "slot": "hand",
+    "tags": ["relic", "unique", "tomb-children", "shield"],
+    "names": {
+      "{{K-K-K-K-c-C-Y sequence|Va'am's}} {{C-c-K-K sequence|lens}}": "{{K-K-K-K-c-C-Y sequence|바암의}} {{C-c-K-K sequence|렌즈}}",
+      "Va'am's lens": "바암의 렌즈"
+    },
+    "description": "An ocean drum of unknown zircon cleans itself of dust down to the mote by electrostatic cancelling. The center cross affords a wielder's grip.",
+    "description_ko": "알 수 없는 지르콘으로 만든 오션 드럼이 정전기 상쇄로 먼지 한 톨까지 스스로 청소한다. 중앙의 십자형이 사용자의 손잡이를 제공한다."
+  },
+
+  "Dagasha's Spur": {
+    "tier": 6,
+    "category": "relic",
+    "slot": "head",
+    "tags": ["relic", "unique", "tomb-children"],
+    "names": {
+      "{{K-K-K-K-c-C-Y-C-c sequence|Dagasha's}} {{K sequence|spur}}": "{{K-K-K-K-c-C-Y-C-c sequence|다가샤의}} {{K sequence|박차}}",
+      "Dagasha's spur": "다가샤의 박차"
+    },
+    "description": "A thorn crown arranged of crystals at telling psionic angles make a landmark in the psychic sea.",
+    "description_ko": "초능력을 전달하는 각도로 배열된 수정의 가시 왕관이 정신의 바다에서 이정표가 된다."
+  },
+
+  "Kah's Loop": {
+    "tier": 6,
+    "category": "relic",
+    "slot": "arm",
+    "tags": ["relic", "unique", "tomb-children"],
+    "names": {
+      "{{K-K-c-C-Y sequence|Kah's}} {{C-c-K-K sequence|loop}}": "{{K-K-c-C-Y sequence|카의}} {{C-c-K-K sequence|고리}}",
+      "Kah's loop": "카의 고리"
+    },
+    "description": "A ribbed cable of tangent needle points squeezes the limb and quickens its biomatter beyond expectation.",
+    "description_ko": "접선으로 배열된 바늘 끝의 골진 케이블이 팔다리를 조이고 예상을 뛰어넘어 생체물질을 활성화시킨다."
+  },
+
+  "Slog's Annunclus": {
+    "tier": 4,
+    "category": "trophy",
+    "slot": "arm",
+    "tags": ["trophy", "unique"],
+    "names": {
+      "{{g-w-w-g-g sequence|Slog's annunclus}}": "{{g-w-w-g-g sequence|슬로그의 아눈클루스}}",
+      "Slog's annunclus": "슬로그의 아눈클루스"
+    },
+    "description": "A girdle of ribboned muscle squeezes the wrist and wets it with a burning grease.",
+    "description_ko": "리본 같은 근육의 띠가 손목을 조이고 타는 듯한 기름으로 적신다."
   }
 }

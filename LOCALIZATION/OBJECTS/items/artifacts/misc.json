@@ -88,5 +88,31 @@
     },
     "description": "A device that teleports you to a marked location.",
     "description_ko": "표시된 위치로 순간이동시키는 장치."
+  },
+
+  "Merchant's Token": {
+    "tier": 0,
+    "category": "token",
+    "slot": "hand",
+    "tags": ["token", "currency"],
+    "names": {
+      "{{W|merchant's token}}": "{{W|상인의 토큰}}",
+      "merchant's token": "상인의 토큰"
+    },
+    "description": "A silver shekel was stamped with the vine-swathed scales of the bazaar.",
+    "description_ko": "은화에 덩굴로 뒤덮인 시장의 저울이 새겨져 있다."
+  },
+
+  "Minstrel's Token": {
+    "tier": 0,
+    "category": "token",
+    "slot": "hand",
+    "tags": ["token", "currency"],
+    "names": {
+      "{{Y|minstrel's token}}": "{{Y|음유시인의 토큰}}",
+      "minstrel's token": "음유시인의 토큰"
+    },
+    "description": "An old and platinum shekel has been incised with an image of the Very Old Bird.",
+    "description_ko": "오래된 백금 주화에 아주 오래된 새의 모습이 새겨져 있다."
   }
 }

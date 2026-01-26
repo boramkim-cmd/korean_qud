@@ -165,6 +165,15 @@
     "Praetorian": "프라이토리안",
     "Issachar": "이사카르",
 
+    "_section_possessive_npcs": "소유격 NPC 이름 - Phase 소유격 아이템 번역",
+    "Nacham": "나참",
+    "Va'am": "바암",
+    "Dagasha": "다가샤",
+    "Kah": "카",
+    "Miner": "광부",
+    "Minstrel": "음유시인",
+    "Merchant": "상인",
+
     "_section_beard_creatures": "수염 생물 (glands용) - Phase 6.3",
     "flamebeard": "불수염",
     "sleetbeard": "진눈깨비수염",

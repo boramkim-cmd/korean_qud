@@ -197,5 +197,30 @@
     },
     "description": "A cape made from troll hide that retains regenerative properties.",
     "description_ko": "재생 특성을 유지하는 트롤 가죽으로 만든 망토."
+  },
+
+  "Praetorian's Cloak": {
+    "tier": 4,
+    "category": "armor",
+    "slot": "back",
+    "tags": ["back", "cloth", "unique"],
+    "names": {
+      "{{w|Praetorian's}} cloak": "{{w|프라이토리안의}} 망토",
+      "Praetorian's cloak": "프라이토리안의 망토"
+    },
+    "description": "A thousand-thread coverture is given its candescent hue by the bluing ore and the harsh light of the Great Desert's foreign and eastern shelf.",
+    "description_ko": "천 가닥의 실로 짜인 덮개가 블루잉 광석과 대사막의 이국적인 동쪽 절벽의 거친 빛에 의해 백열의 색조를 띠게 되었다."
+  },
+
+  "Panther's Cloak": {
+    "tier": 2,
+    "category": "armor",
+    "slot": "back",
+    "tags": ["back", "organic"],
+    "names": {
+      "panther's cloak": "표범의 망토"
+    },
+    "description": "There is spotted dazzle on the cut hide that brings its bounded strider to pantherine selfhood.",
+    "description_ko": "자른 가죽에 새겨진 점박이 무늬가 제한된 보행자에게 표범 같은 자아를 부여한다."
   }
 }
