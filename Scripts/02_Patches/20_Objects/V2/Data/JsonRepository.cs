@@ -166,6 +166,24 @@ namespace QudKorean.Objects.V2.Data
             }
         }
 
+        public IReadOnlyDictionary<string, string> Tonics
+        {
+            get
+            {
+                EnsureInitialized();
+                return _tonics;
+            }
+        }
+
+        public IReadOnlyDictionary<string, string> Shaders
+        {
+            get
+            {
+                EnsureInitialized();
+                return _shaders;
+            }
+        }
+
         public void Reload()
         {
             ClearAll();
@@ -316,11 +334,50 @@ namespace QudKorean.Objects.V2.Data
                 }
             }
 
+            // Load furniture
+            string furniturePath = Path.Combine(objectsPath, "furniture");
+            if (Directory.Exists(furniturePath))
+            {
+                foreach (var file in Directory.GetFiles(furniturePath, "*.json", SearchOption.AllDirectories))
+                {
+                    if (Path.GetFileName(file).StartsWith("_"))
+                        continue;
+                    LoadJsonFile(file, _itemCache);
+                }
+            }
+
+            // Load terrain
+            string terrainPath = Path.Combine(objectsPath, "terrain");
+            if (Directory.Exists(terrainPath))
+            {
+                foreach (var file in Directory.GetFiles(terrainPath, "*.json", SearchOption.AllDirectories))
+                {
+                    if (Path.GetFileName(file).StartsWith("_"))
+                        continue;
+                    LoadJsonFile(file, _itemCache);
+                }
+            }
+
+            // Load standalone JSON files (hidden, widgets)
+            string hiddenPath = Path.Combine(objectsPath, "hidden.json");
+            if (File.Exists(hiddenPath))
+            {
+                LoadJsonFile(hiddenPath, _itemCache);
+            }
+
+            string widgetsPath = Path.Combine(objectsPath, "widgets.json");
+            if (File.Exists(widgetsPath))
+            {
+                LoadJsonFile(widgetsPath, _itemCache);
+            }
+
             // Load vocabulary files
             LoadItemCommon(objectsPath);
             LoadCreatureCommon(objectsPath);
             LoadItemNouns(objectsPath);
             LoadSuffixes(objectsPath);
+            LoadVocabulary(objectsPath);
+            LoadShared(modDir);
 
             // Build sorted caches
             BuildSortedCaches();
@@ -493,6 +550,152 @@ namespace QudKorean.Objects.V2.Data
             catch (Exception ex)
             {
                 UnityEngine.Debug.LogError($"{LOG_PREFIX} Failed to load _suffixes.json: {ex.Message}");
+            }
+        }
+
+        private void LoadVocabulary(string objectsPath)
+        {
+            string vocabPath = Path.Combine(objectsPath, "_vocabulary");
+            if (!Directory.Exists(vocabPath))
+            {
+                UnityEngine.Debug.Log($"{LOG_PREFIX} _vocabulary directory not found");
+                return;
+            }
+
+            // Load modifiers.json (nested structure)
+            string modifiersPath = Path.Combine(vocabPath, "modifiers.json");
+            if (File.Exists(modifiersPath))
+            {
+                try
+                {
+                    var root = JObject.Parse(File.ReadAllText(modifiersPath));
+                    int count = LoadNestedVocabulary(root, _modifiers);
+                    UnityEngine.Debug.Log($"{LOG_PREFIX} Loaded _vocabulary/modifiers.json: {count} entries");
+                }
+                catch (Exception ex)
+                {
+                    UnityEngine.Debug.LogError($"{LOG_PREFIX} Failed to load _vocabulary/modifiers.json: {ex.Message}");
+                }
+            }
+
+            // Load processing.json (nested structure)
+            string processingPath = Path.Combine(vocabPath, "processing.json");
+            if (File.Exists(processingPath))
+            {
+                try
+                {
+                    var root = JObject.Parse(File.ReadAllText(processingPath));
+                    int count = LoadNestedVocabulary(root, _processing);
+                    UnityEngine.Debug.Log($"{LOG_PREFIX} Loaded _vocabulary/processing.json: {count} entries");
+                }
+                catch (Exception ex)
+                {
+                    UnityEngine.Debug.LogError($"{LOG_PREFIX} Failed to load _vocabulary/processing.json: {ex.Message}");
+                }
+            }
+        }
+
+        private int LoadNestedVocabulary(JToken token, Dictionary<string, string> target)
+        {
+            int count = 0;
+            if (token is JObject obj)
+            {
+                foreach (var prop in obj.Properties())
+                {
+                    if (prop.Name.StartsWith("_")) continue;
+
+                    if (prop.Value is JObject nested)
+                    {
+                        // Check if it's a _SHARED format: { "ko": "번역", "aliases": [...] }
+                        if (nested["ko"] != null)
+                        {
+                            string ko = nested["ko"].ToString();
+                            target[prop.Name] = ko;
+                            count++;
+
+                            // Also add aliases
+                            var aliases = nested["aliases"] as JArray;
+                            if (aliases != null)
+                            {
+                                foreach (var alias in aliases)
+                                {
+                                    target[alias.ToString()] = ko;
+                                    count++;
+                                }
+                            }
+                        }
+                        else
+                        {
+                            // Recurse into nested objects
+                            count += LoadNestedVocabulary(nested, target);
+                        }
+                    }
+                    else if (prop.Value.Type == JTokenType.String)
+                    {
+                        // Leaf node - actual translation pair
+                        target[prop.Name] = prop.Value.ToString();
+                        count++;
+                    }
+                }
+            }
+            return count;
+        }
+
+        private void LoadShared(string modDir)
+        {
+            string sharedPath = Path.Combine(modDir, "LOCALIZATION", "_SHARED");
+            if (!Directory.Exists(sharedPath))
+            {
+                UnityEngine.Debug.Log($"{LOG_PREFIX} _SHARED directory not found");
+                return;
+            }
+
+            // Load materials.json
+            string materialsPath = Path.Combine(sharedPath, "materials.json");
+            if (File.Exists(materialsPath))
+            {
+                try
+                {
+                    var root = JObject.Parse(File.ReadAllText(materialsPath));
+                    int count = LoadNestedVocabulary(root["materials"], _materials);
+                    UnityEngine.Debug.Log($"{LOG_PREFIX} Loaded _SHARED/materials.json: {count} entries");
+                }
+                catch (Exception ex)
+                {
+                    UnityEngine.Debug.LogError($"{LOG_PREFIX} Failed to load _SHARED/materials.json: {ex.Message}");
+                }
+            }
+
+            // Load qualities.json
+            string qualitiesPath = Path.Combine(sharedPath, "qualities.json");
+            if (File.Exists(qualitiesPath))
+            {
+                try
+                {
+                    var root = JObject.Parse(File.ReadAllText(qualitiesPath));
+                    int count = LoadNestedVocabulary(root["qualities"], _qualities);
+                    UnityEngine.Debug.Log($"{LOG_PREFIX} Loaded _SHARED/qualities.json: {count} entries");
+                }
+                catch (Exception ex)
+                {
+                    UnityEngine.Debug.LogError($"{LOG_PREFIX} Failed to load _SHARED/qualities.json: {ex.Message}");
+                }
+            }
+
+            // Load body_parts.json
+            string bodyPartsPath = Path.Combine(sharedPath, "body_parts.json");
+            if (File.Exists(bodyPartsPath))
+            {
+                try
+                {
+                    var root = JObject.Parse(File.ReadAllText(bodyPartsPath));
+                    int count = LoadNestedVocabulary(root["body_parts"], _bodyParts);
+                    UnityEngine.Debug.Log($"{LOG_PREFIX} Loaded _SHARED/body_parts.json: {count} entries");
+                }
+                catch (Exception ex)
+                {
+                    UnityEngine.Debug.LogError($"{LOG_PREFIX} Failed to load _SHARED/body_parts.json: {ex.Message}");
+                }
             }
         }
 

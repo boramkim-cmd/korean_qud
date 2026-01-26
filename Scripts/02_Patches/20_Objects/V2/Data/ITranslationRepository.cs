@@ -89,6 +89,16 @@ namespace QudKorean.Objects.V2.Data
         /// </summary>
         IReadOnlyList<KeyValuePair<string, string>> PartSuffixes { get; }
 
+        /// <summary>
+        /// Tonics dictionary (tonic names to Korean).
+        /// </summary>
+        IReadOnlyDictionary<string, string> Tonics { get; }
+
+        /// <summary>
+        /// Shaders dictionary (shader/color names to Korean).
+        /// </summary>
+        IReadOnlyDictionary<string, string> Shaders { get; }
+
         #endregion
 
         #region Lifecycle

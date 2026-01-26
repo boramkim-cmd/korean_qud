@@ -98,6 +98,7 @@
     "belt": "벨트",
     "sash": "허리띠",
     "_comment_clothing_audit": "의류 전수 조사 추가",
+    "frill": "프릴",
     "apron": "앞치마",
     "mantle": "망토",
     "jerkin": "저킨",
@@ -156,6 +157,8 @@
     "manacles": "수갑",
     "netting": "그물",
     "_comment_step6": "Step 6 누락 어휘 추가",
+    "sundries": "잡화",
+    "water": "물",
     "banner": "깃발",
     "petals": "꽃잎",
     "quills": "가시",
@@ -247,6 +250,7 @@
 
   "furniture": {
     "_comment": "가구 (Furniture) - Phase 미번역 버그 수정",
+    "furniture": "가구",
     "bed": "침대",
     "chair": "의자",
     "table": "테이블",

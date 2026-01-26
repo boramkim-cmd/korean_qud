@@ -112,19 +112,19 @@ namespace QudKorean.Objects.V2.Pipeline.Handlers
         {
             string result = text;
 
-            // Try base nouns
+            // Try base nouns - handles brackets, colons, and quotes
             foreach (var noun in repo.BaseNouns)
             {
-                string pattern = $@"(^|\s)({Regex.Escape(noun.Key)})($|\s|[,.\[\]()])";
+                string pattern = $@"(^|\s|\[|"")({Regex.Escape(noun.Key)})($|\s|[,.\[\]():'""!?])";
                 result = Regex.Replace(result, pattern, m =>
                     m.Groups[1].Value + noun.Value + m.Groups[3].Value,
                     RegexOptions.IgnoreCase);
             }
 
-            // Try prefixes
+            // Try prefixes - handles brackets, colons, and quotes
             foreach (var prefix in repo.Prefixes)
             {
-                string pattern = $@"(^|\s)({Regex.Escape(prefix.Key)})(\s)";
+                string pattern = $@"(^|\s|\[|"")({Regex.Escape(prefix.Key)})(\s|$|\]|[:'""!?])";
                 result = Regex.Replace(result, pattern, m =>
                     m.Groups[1].Value + prefix.Value + m.Groups[3].Value,
                     RegexOptions.IgnoreCase);

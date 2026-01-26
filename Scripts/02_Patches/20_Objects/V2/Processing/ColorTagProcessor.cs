@@ -289,6 +289,8 @@ namespace QudKorean.Objects.V2.Processing
 
         /// <summary>
         /// Translates nouns in plain text (no tags).
+        /// Handles nouns after brackets like [water] or [fresh water].
+        /// Also handles colons for book titles like "Fear: On..."
         /// </summary>
         private static string TranslateNounsInText(string text, ITranslationRepository repo)
         {
@@ -298,7 +300,8 @@ namespace QudKorean.Objects.V2.Processing
             string result = text;
             foreach (var noun in repo.BaseNouns)
             {
-                string pattern = $@"(^|\s)({Regex.Escape(noun.Key)})($|\s|[,.\[\]()])";
+                // Pattern: noun after start, space, [ or " and before end, space, or punctuation (including colon)
+                string pattern = $@"(^|\s|\[|"")({Regex.Escape(noun.Key)})($|\s|[,.\[\]():'""!?])";
                 result = Regex.Replace(result, pattern, m =>
                     m.Groups[1].Value + noun.Value + m.Groups[3].Value,
                     RegexOptions.IgnoreCase);
@@ -308,6 +311,8 @@ namespace QudKorean.Objects.V2.Processing
 
         /// <summary>
         /// Translates prefixes in plain text.
+        /// Handles prefixes after brackets like [fresh water] or followed by space/end.
+        /// Also handles colons for book titles like "Fear: On..."
         /// </summary>
         private static string TranslatePrefixesInText(string text, ITranslationRepository repo)
         {
@@ -317,7 +322,9 @@ namespace QudKorean.Objects.V2.Processing
             string result = text;
             foreach (var prefix in repo.Prefixes)
             {
-                string pattern = $@"(^|\s)({Regex.Escape(prefix.Key)})(\s)";
+                // Pattern: prefix after start/space/[/" and before space/end/]/:/"/!/? (supports book titles)
+                // Examples: "dried la", "[fresh water]", "dried", "Fear: On...", "\"Fear\""
+                string pattern = $@"(^|\s|\[|"")({Regex.Escape(prefix.Key)})(\s|$|\]|[:'""!?])";
                 result = Regex.Replace(result, pattern, m =>
                     m.Groups[1].Value + prefix.Value + m.Groups[3].Value,
                     RegexOptions.IgnoreCase);
