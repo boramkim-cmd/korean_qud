@@ -4,7 +4,6 @@
     "version": "1.0",
     "source": "Migrated from ObjectTranslator.cs hardcoded dictionaries"
   },
-
   "materials": {
     "_comment": "재료 (_materialPrefixes + _colorTagMaterialTranslations 통합)",
     "folded carbide": "접힌 카바이드",
@@ -57,7 +56,6 @@
     "lead-acid": "납산",
     "sap": "수액"
   },
-
   "qualities": {
     "_comment": "품질 (_qualityPrefixes)",
     "flawless": "완벽한",
@@ -75,7 +73,6 @@
     "common": "일반",
     "uncommon": "비범한"
   },
-
   "processing": {
     "_comment": "가공/처리 (_processingPrefixes)",
     "freeze-dried": "동결건조",
@@ -95,7 +92,6 @@
     "canned": "통조림",
     "boiled": "삶은"
   },
-
   "modifiers": {
     "_comment": "설명/무기/상태 접두사 (_descriptivePrefixes)",
     "high explosive": "고폭",
@@ -104,7 +100,7 @@
     "bent": "휜",
     "cracked": "금간",
     "elder": "장로",
-    "albino": "흰알비노",
+    "albino": "알비노",
     "luminous": "빛나는",
     "ripe": "잘 익은",
     "plump": "통통한",
@@ -204,7 +200,6 @@
     "elastyne": "엘라스틴",
     "bark": "나무껍질",
     "gas": "가스",
-
     "_comment_hyphenated": "하이픈 접두사 (Phase 미번역 버그 수정)",
     "bio-scanning": "바이오스캐닝",
     "night-vision": "야간 투시",
@@ -232,7 +227,6 @@
     "shoulder-mounted": "어깨 장착",
     "phase-conjugate": "위상 결합",
     "spring-loaded": "스프링 장전",
-
     "_comment_dynamic_mods": "동적 Mod 형용사 (Mod*.cs에서 런타임 추가됨)",
     "microserrated": "미세 톱니",
     "freezing": "냉동",
@@ -272,7 +266,6 @@
     "concentrated": "농축된",
     "merchant's": "상인의",
     "merchant": "상인",
-
     "_comment_mods_xml": "Mods.xml TinkerDisplayName 수식어 (전수 조사 추가)",
     "willowy": "버들같은",
     "gigantic": "거대한",
@@ -300,7 +293,6 @@
     "extradimensional": "차원간",
     "phase-harmonic": "위상 조화",
     "electromagnetically-shielded": "전자기 차폐",
-
     "_comment_postmortem": "포스트모템 전수 조사 추가",
     "failed": "고장난",
     "enigma": "수수께끼",
@@ -310,13 +302,11 @@
     "rough": "거친",
     "smooth": "매끄러운",
     "security": "보안",
-
     "_comment_creature_modifiers": "생물 형용사 (포스트모템 추가)",
     "bloated": "부풀어오른",
     "burrowing": "굴파는",
     "chitinous": "키틴질의",
     "cryptic": "신비로운",
-
     "_comment_weapon_modifiers": "무기 수식어 (전수조사 추가)",
     "vibro": "바이브로",
     "electric": "전기",
@@ -326,7 +316,6 @@
     "nullray": "널레이",
     "seed-spitting": "씨앗발사"
   },
-
   "tonics": {
     "_comment": "토닉/인젝터 셰이더",
     "salve": "연고",
@@ -350,7 +339,6 @@
     "might": "강력",
     "willforce": "의지력"
   },
-
   "grenades": {
     "_comment": "수류탄 셰이더",
     "stun": "기절",
@@ -364,14 +352,12 @@
     "gravity": "중력",
     "normality": "정상화"
   },
-
   "marks": {
     "_comment": "마크/버전",
     "mk I": "mk I",
     "mk II": "mk II",
     "mk III": "mk III"
   },
-
   "colors": {
     "_comment": "색상 형용사 (tube 등에 사용) - BUG #2 수정",
     "violet": "보라색",
@@ -390,10 +376,9 @@
     "emerald": "에메랄드색",
     "sapphire": "사파이어색",
     "ruby": "루비색",
-    "ivory": "상아색",
+    "ivory": "상아",
     "onyx": "오닉스색",
     "pearl": "진주색",
-
     "_comment_gemstones": "보석 색상 (포스트모템 추가)",
     "agate": "마노",
     "amethyst": "자수정",
@@ -401,15 +386,12 @@
     "peridot": "페리도트",
     "topaz": "토파즈"
   },
-
   "shaders": {
     "_comment": "셀프 레퍼런셜 셰이더 (전수조사 2026-01-26)",
     "_description": "{{shader|shader}} 형식의 컬러 태그. 셰이더 이름은 보존하고 표시 텍스트만 번역",
-
     "_comment_tonic_shaders": "토닉/인젝터 셰이더",
-    "cider": "사이더",
+    "cider": "사이다",
     "thermo": "써모",
-
     "_comment_weapon_shaders": "무기 셰이더",
     "gaslight": "가스라이트",
     "hypertractor": "하이퍼트랙터",
@@ -418,7 +400,6 @@
     "syphon": "사이펀",
     "rocket": "로켓",
     "spring-turret": "스프링 터렛",
-
     "_comment_material_shaders": "재료/물질 셰이더",
     "metachrome": "메타크롬",
     "lava": "용암",
@@ -426,7 +407,6 @@
     "mercurial": "수은빛",
     "sunslag": "태양슬래그",
     "hologram": "홀로그램",
-
     "_comment_effect_shaders": "효과/상태 셰이더",
     "auroral": "오로라",
     "radiant": "빛나는",
@@ -436,13 +416,11 @@
     "transkinetic": "트랜스키네틱",
     "telemetric": "텔레메트릭",
     "structural": "구조",
-
     "_comment_condition_shaders": "상태이상 셰이더",
     "ironshank": "철다리병",
     "glotrot": "글롯롯",
     "putrid": "부패한",
     "slimy": "점액질",
-
     "_comment_mod_shaders": "모드(Mod) 셰이더",
     "biomech": "바이오메크",
     "implanted": "이식된",
@@ -452,7 +430,6 @@
     "patchwork": "패치워크",
     "ninefold": "아홉 겹",
     "mirrorshades": "미러쉐이드",
-
     "_comment_creature_shaders": "생물 셰이더",
     "kaleidoslug": "만화경민달팽이",
     "moon": "달"

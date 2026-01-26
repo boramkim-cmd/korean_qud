@@ -15,7 +15,7 @@
     "names": { "vest": "조끼" }
   },
   "BaseMask": {
-    "names": { "mask": "마스크", "sap mask": "수액 마스크" }
+    "names": { "mask": "가면", "sap mask": "수액 마스크" }
   },
   "BaseSheet": {
     "names": { "metal sheet": "금속판", "sheet": "판" }

@@ -12,7 +12,7 @@
     "sword": "검",
     "long sword": "장검",
     "short sword": "단검",
-    "mace": "메이스",
+    "mace": "철퇴",
     "hammer": "해머",
     "axe": "도끼",
     "spear": "창",
@@ -23,9 +23,9 @@
     "bolt": "볼트",
     "club": "곤봉",
     "flail": "도리깨",
-    "halberd": "미늘창",
-    "pike": "장창",
-    "cudgel": "몽둥이",
+    "halberd": "할버드",
+    "pike": "파이크",
+    "cudgel": "곤봉",
     "_comment_audit": "전수 조사 추가",
     "kukri": "쿠크리",
     "kris": "크리스",
@@ -63,13 +63,13 @@
     "plate": "판금갑옷",
     "gloves": "장갑",
     "gauntlets": "건틀릿",
-    "boots": "부츠",
+    "boots": "장화",
     "greaves": "정강이받이",
     "cloak": "망토",
     "cape": "케이프",
     "robe": "로브",
     "robes": "로브",
-    "hood": "후드",
+    "hood": "두건",
     "_comment_audit": "전수 조사 추가",
     "bracer": "완갑",
     "coif": "코이프",
@@ -86,7 +86,7 @@
     "slippers": "슬리퍼",
     "wreath": "화환",
     "crown": "왕관",
-    "circlet": "관",
+    "circlet": "서클릿",
     "headband": "머리띠",
     "mask": "가면",
     "goggles": "고글",
@@ -103,8 +103,8 @@
     "jerkin": "저킨",
     "doublet": "더블릿",
     "_comment_postmortem": "포스트모템 전수 조사 추가",
-    "skin": "스킨",
-    "suit": "수트"
+    "skin": "피부",
+    "suit": "슈트"
   },
 
   "consumables": {
@@ -130,9 +130,9 @@
     "lantern": "랜턴",
     "lamp": "램프",
     "key": "열쇠",
-    "lockpick": "자물쇠따개",
+    "lockpick": "자물쇠 따개",
     "_comment_audit": "전수 조사 추가",
-    "toolkit": "공구함"
+    "toolkit": "도구함"
   },
 
   "misc": {
@@ -148,7 +148,7 @@
     "corpse": "시체",
     "nugget": "덩어리",
     "ingot": "주괴",
-    "bar": "바",
+    "bar": "막대",
     "chunk": "덩어리",
     "lump": "덩어리",
     "_comment_audit": "전수 조사 추가",
@@ -196,7 +196,7 @@
     "laser": "레이저",
     "missile": "미사일",
     "pump": "펌프",
-    "wire": "와이어",
+    "wire": "철사",
     "applicator": "적용기",
     "arc": "아크"
   },
@@ -222,7 +222,7 @@
     "bottle": "병",
     "jar": "단지",
     "flask": "플라스크",
-    "phial": "소병",
+    "phial": "약병",
     "processing core": "처리 코어",
     "core": "코어",
     "_comment_possessive": "소유격 아이템 누락 명사",
@@ -236,10 +236,10 @@
   "firearms": {
     "_comment": "총기류 (Firearms) - Phase 2차 번역 확장",
     "revolver": "리볼버",
-    "rifle": "라이플",
+    "rifle": "소총",
     "pistol": "권총",
     "shotgun": "산탄총",
-    "carbine": "카빈총",
+    "carbine": "카빈",
     "blunderbuss": "나팔총",
     "musket": "머스킷",
     "arquebus": "아르케부스"
@@ -254,10 +254,10 @@
     "sconce": "벽등",
     "hatch": "해치",
     "chest": "상자",
-    "crate": "나무상자",
+    "crate": "나무 상자",
     "cabinet": "캐비닛",
     "desk": "책상",
-    "stool": "의자",
+    "stool": "걸상",
     "bench": "벤치",
     "shelf": "선반",
     "rack": "선반"
@@ -278,7 +278,7 @@
   "headwear": {
     "_comment": "머리 장비 (Headwear) - Phase 번역 불일치 수정",
     "hat": "모자",
-    "cap": "캡"
+    "cap": "모자"
   },
 
   "body_parts": {

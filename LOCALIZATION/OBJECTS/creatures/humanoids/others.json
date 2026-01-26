@@ -7,341 +7,424 @@
     "updated": "2026-01-24",
     "phase": "Phase2-Creatures"
   },
-
   "Cannibal": {
     "tier": 2,
     "category": "humanoid",
-    "tags": ["human", "hostile", "underground"],
+    "tags": [
+      "human",
+      "hostile",
+      "underground"
+    ],
     "names": {
       "cannibal": "식인종"
     },
     "description": "Sunshame has left =pronouns.possessive= skin pulpy and spider-white, and =pronouns.possessive= capillaries are shot with blood two shades too dark.",
     "description_ko": "햇빛을 피해 살아온 탓에 피부는 희고 물컹하며, 모세혈관에는 두 톤 더 어두운 피가 흐른다."
   },
-
   "Cannibal Corpse": {
     "tier": 2,
     "category": "corpse",
-    "tags": ["human"],
+    "tags": [
+      "human"
+    ],
     "names": {
       "cannibal corpse": "식인종 시체"
     }
   },
-
   "Mechanimist": {
     "tier": 2,
     "category": "humanoid",
-    "tags": ["human", "neutral", "religious"],
+    "tags": [
+      "human",
+      "neutral",
+      "religious"
+    ],
     "names": {
       "mechanimist": "메카님스트"
     },
     "description": "A follower of the Mechanimist religion who worships machines.",
     "description_ko": "기계를 숭배하는 종교 신자."
   },
-
   "Mechanimist Corpse": {
     "tier": 2,
     "category": "corpse",
-    "tags": ["human", "religious"],
+    "tags": [
+      "human",
+      "religious"
+    ],
     "names": {
       "mechanimist corpse": "메카님스트 시체"
     }
   },
-
   "Woodsprog": {
     "tier": 2,
     "category": "humanoid",
-    "tags": ["frog", "neutral", "forest"],
+    "tags": [
+      "frog",
+      "neutral",
+      "forest"
+    ],
     "names": {
       "woodsprog": "우드스프로그"
     },
     "description": "A frog-like humanoid species that lives in forests.",
     "description_ko": "숲에 사는 개구리 형상의 인간형 종족."
   },
-
   "Woodsprog Corpse": {
     "tier": 2,
     "category": "corpse",
-    "tags": ["frog"],
+    "tags": [
+      "frog"
+    ],
     "names": {
       "woodsprog corpse": "우드스프로그 시체"
     }
   },
-
   "Dawning Ape": {
     "tier": 3,
     "category": "humanoid",
-    "tags": ["ape", "hostile", "intelligent"],
+    "tags": [
+      "ape",
+      "hostile",
+      "intelligent"
+    ],
     "names": {
       "dawning ape": "여명원숭이"
     },
     "description": "A highly intelligent ape that can use tools.",
     "description_ko": "지능이 높은 유인원. 도구를 사용할 수 있다."
   },
-
   "Dawning Ape Corpse": {
     "tier": 3,
     "category": "corpse",
-    "tags": ["ape"],
+    "tags": [
+      "ape"
+    ],
     "names": {
       "dawning ape corpse": "여명원숭이 시체"
     }
   },
-
   "Baetyl": {
     "tier": 5,
     "category": "construct",
-    "tags": ["baetyl", "neutral", "quest", "unique"],
+    "tags": [
+      "baetyl",
+      "neutral",
+      "quest",
+      "unique"
+    ],
     "names": {
       "baetyl": "바에틸"
     },
     "description": "A sacred stone that speaks with an otherworldly voice.",
     "description_ko": "이세계의 목소리로 말하는 신성한 돌."
   },
-
   "Rainbow Baetyl": {
     "tier": 6,
     "category": "construct",
-    "tags": ["baetyl", "neutral", "quest", "rare"],
+    "tags": [
+      "baetyl",
+      "neutral",
+      "quest",
+      "rare"
+    ],
     "names": {
       "rainbow baetyl": "무지개 바에틸"
     },
     "description": "A baetyl that shimmers with all the colors of the spectrum.",
     "description_ko": "스펙트럼의 모든 색으로 빛나는 바에틸."
   },
-
   "Troll": {
     "tier": 4,
     "category": "humanoid",
-    "tags": ["troll", "hostile", "regenerating"],
+    "tags": [
+      "troll",
+      "hostile",
+      "regenerating"
+    ],
     "names": {
       "troll": "트롤"
     },
     "description": "A hulking brute with powerful regenerative abilities.",
     "description_ko": "강력한 재생 능력을 가진 거대한 야수."
   },
-
   "Troll Corpse": {
     "tier": 4,
     "category": "corpse",
-    "tags": ["troll"],
+    "tags": [
+      "troll"
+    ],
     "names": {
       "troll corpse": "트롤 시체"
     }
   },
-
   "Troll King": {
     "tier": 6,
     "category": "humanoid",
-    "tags": ["troll", "hostile", "regenerating", "leader"],
+    "tags": [
+      "troll",
+      "hostile",
+      "regenerating",
+      "leader"
+    ],
     "names": {
       "troll king": "트롤 왕"
     },
     "description": "The ruler of trollkind, mighty and ancient.",
     "description_ko": "트롤 종족의 지배자, 강력하고 오래되었다."
   },
-
   "Golem": {
     "tier": 4,
     "category": "construct",
-    "tags": ["golem", "neutral", "construct"],
+    "tags": [
+      "golem",
+      "neutral",
+      "construct"
+    ],
     "names": {
       "golem": "골렘"
     },
     "description": "An animated construct given life through unknown means.",
     "description_ko": "알 수 없는 방법으로 생명을 부여받은 움직이는 구조물."
   },
-
   "Stone Golem": {
     "tier": 4,
     "category": "construct",
-    "tags": ["golem", "hostile", "stone"],
+    "tags": [
+      "golem",
+      "hostile",
+      "stone"
+    ],
     "names": {
       "stone golem": "돌 골렘"
     },
     "description": "A golem crafted from solid rock.",
     "description_ko": "단단한 바위로 만들어진 골렘."
   },
-
   "Stone Golem Corpse": {
     "tier": 4,
     "category": "corpse",
-    "tags": ["golem", "stone"],
+    "tags": [
+      "golem",
+      "stone"
+    ],
     "names": {
       "stone golem corpse": "돌 골렘 잔해"
     }
   },
-
   "Clay Golem": {
     "tier": 3,
     "category": "construct",
-    "tags": ["golem", "hostile", "clay"],
+    "tags": [
+      "golem",
+      "hostile",
+      "clay"
+    ],
     "names": {
       "clay golem": "점토 골렘"
     },
     "description": "A golem formed from animated clay.",
     "description_ko": "움직이는 점토로 형성된 골렘."
   },
-
   "Iron Golem": {
     "tier": 5,
     "category": "construct",
-    "tags": ["golem", "hostile", "metal"],
+    "tags": [
+      "golem",
+      "hostile",
+      "metal"
+    ],
     "names": {
       "iron golem": "철 골렘"
     },
     "description": "A golem forged from solid iron.",
     "description_ko": "단단한 철로 제련된 골렘."
   },
-
   "Crysteel Golem": {
     "tier": 7,
     "category": "construct",
-    "tags": ["golem", "hostile", "crysteel", "rare"],
+    "tags": [
+      "golem",
+      "hostile",
+      "crysteel",
+      "rare"
+    ],
     "names": {
       "crysteel golem": "크리스틸 골렘"
     },
     "description": "A golem made from the ultra-hard material crysteel.",
     "description_ko": "초경질 재료인 크리스틸로 만들어진 골렘."
   },
-
   "Chrome Pyramid": {
     "tier": 7,
     "category": "construct",
-    "tags": ["mechanical", "hostile", "elite", "rare"],
+    "tags": [
+      "mechanical",
+      "hostile",
+      "elite",
+      "rare"
+    ],
     "names": {
       "chrome pyramid": "크롬 피라미드"
     },
     "description": "A floating metallic pyramid of mysterious origin.",
     "description_ko": "신비로운 기원의 떠다니는 금속 피라미드."
   },
-
   "Chrome Pyramid Corpse": {
     "tier": 7,
     "category": "corpse",
-    "tags": ["mechanical"],
+    "tags": [
+      "mechanical"
+    ],
     "names": {
       "chrome pyramid wreckage": "크롬 피라미드 잔해"
     }
   },
-
   "Albino Ape": {
     "tier": 4,
     "category": "humanoid",
-    "tags": ["ape", "hostile", "cave"],
+    "tags": [
+      "ape",
+      "hostile",
+      "cave"
+    ],
     "names": {
-      "albino ape": "백색 원숭이"
+      "albino ape": "알비노 유인원"
     },
     "description": "A pale ape adapted to life in the sunless depths.",
     "description_ko": "햇빛 없는 심연에 적응한 창백한 원숭이."
   },
-
   "Albino Ape Corpse": {
     "tier": 4,
     "category": "corpse",
-    "tags": ["ape"],
+    "tags": [
+      "ape"
+    ],
     "names": {
-      "albino ape corpse": "백색 원숭이 시체"
+      "albino ape corpse": "알비노 유인원 시체"
     }
   },
-
   "Ogre Ape": {
     "tier": 5,
     "category": "humanoid",
-    "tags": ["ape", "hostile", "elite"],
+    "tags": [
+      "ape",
+      "hostile",
+      "elite"
+    ],
     "names": {
       "ogre ape": "오우거 원숭이"
     },
     "description": "A massive and brutish ape of tremendous strength.",
     "description_ko": "엄청난 힘을 가진 거대하고 야수적인 원숭이."
   },
-
   "Ogre Ape Corpse": {
     "tier": 5,
     "category": "corpse",
-    "tags": ["ape"],
+    "tags": [
+      "ape"
+    ],
     "names": {
       "ogre ape corpse": "오우거 원숭이 시체"
     }
   },
-
   "Girshling": {
     "tier": 3,
     "category": "humanoid",
-    "tags": ["girsh", "hostile", "psychic"],
+    "tags": [
+      "girsh",
+      "hostile",
+      "psychic"
+    ],
     "names": {
-      "girshling": "기르슐링"
+      "girshling": "거슐링"
     },
     "description": "A servitor race created by the alien Girsh.",
     "description_ko": "외계 종족 기르쉬에 의해 창조된 하인 종족."
   },
-
   "Girshling Corpse": {
     "tier": 3,
     "category": "corpse",
-    "tags": ["girsh"],
+    "tags": [
+      "girsh"
+    ],
     "names": {
-      "girshling corpse": "기르슐링 시체"
+      "girshling corpse": "거슐링 시체"
     }
   },
-
   "Putus Templar": {
     "tier": 4,
     "category": "humanoid",
-    "tags": ["human", "hostile", "templar"],
+    "tags": [
+      "human",
+      "hostile",
+      "templar"
+    ],
     "names": {
-      "putus templar": "퓨투스 기사단원"
+      "putus templar": "푸투스 템플러"
     },
     "description": "A fanatical warrior of the Putus Templar.",
     "description_ko": "퓨투스 기사단의 광신적인 전사."
   },
-
   "Putus Templar Corpse": {
     "tier": 4,
     "category": "corpse",
-    "tags": ["human", "templar"],
+    "tags": [
+      "human",
+      "templar"
+    ],
     "names": {
-      "putus templar corpse": "퓨투스 기사단원 시체"
+      "putus templar corpse": "푸투스 템플러 시체"
     }
   },
-
   "Mamon": {
     "tier": 5,
     "category": "humanoid",
-    "tags": ["psychic", "hostile", "rare"],
+    "tags": [
+      "psychic",
+      "hostile",
+      "rare"
+    ],
     "names": {
       "mamon": "마몬"
     },
     "description": "A being of immense psychic power.",
     "description_ko": "거대한 정신력을 가진 존재."
   },
-
   "Crazed Hermit": {
     "tier": 2,
     "category": "humanoid",
-    "tags": ["human", "neutral", "loner"],
+    "tags": [
+      "human",
+      "neutral",
+      "loner"
+    ],
     "names": {
       "crazed hermit": "미친 은둔자"
     },
     "description": "A hermit driven mad by isolation.",
     "description_ko": "고립으로 미쳐버린 은둔자."
   },
-
   "Urshiib": {
     "tier": 3,
     "category": "humanoid",
-    "tags": ["urshiib", "neutral", "desert"],
+    "tags": [
+      "urshiib",
+      "neutral",
+      "desert"
+    ],
     "names": {
       "urshiib": "우르시브"
     },
     "description": "A desert-dwelling humanoid with crystalline features.",
     "description_ko": "수정 같은 외모를 가진 사막에 사는 인간형."
   },
-
   "Urshiib Corpse": {
     "tier": 3,
     "category": "corpse",
-    "tags": ["urshiib"],
+    "tags": [
+      "urshiib"
+    ],
     "names": {
       "urshiib corpse": "우르시브 시체"
     }

@@ -88,7 +88,7 @@
     "category": "npc",
     "tags": ["joppa", "farmer", "common"],
     "names": {
-      "watervine farmer": "수초 농부"
+      "watervine farmer": "물덩굴 농부"
     },
     "description": "A watervine farmer from Joppa village.",
     "description_ko": "조파 마을의 수초 농부."

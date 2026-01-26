@@ -6,44 +6,57 @@
     "created": "2026-01-22",
     "updated": "2026-01-22"
   },
-
   "Girshling": {
     "tier": 2,
     "category": "animal",
-    "tags": ["reptile", "hostile", "underground"],
+    "tags": [
+      "reptile",
+      "hostile",
+      "underground"
+    ],
     "names": {
-      "girshling": "거슬링"
+      "girshling": "거슐링"
     },
     "description": "A small cave-dwelling reptile.",
     "description_ko": "동굴에 사는 작은 파충류."
   },
-
   "Greater Girshling": {
     "tier": 3,
     "category": "animal",
-    "tags": ["reptile", "hostile", "underground"],
+    "tags": [
+      "reptile",
+      "hostile",
+      "underground"
+    ],
     "names": {
-      "greater girshling": "대형 거슬링"
+      "greater girshling": "대형 거슐링"
     },
     "description": "A larger and more dangerous girshling.",
-    "description_ko": "더 크고 위험한 거슬링."
+    "description_ko": "더 크고 위험한 거슐링."
   },
-
   "Salt Kraken": {
     "tier": 5,
     "category": "animal",
-    "tags": ["reptile", "hostile", "legendary", "water"],
+    "tags": [
+      "reptile",
+      "hostile",
+      "legendary",
+      "water"
+    ],
     "names": {
       "salt kraken": "소금 크라켄"
     },
     "description": "A legendary sea creature of immense power.",
     "description_ko": "엄청난 힘을 가진 전설적인 바다 생물."
   },
-
   "Tongue Tyrant": {
     "tier": 4,
     "category": "animal",
-    "tags": ["reptile", "hostile", "psionic"],
+    "tags": [
+      "reptile",
+      "hostile",
+      "psionic"
+    ],
     "names": {
       "tongue tyrant": "혀의 폭군"
     },

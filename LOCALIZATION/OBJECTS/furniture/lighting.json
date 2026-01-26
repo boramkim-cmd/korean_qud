@@ -46,7 +46,7 @@
     "category": "furniture",
     "tags": ["light", "tech"],
     "names": {
-      "glowsphere": "빛나는 구체"
+      "glowsphere": "빛구슬"
     },
     "description": "An illuminating sphere of tech origin.",
     "description_ko": "기술로 만든 조명 구체."

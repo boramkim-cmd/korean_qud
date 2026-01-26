@@ -5,96 +5,115 @@
     "version": "2.0",
     "updated": "2026-01-22"
   },
-
   "Dermal Insulation": {
     "tier": 4,
     "category": "artifact",
     "slot": "body",
-    "tags": ["cybernetic", "defense", "electrical"],
+    "tags": [
+      "cybernetic",
+      "defense",
+      "electrical"
+    ],
     "names": {
-      "dermal insulation": "피부 절연체"
+      "dermal insulation": "피부 단열재"
     },
     "description": "A cybernetic implant that provides electrical resistance.",
     "description_ko": "전기 저항을 제공하는 사이버네틱 임플란트."
   },
-
   "Hyper-Elastic Ankle Tendons": {
     "tier": 5,
     "category": "artifact",
     "slot": "feet",
-    "tags": ["cybernetic", "mobility"],
+    "tags": [
+      "cybernetic",
+      "mobility"
+    ],
     "names": {
       "hyper-elastic ankle tendons": "초탄성 발목 힘줄"
     },
     "description": "Cybernetic tendons that enhance jumping and running.",
     "description_ko": "점프와 달리기를 향상시키는 사이버네틱 힘줄."
   },
-
   "Night Vision": {
     "tier": 4,
     "category": "artifact",
     "slot": "face",
-    "tags": ["cybernetic", "vision"],
+    "tags": [
+      "cybernetic",
+      "vision"
+    ],
     "names": {
       "night vision": "야간 투시"
     },
     "description": "Cybernetic eyes that see in the dark.",
     "description_ko": "어둠 속에서 볼 수 있는 사이버네틱 눈."
   },
-
   "Bionic Heart": {
     "tier": 6,
     "category": "artifact",
     "slot": "body",
-    "tags": ["cybernetic", "vital", "internal"],
+    "tags": [
+      "cybernetic",
+      "vital",
+      "internal"
+    ],
     "names": {
       "bionic heart": "바이오닉 심장"
     },
     "description": "A mechanical heart that enhances vitality.",
     "description_ko": "활력을 향상시키는 기계 심장."
   },
-
   "Carbide Hand Bones": {
     "tier": 5,
     "category": "artifact",
     "slot": "hands",
-    "tags": ["cybernetic", "combat"],
+    "tags": [
+      "cybernetic",
+      "combat"
+    ],
     "names": {
       "carbide hand bones": "카바이드 손뼈"
     },
     "description": "Cybernetic hand bones that enhance grip and punching power.",
     "description_ko": "그립과 타격력을 향상시키는 사이버네틱 손뼈."
   },
-
   "Stabilizer Arm Locks": {
     "tier": 4,
     "category": "artifact",
     "slot": "arm",
-    "tags": ["cybernetic", "accuracy"],
+    "tags": [
+      "cybernetic",
+      "accuracy"
+    ],
     "names": {
       "stabilizer arm locks": "안정화 팔 잠금장치"
     },
     "description": "Cybernetic arm locks that improve weapon accuracy.",
     "description_ko": "무기 정확도를 향상시키는 사이버네틱 팔 잠금장치."
   },
-
   "Giant Hands": {
     "tier": 5,
     "category": "artifact",
     "slot": "hands",
-    "tags": ["cybernetic", "strength"],
+    "tags": [
+      "cybernetic",
+      "strength"
+    ],
     "names": {
       "giant hands": "거대한 손"
     },
     "description": "Oversized cybernetic hands with immense grip strength.",
     "description_ko": "엄청난 그립력을 가진 대형 사이버네틱 손."
   },
-
   "Parabolic Muscular Subroutine": {
     "tier": 6,
     "category": "artifact",
     "slot": "body",
-    "tags": ["cybernetic", "combat", "throwing"],
+    "tags": [
+      "cybernetic",
+      "combat",
+      "throwing"
+    ],
     "names": {
       "parabolic muscular subroutine": "포물선 근육 서브루틴"
     },

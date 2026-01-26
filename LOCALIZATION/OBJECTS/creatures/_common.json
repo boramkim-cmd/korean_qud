@@ -6,7 +6,6 @@
     "updated": "2026-01-25",
     "phase": "JSON migration - species from ObjectTranslator.cs"
   },
-
   "common_terms": {
     "corpse": "시체",
     "remains": "잔해",
@@ -19,10 +18,8 @@
     "legendary": "전설적인",
     "hero": "영웅"
   },
-
   "species": {
     "_comment": "Migrated from _commonSpeciesTranslations in ObjectTranslator.cs",
-
     "_section_basic": "기본 생물",
     "bear": "곰",
     "bat": "박쥐",
@@ -45,7 +42,6 @@
     "ape": "유인원",
     "croc": "악어",
     "crocodile": "악어",
-
     "_section_qud_creatures": "쿠드 고유 생물",
     "snapjaw": "스냅조",
     "goatfolk": "염소인",
@@ -57,21 +53,20 @@
     "electrofuge": "전기거미",
     "eyeless crab": "눈먼 게",
     "girshling": "거슐링",
-    "issachari": "이사차리",
-    "albino ape": "흰알비노 유인원",
-    "segmented mirthworm": "마디 웃음벌레",
-
+    "issachari": "이사카리",
+    "albino ape": "알비노 유인원",
+    "segmented mirthworm": "마디 환희지렁이",
     "_section_additional": "추가 생물 - Phase 1.2",
     "rhinox": "라이녹스",
     "phase spider": "위상 거미",
     "great saltback": "대형 소금등",
     "saltback": "소금등",
-    "dawnglider": "새벽활강꾼",
+    "dawnglider": "새벽활공수",
     "eyeless king crab": "눈먼 왕게",
     "bone worm": "뼈 벌레",
     "traipsing mortar": "배회하는 박격포",
     "chrome pyramid": "크롬 피라미드",
-    "madpole": "미친극지",
+    "madpole": "매드폴",
     "qudzu": "쿠드주",
     "seedsprout": "싹틔움",
     "voider": "보이더",
@@ -88,7 +83,7 @@
     "snapjaw scavenger": "스냅조 청소부",
     "snapjaw hunter": "스냅조 사냥꾼",
     "snapjaw warrior": "스냅조 전사",
-    "snapjaw brute": "스냅조 야수",
+    "snapjaw brute": "스냅조 무법자",
     "snapjaw warlord": "스냅조 전쟁군주",
     "chitinous puma": "키틴질 퓨마",
     "puma": "퓨마",
@@ -96,7 +91,7 @@
     "chainsaw": "전기톱",
     "yempuris": "옘푸리스",
     "agolfly": "아골파리",
-    "plasmafly": "플라즈마파리",
+    "plasmafly": "플라즈마 파리",
     "urshiib": "우르시브",
     "naphtaali": "나프탈리",
     "watervine": "물덩굴",
@@ -105,7 +100,6 @@
     "slog": "슬로그",
     "troll": "트롤",
     "ogre": "오우거",
-
     "_section_common_animals": "일반 동물",
     "camel": "낙타",
     "goat": "염소",
@@ -137,7 +131,6 @@
     "gecko": "게코",
     "salamander": "도롱뇽",
     "newt": "영원",
-
     "_section_large_predators": "대형 포식자 - Phase 소유격 패턴",
     "panther": "표범",
     "lion": "사자",
@@ -160,11 +153,9 @@
     "hippo": "하마",
     "elephant": "코끼리",
     "mammoth": "매머드",
-
     "_section_factions": "세력/고유명사 - Phase 2차 번역 확장",
-    "Praetorian": "프라이토리안",
+    "Praetorian": "근위병",
     "Issachar": "이사카르",
-
     "_section_possessive_npcs": "소유격 NPC 이름 - Phase 소유격 아이템 번역",
     "Nacham": "나참",
     "Va'am": "바암",
@@ -173,7 +164,6 @@
     "Miner": "광부",
     "Minstrel": "음유시인",
     "Merchant": "상인",
-
     "_section_beard_creatures": "수염 생물 (glands용) - Phase 6.3",
     "flamebeard": "불수염",
     "sleetbeard": "진눈깨비수염",
@@ -183,15 +173,13 @@
     "dreambeard": "꿈수염",
     "stillbeard": "고요수염",
     "mazebeard": "미로수염",
-
     "_section_plants": "식물 (Plants) - Step 6 누락 어휘",
     "lah": "라",
     "witchwood": "마녀나무",
-    "vinewafer": "덩굴 웨이퍼",
+    "vinewafer": "덩굴과자",
     "dreadroot": "공포뿌리",
     "starapple": "별사과",
     "Issachari": "이사카리",
-
     "_section_postmortem_animals": "일반 생물 (포스트모템 추가)",
     "antelope": "영양",
     "basilisk": "바실리스크",
@@ -199,16 +187,14 @@
     "clam": "조개",
     "dragonfly": "잠자리",
     "scorpion": "전갈",
-
     "_section_postmortem_qud": "쿠드 고유 생물 (포스트모템 추가)",
     "barathrumite": "바라스룸인",
     "mopango": "모팡고",
     "cherub": "케루브"
   },
-
   "creature_classes": {
     "animal": "동물",
-    "humanoid": "휴머노이드",
+    "humanoid": "인간형",
     "insect": "곤충",
     "robot": "로봇",
     "plant": "식물",
@@ -220,7 +206,6 @@
     "mammal": "포유류",
     "reptile": "파충류"
   },
-
   "roles": {
     "scavenger": "청소부",
     "hunter": "사냥꾼",
@@ -232,9 +217,8 @@
     "merchant": "상인",
     "farmer": "농부",
     "elder": "장로",
-    "warden": "경비병"
+    "warden": "경비원"
   },
-
   "honorifics": {
     "Elder": "장로",
     "Warden": "경비관"

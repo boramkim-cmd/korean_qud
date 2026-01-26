@@ -273,7 +273,7 @@
     "slot": "hand",
     "tags": ["gun", "ranged", "two-handed", "spread", "primitive"],
     "names": {
-      "blunderbuss": "블런더버스"
+      "blunderbuss": "나팔총"
     },
     "description": "A short muzzle-loaded firearm with a flared barrel.",
     "description_ko": "나팔형 총신을 가진 짧은 전장식 화기."
@@ -320,7 +320,7 @@
     "category": "ammo",
     "tags": ["ammo", "bullet"],
     "names": {
-      "lead slug": "납탄"
+      "lead slug": "납 탄환"
     },
     "description": "Lead is cast to a cylindric lump shaved to a point.",
     "description_ko": "납을 원통형 덩어리로 주조하여 끝을 뾰족하게 깎았다."

@@ -36,7 +36,7 @@
     "slot": "hand",
     "tags": ["liquid", "healing"],
     "names": {
-      "convalessence": "컨발레센스"
+      "convalessence": "회복액"
     },
     "description": "A healing tonic that restores vitality.",
     "description_ko": "활력을 회복시켜주는 치유 강장제."

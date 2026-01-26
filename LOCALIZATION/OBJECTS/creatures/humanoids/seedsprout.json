@@ -6,26 +6,33 @@
     "created": "2026-01-22",
     "updated": "2026-01-22"
   },
-
   "Seedsprout": {
     "tier": 1,
     "category": "humanoid",
-    "tags": ["seedsprout", "neutral", "plant"],
+    "tags": [
+      "seedsprout",
+      "neutral",
+      "plant"
+    ],
     "names": {
-      "seedsprout": "씨눈종"
+      "seedsprout": "싹틔움"
     },
     "description": "A plant-like humanoid that has sprouted from seeds.",
     "description_ko": "씨앗에서 싹튼 식물형 인간."
   },
-
   "Elder Seedsprout": {
     "tier": 3,
     "category": "humanoid",
-    "tags": ["seedsprout", "neutral", "plant", "elder"],
+    "tags": [
+      "seedsprout",
+      "neutral",
+      "plant",
+      "elder"
+    ],
     "names": {
-      "elder seedsprout": "장로 씨눈종"
+      "elder seedsprout": "장로 싹틔움"
     },
     "description": "An ancient seedsprout that has grown wise with age.",
-    "description_ko": "오랜 세월을 살며 지혜를 쌓은 씨눈종."
+    "description_ko": "오랜 세월을 살며 지혜를 쌓은 싹틔움."
   }
 }
