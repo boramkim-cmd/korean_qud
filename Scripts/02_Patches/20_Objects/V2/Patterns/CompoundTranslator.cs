@@ -386,15 +386,15 @@ namespace QudKorean.Objects.V2.Patterns
 
         /// <summary>
         /// Determines if a word should be kept as-is without translation.
-        /// Includes: numbers, roman numerals, MK abbreviations, proper nouns.
+        /// Includes: numbers, roman numerals, MK abbreviations, proper nouns, single letters, placeholders.
         /// </summary>
         private bool ShouldKeepAsIs(string word)
         {
             if (string.IsNullOrEmpty(word))
                 return false;
 
-            // Numbers: 1, 2, 3, 100, etc.
-            if (Regex.IsMatch(word, @"^\d+$"))
+            // Numbers (including negative): 1, 2, -1, 100, etc.
+            if (Regex.IsMatch(word, @"^-?\d+$"))
                 return true;
 
             // Roman numerals: I, II, III, IV, V, VI, VII, VIII, IX, X, etc.
@@ -405,13 +405,21 @@ namespace QudKorean.Objects.V2.Patterns
             if (Regex.IsMatch(word, @"^mk\.?$", RegexOptions.IgnoreCase))
                 return true;
 
-            // Proper nouns: starts with uppercase (and more than 1 char to avoid single letters)
+            // Single letters: a, b, q, y, etc. (often used as identifiers)
+            if (word.Length == 1 && char.IsLetter(word[0]))
+                return true;
+
+            // Proper nouns: starts with uppercase (and more than 1 char)
             // Examples: Joppa, Ptyrus, Resheph
             if (word.Length > 1 && char.IsUpper(word[0]) && !word.All(char.IsUpper))
                 return true;
 
             // All-caps abbreviations (2-4 letters): HE, AP, HP, etc.
             if (word.Length >= 2 && word.Length <= 4 && word.All(char.IsUpper))
+                return true;
+
+            // Placeholders: *creature*, *item*, etc.
+            if (word.StartsWith("*") && word.EndsWith("*"))
                 return true;
 
             return false;
