@@ -73,6 +73,7 @@ namespace QudKorean.Objects.V2.Patterns
             registry.Register(new FoodTranslator());         // Priority 20
             registry.Register(new PartsTranslator());        // Priority 30
             registry.Register(new PossessiveTranslator());   // Priority 40
+            registry.Register(new BookTitleTranslator());    // Priority 45
             registry.Register(new OfPatternTranslator());    // Priority 50
             registry.Register(new CompoundTranslator());     // Priority 60
 
