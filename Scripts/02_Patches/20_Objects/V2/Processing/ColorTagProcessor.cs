@@ -44,6 +44,69 @@ namespace QudKorean.Objects.V2.Processing
         }
 
         /// <summary>
+        /// Translates possessive patterns inside color tags.
+        /// "{{w|Praetorian's}} cloak" -> "{{w|프라이토리안의}} cloak"
+        /// "{{Y|minstrel's token}}" -> "{{Y|음유시인의 토큰}}"
+        /// </summary>
+        public static string TranslatePossessivesInTags(string text, ITranslationRepository repo)
+        {
+            if (string.IsNullOrEmpty(text) || !text.Contains("{{") || !text.Contains("'s"))
+                return text;
+
+            return Regex.Replace(text, @"\{\{([^|{}]+)\|([^{}]+)\}\}", match =>
+            {
+                string tag = match.Groups[1].Value;
+                string content = match.Groups[2].Value;
+
+                var possMatch = Regex.Match(content, @"^(.+)'s\s*(.*)$", RegexOptions.IgnoreCase);
+                if (!possMatch.Success)
+                    return match.Value;
+
+                string creature = possMatch.Groups[1].Value.Trim();
+                string remainder = possMatch.Groups[2].Value.Trim();
+
+                // Species 사전에서 검색
+                string creatureKo = null;
+                if (!repo.Species.TryGetValue(creature, out creatureKo))
+                {
+                    if (!repo.Species.TryGetValue(creature.ToLower(), out creatureKo))
+                    {
+                        // BaseNouns에서도 검색 (merchant 등)
+                        foreach (var noun in repo.BaseNouns)
+                        {
+                            if (noun.Key.Equals(creature, System.StringComparison.OrdinalIgnoreCase))
+                            {
+                                creatureKo = noun.Value;
+                                break;
+                            }
+                        }
+                    }
+                }
+
+                if (creatureKo == null)
+                    return match.Value;
+
+                if (!string.IsNullOrEmpty(remainder))
+                {
+                    string remainderKo = null;
+                    foreach (var noun in repo.BaseNouns)
+                    {
+                        if (noun.Key.Equals(remainder, System.StringComparison.OrdinalIgnoreCase))
+                        {
+                            remainderKo = noun.Value;
+                            break;
+                        }
+                    }
+                    return remainderKo != null
+                        ? $"{{{{{tag}|{creatureKo}의 {remainderKo}}}}}"
+                        : $"{{{{{tag}|{creatureKo}의 {remainder}}}}}";
+                }
+
+                return $"{{{{{tag}|{creatureKo}의}}}}";
+            });
+        }
+
+        /// <summary>
         /// Translates materials and vocabulary inside color tags.
         /// "{{G|hulk}} {{w|honey}} injector" -> "{{G|헐크}} {{w|꿀}} injector"
         /// </summary>

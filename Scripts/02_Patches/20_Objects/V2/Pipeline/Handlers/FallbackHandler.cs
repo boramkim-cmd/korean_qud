@@ -25,8 +25,11 @@ namespace QudKorean.Objects.V2.Pipeline.Handlers
             var repo = context.Repository;
             string originalName = context.OriginalName;
 
+            // NEW: 색상 태그 내 소유격 패턴 먼저 처리
+            string withPossessives = ColorTagProcessor.TranslatePossessivesInTags(originalName, repo);
+
             // Step 1: Translate materials in color tags
-            string withTranslatedMaterials = ColorTagProcessor.TranslateMaterials(originalName, repo);
+            string withTranslatedMaterials = ColorTagProcessor.TranslateMaterials(withPossessives, repo);
 
             // If materials were translated, also try to translate base nouns outside
             if (withTranslatedMaterials != originalName)

@@ -194,6 +194,42 @@ def strip_color_tags(text: str) -> str:
     return result
 
 
+def translate_possessives_in_tags(text: str) -> str:
+    """색상 태그 내 소유격 패턴 번역: {{w|Praetorian's}} -> {{w|프라이토리안의}}"""
+    if not text or '{{' not in text or "'s" not in text:
+        return text
+
+    def replace_possessive_tag(match):
+        tag = match.group(1)
+        content = match.group(2)
+
+        # 소유격 패턴 확인: "X's Y" 또는 "X's"
+        poss_match = re.match(r"^(.+)'s\s*(.*)$", content, re.IGNORECASE)
+        if not poss_match:
+            return match.group(0)
+
+        creature = poss_match.group(1).strip()
+        remainder = poss_match.group(2).strip()
+
+        # species 또는 base_nouns에서 번역 검색
+        creature_ko = species.get(creature.lower())
+        if not creature_ko:
+            creature_ko = base_nouns.get(creature.lower())
+
+        if not creature_ko:
+            return match.group(0)
+
+        if remainder:
+            remainder_ko = base_nouns.get(remainder.lower())
+            if remainder_ko:
+                return f'{{{{{tag}|{creature_ko}의 {remainder_ko}}}}}'
+            return f'{{{{{tag}|{creature_ko}의 {remainder}}}}}'
+        else:
+            return f'{{{{{tag}|{creature_ko}의}}}}'
+
+    return re.sub(r'\{\{([^|{}]+)\|([^{}]+)\}\}', replace_possessive_tag, text)
+
+
 def translate_materials_in_color_tags(text: str) -> str:
     """색상 태그 내 재료 번역: {{w|bronze}} -> {{w|청동}}"""
     if not text or '{{' not in text:
@@ -662,8 +698,11 @@ def try_translate(original_name: str) -> Tuple[bool, str]:
     if not original_name:
         return False, original_name
 
-    # 1. 색상 태그 내 재료 번역
-    with_translated_tags = translate_materials_in_color_tags(original_name)
+    # NEW: 색상 태그 내 소유격 패턴 먼저 처리
+    with_possessives = translate_possessives_in_tags(original_name)
+
+    # 1. 색상 태그 내 재료 번역 (이제 with_possessives 사용)
+    with_translated_tags = translate_materials_in_color_tags(with_possessives)
 
     # 색상 태그 정보 보존을 위해 저장
     has_color_tags = '{{' in original_name
@@ -992,11 +1031,10 @@ TEST_CASES = [
     (120, "Kah's loop", "카의 고리"),
     (121, "Slog's annunclus", "슬로그의 아눈클루스"),
 
-    # 색상 태그 포함 소유격 (JSON 직접 조회로 처리 - fallback은 태그 제거됨)
-    # 실제 게임에서는 JSON에서 직접 매칭되어 완전 번역됨
-    (122, "{{w|Praetorian's}} cloak", "프라이토리안의 망토"),  # fallback: 태그 제거
+    # 색상 태그 포함 소유격 - 태그 내 소유격 패턴이 먼저 처리되어 태그 보존됨
+    (122, "{{w|Praetorian's}} cloak", "{{w|프라이토리안의}} 망토"),
     (123, "{{W|merchant's token}}", "{{W|상인의 토큰}}"),
-    (124, "{{Y|minstrel's token}}", "{{Y|minstrel's 토큰}} 또는 {{Y|음유시인의 토큰}}"),  # 태그 내 부분 번역
+    (124, "{{Y|minstrel's token}}", "{{Y|음유시인의 토큰}}"),
 ]
 
 
