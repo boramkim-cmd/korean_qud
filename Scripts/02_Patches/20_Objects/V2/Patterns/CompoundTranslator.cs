@@ -40,6 +40,14 @@ namespace QudKorean.Objects.V2.Patterns
             if (!stripped.Contains(" "))
                 return false;
 
+            // Skip "of" patterns - handled by OfPatternTranslator
+            if (Regex.IsMatch(stripped, @"\bof\b", RegexOptions.IgnoreCase))
+                return false;
+
+            // Skip patterns with "the" - usually proper names
+            if (Regex.IsMatch(stripped, @"\bthe\b", RegexOptions.IgnoreCase))
+                return false;
+
             string[] parts = stripped.Split(new[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
 
             // Only handle 2-4 word compounds to avoid over-matching
