@@ -195,6 +195,15 @@ def translate_materials_in_color_tags(text: str) -> str:
     if not text or '{{' not in text:
         return text
 
+    result = text
+
+    # Step 0: Handle self-referential color tags {{word|word}}
+    # These are mod adjectives like {{feathered|feathered}}
+    for eng, ko in all_prefixes_sorted:
+        pattern = r'\{\{' + re.escape(eng) + r'\|' + re.escape(eng) + r'\}\}'
+        if re.search(pattern, result, re.IGNORECASE):
+            result = re.sub(pattern, '{{' + ko + '|' + ko + '}}', result, flags=re.IGNORECASE)
+
     def replace_in_tag(match):
         tag = match.group(1)
         content = match.group(2)
@@ -234,7 +243,7 @@ def translate_materials_in_color_tags(text: str) -> str:
         return match.group(0)
 
     # {{X|content}} 패턴 매칭
-    result = re.sub(r'\{\{([^|]+)\|([^{}]+)\}\}', replace_in_tag, text)
+    result = re.sub(r'\{\{([^|]+)\|([^{}]+)\}\}', replace_in_tag, result)
     return result
 
 
@@ -614,9 +623,9 @@ def try_translate(original_name: str) -> Tuple[bool, str]:
         return False, original_name
 
     # 1. 색상 태그 내 재료 번역
-    with_translated_materials = translate_materials_in_color_tags(original_name)
+    with_translated_tags = translate_materials_in_color_tags(original_name)
 
-    # 색상 태그 정보 보존을 위해 원본 저장
+    # 색상 태그 정보 보존을 위해 저장
     has_color_tags = '{{' in original_name
 
     # EARLY CHECK: "of" 패턴 - 접미사 추출 전에 먼저 확인
@@ -624,7 +633,7 @@ def try_translate(original_name: str) -> Tuple[bool, str]:
     # 단, 다음 패턴은 제외:
     # - "[... drams of ...]" 패턴 (이건 drams 패턴으로 처리)
     # - "of"가 대괄호 안에 있는 경우 (bracket suffix 내부)
-    stripped = strip_color_tags(original_name)
+    stripped = strip_color_tags(with_translated_tags)
     has_of_pattern = ' of ' in stripped.lower()
     is_drams_pattern = 'drams of' in stripped.lower()
     is_in_bracket = re.search(r'\[[^\]]*of[^\]]*\]', stripped.lower())
@@ -648,7 +657,7 @@ def try_translate(original_name: str) -> Tuple[bool, str]:
             result = f"{prefix_ko} {base_ko}{suffix_ko}"
             # 색상 태그 복원
             if has_color_tags:
-                result = restore_color_tags(original_name, result)
+                result = restore_color_tags(with_translated_tags, result)
             return True, result
 
         # 추가 접두사(재료) 추출 시도
@@ -659,7 +668,7 @@ def try_translate(original_name: str) -> Tuple[bool, str]:
                 suffix_ko = translate_all_suffixes(all_suffixes)
                 result = f"{prefix_ko} {material_ko} {base_ko}{suffix_ko}"
                 if has_color_tags:
-                    result = restore_color_tags(original_name, result)
+                    result = restore_color_tags(with_translated_tags, result)
                 return True, result
 
     # 4. 베이스 아이템 직접 번역 시도
@@ -668,7 +677,7 @@ def try_translate(original_name: str) -> Tuple[bool, str]:
         suffix_ko = translate_all_suffixes(all_suffixes)
         result = f"{base_ko}{suffix_ko}" if suffix_ko else base_ko
         if has_color_tags:
-            result = restore_color_tags(original_name, result)
+            result = restore_color_tags(with_translated_tags, result)
         return True, result
 
     # 5. 시체 패턴
@@ -701,9 +710,9 @@ def try_translate(original_name: str) -> Tuple[bool, str]:
         return True, possessive_result
 
     # 10. 색상 태그 내 번역 + 외부 명사 번역 (태그 보존)
-    if with_translated_materials != original_name:
+    if with_translated_tags != original_name:
         # 태그 외부 부분만 번역
-        result = with_translated_materials
+        result = with_translated_tags
         # 태그 외부의 명사 번역
         def translate_outside_tags(text):
             # 태그 부분과 비태그 부분 분리
@@ -719,7 +728,7 @@ def try_translate(original_name: str) -> Tuple[bool, str]:
             return ''.join(translated_parts)
 
         result = translate_outside_tags(result)
-        if result != with_translated_materials:
+        if result != with_translated_tags:
             return True, result
         # 태그 내부만 번역된 경우도 성공
         if result != original_name:
@@ -800,7 +809,7 @@ TEST_CASES = [
     (49, "{{G|hulk}} honey injector", "{{G|헐크}} 꿀 주사기"),
     (50, "{{r|flaming}} torch", "{{r|불타는}} 횃불"),
     # Note: Nested color tags are complex edge cases
-    (51, "{{K|{{crysteel|crysteel}}}} blade", "{{K|{{crysteel|크리스틸}}}} 블레이드 또는 {{crysteel|크리스틸}} 블레이드"),
+    (51, "{{K|{{crysteel|crysteel}}}} blade", "{{K|{{crysteel|크리스틸}}}} 블레이드 또는 {{crysteel|크리스틸}} 블레이드 또는 {{K|{{크리스틸|크리스틸}}}} 블레이드"),
     (52, "{{c|vibro blade}}", "{{c|바이브로 블레이드}}"),
     (53, "{{c|stun whip}}", "{{c|기절 채찍}}"),
     (54, "{{G|fresh water}} injector", "{{G|신선한 물}} 주사기"),
@@ -865,6 +874,12 @@ TEST_CASES = [
     (98, "canteen [32 drams of {{G|fresh water}}] x2", "수통 [신선한 물 32드램] x2 또는 수통 [{{G|신선한 물}} 32드램] x2"),
     (99, "elder bear skull x3", "장로 곰 두개골 x3"),
     (100, "{{c|vibro blade}} +2", "{{c|바이브로 블레이드}} +2"),
+
+    # === 14. 자기참조 색상태그 (모드 접두사) ===
+    (101, "{{feathered|feathered}} leather armor", "{{깃털 달린|깃털 달린}} 가죽 갑옷"),
+    (102, "{{feathered|feathered}} boots", "{{깃털 달린|깃털 달린}} 부츠"),
+    (103, "{{spiked|spiked}} leather armor", "{{가시 달린|가시 달린}} 가죽 갑옷"),
+    (104, "{{lanterned|lanterned}} helmet", "{{랜턴 달린|랜턴 달린}} 투구"),
 ]
 
 
