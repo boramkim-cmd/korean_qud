@@ -115,6 +115,15 @@ namespace QudKorean.Objects.V2.Patterns
                     RegexOptions.IgnoreCase);
             }
 
+            // Try ColorTagVocab (materials, colors, modifiers, qualities, etc.)
+            foreach (var vocab in repo.ColorTagVocab)
+            {
+                string pattern = $@"(^|\s)({Regex.Escape(vocab.Key)})($|\s|[,.\[\]()])";
+                result = Regex.Replace(result, pattern, m =>
+                    m.Groups[1].Value + vocab.Value + m.Groups[3].Value,
+                    RegexOptions.IgnoreCase);
+            }
+
             return result;
         }
 

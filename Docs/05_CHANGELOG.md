@@ -6,6 +6,58 @@
 
 ## Recent Changes
 
+### [2026-01-27] BookTitleTranslator 및 패턴 확장
+- **BookTitleTranslator 신규 추가**:
+  - 책 제목 전용 한글 어순 변환기
+  - 18개 전치사 패턴 지원:
+    | 패턴 | 변환 | 예시 |
+    |------|------|------|
+    | X and Y | X와 Y | Blood and Fear → 피와 공포 |
+    | X of Y | Y의 X | Secrets of La → 라의 비밀 |
+    | On X | X에 대하여 | On Sight → 시야에 대하여 |
+    | X's Y | X의 Y | Murmurs' Prayer → 속삭임의 기도 |
+    | X with Y | Y가 있는 X | Sword with Blood → 피가 있는 검 |
+    | X without Y | Y 없는 X | Life without Fear → 공포 없는 생명 |
+    | X for Y | Y를 위한 X | Armor for War → 전쟁를 위한 갑옷 |
+    | X from Y | Y로부터의 X | Letter from La → 라로부터의 편지 |
+    | X by Y | Y의 X | Tales by Blood → 피의 이야기 |
+    | X in Y | Y의 X | Life in Water → 물의 생명 |
+    | X to Y | Y로의 X | Path to Fear → 공포로의 길 |
+    | X against Y | Y에 대항하는 X | War against Fear → 공포에 대항하는 전쟁 |
+    | X through Y | Y를 통한 X | Journey through Water → 물를 통한 여행 |
+    | X under Y | Y 아래의 X | Life under Water → 물 아래의 생명 |
+    | X beyond Y | Y 너머의 X | Land beyond Fear → 공포 너머의 땅 |
+    | X among Y | Y 사이의 X | Peace among Fear → 공포 사이의 평화 |
+    | Guide to X | X 안내서 | Guide to Water → 물 안내서 |
+    | Introduction to X | X 입문 | Introduction to Fear → 공포 입문 |
+  - 복합 예시: `Blood and Fear: On the Life Cycle of La` → `피와 공포: 라의 생명 주기에 대하여`
+
+- **ColorTagProcessor 패턴 확장**:
+  - bracket `[]`, colon `:`, quote `"`, `!`, `?` 경계 문자 지원
+  - `[fresh water]` → `[신선한 물]` 정상 번역
+  - `Fear:` → `공포:` 정상 번역
+  - `"Fear"` → `"공포"` 정상 번역
+
+- **FallbackHandler 패턴 수정**:
+  - TranslateWithPrefixesAndNouns 동일 경계 문자 지원
+
+- **어휘 추가**:
+  - 책 제목용: fear, life, cycle, prayer, murmurs, sight
+  - 기타: furniture, frill, sundries, water
+
+- **테스트 스크립트 추가**:
+  - `test_bracket_patterns.py` - bracket 패턴 테스트
+  - `test_book_titles.py` - 책 제목 번역 테스트
+  - `test_all_patterns.py` - 전치사 패턴 종합 테스트
+
+- **수정 파일**:
+  - `BookTitleTranslator.cs` (신규)
+  - `PatternTranslatorRegistry.cs`
+  - `ColorTagProcessor.cs`
+  - `FallbackHandler.cs`
+  - `items/_common.json`
+  - `items/_nouns.json`
+
 ### [2026-01-27] CompoundTranslator 99% 커버리지 달성
 - **커버리지 개선**: 56% → 99.0%
   | 카테고리 | 커버리지 |
@@ -335,7 +387,9 @@
 - Skill files: 20
 - Object files: 67
 - Message patterns: 50+
-- **Test coverage**: 111 cases (100% pass)
+- **Test coverage**: 197 cases (100% pass)
+- **Pattern translators**: 7 (Corpse, Food, Parts, Possessive, BookTitle, OfPattern, Compound)
+- **Preposition patterns**: 18
 - Build status: Success
 
 ---

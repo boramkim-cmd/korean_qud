@@ -36,6 +36,9 @@ namespace QudKorean.Objects.V2.Patterns
                    stripped.StartsWith("cooked ", StringComparison.OrdinalIgnoreCase) ||
                    stripped.StartsWith("congealed ", StringComparison.OrdinalIgnoreCase) ||
                    stripped.StartsWith("concentrated ", StringComparison.OrdinalIgnoreCase) ||
+                   stripped.StartsWith("raw ", StringComparison.OrdinalIgnoreCase) ||
+                   stripped.StartsWith("dried ", StringComparison.OrdinalIgnoreCase) ||
+                   stripped.StartsWith("canned ", StringComparison.OrdinalIgnoreCase) ||
                    stripped.EndsWith(" gland paste", StringComparison.OrdinalIgnoreCase) ||
                    stripped.EndsWith(" gland", StringComparison.OrdinalIgnoreCase);
         }
@@ -154,6 +157,54 @@ namespace QudKorean.Objects.V2.Patterns
                 if (TryGetItemTranslation(repo, ingredientPart, out ingredientKo))
                 {
                     return TranslationResult.Hit($"응고된 {ingredientKo}", Name);
+                }
+            }
+
+            // Pattern: "raw {creature} {suffix}" - e.g., "raw bear meat"
+            if (stripped.StartsWith("raw ", StringComparison.OrdinalIgnoreCase))
+            {
+                string remainder = stripped.Substring("raw ".Length);
+
+                // Check for "X meat" pattern
+                if (remainder.EndsWith(" meat", StringComparison.OrdinalIgnoreCase))
+                {
+                    string creaturePart = remainder.Substring(0, remainder.Length - " meat".Length);
+                    if (TryGetCreatureTranslation(repo, creaturePart, out string creatureKo))
+                        return TranslationResult.Hit($"생 {creatureKo} 고기", Name);
+                }
+
+                // Generic item translation
+                if (TryGetItemTranslation(repo, remainder, out string itemKo))
+                    return TranslationResult.Hit($"생 {itemKo}", Name);
+                if (TryGetCreatureTranslation(repo, remainder, out itemKo))
+                    return TranslationResult.Hit($"생 {itemKo}", Name);
+            }
+
+            // Pattern: "dried {item}" - e.g., "dried lah petals"
+            if (stripped.StartsWith("dried ", StringComparison.OrdinalIgnoreCase))
+            {
+                string ingredientPart = stripped.Substring("dried ".Length);
+                if (TryGetItemTranslation(repo, ingredientPart, out string ingredientKo))
+                {
+                    return TranslationResult.Hit($"말린 {ingredientKo}", Name);
+                }
+                if (TryGetCreatureTranslation(repo, ingredientPart, out ingredientKo))
+                {
+                    return TranslationResult.Hit($"말린 {ingredientKo}", Name);
+                }
+            }
+
+            // Pattern: "canned {item}" - e.g., "canned have-it-all"
+            if (stripped.StartsWith("canned ", StringComparison.OrdinalIgnoreCase))
+            {
+                string ingredientPart = stripped.Substring("canned ".Length);
+                if (TryGetItemTranslation(repo, ingredientPart, out string ingredientKo))
+                {
+                    return TranslationResult.Hit($"통조림 {ingredientKo}", Name);
+                }
+                if (TryGetCreatureTranslation(repo, ingredientPart, out ingredientKo))
+                {
+                    return TranslationResult.Hit($"통조림 {ingredientKo}", Name);
                 }
             }
 

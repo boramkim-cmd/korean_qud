@@ -423,7 +423,11 @@
     "insulation": "단열재",
     "baked": "구운",
     "shell": "껍데기",
-    "unabridged": "완본"
+    "unabridged": "완본",
+    "crusty": "바삭한",
+    "_comment_book_vocab": "책 제목 추가 어휘",
+    "hazel": "개암색",
+    "yourself": "당신"
   },
   "tonics": {
     "_comment": "토닉/인젝터 셰이더",

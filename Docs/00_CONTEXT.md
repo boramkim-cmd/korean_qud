@@ -1,7 +1,7 @@
 # QUD_KOREAN 프로젝트 컨텍스트
 
 > **이 파일은 Claude Code가 세션 시작 시 반드시 읽어야 하는 핵심 문서입니다.**
-> 최종 업데이트: 2026-01-27 00:55
+> 최종 업데이트: 2026-01-27 02:10
 
 ---
 
@@ -25,11 +25,12 @@
 - 캐릭터 생성 UI
 - 옵션 화면
 - 튜토리얼 팝업
-- **ObjectTranslator V2** (Pipeline 아키텍처, 26개 모듈)
+- **ObjectTranslator V2** (Pipeline 아키텍처, 27개 모듈)
 - 메시지 로그 패치
 - **ObjectTranslator 테스트 스크립트** (197개 테스트 케이스, 100% 통과)
 - **비자기참조 색상태그 번역** (`{{glittering|glitter}}` → `{{glittering|글리터}}`)
 - **CompoundTranslator** - 복합어 번역 (99% 커버리지)
+- **BookTitleTranslator** - 책 제목 한글 어순 변환 (18개 전치사 패턴)
 
 ### 번역 현황 (2026-01-27)
 | 항목 | 개수 |
@@ -57,7 +58,19 @@
 | Species | 260+ |
 | Body Parts | 102 |
 
-### 최근 작업 (2026-01-27)
+### 최근 작업 (2026-01-27 오후)
+- ✅ **BookTitleTranslator 추가** - 책 제목 한글 어순 변환
+  - 18개 전치사 패턴: of, with, without, for, from, by, in, to, against, through, under, beyond, among
+  - 특수 패턴: "A Guide to X" → "X 안내서", "Introduction to X" → "X 입문"
+  - 소유격: "Murmurs' Prayer" → "속삭임의 기도"
+  - 복합: "Blood and Fear: On the Life Cycle of La" → "피와 공포: 라의 생명 주기에 대하여"
+- ✅ **ColorTagProcessor 패턴 확장**
+  - bracket `[]`, colon `:`, quote `"`, `!`, `?` 경계 문자 지원
+  - `[fresh water]` → `[신선한 물]` 정상 번역
+  - `Fear:` → `공포:` 정상 번역
+- ✅ **FallbackHandler 패턴 수정** - 동일한 경계 문자 지원
+
+### 이전 작업 (2026-01-27 오전)
 - ✅ **CompoundTranslator 99% 커버리지 달성**
   - ShouldKeepAsIs 메서드 추가 (숫자, 로마숫자, 고유명사, 단일문자 보존)
   - modifiers.json 대규모 확장 (+600개 어휘)
@@ -156,11 +169,14 @@ kr:check <id>   # 특정 블루프린트 확인
 | 번역 엔진 | `Scripts/00_Core/00_00_01_TranslationEngine.cs` |
 | 오브젝트 번역 (V2) | `Scripts/02_Patches/20_Objects/V2/ObjectTranslatorV2.cs` |
 | **복합어 번역** | `Scripts/02_Patches/20_Objects/V2/Patterns/CompoundTranslator.cs` |
+| **책 제목 번역** | `Scripts/02_Patches/20_Objects/V2/Patterns/BookTitleTranslator.cs` |
+| **컬러태그 처리** | `Scripts/02_Patches/20_Objects/V2/Processing/ColorTagProcessor.cs` |
 | **수식어 어휘** | `LOCALIZATION/OBJECTS/_vocabulary/modifiers.json` |
 | 공통 어휘 | `LOCALIZATION/OBJECTS/items/_common.json` |
 | 용어 표준 | `Docs/terminology_standard.md` |
 | 번역 비교 스크립트 | `tools/compare_translations.py` |
 | **복합어 테스트** | `tools/test_compound_translator.py` |
+| **패턴 테스트** | `tools/test_all_patterns.py` |
 
 ---
 

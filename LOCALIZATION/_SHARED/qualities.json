@@ -19,6 +19,7 @@
     "uncommon": { "ko": "비범한", "aliases": ["Uncommon", "UNCOMMON"] },
     "common": { "ko": "일반", "aliases": ["Common", "COMMON"] },
     "basic": { "ko": "기본", "aliases": ["Basic", "BASIC"] },
-    "crude": { "ko": "조잡한", "aliases": ["Crude", "CRUDE"] }
+    "crude": { "ko": "조잡한", "aliases": ["Crude", "CRUDE"] },
+    "poor": { "ko": "조악한", "aliases": ["Poor", "POOR"] }
   }
 }
