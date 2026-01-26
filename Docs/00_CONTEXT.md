@@ -1,7 +1,7 @@
 # QUD_KOREAN 프로젝트 컨텍스트
 
 > **이 파일은 Claude Code가 세션 시작 시 반드시 읽어야 하는 핵심 문서입니다.**
-> 최종 업데이트: 2026-01-26 22:30
+> 최종 업데이트: 2026-01-27 00:30
 
 ---
 
@@ -13,7 +13,7 @@
 | 저장소 | https://github.com/boramkim-cmd/korean_qud |
 | 작업 폴더 | `/Users/ben/Desktop/qud_korean` |
 | 모드 위치 | `~/Library/Application Support/com.FreeholdGames.CavesOfQud/Mods/qud_korean` |
-| 진행률 | XML 3,006개 중 832개 번역 (28%) |
+| 진행률 | XML 3,006개 중 ~1,927개 번역 가능 (64%) |
 
 ---
 
@@ -30,15 +30,33 @@
 - **ObjectTranslator 테스트 스크립트** (111개 테스트 케이스, 100% 통과)
 - **비자기참조 색상태그 번역** (`{{glittering|glitter}}` → `{{glittering|글리터}}`)
 
-### 번역 현황 (2026-01-26)
+### 번역 현황 (2026-01-27)
 | 항목 | 개수 |
 |------|------|
 | XML DisplayName (총) | 3,006 |
-| JSON 번역 완료 | 832 |
-| 미번역 | 2,174 |
+| JSON 직접 번역 | 927 |
+| 패턴 번역 가능 | ~1,000 |
+| **총 번역 가능** | **~1,927 (64%)** |
 | 용어 불일치 | **0개** (모두 해결됨) |
 
-### 최근 작업 (2026-01-26)
+### 어휘 현황 (2026-01-27)
+| 항목 | 개수 |
+|------|------|
+| 총 어휘 | 1,411 |
+| Materials | 67 |
+| Modifiers | 280+ |
+| Base Nouns | 340+ |
+| Species | 260+ |
+| Body Parts | 102 |
+
+### 최근 작업 (2026-01-27)
+- ✅ **번역 커버리지 확장 작업** (41% → 62.6%)
+- ✅ 패턴 어휘 대규모 확장 (nouns, modifiers, materials)
+- ✅ 생물 어휘 확장 (golems, cherubs, NPCs)
+- ✅ FoodTranslator 개선 (congealed, concentrated 패턴)
+- ✅ 고유명사 추가 (Agolgot, Bethsaida, Qon 등)
+
+### 이전 작업 (2026-01-26)
 - ✅ XML vs JSON 번역 비교 스크립트 작성 (`tools/compare_translations.py`)
 - ✅ 미번역 항목 리포트 생성 (`Docs/Issues/untranslated_report.md`)
 - ✅ 용어 표준화 적용 (97+항목 수정)

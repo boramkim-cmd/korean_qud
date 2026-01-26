@@ -6,10 +6,10 @@
 
 | 우선순위 | 개수 | 비율 |
 |----------|------|------|
-| HIGH | 506 | 23.3% |
-| MEDIUM | 1156 | 53.2% |
-| LOW | 512 | 23.6% |
-| **총계** | **2174** | 100% |
+| HIGH | 495 | 23.8% |
+| MEDIUM | 1087 | 52.3% |
+| LOW | 497 | 23.9% |
+| **총계** | **2079** | 100% |
 
 ---
 
@@ -23,21 +23,17 @@
 | `&amp;Kinhi&amp;rb&amp;Kitor cuff` | Items.xml |
 | `&amp;Kps&amp;Cion&amp;Kic amp&amp;Clif&amp;Kier ba&amp;Cckpa&amp;Kck` | Items.xml |
 | `3D cobblers` | Items.xml |
-| `antlers` | Items.xml |
 | `arc winder` | Items.xml |
-| `ashes` | Items.xml |
 | `banner of the {{r\|Holy Rhombus}}` | Items.xml |
 | `bark armor` | Items.xml |
 | `BaseFloat` | Items.xml |
 | `bent metal sheet` | Items.xml |
 | `bent surgical stent` | Items.xml |
-| `bill` | Items.xml |
 | `black robes` | Items.xml |
 | `blast of shot` | Items.xml |
 | `blood-gradient hand vacuum` | Items.xml |
 | `blunt scalpel` | Items.xml |
 | `boar-skin gloves` | Items.xml |
-| `boulder` | Items.xml |
 | `bounding boots` | Items.xml |
 | `bouquet of flowers` | Items.xml |
 | `broken microcontroller array` | Items.xml |
@@ -46,7 +42,6 @@
 | `burnished {{K\|fullerite}} shield` | Items.xml |
 | `burnt capacitor` | Items.xml |
 | `camel bladder` | Items.xml |
-| `casque` | Items.xml |
 | `cast net` | Items.xml |
 | `chain gauntlets` | Items.xml |
 | `charred corpse` | Items.xml |
@@ -93,7 +88,6 @@
 | `flattened remains` | Items.xml |
 | `flexivest` | Items.xml |
 | `floating {{Y\|glowsphere}}` | Items.xml |
-| `flowers` | Factions.xml, Items.xml |
 | `force bracelet` | Items.xml |
 | `fork-{{horned\|horned}} helm` | Items.xml |
 | `fractured crysbone` | Items.xml |
@@ -119,7 +113,13 @@
 | `HE Missile` | Items.xml |
 | `high-energy {{thermo\|thermo}} cask` | Items.xml |
 | `high-powered magnet` | Items.xml |
-| ... | (406개 더) |
+| `homoelectric wrist warmer` | Items.xml |
+| `hooks` | Items.xml |
+| `hoversled` | Items.xml |
+| `human corpse` | Items.xml |
+| `hurdy-gurdy` | Items.xml |
+| `infection` | Items.xml |
+| ... | (395개 더) |
 
 ---
 
@@ -136,11 +136,9 @@
 | `addling urchin` | Creatures.xml |
 | `adiyy` | Creatures.xml |
 | `Agate Severance Star` | Creatures.xml |
-| `Agolgot` | Creatures.xml |
 | `agolzvuv` | Creatures.xml |
 | `Agyra` | Creatures.xml |
 | `air well` | Furniture.xml |
-| `alchemist` | Creatures.xml |
 | `alchemist's table` | Furniture.xml |
 | `aloe fugues` | Creatures.xml |
 | `aloe porta` | Creatures.xml |
@@ -155,26 +153,22 @@
 | `Aoyg-No-Longer` | Creatures.xml |
 | `ape cherub` | Creatures.xml |
 | `ape golem` | Creatures.xml |
-| `apothecary` | Creatures.xml |
 | `arc sconce` | Furniture.xml |
 | `arch dervish of the Sightless Way` | Creatures.xml |
 | `armchair` | Furniture.xml |
 | `armillary sphere` | Furniture.xml |
 | `armor rack` | Furniture.xml |
 | `armored claw` | Creatures.xml |
-| `armorer` | Creatures.xml |
 | `arrowslit` | Walls.xml |
 | `ash shovel` | Creatures.xml |
 | `Asphodel` | Creatures.xml |
 | `asphodelyte` | Creatures.xml |
-| `astral tabby` | Creatures.xml |
 | `baboon cherub` | Creatures.xml |
 | `baboon golem` | Creatures.xml |
 | `baetyl cherub` | Creatures.xml |
 | `baetyl golem` | Creatures.xml |
 | `banana rancher` | Creatures.xml |
 | `Banner-Knight Templar` | Creatures.xml |
-| `Barathrum` | Creatures.xml |
 | `Barathrum clock` | Furniture.xml |
 | `Barathrum clock with {{M\|Q Girl}} {{Y\|pendulum}}` | Furniture.xml |
 | `barbed foreleg` | Creatures.xml |
@@ -187,15 +181,12 @@
 | `becoming nook` | Furniture.xml |
 | `bed golem` | Creatures.xml |
 | `bedger` | Furniture.xml |
-| `beekeeper` | Creatures.xml |
 | `beetle farmer` | Creatures.xml |
 | `beetlebum` | Creatures.xml |
 | `Bep` | Creatures.xml |
-| `Bethsaida` | Creatures.xml |
 | `bipedal robot golem` | Creatures.xml |
 | `bird cherub` | Creatures.xml |
 | `bird golem` | Creatures.xml |
-| `bite` | Creatures.xml |
 | `black shale` | Walls.xml |
 | `bladed {{metachrome\|metachrome}} bands` | Creatures.xml |
 | `bladed {{metachrome\|metachrome}} tail` | Creatures.xml |
@@ -206,11 +197,9 @@
 | `bone oven` | Furniture.xml |
 | `bone worm corpse` | Creatures.xml |
 | `book table` | Furniture.xml |
-| `bookbinder` | Creatures.xml |
 | `booster gun` | Creatures.xml |
 | `brain sculpture` | Furniture.xml |
 | `brass foaminator` | Furniture.xml |
-| `breathbeard` | Creatures.xml |
 | `brick` | Walls.xml |
 | `brinestalk fence` | Walls.xml |
 | `brinestalk gate` | Furniture.xml |
@@ -229,7 +218,18 @@
 | `cannibal cherub` | Creatures.xml |
 | `canvas` | Walls.xml |
 | `canvas folding chair` | Furniture.xml |
-| ... | (1056개 더) |
+| `caravan guard` | Creatures.xml |
+| `carcass kneader` | Furniture.xml |
+| `carved diptych` | Furniture.xml |
+| `carved stone from the sultanate of *Sultan1Name*` | Walls.xml |
+| `carved stone from the sultanate of *Sultan2Name*` | Walls.xml |
+| `carved stone from the sultanate of *Sultan3Name*` | Walls.xml |
+| `carved stone from the sultanate of *Sultan4Name*` | Walls.xml |
+| `carved stone from the sultanate of *Sultan5Name*` | Walls.xml |
+| `carved stone from the sultanate of Resheph` | Walls.xml |
+| `cat cherub` | Creatures.xml |
+| `cat golem` | Creatures.xml |
+| ... | (987개 더) |
 
 ---
 
@@ -239,16 +239,16 @@
 
 | 파일 | 미번역 개수 |
 |------|-------------|
-| ActivatedAbilities.xml | 49 |
-| ChiliadFactions.xml | 31 |
+| ActivatedAbilities.xml | 48 |
+| ChiliadFactions.xml | 30 |
 | Colors.xml | 2 |
 | Data.xml | 19 |
-| Factions.xml | 39 |
-| HiddenObjects.xml | 216 |
+| Factions.xml | 38 |
+| HiddenObjects.xml | 209 |
 | Mutations.xml | 10 |
 | PhysicalPhenomena.xml | 19 |
 | Widgets.xml | 12 |
 | WishCommands.xml | 13 |
-| WorldTerrain.xml | 23 |
+| WorldTerrain.xml | 22 |
 | Worlds.xml | 4 |
-| ZoneTerrain.xml | 85 |
+| ZoneTerrain.xml | 81 |

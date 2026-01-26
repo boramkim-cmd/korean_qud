@@ -5,9 +5,9 @@
 | 항목 | 개수 |
 |------|------|
 | XML DisplayName (총) | 3006 |
-| JSON 번역 항목 | 3036 |
-| 번역됨 | 832 |
-| **미번역** | **2174** |
+| JSON 번역 항목 | 3446 |
+| 번역됨 | 927 |
+| **미번역** | **2079** |
 | 부분 번역 | 0 |
 | 템플릿 (제외) | 0 |
 
@@ -15,7 +15,7 @@
 
 ## 미번역 항목 (파일별)
 
-### ActivatedAbilities.xml (49개)
+### ActivatedAbilities.xml (48개)
 
 | DisplayName | 컬러태그 |
 |-------------|----------|
@@ -34,7 +34,6 @@
 | `Cone angle` |  |
 | `Cone length` |  |
 | `Confusion rank` |  |
-| `Cooldown` |  |
 | `Current charge` |  |
 | `Current location` |  |
 | `Damage increment` |  |
@@ -69,12 +68,11 @@
 | `Vision duration` |  |
 | `Vision radius` |  |
 
-### ChiliadFactions.xml (31개)
+### ChiliadFactions.xml (30개)
 
 | DisplayName | 컬러태그 |
 |-------------|----------|
 | `algae` |  |
-| `amoeba` |  |
 | `bacilli` |  |
 | `batfolk` |  |
 | `cocci` |  |
@@ -112,7 +110,7 @@
 | `Nano-Neuro` |  |
 | `VISAGE` |  |
 
-### Creatures.xml (835개)
+### Creatures.xml (774개)
 
 | DisplayName | 컬러태그 |
 |-------------|----------|
@@ -123,10 +121,8 @@
 | `addling urchin` |  |
 | `adiyy` |  |
 | `Agate Severance Star` |  |
-| `Agolgot` |  |
 | `agolzvuv` |  |
 | `Agyra` |  |
-| `alchemist` |  |
 | `aloe fugues` |  |
 | `aloe porta` |  |
 | `aloe pyra` |  |
@@ -140,21 +136,17 @@
 | `Aoyg-No-Longer` |  |
 | `ape cherub` |  |
 | `ape golem` |  |
-| `apothecary` |  |
 | `arch dervish of the Sightless Way` |  |
 | `armored claw` |  |
-| `armorer` |  |
 | `ash shovel` |  |
 | `Asphodel` |  |
 | `asphodelyte` |  |
-| `astral tabby` |  |
 | `baboon cherub` |  |
 | `baboon golem` |  |
 | `baetyl cherub` |  |
 | `baetyl golem` |  |
 | `banana rancher` |  |
 | `Banner-Knight Templar` |  |
-| `Barathrum` |  |
 | `barbed foreleg` |  |
 | `barbed midleg` |  |
 | `base bear` |  |
@@ -163,15 +155,12 @@
 | `bear cherub` |  |
 | `bear golem` |  |
 | `bed golem` |  |
-| `beekeeper` |  |
 | `beetle farmer` |  |
 | `beetlebum` |  |
 | `Bep` |  |
-| `Bethsaida` |  |
 | `bipedal robot golem` |  |
 | `bird cherub` |  |
 | `bird golem` |  |
-| `bite` |  |
 | `bladed {{metachrome\|metachrome}} bands` | O |
 | `bladed {{metachrome\|metachrome}} tail` | O |
 | `blast cannon tinker` |  |
@@ -179,9 +168,7 @@
 | `bloated pearlfrog corpse` |  |
 | `blunt end` |  |
 | `bone worm corpse` |  |
-| `bookbinder` |  |
 | `booster gun` |  |
-| `breathbeard` |  |
 | `broken snail egg` |  |
 | `burrowing girshling` |  |
 | `bush golem` |  |
@@ -194,7 +181,6 @@
 | `chaingun turret tinker` |  |
 | `chair golem` |  |
 | `charred goatfolk corpse` |  |
-| `chef` |  |
 | `cherubic bands` |  |
 | `cherubic bark` |  |
 | `cherubic bite` |  |
@@ -216,7 +202,6 @@
 | `clone of Saad Amus` |  |
 | `colossal hoof` |  |
 | `conjoined girshlings` |  |
-| `conservator` |  |
 | `corded tail` |  |
 | `corpse of Slog` |  |
 | `crab cherub` |  |
@@ -224,14 +209,12 @@
 | `crab farmer` |  |
 | `crab golem` |  |
 | `crab-crushing beak` |  |
-| `cragmensch` |  |
 | `cragmensch boulderer` |  |
 | `cragmensch brainer` |  |
 | `cragmensch golem` |  |
 | `cragmensch luminary` |  |
 | `Crowsong` |  |
 | `crushing bands` |  |
-| `crypt ferret` |  |
 | `crypt sitter` |  |
 | `cryptic girshling` |  |
 | `crystal fist` |  |
@@ -255,9 +238,7 @@
 | `dog golem` |  |
 | `door golem` |  |
 | `Doyoba` |  |
-| `dream wren` |  |
 | `dreambeard corpse` |  |
-| `dreamcrungle` |  |
 | `dromad corpse` |  |
 | `dromad golem` |  |
 | `dromad trader` |  |
@@ -317,20 +298,16 @@
 | `fractus golem` |  |
 | `frog cherub` |  |
 | `frog golem` |  |
-| `frond` |  |
 | `fulcrete catapult` |  |
 | `fungus golem` |  |
 | `galgal` |  |
 | `gallbeard corpse` |  |
-| `gamma moth` |  |
-| `gaze` |  |
 | `Geeub` |  |
 | `gelatinous antiprism` |  |
 | `gelatinous cupola` |  |
 | `gelatinous frustum` |  |
 | `gelatinous prism` |  |
 | `gelatinous wedge` |  |
-| `gemcutter` |  |
 | `ghost perch` |  |
 | `ghost perch corpse` |  |
 | `giant amoeba` |  |
@@ -357,14 +334,10 @@
 | `gibbon corpse` |  |
 | `girshling cresh` |  |
 | `girshworm` |  |
-| `glittermensch` |  |
 | `glittermensch boulderer` |  |
 | `glittermensch brainer` |  |
 | `glittermensch luminary` |  |
-| `glover` |  |
-| `glowcrow` |  |
 | `glowfish corpse` |  |
-| `glowpad` |  |
 | `gnashing beak` |  |
 | `goat golem` |  |
 | `goat herder` |  |
@@ -382,13 +355,10 @@
 | `great stomp` |  |
 | `greater voider` |  |
 | `greater voider corpse` |  |
-| `grenadier` |  |
 | `guard dog` |  |
 | `Gunner-Knight Templar` |  |
-| `gunsmith` |  |
 | `gutsmonger` |  |
 | `Gyamyo` |  |
-| `gyre wight` |  |
 | `gyre wight apotheote` |  |
 | `gyre wight of Agolgot` |  |
 | `gyre wight of Bethsaida` |  |
@@ -401,7 +371,6 @@
 | `Haddas` |  |
 | `Haggabah` |  |
 | `Hamilcrab` |  |
-| `hatter` |  |
 | `helpful hand` |  |
 | `herding dog` |  |
 | `hermit cherub` |  |
@@ -420,8 +389,6 @@
 | `Hindriarch Keh` |  |
 | `hoary fist` |  |
 | `holographic beth` |  |
-| `honey skunk` |  |
-| `hoof` |  |
 | `horned chameleon` |  |
 | `horned chameleon corpse` |  |
 | `Hortensa` |  |
@@ -433,13 +400,10 @@
 | `humor` |  |
 | `hunter of the Sightless Way` |  |
 | `ichor merchant` |  |
-| `ickslug` |  |
 | `Indrix` |  |
-| `infiltrator` |  |
 | `infrastructure golem` |  |
 | `insect cherub` |  |
 | `insect golem` |  |
-| `interdictor` |  |
 | `iron maiden golem` |  |
 | `irritable palm` |  |
 | `irritable tortoise` |  |
@@ -451,9 +415,7 @@
 | `ixlthyxl` |  |
 | `Jacobo` |  |
 | `jaundiced glow` |  |
-| `jaws` |  |
 | `jelly golem` |  |
-| `jeweler` |  |
 | `Jotun` |  |
 | `juice sap` |  |
 | `juicing cannibal` |  |
@@ -463,13 +425,11 @@
 | `kaleidoslug corpse` |  |
 | `Keh-hind` |  |
 | `Kesehind` |  |
-| `kick` |  |
 | `kipper` |  |
 | `Knight Commander of the Holy Temple` |  |
 | `Knight Templar` |  |
 | `knob` |  |
 | `Krka` |  |
-| `lagroot` |  |
 | `large mandibles` |  |
 | `laser turret tinker` |  |
 | `launch assembly` |  |
@@ -479,14 +439,12 @@
 | `life sap` |  |
 | `lightlock` |  |
 | `Liihart` |  |
-| `lithofex` |  |
 | `livid creeper` |  |
 | `low-light laser turret tinker` |  |
 | `Lulihart` |  |
 | `madpole corpse` |  |
 | `Mafeo` |  |
 | `Mak` |  |
-| `mandibles` |  |
 | `manipulator` |  |
 | `Many Eyes` |  |
 | `mazebeard corpse` |  |
@@ -533,22 +491,18 @@
 | `Mechanimist priest` |  |
 | `Mechanimist rummager` |  |
 | `Mechanimist zealot` |  |
-| `memory eater` |  |
 | `memory eater corpse` |  |
 | `metal fist` |  |
 | `Meyehind` |  |
 | `mighty fist` |  |
-| `mimic` |  |
 | `mimic corpse` |  |
 | `mindrone` |  |
 | `miner Mk I` |  |
 | `miner Mk II` |  |
 | `miner Mk III` |  |
-| `mirror bug` |  |
 | `Miryam` |  |
 | `mollusk cherub` |  |
 | `molting basilisk husk` |  |
-| `monad` |  |
 | `mopango charioteer` |  |
 | `mopango charioteer golem` |  |
 | `mopango corpse` |  |
@@ -569,9 +523,7 @@
 | `naser cannon` |  |
 | `Neek` |  |
 | `Neelahind` |  |
-| `nephal` |  |
 | `nest golem` |  |
-| `newfather` |  |
 | `novice of the Sightless Way` |  |
 | `nullbeard corpse` |  |
 | `Nuntu` |  |
@@ -582,16 +534,13 @@
 | `Otho` |  |
 | `panhumor` |  |
 | `Pax Klanq` |  |
-| `peck` |  |
 | `phase cannon tinker` |  |
 | `Phinae Hoshaiah` |  |
 | `phylactery squire` |  |
 | `pig farmer` |  |
 | `pig farmer and Mechanimist convert` |  |
 | `planished godhed` |  |
-| `plasma jelly` |  |
 | `plasmatic girshling` |  |
-| `plastronoid` |  |
 | `plated knollworm` |  |
 | `pneumatic piston` |  |
 | `point-defense laser` |  |
@@ -605,8 +554,6 @@
 | `psyberneticist` |  |
 | `pulsed field magnet` |  |
 | `Q Girl` |  |
-| `Qas` |  |
-| `Qon` |  |
 | `quadrupedal robot golem` |  |
 | `quartz baboon` |  |
 | `quartz baboon corpse` |  |
@@ -622,7 +569,6 @@
 | `reprogrammed {{c\|scrap shoveler}}` | O |
 | `reptile cherub` |  |
 | `reptile golem` |  |
-| `Rermadon` |  |
 | `ridged {{metachrome\|metachrome}} bands` | O |
 | `ridged {{metachrome\|metachrome}} tail` | O |
 | `rifle turret tinker` |  |
@@ -639,11 +585,9 @@
 | `salt kraken corpse` |  |
 | `Santalalotze` |  |
 | `sated dreamcrungle` |  |
-| `scalpel` |  |
 | `schematics drafter` |  |
 | `scrap-clad hermit` |  |
 | `scribe` |  |
-| `seed` |  |
 | `seed spitter` |  |
 | `seedsprout worm corpse` |  |
 | `segmented mirthworm corpse` |  |
@@ -653,21 +597,17 @@
 | `shockrod` |  |
 | `shoemaker` |  |
 | `shoulder-mounted light cannon` |  |
-| `Shug'ruith` |  |
 | `shunting kick` |  |
 | `Sixshrew` |  |
 | `skittering sentry` |  |
 | `sleetbeard corpse` |  |
 | `slug golem` |  |
-| `slugsnout` |  |
 | `slugsnout slug` |  |
-| `slynth` |  |
 | `slynth golem` |  |
 | `smarts sap` |  |
 | `snail egg` |  |
 | `snail farmer` |  |
 | `snail golem` |  |
-| `snailmother` |  |
 | `snailmother corpse` |  |
 | `sower's seed` |  |
 | `Sparafucile` |  |
@@ -786,7 +726,6 @@
 | `{{b\|zigzag}} fangs` | O |
 | `{{c\|chaingun turret}}` | O |
 | `{{c\|chrome stilt}}` | O |
-| `{{c\|chromeling}}` | O |
 | `{{c\|cloneling}}` | O |
 | `{{c\|drillbot}}` | O |
 | `{{C\|giant pseudopod}}` | O |
@@ -912,7 +851,6 @@
 | `{{R\|red-hot claw}}` | O |
 | `{{r\|rust-encrusted claw}}` | O |
 | `{{r\|rust-pitted saw}}` | O |
-| `{{r\|rustacean}}` | O |
 | `{{r\|spiced pseudopod}}` | O |
 | `{{r\|tumbling pod}}` | O |
 | `{{w\|bilge sphincter}}` | O |
@@ -946,7 +884,6 @@
 | `{{Y\|salty pseudopod}}` | O |
 | `{{Y\|salt}} weep` | O |
 | `{{Y\|sugary pseudopod}}` | O |
-| `{{Y\|thistle}}` | O |
 | `{{Y\|unctuous pseudopod}}` | O |
 | `{{Y\|waxen pseudopod}}` | O |
 | `{{Y\|wax}} weep` | O |
@@ -976,7 +913,7 @@
 | `{{Y\|milky}} tube` | O |
 | `{{y\|platinum}} tube` | O |
 
-### Factions.xml (41개)
+### Factions.xml (38개)
 
 | DisplayName | 컬러태그 |
 |-------------|----------|
@@ -990,12 +927,10 @@
 | `cats` |  |
 | `Chavvah, the Tree of Life` |  |
 | `crabs` |  |
-| `cragmensch` |  |
 | `denizens of the Yd Freehold` |  |
 | `dogs` |  |
 | `dromad merchants` |  |
 | `equines` |  |
-| `flowers` |  |
 | `frogs` |  |
 | `fungi` |  |
 | `grazing hedonists` |  |
@@ -1010,7 +945,6 @@
 | `roots` |  |
 | `snapjaws` |  |
 | `succulents` |  |
-| `swine` |  |
 | `tortoises` |  |
 | `trees` |  |
 | `trolls` |  |
@@ -1022,7 +956,7 @@
 | `winged mammals` |  |
 | `worms` |  |
 
-### Foods.xml (24개)
+### Foods.xml (22개)
 
 | DisplayName | 컬러태그 |
 |-------------|----------|
@@ -1042,16 +976,14 @@
 | `{{G\|concentrated gallbeard gland paste}}` | O |
 | `{{G\|concentrated tartbeard gland paste}}` | O |
 | `{{g\|croc jerky}}` | O |
-| `{{G\|lignin}}` | O |
 | `{{R\|concentrated flamebeard gland paste}}` | O |
 | `{{soul\|soul curd}}` | O |
 | `{{w\|canned Have-It-All}}` | O |
 | `{{W\|concentrated dreambeard gland paste}}` | O |
 | `{{Y\|bone meal}}` | O |
 | `{{Y\|concentrated nullbeard gland paste}}` | O |
-| `{{Y\|starch}}` | O |
 
-### Furniture.xml (219개)
+### Furniture.xml (213개)
 
 | DisplayName | 컬러태그 |
 |-------------|----------|
@@ -1095,7 +1027,6 @@
 | `cracked decorative vessel` |  |
 | `credit lockbox` |  |
 | `crib` |  |
-| `crypt` |  |
 | `crystal oven` |  |
 | `cybernetics rack` |  |
 | `Death Gate` |  |
@@ -1121,7 +1052,6 @@
 | `funerary urn` |  |
 | `fused security door` |  |
 | `gas burner` |  |
-| `gate` |  |
 | `Gate to Brightsheol` |  |
 | `gigantic mannequin` |  |
 | `glass bottle` |  |
@@ -1149,7 +1079,6 @@
 | `induction charging station` |  |
 | `industrial fan` |  |
 | `iron gate` |  |
-| `iron maiden` |  |
 | `kiln` |  |
 | `kline` |  |
 | `lathe` |  |
@@ -1196,7 +1125,6 @@
 | `recoming reliquary` |  |
 | `rectangular bells` |  |
 | `regeneration tank` |  |
-| `reliquary` |  |
 | `reshaping nook` |  |
 | `reshaping pad` |  |
 | `rock tumbler` |  |
@@ -1208,7 +1136,6 @@
 | `scrapable deposit box` |  |
 | `scrapasan chair` |  |
 | `sewing machine` |  |
-| `shrine` |  |
 | `shrine to Girsh Agolgot` |  |
 | `shrine to Girsh Bethsaida` |  |
 | `shrine to Girsh Qas` |  |
@@ -1247,7 +1174,6 @@
 | `unicomputer` |  |
 | `universal charging station` |  |
 | `vase` |  |
-| `vessel` |  |
 | `vessel of the First Sip` |  |
 | `waterbed` |  |
 | `weapon rack` |  |
@@ -1275,7 +1201,7 @@
 | `{{w\|wooden}} water wheel` | O |
 | `{{w\|wooden}} wind turbine` | O |
 
-### HiddenObjects.xml (230개)
+### HiddenObjects.xml (221개)
 
 | DisplayName | 컬러태그 |
 |-------------|----------|
@@ -1369,7 +1295,6 @@
 | `hologram of Resheph, the Above` |  |
 | `hologram projector` |  |
 | `holographic star chart` |  |
-| `hoof` |  |
 | `hookah in suspense` |  |
 | `hyperconductive labyrinthite` |  |
 | `infested crysfoil gills` |  |
@@ -1391,14 +1316,12 @@
 | `mopango =creatureRegionNoun=` |  |
 | `moted forest` |  |
 | `moted lamp` |  |
-| `mover` |  |
 | `mover ecliptic` |  |
 | `muscular foot` |  |
 | `mysterious =creatureRegionNoun=` |  |
 | `Nacham's loom` |  |
 | `nails of Jy` |  |
 | `Naphtaali =creatureRegionNoun=` |  |
-| `nodule` |  |
 | `nondeterministic core` |  |
 | `normality vent` |  |
 | `North Forum` |  |
@@ -1410,17 +1333,14 @@
 | `outworld vault` |  |
 | `passenger console` |  |
 | `passenger seat` |  |
-| `peck` |  |
 | `phasic screw` |  |
 | `photon drive` |  |
 | `pilaster` |  |
 | `pilot baetyl` |  |
 | `pilot console` |  |
 | `pilot seat` |  |
-| `pistil` |  |
 | `player statue` |  |
 | `power hedron` |  |
-| `pseudopod` |  |
 | `Qorish sorceress gown` |  |
 | `Qorish sorceress veil` |  |
 | `red etz trellis` |  |
@@ -1450,8 +1370,6 @@
 | `snapjaw =creatureRegionNoun=` |  |
 | `sofa` |  |
 | `southwise bridge` |  |
-| `spade` |  |
-| `spines` |  |
 | `spiny =creatureRegionNoun=` |  |
 | `star bronze scales` |  |
 | `star orchid lily` |  |
@@ -1466,7 +1384,6 @@
 | `stone ankh` |  |
 | `stone columbary` |  |
 | `strangefluid core` |  |
-| `stranglehold` |  |
 | `stratum caryatid` |  |
 | `superstratum` |  |
 | `surface stratum` |  |
@@ -1510,7 +1427,7 @@
 | `{{Y\|prism point}}` | O |
 | `{{zetachrome\|Spoken Ionic Within Covalency Heart}}` | O |
 
-### Items.xml (482개)
+### Items.xml (473개)
 
 | DisplayName | 컬러태그 |
 |-------------|----------|
@@ -1518,21 +1435,17 @@
 | `&amp;Kinhi&amp;rb&amp;Kitor cuff` |  |
 | `&amp;Kps&amp;Cion&amp;Kic amp&amp;Clif&amp;Kier ba&amp;Cckpa&amp;Kck` |  |
 | `3D cobblers` |  |
-| `antlers` |  |
 | `arc winder` |  |
-| `ashes` |  |
 | `banner of the {{r\|Holy Rhombus}}` | O |
 | `bark armor` |  |
 | `BaseFloat` |  |
 | `bent metal sheet` |  |
 | `bent surgical stent` |  |
-| `bill` |  |
 | `black robes` |  |
 | `blast of shot` |  |
 | `blood-gradient hand vacuum` |  |
 | `blunt scalpel` |  |
 | `boar-skin gloves` |  |
-| `boulder` |  |
 | `bounding boots` |  |
 | `bouquet of flowers` |  |
 | `broken microcontroller array` |  |
@@ -1541,7 +1454,6 @@
 | `burnished {{K\|fullerite}} shield` | O |
 | `burnt capacitor` |  |
 | `camel bladder` |  |
-| `casque` |  |
 | `cast net` |  |
 | `chain gauntlets` |  |
 | `charred corpse` |  |
@@ -1579,7 +1491,6 @@
 | `flattened remains` |  |
 | `flexivest` |  |
 | `floating {{Y\|glowsphere}}` | O |
-| `flowers` |  |
 | `force bracelet` |  |
 | `fork-{{horned\|horned}} helm` | O |
 | `fractured crysbone` |  |
@@ -1656,7 +1567,6 @@
 | `precision {{Y\|nanon}} fingers` | O |
 | `proboscis` |  |
 | `programmable recoiler` |  |
-| `projectile` |  |
 | `psychodyne helmet` |  |
 | `putrescence` |  |
 | `random-point recoiler` |  |
@@ -1709,7 +1619,6 @@
 | `symbiotic {{W-y-y-y sequence\|firefly}}` | O |
 | `Templar phylactery` |  |
 | `throwing axe` |  |
-| `trash` |  |
 | `tread guard` |  |
 | `tri-{{hologram\|hologram}} bracelet` | O |
 | `twisted metamuscle` |  |
@@ -1766,7 +1675,6 @@
 | `{{c\|metal folding chair}}` | O |
 | `{{c\|mine}}` | O |
 | `{{c\|mortar tube}}` | O |
-| `{{c\|projectile}}` | O |
 | `{{C\|stream of frost}}` | O |
 | `{{defoliant\|defoliant}} grenade mk II` | O |
 | `{{defoliant\|defoliant}} grenade mk III` | O |
@@ -2036,7 +1944,7 @@
 | `stun gas` |  |
 | `{{normal\|normality field}}` | O |
 
-### Walls.xml (102개)
+### Walls.xml (100개)
 
 | DisplayName | 컬러태그 |
 |-------------|----------|
@@ -2077,7 +1985,6 @@
 | `gilded marble from the sultanate of *Sultan4Name*` |  |
 | `gilded marble from the sultanate of *Sultan5Name*` |  |
 | `gilded marble from the sultanate of Resheph` |  |
-| `granite` |  |
 | `gypsum` |  |
 | `hexagonal crystal` |  |
 | `holographic sandstone` |  |
@@ -2122,7 +2029,6 @@
 | `shale wall with {{M\|amethyst}} deposits` | O |
 | `shale wall with {{R\|jasper}} deposits` | O |
 | `shale wall with {{W\|topaz}} deposits` | O |
-| `slate` |  |
 | `sparking vents` |  |
 | `star orchid marble wall` |  |
 | `stasis field` |  |
@@ -2178,7 +2084,7 @@
 | `Toggle godmode` |  |
 | `Wish for something specific` |  |
 
-### WorldTerrain.xml (23개)
+### WorldTerrain.xml (22개)
 
 | DisplayName | 컬러태그 |
 |-------------|----------|
@@ -2189,7 +2095,6 @@
 | `Eyn Roj` |  |
 | `Golgotha` |  |
 | `Grit Gate` |  |
-| `Kyakukya` |  |
 | `Lake Hinnom` |  |
 | `mountain stream` |  |
 | `Omonporch` |  |
@@ -2215,7 +2120,7 @@
 | `Thin World` |  |
 | `Tzimtzlum` |  |
 
-### ZoneTerrain.xml (86개)
+### ZoneTerrain.xml (82개)
 
 | DisplayName | 컬러태그 |
 |-------------|----------|
@@ -2227,7 +2132,6 @@
 | `brick walkway` |  |
 | `bridge` |  |
 | `brightshroom` |  |
-| `brinestalk` |  |
 | `chiming rock` |  |
 | `coral path` |  |
 | `coral pit` |  |
@@ -2244,7 +2148,6 @@
 | `elevator shaft` |  |
 | `finger coral` |  |
 | `foamcrete floor` |  |
-| `fractus` |  |
 | `frosty web` |  |
 | `glitchwood tree` |  |
 | `glowing soft` |  |
@@ -2276,7 +2179,6 @@
 | `spiral stairs down` |  |
 | `spiral stairs up` |  |
 | `spotted shagspook` |  |
-| `stairs` |  |
 | `stairs down to columbarium` |  |
 | `stairs down to convalescence quarter` |  |
 | `stairs down to kitchen` |  |
@@ -2297,7 +2199,6 @@
 | `swollen bulb` |  |
 | `tunnel sponge` |  |
 | `urberry bush` |  |
-| `web` |  |
 | `witchwood tree` |  |
 | `woodfloor` |  |
 | `yempuris phi` |  |
