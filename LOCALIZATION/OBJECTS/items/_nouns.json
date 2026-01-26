@@ -596,6 +596,22 @@
     "vol": "권"
   },
 
+  "book_vocabulary": {
+    "_comment": "책 제목 번역용 어휘 (Book title vocabulary)",
+    "tales": "이야기",
+    "journey": "여행",
+    "land": "땅",
+    "peace": "평화",
+    "secrets": "비밀",
+    "letter": "편지",
+    "guide": "안내서",
+    "introduction": "입문",
+    "history": "역사",
+    "war": "전쟁",
+    "blood": "피",
+    "fear": "공포"
+  },
+
   "final_push": {
     "_comment": "마지막 커버리지 확장",
     "rate": "비율",
