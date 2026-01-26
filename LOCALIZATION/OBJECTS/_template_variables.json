@@ -1,128 +1,166 @@
 {
   "_meta": {
-    "description": "HistorySpice.json에서 추출한 템플릿 변수 값들",
-    "source": "Assets/StreamingAssets/Base/HistorySpice.json",
-    "usage": "=creatureRegionAdjective=, =creatureRegionNoun= 등의 변수가 런타임에 이 값들로 대체됨",
-    "note": "CreatureRegionSpice.cs에서 처리되며, 현재 번역되지 않음"
+    "description": "XML에서 사용되는 템플릿 변수 (=variable=) 전체 목록",
+    "note": "런타임에 게임 엔진이 대체하므로 직접 번역 불가",
+    "updated": "2026-01-27"
   },
 
-  "terrain_regions": {
-    "Saltmarsh": {
-      "creatureRegionAdjective": [
-        "marsh",
-        "brine",
-        "lily",
-        "glade",
-        "mud",
-        "saltwater",
-        "sedge"
+  "categories": {
+    "pronouns": {
+      "_comment": "대명사 - 캐릭터/오브젝트의 성별/유형에 따라 동적 결정",
+      "count": 990,
+      "variables": [
+        "=pronouns.possessive=",
+        "=pronouns.Possessive=",
+        "=pronouns.subjective=",
+        "=pronouns.Subjective=",
+        "=pronouns.objective=",
+        "=pronouns.reflexive=",
+        "=pronouns.personTerm=",
+        "=pronouns.IndicativeProximal=",
+        "=objpronouns.reflexive="
       ],
-      "creatureRegionNoun": [
-        "marshdweller",
-        "brinestalker",
-        "lilyeater",
-        "marsheater",
-        "mudeater"
-      ],
-      "creatureAlteredLocale": ["the marsh"],
-      "creatureAlteredCast": ["a briny cast"],
-      "pluralRegionName": ["marshlands"]
+      "source": "게임 엔진 (Gender/Pronouns 시스템)",
+      "translatable": false
     },
 
-    "DesertCanyon": {
-      "creatureRegionAdjective": [
-        "canyon",
-        "trench",
-        "valley",
-        "cliff",
-        "gorge"
+    "subject_object_refs": {
+      "_comment": "주체/객체 참조 - 문장의 주어/목적어 동적 참조",
+      "count": 68,
+      "variables": [
+        "=subject.T=",
+        "=subject.t=",
+        "=subject.possessive=",
+        "=subject.directionIfAny=",
+        "=object.t=",
+        "=object.name="
       ],
-      "creatureRegionNoun": [
-        "gorgedweller",
-        "shale-eater",
-        "cliffling",
-        "sloper",
-        "erosionist"
-      ],
-      "creatureAlteredLocale": ["the canyons"],
-      "creatureAlteredCast": ["a shale-like cast"],
-      "pluralRegionName": ["desert canyons"]
+      "source": "게임 엔진 (문맥에서 결정)",
+      "translatable": false
     },
 
-    "Hills": {
-      "creatureRegionAdjective": [
-        "hill",
-        "mound",
-        "sun",
-        "stone",
-        "rock",
-        "knoll"
+    "player_refs": {
+      "_comment": "플레이어 참조",
+      "count": 12,
+      "variables": [
+        "=player.possessive=",
+        "=player.subjective=",
+        "=player.Subjective=",
+        "=player.reflexive=",
+        "=player.formalAddressTerm="
       ],
-      "creatureRegionNoun": [
-        "lime-eater",
-        "hilldweller",
-        "sunbaker",
-        "stone-eater",
-        "hillchild"
+      "source": "플레이어 캐릭터 정보",
+      "translatable": false
+    },
+
+    "creature_region": {
+      "_comment": "지역별 생물 수식어 - HistorySpice.json에서 정의",
+      "count": 58,
+      "variables": [
+        "=creatureRegionAdjective=",
+        "=creatureRegionNoun="
       ],
-      "creatureAlteredLocale": ["the hills"],
-      "creatureAlteredCast": ["a stony cast"],
-      "pluralRegionName": ["hills"]
+      "source": "Assets/StreamingAssets/Base/HistorySpice.json",
+      "handler": "CreatureRegionSpice.cs",
+      "translatable": true,
+      "values": {
+        "Saltmarsh": {
+          "creatureRegionAdjective": ["marsh", "brine", "lily", "glade", "mud", "saltwater", "sedge"],
+          "creatureRegionNoun": ["marshdweller", "brinestalker", "lilyeater", "marsheater", "mudeater"]
+        },
+        "DesertCanyon": {
+          "creatureRegionAdjective": ["canyon", "trench", "valley", "cliff", "gorge"],
+          "creatureRegionNoun": ["gorgedweller", "shale-eater", "cliffling", "sloper", "erosionist"]
+        },
+        "Hills": {
+          "creatureRegionAdjective": ["hill", "mound", "sun", "stone", "rock", "knoll"],
+          "creatureRegionNoun": ["lime-eater", "hilldweller", "sunbaker", "stone-eater", "hillchild"]
+        }
+      }
+    },
+
+    "object_refs": {
+      "_comment": "오브젝트 자기 참조",
+      "count": 41,
+      "variables": [
+        "=name=",
+        "=this.an=",
+        "=this.refname="
+      ],
+      "source": "현재 오브젝트의 DisplayName",
+      "translatable": false
+    },
+
+    "time_location": {
+      "_comment": "시간/장소 참조",
+      "count": 10,
+      "variables": [
+        "=day=",
+        "=month=",
+        "=year=",
+        "=landmark.nearest=",
+        "=terrain.t=",
+        "=dirward="
+      ],
+      "source": "게임 월드 상태",
+      "translatable": false
+    },
+
+    "faction_refs": {
+      "_comment": "팩션 참조",
+      "count": 2,
+      "variables": [
+        "=mostHatedFaction.t=",
+        "=secondMostHatedFaction.t="
+      ],
+      "source": "플레이어 팩션 관계",
+      "translatable": false
+    },
+
+    "golem_quest": {
+      "_comment": "골렘 퀘스트 관련 - 플레이어가 선택한 재료에 따라 결정",
+      "count": 15,
+      "variables": [
+        "=body.features=",
+        "=catalyst=",
+        "=hamsa.an=",
+        "=atzmus.creature=",
+        "=atzmus.creature.an=",
+        "=armament.skill.snippet="
+      ],
+      "source": "GolemQuest 시스템 (플레이어 선택)",
+      "translatable": false,
+      "note": "플레이어가 골렘 제작 시 선택한 오브젝트의 이름이 들어감"
+    },
+
+    "misc": {
+      "_comment": "기타",
+      "count": 2,
+      "variables": [
+        "=gas=",
+        "=verb:bat="
+      ],
+      "source": "게임 엔진",
+      "translatable": false
     }
   },
 
-  "all_adjectives": [
-    "marsh",
-    "brine",
-    "lily",
-    "glade",
-    "mud",
-    "saltwater",
-    "sedge",
-    "canyon",
-    "trench",
-    "valley",
-    "cliff",
-    "gorge",
-    "hill",
-    "mound",
-    "sun",
-    "stone",
-    "rock",
-    "knoll"
-  ],
+  "summary": {
+    "total_variables": 34,
+    "total_occurrences": 1198,
+    "translatable_categories": ["creature_region"],
+    "non_translatable_reason": "대부분 런타임에 게임 오브젝트/상태에서 동적으로 결정됨"
+  },
 
-  "all_nouns": [
-    "marshdweller",
-    "brinestalker",
-    "lilyeater",
-    "marsheater",
-    "mudeater",
-    "gorgedweller",
-    "shale-eater",
-    "cliffling",
-    "sloper",
-    "erosionist",
-    "lime-eater",
-    "hilldweller",
-    "sunbaker",
-    "stone-eater",
-    "hillchild"
-  ],
-
-  "usage_examples": {
-    "_comment": "HiddenObjects.xml에서 사용되는 패턴 예시",
+  "usage_in_display_names": {
+    "_comment": "DisplayName에서 사용되는 변수 (번역 커버리지에서 제외해야 함)",
     "patterns": [
       "=creatureRegionAdjective= kudu",
       "=creatureRegionAdjective= bear",
       "baboon =creatureRegionNoun=",
-      "boar =creatureRegionNoun="
+      "=creatureRegionNoun= of the Gyre",
+      "=creatureRegionNoun= and pariah to =subject.possessive= people"
     ],
-    "resolved_examples": [
-      "marsh kudu",
-      "canyon bear",
-      "baboon marshdweller",
-      "boar hilldweller"
-    ]
+    "count_in_xml": 58
   }
 }
