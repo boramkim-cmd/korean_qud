@@ -375,5 +375,48 @@
     "paste": "페이스트",
     "card": "카드",
     "way": "길"
+  },
+
+  "equipment_extended": {
+    "_comment": "확장 장비 (Extended equipment) - 번역 커버리지 확장 2026-01-26",
+    "casque": "철모",
+    "toga": "토가",
+    "bracer": "완갑",
+    "antlers": "뿔",
+    "bill": "낫",
+    "winder": "와인더",
+    "vacuum": "진공청소기",
+    "launcher": "발사기",
+    "projectile": "투사체",
+    "cask": "통",
+    "cone": "원뿔",
+    "mote": "먼지"
+  },
+
+  "food_items": {
+    "_comment": "음식 (Food items) - 번역 커버리지 확장",
+    "loaf": "빵",
+    "jerky": "육포",
+    "curd": "응유",
+    "meal": "식사",
+    "starch": "전분",
+    "smoke": "연기",
+    "lignin": "리그닌",
+    "have-it-all": "만물상"
+  },
+
+  "terrain_items": {
+    "_comment": "지형/환경 (Terrain items) - 번역 커버리지 확장",
+    "boulder": "바위",
+    "ashes": "재",
+    "remains": "잔해",
+    "pot": "항아리",
+    "net": "그물",
+    "sheet": "판",
+    "stent": "스텐트",
+    "level": "수준기",
+    "bouquet": "꽃다발",
+    "circle": "원",
+    "chord": "화음"
   }
 }
