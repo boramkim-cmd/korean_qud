@@ -209,9 +209,98 @@
     "tags": ["face", "artifact", "unique"],
     "names": {
       "sun and moon mask": "해와 달 가면",
-      "Sun and Moon Mask": "해와 달 가면"
+      "Sun and Moon Mask": "해와 달 가면",
+      "{{sun|sun}} and {{moon|moon}} mask": "{{sun|해}}와 {{moon|달}} 가면"
     },
     "description": "Hot fire on soapstone bleeds into the twilight terminus of a wet night.",
     "description_ko": "비누석 위의 뜨거운 불이 습한 밤의 황혼 종착지로 피를 흘린다."
+  },
+
+  "Frowning Moon Mask": {
+    "tier": 4,
+    "category": "armor",
+    "slot": "face",
+    "tags": ["face", "mask", "moon"],
+    "names": {
+      "frowning moon mask": "찡그린 달 가면",
+      "frowning {{moon|moon}} mask": "찡그린 {{moon|달}} 가면"
+    },
+    "description": "The moon scowls on an unseen jungle, the craters of brow shaded with animal ash and eaten to a natural ridgeline by the venomous breathe of gods.",
+    "description_ko": "달이 보이지 않는 정글을 향해 찡그리고 있다. 이마의 분화구는 동물 재로 그늘져 있고 신들의 독 호흡에 의해 자연 산등성이로 침식되었다."
+  },
+
+  "Smiling Sun Mask": {
+    "tier": 4,
+    "category": "armor",
+    "slot": "face",
+    "tags": ["face", "mask", "sun"],
+    "names": {
+      "smiling sun mask": "웃는 태양 가면",
+      "smiling {{sun|sun}} mask": "웃는 {{sun|태양}} 가면"
+    },
+    "description": "Rivulets of gold drape across the mask's warm cheeks and run to a smile that never dims.",
+    "description_ko": "금빛 실개울이 가면의 따뜻한 볼을 가로질러 흐르며 결코 흐려지지 않는 미소로 이어진다."
+  },
+
+  "Gentling Mask": {
+    "tier": 3,
+    "category": "armor",
+    "slot": "face",
+    "tags": ["face", "mask"],
+    "names": {
+      "gentling mask": "순화 가면"
+    },
+    "description": "A mask designed to calm and subdue.",
+    "description_ko": "진정시키고 복종시키기 위해 설계된 가면."
+  },
+
+  "Issachari Sun Veil": {
+    "tier": 3,
+    "category": "armor",
+    "slot": "face",
+    "tags": ["face", "veil", "issachari"],
+    "names": {
+      "{{issachari|Issachari}} {{r-R-W sequence|sun}} veil": "{{issachari|이사카리}} {{r-R-W sequence|태양}} 베일",
+      "Issachari sun veil": "이사카리 태양 베일"
+    },
+    "description": "A ceremonial veil worn by the Issachari.",
+    "description_ko": "이사카리가 착용하는 의례용 베일."
+  },
+
+  "Vinewood Sap Mask": {
+    "tier": 2,
+    "category": "armor",
+    "slot": "face",
+    "tags": ["face", "mask", "organic"],
+    "names": {
+      "vinewood sap mask": "덩굴나무 수액 마스크"
+    },
+    "description": "A mask coated with protective vinewood sap.",
+    "description_ko": "보호용 덩굴나무 수액으로 코팅된 마스크."
+  },
+
+  "Mirrorshades": {
+    "tier": 4,
+    "category": "armor",
+    "slot": "face",
+    "tags": ["face", "vision", "artifact"],
+    "names": {
+      "{{mirrorshades|mirrorshades}}": "{{mirrorshades|미러쉐이드}}",
+      "mirrorshades": "미러쉐이드"
+    },
+    "description": "Reflective sunglasses with a cool factor.",
+    "description_ko": "멋진 반사 선글라스."
+  },
+
+  "Telescopic Monocle": {
+    "tier": 3,
+    "category": "armor",
+    "slot": "face",
+    "tags": ["face", "vision"],
+    "names": {
+      "telescopic monocle": "망원 모노클"
+    },
+    "description": "A monocle with telescopic lenses for enhanced vision.",
+    "description_ko": "향상된 시야를 위한 망원 렌즈가 달린 모노클."
   }
 }
