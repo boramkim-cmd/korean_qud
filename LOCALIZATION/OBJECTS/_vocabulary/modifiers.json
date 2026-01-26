@@ -17,7 +17,8 @@
     "tattered": "해진",
     "scratched": "긁힌",
     "dented": "찌그러진",
-    "failed": "고장난"
+    "failed": "고장난",
+    "old": "낡은"
   },
   "state": {
     "frozen": "얼어붙은",
@@ -31,6 +32,21 @@
     "empty": "빈",
     "ripe": "잘 익은",
     "plump": "통통한"
+  },
+  "age_behavior": {
+    "young": "어린",
+    "aged": "늙은",
+    "elder": "고령의",
+    "elderly": "늙은",
+    "juvenile": "어린",
+    "adult": "성체",
+    "baby": "아기",
+    "wild": "야생",
+    "tame": "길들인",
+    "feral": "야생화된",
+    "domesticated": "가축화된",
+    "trained": "훈련된",
+    "untamed": "길들지 않은"
   },
   "size": {
     "small": "작은",

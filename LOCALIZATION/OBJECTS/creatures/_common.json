@@ -14,9 +14,23 @@
     "friendly": "우호적",
     "neutral": "중립",
     "wild": "야생",
-    "tame": "길들여진",
+    "tame": "길들인",
     "legendary": "전설적인",
     "hero": "영웅"
+  },
+  "lifecycle": {
+    "cub": "새끼",
+    "pup": "새끼",
+    "whelp": "새끼",
+    "hatchling": "부화체",
+    "youngling": "어린 개체",
+    "juvenile": "미성체",
+    "adult": "성체",
+    "elder": "노쇠체",
+    "larva": "유충",
+    "nymph": "유충",
+    "spawn": "산란체",
+    "egg": "알"
   },
   "species": {
     "_comment": "Migrated from _commonSpeciesTranslations in ObjectTranslator.cs",
