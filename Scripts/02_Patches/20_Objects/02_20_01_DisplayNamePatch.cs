@@ -56,9 +56,11 @@ namespace QudKorean.Objects
                 if (string.IsNullOrEmpty(blueprint)) return;
 
                 // 모든 오브젝트 번역 (테스트 모드 해제됨)
-                
+
                 // Attempt translation
-                if (ObjectTranslatorV2.TryGetDisplayName(blueprint, __result, out string translated))
+                bool translationSucceeded = ObjectTranslatorV2.TryGetDisplayName(blueprint, __result, out string translated);
+
+                if (translationSucceeded)
                 {
                     // CRITICAL: Final safety check - never replace with empty string
                     if (!string.IsNullOrEmpty(translated))

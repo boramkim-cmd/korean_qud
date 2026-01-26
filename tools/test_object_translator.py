@@ -39,6 +39,7 @@ tonics: Dict[str, str] = {}
 grenades: Dict[str, str] = {}
 marks: Dict[str, str] = {}
 colors: Dict[str, str] = {}
+shaders: Dict[str, str] = {}
 
 species: Dict[str, str] = {}
 base_nouns: Dict[str, str] = {}
@@ -79,7 +80,7 @@ def load_json_section(data: dict, key: str, target: Dict[str, str]):
 
 def load_dictionaries():
     """모든 JSON 사전 파일들을 로드"""
-    global materials, qualities, processing, modifiers, tonics, grenades, marks, colors
+    global materials, qualities, processing, modifiers, tonics, grenades, marks, colors, shaders
     global species, base_nouns
     global states, liquids, of_patterns, body_parts, part_suffixes
     global all_prefixes_sorted, color_tag_vocab_sorted, base_nouns_sorted
@@ -100,6 +101,7 @@ def load_dictionaries():
         load_json_section(data, "grenades", grenades)
         load_json_section(data, "marks", marks)
         load_json_section(data, "colors", colors)
+        load_json_section(data, "shaders", shaders)
 
     # 2. items/_nouns.json 로드
     nouns_path = objects_path / "items" / "_nouns.json"
@@ -139,6 +141,7 @@ def load_dictionaries():
     all_prefixes.update(tonics)
     all_prefixes.update(grenades)
     all_prefixes.update(colors)
+    all_prefixes.update(shaders)
     all_prefixes_sorted.clear()
     all_prefixes_sorted.extend(
         sorted(all_prefixes.items(), key=lambda x: -len(x[0]))
@@ -151,6 +154,7 @@ def load_dictionaries():
     color_vocab.update(tonics)
     color_vocab.update(grenades)
     color_vocab.update(modifiers)
+    color_vocab.update(shaders)
     color_vocab.update(species)
     color_vocab.update(liquids)  # "fresh water" 등의 액체 추가
     color_tag_vocab_sorted.clear()
@@ -199,10 +203,32 @@ def translate_materials_in_color_tags(text: str) -> str:
 
     # Step 0: Handle self-referential color tags {{word|word}}
     # These are mod adjectives like {{feathered|feathered}}
+    # IMPORTANT: Preserve shader name (first part), only translate display text (second part)
     for eng, ko in all_prefixes_sorted:
         pattern = r'\{\{' + re.escape(eng) + r'\|' + re.escape(eng) + r'\}\}'
         if re.search(pattern, result, re.IGNORECASE):
-            result = re.sub(pattern, '{{' + ko + '|' + ko + '}}', result, flags=re.IGNORECASE)
+            result = re.sub(pattern, '{{' + eng + '|' + ko + '}}', result, flags=re.IGNORECASE)
+
+    # Step 0.5: Handle {{shader|shader full text}} pattern
+    # e.g., {{feathered|feathered leather armor}} → {{feathered|깃털 달린 leather armor}}
+    for eng, ko in all_prefixes_sorted:
+        pattern = r'\{\{' + re.escape(eng) + r'\|' + re.escape(eng) + r'\s+([^{}]+)\}\}'
+        def make_replacement(eng_key, ko_val):
+            def replacer(m):
+                return '{{' + eng_key + '|' + ko_val + ' ' + m.group(1) + '}}'
+            return replacer
+        result = re.sub(pattern, make_replacement(eng, ko), result, flags=re.IGNORECASE)
+
+    # Step 1: Handle non-self-referential color tags {{shaderName|prefix}}
+    # e.g., {{glittering|glitter}} → {{glittering|글리터}}
+    # IMPORTANT: Shader name (first part) is NEVER translated, only display text (second part)
+    for eng, ko in all_prefixes_sorted:
+        pattern = r'\{\{([^|{}]+)\|' + re.escape(eng) + r'\}\}'
+        def make_nonself_replacement(ko_val):
+            def replacer(m):
+                return '{{' + m.group(1) + '|' + ko_val + '}}'
+            return replacer
+        result = re.sub(pattern, make_nonself_replacement(ko), result, flags=re.IGNORECASE)
 
     def replace_in_tag(match):
         tag = match.group(1)
@@ -642,7 +668,31 @@ def try_translate(original_name: str) -> Tuple[bool, str]:
     # 색상 태그 정보 보존을 위해 저장
     has_color_tags = '{{' in original_name
 
-    # EARLY CHECK: "of" 패턴 - 접미사 추출 전에 먼저 확인
+    # EARLY CHECK 1: 색상 태그 내 복합어가 번역된 경우, 태그 외부만 번역하여 반환
+    # 예: {{G|fresh water}} injector → {{G|신선한 물}} 주사기
+    # 이 경우 prefix extraction이 "fresh water"를 분리하므로 먼저 처리
+    # 단, 대괄호 안에 색상 태그가 있는 경우 (예: [32 drams of {{G|fresh water}}])는 제외
+    # 이 경우 suffix 번역이 별도로 처리해야 함
+    has_color_tag_in_bracket = re.search(r'\[[^\]]*\{\{[^}]+\}\}[^\]]*\]', original_name)
+    if has_color_tags and with_translated_tags != original_name and not has_color_tag_in_bracket:
+        # 태그 외부 부분만 번역
+        def translate_outside_tags_early(text):
+            parts = re.split(r'(\{\{[^}]+\}\})', text)
+            translated_parts = []
+            for part in parts:
+                if part.startswith('{{'):
+                    translated_parts.append(part)
+                else:
+                    translated = translate_nouns_in_text(part)
+                    translated = translate_prefixes_in_text(translated)
+                    translated_parts.append(translated)
+            return ''.join(translated_parts)
+
+        early_result = translate_outside_tags_early(with_translated_tags)
+        if early_result != original_name:
+            return True, early_result
+
+    # EARLY CHECK 2: "of" 패턴 - 접미사 추출 전에 먼저 확인
     # "of" 패턴은 특수한 어순 변환이 필요하므로 일반 접미사로 처리하면 안됨
     # 단, 다음 패턴은 제외:
     # - "[... drams of ...]" 패턴 (이건 drams 패턴으로 처리)
@@ -906,13 +956,26 @@ TEST_CASES = [
     (100, "{{c|vibro blade}} +2", "{{c|바이브로 블레이드}} +2"),
 
     # === 14. 자기참조 색상태그 (모드 접두사) ===
-    (101, "{{feathered|feathered}} leather armor", "{{깃털 달린|깃털 달린}} 가죽 갑옷"),
-    (102, "{{feathered|feathered}} boots", "{{깃털 달린|깃털 달린}} 부츠"),
-    (103, "{{spiked|spiked}} leather armor", "{{가시 달린|가시 달린}} 가죽 갑옷"),
-    (104, "{{lanterned|lanterned}} helmet", "{{랜턴 달린|랜턴 달린}} 투구"),
+    # IMPORTANT: Shader name preserved, only display text translated
+    (101, "{{feathered|feathered}} leather armor", "{{feathered|깃털 달린}} 가죽 갑옷"),
+    (102, "{{feathered|feathered}} boots", "{{feathered|깃털 달린}} 부츠"),
+    (103, "{{spiked|spiked}} leather armor", "{{spiked|가시 달린}} 가죽 갑옷"),
+    (104, "{{lanterned|lanterned}} helmet", "{{lanterned|랜턴 달린}} 투구"),
 
     # === 15. 생물 이름 포함 패턴 (이미 한글화된 생물명 + 베이스 명사) ===
     (105, "concentrated 진눈깨비수염 gland paste [1 serving]", "농축된 진눈깨비수염 분비샘 페이스트 [1인분]"),
+
+    # === 16. 신규 셰이더 테스트 (전수조사 추가) ===
+    # 셰이더 이름 보존, 표시 텍스트 + 명사 번역
+    (106, "{{gaslight|gaslight}} kris", "{{gaslight|가스라이트}} 크리스"),
+    (107, "{{metachrome|metachrome}} sword", "{{metachrome|메타크롬}} 검"),
+    (108, "{{lava|lava}} weep", "{{lava|용암}} weep"),
+    (109, "{{syphon|syphon}} baton", "{{syphon|사이펀}} 경찰봉"),
+
+    # === 17. 비자기참조 색상태그 ===
+    # {{shaderName|displayText}} 패턴: 셰이더 이름 보존, 표시 텍스트만 번역
+    (110, "{{glittering|glitter}} grenade mk I", "{{glittering|글리터}} 수류탄 mk I"),
+    (111, "{{shimmering|crysteel}} sword", "{{shimmering|크리스틸}} 검"),
 ]
 
 
@@ -976,6 +1039,7 @@ def print_loaded_stats():
     print(f"  Processing:   {len(processing)} items")
     print(f"  Modifiers:    {len(modifiers)} items")
     print(f"  Colors:       {len(colors)} items")
+    print(f"  Shaders:      {len(shaders)} items")
     print(f"  Species:      {len(species)} items")
     print(f"  Base Nouns:   {len(base_nouns)} items")
     print(f"  States:       {len(states)} items")

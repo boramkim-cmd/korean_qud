@@ -1,7 +1,7 @@
 # QUD_KOREAN 프로젝트 컨텍스트
 
 > **이 파일은 Claude Code가 세션 시작 시 반드시 읽어야 하는 핵심 문서입니다.**
-> 최종 업데이트: 2026-01-26 15:35
+> 최종 업데이트: 2026-01-26 18:45
 
 ---
 
@@ -27,18 +27,18 @@
 - 튜토리얼 팝업
 - **ObjectTranslator V2** (Pipeline 아키텍처, 26개 모듈)
 - 메시지 로그 패치
-- **ObjectTranslator 테스트 스크립트** (100개 테스트 케이스, 100% 통과)
+- **ObjectTranslator 테스트 스크립트** (111개 테스트 케이스, 100% 통과)
 - **V1 vs V2 컨텍스트별 테스트** (`tools/test_display_contexts.py`, 100개 케이스)
+- **비자기참조 색상태그 번역** (`{{glittering|glitter}}` → `{{glittering|글리터}}`)
 
-### 최근 이슈 (2026-01-25)
+### 최근 이슈 (2026-01-26)
 | 이슈 | 상태 | 원인 | 해결 |
 |------|------|------|------|
+| **비자기참조 색상태그 미번역** | ✅ CLEAR | `{{glittering\|glitter}}` 패턴 미처리 | `ColorTagProcessor`에 Step 1 추가 |
+| **부분매칭 시 색상태그 번역 손실** | ✅ CLEAR | `originalName` 대신 `withTranslatedMaterials` 필요 | `DirectMatchHandler` 수정 |
+| **색상태그 내 복합어 분리** | ✅ CLEAR | `{{G\|fresh water}}` 접두사 추출 시 분리됨 | 태그 내 복합어 선처리 로직 추가 |
 | 캐시 키 불일치 | ✅ CLEAR | 컬러 태그/수량 유무에 따라 캐시 키 불일치 | `NormalizeCacheKey()` 메서드 추가 |
 | 부분 매칭 시 접두사 미번역 | ✅ CLEAR | partial match 경로에서 접두사 번역 누락 | 모든 경로에 `TranslateBaseNounsOutsideTags()` 적용 |
-| **색상 태그 내 명사 미번역 (BUG#1)** | ✅ CLEAR | `TranslateBaseNounsOutsideTags`가 태그 내부 미처리 | `TranslateMaterialsInColorTags()`에서 명사도 번역 |
-| **색상 형용사 누락 (BUG#2)** | ✅ CLEAR | violet, milky 등 tube 수식어 없음 | `_common.json`에 colors 섹션 추가 |
-| **species 접두사 미번역** | ✅ CLEAR | species가 allPrefixes에 미병합 | `LoadCreatureCommon()`에서 allPrefixes에도 병합 |
-| **"of X" 어순 미처리** | ✅ CLEAR | 한국어 어순 변환 로직 없음 | `TryTranslateOfPattern()` 메서드 추가 |
 
 ### 테스트 필요 항목 (v2.0 버그 수정 후)
 - [ ] `{{c|basic toolkit}}` → `기본 공구함` (색상 태그 내 명사)

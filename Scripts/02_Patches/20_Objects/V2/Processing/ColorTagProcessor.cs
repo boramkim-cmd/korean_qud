@@ -62,9 +62,33 @@ namespace QudKorean.Objects.V2.Processing
                 if (Regex.IsMatch(result, selfRefPattern, RegexOptions.IgnoreCase))
                 {
                     result = Regex.Replace(result, selfRefPattern,
-                        "{{" + prefix.Value + "|" + prefix.Value + "}}",
+                        "{{" + prefix.Key + "|" + prefix.Value + "}}",
                         RegexOptions.IgnoreCase);
                 }
+            }
+
+            // Step 0.5: Handle {{shader|shader full text}} pattern
+            // e.g., {{feathered|feathered leather armor}} → {{feathered|깃털 달린 leather armor}}
+            // The shader name is preserved, but the prefix in content is translated
+            foreach (var prefix in repo.Prefixes)
+            {
+                // Pattern: {{shader|shader something}} where shader matches prefix
+                string extendedPattern = @"\{\{" + Regex.Escape(prefix.Key) + @"\|" + Regex.Escape(prefix.Key) + @"\s+([^{}]+)\}\}";
+                result = Regex.Replace(result, extendedPattern,
+                    m => "{{" + prefix.Key + "|" + prefix.Value + " " + m.Groups[1].Value + "}}",
+                    RegexOptions.IgnoreCase);
+            }
+
+            // Step 1: Handle non-self-referential color tags {{shaderName|prefix}}
+            // e.g., {{glittering|glitter}} → {{glittering|글리터}}
+            // IMPORTANT: Shader name (first part) is NEVER translated, only display text (second part)
+            foreach (var prefix in repo.Prefixes)
+            {
+                // Match {{anyShader|prefix}} where shader != prefix
+                string pattern = @"\{\{([^|{}]+)\|" + Regex.Escape(prefix.Key) + @"\}\}";
+                result = Regex.Replace(result, pattern,
+                    m => "{{" + m.Groups[1].Value + "|" + prefix.Value + "}}",
+                    RegexOptions.IgnoreCase);
             }
 
             // Process iteratively for nested tags

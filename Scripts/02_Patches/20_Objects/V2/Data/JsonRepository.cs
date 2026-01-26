@@ -37,6 +37,7 @@ namespace QudKorean.Objects.V2.Data
         private Dictionary<string, string> _grenades = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase);
         private Dictionary<string, string> _marks = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase);
         private Dictionary<string, string> _colors = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase);
+        private Dictionary<string, string> _shaders = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase);
         private Dictionary<string, string> _species = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase);
         private Dictionary<string, string> _baseNouns = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase);
         private Dictionary<string, string> _states = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase);
@@ -403,8 +404,9 @@ namespace QudKorean.Objects.V2.Data
                 LoadSection(root["grenades"] as JObject, _grenades);
                 LoadSection(root["marks"] as JObject, _marks);
                 LoadSection(root["colors"] as JObject, _colors);
+                LoadSection(root["shaders"] as JObject, _shaders);
 
-                UnityEngine.Debug.Log($"{LOG_PREFIX} Loaded items/_common.json");
+                UnityEngine.Debug.Log($"{LOG_PREFIX} Loaded items/_common.json: {_shaders.Count} shaders");
             }
             catch (Exception ex)
             {
@@ -506,6 +508,7 @@ namespace QudKorean.Objects.V2.Data
             DictionaryCache.MergeInto(allPrefixes, _grenades);
             DictionaryCache.MergeInto(allPrefixes, _marks);
             DictionaryCache.MergeInto(allPrefixes, _colors);
+            DictionaryCache.MergeInto(allPrefixes, _shaders);
             DictionaryCache.MergeInto(allPrefixes, _species);
             _prefixesSorted = DictionaryCache.SortByKeyLength(allPrefixes);
 
@@ -517,6 +520,7 @@ namespace QudKorean.Objects.V2.Data
             DictionaryCache.MergeInto(colorTagVocab, _grenades);
             DictionaryCache.MergeInto(colorTagVocab, _modifiers);
             DictionaryCache.MergeInto(colorTagVocab, _colors);
+            DictionaryCache.MergeInto(colorTagVocab, _shaders);
             DictionaryCache.MergeInto(colorTagVocab, _liquids);
             DictionaryCache.MergeInto(colorTagVocab, _ofPatterns);
             DictionaryCache.MergeInto(colorTagVocab, _bodyParts);

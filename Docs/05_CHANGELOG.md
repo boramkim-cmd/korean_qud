@@ -6,6 +6,24 @@
 
 ## Recent Changes
 
+### [2026-01-26] 비자기참조 색상태그 번역 및 버그 수정
+- **비자기참조 색상태그 패턴 처리**:
+  - `{{glittering|glitter}}` → `{{glittering|글리터}}` 정상 번역
+  - `{{shimmering|crysteel}}` → `{{shimmering|크리스틸}}` 정상 번역
+  - `ColorTagProcessor.cs`에 Step 1 추가 (셰이더 보존, 표시텍스트만 번역)
+- **DirectMatchHandler 부분매칭 버그 수정**:
+  - `originalName` → `withTranslatedMaterials` 사용으로 색상태그 번역 보존
+  - `engraved 머스킷` 인벤토리/툴팁 불일치 문제 해결
+- **색상태그 내 복합어 처리**:
+  - `{{G|fresh water}} injector` → `{{G|신선한 물}} 주사기` 정상 번역
+  - 태그 내 복합어가 접두사 추출로 분리되지 않도록 선처리
+- **테스트 케이스 확장**: 100개 → 111개
+- **검증**: 111/111 테스트 통과 (100%)
+- **수정 파일**:
+  - `ColorTagProcessor.cs` - 비자기참조 패턴 처리
+  - `DirectMatchHandler.cs` - 부분매칭 시 번역된 태그 사용
+  - `test_object_translator.py` - 로직 및 테스트 케이스 추가
+
 ### [2026-01-26] V1 vs V2 컨텍스트별 검증 테스트 스크립트 생성
 - **새 파일**: `tools/test_display_contexts.py` (~590줄)
 - **목적**: V1(기존)과 V2(리팩토링) 번역 결과 동등성 비교 + 게임 컨텍스트별 검증
@@ -253,7 +271,7 @@
 - Skill files: 20
 - Object files: 67
 - Message patterns: 50+
-- **Test coverage**: 100 cases (100% pass)
+- **Test coverage**: 111 cases (100% pass)
 - Build status: Success
 
 ---

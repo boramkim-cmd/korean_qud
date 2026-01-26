@@ -397,5 +397,61 @@
     "jasper": "벽옥",
     "peridot": "페리도트",
     "topaz": "토파즈"
+  },
+
+  "shaders": {
+    "_comment": "셀프 레퍼런셜 셰이더 (전수조사 2026-01-26)",
+    "_description": "{{shader|shader}} 형식의 컬러 태그. 셰이더 이름은 보존하고 표시 텍스트만 번역",
+
+    "_comment_tonic_shaders": "토닉/인젝터 셰이더",
+    "cider": "사이더",
+    "thermo": "써모",
+
+    "_comment_weapon_shaders": "무기 셰이더",
+    "gaslight": "가스라이트",
+    "hypertractor": "하이퍼트랙터",
+    "spaser": "스페이저",
+    "turbow": "터보우",
+    "syphon": "사이펀",
+    "rocket": "로켓",
+    "spring-turret": "스프링 터렛",
+
+    "_comment_material_shaders": "재료/물질 셰이더",
+    "metachrome": "메타크롬",
+    "lava": "용암",
+    "crystalline": "결정체",
+    "mercurial": "수은빛",
+    "sunslag": "태양슬래그",
+    "hologram": "홀로그램",
+
+    "_comment_effect_shaders": "효과/상태 셰이더",
+    "auroral": "오로라",
+    "radiant": "빛나는",
+    "nervous": "신경",
+    "neutronic": "중성자",
+    "resonance": "공명",
+    "transkinetic": "트랜스키네틱",
+    "telemetric": "텔레메트릭",
+    "structural": "구조",
+
+    "_comment_condition_shaders": "상태이상 셰이더",
+    "ironshank": "철다리병",
+    "glotrot": "글롯롯",
+    "putrid": "부패한",
+    "slimy": "점액질",
+
+    "_comment_mod_shaders": "모드(Mod) 셰이더",
+    "biomech": "바이오메크",
+    "implanted": "이식된",
+    "horned": "뿔 달린",
+    "leafy": "잎사귀",
+    "ghostly": "유령",
+    "patchwork": "패치워크",
+    "ninefold": "아홉 겹",
+    "mirrorshades": "미러쉐이드",
+
+    "_comment_creature_shaders": "생물 셰이더",
+    "kaleidoslug": "만화경민달팽이",
+    "moon": "달"
   }
 }

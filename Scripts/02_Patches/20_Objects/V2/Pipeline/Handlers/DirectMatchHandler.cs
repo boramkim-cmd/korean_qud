@@ -92,13 +92,14 @@ namespace QudKorean.Objects.V2.Pipeline.Handlers
                 {
                     if (!string.IsNullOrEmpty(kvp.Value))
                     {
-                        bool inOriginal = originalName.Contains(kvp.Key);
+                        // Use withTranslatedMaterials to preserve color tag translations
+                        bool inTranslated = withTranslatedMaterials.Contains(kvp.Key);
                         bool inStripped = strippedOriginal.Contains(kvp.Key);
 
-                        if (inOriginal || inStripped)
+                        if (inTranslated || inStripped)
                         {
-                            string translated = inOriginal
-                                ? originalName.Replace(kvp.Key, kvp.Value)
+                            string translated = inTranslated
+                                ? withTranslatedMaterials.Replace(kvp.Key, kvp.Value)
                                 : strippedOriginal.Replace(kvp.Key, kvp.Value);
 
                             if (!string.IsNullOrEmpty(translated))
