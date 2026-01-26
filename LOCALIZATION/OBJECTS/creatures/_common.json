@@ -71,6 +71,7 @@
     "albino ape": "알비노 유인원",
     "segmented mirthworm": "마디 환희지렁이",
     "_section_additional": "추가 생물 - Phase 1.2",
+    "pyramid": "피라미드",
     "rhinox": "라이녹스",
     "phase spider": "위상 거미",
     "great saltback": "대형 소금등",
@@ -292,7 +293,12 @@
     "tinker": "땜장이",
     "trader": "상인",
     "villager": "마을주민",
-    "zealot": "광신도"
+    "zealot": "광신도",
+    "shaman": "주술사",
+    "seer": "예언자",
+    "chieftain": "족장",
+    "warrior": "전사",
+    "scout": "정찰병"
   },
   "honorifics": {
     "Elder": "장로",
