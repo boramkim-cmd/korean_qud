@@ -14,6 +14,7 @@ using QudKRTranslation.Utils;
 using QudKRTranslation;
 using Qud.UI;
 using QudKorean.Objects;
+using QudKorean.Objects.V2;
 using XRL.UI;
 
 namespace QudKRTranslation.Patches
@@ -120,7 +121,7 @@ namespace QudKRTranslation.Patches
                 // 1. 이름 번역 (DisplayName)
                 if (!string.IsNullOrEmpty(__result.DisplayName))
                 {
-                    if (ObjectTranslator.TryGetDisplayName(blueprint, __result.DisplayName, out string nameKo))
+                    if (ObjectTranslatorV2.TryGetDisplayName(blueprint, __result.DisplayName, out string nameKo))
                     {
                         __result.DisplayName = nameKo;
                         Debug.Log($"[Qud-KR][TooltipInfo] Translated DisplayName: '{nameKo}' (Blueprint: {blueprint})");
@@ -130,7 +131,7 @@ namespace QudKRTranslation.Patches
                 // 2. 설명 번역 (LongDescription)
                 if (!string.IsNullOrEmpty(__result.LongDescription))
                 {
-                    if (ObjectTranslator.TryTranslateDescriptionExact(blueprint, __result.LongDescription, out string descKo))
+                    if (ObjectTranslatorV2.TryTranslateDescriptionExact(blueprint, __result.LongDescription, out string descKo))
                     {
                         __result.LongDescription = descKo;
                         Debug.Log($"[Qud-KR][TooltipInfo] Translated LongDescription for: {blueprint}");
