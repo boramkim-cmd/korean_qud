@@ -48,9 +48,12 @@ namespace QudKorean.Objects.V2.Patterns
 
         public TranslationResult Translate(string name, ITranslationContext context)
         {
-            // First, check if all words can be translated (using stripped version)
+            // Extract suffixes first (접미사 먼저 분리)
             string stripped = ColorTagProcessor.Strip(name);
-            string[] parts = stripped.Split(new[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
+            string baseName = SuffixExtractor.ExtractAll(stripped, out string suffixes);
+
+            // Check if base name (without suffixes) is a valid compound
+            string[] parts = baseName.Split(new[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
 
             if (parts.Length < 2)
                 return TranslationResult.Miss();
@@ -70,16 +73,37 @@ namespace QudKorean.Objects.V2.Patterns
                 }
             }
 
-            // Now translate with color tag preservation
-            string result;
-            if (name.Contains("{{"))
+            // Translate the base compound (with or without color tags)
+            string translatedBase;
+
+            // For tag handling, we need to work with original but strip suffixes
+            string nameWithoutSuffix = name;
+            if (!string.IsNullOrEmpty(suffixes))
             {
-                result = TranslateWithTags(name, translationMap);
+                // Remove suffix from original name (preserving tags)
+                int suffixStartIndex = name.LastIndexOf(suffixes.TrimStart());
+                if (suffixStartIndex > 0)
+                {
+                    nameWithoutSuffix = name.Substring(0, suffixStartIndex).TrimEnd();
+                }
+            }
+
+            if (nameWithoutSuffix.Contains("{{"))
+            {
+                translatedBase = TranslateWithTags(nameWithoutSuffix, translationMap);
             }
             else
             {
                 // Simple case: no tags, just replace words
-                result = string.Join(" ", parts.Select(p => translationMap[p]));
+                translatedBase = string.Join(" ", parts.Select(p => translationMap[p]));
+            }
+
+            // Translate and append suffixes
+            string result = translatedBase;
+            if (!string.IsNullOrEmpty(suffixes))
+            {
+                string translatedSuffix = SuffixExtractor.TranslateAll(suffixes, context.Repository);
+                result = translatedBase + translatedSuffix;
             }
 
             return TranslationResult.Hit(result, Name);
@@ -234,25 +258,32 @@ namespace QudKorean.Objects.V2.Patterns
 
         /// <summary>
         /// Tries to translate a single word using all available vocabularies.
+        /// Handles possessive forms: "merchant's" → "상인의"
         /// </summary>
         private bool TryTranslatePart(ITranslationRepository repo, string word, out string translated)
         {
             translated = null;
-            string lowerWord = word.ToLower();
+
+            // Handle possessive forms: "word's" → "word_ko의"
+            bool isPossessive = word.EndsWith("'s", StringComparison.OrdinalIgnoreCase);
+            string baseWord = isPossessive ? word.Substring(0, word.Length - 2) : word;
+            string lowerWord = baseWord.ToLower();
 
             // 1. Check Species dictionary (creatures)
             if (repo.Species.TryGetValue(lowerWord, out translated) ||
-                repo.Species.TryGetValue(word, out translated))
+                repo.Species.TryGetValue(baseWord, out translated))
             {
+                if (isPossessive) translated += "의";
                 return true;
             }
 
             // 2. Check BaseNouns (items, types)
             foreach (var kv in repo.BaseNouns)
             {
-                if (kv.Key.Equals(word, StringComparison.OrdinalIgnoreCase))
+                if (kv.Key.Equals(baseWord, StringComparison.OrdinalIgnoreCase))
                 {
                     translated = kv.Value;
+                    if (isPossessive) translated += "의";
                     return true;
                 }
             }
@@ -260,9 +291,10 @@ namespace QudKorean.Objects.V2.Patterns
             // 3. Check Prefixes (modifiers, materials, qualities)
             foreach (var kv in repo.Prefixes)
             {
-                if (kv.Key.Equals(word, StringComparison.OrdinalIgnoreCase))
+                if (kv.Key.Equals(baseWord, StringComparison.OrdinalIgnoreCase))
                 {
                     translated = kv.Value;
+                    if (isPossessive) translated += "의";
                     return true;
                 }
             }
@@ -270,24 +302,27 @@ namespace QudKorean.Objects.V2.Patterns
             // 4. Check ColorTagVocab (broader vocabulary)
             foreach (var kv in repo.ColorTagVocab)
             {
-                if (kv.Key.Equals(word, StringComparison.OrdinalIgnoreCase))
+                if (kv.Key.Equals(baseWord, StringComparison.OrdinalIgnoreCase))
                 {
                     translated = kv.Value;
+                    if (isPossessive) translated += "의";
                     return true;
                 }
             }
 
             // 5. Check BodyParts
             if (repo.BodyParts.TryGetValue(lowerWord, out translated) ||
-                repo.BodyParts.TryGetValue(word, out translated))
+                repo.BodyParts.TryGetValue(baseWord, out translated))
             {
+                if (isPossessive) translated += "의";
                 return true;
             }
 
             // 6. Check Liquids
             if (repo.Liquids.TryGetValue(lowerWord, out translated) ||
-                repo.Liquids.TryGetValue(word, out translated))
+                repo.Liquids.TryGetValue(baseWord, out translated))
             {
+                if (isPossessive) translated += "의";
                 return true;
             }
 
@@ -296,9 +331,10 @@ namespace QudKorean.Objects.V2.Patterns
             {
                 foreach (var namePair in creature.Names)
                 {
-                    if (namePair.Key.Equals(word, StringComparison.OrdinalIgnoreCase))
+                    if (namePair.Key.Equals(baseWord, StringComparison.OrdinalIgnoreCase))
                     {
                         translated = namePair.Value;
+                        if (isPossessive) translated += "의";
                         return true;
                     }
                 }
@@ -309,9 +345,10 @@ namespace QudKorean.Objects.V2.Patterns
             {
                 foreach (var namePair in item.Names)
                 {
-                    if (namePair.Key.Equals(word, StringComparison.OrdinalIgnoreCase))
+                    if (namePair.Key.Equals(baseWord, StringComparison.OrdinalIgnoreCase))
                     {
                         translated = namePair.Value;
+                        if (isPossessive) translated += "의";
                         return true;
                     }
                 }
