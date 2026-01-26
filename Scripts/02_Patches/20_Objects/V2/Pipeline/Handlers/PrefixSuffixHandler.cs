@@ -25,11 +25,11 @@ namespace QudKorean.Objects.V2.Pipeline.Handlers
             var repo = context.Repository;
             string originalName = context.OriginalName;
 
-            // First translate prefixes/materials in color tags
+            // First translate prefixes/materials in color tags (for later restoration)
             string withTranslatedTags = ColorTagProcessor.TranslateMaterials(originalName, repo);
 
-            // Strip color tags for prefix matching
-            string strippedForPrefix = ColorTagProcessor.Strip(withTranslatedTags);
+            // Strip ORIGINAL (not translated) for prefix matching - need English keys!
+            string strippedForPrefix = ColorTagProcessor.Strip(originalName);
             string baseNameForPrefix = SuffixExtractor.ExtractAll(strippedForPrefix, out string allSuffixes);
 
             // Try with prefixes

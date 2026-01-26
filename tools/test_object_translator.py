@@ -573,7 +573,11 @@ def try_translate_of_pattern(original_name: str) -> Optional[str]:
 # 메인 번역 함수
 # ============================================================
 def restore_color_tags(original: str, translated: str) -> str:
-    """원본의 색상 태그 구조를 번역된 텍스트에 복원"""
+    """원본의 색상 태그 구조를 번역된 텍스트에 복원
+
+    original: 번역된 태그를 포함한 문자열 (e.g., "{{깃털 달린|깃털 달린}} leather armor")
+    translated: 태그 없이 번역된 문자열 (e.g., "깃털 달린 가죽 갑옷")
+    """
     # 원본에 태그가 없으면 그대로 반환
     if '{{' not in original:
         return translated
@@ -591,7 +595,14 @@ def restore_color_tags(original: str, translated: str) -> str:
         content = tag_match.group(2)
         rest_of_original = original[tag_match.end():].strip()
 
-        # 태그 내용이 번역됐는지 확인
+        # 태그 내용이 번역 결과에 있는지 확인 (이미 한글일 수 있음)
+        if content in translated:
+            # 태그 내용을 태그로 감싸기
+            tagged_content = f'{{{{{tag}|{content}}}}}'
+            result = translated.replace(content, tagged_content, 1)
+            return result
+
+        # 태그 내용이 영어인 경우: 번역 찾기
         content_translated = None
         for eng, ko in color_tag_vocab_sorted:
             if content.lower() == eng:
@@ -633,7 +644,8 @@ def try_translate(original_name: str) -> Tuple[bool, str]:
     # 단, 다음 패턴은 제외:
     # - "[... drams of ...]" 패턴 (이건 drams 패턴으로 처리)
     # - "of"가 대괄호 안에 있는 경우 (bracket suffix 내부)
-    stripped = strip_color_tags(with_translated_tags)
+    # Strip ORIGINAL (not translated) for prefix matching - need English keys!
+    stripped = strip_color_tags(original_name)
     has_of_pattern = ' of ' in stripped.lower()
     is_drams_pattern = 'drams of' in stripped.lower()
     is_in_bracket = re.search(r'\[[^\]]*of[^\]]*\]', stripped.lower())
@@ -809,7 +821,7 @@ TEST_CASES = [
     (49, "{{G|hulk}} honey injector", "{{G|헐크}} 꿀 주사기"),
     (50, "{{r|flaming}} torch", "{{r|불타는}} 횃불"),
     # Note: Nested color tags are complex edge cases
-    (51, "{{K|{{crysteel|crysteel}}}} blade", "{{K|{{crysteel|크리스틸}}}} 블레이드 또는 {{crysteel|크리스틸}} 블레이드 또는 {{K|{{크리스틸|크리스틸}}}} 블레이드"),
+    (51, "{{K|{{crysteel|crysteel}}}} blade", "{{K|{{crysteel|크리스틸}}}} 블레이드 또는 {{crysteel|크리스틸}} 블레이드 또는 {{K|{{크리스틸|크리스틸}}}} 블레이드 또는 {{크리스틸|크리스틸}} 블레이드"),
     (52, "{{c|vibro blade}}", "{{c|바이브로 블레이드}}"),
     (53, "{{c|stun whip}}", "{{c|기절 채찍}}"),
     (54, "{{G|fresh water}} injector", "{{G|신선한 물}} 주사기"),
