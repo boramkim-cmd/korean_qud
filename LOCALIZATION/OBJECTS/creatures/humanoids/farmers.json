@@ -45,9 +45,9 @@
     "category": "humanoid",
     "tags": ["human", "neutral", "guard"],
     "names": {
-      "warden": "경비원"
+      "warden": "경비관"
     },
     "description": "A guard who watches over the village.",
-    "description_ko": "마을을 지키는 경비원."
+    "description_ko": "마을을 지키는 경비관."
   }
 }
