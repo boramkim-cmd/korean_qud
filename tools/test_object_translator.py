@@ -346,6 +346,9 @@ def translate_all_suffixes(suffixes: str) -> str:
 
     result = re.sub(r'\[(\d+) drams? of ([^\]]+)\]', drams_replace, result, flags=re.IGNORECASE)
 
+    # [X servings] pattern -> [X인분]
+    result = re.sub(r'\[(\d+) servings?\]', r'[\1인분]', result, flags=re.IGNORECASE)
+
     # "of X" 패턴
     def of_replace(m):
         element = m.group(1).strip()
@@ -683,6 +686,21 @@ def try_translate(original_name: str) -> Tuple[bool, str]:
                     result = restore_color_tags(with_translated_tags, result)
                 return True, result
 
+        # Try extracting base noun from end of remainder
+        # Pattern: "<creature_or_modifier> <base_noun>" e.g., "진눈깨비수염 gland paste"
+        for eng, ko in base_nouns_sorted:
+            if remainder.lower().endswith(' ' + eng.lower()):
+                modifier_part = remainder[:-len(eng)-1].strip()  # "진눈깨비수염" or "bear"
+                # Try translating modifier as creature
+                modifier_ko = try_get_creature_translation(modifier_part)
+                if modifier_ko is None:
+                    modifier_ko = modifier_part  # Keep as-is if not a known creature
+                suffix_ko = translate_all_suffixes(all_suffixes)
+                result = f"{prefix_ko} {modifier_ko} {ko}{suffix_ko}"
+                if has_color_tags:
+                    result = restore_color_tags(with_translated_tags, result)
+                return True, result
+
     # 4. 베이스 아이템 직접 번역 시도
     base_ko = try_get_item_translation(base_name) or try_get_creature_translation(base_name)
     if base_ko:
@@ -892,6 +910,9 @@ TEST_CASES = [
     (102, "{{feathered|feathered}} boots", "{{깃털 달린|깃털 달린}} 부츠"),
     (103, "{{spiked|spiked}} leather armor", "{{가시 달린|가시 달린}} 가죽 갑옷"),
     (104, "{{lanterned|lanterned}} helmet", "{{랜턴 달린|랜턴 달린}} 투구"),
+
+    # === 15. 생물 이름 포함 패턴 (이미 한글화된 생물명 + 베이스 명사) ===
+    (105, "concentrated 진눈깨비수염 gland paste [1 serving]", "농축된 진눈깨비수염 분비샘 페이스트 [1인분]"),
 ]
 
 

@@ -80,6 +80,35 @@ namespace QudKorean.Objects.V2.Pipeline.Handlers
                         return TranslationResult.Hit(translated, Name);
                     }
                 }
+
+                // Try extracting base noun from end of remainder
+                // Pattern: "<creature_or_modifier> <base_noun>" e.g., "진눈깨비수염 gland paste"
+                if (TryExtractBaseNounFromEnd(repo, remainder, out string modifierPart, out string baseNounKo))
+                {
+                    // Try translating modifier as creature
+                    if (!TryGetCreatureTranslation(repo, modifierPart, out string modifierKo))
+                    {
+                        modifierKo = modifierPart; // Keep as-is if not a known creature
+                    }
+                    string suffixKo = SuffixExtractor.TranslateAll(allSuffixes, repo);
+                    string translated;
+
+                    if (withTranslatedTags.Contains("{{"))
+                    {
+                        translated = ColorTagProcessor.RestoreFormatting(
+                            withTranslatedTags, modifierPart, modifierKo, allSuffixes, suffixKo);
+                        // Also need to translate the base noun in the result
+                        // The restoration may not handle this case well, so do simple assembly
+                        translated = $"{prefixKo} {modifierKo} {baseNounKo}{suffixKo}";
+                    }
+                    else
+                    {
+                        translated = $"{prefixKo} {modifierKo} {baseNounKo}{suffixKo}";
+                    }
+
+                    CacheAndReturn(context, translated);
+                    return TranslationResult.Hit(translated, Name);
+                }
             }
 
             // Try base item name lookup (handles both simple items and items with suffixes)
@@ -161,6 +190,33 @@ namespace QudKorean.Objects.V2.Pipeline.Handlers
         private void CacheAndReturn(ITranslationContext context, string translated)
         {
             context.SetCached(context.CacheKey, translated);
+        }
+
+        /// <summary>
+        /// Tries to extract a base noun from the end of a string.
+        /// Pattern: "modifier baseNoun" e.g., "진눈깨비수염 gland paste" -> ("진눈깨비수염", "분비샘 페이스트")
+        /// </summary>
+        private bool TryExtractBaseNounFromEnd(Data.ITranslationRepository repo, string text, out string modifier, out string baseNounKo)
+        {
+            modifier = null;
+            baseNounKo = null;
+
+            if (string.IsNullOrEmpty(text) || !text.Contains(" "))
+                return false;
+
+            // Check base nouns (sorted by length, longest first)
+            foreach (var noun in repo.BaseNouns)
+            {
+                string suffix = " " + noun.Key;
+                if (text.EndsWith(suffix, StringComparison.OrdinalIgnoreCase))
+                {
+                    modifier = text.Substring(0, text.Length - suffix.Length).Trim();
+                    baseNounKo = noun.Value;
+                    return true;
+                }
+            }
+
+            return false;
         }
     }
 }
