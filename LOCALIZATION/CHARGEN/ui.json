@@ -1,4 +1,5 @@
 {
+  "_imports": ["_SHARED/body_parts", "_SHARED/attributes"],
   "chargen_ui": {
     "Bottom Bar": {
       "Randomize Selection": "무작위 선택",
@@ -18,24 +19,7 @@
       "select": "선택",
       "Select": "선택"
     },
-    "Slots": {
-      "face": "얼굴",
-      "Face": "얼굴",
-      "head": "머리",
-      "Head": "머리",
-      "body": "몸",
-      "Body": "몸",
-      "back": "등",
-      "Back": "등",
-      "arm": "팔",
-      "Arm": "팔",
-      "hands": "손",
-      "Hands": "손",
-      "feet": "발",
-      "Feet": "발",
-      "floating nearby": "부유 아이템",
-      "Floating Nearby": "부유 아이템"
-    },
+    "_comment_slots": "신체 부위 슬롯은 _SHARED/body_parts.json으로 이동됨",
     "General UI": {
       ":build library:": ":빌드 라이브러리:",
       ":build summary:": ":빌드 요약:",

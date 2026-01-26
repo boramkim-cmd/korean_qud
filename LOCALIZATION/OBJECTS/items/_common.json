@@ -1,9 +1,12 @@
 {
   "_meta": {
-    "description": "Common item vocabulary - materials, qualities, modifiers",
-    "version": "1.0",
-    "source": "Migrated from ObjectTranslator.cs hardcoded dictionaries"
+    "description": "Common item vocabulary - modifiers, tonics, grenades, colors, shaders",
+    "version": "2.0",
+    "source": "Migrated from ObjectTranslator.cs hardcoded dictionaries",
+    "refactored": "2026-01-27 - materials/qualities moved to _SHARED"
   },
+  "_imports": ["_SHARED/materials", "_SHARED/qualities", "OBJECTS/_vocabulary/modifiers", "OBJECTS/_vocabulary/processing"],
+  "_comment_materials": "재료는 _SHARED/materials.json으로 이동됨 - 아래는 레거시 호환용",
   "materials": {
     "_comment": "재료 (_materialPrefixes + _colorTagMaterialTranslations 통합)",
     "folded carbide": "접힌 카바이드",
@@ -75,6 +78,7 @@
     "slate": "슬레이트",
     "flint": "부싯돌"
   },
+  "_comment_qualities": "품질은 _SHARED/qualities.json으로 이동됨 - 아래는 레거시 호환용",
   "qualities": {
     "_comment": "품질 (_qualityPrefixes)",
     "flawless": "완벽한",
@@ -92,6 +96,7 @@
     "common": "일반",
     "uncommon": "비범한"
   },
+  "_comment_processing": "가공/처리는 OBJECTS/_vocabulary/processing.json으로 이동됨 - 아래는 레거시 호환용",
   "processing": {
     "_comment": "가공/처리 (_processingPrefixes)",
     "freeze-dried": "동결건조",
@@ -111,6 +116,7 @@
     "canned": "통조림",
     "boiled": "삶은"
   },
+  "_comment_modifiers": "수식어는 OBJECTS/_vocabulary/modifiers.json으로 이동됨 - 아래는 레거시 호환용",
   "modifiers": {
     "_comment": "설명/무기/상태 접두사 (_descriptivePrefixes)",
     "high explosive": "고폭",
@@ -341,7 +347,6 @@
     "gyre": "소용돌이",
     "congealed": "응고된",
     "carved": "조각된",
-    "gelatinous": "젤라틴",
     "holographic": "홀로그래픽",
     "force": "포스",
     "imperial": "황제의",
@@ -361,7 +366,6 @@
     "cyclopean": "거인의",
     "defanged": "이빨 뽑힌",
     "finned": "지느러미 달린",
-    "fork-horned": "갈래뿔",
     "fractal": "프랙탈",
     "gnashing": "이를 가는",
     "gorged": "과식한",

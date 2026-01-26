@@ -1,0 +1,39 @@
+{
+  "_meta": {
+    "description": "세력명 - Single Source of Truth",
+    "version": "1.0.0",
+    "canonical": true,
+    "sources": ["CHARGEN/factions.json", "CHARGEN/ui.json Reputations", "OBJECTS/creatures/_common.json factions"]
+  },
+  "factions": {
+    "Fellowship of Wardens": { "ko": "워든 연합", "aliases": ["the fellowship of wardens", "the Fellowship of Wardens"] },
+    "Farmers' Guild": { "ko": "농부 길드", "aliases": ["the farmers' guild", "the Farmers' Guild", "farmers' guild"] },
+    "Water Barons": { "ko": "물 남작", "aliases": ["water barons"] },
+    "Mysterious Strangers": { "ko": "의문의 이방인", "aliases": ["mysterious strangers"] },
+    "Issachari": { "ko": "이사카리", "aliases": ["issachari", "the Issachari tribe", "Issachari tribe"] },
+    "Barathrumites": { "ko": "바라트룸파", "aliases": ["the Barathrumites", "barathrumites"] },
+    "Wardens of Qud": { "ko": "쿼드의 파수꾼들", "aliases": ["the Wardens of Qud", "wardens of qud"] },
+    "Joppa Villagers": { "ko": "조파 마을 주민", "aliases": ["the villagers of Joppa", "villagers of Joppa"] },
+    "Farmers": { "ko": "농부 세력", "aliases": ["farmers"] },
+    "Bears": { "ko": "곰 세력", "aliases": ["bears"] },
+    "Strangers": { "ko": "이방인", "aliases": ["strangers"] },
+    "Consortium of Phyta": { "ko": "피타 협회", "aliases": ["the Consortium of Phyta", "consortium of phyta"] },
+    "Merchants' Guild": { "ko": "상인 길드", "aliases": ["the merchants' guild", "merchants' guild"] },
+    "Children of Mamon": { "ko": "마몬의 자녀들", "aliases": ["the children of Mamon", "children of Mamon", "the Children of Mamon"] },
+    "Mechanimists": { "ko": "메카니미스트", "aliases": ["the Mechanimists", "mechanimists", "Mechanimist", "mechanimist"] },
+    "Cult of the Coiled Lamb": { "ko": "감긴 양의 교단", "aliases": ["the cult of the coiled lamb", "cult of the coiled lamb"] },
+    "Newly Sentient Beings": { "ko": "새로이 지성을 얻은 존재", "aliases": ["newly sentient beings"] },
+    "Putus Templar": { "ko": "푸투스 템플러", "aliases": ["the putus templar", "the Putus Templar"] },
+    "Daughters of Exile": { "ko": "망명자의 딸들", "aliases": ["the Daughters of Exile"] },
+    "Seekers of the Sightless Way": { "ko": "시각 없는 길의 탐구자들", "aliases": ["the Seekers of the Sightless Way"] },
+    "Apes of Fist": { "ko": "주먹의 유인원들", "aliases": ["the Apes of Fist"] },
+    "Girsh": { "ko": "기르쉬", "aliases": ["the Girsh", "girsh"] },
+    "Insects": { "ko": "곤충", "aliases": ["the insects", "insects"] },
+    "Fish": { "ko": "물고기", "aliases": ["the fish", "fish"] },
+    "Robots": { "ko": "로봇", "aliases": ["the robots", "robots"] },
+    "Sightless Way": { "ko": "눈먼 길", "aliases": ["sightless way"] },
+    "Naphtaali": { "ko": "나프탈리", "aliases": ["naphtaali"] },
+    "Templar": { "ko": "템플러", "aliases": ["templar"] },
+    "Gyre Wight": { "ko": "자이어 와이트", "aliases": ["gyre wight"] }
+  }
+}

@@ -17,8 +17,10 @@ namespace QudKRTranslation.Core
     public static class LocalizationManager
     {
         private static Dictionary<string, Dictionary<string, string>> _translationDB = new Dictionary<string, Dictionary<string, string>>(StringComparer.OrdinalIgnoreCase);
+        private static Dictionary<string, string> _aliasToCanonical = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase);
         private static bool _isLoaded = false;
         private static string _modPath = null;
+        private static int _sharedEntriesCount = 0;
 
         public static void Initialize()
         {
@@ -30,6 +32,8 @@ namespace QudKRTranslation.Core
         public static void Reload()
         {
             _translationDB.Clear();
+            _aliasToCanonical.Clear();
+            _sharedEntriesCount = 0;
             _isLoaded = false;
             Initialize();
         }
@@ -74,12 +78,87 @@ namespace QudKRTranslation.Core
                 return;
             }
 
-            // Load JSON files recursively from all subdirectories (CHARGEN/, GAMEPLAY/, UI/, etc.)
+            // 1. Load _SHARED first (Single Source of Truth)
+            string sharedDir = Path.Combine(locDir, "_SHARED");
+            if (Directory.Exists(sharedDir))
+            {
+                Debug.Log("[LocalizationManager] Loading _SHARED vocabulary (SSOT)...");
+                foreach (var file in Directory.GetFiles(sharedDir, "*.json"))
+                {
+                    LoadSharedJsonFile(file);
+                }
+                Debug.Log($"[LocalizationManager] _SHARED loaded: {_sharedEntriesCount} entries with aliases");
+            }
+
+            // 2. Load _vocabulary folders
+            string vocabDir = Path.Combine(locDir, "OBJECTS/_vocabulary");
+            if (Directory.Exists(vocabDir))
+            {
+                Debug.Log("[LocalizationManager] Loading _vocabulary...");
+                foreach (var file in Directory.GetFiles(vocabDir, "*.json"))
+                {
+                    LoadJsonFile(file);
+                }
+            }
+
+            // 3. Load remaining JSON files recursively from all subdirectories
             foreach (var file in Directory.GetFiles(locDir, "*.json", SearchOption.AllDirectories))
             {
-                // Skip deprecated folder
+                // Skip already loaded folders
                 if (file.Contains("_DEPRECATED")) continue;
+                if (file.Contains("_SHARED")) continue;
+                if (file.Contains("_vocabulary")) continue;
+                if (file.Contains("_schemas")) continue;
                 LoadJsonFile(file);
+            }
+        }
+
+        /// <summary>
+        /// Load _SHARED JSON files with aliases support.
+        /// Format: { "category": { "Key": { "ko": "번역", "aliases": ["alias1", "alias2"] } } }
+        /// </summary>
+        private static void LoadSharedJsonFile(string path)
+        {
+            try
+            {
+                string json = File.ReadAllText(path);
+                var data = SharedJsonParser.Parse(json);
+
+                foreach (var categoryPair in data)
+                {
+                    string category = categoryPair.Key;
+                    if (category.StartsWith("_")) continue; // Skip _meta, _imports, etc.
+
+                    if (!_translationDB.ContainsKey(category))
+                    {
+                        _translationDB[category] = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase);
+                    }
+
+                    foreach (var entry in categoryPair.Value)
+                    {
+                        string canonical = entry.Key;
+                        string ko = entry.Value.Ko;
+                        var aliases = entry.Value.Aliases;
+
+                        // Register canonical key
+                        _translationDB[category][canonical] = ko;
+                        _sharedEntriesCount++;
+
+                        // Register all aliases (map to same translation)
+                        if (aliases != null)
+                        {
+                            foreach (var alias in aliases)
+                            {
+                                _aliasToCanonical[alias] = canonical;
+                                _translationDB[category][alias] = ko;
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                Debug.LogError($"[LocalizationManager] Failed to load shared file {path}: {e.Message}");
             }
         }
 
@@ -460,6 +539,300 @@ namespace QudKRTranslation.Core
             else
             {
                 // Number/Bool/Null: read until delimiter
+                while (index < json.Length && !IsDelimiter(json[index]))
+                {
+                    index++;
+                }
+            }
+        }
+
+        private static void SkipWhitespace(string json, ref int index)
+        {
+            while (index < json.Length && char.IsWhiteSpace(json[index]))
+            {
+                index++;
+            }
+        }
+
+        private static bool IsDelimiter(char c)
+        {
+            return c == ',' || c == '}' || c == ']' || char.IsWhiteSpace(c);
+        }
+    }
+
+    /// <summary>
+    /// Parser for _SHARED JSON files with aliases support.
+    /// Format: { "category": { "Key": { "ko": "번역", "aliases": ["alias1", "alias2"] } } }
+    /// </summary>
+    internal static class SharedJsonParser
+    {
+        public class SharedEntry
+        {
+            public string Ko { get; set; }
+            public List<string> Aliases { get; set; }
+        }
+
+        public static Dictionary<string, Dictionary<string, SharedEntry>> Parse(string json)
+        {
+            var result = new Dictionary<string, Dictionary<string, SharedEntry>>(StringComparer.OrdinalIgnoreCase);
+            if (string.IsNullOrEmpty(json)) return result;
+
+            int index = 0;
+            SkipWhitespace(json, ref index);
+
+            if (index >= json.Length || json[index] != '{') return result;
+            index++; // skip {
+
+            while (index < json.Length)
+            {
+                SkipWhitespace(json, ref index);
+                if (index >= json.Length || json[index] == '}') break;
+
+                // Top Level Key (Category)
+                string category = ParseString(json, ref index);
+                SkipWhitespace(json, ref index);
+                if (index < json.Length && json[index] == ':') index++;
+                SkipWhitespace(json, ref index);
+
+                // Skip _meta, _imports, etc.
+                if (category.StartsWith("_"))
+                {
+                    SkipValue(json, ref index);
+                    SkipWhitespace(json, ref index);
+                    if (index < json.Length && json[index] == ',') index++;
+                    continue;
+                }
+
+                // Value must be an object (Category contents)
+                if (index < json.Length && json[index] == '{')
+                {
+                    var dict = new Dictionary<string, SharedEntry>(StringComparer.OrdinalIgnoreCase);
+                    ParseCategoryObject(json, ref index, dict);
+                    result[category] = dict;
+                }
+                else
+                {
+                    SkipValue(json, ref index);
+                }
+
+                SkipWhitespace(json, ref index);
+                if (index < json.Length && json[index] == ',') index++;
+            }
+
+            return result;
+        }
+
+        private static void ParseCategoryObject(string json, ref int index, Dictionary<string, SharedEntry> dict)
+        {
+            index++; // skip {
+            while (index < json.Length)
+            {
+                SkipWhitespace(json, ref index);
+                if (index >= json.Length || json[index] == '}')
+                {
+                    index++;
+                    return;
+                }
+
+                string key = ParseString(json, ref index);
+                SkipWhitespace(json, ref index);
+                if (index < json.Length && json[index] == ':') index++;
+                SkipWhitespace(json, ref index);
+
+                // Skip sub-categories (nested objects like "metals", "organic", etc.)
+                if (key.StartsWith("_"))
+                {
+                    SkipValue(json, ref index);
+                    SkipWhitespace(json, ref index);
+                    if (index < json.Length && json[index] == ',') index++;
+                    continue;
+                }
+
+                if (index < json.Length && json[index] == '{')
+                {
+                    // Check if this is an entry with "ko" field or a nested category
+                    var entry = ParseEntry(json, ref index);
+                    if (entry != null && entry.Ko != null)
+                    {
+                        dict[key] = entry;
+                    }
+                    else
+                    {
+                        // It was a nested category, we need to parse it recursively
+                        // Reparse the object as a category
+                    }
+                }
+                else
+                {
+                    SkipValue(json, ref index);
+                }
+
+                SkipWhitespace(json, ref index);
+                if (index < json.Length && json[index] == ',') index++;
+            }
+        }
+
+        private static SharedEntry ParseEntry(string json, ref int index)
+        {
+            var entry = new SharedEntry();
+            entry.Aliases = new List<string>();
+            bool foundKo = false;
+            bool isNestedCategory = false;
+
+            index++; // skip {
+            while (index < json.Length)
+            {
+                SkipWhitespace(json, ref index);
+                if (index >= json.Length || json[index] == '}')
+                {
+                    index++;
+                    break;
+                }
+
+                string fieldName = ParseString(json, ref index);
+                SkipWhitespace(json, ref index);
+                if (index < json.Length && json[index] == ':') index++;
+                SkipWhitespace(json, ref index);
+
+                if (fieldName == "ko")
+                {
+                    entry.Ko = ParseString(json, ref index);
+                    foundKo = true;
+                }
+                else if (fieldName == "aliases")
+                {
+                    entry.Aliases = ParseStringArray(json, ref index);
+                }
+                else if (index < json.Length && json[index] == '{')
+                {
+                    // This is a nested category, not an entry
+                    isNestedCategory = true;
+                    SkipValue(json, ref index);
+                }
+                else
+                {
+                    SkipValue(json, ref index);
+                }
+
+                SkipWhitespace(json, ref index);
+                if (index < json.Length && json[index] == ',') index++;
+            }
+
+            return (foundKo && !isNestedCategory) ? entry : null;
+        }
+
+        private static List<string> ParseStringArray(string json, ref int index)
+        {
+            var list = new List<string>();
+            SkipWhitespace(json, ref index);
+
+            if (index >= json.Length || json[index] != '[')
+            {
+                SkipValue(json, ref index);
+                return list;
+            }
+
+            index++; // skip [
+            while (index < json.Length)
+            {
+                SkipWhitespace(json, ref index);
+                if (index >= json.Length || json[index] == ']')
+                {
+                    index++;
+                    break;
+                }
+
+                if (json[index] == '\u0022')
+                {
+                    list.Add(ParseString(json, ref index));
+                }
+                else
+                {
+                    SkipValue(json, ref index);
+                }
+
+                SkipWhitespace(json, ref index);
+                if (index < json.Length && json[index] == ',') index++;
+            }
+
+            return list;
+        }
+
+        private static string ParseString(string json, ref int index)
+        {
+            var sb = new System.Text.StringBuilder();
+            if (index < json.Length && json[index] == '\u0022') index++;
+
+            while (index < json.Length)
+            {
+                char c = json[index++];
+                if (c == '\u0022') break;
+                if (c == '\\' && index < json.Length)
+                {
+                    char next = json[index++];
+                    switch (next)
+                    {
+                        case '\u0022': sb.Append('\u0022'); break;
+                        case '\\': sb.Append('\\'); break;
+                        case 'n': sb.Append('\n'); break;
+                        case 'r': sb.Append('\r'); break;
+                        case 't': sb.Append('\t'); break;
+                        case 'u':
+                            if (index + 4 <= json.Length)
+                            {
+                                string hex = json.Substring(index, 4);
+                                if (int.TryParse(hex, System.Globalization.NumberStyles.HexNumber, null, out int cp))
+                                {
+                                    sb.Append((char)cp);
+                                    index += 4;
+                                }
+                            }
+                            break;
+                        default: sb.Append(next); break;
+                    }
+                }
+                else
+                {
+                    sb.Append(c);
+                }
+            }
+            return sb.ToString();
+        }
+
+        private static void SkipValue(string json, ref int index)
+        {
+            SkipWhitespace(json, ref index);
+            if (index >= json.Length) return;
+
+            char c = json[index];
+            if (c == '{')
+            {
+                int depth = 1;
+                index++;
+                while (index < json.Length && depth > 0)
+                {
+                    if (json[index] == '{') depth++;
+                    else if (json[index] == '}') depth--;
+                    index++;
+                }
+            }
+            else if (c == '[')
+            {
+                int depth = 1;
+                index++;
+                while (index < json.Length && depth > 0)
+                {
+                    if (json[index] == '[') depth++;
+                    else if (json[index] == ']') depth--;
+                    index++;
+                }
+            }
+            else if (c == '\u0022')
+            {
+                ParseString(json, ref index);
+            }
+            else
+            {
                 while (index < json.Length && !IsDelimiter(json[index]))
                 {
                     index++;

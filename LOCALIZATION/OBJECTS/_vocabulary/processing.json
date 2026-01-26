@@ -1,0 +1,34 @@
+{
+  "_meta": {
+    "description": "가공/처리 방법 - 음식 및 아이템 처리",
+    "version": "1.0.0",
+    "source": "Extracted from OBJECTS/items/_common.json processing section"
+  },
+  "processing": {
+    "drying": {
+      "freeze-dried": "동결건조",
+      "sun-dried": "햇볕에 말린",
+      "dried": "말린"
+    },
+    "cooking": {
+      "raw": "생",
+      "cooked": "조리된",
+      "boiled": "삶은",
+      "fried": "튀긴",
+      "smoldered": "그을린"
+    },
+    "preserving": {
+      "preserved": "절임",
+      "cured": "절인",
+      "pickled": "절인",
+      "fermented": "발효된",
+      "canned": "통조림"
+    },
+    "processing": {
+      "crushed": "으깬",
+      "mashed": "으깬",
+      "sliced": "썬",
+      "compacted": "압축된"
+    }
+  }
+}

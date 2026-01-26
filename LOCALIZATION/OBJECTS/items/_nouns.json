@@ -26,7 +26,7 @@
     "halberd": "할버드",
     "pike": "파이크",
     "cudgel": "곤봉",
-    "_comment_audit": "전수 조사 추가",
+    "_comment_weapons_audit": "무기 전수 조사 추가",
     "kukri": "쿠크리",
     "kris": "크리스",
     "flyssa": "플리싸",
@@ -43,7 +43,7 @@
     "gun": "총",
     "knife": "칼",
 
-    "_comment_audit": "전수조사 추가",
+    "_comment_weapons_audit2": "무기 전수조사 추가",
     "blade": "블레이드",
     "whip": "채찍",
     "dart": "다트",
@@ -70,7 +70,7 @@
     "robe": "로브",
     "robes": "로브",
     "hood": "두건",
-    "_comment_audit": "전수 조사 추가",
+    "_comment_armor_audit": "방어구 전수 조사 추가",
     "bracer": "완갑",
     "coif": "코이프",
     "gorget": "목보호대",
@@ -97,7 +97,7 @@
     "skirt": "치마",
     "belt": "벨트",
     "sash": "허리띠",
-    "_comment_audit": "전수 조사 추가",
+    "_comment_clothing_audit": "의류 전수 조사 추가",
     "apron": "앞치마",
     "mantle": "망토",
     "jerkin": "저킨",
@@ -131,7 +131,7 @@
     "lamp": "램프",
     "key": "열쇠",
     "lockpick": "자물쇠 따개",
-    "_comment_audit": "전수 조사 추가",
+    "_comment_tools_audit": "도구 전수 조사 추가",
     "toolkit": "도구함"
   },
 
@@ -151,7 +151,7 @@
     "bar": "막대",
     "chunk": "덩어리",
     "lump": "덩어리",
-    "_comment_audit": "전수 조사 추가",
+    "_comment_misc_audit": "기타 전수 조사 추가",
     "figurine": "조각상",
     "manacles": "수갑",
     "netting": "그물",
@@ -186,7 +186,7 @@
     "pack": "팩",
     "bodypack": "바디팩",
     "backpack": "배낭",
-    "_comment_audit": "전수 조사 추가",
+    "_comment_mechanical_audit": "기계 전수 조사 추가",
     "recoiler": "귀환 장치",
     "wings": "날개",
     "_comment_postmortem": "포스트모템 전수 조사 추가",
@@ -268,7 +268,7 @@
     "war hammer": "전투 해머",
     "battle axe": "전투 도끼",
 
-    "_comment_audit": "전수조사 추가",
+    "_comment_compound_weapons_audit": "복합무기 전수조사 추가",
     "vibro blade": "바이브로 블레이드",
     "vibro dagger": "바이브로 단검",
     "stun whip": "기절 채찍",
@@ -589,8 +589,7 @@
     "bey": "베이",
     "acrobat": "곡예사",
     "volume": "권",
-    "vol": "권",
-    "volume": "권"
+    "vol": "권"
   },
 
   "final_push": {

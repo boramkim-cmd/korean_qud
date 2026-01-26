@@ -1,0 +1,24 @@
+{
+  "_meta": {
+    "description": "품질 등급 - Single Source of Truth",
+    "version": "1.0.0",
+    "canonical": true,
+    "source": "Extracted from OBJECTS/items/_common.json qualities section"
+  },
+  "qualities": {
+    "legendary": { "ko": "전설적인", "aliases": ["Legendary", "LEGENDARY"] },
+    "epic": { "ko": "서사적인", "aliases": ["Epic", "EPIC"] },
+    "masterwork": { "ko": "명품", "aliases": ["Masterwork", "MASTERWORK"] },
+    "flawless": { "ko": "완벽한", "aliases": ["Flawless", "FLAWLESS"] },
+    "pristine": { "ko": "완전무결한", "aliases": ["Pristine", "PRISTINE"] },
+    "excellent": { "ko": "뛰어난", "aliases": ["Excellent", "EXCELLENT"] },
+    "superior": { "ko": "우수한", "aliases": ["Superior", "SUPERIOR"] },
+    "fine": { "ko": "고급", "aliases": ["Fine", "FINE"] },
+    "perfect": { "ko": "완벽한", "aliases": ["Perfect", "PERFECT"] },
+    "rare": { "ko": "희귀한", "aliases": ["Rare", "RARE"] },
+    "uncommon": { "ko": "비범한", "aliases": ["Uncommon", "UNCOMMON"] },
+    "common": { "ko": "일반", "aliases": ["Common", "COMMON"] },
+    "basic": { "ko": "기본", "aliases": ["Basic", "BASIC"] },
+    "crude": { "ko": "조잡한", "aliases": ["Crude", "CRUDE"] }
+  }
+}

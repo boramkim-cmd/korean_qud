@@ -1,0 +1,15 @@
+{
+  "_meta": {
+    "description": "6대 속성 - Single Source of Truth",
+    "version": "1.0.0",
+    "canonical": true
+  },
+  "attributes": {
+    "Strength": { "ko": "힘", "aliases": ["strength", "STRENGTH", "STR"] },
+    "Agility": { "ko": "민첩", "aliases": ["agility", "AGILITY", "AGI"] },
+    "Toughness": { "ko": "건강", "aliases": ["toughness", "TOUGHNESS", "TOUGH"] },
+    "Intelligence": { "ko": "지능", "aliases": ["intelligence", "INTELLIGENCE", "INT"] },
+    "Willpower": { "ko": "의지", "aliases": ["willpower", "WILLPOWER", "WILL"] },
+    "Ego": { "ko": "자아", "aliases": ["ego", "EGO"] }
+  }
+}

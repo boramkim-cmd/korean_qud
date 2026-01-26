@@ -1,0 +1,94 @@
+{
+  "_meta": {
+    "description": "재료 - Single Source of Truth",
+    "version": "1.0.0",
+    "canonical": true,
+    "source": "Extracted from OBJECTS/items/_common.json materials section"
+  },
+  "materials": {
+    "metals": {
+      "iron": { "ko": "철", "aliases": ["Iron", "IRON"] },
+      "bronze": { "ko": "청동", "aliases": ["Bronze", "BRONZE"] },
+      "steel": { "ko": "강철", "aliases": ["Steel", "STEEL"] },
+      "copper": { "ko": "구리", "aliases": ["Copper", "COPPER"] },
+      "lead": { "ko": "납", "aliases": ["Lead", "LEAD"] },
+      "gold": { "ko": "금", "aliases": ["Gold", "GOLD"] },
+      "silver": { "ko": "은", "aliases": ["Silver", "SILVER"] },
+      "platinum": { "ko": "백금", "aliases": ["Platinum", "PLATINUM"] },
+      "chrome": { "ko": "크롬", "aliases": ["Chrome", "CHROME"] },
+      "palladium": { "ko": "팔라듐", "aliases": ["Palladium", "PALLADIUM"] },
+      "tungsten": { "ko": "텅스텐", "aliases": ["Tungsten", "TUNGSTEN"] }
+    },
+    "advanced_metals": {
+      "carbide": { "ko": "카바이드", "aliases": ["Carbide", "CARBIDE"] },
+      "fullerite": { "ko": "풀러라이트", "aliases": ["Fullerite", "FULLERITE"] },
+      "crysteel": { "ko": "크리스틸", "aliases": ["Crysteel", "CRYSTEEL"] },
+      "zetachrome": { "ko": "제타크롬", "aliases": ["Zetachrome", "ZETACHROME"] },
+      "metachrome": { "ko": "메타크롬", "aliases": ["Metachrome", "METACHROME"] },
+      "folded carbide": { "ko": "접힌 카바이드", "aliases": ["Folded Carbide"] },
+      "flawless crysteel": { "ko": "완벽한 크리스틸", "aliases": ["Flawless Crysteel"] }
+    },
+    "organic": {
+      "wooden": { "ko": "나무", "aliases": ["Wooden", "WOODEN"] },
+      "wood": { "ko": "나무", "aliases": ["Wood", "WOOD"] },
+      "leather": { "ko": "가죽", "aliases": ["Leather", "LEATHER"] },
+      "bone": { "ko": "뼈", "aliases": ["Bone", "BONE"] },
+      "fur": { "ko": "모피", "aliases": ["Fur", "FUR"] },
+      "snakeskin": { "ko": "뱀가죽", "aliases": ["Snakeskin", "SNAKESKIN"] },
+      "feather": { "ko": "깃털", "aliases": ["Feather", "FEATHER"] },
+      "chitin": { "ko": "키틴", "aliases": ["Chitin", "CHITIN"] },
+      "vinewood": { "ko": "덩굴나무", "aliases": ["Vinewood", "VINEWOOD"] },
+      "witchwood": { "ko": "마녀나무", "aliases": ["Witchwood", "WITCHWOOD"] },
+      "glitchwood": { "ko": "글리치나무", "aliases": ["Glitchwood", "GLITCHWOOD"] }
+    },
+    "fabrics": {
+      "cloth": { "ko": "천", "aliases": ["Cloth", "CLOTH"] },
+      "woven": { "ko": "직조", "aliases": ["Woven", "WOVEN"] },
+      "silk": { "ko": "비단", "aliases": ["Silk", "SILK"] },
+      "cotton": { "ko": "면", "aliases": ["Cotton", "COTTON"] },
+      "wool": { "ko": "양모", "aliases": ["Wool", "WOOL"] },
+      "linen": { "ko": "아마", "aliases": ["Linen", "LINEN"] },
+      "nylon": { "ko": "나일론", "aliases": ["Nylon", "NYLON"] }
+    },
+    "synthetic": {
+      "plastic": { "ko": "플라스틱", "aliases": ["Plastic", "PLASTIC"] },
+      "plastifer": { "ko": "플라스티퍼", "aliases": ["Plastifer", "PLASTIFER"] },
+      "nanoweave": { "ko": "나노직조", "aliases": ["Nanoweave", "NANOWEAVE"] },
+      "rubber": { "ko": "고무", "aliases": ["Rubber", "RUBBER"] }
+    },
+    "stone": {
+      "stone": { "ko": "돌", "aliases": ["Stone", "STONE"] },
+      "obsidian": { "ko": "흑요석", "aliases": ["Obsidian", "OBSIDIAN"] },
+      "clay": { "ko": "점토", "aliases": ["Clay", "CLAY"] },
+      "glass": { "ko": "유리", "aliases": ["Glass", "GLASS"] },
+      "marble": { "ko": "대리석", "aliases": ["Marble", "MARBLE"] },
+      "granite": { "ko": "화강암", "aliases": ["Granite", "GRANITE"] },
+      "sandstone": { "ko": "사암", "aliases": ["Sandstone", "SANDSTONE"] },
+      "basalt": { "ko": "현무암", "aliases": ["Basalt", "BASALT"] },
+      "limestone": { "ko": "석회암", "aliases": ["Limestone", "LIMESTONE"] },
+      "slate": { "ko": "슬레이트", "aliases": ["Slate", "SLATE"] },
+      "flint": { "ko": "부싯돌", "aliases": ["Flint", "FLINT"] },
+      "shale": { "ko": "셰일", "aliases": ["Shale", "SHALE"] },
+      "quartz": { "ko": "석영", "aliases": ["Quartz", "QUARTZ"] }
+    },
+    "gems": {
+      "coral": { "ko": "산호", "aliases": ["Coral", "CORAL"] },
+      "amber": { "ko": "호박", "aliases": ["Amber", "AMBER"] },
+      "jade": { "ko": "비취", "aliases": ["Jade", "JADE"] }
+    },
+    "other": {
+      "fulcrete": { "ko": "풀크리트", "aliases": ["Fulcrete", "FULCRETE"] },
+      "slynth": { "ko": "슬린스", "aliases": ["Slynth", "SLYNTH"] },
+      "saltstone": { "ko": "소금돌", "aliases": ["Saltstone", "SALTSTONE"] },
+      "oil": { "ko": "기름", "aliases": ["Oil", "OIL"] },
+      "wax": { "ko": "왁스", "aliases": ["Wax", "WAX"] },
+      "salt": { "ko": "소금", "aliases": ["Salt", "SALT"] },
+      "coal": { "ko": "석탄", "aliases": ["Coal", "COAL"] },
+      "charcoal": { "ko": "숯", "aliases": ["Charcoal", "CHARCOAL"] },
+      "sulfur": { "ko": "유황", "aliases": ["Sulfur", "SULFUR"] },
+      "ash": { "ko": "재", "aliases": ["Ash", "ASH"] },
+      "lead-acid": { "ko": "납산", "aliases": ["Lead-Acid", "LEAD-ACID"] },
+      "sap": { "ko": "수액", "aliases": ["Sap", "SAP"] }
+    }
+  }
+}

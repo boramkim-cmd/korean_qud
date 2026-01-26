@@ -1,0 +1,17 @@
+{
+  "_meta": {
+    "description": "신체 부위 - Single Source of Truth",
+    "version": "1.0.0",
+    "canonical": true
+  },
+  "body_parts": {
+    "Head": { "ko": "머리", "aliases": ["head", "HEAD"] },
+    "Body": { "ko": "몸통", "aliases": ["body", "BODY"] },
+    "Feet": { "ko": "발", "aliases": ["feet", "FEET"] },
+    "Face": { "ko": "얼굴", "aliases": ["face", "FACE"] },
+    "Back": { "ko": "등", "aliases": ["back", "BACK"] },
+    "Hands": { "ko": "손", "aliases": ["hands", "HANDS"] },
+    "Arm": { "ko": "팔", "aliases": ["arm", "ARM"] },
+    "Floating Nearby": { "ko": "부유 아이템", "aliases": ["floating nearby", "FLOATING NEARBY"] }
+  }
+}
