@@ -1,10 +1,39 @@
 # Caves of Qud Korean Localization - Changelog
 
-> **Version**: 6.8 | **Last Updated**: 2026-01-26
+> **Version**: 6.9 | **Last Updated**: 2026-01-26
 
 ---
 
 ## Recent Changes
+
+### [2026-01-26] XML vs JSON 번역 비교 및 용어 표준화
+- **번역 비교 스크립트 작성**: `tools/compare_translations.py`
+  - XML DisplayName 3,006개와 JSON 번역 항목 비교
+  - 미번역/부분번역/템플릿 자동 분류
+  - 우선순위별 리포트 생성 (HIGH/MEDIUM/LOW)
+- **번역 현황 분석**:
+  | 항목 | 개수 |
+  |------|------|
+  | XML DisplayName 총 | 3,006 |
+  | JSON 번역 완료 | 832 |
+  | 미번역 | 2,174 |
+- **용어 표준화 적용** (97+ 항목 수정):
+  - 능력치: Willpower→의지, Toughness→건강
+  - 장비: armor→갑옷, boots→장화, cape→망토
+  - 세력: barathrumites→바라트룸파
+  - 사이버네틱스: dermal plating→피부 장갑판
+- **추가 수정**:
+  - willpower: 의지력→의지 (UI/common.json)
+  - floating nearby: 주변 부유→부유 아이템
+  - warden: 경비원→경비관 (역할/경칭 통일)
+- **생성 문서**:
+  - `Docs/terminology_standard.md` - 표준 용어집
+  - `Docs/Issues/untranslated_report.md` - 미번역 항목
+  - `Docs/Issues/translation_priority.md` - 우선순위 분류
+  - `Docs/Issues/untranslated_by_type.md` - 유형별 분류
+  - `Docs/Issues/translation_structure_analysis.md` - 구조 분석
+  - `Docs/Issues/translation_cross_validation.md` - 교차 검증
+- **검증 결과**: 용어 불일치 0개 (모두 해결)
 
 ### [2026-01-26] 비자기참조 색상태그 번역 및 버그 수정
 - **비자기참조 색상태그 패턴 처리**:
