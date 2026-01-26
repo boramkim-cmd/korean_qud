@@ -54,6 +54,19 @@ namespace QudKorean.Objects.V2.Processing
 
             string result = text;
 
+            // Step 0: Handle self-referential color tags {{word|word}}
+            // These are mod adjectives like {{feathered|feathered}}
+            foreach (var prefix in repo.Prefixes)
+            {
+                string selfRefPattern = @"\{\{" + Regex.Escape(prefix.Key) + @"\|" + Regex.Escape(prefix.Key) + @"\}\}";
+                if (Regex.IsMatch(result, selfRefPattern, RegexOptions.IgnoreCase))
+                {
+                    result = Regex.Replace(result, selfRefPattern,
+                        "{{" + prefix.Value + "|" + prefix.Value + "}}",
+                        RegexOptions.IgnoreCase);
+                }
+            }
+
             // Process iteratively for nested tags
             int maxIterations = 5;
             for (int iteration = 0; iteration < maxIterations; iteration++)
