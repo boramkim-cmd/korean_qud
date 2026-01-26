@@ -41,6 +41,18 @@ namespace QudKorean.Objects.V2.Processing
                 foundAny = false;
                 foreach (var prefix in allPrefixes)
                 {
+                    // Check for color tag pattern: {{prefix|prefix}}
+                    string colorTagPattern = "{{" + prefix.Key + "|" + prefix.Key + "}}";
+                    if (current.StartsWith(colorTagPattern + " ", StringComparison.OrdinalIgnoreCase))
+                    {
+                        // Preserve color tag structure with translated content
+                        translatedPrefixes.Add("{{" + prefix.Value + "|" + prefix.Value + "}}");
+                        current = current.Substring(colorTagPattern.Length + 1);
+                        foundAny = true;
+                        break;
+                    }
+
+                    // Standard prefix check
                     if (current.StartsWith(prefix.Key + " ", StringComparison.OrdinalIgnoreCase))
                     {
                         translatedPrefixes.Add(prefix.Value);
