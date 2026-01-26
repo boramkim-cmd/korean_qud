@@ -25,8 +25,11 @@ namespace QudKorean.Objects.V2.Pipeline.Handlers
             var repo = context.Repository;
             string originalName = context.OriginalName;
 
+            // First translate prefixes/materials in color tags
+            string withTranslatedTags = ColorTagProcessor.TranslateMaterials(originalName, repo);
+
             // Strip color tags for prefix matching
-            string strippedForPrefix = ColorTagProcessor.Strip(originalName);
+            string strippedForPrefix = ColorTagProcessor.Strip(withTranslatedTags);
             string baseNameForPrefix = SuffixExtractor.ExtractAll(strippedForPrefix, out string allSuffixes);
 
             // Try with prefixes
@@ -37,7 +40,19 @@ namespace QudKorean.Objects.V2.Pipeline.Handlers
                     TryGetCreatureTranslation(repo, remainder, out baseKo))
                 {
                     string suffixKo = SuffixExtractor.TranslateAll(allSuffixes, repo);
-                    string translated = $"{prefixKo} {baseKo}{suffixKo}";
+                    string translated;
+
+                    // Restore color tags if present
+                    if (withTranslatedTags.Contains("{{"))
+                    {
+                        translated = ColorTagProcessor.RestoreFormatting(
+                            withTranslatedTags, remainder, baseKo, allSuffixes, suffixKo);
+                    }
+                    else
+                    {
+                        translated = $"{prefixKo} {baseKo}{suffixKo}";
+                    }
+
                     CacheAndReturn(context, translated);
                     return TranslationResult.Hit(translated, Name);
                 }
@@ -49,7 +64,18 @@ namespace QudKorean.Objects.V2.Pipeline.Handlers
                         TryGetCreatureTranslation(repo, baseOnly, out baseKo2))
                     {
                         string suffixKo = SuffixExtractor.TranslateAll(allSuffixes, repo);
-                        string translated = $"{prefixKo} {materialKo} {baseKo2}{suffixKo}";
+                        string translated;
+
+                        if (withTranslatedTags.Contains("{{"))
+                        {
+                            translated = ColorTagProcessor.RestoreFormatting(
+                                withTranslatedTags, baseOnly, baseKo2, allSuffixes, suffixKo);
+                        }
+                        else
+                        {
+                            translated = $"{prefixKo} {materialKo} {baseKo2}{suffixKo}";
+                        }
+
                         CacheAndReturn(context, translated);
                         return TranslationResult.Hit(translated, Name);
                     }
