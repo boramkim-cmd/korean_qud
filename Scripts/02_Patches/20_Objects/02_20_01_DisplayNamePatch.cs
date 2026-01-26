@@ -12,6 +12,7 @@ using System.Collections.Generic;
 using HarmonyLib;
 using XRL;
 using XRL.World;
+using QudKorean.Objects.V2;
 
 namespace QudKorean.Objects
 {
@@ -57,7 +58,7 @@ namespace QudKorean.Objects
                 // 모든 오브젝트 번역 (테스트 모드 해제됨)
                 
                 // Attempt translation
-                if (ObjectTranslator.TryGetDisplayName(blueprint, __result, out string translated))
+                if (ObjectTranslatorV2.TryGetDisplayName(blueprint, __result, out string translated))
                 {
                     // CRITICAL: Final safety check - never replace with empty string
                     if (!string.IsNullOrEmpty(translated))
@@ -78,7 +79,7 @@ namespace QudKorean.Objects
         /// </summary>
         public static void ClearCache()
         {
-            ObjectTranslator.ClearCache();
+            ObjectTranslatorV2.ClearCache();
         }
         
         /// <summary>
@@ -86,7 +87,7 @@ namespace QudKorean.Objects
         /// </summary>
         public static void ReloadAndClear()
         {
-            ObjectTranslator.ReloadJson();
+            ObjectTranslatorV2.ReloadJson();
         }
     }
     

@@ -16,6 +16,7 @@ using XRL.UI;
 using XRL.Wish;
 using XRL.World;
 using UnityEngine;
+using QudKorean.Objects.V2;
 
 namespace QudKorean.Objects
 {
@@ -37,8 +38,8 @@ namespace QudKorean.Objects
         {
             try
             {
-                ObjectTranslator.ReloadJson();
-                string stats = ObjectTranslator.GetStats();
+                ObjectTranslatorV2.ReloadJson();
+                string stats = ObjectTranslatorV2.GetStats();
                 Popup.Show($"Object translations reloaded!\n{stats}");
                 UnityEngine.Debug.Log($"{LOG_PREFIX} Translations reloaded: {stats}");
             }
@@ -66,10 +67,10 @@ namespace QudKorean.Objects
                 
                 blueprint = blueprint.Trim();
                 
-                if (ObjectTranslator.TryGetDisplayName(blueprint, "", out string displayName))
+                if (ObjectTranslatorV2.TryGetDisplayName(blueprint, "", out string displayName))
                 {
                     string description = "";
-                    ObjectTranslator.TryGetDescription(blueprint, out description);
+                    ObjectTranslatorV2.TryGetDescription(blueprint, out description);
                     
                     Popup.Show($"Blueprint: {blueprint}\n\nDisplayName: {displayName}\n\nDescription: {description ?? "(none)"}");
                 }
@@ -117,7 +118,7 @@ namespace QudKorean.Objects
                     string blueprint = obj.Blueprint;
                     if (string.IsNullOrEmpty(blueprint)) continue;
                     
-                    if (ObjectTranslator.HasTranslation(blueprint))
+                    if (ObjectTranslatorV2.HasTranslation(blueprint))
                         translated.Add(blueprint);
                     else
                         untranslated.Add(blueprint);
@@ -147,7 +148,7 @@ namespace QudKorean.Objects
         {
             try
             {
-                string stats = ObjectTranslator.GetStats();
+                string stats = ObjectTranslatorV2.GetStats();
                 Popup.Show($"Object Translation Stats:\n\n{stats}");
             }
             catch (Exception ex)
@@ -165,7 +166,7 @@ namespace QudKorean.Objects
         {
             try
             {
-                ObjectTranslator.ClearCache();
+                ObjectTranslatorV2.ClearCache();
                 Popup.Show("Display name cache cleared!");
             }
             catch (Exception ex)

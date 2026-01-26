@@ -10,6 +10,7 @@ using System;
 using System.Text;
 using HarmonyLib;
 using XRL.World.Parts;
+using QudKorean.Objects.V2;
 
 namespace QudKorean.Objects
 {
@@ -37,7 +38,7 @@ namespace QudKorean.Objects
                 string blueprint = __instance.ParentObject.Blueprint;
                 if (string.IsNullOrEmpty(blueprint)) return;
                 
-                if (ObjectTranslator.TryGetDescription(blueprint, out string translated))
+                if (ObjectTranslatorV2.TryGetDescription(blueprint, out string translated))
                 {
                     __result = translated;
                 }
