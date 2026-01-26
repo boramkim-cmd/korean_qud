@@ -1,0 +1,2259 @@
+# 미번역 항목 유형별 정리
+
+> 자동 분류 기준으로 정리됨. 일부 항목은 수동 검토 필요.
+
+## 요약
+
+| 유형 | 개수 | 설명 |
+|------|------|------|
+| 고유명사 캐릭터/NPC | 81 | 이름이 있는 고유 캐릭터 (번역 불가, 발음 표기만) |
+| 일반 생물/적 | 854 | 일반적인 생물, 적, NPC 유형 |
+| 장비/무기/아이템 | 247 | 착용 장비, 무기, 소모품 등 |
+| 정크/파손품 | 14 | 고장나거나 파손된 아이템 |
+| 음식 | 15 | 식량, 요리 |
+| 액체/겔 | 0 | congealed 형태의 액체 |
+| 가구/구조물 | 338 | 건물, 가구, 설치물 |
+| 지형/장소 | 131 | 지역명, 지형 유형 |
+| 능력치/스탯 | 49 | 능력 설명, 스탯 이름 |
+| 팩션/세력 | 96 | 팩션, 그룹, 조직 |
+| 템플릿 변수 | 58 | =xxx= 형태의 동적 텍스트 (번역 불필요) |
+| 컬러 코드 포함 | 981 | {{색상|텍스트}} 또는 &X 코드 포함 |
+| 수식어/Mods | 59 | 아이템에 붙는 접두사/접미사 |
+| 기타 | 83 | 분류 어려운 항목 |
+| **총계** | **3006** | |
+
+---
+
+## 번역 가이드
+
+### 번역 필요
+- 일반 생물/적, 장비/무기, 음식, 가구/구조물, 능력치, 수식어
+
+### 음역 (발음 표기)
+- 고유명사 캐릭터/NPC (Argyve → 아르기브)
+- 지형/장소 (Joppa → 조파)
+
+### 번역 불필요
+- 템플릿 변수 (=creatureRegionAdjective= 등)
+
+### 주의 필요
+- 컬러 코드 포함 항목: 태그 구조 유지하면서 텍스트만 번역
+
+---
+
+## 고유명사 캐릭터/NPC (81개)
+
+*이름이 있는 고유 캐릭터 (번역 불가, 발음 표기만)*
+
+- `Agolgot`
+- `Agyra`
+- `Aloysius`
+- `Angohind`
+- `Aoyg-No-Longer`
+- `Argyve`
+- `Arrivarium`
+- `Asphodel`
+- `Barathrum`
+- `Bep`
+- `Bethsaida`
+- `Crowsong`
+- `Ctesiphus`
+- `Dadogom`
+- `Dagasha`
+- `Dardi`
+- `Doyoba`
+- `Dyvvrach`
+- `Erah`
+- `Eskhind`
+- `Esther`
+- `Euclid`
+- `Fjorn-Kosef`
+- `Geeub`
+- `Goek`
+- `Gyamyo`
+- `Haddas`
+- `Haggabah`
+- `Hamilcrab`
+- `Herododicus`
+- `Hortensa`
+- `Indrix`
+- `Irudad`
+- `Isahind`
+- `Iseppa`
+- `Jacobo`
+- `Jotun`
+- `Kah`
+- `Keh-hind`
+- `Kesehind`
+- `Krka`
+- `Lebah`
+- `Liihart`
+- `Lulihart`
+- `Mafeo`
+- `Mak`
+- `Mehmet`
+- `Meyehind`
+- `Miryam`
+- `Nacham`
+- `Naphtaali`
+- `Neek`
+- `Neelahind`
+- `Nuntu`
+- `Oboroqoru`
+- `Otho`
+- `Qas`
+- `Qon`
+- `Rainwater`
+- `Rermadon`
+- `Rokhas`
+- `Santalalotze`
+- `Shug'ruith`
+- `Sixshrew`
+- `Slog`
+- `Sparafucile`
+- `Tam`
+- `Tammuz`
+- `Thah`
+- `Thicksalt`
+- `Tikva`
+- `Tillifergaewicz`
+- `Tszappur`
+- `Tzedech`
+- `Une`
+- `Va'am`
+- `Vivira`
+- `Yona`
+- `Yrame`
+- `Yurl`
+- `Zothom`
+
+---
+
+## 일반 생물/적 (854개)
+
+*일반적인 생물, 적, NPC 유형*
+
+- `0lam`
+- `1-FF`
+- `_`
+- `achromous bite`
+- `addling urchin`
+- `adiyy`
+- `Agate Severance Star`
+- `agolfly`
+- `agolmaggot`
+- `agolzvuv`
+- `alchemist`
+- `aloe fugues`
+- `aloe porta`
+- `aloe pyra`
+- `aloe volta`
+- `amoeba farmer`
+- `anomaly extinguisher`
+- `antelope cherub`
+- `antelope golem`
+- `ape cherub`
+- `ape golem`
+- `apothecary`
+- `apple farmer`
+- `apple farmer's daughter`
+- `arch dervish of the Sightless Way`
+- `arconaut`
+- `armored claw`
+- `armorer`
+- `ash shovel`
+- `asphodelyte`
+- `astral tabby`
+- `atmospheric halo`
+- `baboon`
+- `baboon cherub`
+- `baboon corpse`
+- `baboon golem`
+- `baboon hero`
+- `baetyl cherub`
+- `baetyl golem`
+- `banana rancher`
+- `Banner-Knight Templar`
+- `barbed foreleg`
+- `barbed midleg`
+- `bark`
+- `barkbiter`
+- `barkbiter corpse`
+- `base bear`
+- `bat`
+- `bat cherub`
+- `bat corpse`
+- `bat golem`
+- `bay door`
+- `bazaar of Samech`
+- `bear`
+- `bear cherub`
+- `bear corpse`
+- `bear golem`
+- `bed golem`
+- `beekeeper`
+- `beetle farmer`
+- `beetlebum`
+- `bending gjaus`
+- `bipedal robot golem`
+- `bird cherub`
+- `bird golem`
+- `bite`
+- `blast cannon tinker`
+- `bloated pearlfrog`
+- `bloated pearlfrog corpse`
+- `blue marble world`
+- `blueshifted chrome`
+- `blunt end`
+- `boar`
+- `boar corpse`
+- `bone worm`
+- `bone worm corpse`
+- `bookbinder`
+- `booster gun`
+- `brazier in suspense`
+- `breathbeard`
+- `broken snail egg`
+- `built-in bookshelf`
+- `burrowing girshling`
+- `bush golem`
+- `cannibal`
+- `cannibal and Mechanimist convert`
+- `cannibal cherub`
+- `caravan guard`
+- `cat cherub`
+- `cat golem`
+- `cat herder`
+- `cave spider`
+- `cave spider corpse`
+- `chaingun turret tinker`
+- `chair golem`
+- `charred goatfolk corpse`
+- `chef`
+- `cherubic bands`
+- `cherubic bark`
+- `cherubic bite`
+- `cherubic claw`
+- `cherubic fist`
+- `cherubic foot`
+- `cherubic handle`
+- `cherubic kick`
+- `cherubic nodule`
+- `cherubic pistil`
+- `cherubic pseudopod`
+- `cherubic spade`
+- `cherubic spines`
+- `cherubic stranglehold`
+- `cherubic talons`
+- `chitinous puma`
+- `chitinous puma corpse`
+- `chrome chibur`
+- `chute crab`
+- `circumcestral monument`
+- `clam golem`
+- `claws`
+- `clockwork beetle`
+- `clone of Saad Amus`
+- `colossal hoof`
+- `communication ribbons`
+- `conjoined girshlings`
+- `conservator`
+- `copilot console`
+- `copilot seat`
+- `corded tail`
+- `corpse of Slog`
+- `crab cherub`
+- `crab claw`
+- `crab farmer`
+- `crab golem`
+- `crab-crushing beak`
+- `cragmensch boulderer`
+- `cragmensch brainer`
+- `cragmensch golem`
+- `cragmensch luminary`
+- `croc`
+- `crushing bands`
+- `crypt ferret`
+- `crypt sitter`
+- `cryptic girshling`
+- `crysfoil gills`
+- `crystal fist`
+- `crystal golem`
+- `crystal slynth`
+- `crysteel bay plates`
+- `crysteel braid`
+- `curly horns`
+- `curved horns`
+- `cyclopean arm`
+- `cyclopean gibbon`
+- `Dagasha's crucifix`
+- `dark matter mast`
+- `daughter of Exile`
+- `dawnglider`
+- `dawnglider corpse`
+- `dawnglider golem`
+- `dawning ape`
+- `decarbonizer`
+- `decorative moss pod`
+- `deep slumberling`
+- `defanged girshling`
+- `defanged girshling corpse`
+- `dervish of the Sightless Way`
+- `diplomacy droid`
+- `disciple of the Sightless Way`
+- `dish horn`
+- `distortion field`
+- `dog cherub`
+- `dog corpse`
+- `dog golem`
+- `door golem`
+- `dream wren`
+- `dreambeard`
+- `dreambeard corpse`
+- `dreamcrungle`
+- `dromad`
+- `dromad corpse`
+- `dromad golem`
+- `dromad trader`
+- `drowsing urchin`
+- `dynamic turret tinker`
+- `Earth Gate`
+- `earthworm corpse`
+- `eel grass`
+- `ego sap`
+- `eigenturret tinker`
+- `elder breathbeard`
+- `elder dreambeard`
+- `elder dreambeard corpse`
+- `elder flamebeard`
+- `elder flamebeard corpse`
+- `elder gallbeard`
+- `elder gallbeard corpse`
+- `elder lagroot`
+- `elder mazebeard`
+- `elder mazebeard corpse`
+- `elder nullbeard`
+- `elder nullbeard corpse`
+- `elder sleetbeard`
+- `elder sleetbeard corpse`
+- `elder stillbeard`
+- `elder stillbeard corpse`
+- `elder tartbeard`
+- `elder tartbeard corpse`
+- `electric arc`
+- `electric snail`
+- `electric snail corpse`
+- `electrofuge`
+- `electrofuge corpse`
+- `engine crabs`
+- `enigma snail`
+- `enigma snail corpse`
+- `equimax`
+- `equimax corpse`
+- `equine cherub`
+- `equine golem`
+- `Eschelstadt II`
+- `exit portal`
+- `extrasolar fungi`
+- `eyeless crab`
+- `eyeless crab corpse`
+- `eyeless king crab`
+- `eyeless king crab corpse`
+- `false`
+- `fangs`
+- `faundren villager`
+- `feral dog`
+- `finned tail`
+- `fire ant`
+- `fire ant queen`
+- `fire snout`
+- `fire snout corpse`
+- `fish cherub`
+- `fish golem`
+- `fist`
+- `flabby leaf`
+- `flamebeard`
+- `flamebeard corpse`
+- `flayed goatfolk corpse`
+- `flower cherub`
+- `flower golem`
+- `fluent lock`
+- `fool of the Gyre`
+- `force rail`
+- `forcecore`
+- `fork-horned gnu`
+- `fractal cabinet`
+- `fractal talon`
+- `fractus cherub`
+- `fractus golem`
+- `freight crate`
+- `frog cherub`
+- `frog golem`
+- `from shunter`
+- `frond`
+- `fulcrete catapult`
+- `fungus golem`
+- `galgal`
+- `gallbeard`
+- `gallbeard corpse`
+- `gamma moth`
+- `gaze`
+- `gelatinous antiprism`
+- `gelatinous cupola`
+- `gelatinous frustum`
+- `gelatinous prism`
+- `gelatinous wedge`
+- `gemcutter`
+- `geometric bulkhead`
+- `ghost perch`
+- `ghost perch corpse`
+- `giant amoeba`
+- `giant beetle`
+- `giant beetle corpse`
+- `giant beetle nest`
+- `giant centipede`
+- `giant centipede corpse`
+- `giant centipede nest`
+- `giant clam`
+- `giant dragonfly`
+- `giant dragonfly corpse`
+- `gibbon corpse`
+- `gimeleth`
+- `Girsh godling`
+- `girshling`
+- `girshling cresh`
+- `girshworm`
+- `glass dome`
+- `glittermensch`
+- `glittermensch boulderer`
+- `glittermensch brainer`
+- `glittermensch luminary`
+- `globe in suspense`
+- `glover`
+- `glowcrow`
+- `glowfish`
+- `glowfish corpse`
+- `glowmoth`
+- `glowmoth corpse`
+- `glowpad`
+- `gnashing beak`
+- `goat`
+- `goat corpse`
+- `goat golem`
+- `goat herder`
+- `goatfolk bully`
+- `goatfolk corpse`
+- `goatfolk golem`
+- `goatfolk hornblower`
+- `goatfolk qlippoth`
+- `goatfolk shaman`
+- `goatfolk sower`
+- `goatfolk thrall`
+- `goatfolk yurtwarden`
+- `golden thurible`
+- `golem`
+- `golem oddity`
+- `gorged growth`
+- `grand newfather`
+- `graphene ribbon`
+- `graverobber`
+- `grazing cherub`
+- `great saltback`
+- `great saltback corpse`
+- `great stomp`
+- `greater voider`
+- `greater voider corpse`
+- `grenadier`
+- `guard dog`
+- `Gunner-Knight Templar`
+- `gunsmith`
+- `gutsmonger`
+- `gyre wight`
+- `gyre wight apotheote`
+- `gyre wight of Agolgot`
+- `gyre wight of Bethsaida`
+- `gyre wight of Qas`
+- `gyre wight of Qon`
+- `gyre wight of Rermadon`
+- `gyre wight of Shug'ruith`
+- `gyrohumor`
+- `haberdasher`
+- `hatter`
+- `helpful hand`
+- `herding dog`
+- `hermit cherub`
+- `hexapodal robot golem`
+- `hide-sheathed hermit`
+- `high dervish of the Sightless Way`
+- `high medina`
+- `hindren afflicted`
+- `hindren corpse`
+- `hindren golem`
+- `hindren pariah`
+- `hindren scout`
+- `hindren scout and pariah`
+- `hindren trader`
+- `hindren villager`
+- `Hindriarch Keh`
+- `hoary fist`
+- `hologram`
+- `hologram of archon mainframe`
+- `hologram of Barathrum`
+- `hologram of outworlder`
+- `hologram of Rebekah`
+- `hologram of Resheph, the Above`
+- `hologram projector`
+- `holographic beth`
+- `holographic star chart`
+- `honey skunk`
+- `hoof`
+- `hookah in suspense`
+- `horned chameleon`
+- `horned chameleon corpse`
+- `hover golem`
+- `hulking baboon`
+- `human apothecary`
+- `human golem`
+- `human tinker`
+- `humanoid robot golem`
+- `humor`
+- `hunter of the Sightless Way`
+- `hyperconductive labyrinthite`
+- `ice frog`
+- `ichor merchant`
+- `ickslug`
+- `infested crysfoil gills`
+- `infiltrator`
+- `infrastructure golem`
+- `insect cherub`
+- `insect golem`
+- `interdictor`
+- `iron maiden golem`
+- `irritable palm`
+- `irritable tortoise`
+- `Issachari raider`
+- `Issachari raider and Mechanimist convert`
+- `Issachari rifler`
+- `ixlthyxl`
+- `jaundiced glow`
+- `jaws`
+- `jelly golem`
+- `jeweled cosmos`
+- `jeweler`
+- `juice sap`
+- `juicing cannibal`
+- `jumble of tongues`
+- `junk dollar`
+- `Jy egregore`
+- `k-Goninon`
+- `Kah's conveyor`
+- `kaleidoslug corpse`
+- `kick`
+- `kingdom of Qor`
+- `kipper`
+- `Knight Commander of the Holy Temple`
+- `Knight Templar`
+- `knob`
+- `knollworm`
+- `knollworm corpse`
+- `lagroot`
+- `Lake Avalon`
+- `large mandibles`
+- `laser turret tinker`
+- `launch assembly`
+- `leech corpse`
+- `leech farmer`
+- `lichen golem`
+- `life sap`
+- `light rail`
+- `light stage`
+- `lightlock`
+- `lithofex`
+- `livid creeper`
+- `low medina`
+- `low-light laser turret tinker`
+- `luminous hoarshroom`
+- `lurking beth`
+- `madpole`
+- `madpole corpse`
+- `mandibles`
+- `manipulator`
+- `Many Eyes`
+- `mazebeard`
+- `mazebeard corpse`
+- `mecha power core`
+- `mechanical antelope cherub`
+- `mechanical ape cherub`
+- `mechanical baboon cherub`
+- `mechanical baetyl cherub`
+- `mechanical bat cherub`
+- `mechanical bear cherub`
+- `mechanical bird cherub`
+- `mechanical cannibal cherub`
+- `mechanical cat cherub`
+- `mechanical crab cherub`
+- `mechanical dog cherub`
+- `mechanical equine cherub`
+- `mechanical fish cherub`
+- `mechanical flower cherub`
+- `mechanical fractus cherub`
+- `mechanical frog cherub`
+- `mechanical grazing cherub`
+- `mechanical hermit cherub`
+- `mechanical insect cherub`
+- `mechanical mollusk cherub`
+- `mechanical mushroom cherub`
+- `mechanical ooze cherub`
+- `mechanical pottery cherub`
+- `mechanical reptile cherub`
+- `mechanical robot cherub`
+- `mechanical root cherub`
+- `mechanical spider cherub`
+- `mechanical stranger cherub`
+- `mechanical swine cherub`
+- `mechanical tortoise cherub`
+- `mechanical tree cherub`
+- `mechanical urchin cherub`
+- `mechanical vine cherub`
+- `mechanical worm cherub`
+- `Mechanimist catechist`
+- `Mechanimist houndmaster`
+- `Mechanimist paladin`
+- `Mechanimist pilgrim`
+- `Mechanimist preacher`
+- `Mechanimist priest`
+- `Mechanimist rummager`
+- `Mechanimist zealot`
+- `memory eater`
+- `memory eater corpse`
+- `memory torus`
+- `metal fist`
+- `mighty fist`
+- `mimic`
+- `mimic corpse`
+- `mindrone`
+- `miner`
+- `miner Mk I`
+- `miner Mk II`
+- `miner Mk III`
+- `mirror bug`
+- `moisture bong`
+- `mollusk cherub`
+- `molting basilisk husk`
+- `monad`
+- `moon-and-sun shade`
+- `mopango charioteer`
+- `mopango charioteer golem`
+- `mopango corpse`
+- `mopango golem`
+- `mopango pilgrim`
+- `mopango tombdweller`
+- `mopango watcher`
+- `moted forest`
+- `moted lamp`
+- `mouth of crushed polyps`
+- `mover`
+- `mover ecliptic`
+- `mover rail`
+- `mover stop`
+- `muscular foot`
+- `mushroom cherub`
+- `mutating gaze`
+- `mysterious gunslinger`
+- `n-dimensional starshell`
+- `Nacham's loom`
+- `nacreous foot`
+- `nails of Jy`
+- `Naphtaali forager`
+- `Naphtaali jeer`
+- `Naphtaali nimrod`
+- `Naphtaali sap`
+- `Naphtaali tinker`
+- `naser cannon`
+- `nephal`
+- `nest golem`
+- `newfather`
+- `Nima Ruda`
+- `nodule`
+- `nondeterministic core`
+- `normality vent`
+- `North Forum`
+- `Northern Ark`
+- `novice of the Sightless Way`
+- `nullbeard`
+- `nullbeard corpse`
+- `oak chair`
+- `oaken table`
+- `observation lune`
+- `oddly-hued glowpad`
+- `ooze cherub`
+- `ooze golem`
+- `ornamental pipe`
+- `outworld vault`
+- `panhumor`
+- `passenger console`
+- `Pax Klanq`
+- `peck`
+- `phase cannon tinker`
+- `phase spider`
+- `phasic screw`
+- `Phinae Hoshaiah`
+- `photon drive`
+- `phylactery squire`
+- `pig`
+- `pig corpse`
+- `pig farmer`
+- `pig farmer and Mechanimist convert`
+- `pilaster`
+- `pilot baetyl`
+- `pistil`
+- `planished godhed`
+- `plasma jelly`
+- `plasmatic girshling`
+- `plastronoid`
+- `plated knollworm`
+- `player statue`
+- `pneumatic piston`
+- `Point of Tifaret`
+- `point-defense laser`
+- `poison-tipped spear`
+- `polarized girshling`
+- `pottery cherub`
+- `power hedron`
+- `prism cresh`
+- `prism girshling`
+- `prism perch`
+- `protector of the Stilt`
+- `pseudopod`
+- `psyberneticist`
+- `pulsed field magnet`
+- `Q Girl`
+- `Qorish sorceress gown`
+- `Qorish sorceress veil`
+- `quadrupedal robot golem`
+- `quartz baboon`
+- `quartz baboon corpse`
+- `quartziferous mirror`
+- `quatravolt glider`
+- `quick sap`
+- `quillipede`
+- `quillipede corpse`
+- `rank girshling`
+- `ray cat`
+- `ray cat corpse`
+- `red etz trellis`
+- `red hand`
+- `reef hermit`
+- `reptile cherub`
+- `reptile golem`
+- `rhinox`
+- `rhinox corpse`
+- `rifle turret tinker`
+- `rimewyk`
+- `ring of moss`
+- `ritual chimes`
+- `robot cherub`
+- `rocket turret tinker`
+- `Rodanis Y`
+- `root cherub`
+- `root golem`
+- `ruined mover stop`
+- `rustacean corpse`
+- `Saad Amus`
+- `sacred truss`
+- `salamander corpse`
+- `salt kraken`
+- `salt kraken corpse`
+- `salthopper`
+- `salthopper corpse`
+- `sated dreamcrungle`
+- `scalpel`
+- `schematics drafter`
+- `scorpiock`
+- `scorpiock corpse`
+- `scrap-clad hermit`
+- `scribe`
+- `scrying horn`
+- `seed`
+- `seed spitter`
+- `seed vault`
+- `seedsprout worm`
+- `seedsprout worm corpse`
+- `segmented mirthworm corpse`
+- `sewage eel`
+- `shattered mirror`
+- `shattered stratum`
+- `shattered terrarium`
+- `shave flaps`
+- `shesh dacha`
+- `sheva dacha`
+- `sheyd`
+- `shockrod`
+- `shoemaker`
+- `shoulder-mounted light cannon`
+- `shrewd baboon`
+- `shrine to the Great Machine`
+- `shunting kick`
+- `singing bell`
+- `skittering sentry`
+- `sleep hollow`
+- `sleetbeard`
+- `sleetbeard corpse`
+- `slug`
+- `slug golem`
+- `slugsnout`
+- `slugsnout slug`
+- `slumberling`
+- `slynth`
+- `slynth cantor`
+- `slynth cidermouth`
+- `slynth exile`
+- `slynth friend`
+- `slynth golem`
+- `slynth irrigator`
+- `slynth piper`
+- `slynth scout`
+- `slynth villager`
+- `slynth wrenchmonk`
+- `smarts sap`
+- `snail egg`
+- `snail farmer`
+- `snail golem`
+- `snailmother`
+- `snailmother corpse`
+- `snapjaw`
+- `snapjaw brute`
+- `snapjaw corpse`
+- `snapjaw feeder`
+- `snapjaw golem`
+- `snapjaw howler`
+- `snapjaw hunter`
+- `snapjaw scavenger`
+- `snapjaw shotgunner`
+- `snapjaw spearfiend`
+- `snapjaw trapper`
+- `snapjaw warlord`
+- `snapjaw warrior`
+- `solar ribbon`
+- `southwise bridge`
+- `sower's seed`
+- `spade`
+- `spider cherub`
+- `spider golem`
+- `Spindle tether`
+- `spines`
+- `spitting slug`
+- `spotted claw`
+- `sprouting orb`
+- `star bronze scales`
+- `star kraken`
+- `star orchid lily`
+- `star orchid lime`
+- `Star Orchid Temple`
+- `Starfarer's Quay`
+- `starprint hoof`
+- `starship moor`
+- `starship nozzle`
+- `starship platform`
+- `stat sap`
+- `station wall`
+- `status panel`
+- `stillbeard`
+- `stillbeard corpse`
+- `stone ankh`
+- `stony bite`
+- `strangefluid core`
+- `stranger cherub`
+- `stranglehold`
+- `stratum caryatid`
+- `strength sap`
+- `strip fly`
+- `stud`
+- `succulent golem`
+- `sultan croc`
+- `superstratum`
+- `surface stratum`
+- `svardym corpse`
+- `svardym egg sac`
+- `svardym eld`
+- `svardym golem`
+- `svardym hatchling`
+- `svardym jut`
+- `svardym scrounge`
+- `swine cherub`
+- `swine golem`
+- `table golem`
+- `talking bear`
+- `tartbeard`
+- `tartbeard corpse`
+- `Templar squire`
+- `temple dedication plaque`
+- `temple gate`
+- `temple mecha mk Ia`
+- `temple mecha mk Ib`
+- `temple mecha mk II`
+- `temple projecter`
+- `temple to the Great Machine`
+- `tendril`
+- `terrarium`
+- `tethering arm`
+- `thirst thistle`
+- `thistle pitcher`
+- `thorns`
+- `tinker`
+- `tongue tyrant`
+- `tortoise cherub`
+- `tortoise golem`
+- `trash abbot`
+- `trash monk`
+- `tree cherub`
+- `tree golem`
+- `Triangulum Consulate`
+- `Triangulum tree sculpture`
+- `tricuspid teeth`
+- `trining lamprey`
+- `tripedal robot golem`
+- `troll`
+- `troll corpse`
+- `troll foal`
+- `troll golem`
+- `troll king`
+- `true random sampler`
+- `tungsten carbide axe-fist`
+- `tungsten carbide hammer-fist`
+- `turret golem`
+- `turret tinker`
+- `tusks`
+- `twinning lamprey`
+- `two-headed boar`
+- `two-headed slugsnout`
+- `ultraviolet farming shelf`
+- `underhorn`
+- `understratum`
+- `unimax`
+- `unimax corpse`
+- `unplanished godhed`
+- `urchin belcher`
+- `urchin belcher corpse`
+- `urchin cherub`
+- `urchin golem`
+- `urn duster`
+- `urshiib corpse`
+- `urshiib golem`
+- `Urshiib Librarian`
+- `Urshiib Merchant`
+- `ursine locket`
+- `Va'am's blower`
+- `vacuum edge glass`
+- `vacuum flux processor`
+- `vacuum of space`
+- `vantabloom`
+- `vantabud`
+- `vertical launcher`
+- `vessel in suspense`
+- `vicious bite`
+- `vigor sap`
+- `vine cherub`
+- `vine golem`
+- `vintner`
+- `voider`
+- `voider corpse`
+- `wad of ort`
+- `wall golem`
+- `warden of the Sanctum`
+- `warm peeker`
+- `watervine farmer`
+- `watervine farmer and Mechanimist convert`
+- `waveform worm`
+- `webbed foot`
+- `wheel of Qv`
+- `wheeled robot golem`
+- `whipping antenna`
+- `white esh`
+- `wide chair`
+- `wild-eyed water merchant`
+- `will sap`
+- `wood-carved bed`
+- `wood-carved bookshelf`
+- `wood-carved chair`
+- `wood-carved clothespress`
+- `wood-carved table`
+- `woodsprog`
+- `woodsprog corpse`
+- `worker ant`
+- `worm cherub`
+- `worm golem`
+- `worm of the earth`
+- `Wraith-Knight Templar of the Binary Honorum`
+- `Yla Haj`
+- `zealot of the Six Day Stilt`
+
+---
+
+## 장비/무기/아이템 (247개)
+
+*착용 장비, 무기, 소모품 등*
+
+- `3D cobblers`
+- `amber-tipped staff`
+- `antlers`
+- `arc winder`
+- `arrow`
+- `ashes`
+- `bandage`
+- `bark armor`
+- `BaseFloat`
+- `beak`
+- `bill`
+- `black robes`
+- `blast of shot`
+- `blood-gradient hand vacuum`
+- `blunt scalpel`
+- `boar-skin gloves`
+- `book`
+- `boulder`
+- `bounding boots`
+- `bouquet of flowers`
+- `bracelet`
+- `bubble level`
+- `bulging waterskin`
+- `burrowing claws`
+- `camel bladder`
+- `canteen`
+- `carapace`
+- `carbine`
+- `casque`
+- `cast net`
+- `ceremonial vibrokhopesh`
+- `chain boots`
+- `chain coif`
+- `chain gauntlets`
+- `chain mail`
+- `chain pistol`
+- `chaingun`
+- `charred corpse`
+- `chrome revolver`
+- `circle of light`
+- `claw`
+- `clay pot`
+- `cloth overalls`
+- `cloth robe`
+- `club`
+- `combat shotgun`
+- `compass bracelet`
+- `compound bow`
+- `cookbook`
+- `crude toga`
+- `crystal flowers`
+- `crystalline point`
+- `dart gun`
+- `data disk`
+- `dazzle cheek`
+- `desalination pellet`
+- `desert kris`
+- `eigenpistol`
+- `eigenrifle`
+- `electric snail shell`
+- `entropy cyst`
+- `etched cleaver`
+- `filthy toga`
+- `Fix-It spray foam`
+- `flamethrower`
+- `flashbang grenade mk I`
+- `flashbang grenade mk II`
+- `flashbang grenade mk III`
+- `flattened remains`
+- `flexivest`
+- `force bracelet`
+- `fractured crysbone`
+- `fractured microchip`
+- `fresh corpse`
+- `fried implant core`
+- `fried processing core`
+- `frill`
+- `furs`
+- `ganglionic teleprojector`
+- `gargantuan footprint`
+- `gas mask`
+- `gas tumbler`
+- `gentling cone`
+- `gentling mask`
+- `geomagnetic disc`
+- `goggles`
+- `gourd`
+- `grandfather horn`
+- `grapnel`
+- `grappling gun`
+- `grave goods`
+- `greased steel boots`
+- `grenade launcher`
+- `gyre iron`
+- `hand axe`
+- `HE Missile`
+- `headlamp`
+- `high-powered magnet`
+- `homoelectric wrist warmer`
+- `hooks`
+- `horn`
+- `horns`
+- `hoversled`
+- `human corpse`
+- `hurdy-gurdy`
+- `infection`
+- `iron battle axe`
+- `iron buckler`
+- `iron dagger`
+- `iron long sword`
+- `iron mace`
+- `iron vinereaper`
+- `ironweave cloak`
+- `Issachar rifle`
+- `item`
+- `Joppa recoiler`
+- `knollworm skull`
+- `lead slug`
+- `leather apron`
+- `leather armor`
+- `leather boots`
+- `leather bracer`
+- `leather cap`
+- `leather cloak`
+- `leather gloves`
+- `leather moccasins`
+- `leather scraps`
+- `leatherworking hammer`
+- `leatherworking tools`
+- `life loop`
+- `linear cannon`
+- `longreach grappling gun`
+- `low-quality replacement head`
+- `magnetic bottle`
+- `magnetized boots`
+- `mangled corpse`
+- `mechanical wings`
+- `mental aggregator`
+- `metamorphic core`
+- `miner's helmet`
+- `missile`
+- `missile launcher`
+- `moldering corpse`
+- `molly netting`
+- `mortar shell`
+- `mummified corpse`
+- `musket`
+- `n-pointed asterisk`
+- `nanopneumatic jackhammer`
+- `nanoweave vest`
+- `neck-ring`
+- `night-vision goggles`
+- `nylon bodypack`
+- `oilskin`
+- `panther's cloak`
+- `partial monomatter assembly`
+- `patch of fur`
+- `patch of watervine`
+- `pestle`
+- `phase cannon`
+- `phial`
+- `plastic tree`
+- `pocketed vest`
+- `point-defense drone`
+- `portable wall`
+- `powdered nanohulls`
+- `precinct navigator`
+- `proboscis`
+- `programmable recoiler`
+- `projectile`
+- `psychodyne helmet`
+- `pump shotgun`
+- `putrescence`
+- `quills`
+- `random-point recoiler`
+- `reprogrammable recoiler`
+- `ring mail`
+- `ripped leather bracer`
+- `rostrum`
+- `rough gemstone`
+- `Ruin of House Isner`
+- `salt mill`
+- `sandals`
+- `sandals of the river-wives`
+- `scrap cape`
+- `scrapped waydroid`
+- `scratched copper nugget`
+- `semi-automatic pistol`
+- `severed tongue`
+- `shattered magnifying glass`
+- `shillelagh`
+- `short bow`
+- `shotgun shell`
+- `slate frock`
+- `slate mantle`
+- `slip ring`
+- `small sphere of negative weight`
+- `smooth gemstone`
+- `sniper rifle`
+- `sooty smock`
+- `space inverter`
+- `spectacles`
+- `spiral borer`
+- `spiral horn`
+- `splintered haft`
+- `spray bottle`
+- `square cap`
+- `staff`
+- `stasis casque`
+- `still crystal chime`
+- `stinger`
+- `stone`
+- `storage tank`
+- `stream of gas`
+- `studded leather armor`
+- `stun gas grenade mk I`
+- `stun gas grenade mk II`
+- `stun gas grenade mk III`
+- `telescopic monocle`
+- `Templar phylactery`
+- `throwing axe`
+- `torch`
+- `trash`
+- `tread guard`
+- `twisted metamuscle`
+- `two-handed iron long sword`
+- `ulnar stimulators`
+- `umber frock`
+- `used injector`
+- `village stores`
+- `vinewood sap mask`
+- `walking stick`
+- `waterskin`
+- `wax nodule`
+- `wide-brimmed hat`
+- `wings`
+- `wooden arrow`
+- `wooden buckler`
+- `worn burnoose`
+- `worn leather bracer`
+- `worn replacement valve`
+- `woven tunic`
+- `wrench`
+- `wrist calc`
+- `wrist fan`
+- `yeshyrskin slippers`
+- `yuckwheat chaff`
+
+---
+
+## 정크/파손품 (14개)
+
+*고장나거나 파손된 아이템*
+
+- `bent metal sheet`
+- `bent surgical stent`
+- `broken microcontroller array`
+- `burnt capacitor`
+- `corroded circuit board`
+- `cracked lens`
+- `cracked robotics housing`
+- `depleted stem-generator`
+- `destroyed cybernetics controller`
+- `detuned antimatter microreactor`
+- `detuned cortical regenerator`
+- `dysfunctional AI master unit`
+- `failed energy relay`
+- `faulty cellular detelomerator`
+
+---
+
+## 음식 (15개)
+
+*식량, 요리*
+
+- `boar jerky`
+- `bundle of noisegrass`
+- `crusty loaf`
+- `eyeless crab legs`
+- `eyeless king crab legs`
+- `food cube`
+- `humble pie`
+- `lagroot tuber`
+- `plump mushroom`
+- `salthopper chip`
+- `smoldered mushroom`
+- `spine fruit`
+- `starapple`
+- `vinewafer`
+- `worm jerky`
+
+---
+
+## 가구/구조물 (338개)
+
+*건물, 가구, 설치물*
+
+- `air well`
+- `alchemist's table`
+- `arc sconce`
+- `archway`
+- `armchair`
+- `armillary sphere`
+- `armor rack`
+- `arrowslit`
+- `Barathrum clock`
+- `basalt`
+- `becoming nook`
+- `bed`
+- `bedger`
+- `bedroll`
+- `Bell of Rest`
+- `bench`
+- `black marble`
+- `black shale`
+- `bone oven`
+- `book table`
+- `brain sculpture`
+- `brass foaminator`
+- `brick`
+- `brinestalk fence`
+- `brinestalk gate`
+- `brinestalk stakes`
+- `brinestalk wall`
+- `broadcast power station`
+- `bronze brazier`
+- `burnished azzurum`
+- `cage`
+- `campfire`
+- `campfire remains`
+- `candelabra`
+- `canvas`
+- `canvas folding chair`
+- `carcass kneader`
+- `carved diptych`
+- `carved stone from the sultanate of *Sultan1Name*`
+- `carved stone from the sultanate of *Sultan2Name*`
+- `carved stone from the sultanate of *Sultan3Name*`
+- `carved stone from the sultanate of *Sultan4Name*`
+- `carved stone from the sultanate of *Sultan5Name*`
+- `carved stone from the sultanate of Resheph`
+- `catch basin`
+- `ceramic amphora`
+- `chair`
+- `chairbear`
+- `chalkboard`
+- `charred wood`
+- `chest`
+- `chrome bust of K4K5`
+- `chrome bust of Mehmet I`
+- `chrome plaque`
+- `chrome platform`
+- `chrome sculpture`
+- `chromeling signal relay`
+- `clay jug`
+- `clay oven`
+- `clay pitcher`
+- `colossal orb`
+- `communications panel`
+- `compacted bone`
+- `concrete wall`
+- `control switch`
+- `conveyor belt`
+- `conveyor drive unit`
+- `coral rag`
+- `cracked decorative vessel`
+- `credit lockbox`
+- `crib`
+- `crypt`
+- `crystal oven`
+- `crystalline trunk`
+- `crysteel plate shear wall`
+- `cybernetics rack`
+- `Death Gate`
+- `desk`
+- `display breadboard`
+- `door`
+- `dresser`
+- `ebon fulcrete`
+- `electric crematorium`
+- `electric generator`
+- `electric oven`
+- `electrodicus`
+- `electrofired clay, metal plating, and tissue`
+- `energy cell rack`
+- `ergo chair`
+- `ewer`
+- `exit hatch`
+- `floor cushion`
+- `fluted marble column`
+- `flux gauge`
+- `foamcrete`
+- `folding cot`
+- `food processor`
+- `force barrier`
+- `force projector`
+- `forcefield`
+- `forge`
+- `fossilized remains`
+- `four-poster bed`
+- `frosted pillar`
+- `fulcrete`
+- `fulcrete with square wave`
+- `full-scale recompositer`
+- `full-spectrum bright sconce`
+- `fuming vents`
+- `funerary urn`
+- `fused security door`
+- `gas burner`
+- `gate`
+- `Gate to Brightsheol`
+- `gigantic mannequin`
+- `gilded marble from the sultanate of *Sultan1Name*`
+- `gilded marble from the sultanate of *Sultan2Name*`
+- `gilded marble from the sultanate of *Sultan3Name*`
+- `gilded marble from the sultanate of *Sultan4Name*`
+- `gilded marble from the sultanate of *Sultan5Name*`
+- `gilded marble from the sultanate of Resheph`
+- `glass bottle`
+- `glass door`
+- `glass furnace`
+- `glass hydraulic pipe`
+- `glass printer`
+- `glass wall`
+- `globe`
+- `granite`
+- `gun rack`
+- `gypsum`
+- `hammered dulcimer`
+- `hammock`
+- `harp`
+- `hexagonal crystal`
+- `high-voltage power line`
+- `historic hologram`
+- `hologram of Eater`
+- `hologram of Shekhinah`
+- `holographic sandstone`
+- `holographic shale`
+- `holographic thatched wall`
+- `hookah`
+- `hydraulic brass foaminator`
+- `hydraulic press`
+- `hyperbiotic bed`
+- `hyperbiotic chair`
+- `imperial sarcophagus`
+- `imperial sarcophagus of *Sultan1Name*`
+- `imperial sarcophagus of *Sultan2Name*`
+- `imperial sarcophagus of *Sultan3Name*`
+- `imperial sarcophagus of *Sultan4Name*`
+- `imperial sarcophagus of *Sultan5Name*`
+- `induction charging station`
+- `industrial fan`
+- `interior`
+- `inventory hatch`
+- `iron gate`
+- `iron maiden`
+- `kiln`
+- `kline`
+- `large hexagonal crystal`
+- `lathe`
+- `layer of resin extruded by Agolgot`
+- `layer of resin extruded by Bethsaida`
+- `layer of resin extruded by Qas and Qon`
+- `layer of resin extruded by Rermadon`
+- `layer of resin extruded by Shug'ruith`
+- `layer of resin extruded by Shug'ruith spawn`
+- `Life Gate`
+- `light sculpture`
+- `limestone`
+- `liquid-cooled unicomputer`
+- `locker`
+- `locking machine arm`
+- `loudspeaker`
+- `low aquamarine wall`
+- `low mensa`
+- `low wall`
+- `machine wall`
+- `mainframe control panel`
+- `mainframe monitor`
+- `mainframe status panel`
+- `mannequin`
+- `marble dais`
+- `marble relief of the Edification`
+- `marble relief of the Sacred Joining`
+- `marble statue`
+- `marble wall`
+- `marl`
+- `medical locker`
+- `melted reliquary`
+- `metal table`
+- `metal wall`
+- `metal workbench`
+- `millstone`
+- `mound of scrap and clay`
+- `mud oven`
+- `mural endcap`
+- `mural median`
+- `mushroom case`
+- `mushroom flesh`
+- `nephilim shrine`
+- `nephilim wall`
+- `norm core`
+- `norm core mk I`
+- `norm core mk II`
+- `norm core mk III`
+- `octagonal table`
+- `oolite`
+- `ornate bench`
+- `ornate chair`
+- `ornate table`
+- `ornately carved marble`
+- `ornately engraved marble door with plaque`
+- `ornately filigreed marble`
+- `overgrown foam pad`
+- `painted column`
+- `painting`
+- `passenger seat`
+- `peptic bed`
+- `peptic chair`
+- `petal-strewn brinestalk wall`
+- `pigskin wall`
+- `pilot console`
+- `pilot seat`
+- `plant in ornate pot`
+- `plant matter`
+- `polished black marble`
+- `power line`
+- `powered armillary sphere`
+- `powered telescope`
+- `psionic sarcophagus`
+- `quantum rippler`
+- `quartzite`
+- `recoming reliquary`
+- `rectangular bells`
+- `regeneration tank`
+- `reliquary`
+- `reshaping nook`
+- `reshaping pad`
+- `rock salt`
+- `rock tumbler`
+- `rolling chair`
+- `rotating machine arm`
+- `rubber curtains`
+- `rubble`
+- `ruined gate`
+- `ruined shrine`
+- `rusted metal wall`
+- `sacred well`
+- `sandstone`
+- `sarcophagus`
+- `scintillating glass wall`
+- `scrapable deposit box`
+- `scrapasan chair`
+- `scratched vents`
+- `security door`
+- `serpentinite`
+- `sewing machine`
+- `shale`
+- `shrine`
+- `shrine to Girsh Agolgot`
+- `shrine to Girsh Bethsaida`
+- `shrine to Girsh Qas`
+- `shrine to Girsh Qon`
+- `shrine to Girsh Rermadon`
+- `shrine to Resheph`
+- `shrine to Shug'ruith the Burrower`
+- `sign`
+- `slate`
+- `sliding drawer cabinet`
+- `slumping metal door`
+- `sofa`
+- `solar condenser`
+- `solar still`
+- `sparking vents`
+- `stairwell teleporter`
+- `star orchid marble wall`
+- `starmchair`
+- `stasis field`
+- `statue of a deer`
+- `statue of Bel`
+- `statue of Carthax`
+- `statue of Dagon`
+- `statue of Eater`
+- `statue of implanted Eater`
+- `statue of Nisroch`
+- `statue of Oboroqoru`
+- `statue of Resheph`
+- `statue of Shekhinah`
+- `steaming vents`
+- `stone anvil`
+- `stone columbary`
+- `stone monolith`
+- `stone obelisk`
+- `stone oven`
+- `stone statue`
+- `stone stele`
+- `stool`
+- `support beam`
+- `switch`
+- `table`
+- `tangled mudroot`
+- `tarnished chrome`
+- `telescope`
+- `tetraxenonoglass wall`
+- `thatched wall`
+- `throne`
+- `ticking vents`
+- `tinted glass door`
+- `tinted glass wall`
+- `tombstone`
+- `torch sconce`
+- `torture chair`
+- `unfinished sculpture`
+- `unicomputer`
+- `universal charging station`
+- `vacuum column tape drive`
+- `vase`
+- `vents with hexagonal residue`
+- `vents with mold particulate`
+- `vents with moss particulate`
+- `vessel`
+- `vessel of the First Sip`
+- `waterbed`
+- `wax block`
+- `weapon rack`
+- `weathered wood`
+- `weathered wood with hanging mask`
+- `wide glass bottle`
+- `wire extruder`
+- `wooden bookshelf`
+- `wooden fence`
+- `wooden machinery`
+- `workbench`
+- `woven basket`
+- `wrought iron fence`
+
+---
+
+## 지형/장소 (131개)
+
+*지역명, 지형 유형*
+
+- `arsplice hyphae`
+- `ashy stalagmite`
+- `asphalt mines`
+- `banana grove`
+- `banana tree`
+- `baroque ruins`
+- `Bethesda Susa`
+- `black marble walkway`
+- `bop sponge`
+- `brick walkway`
+- `bridge`
+- `Brightsheol`
+- `brightshroom`
+- `brinestalk`
+- `chiming rock`
+- `coral path`
+- `coral pit`
+- `coral polyp`
+- `craters`
+- `crystalline branch`
+- `crystalline root`
+- `crystalline taproot`
+- `dandy cap`
+- `deep jungle`
+- `deep shaft`
+- `dense crystal leaves`
+- `desert canyons`
+- `diacalyptus tree`
+- `dirt path`
+- `dogthorn tree`
+- `dreadroot`
+- `elevator shaft`
+- `Eyn Rogel`
+- `Eyn Roj`
+- `finger coral`
+- `flower fields`
+- `foamcrete floor`
+- `fractus`
+- `frosty web`
+- `glitchwood tree`
+- `glowing soft`
+- `gnawed watervine`
+- `Golgotha`
+- `grave moss`
+- `green tile`
+- `Grit Gate`
+- `hills`
+- `icosahedar`
+- `Joppa`
+- `jungle`
+- `Kyakukya`
+- `lahbloom`
+- `Lake Hinnom`
+- `marble steps`
+- `marble walkway`
+- `metal walkway`
+- `Moon Stair`
+- `mountain stream`
+- `mountains`
+- `n-ary tree`
+- `nachash tree`
+- `nimbus beam`
+- `noisegrass`
+- `Omonporch`
+- `Opal's Duskwaters`
+- `open air`
+- `packed dirt floor`
+- `Palladium Reef`
+- `palladium strut`
+- `palladium strut with coral growth`
+- `phase web`
+- `primal grass`
+- `psychal rhythm rock`
+- `Rainbow Wood`
+- `Red Rock`
+- `red tile`
+- `River Opal`
+- `River Svy`
+- `River Yonth`
+- `ruins`
+- `rust wells`
+- `rusted archway`
+- `salt dune`
+- `salt dunes`
+- `salt marsh`
+- `saltstone path`
+- `scumgrass`
+- `shimscale mangrove tree`
+- `Six Day Stilt`
+- `slimy shaft`
+- `small crack`
+- `sparse crystal leaves`
+- `Spindle`
+- `spiral stairs down`
+- `spiral stairs up`
+- `spotted shagspook`
+- `stairs`
+- `stairs down`
+- `stairs down to columbarium`
+- `stairs down to convalescence quarter`
+- `stairs down to kitchen`
+- `stairs down to library`
+- `stairs down to living quarters`
+- `stairs down to Many Eyes`
+- `stairs down to market`
+- `stairs down to salon`
+- `stairs down to workshop`
+- `stairs up`
+- `stalagmite`
+- `star palm`
+- `starapple tree`
+- `stillvine`
+- `stone crack`
+- `strange floor`
+- `sunflower`
+- `swarmshade tree`
+- `swollen bulb`
+- `tunnel sponge`
+- `Tzimtzlum`
+- `urberry bush`
+- `water`
+- `watervine`
+- `web`
+- `white tile`
+- `witchwood tree`
+- `woodfloor`
+- `Yd Freehold`
+- `yempuris phi`
+- `young crystalline root`
+- `yuckwheat`
+- `ziv bough`
+
+---
+
+## 능력치/스탯 (49개)
+
+*능력 설명, 스탯 이름*
+
+- `Additional direct hit damage`
+- `Agility bonus`
+- `Ambient light recharge rate`
+- `Batch size`
+- `Beam distance`
+- `Bleed damage`
+- `Bleed save`
+- `Bonus to natural healing rate`
+- `Chance to knock opponents down`
+- `Charge distance`
+- `Charge use per round`
+- `Claw penetration vs. walls`
+- `Cone angle`
+- `Cone length`
+- `Confusion rank`
+- `Cooldown`
+- `Current charge`
+- `Current location`
+- `Damage increment`
+- `Damage to non-structural objects`
+- `Damage to structural objects`
+- `Daze save`
+- `Disabled duration`
+- `Duration between use and reversion`
+- `Hitpoints per batch`
+- `Hobble duration`
+- `Hobble effect`
+- `Knockdown save`
+- `Laser damage increment`
+- `Laser penetration`
+- `Number of urchins`
+- `Offhand cooldown`
+- `Primary hand cooldown`
+- `Quickness bonus`
+- `Radius of effect`
+- `Resist movement / break free save`
+- `Round 1 damage`
+- `Round 2 damage`
+- `Round 3 damage`
+- `Stinger damage`
+- `Stinger penetration`
+- `Strength bonus`
+- `Temperature change per round`
+- `Tether status`
+- `Timer`
+- `Toughness bonus`
+- `Uncertainty radius`
+- `Vision duration`
+- `Vision radius`
+
+---
+
+## 팩션/세력 (96개)
+
+*팩션, 그룹, 조직*
+
+- `algae`
+- `amoeba`
+- `antelopes`
+- `apes`
+- `arachnids`
+- `baboons`
+- `bacilli`
+- `baetyls`
+- `Barathrumites`
+- `batfolk`
+- `bears`
+- `birds`
+- `cannibals`
+- `cats`
+- `Chavvah, the Tree of Life`
+- `Children of Mamon`
+- `cocci`
+- `Consortium of Phyta`
+- `crabs`
+- `cragmensch`
+- `Cult of the Coiled Lamb`
+- `Daughters of Exile`
+- `denizens of the Yd Freehold`
+- `dogs`
+- `dromad merchants`
+- `elephantines`
+- `equines`
+- `Farmers' Guild`
+- `Fellowship of Wardens`
+- `fish`
+- `flowers`
+- `foxen`
+- `frogs`
+- `fungi`
+- `gelatinous polyhedra`
+- `Girsh`
+- `goatfolk`
+- `Grandchildren of Mamon`
+- `grazing hedonists`
+- `Gyre wights`
+- `halophiles`
+- `hermits`
+- `highly entropic beings`
+- `hindren of Bey Lah`
+- `insects`
+- `Issachari tribe`
+- `jellies`
+- `Knights Liminal`
+- `Mechanimists`
+- `Merchants' Guild`
+- `methanogens`
+- `mildews`
+- `molds`
+- `mollusks`
+- `mopango`
+- `mushrooms`
+- `mysterious strangers`
+- `Naphtaali tribe`
+- `newly sentient beings`
+- `oozes`
+- `pariahs`
+- `Putus Templar`
+- `Quetzal Council`
+- `robots`
+- `roots`
+- `rusts`
+- `Seekers of the Sightless Way`
+- `slimes`
+- `sludges`
+- `smuts`
+- `snailfolk`
+- `snapjaws`
+- `soups`
+- `spirilla`
+- `spirochaetes`
+- `splayed crystal-things that glint`
+- `succulents`
+- `svardym`
+- `swine`
+- `thermoacidophiles`
+- `tortoises`
+- `trees`
+- `trolls`
+- `unshelled reptiles`
+- `urchins`
+- `vibrios`
+- `villagers of Ezra`
+- `villagers of Joppa`
+- `villagers of Kyakukya`
+- `vines`
+- `walking ibes`
+- `water barons`
+- `winged mammals`
+- `worms`
+- `yanshufim`
+- `yeasts`
+
+---
+
+## 템플릿 변수 (58개)
+
+*=xxx= 형태의 동적 텍스트 (번역 불필요)*
+
+- `=creatureRegionAdjective= ape`
+- `=creatureRegionAdjective= baetyl`
+- `=creatureRegionAdjective= baron`
+- `=creatureRegionAdjective= bat`
+- `=creatureRegionAdjective= bear`
+- `=creatureRegionAdjective= cactus`
+- `=creatureRegionAdjective= cannibal`
+- `=creatureRegionAdjective= cat`
+- `=creatureRegionAdjective= chime`
+- `=creatureRegionAdjective= clam`
+- `=creatureRegionAdjective= crab`
+- `=creatureRegionAdjective= daughter`
+- `=creatureRegionAdjective= dog`
+- `=creatureRegionAdjective= farmer`
+- `=creatureRegionAdjective= fish`
+- `=creatureRegionAdjective= fly`
+- `=creatureRegionAdjective= frog`
+- `=creatureRegionAdjective= fungus`
+- `=creatureRegionAdjective= Girshling`
+- `=creatureRegionAdjective= goat`
+- `=creatureRegionAdjective= hermit`
+- `=creatureRegionAdjective= kudu`
+- `=creatureRegionAdjective= lizard`
+- `=creatureRegionAdjective= moa`
+- `=creatureRegionAdjective= ooze`
+- `=creatureRegionAdjective= pig`
+- `=creatureRegionAdjective= root`
+- `=creatureRegionAdjective= scorpion`
+- `=creatureRegionAdjective= tortoise`
+- `=creatureRegionAdjective= trader`
+- `=creatureRegionAdjective= vine`
+- `=creatureRegionAdjective= warden`
+- `=creatureRegionAdjective= worm`
+- `=creatureRegionAdjective= zebra`
+- `=creatureRegionNoun= and pariah to =subject.possessive= people`
+- `=creatureRegionNoun= of the Gyre`
+- `=creatureRegionNoun= of the Sightless Way`
+- `baboon =creatureRegionNoun=`
+- `blooming =creatureRegionNoun=`
+- `Consortium =creatureRegionNoun=`
+- `cragmensch =creatureRegionNoun=`
+- `dromad =creatureRegionNoun=`
+- `entropic =creatureRegionNoun=`
+- `goatfolk =creatureRegionNoun=`
+- `hindren =creatureRegionNoun=`
+- `Issachari =creatureRegionNoun=`
+- `machine =creatureRegionNoun=`
+- `Mechanimist =creatureRegionNoun=`
+- `mopango =creatureRegionNoun=`
+- `mysterious =creatureRegionNoun=`
+- `Naphtaali =creatureRegionNoun=`
+- `shading =creatureRegionNoun=`
+- `snapjaw =creatureRegionNoun=`
+- `spiny =creatureRegionNoun=`
+- `svardym =creatureRegionNoun=`
+- `Templar =creatureRegionNoun=`
+- `troll =creatureRegionNoun=`
+- `urshiib =creatureRegionNoun=`
+
+---
+
+## 컬러 코드 포함 (981개)
+
+*{{색상|텍스트}} 또는 &X 코드 포함*
+
+*(처음 100개만 표시)*
+
+- `&amp;Cps&amp;Yion&amp;Cic amp&amp;Ylif&amp;Cier he&amp;Ylm&amp;Cet`
+- `&amp;Kinhi&amp;rb&amp;Kitor cuff`
+- `&amp;Kps&amp;Cion&amp;Kic amp&amp;Clif&amp;Kier ba&amp;Cckpa&amp;Kck`
+- `&amp;Rh&amp;Yelping&amp;r &amp;Rh&amp;Yands`
+- `banner of the {{r\|Holy Rhombus}}`
+- `Barathrum clock with {{M\|Q Girl}} {{Y\|pendulum}}`
+- `billowing conch of the {{r\|Aji}}`
+- `bladed {{metachrome\|metachrome}} bands`
+- `bladed {{metachrome\|metachrome}} tail`
+- `burnished {{K\|fullerite}} shield`
+- `chain {{C\|laser}}`
+- `circle of light in the chord of {{agolgot\|Agolgot}}`
+- `circle of light in the chord of {{bethsaida\|Bethsaida}}`
+- `circle of light in the chord of {{ehalcodon\|Ehalcodon}}`
+- `circle of light in the chord of {{qas\|Qas}}`
+- `circle of light in the chord of {{qon\|Qon}}`
+- `circle of light in the chord of {{rermadon\|Rermadon}}`
+- `circle of light in the chord of {{shugruith\|Shugruith}}`
+- `clump of {{C\|grave moss}}`
+- `congealed &amp;Ysalve`
+- `congealed {{blaze\|blaze}}`
+- `congealed {{G\|hulk}} {{w\|honey}}`
+- `congealed {{love\|love}}`
+- `congealed {{rubbergum\|rubbergum}}`
+- `congealed {{shade\|shade oil}}`
+- `congealed {{skulk\|skulk}}`
+- `dried {{lah\|lah petals}}`
+- `drop of {{nectar\|nectar}}`
+- `flange from the {{great machine\|Great Machine}}`
+- `floating {{Y\|glowsphere}}`
+- `fork-{{horned\|horned}} helm`
+- `frowning {{moon\|moon}} mask`
+- `gauge from the {{great machine\|Great Machine}}`
+- `gear from the {{great machine\|Great Machine}}`
+- `giant heap of {{c\|chrome}} scrap`
+- `giant {{B\|water}} weep`
+- `giant {{G\|acid}} weep`
+- `giant {{g\|slime}} weep`
+- `giant {{K\|asphalt}} weep`
+- `giant {{K\|ink}} weep`
+- `giant {{K\|oil}} weep`
+- `giant {{lava\|lava}} weep`
+- `giant {{m\|wine}} weep`
+- `giant {{R\|cider}} weep`
+- `giant {{w\|honey}} weep`
+- `giant {{W\|sap}} weep`
+- `giant {{Y\|gel}} weep`
+- `giant {{Y\|salt}} weep`
+- `giant {{Y\|wax}} weep`
+- `high-energy {{thermo\|thermo}} cask`
+- `hunk of {{W\|cheese}}`
+- `meteorite wall with {{peridot\|peridot}} deposits`
+- `opal-pommeled {{Y\|steel}} battle axe`
+- `pointed {{metachrome\|metachrome}} bands`
+- `pointed {{metachrome\|metachrome}} tail`
+- `portable {{bee\|beehive}}`
+- `precision {{Y\|nanon}} fingers`
+- `ray of {{W\|jaundiced}} light`
+- `reprogrammed {{c\|scrap shoveler}}`
+- `ridged {{metachrome\|metachrome}} bands`
+- `ridged {{metachrome\|metachrome}} tail`
+- `rough {{B\|sapphire}} gemstone`
+- `rough {{G\|emerald}} gemstone`
+- `rough {{K\|agate}} gemstone`
+- `rough {{M\|amethyst}} gemstone`
+- `rough {{peridot\|peridot}} gemstone`
+- `rough {{R\|jasper}} gemstone`
+- `rough {{W\|topaz}} gemstone`
+- `sail from the {{great machine\|Great Machine}}`
+- `Schrodinger page from the {{K\|Annals of Qud}}`
+- `shale wall with {{B\|sapphire}} deposits`
+- `shale wall with {{G\|emerald}} deposits`
+- `shale wall with {{K\|agate}} deposits`
+- `shale wall with {{M\|amethyst}} deposits`
+- `shale wall with {{R\|jasper}} deposits`
+- `shale wall with {{W\|topaz}} deposits`
+- `sharpened {{r\|polyp}}`
+- `smiling {{sun\|sun}} mask`
+- `smooth {{B\|sapphire}} gemstone`
+- `smooth {{G\|emerald}} gemstone`
+- `smooth {{K\|agate}} gemstone`
+- `smooth {{M\|amethyst}} gemstone`
+- `smooth {{peridot\|peridot}} gemstone`
+- `smooth {{R\|jasper}} gemstone`
+- `smooth {{W\|topaz}} gemstone`
+- `Spray{{r\|-}}a{{r\|-}}Brain`
+- `step sow{{g\|e}}rs`
+- `sultan {{g\|croc}} corpse`
+- `symbiotic {{W-y-y-y sequence\|firefly}}`
+- `tri-{{hologram\|hologram}} bracelet`
+- `two-handed {{b\|carbide}} battle axe`
+- `two-handed {{B\|carbide}} folding hammer`
+- `two-handed {{b\|carbide}} hammer`
+- `two-handed {{b\|carbide}} long sword`
+- `two-handed {{B\|folded carbide}} battle axe`
+- `two-handed {{B\|folded carbide}} long sword`
+- `two-handed {{K\|fullerite}} long sword`
+- `two-handed {{K\|fullerite}} maul`
+- `two-handed {{Y\|steel}} battle axe`
+- `two-handed {{Y\|steel}} long sword`
+- ... 외 881개
+
+---
+
+## 수식어/Mods (59개)
+
+*아이템에 붙는 접두사/접미사*
+
+- `airfoil`
+- `co-processor`
+- `counterweighted`
+- `disguise`
+- `displacer`
+- `drum-loaded`
+- `electrified`
+- `electromagnetically-shielded`
+- `engraved`
+- `extradimensional`
+- `feathered`
+- `fitted with a beamsplitter`
+- `fitted with cleats`
+- `fitted with filters`
+- `fitted with suspensors`
+- `flaming`
+- `flexiweaved`
+- `freezing`
+- `gesticulating`
+- `gigantic`
+- `high-capacity`
+- `illuminated`
+- `jacked`
+- `jewel-encrusted`
+- `lacquered`
+- `lanterned`
+- `liquid-cooled`
+- `masterwork`
+- `metered`
+- `morphogenetic`
+- `nanon`
+- `nav`
+- `nulling`
+- `of serene visage`
+- `of terrifying visage`
+- `overloaded`
+- `padded`
+- `painted`
+- `phase-conjugate`
+- `phase-harmonic`
+- `polarized`
+- `radio-powered`
+- `recycling`
+- `refractive`
+- `reinforced`
+- `scaled`
+- `scoped`
+- `serrated`
+- `sharp`
+- `six-fingered`
+- `slender`
+- `snail-encrusted`
+- `spiked`
+- `spring-loaded`
+- `sturdy`
+- `two-faced`
+- `visored`
+- `willowy`
+- `wooly`
+
+---
+
+## 기타 (83개)
+
+*분류 어려운 항목*
+
+- `armor`
+- `axe`
+- `backpack`
+- `bizarre contraption`
+- `boots`
+- `bottle`
+- `bow`
+- `brain brine`
+- `Calm creatures`
+- `cannon`
+- `cloak`
+- `clockwork beetle and pariah to its people`
+- `confusion gas`
+- `corrosive gas`
+- `cryogenic mist`
+- `Cure fungal infection`
+- `defoliant`
+- `Eater`
+- `empty space`
+- `Fast-forward to Tomb of the Eaters`
+- `freezing mist`
+- `fungal spores`
+- `fungicide`
+- `Gain 25,000 XP`
+- `glitter dust`
+- `gloves`
+- `grenade`
+- `helmet`
+- `hut`
+- `Inside`
+- `ironshank`
+- `Issachari`
+- `jewelry`
+- `kindled flame`
+- `knife`
+- `machine press`
+- `mask`
+- `medical bay`
+- `miasma`
+- `Mutated Human`
+- `Nano-Neuro`
+- `normality gas`
+- `odd trinket`
+- `osseous ash`
+- `pistol`
+- `plasma`
+- `poison gas`
+- `pool`
+- `Qud`
+- `rifle`
+- `scalding steam`
+- `shield`
+- `shimmering heat`
+- `shimmering sphere`
+- `sleep gas`
+- `spacetime vortex`
+- `Spawn a can of Spray-a-Brain`
+- `Spawn a dreamcrungle`
+- `Spawn a floating glowsphere`
+- `Spawn an ubernostrum tonic (regrows limbs)`
+- `Spawn rare liquids`
+- `steam`
+- `strange furniture`
+- `strange piece of meat`
+- `strange plant`
+- `strange tubes`
+- `stun gas`
+- `Swap bodies (choose direction after wish)`
+- `Switch to Roleplay mode (checkpointing at settlements)`
+- `sword`
+- `tent`
+- `The North Sheva`
+- `Thin World`
+- `Toggle godmode`
+- `tool`
+- `True Kin`
+- `tube`
+- `village mill`
+- `VISAGE`
+- `watervine patch`
+- `weird artifact`
+- `Wish for something specific`
+- `workshop`
