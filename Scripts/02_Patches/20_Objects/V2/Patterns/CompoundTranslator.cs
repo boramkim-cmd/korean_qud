@@ -67,19 +67,38 @@ namespace QudKorean.Objects.V2.Patterns
                 return TranslationResult.Miss();
 
             // Build translation map for all words
+            // Words that can't be translated are kept as-is (numbers, proper nouns, etc.)
             var translationMap = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase);
+            int translatedCount = 0;
+
             foreach (string part in parts)
             {
-                if (!TryTranslatePart(context.Repository, part, out string translated))
+                if (TryTranslatePart(context.Repository, part, out string translated))
                 {
-                    // If any part fails, we can't complete the compound translation
+                    if (!translationMap.ContainsKey(part))
+                    {
+                        translationMap[part] = translated;
+                        translatedCount++;
+                    }
+                }
+                else if (ShouldKeepAsIs(part))
+                {
+                    // Numbers, roman numerals, proper nouns - keep as-is
+                    if (!translationMap.ContainsKey(part))
+                    {
+                        translationMap[part] = part;
+                    }
+                }
+                else
+                {
+                    // Unknown word that should be translated - fail
                     return TranslationResult.Miss();
                 }
-                if (!translationMap.ContainsKey(part))
-                {
-                    translationMap[part] = translated;
-                }
             }
+
+            // Need at least one actual translation
+            if (translatedCount == 0)
+                return TranslationResult.Miss();
 
             // Translate the base compound (with or without color tags)
             string translatedBase;
@@ -361,6 +380,39 @@ namespace QudKorean.Objects.V2.Patterns
                     }
                 }
             }
+
+            return false;
+        }
+
+        /// <summary>
+        /// Determines if a word should be kept as-is without translation.
+        /// Includes: numbers, roman numerals, MK abbreviations, proper nouns.
+        /// </summary>
+        private bool ShouldKeepAsIs(string word)
+        {
+            if (string.IsNullOrEmpty(word))
+                return false;
+
+            // Numbers: 1, 2, 3, 100, etc.
+            if (Regex.IsMatch(word, @"^\d+$"))
+                return true;
+
+            // Roman numerals: I, II, III, IV, V, VI, VII, VIII, IX, X, etc.
+            if (Regex.IsMatch(word, @"^[IVXLCDM]+$", RegexOptions.IgnoreCase) && word.Length <= 8)
+                return true;
+
+            // MK abbreviations: Mk, Mk., MK, mk
+            if (Regex.IsMatch(word, @"^mk\.?$", RegexOptions.IgnoreCase))
+                return true;
+
+            // Proper nouns: starts with uppercase (and more than 1 char to avoid single letters)
+            // Examples: Joppa, Ptyrus, Resheph
+            if (word.Length > 1 && char.IsUpper(word[0]) && !word.All(char.IsUpper))
+                return true;
+
+            // All-caps abbreviations (2-4 letters): HE, AP, HP, etc.
+            if (word.Length >= 2 && word.Length <= 4 && word.All(char.IsUpper))
+                return true;
 
             return false;
         }
