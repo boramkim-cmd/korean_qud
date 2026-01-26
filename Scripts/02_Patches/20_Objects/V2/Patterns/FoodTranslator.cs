@@ -34,6 +34,8 @@ namespace QudKorean.Objects.V2.Patterns
                    stripped.EndsWith(" haunch", StringComparison.OrdinalIgnoreCase) ||
                    stripped.StartsWith("preserved ", StringComparison.OrdinalIgnoreCase) ||
                    stripped.StartsWith("cooked ", StringComparison.OrdinalIgnoreCase) ||
+                   stripped.StartsWith("congealed ", StringComparison.OrdinalIgnoreCase) ||
+                   stripped.StartsWith("concentrated ", StringComparison.OrdinalIgnoreCase) ||
                    stripped.EndsWith(" gland paste", StringComparison.OrdinalIgnoreCase) ||
                    stripped.EndsWith(" gland", StringComparison.OrdinalIgnoreCase);
         }
@@ -141,6 +143,32 @@ namespace QudKorean.Objects.V2.Patterns
                 }
             }
 
+            // Pattern: "congealed {tonic/liquid}"
+            if (stripped.StartsWith("congealed ", StringComparison.OrdinalIgnoreCase))
+            {
+                string ingredientPart = stripped.Substring("congealed ".Length);
+                if (TryGetTonicTranslation(repo, ingredientPart, out string ingredientKo))
+                {
+                    return TranslationResult.Hit($"응고된 {ingredientKo}", Name);
+                }
+                if (TryGetItemTranslation(repo, ingredientPart, out ingredientKo))
+                {
+                    return TranslationResult.Hit($"응고된 {ingredientKo}", Name);
+                }
+            }
+
+            // Pattern: "concentrated {creature} gland paste"
+            if (stripped.StartsWith("concentrated ", StringComparison.OrdinalIgnoreCase) &&
+                stripped.EndsWith(" gland paste", StringComparison.OrdinalIgnoreCase))
+            {
+                string middle = stripped.Substring("concentrated ".Length);
+                middle = middle.Substring(0, middle.Length - " gland paste".Length);
+                if (TryGetCreatureTranslation(repo, middle, out string creatureKo))
+                {
+                    return TranslationResult.Hit($"농축 {creatureKo} 분비샘 반죽", Name);
+                }
+            }
+
             return TranslationResult.Miss();
         }
 
@@ -191,6 +219,25 @@ namespace QudKorean.Objects.V2.Patterns
                     translated = noun.Value;
                     return true;
                 }
+            }
+
+            return false;
+        }
+
+        private bool TryGetTonicTranslation(Data.ITranslationRepository repo, string tonicName, out string translated)
+        {
+            translated = null;
+
+            // Check tonics dictionary
+            if (repo.Tonics.TryGetValue(tonicName, out translated))
+            {
+                return true;
+            }
+
+            // Check shaders (for tonic color tags like "blaze", "love", etc.)
+            if (repo.Shaders.TryGetValue(tonicName, out translated))
+            {
+                return true;
             }
 
             return false;
