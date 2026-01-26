@@ -1,7 +1,7 @@
 # QUD_KOREAN 프로젝트 컨텍스트
 
 > **이 파일은 Claude Code가 세션 시작 시 반드시 읽어야 하는 핵심 문서입니다.**
-> 최종 업데이트: 2026-01-27 00:30
+> 최종 업데이트: 2026-01-27 00:55
 
 ---
 
@@ -13,7 +13,7 @@
 | 저장소 | https://github.com/boramkim-cmd/korean_qud |
 | 작업 폴더 | `/Users/ben/Desktop/qud_korean` |
 | 모드 위치 | `~/Library/Application Support/com.FreeholdGames.CavesOfQud/Mods/qud_korean` |
-| 진행률 | 번역 대상 2,948개 중 ~1,927개 번역 가능 (65.4%) |
+| 진행률 | 복합어 1,634개 중 1,617개 번역 가능 (**99.0%**) |
 
 ---
 
@@ -27,41 +27,50 @@
 - 튜토리얼 팝업
 - **ObjectTranslator V2** (Pipeline 아키텍처, 26개 모듈)
 - 메시지 로그 패치
-- **ObjectTranslator 테스트 스크립트** (111개 테스트 케이스, 100% 통과)
+- **ObjectTranslator 테스트 스크립트** (197개 테스트 케이스, 100% 통과)
 - **비자기참조 색상태그 번역** (`{{glittering|glitter}}` → `{{glittering|글리터}}`)
+- **CompoundTranslator** - 복합어 번역 (99% 커버리지)
 
 ### 번역 현황 (2026-01-27)
 | 항목 | 개수 |
 |------|------|
-| XML DisplayName (총) | 3,006 |
-| 템플릿 변수 (제외) | 58 |
-| **실제 번역 대상** | **2,948** |
-| JSON 직접 번역 | 927 |
-| 패턴 번역 가능 | ~1,000 |
-| **총 번역 가능** | **~1,927 (65.4%)** |
+| XML DisplayName (총) | 2,261 |
+| 복합어 후보 | 1,634 |
+| **복합어 번역 성공** | **1,617 (99.0%)** |
 | 용어 불일치 | **0개** (모두 해결됨) |
 
-> 템플릿 변수 (`=creatureRegionNoun=` 등)는 게임이 런타임에 동적으로 채우므로 번역 대상에서 제외
+### 카테고리별 커버리지
+| 카테고리 | 커버리지 |
+|----------|----------|
+| 벽 | 100% (67/67) |
+| 가구 | 100% (174/174) |
+| 생물 | 98.8% (726/735) |
+| 아이템 | 98.8% (650/658) |
 
 ### 어휘 현황 (2026-01-27)
 | 항목 | 개수 |
 |------|------|
-| 총 어휘 | 1,411 |
+| **총 어휘** | **4,320** |
+| modifiers.json | 600+ |
 | Materials | 67 |
-| Modifiers | 280+ |
 | Base Nouns | 340+ |
 | Species | 260+ |
 | Body Parts | 102 |
 
 ### 최근 작업 (2026-01-27)
+- ✅ **CompoundTranslator 99% 커버리지 달성**
+  - ShouldKeepAsIs 메서드 추가 (숫자, 로마숫자, 고유명사, 단일문자 보존)
+  - modifiers.json 대규모 확장 (+600개 어휘)
+- ✅ 테스트 스크립트 확장 (197개 테스트 케이스)
+- ✅ 컬러태그 + 복합어 + 접미사 조합 완벽 지원
+- ✅ 소유격 패턴 지원 (`merchant's sword` → `상인의 검`)
+
+### 이전 작업 (2026-01-27 오전)
 - ✅ **번역 커버리지 확장 작업** (41% → 62.6%)
 - ✅ 패턴 어휘 대규모 확장 (nouns, modifiers, materials)
 - ✅ 생물 어휘 확장 (golems, cherubs, NPCs)
 - ✅ FoodTranslator 개선 (congealed, concentrated 패턴)
 - ✅ 고유명사 추가 (Agolgot, Bethsaida, Qon 등)
-- ✅ **템플릿 변수 문서화** (`Docs/07_TEMPLATE_VARIABLES.md`)
-  - 34개 변수 유형, 8개 카테고리 분류
-  - creature_region만 번역 가능 (향후 패치 필요)
 
 ### 이전 작업 (2026-01-26)
 - ✅ XML vs JSON 번역 비교 스크립트 작성 (`tools/compare_translations.py`)
@@ -146,10 +155,12 @@ kr:check <id>   # 특정 블루프린트 확인
 | 모드 진입점 | `Scripts/00_Core/00_00_00_ModEntry.cs` |
 | 번역 엔진 | `Scripts/00_Core/00_00_01_TranslationEngine.cs` |
 | 오브젝트 번역 (V2) | `Scripts/02_Patches/20_Objects/V2/ObjectTranslatorV2.cs` |
+| **복합어 번역** | `Scripts/02_Patches/20_Objects/V2/Patterns/CompoundTranslator.cs` |
+| **수식어 어휘** | `LOCALIZATION/OBJECTS/_vocabulary/modifiers.json` |
 | 공통 어휘 | `LOCALIZATION/OBJECTS/items/_common.json` |
 | 용어 표준 | `Docs/terminology_standard.md` |
 | 번역 비교 스크립트 | `tools/compare_translations.py` |
-| 미번역 리포트 | `Docs/Issues/untranslated_report.md` |
+| **복합어 테스트** | `tools/test_compound_translator.py` |
 
 ---
 

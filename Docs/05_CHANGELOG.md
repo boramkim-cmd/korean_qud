@@ -1,10 +1,45 @@
 # Caves of Qud Korean Localization - Changelog
 
-> **Version**: 6.9 | **Last Updated**: 2026-01-26
+> **Version**: 7.0 | **Last Updated**: 2026-01-27
 
 ---
 
 ## Recent Changes
+
+### [2026-01-27] CompoundTranslator 99% 커버리지 달성
+- **커버리지 개선**: 56% → 99.0%
+  | 카테고리 | 커버리지 |
+  |----------|----------|
+  | 벽 | 100% (67/67) |
+  | 가구 | 100% (174/174) |
+  | 생물 | 98.8% (726/735) |
+  | 아이템 | 98.8% (650/658) |
+  | **총계** | **99.0% (1,617/1,634)** |
+
+- **ShouldKeepAsIs 메서드 추가**:
+  - 숫자 보존: `1`, `2`, `-1`
+  - 로마숫자 보존: `I`, `II`, `III`, `IV`
+  - MK 약어 보존: `Mk`, `Mk.`, `MK`
+  - 단일 문자 보존: `q`, `y`
+  - 고유명사 보존: `Joppa`, `Ptoh`
+  - 대문자 약어 보존: `HE`, `AP`
+  - 플레이스홀더 보존: `*creature*`
+
+- **어휘 대규모 확장** (modifiers.json):
+  - 총 어휘: 3,714 → **4,320개** (+606개)
+  - 사이버네틱: bionic, dermal, optical, implant
+  - 기술: antimatter, thermoelectric, microcontroller
+  - 게임 특화: crungling, girshlings, yeshyrskin
+
+- **테스트 스크립트 확장**:
+  - 테스트 케이스: 111개 → 197개
+  - 카테고리: 14개 (기본단어, 복합어, 컬러태그, 실제게임 등)
+  - 결과: 197/197 (100%) 통과
+
+- **수정 파일**:
+  - `CompoundTranslator.cs` - ShouldKeepAsIs 메서드 추가
+  - `modifiers.json` - 600+ 어휘 추가
+  - `test_compound_translator.py` - 테스트 확장
 
 ### [2026-01-26] XML vs JSON 번역 비교 및 용어 표준화
 - **번역 비교 스크립트 작성**: `tools/compare_translations.py`
