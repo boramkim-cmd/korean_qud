@@ -289,5 +289,19 @@
   "compound_armor": {
     "_comment": "복합 방어구 이름 (Compound armor names) - Phase 번역 불일치 수정",
     "plate mail": "판금 갑옷"
+  },
+
+  "compound_mechanical": {
+    "_comment": "복합 기계/전자 이름 (Compound mechanical names) - Case 1 수정",
+    "energy relay": "에너지 중계기",
+    "energy cell": "에너지 전지",
+    "energy relay x2": "에너지 중계기 x2"
+  },
+
+  "plant_parts": {
+    "_comment": "식물 부위 (Plant parts) - 복합 번역 지원",
+    "lah petals": "라 꽃잎",
+    "vanta petals": "반타 꽃잎",
+    "flower petals": "꽃잎"
   }
 }

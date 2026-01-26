@@ -210,5 +210,31 @@
     },
     "description": "Tall boots that reach up to the thigh.",
     "description_ko": "허벅지까지 올라오는 긴 장화."
+  },
+
+  "Croccasins": {
+    "tier": 2,
+    "category": "armor",
+    "slot": "feet",
+    "tags": ["feet", "light", "organic"],
+    "names": {
+      "croccasins": "악어신발",
+      "{{crochide|croccasins}}": "{{crochide|악어신발}}"
+    },
+    "description": "Scutes are arranged like stony pikes around the apron of the shoe. Light reflects off the enamel shine.",
+    "description_ko": "비늘판이 신발 앞부분 주위에 돌 창처럼 배열되어 있다. 에나멜 광택에서 빛이 반사된다."
+  },
+
+  "Step Sowers": {
+    "tier": 3,
+    "category": "armor",
+    "slot": "feet",
+    "tags": ["feet", "light", "artifact"],
+    "names": {
+      "step sowers": "발자국 파종자",
+      "step sow{{g|e}}rs": "발자국 파종{{g|자}}"
+    },
+    "description": "The ankle is cinched by a leather strap and goldleaf buckle; crushed plant matter soils the soles.",
+    "description_ko": "발목이 가죽 끈과 금박 버클로 조여져 있다. 으깬 식물 물질이 밑창을 더럽히고 있다."
   }
 }
