@@ -83,6 +83,7 @@
     "floating nearby": "부유 아이템",
     "food": "음식",
     "hands": "손",
+    "head": "머리",
     "inventory": "인벤토리",
     "junk": "잡동사니",
     "left hand": "왼손",
@@ -215,6 +216,8 @@
     "Ammo": "탄약",
     "Grenades": "수류탄",
     "Tools": "도구",
-    "Miscellaneous": "기타"
+    "Miscellaneous": "기타",
+    "Junk": "잡동사니",
+    "Medicine": "약품"
   }
 }

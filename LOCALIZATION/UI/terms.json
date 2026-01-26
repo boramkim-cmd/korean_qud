@@ -10,8 +10,12 @@
   "character": {
     "attribute": "능력치",
     "calling": "소명",
+    "caste": "계급",
     "genotype": "유전형",
-    "skill": "스킬"
+    "mutation": "변이",
+    "skill": "스킬",
+    "buildLibrary": "빌드 라이브러리",
+    "characterCreation": "캐릭터 생성"
   },
   "faction": {
     "barathrumites": "바라트룸파",
