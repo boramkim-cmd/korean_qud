@@ -1,7 +1,7 @@
 # QUD_KOREAN 프로젝트 컨텍스트
 
 > **이 파일은 Claude Code가 세션 시작 시 반드시 읽어야 하는 핵심 문서입니다.**
-> 최종 업데이트: 2026-01-27 09:40
+> 최종 업데이트: 2026-01-27 09:50
 
 ---
 
@@ -59,14 +59,19 @@
 | Species | 260+ |
 | Body Parts | 102 |
 
-### 최근 작업 (2026-01-27 오전 - 빌드 최적화)
+### 🚨 다음 세션 필수 작업
+1. **게임 테스트**: `./deploy.sh` 실행 후 게임에서 `kr:stats` 명령
+2. **확인 사항**: "Mode: bundle" 출력 여부
+3. **로그 확인**: `grep "QudKR.*bundle" Player.log`
+
+### 최근 작업 (2026-01-27 오전 - 빌드 최적화) ✅ 완료
 - ✅ **Phase 1 빌드 시스템 구현** - JSON 번들링 + 소스맵
   - `tools/build_optimized.py`: 302개 JSON → 5개 번들 (607KB)
   - `Scripts/.../SourceMap.cs`: 에러 추적용 소스맵 로더
   - `JsonRepository.cs`: 번들/소스 자동 선택 로딩
   - `ObjectTranslatorV2.cs`: 소스맵 기반 에러 로깅
   - `deploy.sh`: 빌드 → 배포 통합
-- 📋 **다음 단계**: 게임 내 테스트 (`kr:stats`로 번들 모드 확인)
+- ✅ 커밋 및 푸시 완료 (3개 커밋)
 
 ### 이전 작업 (2026-01-27 새벽)
 - ✅ **BookTitleTranslator 추가** - 책 제목 한글 어순 변환
