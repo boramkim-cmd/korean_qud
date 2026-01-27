@@ -1,10 +1,44 @@
 # Caves of Qud Korean Localization - Changelog
 
-> **Version**: 7.0 | **Last Updated**: 2026-01-27
+> **Version**: 7.1 | **Last Updated**: 2026-01-27
 
 ---
 
 ## Recent Changes
+
+### [2026-01-27] Phase 1 빌드 최적화 시스템 구현
+- **빌드 시스템 구현** (P3-09):
+  - 302개 JSON 파일 → 5개 번들로 최적화
+  - 총 번들 크기: 607KB
+
+  | 번들 | 크기 | 내용 |
+  |------|------|------|
+  | objects.json | 470KB | creatures, items, furniture, terrain, vocabulary |
+  | shared.json | 17KB | 공유 어휘 |
+  | chargen.json | 24KB | 캐릭터 생성 |
+  | gameplay.json | 48KB | 게임플레이 |
+  | ui.json | 48KB | UI 텍스트 |
+
+- **소스맵 추적 시스템**:
+  - `sourcemap.json`: 1,165개 블루프린트 + 2,156개 어휘 소스 위치
+  - 에러 발생 시 원본 파일:라인 번호 추적 가능
+  - 예: `Bear: LOCALIZATION/OBJECTS/creatures/tutorial.json:40`
+
+- **신규 파일**:
+  - `tools/build_optimized.py`: 빌드 스크립트
+  - `Scripts/.../Data/SourceMap.cs`: 소스맵 로더
+  - `Docs/plans/2026-01-27-build-optimization-plan.md`: 계획 문서
+
+- **수정 파일**:
+  - `Scripts/.../Data/JsonRepository.cs`: 번들/소스 자동 선택 로딩
+  - `Scripts/.../ObjectTranslatorV2.cs`: 소스맵 기반 에러 로깅
+  - `deploy.sh`: 빌드 → 배포 통합
+
+- **사용법**:
+  ```bash
+  ./deploy.sh  # 자동으로 빌드 후 배포
+  ```
+  - 게임에서 `kr:stats`로 "Mode: bundle" 확인
 
 ### [2026-01-27] BookTitleTranslator 및 패턴 확장
 - **BookTitleTranslator 신규 추가**:

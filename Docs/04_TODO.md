@@ -1,6 +1,6 @@
 # Caves of Qud Korean Localization - TODO
 
-> **Version**: 3.6 | **Last Updated**: 2026-01-26
+> **Version**: 3.7 | **Last Updated**: 2026-01-27
 
 ---
 
@@ -10,9 +10,9 @@
 |-------|------|-----|------|----------|
 | Phase 1: Stabilization | 7 | 0 | 0 | 100% |
 | Phase 2: Gameplay | 5 | 0 | 1 | 90% |
-| Phase 3: Optimization | 2 | 0 | 4 | 33% |
+| Phase 3: Optimization | 4 | 0 | 3 | 57% |
 | Phase 4: Community | 0 | 0 | 3 | 0% |
-| **Total** | **14** | **0** | **8** | **64%** |
+| **Total** | **16** | **0** | **7** | **70%** |
 
 ### Test Coverage
 | 스크립트 | 케이스 | 통과율 | 목적 |
@@ -113,6 +113,8 @@
 | P3-06 | Tool Scripts Consolidation | 4h | High | ✅ Done |
 | P3-07 | V1 vs V2 테스트 스크립트 | 2h | Medium | ✅ Done |
 | P3-08 | V2 ObjectTranslator Pipeline 이전 | 4h | High | ✅ Done |
+| **P3-09** | **빌드 최적화 Phase 1 (JSON 번들링)** | 4h | High | ✅ Done |
+| P3-10 | 빌드 최적화 Phase 2 (바이너리+Trie) | 6h | Medium | Todo (필요시) |
 
 ### Phase 4: Community
 | ID | Task | Priority |
@@ -174,28 +176,29 @@ bash tools/sync-and-deploy.sh   # Deploy
 ### 반드시 해야 할 것 (MUST)
 | 순위 | 작업 | 이유 |
 |------|------|------|
-| 1 | **게임 테스트 (V2)** | V2 Pipeline 아키텍처로 이전 완료, 게임 내 동작 확인 필수 |
-| 2 | **V2 검증** | `kr:stats`, `kr:reload`, 번역 동작 확인 |
+| 1 | **게임 테스트 (번들 모드)** | Phase 1 빌드 최적화 구현 완료, `kr:stats`로 번들 모드 확인 |
+| 2 | **로딩 성능 측정** | 번들 vs 소스 파일 로딩 시간 비교 |
+| 3 | **에러 추적 테스트** | 소스맵 기반 에러 로깅 동작 확인 |
 
 ### 하면 좋은 것 (SHOULD)
 | 작업 | 이유 |
 |------|------|
 | V1 파일 완전 삭제 | 테스트 기간 후 `.cs.disabled` 파일 삭제 |
-| 엣지 케이스 추가 | 현재 테스트에 없는 패턴 (예: 3단 중첩 색상태그) |
-| 성능 프로파일링 | V1 vs V2 성능 비교 |
+| Phase 2 필요성 판단 | 성능 측정 후 바이너리+Trie 인덱스 필요 여부 결정 |
+| 성능 프로파일링 | 번들 로딩 시간 측정 |
 
 ### 하지 않아도 되는 것 (NICE TO HAVE)
 | 작업 | 이유 |
 |------|------|
-| V2 Python 더 확장 | Python은 검증용, 이미 100% 통과 |
-| 추가 테스트 케이스 100개 더 | 기존 100개로 충분한 커버리지 |
+| Phase 2 바이너리 포맷 | Phase 1으로 충분할 가능성 높음 |
+| 추가 테스트 케이스 | 기존 197개로 충분한 커버리지 |
 
 ### 경고: 잠재적 문제
 1. **Python-C# 괴리**: Python 테스트 통과 ≠ 게임 동작 보장 (게임 테스트 필수)
-2. **V2 이전 완료**: V2 Pipeline 아키텍처로 이전 완료 (2026-01-26)
-   - V1 백업: `_archive/V1_backup_20260126/`
-   - V1 비활성화: `.cs.disabled`
-   - 롤백 가능: V1 복원 절차 있음
+2. **번들 로딩**: Phase 1 완료, 게임 내 번들 로딩 동작 확인 필요
+   - 번들 경로: `data/objects.json` 등 5개 파일
+   - 소스맵: `sourcemap.json` (에러 추적용)
+   - 폴백: LOCALIZATION/ 있으면 소스 모드로 동작
 3. **캐시 문제**: 게임 내 캐시와 Python 테스트의 캐시 로직이 다를 수 있음
 
 ---
