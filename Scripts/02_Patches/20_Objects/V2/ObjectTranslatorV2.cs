@@ -87,11 +87,19 @@ namespace QudKorean.Objects.V2
 
             EnsureInitialized();
 
-            var context = new TranslationContext(_repository, blueprint, originalName);
-            var result = _pipeline.Execute(context);
+            try
+            {
+                var context = new TranslationContext(_repository, blueprint, originalName);
+                var result = _pipeline.Execute(context);
 
-            translated = result.Translated;
-            return result.Success;
+                translated = result.Translated;
+                return result.Success;
+            }
+            catch (Exception ex)
+            {
+                LogTranslationError(blueprint, originalName, ex);
+                return false;
+            }
         }
 
         /// <summary>
@@ -183,6 +191,48 @@ namespace QudKorean.Objects.V2
 
             // Create pipeline with default handlers
             _pipeline = TranslationPipeline.CreateDefault(_repository);
+        }
+
+        #endregion
+
+        #region Error Logging
+
+        /// <summary>
+        /// Logs translation errors with source location information for debugging.
+        /// </summary>
+        private static void LogTranslationError(string blueprint, string originalName, Exception ex)
+        {
+            var sb = new System.Text.StringBuilder();
+            sb.AppendLine($"{LOG_PREFIX} Translation error");
+            sb.AppendLine($"  Blueprint: {blueprint}");
+            sb.AppendLine($"  Original: {originalName}");
+
+            // Get source information from repository if available
+            var jsonRepo = _repository as JsonRepository;
+            if (jsonRepo != null)
+            {
+                var source = jsonRepo.GetSourceInfo(blueprint);
+                if (source != null)
+                {
+                    sb.AppendLine($"  Source: {source.File}:{source.Line}");
+                    if (!string.IsNullOrEmpty(source.Category))
+                        sb.AppendLine($"  Category: {source.Category}");
+                    if (!string.IsNullOrEmpty(source.Pattern))
+                        sb.AppendLine($"  Pattern: {source.Pattern}");
+                    if (source.Prefixes != null && source.Prefixes.Count > 0)
+                        sb.AppendLine($"  Prefixes: [{string.Join(", ", source.Prefixes)}]");
+                    if (!string.IsNullOrEmpty(source.BaseNoun))
+                        sb.AppendLine($"  BaseNoun: {source.BaseNoun}");
+                }
+                else
+                {
+                    sb.AppendLine($"  Source: (not in sourcemap - check if blueprint exists)");
+                }
+            }
+
+            sb.AppendLine($"  Error: {ex.Message}");
+
+            UnityEngine.Debug.LogError(sb.ToString());
         }
 
         #endregion

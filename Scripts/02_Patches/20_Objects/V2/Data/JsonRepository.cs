@@ -53,6 +53,10 @@ namespace QudKorean.Objects.V2.Data
 
         private string _modDirectory;
         private bool _initialized;
+        private bool _loadedFromBundle;
+
+        // Source map for error tracking
+        private SourceMap _sourceMap = new SourceMap();
 
         #endregion
 
@@ -201,7 +205,33 @@ namespace QudKorean.Objects.V2.Data
             int suffixesCount = (_states?.Count ?? 0) + (_liquids?.Count ?? 0) +
                                (_ofPatterns?.Count ?? 0) + (_bodyParts?.Count ?? 0) +
                                (_partSuffixesSorted?.Count ?? 0);
-            return $"Creatures: {_creatureCache.Count}, Items: {_itemCache.Count}, Vocab: {vocabCount}, Species: {speciesCount}, Nouns: {nounsCount}, Suffixes: {suffixesCount}";
+            string mode = _loadedFromBundle ? "bundle" : "source";
+            return $"Creatures: {_creatureCache.Count}, Items: {_itemCache.Count}, Vocab: {vocabCount}, Species: {speciesCount}, Nouns: {nounsCount}, Suffixes: {suffixesCount}, Mode: {mode}";
+        }
+
+        /// <summary>
+        /// Gets source information for a blueprint (for error tracking)
+        /// </summary>
+        public SourceInfo GetSourceInfo(string blueprintId)
+        {
+            return _sourceMap?.GetBlueprintSource(blueprintId);
+        }
+
+        /// <summary>
+        /// Gets formatted source location for a blueprint
+        /// </summary>
+        public string GetSourceLocation(string blueprintId)
+        {
+            var info = _sourceMap?.GetBlueprintSource(blueprintId);
+            return info?.Location ?? "unknown";
+        }
+
+        /// <summary>
+        /// Formats error source information for logging
+        /// </summary>
+        public string FormatErrorSource(string blueprintId, string term = null)
+        {
+            return _sourceMap?.FormatErrorSource(blueprintId, term) ?? "Source unknown";
         }
 
         #endregion
@@ -310,6 +340,281 @@ namespace QudKorean.Objects.V2.Data
                 return;
             }
 
+            // Check for bundled data first (optimized path)
+            string bundleDir = Path.Combine(modDir, "data");
+            string objectsBundle = Path.Combine(bundleDir, "objects.json");
+
+            if (File.Exists(objectsBundle))
+            {
+                // Load from bundles (optimized path)
+                LoadBundledData(modDir, bundleDir);
+
+                // Load source map for error tracking
+                string sourcemapPath = Path.Combine(modDir, "sourcemap.json");
+                _sourceMap.Load(sourcemapPath);
+
+                _loadedFromBundle = true;
+                UnityEngine.Debug.Log($"{LOG_PREFIX} Loaded from bundles (optimized)");
+            }
+            else
+            {
+                // Load from source files (development path)
+                LoadOriginalJsonFiles(modDir);
+                _loadedFromBundle = false;
+                UnityEngine.Debug.Log($"{LOG_PREFIX} Loaded from source files (dev mode)");
+            }
+
+            // Build sorted caches
+            BuildSortedCaches();
+        }
+
+        /// <summary>
+        /// Loads data from bundled JSON files (optimized path)
+        /// </summary>
+        private void LoadBundledData(string modDir, string bundleDir)
+        {
+            // Load objects.json bundle
+            string objectsPath = Path.Combine(bundleDir, "objects.json");
+            if (File.Exists(objectsPath))
+            {
+                try
+                {
+                    var root = JObject.Parse(File.ReadAllText(objectsPath));
+
+                    // Load creatures section
+                    var creatures = root["creatures"] as JObject;
+                    if (creatures != null)
+                    {
+                        foreach (var prop in creatures.Properties())
+                        {
+                            LoadBlueprintEntry(prop.Name, prop.Value as JObject, _creatureCache);
+                        }
+                    }
+
+                    // Load items section
+                    var items = root["items"] as JObject;
+                    if (items != null)
+                    {
+                        foreach (var prop in items.Properties())
+                        {
+                            LoadBlueprintEntry(prop.Name, prop.Value as JObject, _itemCache);
+                        }
+                    }
+
+                    // Load furniture section
+                    var furniture = root["furniture"] as JObject;
+                    if (furniture != null)
+                    {
+                        foreach (var prop in furniture.Properties())
+                        {
+                            LoadBlueprintEntry(prop.Name, prop.Value as JObject, _itemCache);
+                        }
+                    }
+
+                    // Load terrain section
+                    var terrain = root["terrain"] as JObject;
+                    if (terrain != null)
+                    {
+                        foreach (var prop in terrain.Properties())
+                        {
+                            LoadBlueprintEntry(prop.Name, prop.Value as JObject, _itemCache);
+                        }
+                    }
+
+                    // Load hidden section
+                    var hidden = root["hidden"] as JObject;
+                    if (hidden != null)
+                    {
+                        foreach (var prop in hidden.Properties())
+                        {
+                            LoadBlueprintEntry(prop.Name, prop.Value as JObject, _itemCache);
+                        }
+                    }
+
+                    // Load widgets section
+                    var widgets = root["widgets"] as JObject;
+                    if (widgets != null)
+                    {
+                        foreach (var prop in widgets.Properties())
+                        {
+                            LoadBlueprintEntry(prop.Name, prop.Value as JObject, _itemCache);
+                        }
+                    }
+
+                    // Load vocabulary section
+                    var vocabulary = root["vocabulary"] as JObject;
+                    if (vocabulary != null)
+                    {
+                        LoadBundledVocabulary(vocabulary);
+                    }
+
+                    UnityEngine.Debug.Log($"{LOG_PREFIX} Loaded objects bundle: {_creatureCache.Count} creatures, {_itemCache.Count} items");
+                }
+                catch (Exception ex)
+                {
+                    UnityEngine.Debug.LogError($"{LOG_PREFIX} Failed to load objects bundle: {ex.Message}");
+                }
+            }
+
+            // Load shared.json bundle
+            string sharedPath = Path.Combine(bundleDir, "shared.json");
+            if (File.Exists(sharedPath))
+            {
+                try
+                {
+                    var root = JObject.Parse(File.ReadAllText(sharedPath));
+                    LoadBundledShared(root);
+                    UnityEngine.Debug.Log($"{LOG_PREFIX} Loaded shared bundle");
+                }
+                catch (Exception ex)
+                {
+                    UnityEngine.Debug.LogError($"{LOG_PREFIX} Failed to load shared bundle: {ex.Message}");
+                }
+            }
+        }
+
+        /// <summary>
+        /// Loads a blueprint entry from bundled data
+        /// </summary>
+        private void LoadBlueprintEntry(string blueprintId, JObject entry, Dictionary<string, ObjectData> cache)
+        {
+            if (entry == null) return;
+
+            string normalizedId = TextNormalizer.NormalizeBlueprintId(blueprintId);
+
+            var data = new ObjectData
+            {
+                BlueprintId = blueprintId,
+                Description = entry["description"]?.ToString(),
+                DescriptionKo = entry["description_ko"]?.ToString()
+            };
+
+            JObject names = entry["names"] as JObject;
+            if (names != null)
+            {
+                foreach (var nameProp in names.Properties())
+                {
+                    data.Names[nameProp.Name] = nameProp.Value.ToString();
+                }
+            }
+
+            cache[normalizedId] = data;
+            if (normalizedId != blueprintId.ToLowerInvariant())
+            {
+                cache[blueprintId] = data;
+            }
+        }
+
+        /// <summary>
+        /// Loads vocabulary from bundled objects.json
+        /// </summary>
+        private void LoadBundledVocabulary(JObject vocabulary)
+        {
+            foreach (var prop in vocabulary.Properties())
+            {
+                if (prop.Name.StartsWith("_")) continue;
+
+                string key = prop.Name;
+                string value = prop.Value.ToString();
+
+                // Add to modifiers as the catch-all vocabulary
+                _modifiers[key] = value;
+            }
+        }
+
+        /// <summary>
+        /// Loads shared vocabulary from shared.json bundle
+        /// </summary>
+        private void LoadBundledShared(JObject root)
+        {
+            // Load _SHARED section
+            var sharedSection = root["_SHARED"] as JObject;
+            if (sharedSection != null)
+            {
+                foreach (var categoryProp in sharedSection.Properties())
+                {
+                    if (categoryProp.Name.StartsWith("_")) continue;
+
+                    var category = categoryProp.Value as JObject;
+                    if (category == null) continue;
+
+                    foreach (var itemProp in category.Properties())
+                    {
+                        if (itemProp.Name.StartsWith("_")) continue;
+
+                        string key = itemProp.Name;
+                        string value = null;
+
+                        if (itemProp.Value.Type == JTokenType.String)
+                        {
+                            value = itemProp.Value.ToString();
+                        }
+                        else if (itemProp.Value is JObject obj && obj["ko"] != null)
+                        {
+                            value = obj["ko"].ToString();
+
+                            // Also add aliases
+                            var aliases = obj["aliases"] as JArray;
+                            if (aliases != null)
+                            {
+                                foreach (var alias in aliases)
+                                {
+                                    AddToVocabularyByCategory(categoryProp.Name, alias.ToString(), value);
+                                }
+                            }
+                        }
+
+                        if (value != null)
+                        {
+                            AddToVocabularyByCategory(categoryProp.Name, key, value);
+                        }
+                    }
+                }
+            }
+        }
+
+        /// <summary>
+        /// Adds a vocabulary entry to the appropriate dictionary based on category
+        /// </summary>
+        private void AddToVocabularyByCategory(string category, string key, string value)
+        {
+            switch (category.ToLower())
+            {
+                case "materials":
+                    _materials[key] = value;
+                    break;
+                case "qualities":
+                    _qualities[key] = value;
+                    break;
+                case "modifiers":
+                    _modifiers[key] = value;
+                    break;
+                case "processing":
+                    _processing[key] = value;
+                    break;
+                case "species":
+                    _species[key] = value;
+                    break;
+                case "body_parts":
+                    _bodyParts[key] = value;
+                    break;
+                case "attributes":
+                    // Skip attributes - not used in translation
+                    break;
+                case "factions":
+                    // Skip factions - not used in translation
+                    break;
+                default:
+                    _modifiers[key] = value;
+                    break;
+            }
+        }
+
+        /// <summary>
+        /// Original JSON file loading logic (development fallback)
+        /// </summary>
+        private void LoadOriginalJsonFiles(string modDir)
+        {
             string objectsPath = Path.Combine(modDir, "LOCALIZATION", "OBJECTS");
 
             // Load creatures
@@ -378,9 +683,6 @@ namespace QudKorean.Objects.V2.Data
             LoadSuffixes(objectsPath);
             LoadVocabulary(objectsPath);
             LoadShared(modDir);
-
-            // Build sorted caches
-            BuildSortedCaches();
         }
 
         private void LoadJsonFile(string filePath, Dictionary<string, ObjectData> cache)
