@@ -6,6 +6,43 @@
 
 ## Recent Changes
 
+### [2026-01-27] 성능 최적화 8개 태스크 구현
+- **목표**: 프레임당 낭비 제거, 텍스트 렌더 오버헤드 감소, GC 압력 절감
+- **커밋 3개**: batch 1 (프레임 스킵, 폰트 캐시, 조기 종료), batch 2 (ToLowerInvariant 제거, 컴파일 Regex, NormalizeSpaces), batch 3 (정적 배열, 성능 카운터)
+
+  | 태스크 | 최적화 | 효과 |
+  |--------|--------|------|
+  | Task 1 | TMPFallbackFontBundle `_fallbackConfirmed` 플래그 | 프레임당 EnsureFallbackAdded 오버헤드 100% 제거 |
+  | Task 2 | EnsureFontFallback `HashSet<int>` ID 캐시 | O(n) → O(1) 폰트 체크 |
+  | Task 3 | TMP_Text setter 조기 종료 (한글/비라틴 스킵) | 50%+ 텍스트 할당 스킵 |
+  | Task 4 | ~30개 `.ToLowerInvariant()` 호출 제거 | UI 렌더 사이클당 ~40개 문자열 할당 제거 |
+  | Task 5 | 7개 Regex 필드 컴파일 | Regex 캐시 룩업 오버헤드 제거 |
+  | Task 6 | `NormalizeSpaces` 제로 할당 헬퍼 | 이중 공백 없는 일반 케이스 할당 0 |
+  | Task 7 | 정적 `_fallbackBuf[2]` 배열 | fallback 경로 List+ToArray 할당 제거 |
+  | Task 8 | `PerfCounters` + `kr:perf` 명령 | 데이터 기반 후속 최적화 지원 |
+
+- **수정 파일 (10개)**:
+  - `00_00_04_TMPFallbackFontBundle.cs` - 프레임 스킵
+  - `02_10_00_GlobalUI.cs` - 폰트 캐시, 조기 종료, 성능 카운터, 정적 배열
+  - `00_00_01_TranslationEngine.cs` - 컴파일 Regex, NormalizeSpaces
+  - `00_00_03_LocalizationManager.cs` - 컴파일 Regex
+  - `02_10_10_CharacterCreation.cs` - ToLowerInvariant 제거
+  - `02_10_11_WorldCreation.cs` - ToLowerInvariant 제거
+  - `99_00_02_ChargenTranslationUtils.cs` - ToLowerInvariant 제거
+  - `V2/Core/TranslationContext.cs` - OrdinalIgnoreCase 캐시
+  - `02_10_16_MessageLog.cs` - OrdinalIgnoreCase 패턴 딕셔너리
+  - `02_20_99_DebugWishes.cs` - kr:perf 명령 추가
+
+- **신규 파일**:
+  - `Scripts/99_Utils/99_00_04_PerfCounters.cs` - 성능 카운터 유틸리티
+
+- **검증 방법**:
+  ```bash
+  ./deploy.sh
+  # 게임 내: kr:perf → 카운터 확인
+  # 로그: "TMP fallback font added" 1회만 출력 확인
+  ```
+
 ### [2026-01-27] Phase 1 빌드 최적화 시스템 구현
 - **빌드 시스템 구현** (P3-09):
   - 302개 JSON 파일 → 5개 번들로 최적화

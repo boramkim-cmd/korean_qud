@@ -10,9 +10,9 @@
 |-------|------|-----|------|----------|
 | Phase 1: Stabilization | 7 | 0 | 0 | 100% |
 | Phase 2: Gameplay | 5 | 0 | 1 | 90% |
-| Phase 3: Optimization | 4 | 0 | 3 | 57% |
+| Phase 3: Optimization | 6 | 0 | 1 | 86% |
 | Phase 4: Community | 0 | 0 | 3 | 0% |
-| **Total** | **16** | **0** | **7** | **70%** |
+| **Total** | **18** | **0** | **5** | **78%** |
 
 ### Test Coverage
 | 스크립트 | 케이스 | 통과율 | 목적 |
@@ -107,8 +107,8 @@
 |----|------|-------|----------|--------|
 | P3-01 | Translation Caching (LRU) | 4h | Low | Todo |
 | P3-02 | Missing Term Auto-Collector | 3h | Low | Todo |
-| P3-03 | TMP_Text Conditional Skip | 2h | Low | Todo |
-| P3-04 | Performance Profiling | 4h | Low | Todo |
+| P3-03 | TMP_Text Conditional Skip | 2h | Low | ✅ Done |
+| P3-04 | Performance Profiling (kr:perf) | 4h | Low | ✅ Done |
 | P3-05 | Glossary Conflict Resolution | 12h | High | Todo |
 | P3-06 | Tool Scripts Consolidation | 4h | High | ✅ Done |
 | P3-07 | V1 vs V2 테스트 스크립트 | 2h | Medium | ✅ Done |
@@ -176,8 +176,8 @@ bash tools/sync-and-deploy.sh   # Deploy
 ### 반드시 해야 할 것 (MUST)
 | 순위 | 작업 | 이유 |
 |------|------|------|
-| 1 | **게임 테스트 (번들 모드)** | Phase 1 빌드 최적화 구현 완료, `kr:stats`로 번들 모드 확인 |
-| 2 | **로딩 성능 측정** | 번들 vs 소스 파일 로딩 시간 비교 |
+| 1 | **게임 테스트 (번들 모드 + 성능)** | 빌드 최적화 + 성능 최적화 구현 완료. `kr:stats` + `kr:perf` 확인 |
+| 2 | **성능 카운터 확인** | `kr:perf`로 스킵율 50%+ 확인, 폰트 캐시 히트 확인 |
 | 3 | **에러 추적 테스트** | 소스맵 기반 에러 로깅 동작 확인 |
 
 ### 하면 좋은 것 (SHOULD)

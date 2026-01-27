@@ -61,10 +61,23 @@
 
 ### 🚨 다음 세션 필수 작업
 1. **게임 테스트**: `./deploy.sh` 실행 후 게임에서 `kr:stats` 명령
-2. **확인 사항**: "Mode: bundle" 출력 여부
-3. **로그 확인**: `grep "QudKR.*bundle" Player.log`
+2. **성능 측정**: `kr:perf` 명령으로 최적화 효과 확인
+3. **확인 사항**: "Mode: bundle" 출력 여부, 폰트 로그 1회만 출력
+4. **로그 확인**: `grep "QudKR.*bundle\|fallback font added" Player.log`
 
-### 최근 작업 (2026-01-27 오전 - 빌드 최적화) ✅ 완료
+### 최근 작업 (2026-01-27 오후 - 성능 최적화) ✅ 완료
+- ✅ **8개 성능 최적화 구현** (3개 커밋)
+  - Task 1: `TMPFallbackFontBundle` 프레임 스킵 (`_fallbackConfirmed` 플래그)
+  - Task 2: `EnsureFontFallback` HashSet<int> ID 캐시 (O(n)→O(1))
+  - Task 3: `TMP_Text` setter 조기 종료 (한글/비라틴 텍스트 스킵)
+  - Task 4: ~30개 `.ToLowerInvariant()` 불필요 호출 제거 (5개 파일)
+  - Task 5: 7개 Regex 컴파일 (TranslationEngine 4개, LocalizationManager 3개)
+  - Task 6: `NormalizeSpaces` 제로 할당 헬퍼 (StringBuilder 빠른 경로)
+  - Task 7: 정적 배열 버퍼로 fallback scope 할당 제거
+  - Task 8: `PerfCounters` 유틸리티 + `kr:perf` 디버그 명령
+- ✅ 커밋 완료 (3개 커밋)
+
+### 이전 작업 (2026-01-27 오전 - 빌드 최적화) ✅ 완료
 - ✅ **Phase 1 빌드 시스템 구현** - JSON 번들링 + 소스맵
   - `tools/build_optimized.py`: 302개 JSON → 5개 번들 (607KB)
   - `Scripts/.../SourceMap.cs`: 에러 추적용 소스맵 로더
@@ -172,6 +185,7 @@ python3 tools/test_object_translator.py
 kr:reload       # JSON 리로드
 kr:stats        # 번역 통계
 kr:check <id>   # 특정 블루프린트 확인
+kr:perf         # 성능 카운터 표시 + 리셋
 ```
 
 ---
@@ -195,6 +209,7 @@ kr:check <id>   # 특정 블루프린트 확인
 | **빌드 스크립트** | `tools/build_optimized.py` |
 | **소스맵 클래스** | `Scripts/.../V2/Data/SourceMap.cs` |
 | **빌드 계획** | `Docs/plans/2026-01-27-build-optimization-plan.md` |
+| **성능 카운터** | `Scripts/99_Utils/99_00_04_PerfCounters.cs` |
 
 ---
 
