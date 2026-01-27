@@ -171,7 +171,7 @@ namespace QudKRTranslation.Patches
                             SetTextToItem(item, member, translated);
                         }
                         // Fallback: 단순 소문자 검색
-                        else if (LocalizationManager.TryGetAnyTerm(original.ToLowerInvariant(), out string t2, "ui", "common"))
+                        else if (LocalizationManager.TryGetAnyTerm(original, out string t2, "ui", "common"))
                         {
                             SetTextToItem(item, member, t2);
                         }
@@ -281,8 +281,7 @@ namespace QudKRTranslation.Patches
                 }
                 
                 // 2. LocalizationManager로 직접 검색 (태그 제거된 텍스트로)
-                string lowerStripped = stripped.ToLowerInvariant();
-                if (LocalizationManager.TryGetAnyTerm(lowerStripped, out string translated, "chargen_ui", "ui", "common"))
+                if (LocalizationManager.TryGetAnyTerm(stripped, out string translated, "chargen_ui", "ui", "common"))
                 {
                     if (value != stripped)
                     {
@@ -416,7 +415,7 @@ namespace QudKRTranslation.Patches
                 if (item.text.Contains(key))
                 {
                     // "ui" 및 "common" 카테고리를 대상으로 검색
-                    if (LocalizationManager.TryGetAnyTerm(key.ToLowerInvariant(), out string translated, "common", "ui"))
+                    if (LocalizationManager.TryGetAnyTerm(key, out string translated, "common", "ui"))
                     {
                         item.text = item.text.Replace($"|{key}}}", $"|{translated}}}").Replace($" {key}", $" {translated}");
                     }
@@ -435,7 +434,7 @@ namespace QudKRTranslation.Patches
         static void Prefix(ref string Message)
         {
              // "Are you sure..." 같은 문장 전체 검색 ("common", "ui" 카테고리)
-            if (LocalizationManager.TryGetAnyTerm(Message.ToLowerInvariant(), out string translated, "common", "ui"))
+            if (LocalizationManager.TryGetAnyTerm(Message, out string translated, "common", "ui"))
             {
                 Message = translated;
             }
@@ -454,7 +453,7 @@ namespace QudKRTranslation.Patches
             // This title is displayed by titleText.SetText(descriptor.title) in FrameworkScroller.BeforeShow
             if (descriptor != null && !string.IsNullOrEmpty(descriptor.title))
             {
-                if (LocalizationManager.TryGetAnyTerm(descriptor.title.ToLowerInvariant(), out string translatedTitle, "chargen_ui", "ui", "common"))
+                if (LocalizationManager.TryGetAnyTerm(descriptor.title, out string translatedTitle, "chargen_ui", "ui", "common"))
                 {
                     descriptor.title = translatedTitle;
                 }
@@ -470,7 +469,7 @@ namespace QudKRTranslation.Patches
                     string desc = tr.Field<string>("Description").Value;
                     if (!string.IsNullOrEmpty(desc))
                     {
-                        if (LocalizationManager.TryGetAnyTerm(desc.ToLowerInvariant(), out string translated, "ui", "common"))
+                        if (LocalizationManager.TryGetAnyTerm(desc, out string translated, "ui", "common"))
                         {
                             tr.Field<string>("Description").Value = translated;
                         }
@@ -515,7 +514,7 @@ namespace QudKRTranslation.Patches
             var keys = new List<string>(HardcodedTexts.Keys);
             foreach (var key in keys)
             {
-                if (LocalizationManager.TryGetAnyTerm(key.ToLowerInvariant(), out string translated, "chargen_ui", "ui", "common"))
+                if (LocalizationManager.TryGetAnyTerm(key, out string translated, "chargen_ui", "ui", "common"))
                 {
                     HardcodedTexts[key] = translated;
                 }

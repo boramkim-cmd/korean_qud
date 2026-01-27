@@ -16,6 +16,10 @@ namespace QudKRTranslation.Core
 {
     public static class LocalizationManager
     {
+        private static readonly Regex RxColorCase = new Regex(@"\{\{([a-zA-Z])\|", RegexOptions.Compiled);
+        private static readonly Regex RxQudTag = new Regex(@"\{\{[a-zA-Z]\|([^}]+)\}\}", RegexOptions.Compiled);
+        private static readonly Regex RxBullet = new Regex(@"^[ùúûü·•◦‣⁃]\s*", RegexOptions.Compiled);
+
         private static Dictionary<string, Dictionary<string, string>> _translationDB = new Dictionary<string, Dictionary<string, string>>(StringComparer.OrdinalIgnoreCase);
         private static Dictionary<string, string> _aliasToCanonical = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase);
         private static bool _isLoaded = false;
@@ -167,13 +171,13 @@ namespace QudKRTranslation.Core
             if (string.IsNullOrEmpty(key)) return key;
             
             // 0. 색상 태그를 소문자로 통일: {{C|text}} → {{c|text}}
-            string result = Regex.Replace(key, @"\{\{([a-zA-Z])\|", m => $"{{{{{m.Groups[1].Value.ToLower()}|", RegexOptions.IgnoreCase);
-            
+            string result = RxColorCase.Replace(key, m => $"{{{{{m.Groups[1].Value.ToLower()}|");
+
             // 1. Qud 색상 태그 제거: {{X|text}} → text
-            result = Regex.Replace(result, @"\{\{[a-zA-Z]\|([^}]+)\}\}", "$1");
-            
-            // 2. 특수 bullet 문자 제거 (ù 등 - 색상 태그 내부에서 사용됨)
-            result = Regex.Replace(result, @"^[ùúûü·•◦‣⁃]\s*", "");
+            result = RxQudTag.Replace(result, "$1");
+
+            // 2. 특수 bullet 문자 제거
+            result = RxBullet.Replace(result, "");
             
             // 3. 소문자 변환 및 앞뒤 공백 제거
             return result.Trim().ToLowerInvariant();

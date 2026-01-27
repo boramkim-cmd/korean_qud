@@ -18,6 +18,11 @@ namespace QudKRTranslation
     /// </summary>
     public static class TranslationEngine
     {
+        private static readonly Regex RxColorCase = new Regex(@"\{\{([a-zA-Z])\|", RegexOptions.Compiled);
+        private static readonly Regex RxQudTag = new Regex(@"\{\{[a-zA-Z]\|([^}]+)\}\}", RegexOptions.Compiled);
+        private static readonly Regex RxUnityColor = new Regex(@"<color=[^>]+>([^<]+)</color>", RegexOptions.Compiled);
+        private static readonly Regex RxBullet = new Regex(@"^[ùúûü·•◦‣⁃]\s*", RegexOptions.Compiled);
+
         /// <summary>
         /// 텍스트를 번역합니다. 현재 활성 Scope를 사용합니다.
         /// </summary>
@@ -126,18 +131,16 @@ namespace QudKRTranslation
             string result = text;
             
             // 0. 색상 태그를 소문자로 통일: {{C|text}} → {{c|text}}
-            result = Regex.Replace(result, @"\{\{([a-zA-Z])\|", m => $"{{{{{m.Groups[1].Value.ToLower()}|", RegexOptions.IgnoreCase);
-            
+            result = RxColorCase.Replace(result, m => $"{{{{{m.Groups[1].Value.ToLower()}|");
+
             // 1. Qud 형식: {{w|text}}, {{R|text}} 등
-            // 패턴: {{[a-zA-Z]|...}}
-            result = Regex.Replace(result, @"\{\{[a-zA-Z]\|([^}]+)\}\}", "$1");
-            
+            result = RxQudTag.Replace(result, "$1");
+
             // 2. Unity 형식: <color=red>text</color>
-            result = Regex.Replace(result, @"<color=[^>]+>([^<]+)</color>", "$1");
-            
-            // 3. 특수 bullet 문자 제거 (ù 등 - 색상 태그 내부에서 사용됨)
-            // LocalizationManager.NormalizeKey와 동일한 처리
-            result = Regex.Replace(result, @"^[ùúûü·•◦‣⁃]\s*", "");
+            result = RxUnityColor.Replace(result, "$1");
+
+            // 3. 특수 bullet 문자 제거
+            result = RxBullet.Replace(result, "");
             
             return result;
         }
@@ -190,7 +193,7 @@ namespace QudKRTranslation
                     }
                     
                     // 3) 다중 공백을 단일 공백으로 정규화
-                    string normalizedKey = System.Text.RegularExpressions.Regex.Replace(trimmedKey, @"\s+", " ");
+                    string normalizedKey = NormalizeSpaces(trimmedKey);
                     if (normalizedKey != trimmedKey && dict.TryGetValue(normalizedKey, out val) && !string.IsNullOrEmpty(val))
                     {
                         return true;
@@ -202,6 +205,21 @@ namespace QudKRTranslation
             return false;
         }
         
+        private static string NormalizeSpaces(string s)
+        {
+            if (s.IndexOf("  ", StringComparison.Ordinal) < 0) return s;
+            var sb = new System.Text.StringBuilder(s.Length);
+            bool prev = false;
+            for (int i = 0; i < s.Length; i++)
+            {
+                bool ws = char.IsWhiteSpace(s[i]);
+                if (ws && prev) continue;
+                sb.Append(ws ? ' ' : s[i]);
+                prev = ws;
+            }
+            return sb.ToString();
+        }
+
         /// <summary>
         /// 첫 글자만 대문자로 변환합니다.
         /// </summary>

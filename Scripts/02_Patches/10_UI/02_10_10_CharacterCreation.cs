@@ -75,7 +75,7 @@ namespace QudKRTranslation.Patches
                 
                 // [FIX Issue 8] Null check before ToLowerInvariant()
                 if (!string.IsNullOrEmpty(choice.Title) && 
-                    LocalizationManager.TryGetAnyTerm(choice.Title.ToLowerInvariant(), out string tTitle, "chargen_mode", "chargen_ui"))
+                    LocalizationManager.TryGetAnyTerm(choice.Title, out string tTitle, "chargen_mode", "chargen_ui"))
                     choice.Title = tTitle;
                 
                 // [FIX Issue 5] Traverse field access
@@ -143,7 +143,7 @@ namespace QudKRTranslation.Patches
                 
                 // [FIX Issue 8] Null check before ToLowerInvariant()
                 if (!string.IsNullOrEmpty(choice.Title) && 
-                    LocalizationManager.TryGetAnyTerm(choice.Title.ToLowerInvariant(), out string tTitle, "chargen_ui", "ui"))
+                    LocalizationManager.TryGetAnyTerm(choice.Title, out string tTitle, "chargen_ui", "ui"))
                     choice.Title = tTitle;
 
                 // [FIX Issue 5] Traverse field existence check - use non-generic for FieldExists
@@ -213,7 +213,7 @@ namespace QudKRTranslation.Patches
                 else
                 {
                     // Fallback: 기존 로직 (UI 필드만 수정)
-                    if (LocalizationManager.TryGetAnyTerm(choice.Title?.ToLowerInvariant(), out string tName, "chargen_proto", "mutation"))
+                    if (LocalizationManager.TryGetAnyTerm(choice.Title, out string tName, "chargen_proto", "mutation"))
                         choice.Title = tName;
                     
                     var tr = Traverse.Create(choice);
@@ -280,7 +280,7 @@ namespace QudKRTranslation.Patches
                     {
                         // Title 번역 - 더 안전하게
                         string originalTitle = choice.Title;
-                        if (!string.IsNullOrEmpty(originalTitle) && LocalizationManager.TryGetAnyTerm(originalTitle.ToLowerInvariant(), out string tTitle, "chargen_ui", "chargen_proto", "mutation", "skill"))
+                        if (!string.IsNullOrEmpty(originalTitle) && LocalizationManager.TryGetAnyTerm(originalTitle, out string tTitle, "chargen_ui", "chargen_proto", "mutation", "skill"))
                         {
                             choice.Title = tTitle;
                         }
@@ -380,7 +380,7 @@ namespace QudKRTranslation.Patches
                              // Fallback - 더 안전한 번역 방식
                               // Translate Choice Title (e.g. "Horticulturist")
                             string originalTitle = choice.Title;
-                            if (!string.IsNullOrEmpty(originalTitle) && LocalizationManager.TryGetAnyTerm(originalTitle.ToLowerInvariant(), out string tChoiceTitle, "chargen_ui", "chargen_proto", "mutation", "skill"))
+                            if (!string.IsNullOrEmpty(originalTitle) && LocalizationManager.TryGetAnyTerm(originalTitle, out string tChoiceTitle, "chargen_ui", "chargen_proto", "mutation", "skill"))
                                  choice.Title = tChoiceTitle;
 
                              // Translate Description - 더 안전한 방식
@@ -423,7 +423,7 @@ namespace QudKRTranslation.Patches
         [HarmonyPostfix]
         static void getSubtypeTitle_Postfix(ref string __result)
         {
-            if (LocalizationManager.TryGetAnyTerm(__result?.ToLowerInvariant(), out string translated, "chargen_ui", "ui"))
+            if (LocalizationManager.TryGetAnyTerm(__result, out string translated, "chargen_ui", "ui"))
                 __result = translated;
         }
 
@@ -431,7 +431,7 @@ namespace QudKRTranslation.Patches
         [HarmonyPostfix]
         static void getSubtypeSingularTitle_Postfix(ref string __result)
         {
-            if (LocalizationManager.TryGetAnyTerm(__result?.ToLowerInvariant(), out string translated, "chargen_ui", "ui"))
+            if (LocalizationManager.TryGetAnyTerm(__result, out string translated, "chargen_ui", "ui"))
                 __result = translated;
         }
     }
@@ -763,7 +763,7 @@ namespace QudKRTranslation.Patches
             }
             // 3. LocalizationManager에서 찾기
             else if (LocalizationManager.TryGetAnyTerm(source, out string tSource, "chargen_attributes", "chargen_ui", "ui", "common") ||
-                     LocalizationManager.TryGetAnyTerm(source.ToLowerInvariant(), out tSource, "chargen_attributes", "chargen_ui", "ui", "common"))
+                     LocalizationManager.TryGetAnyTerm(source, out tSource, "chargen_attributes", "chargen_ui", "ui", "common"))
             {
                 translatedSource = tSource;
                 UnityEngine.Debug.Log($"[KR-BonusLine] LocalizationManager found: '{source}' -> '{tSource}'");
@@ -807,13 +807,12 @@ namespace QudKRTranslation.Patches
                 return null;
             }
             
-            string key = sourceType.ToLowerInvariant();
-            if (LocalizationManager.TryGetAnyTerm(key, out string translated, "chargen_ui", "ui", "common", "chargen_attributes"))
+            if (LocalizationManager.TryGetAnyTerm(sourceType, out string translated, "chargen_ui", "ui", "common", "chargen_attributes"))
             {
                 return translated;
             }
-            
-            return key switch
+
+            return sourceType.ToLowerInvariant() switch
             {
                 "caste" => "계급",
                 "calling" => "직업",
@@ -918,7 +917,7 @@ namespace QudKRTranslation.Patches
             {
                 foreach (var cat in categoryMenus)
                 {
-                    if (LocalizationManager.TryGetAnyTerm(cat.Title?.ToLowerInvariant(), out string tTitle, "mutation_desc", "chargen_ui"))
+                    if (LocalizationManager.TryGetAnyTerm(cat.Title, out string tTitle, "mutation_desc", "chargen_ui"))
                         cat.Title = tTitle;
 
                     if (cat.menuOptions != null)
@@ -1085,7 +1084,7 @@ namespace QudKRTranslation.Patches
             else
             {
                 // Fallback: try LocalizationManager
-                if (LocalizationManager.TryGetAnyTerm(cyberName.ToLowerInvariant(), out string tName, "cybernetics", "chargen_ui", "ui"))
+                if (LocalizationManager.TryGetAnyTerm(cyberName, out string tName, "cybernetics", "chargen_ui", "ui"))
                 {
                     data.Description = $"{tName} ({translatedSlot})";
                 }
@@ -1128,7 +1127,7 @@ namespace QudKRTranslation.Patches
             foreach (var cat in categoryMenus)
             {
                 // Translate category title "Cybernetics" -> "사이버네틱스"
-                if (LocalizationManager.TryGetAnyTerm(cat.Title?.ToLowerInvariant(), out string tTitle, "chargen_ui", "ui"))
+                if (LocalizationManager.TryGetAnyTerm(cat.Title, out string tTitle, "chargen_ui", "ui"))
                     cat.Title = tTitle;
                 
                 // Translate each PrefixMenuOption in the category
@@ -1216,7 +1215,7 @@ namespace QudKRTranslation.Patches
             else
             {
                 // Try simple name translation from JSON (lowercase, no tags)
-                if (LocalizationManager.TryGetAnyTerm(cyberName.ToLowerInvariant(), out string tName, "cybernetics", "chargen_ui", "ui"))
+                if (LocalizationManager.TryGetAnyTerm(cyberName, out string tName, "cybernetics", "chargen_ui", "ui"))
                 {
                     opt.Description = $"{tName} ({translatedSlot})";
                     Debug.Log($"[Qud-KR Cyber] Translated via LocalizationManager: {cyberName} -> {tName}");
@@ -1279,7 +1278,7 @@ namespace QudKRTranslation.Patches
                 
                 // [FIX Issue 8] Null check before ToLowerInvariant()
                 if (!string.IsNullOrEmpty(choice.Title) && 
-                    LocalizationManager.TryGetAnyTerm(choice.Title.ToLowerInvariant(), out string tTitle, "chargen_pregen", "chargen_proto"))
+                    LocalizationManager.TryGetAnyTerm(choice.Title, out string tTitle, "chargen_pregen", "chargen_proto"))
                     choice.Title = tTitle;
                 
                 // [FIX Issue 5] Traverse field existence check - use non-generic for FieldExists
@@ -1332,7 +1331,7 @@ namespace QudKRTranslation.Patches
                 if (nameTraverse.FieldExists())
                 {
                     string name = nameTraverse.GetValue<string>();
-                    if (!string.IsNullOrEmpty(name) && LocalizationManager.TryGetAnyTerm(name.ToLowerInvariant(), out string tName, "chargen_location"))
+                    if (!string.IsNullOrEmpty(name) && LocalizationManager.TryGetAnyTerm(name, out string tName, "chargen_location"))
                     {
                         nameTraverse.SetValue(tName);
                     }
@@ -1370,12 +1369,12 @@ namespace QudKRTranslation.Patches
             var list = __result.ToList();
             foreach (var opt in list)
             {
-                if (LocalizationManager.TryGetAnyTerm(opt.Prefix?.ToLowerInvariant(), out string tPrefix, "chargen_ui", "ui"))
+                if (LocalizationManager.TryGetAnyTerm(opt.Prefix, out string tPrefix, "chargen_ui", "ui"))
                     opt.Prefix = tPrefix;
 
                 var tr = Traverse.Create(opt);
                 string desc = tr.Field<string>("Description").Value;
-                if (LocalizationManager.TryGetAnyTerm(desc?.ToLowerInvariant(), out string tDesc, "chargen_ui", "ui"))
+                if (LocalizationManager.TryGetAnyTerm(desc, out string tDesc, "chargen_ui", "ui"))
                 {
                     tr.Field<string>("Description").Value = tDesc;
                 }
@@ -1393,7 +1392,7 @@ namespace QudKRTranslation.Patches
             {
                 var tr = Traverse.Create(pet);
                 string desc = tr.Field<string>("Description").Value;
-                if (LocalizationManager.TryGetAnyTerm(desc?.ToLowerInvariant(), out string tDesc, "chargen_ui", "ui"))
+                if (LocalizationManager.TryGetAnyTerm(desc, out string tDesc, "chargen_ui", "ui"))
                 {
                     tr.Field<string>("Description").Value = tDesc;
                 }
@@ -1417,7 +1416,7 @@ namespace QudKRTranslation.Patches
             foreach (var block in list)
             {
                 // Translate Title (Attributes, Mutations, etc.)
-                if (LocalizationManager.TryGetAnyTerm(block.Title?.ToLowerInvariant(), out string tTitle, "chargen_ui", "ui"))
+                if (LocalizationManager.TryGetAnyTerm(block.Title, out string tTitle, "chargen_ui", "ui"))
                     block.Title = tTitle;
 
                 var tr = Traverse.Create(block);
@@ -1466,7 +1465,7 @@ namespace QudKRTranslation.Patches
                     }
                     // Try direct lookup from multiple categories
                     else if (LocalizationManager.TryGetAnyTerm(itemName, out string tItem, "mutation", "cybernetics", "chargen_ui") ||
-                             LocalizationManager.TryGetAnyTerm(itemName.ToLowerInvariant(), out tItem, "mutation", "cybernetics", "chargen_ui"))
+                             LocalizationManager.TryGetAnyTerm(itemName, out tItem, "mutation", "cybernetics", "chargen_ui"))
                     {
                         string parenKo = TranslateSlot(parenContent);
                         lines[i] = tItem + " (" + parenKo + ")";
@@ -1532,7 +1531,7 @@ namespace QudKRTranslation.Patches
         private static string TranslateSlot(string slot)
         {
             if (LocalizationManager.TryGetAnyTerm(slot, out string translated, "chargen_ui", "inventory", "common") ||
-                LocalizationManager.TryGetAnyTerm(slot.ToLowerInvariant(), out translated, "chargen_ui", "inventory", "common"))
+                LocalizationManager.TryGetAnyTerm(slot, out translated, "chargen_ui", "inventory", "common"))
             {
                 return translated;
             }

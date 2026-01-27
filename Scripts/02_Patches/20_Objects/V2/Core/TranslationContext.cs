@@ -16,7 +16,7 @@ namespace QudKorean.Objects.V2.Core
     /// </summary>
     public class TranslationContext : ITranslationContext
     {
-        private static readonly Dictionary<string, string> _globalCache = new Dictionary<string, string>();
+        private static readonly Dictionary<string, string> _globalCache = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase);
 
         public ITranslationRepository Repository { get; }
         public string Blueprint { get; }

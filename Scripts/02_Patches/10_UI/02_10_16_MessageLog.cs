@@ -29,7 +29,7 @@ namespace QudKoreanMod.Patches
             if (_initialized) return;
             _initialized = true;
             
-            _messagePatterns = new Dictionary<string, string>();
+            _messagePatterns = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase);
             LoadMessageTranslations();
         }
 

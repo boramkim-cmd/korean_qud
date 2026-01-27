@@ -51,7 +51,7 @@ namespace QudKRTranslation.Patches
             LocalizationManager.Initialize();
             
             string originalMessage = message;
-            string key = message.Trim().TrimEnd('.').ToLowerInvariant();
+            string key = message.Trim().TrimEnd('.');
             
             Debug.Log($"[Qud-KR WorldGen] _AddMessage called with: '{originalMessage}', key='{key}'");
             
@@ -117,7 +117,7 @@ namespace QudKRTranslation.Patches
             LocalizationManager.Initialize();
             
             string originalText = Text;
-            string key = Text.Trim().TrimEnd('.').ToLowerInvariant();
+            string key = Text.Trim().TrimEnd('.');
             
             Debug.Log($"[Qud-KR WorldGen] NextStep called with: '{originalText}', key='{key}'");
             
@@ -150,7 +150,7 @@ namespace QudKRTranslation.Patches
             LocalizationManager.Initialize();
             
             string originalText = StepText;
-            string key = StepText.Trim().TrimEnd('.').ToLowerInvariant();
+            string key = StepText.Trim().TrimEnd('.');
             
             Debug.Log($"[Qud-KR WorldGen] StepProgress called with: '{originalText}', key='{key}'");
             

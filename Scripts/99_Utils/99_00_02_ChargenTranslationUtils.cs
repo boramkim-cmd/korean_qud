@@ -141,7 +141,7 @@ namespace QudKRTranslation.Utils
                      
                      if (TranslationEngine.TryTranslate(cleanFaction, out string tFaction, scopes) || 
                          LocalizationManager.TryGetAnyTerm(cleanFaction, out tFaction, "factions", "chargen_ui", "ui", "common") ||
-                         LocalizationManager.TryGetAnyTerm(cleanFaction.ToLowerInvariant(), out tFaction, "factions", "chargen_ui", "ui", "common"))
+                         LocalizationManager.TryGetAnyTerm(cleanFaction, out tFaction, "factions", "chargen_ui", "ui", "common"))
                      {
                          lines[i] = prefix + uiPrefix + bulletPrefix + $"{tFaction} 평판 {amount}" + uiSuffix;
                          changed = true;
@@ -179,8 +179,8 @@ namespace QudKRTranslation.Utils
                     string attrValue = attrColonMatch.Groups[2].Value;
                     
                     if (TranslationEngine.TryTranslate(attrName, out string translatedAttr, scopes) ||
-                        TranslationEngine.TryTranslate(attrName.ToLowerInvariant(), out translatedAttr, scopes) ||
-                        LocalizationManager.TryGetAnyTerm(attrName.ToLowerInvariant(), out translatedAttr, "status", "chargen_attributes", "common"))
+                        TranslationEngine.TryTranslate(attrName, out translatedAttr, scopes) ||
+                        LocalizationManager.TryGetAnyTerm(attrName, out translatedAttr, "status", "chargen_attributes", "common"))
                     {
                         lines[i] = prefix + uiPrefix + bulletPrefix + translatedAttr + ": " + attrValue + uiSuffix;
                         changed = true;
@@ -262,7 +262,7 @@ namespace QudKRTranslation.Utils
                     breadcrumb.Title = translated;
                 }
                 // 3. Try lowercase lookup
-                else if (TranslationEngine.TryTranslate(breadcrumb.Title.ToLowerInvariant(), out translated, scopes))
+                else if (TranslationEngine.TryTranslate(breadcrumb.Title, out translated, scopes))
                 {
                     breadcrumb.Title = translated;
                 }
@@ -277,7 +277,7 @@ namespace QudKRTranslation.Utils
                 {
                     tr.Field<string>("Subtitle").Value = translatedSubtitle;
                 }
-                else if (TranslationEngine.TryTranslate(subtitle.ToLowerInvariant(), out translatedSubtitle, scopes))
+                else if (TranslationEngine.TryTranslate(subtitle, out translatedSubtitle, scopes))
                 {
                     tr.Field<string>("Subtitle").Value = translatedSubtitle;
                 }
