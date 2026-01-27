@@ -226,6 +226,9 @@ namespace QudKRTranslation.Patches
         // Font fallback identity cache — fonts have stable instance IDs
         private static readonly HashSet<int> _patchedFontIds = new HashSet<int>();
 
+        // Static buffer for fallback scope to avoid per-call List+ToArray allocation
+        private static readonly Dictionary<string, string>[] _fallbackBuf = new Dictionary<string, string>[2];
+
         private static bool ContainsKorean(string s)
         {
             for (int i = 0; i < s.Length; i++)
@@ -250,16 +253,18 @@ namespace QudKRTranslation.Patches
         {
             try
             {
+                PerfCounters.TmpSetterCalls++;
+
                 // ★ 폰트 fallback 항상 적용 (번역 여부와 관계없이)
                 EnsureFontFallback(__instance);
-                
-                if (string.IsNullOrEmpty(value)) return;
+
+                if (string.IsNullOrEmpty(value)) { PerfCounters.TmpSetterSkipped++; return; }
 
                 // Fast skip: already contains Korean (already translated or mixed)
-                if (ContainsKorean(value)) return;
+                if (ContainsKorean(value)) { PerfCounters.TmpSetterSkipped++; return; }
 
                 // Fast skip: no Latin letters = pure numbers/symbols/whitespace
-                if (HasNoLatinLetters(value)) return;
+                if (HasNoLatinLetters(value)) { PerfCounters.TmpSetterSkipped++; return; }
 
                 // 0. Unity 리치 텍스트 태그 strip하여 순수 텍스트 추출
                 string stripped = UnityTagPattern.Replace(value, "").Trim();
@@ -311,14 +316,15 @@ namespace QudKRTranslation.Patches
                 // 4. Fallback: UI/Common 카테고리
                 var uiDict = LocalizationManager.GetCategory("ui");
                 var commonDict = LocalizationManager.GetCategory("common");
-                
-                var fallbackScopes = new List<Dictionary<string, string>>();
-                if (uiDict != null) fallbackScopes.Add(uiDict);
-                if (commonDict != null) fallbackScopes.Add(commonDict);
 
-                if (fallbackScopes.Count > 0)
+                int n = 0;
+                if (uiDict != null) _fallbackBuf[n++] = uiDict;
+                if (commonDict != null) _fallbackBuf[n++] = commonDict;
+
+                if (n > 0)
                 {
-                    if (TranslationUtils.TryTranslatePreservingTags(value, out string t2, fallbackScopes.ToArray()))
+                    var scopes = n == 2 ? _fallbackBuf : new[] { _fallbackBuf[0] };
+                    if (TranslationUtils.TryTranslatePreservingTags(value, out string t2, scopes))
                     {
                         if (value != t2) value = t2;
                     }
@@ -342,7 +348,7 @@ namespace QudKRTranslation.Patches
             if (currentFont == null) return;
 
             int fontId = currentFont.GetInstanceID();
-            if (_patchedFontIds.Contains(fontId)) return;
+            if (_patchedFontIds.Contains(fontId)) { PerfCounters.FontCacheHits++; return; }
 
             var koreanFont = FontManager.GetKoreanFont();
             if (koreanFont == null) return;

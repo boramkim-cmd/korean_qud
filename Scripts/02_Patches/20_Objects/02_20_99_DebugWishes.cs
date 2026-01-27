@@ -17,6 +17,7 @@ using XRL.Wish;
 using XRL.World;
 using UnityEngine;
 using QudKorean.Objects.V2;
+using QudKRTranslation.Utils;
 
 namespace QudKorean.Objects
 {
@@ -172,6 +173,26 @@ namespace QudKorean.Objects
             catch (Exception ex)
             {
                 Popup.Show($"Clear cache failed: {ex.Message}");
+            }
+        }
+
+        /// <summary>
+        /// Shows performance counters and resets them.
+        /// Usage: Ctrl+W → "kr:perf" → Enter
+        /// </summary>
+        [WishCommand(Command = "kr:perf")]
+        public static void ShowPerformance()
+        {
+            try
+            {
+                string report = PerfCounters.Report();
+                Popup.Show(report);
+                UnityEngine.Debug.Log(report);
+                PerfCounters.Reset();
+            }
+            catch (Exception ex)
+            {
+                Popup.Show($"Perf report failed: {ex.Message}");
             }
         }
 
