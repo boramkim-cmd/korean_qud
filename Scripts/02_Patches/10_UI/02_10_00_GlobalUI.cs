@@ -220,8 +220,31 @@ namespace QudKRTranslation.Patches
     public static class Patch_TMP_Text_Setter
     {
         // Unity 리치 텍스트 태그 패턴
-        private static readonly System.Text.RegularExpressions.Regex UnityTagPattern = 
+        private static readonly System.Text.RegularExpressions.Regex UnityTagPattern =
             new System.Text.RegularExpressions.Regex(@"<[^>]+>", System.Text.RegularExpressions.RegexOptions.Compiled);
+
+        // Font fallback identity cache — fonts have stable instance IDs
+        private static readonly HashSet<int> _patchedFontIds = new HashSet<int>();
+
+        private static bool ContainsKorean(string s)
+        {
+            for (int i = 0; i < s.Length; i++)
+            {
+                char c = s[i];
+                if (c >= 0xAC00 && c <= 0xD7AF) return true;
+            }
+            return false;
+        }
+
+        private static bool HasNoLatinLetters(string s)
+        {
+            for (int i = 0; i < s.Length; i++)
+            {
+                char c = s[i];
+                if ((c >= 'A' && c <= 'Z') || (c >= 'a' && c <= 'z')) return false;
+            }
+            return true;
+        }
         
         static void Prefix(TMP_Text __instance, ref string value)
         {
@@ -231,7 +254,13 @@ namespace QudKRTranslation.Patches
                 EnsureFontFallback(__instance);
                 
                 if (string.IsNullOrEmpty(value)) return;
-                
+
+                // Fast skip: already contains Korean (already translated or mixed)
+                if (ContainsKorean(value)) return;
+
+                // Fast skip: no Latin letters = pure numbers/symbols/whitespace
+                if (HasNoLatinLetters(value)) return;
+
                 // 0. Unity 리치 텍스트 태그 strip하여 순수 텍스트 추출
                 string stripped = UnityTagPattern.Replace(value, "").Trim();
                 if (string.IsNullOrEmpty(stripped)) return;
@@ -309,24 +338,31 @@ namespace QudKRTranslation.Patches
         {
             if (tmp == null) return;
             if (!FontManager.IsFontLoaded) return;
-            
+
+            var currentFont = tmp.font;
+            if (currentFont == null) return;
+
+            int fontId = currentFont.GetInstanceID();
+            if (_patchedFontIds.Contains(fontId)) return;
+
             var koreanFont = FontManager.GetKoreanFont();
             if (koreanFont == null) return;
-            
-            // 현재 폰트에 한글 fallback이 없으면 추가
-            var currentFont = tmp.font;
-            if (currentFont != null && currentFont != koreanFont)
+            if (currentFont == koreanFont)
             {
-                if (currentFont.fallbackFontAssetTable == null)
-                    currentFont.fallbackFontAssetTable = new System.Collections.Generic.List<TMP_FontAsset>();
-                
-                if (!currentFont.fallbackFontAssetTable.Contains(koreanFont))
-                {
-                    currentFont.fallbackFontAssetTable.Insert(0, koreanFont);
-                    // 새로 추가되었을 때만 dirty 플래그 설정
-                    tmp.SetAllDirty();
-                }
+                _patchedFontIds.Add(fontId);
+                return;
             }
+
+            if (currentFont.fallbackFontAssetTable == null)
+                currentFont.fallbackFontAssetTable = new System.Collections.Generic.List<TMP_FontAsset>();
+
+            if (!currentFont.fallbackFontAssetTable.Contains(koreanFont))
+            {
+                currentFont.fallbackFontAssetTable.Insert(0, koreanFont);
+                tmp.SetAllDirty();
+            }
+
+            _patchedFontIds.Add(fontId);
         }
     }
 

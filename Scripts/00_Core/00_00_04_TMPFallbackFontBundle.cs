@@ -24,6 +24,7 @@ namespace QudKRTranslation.Core
     {
         private const string BundleFileName = "d2coding.bundle";
         private static bool Attempted;
+        private static bool _fallbackConfirmed;
         private static TMP_FontAsset FallbackFont;
 
         static void Postfix()
@@ -94,10 +95,8 @@ namespace QudKRTranslation.Core
 
         internal static void EnsureFallbackAdded()
         {
-            if (FallbackFont == null)
-            {
-                return;
-            }
+            if (_fallbackConfirmed) return;
+            if (FallbackFont == null) return;
 
             if (TMP_Settings.fallbackFontAssets == null)
             {
@@ -106,10 +105,13 @@ namespace QudKRTranslation.Core
 
             if (TMP_Settings.fallbackFontAssets.Contains(FallbackFont))
             {
+                _fallbackConfirmed = true;
                 return;
             }
 
             TMP_Settings.fallbackFontAssets.Add(FallbackFont);
+            _fallbackConfirmed = true;
+
             TextMeshProUGUI[] texts = Resources.FindObjectsOfTypeAll<TextMeshProUGUI>();
             for (int i = 0; i < texts.Length; i++)
             {
