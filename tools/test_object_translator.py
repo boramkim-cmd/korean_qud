@@ -195,7 +195,7 @@ def strip_color_tags(text: str) -> str:
 
 
 def translate_possessives_in_tags(text: str) -> str:
-    """색상 태그 내 소유격 패턴 번역: {{w|Praetorian's}} -> {{w|프라이토리안의}}"""
+    """색상 태그 내 소유격 패턴 번역: {{w|Praetorian's}} -> {{w|근위병의}}"""
     if not text or '{{' not in text or "'s" not in text:
         return text
 
@@ -866,22 +866,22 @@ def try_translate(original_name: str) -> Tuple[bool, str]:
 # ============================================================
 TEST_CASES = [
     # === 1. 단순 직접 번역 (10개) ===
-    (1, "mace", "메이스"),
+    (1, "mace", "철퇴"),
     (2, "dagger", "단검"),
     (3, "sword", "검"),
     (4, "torch", "횃불"),
     (5, "canteen", "수통"),
     (6, "helmet", "투구"),
-    (7, "boots", "부츠"),
+    (7, "boots", "장화"),
     (8, "cloak", "망토"),
     (9, "injector", "주사기"),
     (10, "grenade", "수류탄"),
 
     # === 2. 단일 접두사 (10개) ===
-    (11, "bronze mace", "청동 메이스"),
+    (11, "bronze mace", "청동 철퇴"),
     (12, "iron dagger", "철 단검"),
     (13, "crysteel sword", "크리스틸 검"),
-    (14, "leather boots", "가죽 부츠"),
+    (14, "leather boots", "가죽 장화"),
     (15, "wooden staff", "나무 지팡이"),
     (16, "flawless helm", "완벽한 투구"),
     (17, "masterwork armor", "명품 갑옷"),
@@ -890,7 +890,7 @@ TEST_CASES = [
     (20, "vibro dagger", "바이브로 단검"),
 
     # === 3. 복합 접두사 (10개) ===
-    (21, "engraved bronze mace", "새겨진 청동 메이스"),
+    (21, "engraved bronze mace", "새겨진 청동 철퇴"),
     (22, "folded carbide dagger", "접힌 카바이드 단검"),
     (23, "flawless crysteel sword", "완벽한 크리스틸 검"),
     (24, "two-handed iron hammer", "양손 철 해머"),
@@ -922,7 +922,7 @@ TEST_CASES = [
     (45, "canteen [32 drams of {{G|fresh water}}]", "수통 [신선한 물 32드램] 또는 수통 [{{G|신선한 물}} 32드램]"),
 
     # === 6. 컬러 태그 (10개) ===
-    (46, "{{w|bronze}} mace", "{{w|청동}} 메이스"),
+    (46, "{{w|bronze}} mace", "{{w|청동}} 철퇴"),
     (47, "{{B|carbide}} dagger", "{{B|카바이드}} 단검"),
     (48, "{{c|crysteel}} sword", "{{c|크리스틸}} 검"),
     (49, "{{G|hulk}} honey injector", "{{G|헐크}} 꿀 주사기"),
@@ -965,7 +965,7 @@ TEST_CASES = [
     (77, "sword of fire", "불의 검"),
     (78, "sandals of the river-wives", "강 아내들의 샌들"),
     (79, "banner of the Holy Rhombus", "성스러운 마름모의 깃발"),
-    (80, "boots of ice", "얼음의 부츠"),
+    (80, "boots of ice", "얼음의 장화"),
     (81, "dagger of lightning", "번개의 단검"),
 
     # === 11. 시체 패턴 (3개) ===
@@ -981,12 +981,12 @@ TEST_CASES = [
     (89, "mopango corpse", "모팡고 시체"),
     (90, "cherub egg", "케루브 알"),
     (91, "barathrumite jerky", "바라스룸인 육포"),
-    (92, "plasma rifle", "플라즈마 라이플"),
+    (92, "plasma rifle", "플라즈마 소총"),
     (93, "eigen pistol", "아이겐 권총"),
     (94, "nullray cannon", "널레이 대포"),
 
     # === 13. 복합 케이스 (6개) ===
-    (95, "engraved bronze mace +3", "새겨진 청동 메이스 +3"),
+    (95, "engraved bronze mace +3", "새겨진 청동 철퇴 +3"),
     (96, "{{w|bronze}} dagger x15", "{{w|청동}} 단검 x15"),
     (97, "flawless crysteel sword of fire", "완벽한 크리스틸 불의 검"),
     # Note: Complex pattern with color tags in drams + quantity
@@ -997,7 +997,7 @@ TEST_CASES = [
     # === 14. 자기참조 색상태그 (모드 접두사) ===
     # IMPORTANT: Shader name preserved, only display text translated
     (101, "{{feathered|feathered}} leather armor", "{{feathered|깃털 달린}} 가죽 갑옷"),
-    (102, "{{feathered|feathered}} boots", "{{feathered|깃털 달린}} 부츠"),
+    (102, "{{feathered|feathered}} boots", "{{feathered|깃털 달린}} 장화"),
     (103, "{{spiked|spiked}} leather armor", "{{spiked|가시 달린}} 가죽 갑옷"),
     (104, "{{lanterned|lanterned}} helmet", "{{lanterned|랜턴 달린}} 투구"),
 
@@ -1008,7 +1008,7 @@ TEST_CASES = [
     # 셰이더 이름 보존, 표시 텍스트 + 명사 번역
     (106, "{{gaslight|gaslight}} kris", "{{gaslight|가스라이트}} 크리스"),
     (107, "{{metachrome|metachrome}} sword", "{{metachrome|메타크롬}} 검"),
-    (108, "{{lava|lava}} weep", "{{lava|용암}} weep"),
+    (108, "{{lava|lava}} weep", "{{lava|용암}} 위프"),
     (109, "{{syphon|syphon}} baton", "{{syphon|사이펀}} 경찰봉"),
 
     # === 17. 비자기참조 색상태그 ===
@@ -1018,7 +1018,7 @@ TEST_CASES = [
 
     # === 18. 소유격 아이템 번역 테스트 (2026-01-26 추가) ===
     # 단순 소유격 패턴 (Fallback 번역 테스트)
-    (112, "Praetorian's cloak", "프라이토리안의 망토"),
+    (112, "Praetorian's cloak", "근위병의 망토"),
     (113, "panther's cloak", "표범의 망토"),
     (114, "miner's helmet", "광부의 투구"),  # helmet → 투구 (base_nouns)
     (115, "merchant's token", "상인의 토큰"),
@@ -1032,7 +1032,7 @@ TEST_CASES = [
     (121, "Slog's annunclus", "슬로그의 아눈클루스"),
 
     # 색상 태그 포함 소유격 - 태그 내 소유격 패턴이 먼저 처리되어 태그 보존됨
-    (122, "{{w|Praetorian's}} cloak", "{{w|프라이토리안의}} 망토"),
+    (122, "{{w|Praetorian's}} cloak", "{{w|근위병의}} 망토"),
     (123, "{{W|merchant's token}}", "{{W|상인의 토큰}}"),
     (124, "{{Y|minstrel's token}}", "{{Y|음유시인의 토큰}}"),
 ]
