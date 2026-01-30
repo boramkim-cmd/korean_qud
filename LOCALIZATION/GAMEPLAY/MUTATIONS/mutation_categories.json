@@ -1,0 +1,12 @@
+{
+  "_meta": {
+    "description": "Mutation category headers from Mutations.xml"
+  },
+  "categories": {
+    "Mental Defects": "정신 결함",
+    "Mental Mutations": "정신 돌연변이",
+    "Morphotypes": "변형체",
+    "Physical Defects": "신체 결함",
+    "Physical Mutations": "신체 돌연변이"
+  }
+}
