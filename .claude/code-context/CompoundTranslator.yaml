@@ -1,0 +1,39 @@
+file: Scripts/02_Patches/20_Objects/V2/Patterns/CompoundTranslator.cs
+lines: 428
+created: 2026-01-26
+
+why: |
+  공백으로 분리된 2-4단어 복합어를 각 단어별 번역 후 조합.
+  컬러태그 구조 보존하면서 내용만 번역.
+  예: "bear golem" → "곰 골렘", "{{c|bear}} golem" → "{{c|곰}} 골렘"
+
+do_not_simplify:
+  - tag_nesting_depth: |
+      Lines 155-179: {{ }} 깊이 추적. pipePos 변수가 태그 내용 분리에 필수.
+      단순화 시 중첩 태그 파싱 실패 → 무한루프 또는 불완전 결과.
+  - eight_tier_lookup: |
+      Lines 299-382: TryTranslatePart의 8단계 사전 조회 순서:
+      Species → BaseNouns → Prefixes → ColorTagVocab → BodyParts → Liquids → Creature.Names → Item.Names
+      순서 변경 시 우선순위 깨짐.
+  - possessive_every_tier: |
+      Lines 295-382: 모든 조회 단계에서 isPossessive 확인 후 "의" 추가.
+      한 단계라도 빠지면 소유격 번역 실패.
+  - suffix_extraction_reattach: |
+      Lines 107-134: 접미사 분리 → 본체 번역 → 접미사 번역 → 재결합.
+      태그가 있는 원본에서 접미사 위치를 LastIndexOf로 찾음.
+  - translatedCount_guard: |
+      Lines 99-101: 최소 1개 실제 번역 필요. 제거 시 미번역 복합어도 통과.
+  - shouldKeepAsIs: |
+      Lines 391-426: 숫자, 로마숫자, mk, 대문자 약어, 고유명사 보존.
+      이 로직 제거 시 "grenade mk I" 같은 패턴 번역 실패.
+
+depends_on:
+  - ColorTagProcessor.cs (Strip)
+  - SuffixExtractor.cs (ExtractAll, TranslateAll)
+  - ITranslationRepository (모든 사전)
+
+depended_by:
+  - ObjectTranslatorV2 pipeline (Priority 60)
+
+history:
+  - 2026-01-26: V2 파이프라인 최초 구현

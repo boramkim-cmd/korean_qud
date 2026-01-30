@@ -1,0 +1,41 @@
+file: Scripts/02_Patches/20_Objects/V2/Processing/ColorTagProcessor.cs
+lines: 401
+created: 2026-01-26
+
+why: |
+  Qud 컬러태그 {{shader|content}} 처리 유틸리티.
+  모든 번역기의 기반. 태그 제거/보존/복원을 담당.
+  셰이더 이름(파이프 앞)은 절대 번역 안 함. 표시 텍스트(파이프 뒤)만 번역.
+
+do_not_simplify:
+  - iterative_strip_limit: |
+      Lines 35-41: Strip()에서 limit=10 반복. 중첩 태그({{outer|{{inner|text}}}})를
+      안쪽부터 제거. 단일 패스로 변경 시 중첩 태그 제거 실패.
+  - shader_name_preservation: |
+      Lines 147-155: {{shader|content}}에서 셰이더 이름은 절대 번역 안 함.
+      IMPORTANT 주석 참조. 위반 시 게임 렌더링 깨짐.
+  - three_step_material_translation: |
+      Lines 120-203:
+      Step 0: 자기참조 {{word|word}} → {{word|번역}}
+      Step 0.5: 확장 자기참조 {{word|word more}} → {{word|번역 more}}
+      Step 1: 비자기참조 {{shader|prefix}} → {{shader|번역}}
+      그 후 5회 반복으로 ColorTagVocab + BaseNouns 번역.
+      순서/반복횟수 변경 시 번역 누락 또는 중복.
+  - segment_based_outside_tags: |
+      Lines 241-287: 태그 외부만 번역하는 세그먼트 방식.
+      태그 내부/외부를 정확히 구분. regex-only로 단순화 시 태그 구조 손상.
+  - restore_formatting_four_types: |
+      Lines 338-396: 접미사 4타입별 복원 (없음/대괄호/소괄호/태그).
+      LastIndexOf로 마지막 발생 위치 사용 - 의도적 설계.
+
+depends_on:
+  - ITranslationRepository (Prefixes, ColorTagVocab, BaseNouns, Species)
+
+depended_by:
+  - OfPatternTranslator.cs (Strip)
+  - CompoundTranslator.cs (Strip)
+  - ObjectTranslatorV2 pipeline (전처리/후처리)
+  - 모든 패턴 번역기
+
+history:
+  - 2026-01-26: V2 파이프라인 최초 구현
