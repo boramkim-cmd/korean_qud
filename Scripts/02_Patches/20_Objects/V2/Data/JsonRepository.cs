@@ -726,6 +726,26 @@ namespace QudKorean.Objects.V2.Data
             LoadSuffixes(objectsPath);
             LoadVocabulary(objectsPath);
             LoadShared(modDir);
+
+            // Try loading display_lookup.json from data/ even in dev mode
+            string devLookupPath = Path.Combine(modDir, "data", "display_lookup.json");
+            if (File.Exists(devLookupPath))
+            {
+                try
+                {
+                    var lookupRoot = JObject.Parse(File.ReadAllText(devLookupPath));
+                    _displayLookup = new Dictionary<string, string>(StringComparer.Ordinal);
+                    foreach (var prop in lookupRoot.Properties())
+                    {
+                        _displayLookup[prop.Name] = prop.Value.ToString();
+                    }
+                    UnityEngine.Debug.Log($"{LOG_PREFIX} Loaded display_lookup (dev): {_displayLookup.Count} entries");
+                }
+                catch (Exception ex)
+                {
+                    UnityEngine.Debug.LogError($"{LOG_PREFIX} Failed to load display_lookup (dev): {ex.Message}");
+                }
+            }
         }
 
         private void LoadJsonFile(string filePath, Dictionary<string, ObjectData> cache)
