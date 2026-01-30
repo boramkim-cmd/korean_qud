@@ -2,43 +2,24 @@
 
 > **qud_korean** - Caves of Qud 한글화 프로젝트 | v3.1 (2026-01-30)
 
-## 다음 세션 할 일 (2026-01-30)
+## 다음 세션 할 일
 
 > 이 작업 완료 후 이 섹션을 비우고 커밋할 것
 
-### 1단계: 배포 + 기본 확인
-```bash
-./deploy.sh
-# 게임 실행 후:
-# kr:stats    → Mode: bundle 확인, 항목 수 증가 확인
-# kr:perf     → 스킵율 50%+, 폰트 캐시 히트 확인
-```
+### 1. 게임 테스트 (필수)
+배포 완료 상태. 게임 실행 후:
+- `kr:stats` → Mode: bundle, 항목 수 3445개 확인
+- `kr:perf` → 스킵율 50%+, 폰트 캐시 히트 확인
+- 팩션/지역생물/위시커맨드/음식 한글 확인
+- 수정된 번역 확인: "경비견", "투망", "부장품", "의료실", "별 야자수" 등
 
-### 2단계: 신규 JSON 로드 확인
-새로 추가된 6개 파일이 번들에 포함되었는지:
-```bash
-python3 -c "
-import json
-d = json.load(open('dist/data/objects.json'))
-for key in ['phenomena','data_objects','widgets','worlds']:
-    print(f'{key}: {key in str(d)[:10000]}')
-"
-```
-안 보이면 → `tools/build_optimized.py`에 새 경로 등록 필요
+### 2. 동적 패턴 85개 (게임 테스트 후 판단)
+- `=creatureRegionAdjective= X` (58개) — CompoundTranslator 런타임 처리 확인
+- `*SultanName*` / `*creature*` (26개) — 동적 치환 확인
+- 처리 안 되면 → C# 패치 필요
 
-### 3단계: 인게임 번역 확인
-- **팩션**: 평판 화면에서 "영양", "유인원", "거미류" 등 확인
-- **지역 생물**: 소금 습지/사막 협곡/언덕에서 "습지 쿠두", "협곡 유인원" 등 확인
-- **위시 커맨드**: `wish` → 목록에서 한글 표시 확인
-- **음식**: 인벤토리에서 "응고된 불꽃", "뼈 가루" 등 확인
-
-### 문제 발생 시
-| 증상 | 원인 | 해결 |
-|------|------|------|
-| 신규 JSON 미로드 | build_optimized.py 경로 미등록 | `tools/build_optimized.py`에 경로 추가 |
-| 팩션명 영어 | factions.json 로드 패치 없음 | C# 패치 확인: `Scripts/02_Patches/10_UI/` |
-| 지역 생물 영어 | CompoundTranslator 사전 미참조 | modifiers.json 로드 경로 확인 |
-| 위시 커맨드 영어 | wish_commands.json 패치 없음 | UI 패치 추가 필요 |
+### 3. Phase 4: 커뮤니티
+- Steam Workshop 배포, README 한글화, 기여 가이드
 
 ---
 
