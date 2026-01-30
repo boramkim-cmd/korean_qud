@@ -1,20 +1,25 @@
 # Claude Code 프로젝트 규칙
 
-> **qud_korean** - Caves of Qud 한글화 프로젝트 | v3.2 (2026-01-30)
+> **qud_korean** - Caves of Qud 한글화 프로젝트 | v3.3 (2026-01-31)
 
 ## 다음 세션 할 일
 
 > `.claude/session-state.md` 참조 (상세 맥락)
 
-### 1. 게임 테스트 — Display Lookup 검증
-- `./deploy.sh` → 게임 실행 → `kr:stats`로 `Lookup: 2764`, `LookupHit: N` 확인
-- 인벤토리/상점 번역 누락 확인 (torch, canteen, wooden arrow 등)
-- LookupHit 99%+ 시 세계 생성 스킵 제거 시도
+### 1. Pipeline 성능 최적화 (8개 태스크) ← **최우선**
+- **플랜:** `.claude/plans/performance-optimization-plan.md` 읽고 `executing-plans` 스킬로 실행
+- 핵심: regex 루프(아이템당 ~7,000회) → dictionary lookup (~50회)으로 300x 개선
+- 대상 파일: SuffixExtractor, PrefixExtractor, ColorTagProcessor, FallbackHandler, JsonRepository, ITranslationRepository, ObjectTranslatorV2
 
-### 2. 동적 패턴 85개 (게임 테스트 후 판단)
+### 2. 게임 테스트 (최적화 후)
+- `./deploy.sh` → `kr:stats`로 Pipeline 비율 확인
+- 카테고리 헤더 한글 + 필터 동작 확인
+- 상점/인벤토리 체감 속도 비교
+
+### 3. 동적 패턴 85개 (게임 테스트 후 판단)
 - `=creatureRegionAdjective= X` (58개), `*SultanName*` (26개)
 
-### 3. Phase 4: 커뮤니티
+### 4. Phase 4: 커뮤니티
 - Steam Workshop 배포, README 한글화, 기여 가이드
 
 **주의:** 성능 카운터/핫스팟 코드는 디버깅용. 안정화 후 제거할 것.
