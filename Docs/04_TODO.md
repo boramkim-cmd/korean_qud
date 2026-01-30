@@ -1,6 +1,6 @@
 # Caves of Qud Korean Localization - TODO
 
-> **Version**: 3.8 | **Last Updated**: 2026-01-30
+> **Version**: 3.9 | **Last Updated**: 2026-01-30
 
 ---
 
@@ -13,6 +13,17 @@
 | Phase 3: Optimization | 6 | 0 | 1 | 86% |
 | Phase 4: Community | 0 | 0 | 3 | 0% |
 | **Total** | **18** | **0** | **5** | **78%** |
+
+### Translation Coverage (2026-01-30)
+| Metric | Value |
+|--------|-------|
+| **총 고유 항목** | 2,989 |
+| **번역됨** | 2,904 |
+| **미번역** | 85 |
+| **커버리지** | **97.2%** |
+| **미번역 사유** | 모두 `=variable=` 또는 `*template*` 패턴 (런타임 생성) |
+
+이전: 933/2,989 (31.2%) → 현재: 2,904/2,989 (97.2%)
 
 ### Test Coverage
 | 스크립트 | 케이스 | 통과율 | 목적 |
