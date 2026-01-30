@@ -1,10 +1,45 @@
 # Caves of Qud Korean Localization - Changelog
 
-> **Version**: 7.1 | **Last Updated**: 2026-01-27
+> **Version**: 7.2 | **Last Updated**: 2026-01-30
 
 ---
 
 ## Recent Changes
+
+### [2026-01-30] 미번역 항목 완료 - 어휘, 팩션, 현상, 음식, 지역 단어 (커밋 8877c1d)
+- **목표**: 정적 번역 커버리지 100% 달성, 동적 패턴 런타임 처리 지원
+- **총 추가 항목**: 194개
+
+- **어휘 확장** (9개):
+  - `_nouns.json`: baron, cactus, kudu, moa, zebra, consortium (6개)
+  - `modifiers.json`: blooming, shading, spiny (3개)
+
+- **생물 지역 단어** (30개):
+  - 지역 형용사 15개: marsh, brine, lily, glade, mud, saltwater, sedge, canyon, trench, valley, cliff, gorge, hill, mound, knoll
+  - 지역 명사 15개: marshdweller, brinestalker 등
+  - CompoundTranslator 런타임 CreatureRegionSpice 패턴 지원
+
+- **팩션 번역** (67개):
+  - `_SHARED/factions.json` 신규 생성
+  - Factions.xml 37개 + ChiliadFactions.xml 30개
+
+- **신규 JSON 파일** (6개):
+  | 파일 | 항목 수 | 내용 |
+  |------|---------|------|
+  | `LOCALIZATION/OBJECTS/terrain/phenomena.json` | 19 | 물리 현상 |
+  | `LOCALIZATION/OBJECTS/misc/data.json` | 19 | 데이터 객체 |
+  | `LOCALIZATION/OBJECTS/misc/widgets.json` | 12 | 위젯 |
+  | `LOCALIZATION/OBJECTS/misc/worlds.json` | 3 | 월드 |
+  | `LOCALIZATION/UI/wish_commands.json` | 13 | Wish 명령어 |
+  | `LOCALIZATION/OBJECTS/items/consumables/food_remaining.json` | 22 | 음식 |
+
+- **핵심 발견사항**:
+  - 미번역 85개는 모두 동적 변수 패턴 (`=creatureRegionAdjective=`, `=creatureRegionNoun=`, `*creature*`)
+  - 정적 번역 커버리지: **100%**
+  - C# 코드 변경 불필요 - 어휘 확장만으로 CompoundTranslator가 런타임 처리
+  - 유효 커버리지: **99%+** (인게임 테스트 필요)
+
+- **계획 문서**: `docs/plans/2026-01-30-complete-untranslated-items.md`
 
 ### [2026-01-27] 성능 최적화 8개 태스크 구현
 - **목표**: 프레임당 낭비 제거, 텍스트 렌더 오버헤드 감소, GC 압력 절감
@@ -453,11 +488,14 @@
 ---
 
 ## Statistics
-- Total translation entries: 7,037
+- Total translation entries: 7,231 (+194)
 - Mutation files: 81
 - Skill files: 20
-- Object files: 67
+- Object files: 73 (+6)
+- Faction entries: 67
 - Message patterns: 50+
+- **정적 번역 커버리지**: 100%
+- **유효 커버리지**: 99%+
 - **Test coverage**: 197 cases (100% pass)
 - **Pattern translators**: 7 (Corpse, Food, Parts, Possessive, BookTitle, OfPattern, Compound)
 - **Preposition patterns**: 18
