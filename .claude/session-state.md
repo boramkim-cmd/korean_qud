@@ -1,41 +1,55 @@
 # 세션 상태
-> **최종 업데이트**: 2026-01-30 (세션 3)
-> **현재 작업**: Display Lookup 구현 완료 — 게임 테스트 필요
+> **최종 업데이트**: 2026-01-31 (세션 4)
+> **현재 작업**: Pipeline 성능 최적화 — regex → dictionary 치환
 
 ---
 
 ## 다음 세션 할 일
 
-### 1. 게임 테스트 (필수 — Display Lookup 검증)
+### 1. Pipeline 성능 최적화 (8개 태스크)
 
-```bash
-./deploy.sh
-# 게임 실행 후:
-# kr:stats → LookupHit 카운터 확인 (2764 entries 로드 확인)
-# 인벤토리/상점 열 때 번역 누락 확인
+**플랜 파일:** `.claude/plans/validated-twirling-wind.md` — "구현해줘"로 바로 실행 가능
+
+**핵심:** Pipeline fallback 경로에서 아이템당 ~7,000번 regex → ~50번 dictionary lookup으로 300x 개선
+
+**실행 순서:**
+```
+Task 7 (Dictionary 인터페이스) → Task 1 (SuffixExtractor compiled regex)
+→ Task 2 (PrefixExtractor concat 제거) → Task 5 (Strip compiled)
+→ Task 3 (TranslateMaterials dict 치환) → Task 6 (NounsOutsideTags dict 치환)
+→ Task 4 (FallbackHandler dict 치환) → Task 8 (Pre-warming)
 ```
 
-**확인 항목:**
-- `kr:stats` 출력에 `Lookup: 2764`, `LookupHit: N` 표시되는지
-- 세계 생성 후 인벤토리 아이템 번역 (torch, canteen, wooden arrow 등)
-- 상점 아이템 번역 속도 (이전: 387개 파이프라인 한꺼번에 → 지금: lookup 히트로 즉시)
-- 컬러태그 포함 아이템 (`{{c|projectile}}` 등) 정상 번역
-
-### 2. Display Lookup 히트율 분석 후 결정
-
-| 시나리오 | 조치 |
-|----------|------|
-| LookupHit 99%+ | 세계 생성 스킵 제거 시도 (`DisplayNamePatch.cs` line 54) |
-| LookupHit < 90% | 누락 패턴 분석 → build_optimized.py 정규식 개선 |
-| 세계 생성 스킵 제거 후 80초+ | lookup이 적용 안 되는 경로 존재 → 디버깅 |
+### 2. 게임 테스트 (최적화 후)
+- `./deploy.sh` → `kr:stats`로 Pipeline 비율 확인
+- 상점/인벤토리 체감 속도 비교
+- 카테고리 헤더 한글 + 필터 동작 확인
 
 ### 3. 동적 패턴 85개 (게임 테스트 후 판단)
-- `=creatureRegionAdjective= X` (58개) — CompoundTranslator 런타임 처리 확인
-- `*SultanName*` / `*creature*` (26개) — 동적 치환 확인
-- 처리 안 되면 → C# 패치 필요
+- `=creatureRegionAdjective= X` (58개), `*SultanName*` (26개)
 
 ### 4. Phase 4: 커뮤니티
 - Steam Workshop 배포, README 한글화, 기여 가이드
+
+---
+
+## 이번 세션 완료 (2026-01-31, 세션 4)
+
+### 번역 누락 수정 + 코드 리뷰 + 성능 분석
+
+**커밋 3개:**
+
+| 커밋 | 내용 |
+|------|------|
+| `1000ae7` | 카테고리 9개 추가, InventoryCategoryPatch 생성, 95개 번역 추가, build_optimized.py 빈값 덮어쓰기 수정 |
+| `576d95a` | 파일명 02_10_16 → 02_10_18 충돌 수정 |
+| `358908c` | 코드 리뷰 반영: Medicine/Meds 스왑, 핫스팟 플래그 게이트, regex 전 IndexOf, 배열 할당 제거, NormalizeBlueprintId 무할당, sorted rglob, kr:reload 캐시 무효화 |
+
+**성능 분석 결과:**
+- Display lookup 커버리지: 92.0% → 96.9% (빈값 덮어쓰기 수정)
+- 나머지 3.1%는 동적 패턴 (번역 불가)
+- Pipeline fallback 시 **ColorTagProcessor.TranslateMaterials()가 핵심 병목** — prefix 766개 × vocab 924개 × baseNouns 612개 = ~15,000 regex/call
+- 해결안: regex 루프 → dictionary lookup (플랜 문서화 완료)
 
 ---
 
