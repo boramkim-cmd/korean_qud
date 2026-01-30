@@ -5,6 +5,7 @@
  * 작성일: 2026-01-26
  */
 
+using System;
 using System.Collections.Generic;
 using QudKorean.Objects.V2.Data;
 using QudKorean.Objects.V2.Processing;
