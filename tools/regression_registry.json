@@ -1,0 +1,393 @@
+{
+  "_meta": {
+    "description": "회귀 방지용 핵심 테스트 케이스 레지스트리",
+    "usage": "python3 tools/run_regression.py",
+    "last_updated": "2026-01-30"
+  },
+  "cases": [
+    {
+      "pattern": "direct",
+      "input": "mace",
+      "expected": "철퇴",
+      "source": "test_object_translator#1"
+    },
+    {
+      "pattern": "direct",
+      "input": "dagger",
+      "expected": "단검",
+      "source": "test_object_translator#2"
+    },
+    {
+      "pattern": "direct",
+      "input": "torch",
+      "expected": "횃불",
+      "source": "test_object_translator#4"
+    },
+    {
+      "pattern": "single_prefix",
+      "input": "bronze mace",
+      "expected": "청동 철퇴",
+      "source": "test_object_translator#11"
+    },
+    {
+      "pattern": "single_prefix",
+      "input": "iron dagger",
+      "expected": "철 단검",
+      "source": "test_object_translator#12"
+    },
+    {
+      "pattern": "single_prefix",
+      "input": "crysteel sword",
+      "expected": "크리스틸 검",
+      "source": "test_object_translator#13"
+    },
+    {
+      "pattern": "single_prefix",
+      "input": "leather boots",
+      "expected": "가죽 장화",
+      "source": "test_object_translator#14"
+    },
+    {
+      "pattern": "single_prefix",
+      "input": "vibro dagger",
+      "expected": "바이브로 단검",
+      "source": "test_object_translator#20"
+    },
+    {
+      "pattern": "multi_prefix",
+      "input": "engraved bronze mace",
+      "expected": "새겨진 청동 철퇴",
+      "source": "test_object_translator#21"
+    },
+    {
+      "pattern": "multi_prefix",
+      "input": "flawless crysteel sword",
+      "expected": "완벽한 크리스틸 검",
+      "source": "test_object_translator#23"
+    },
+    {
+      "pattern": "multi_prefix",
+      "input": "studded leather armor",
+      "expected": "징박힌 가죽 갑옷",
+      "source": "test_object_translator#25"
+    },
+    {
+      "pattern": "suffix_state",
+      "input": "torch (lit)",
+      "expected": "횃불 (점화됨)",
+      "source": "test_object_translator#31"
+    },
+    {
+      "pattern": "suffix_state",
+      "input": "canteen [full]",
+      "expected": "수통 [가득 참]",
+      "source": "test_object_translator#34"
+    },
+    {
+      "pattern": "suffix_quantity",
+      "input": "arrow x15",
+      "expected": "화살 x15",
+      "source": "test_object_translator#35"
+    },
+    {
+      "pattern": "suffix_plus",
+      "input": "dagger +3",
+      "expected": "단검 +3",
+      "source": "test_object_translator#40"
+    },
+    {
+      "pattern": "drams",
+      "input": "canteen [32 drams of water]",
+      "expected": "수통 [물 32드램]",
+      "source": "test_object_translator#41"
+    },
+    {
+      "pattern": "drams",
+      "input": "waterskin [16 drams of fresh water]",
+      "expected": "물주머니 [신선한 물 16드램]",
+      "source": "test_object_translator#42"
+    },
+    {
+      "pattern": "color_tag",
+      "input": "{{w|bronze}} mace",
+      "expected": "{{w|청동}} 철퇴",
+      "source": "test_object_translator#46"
+    },
+    {
+      "pattern": "color_tag",
+      "input": "{{c|crysteel}} sword",
+      "expected": "{{c|크리스틸}} 검",
+      "source": "test_object_translator#48"
+    },
+    {
+      "pattern": "color_tag",
+      "input": "{{c|vibro blade}}",
+      "expected": "{{c|바이브로 블레이드}}",
+      "source": "test_object_translator#52"
+    },
+    {
+      "pattern": "color_tag",
+      "input": "{{G|fresh water}} injector",
+      "expected": "{{G|신선한 물}} 주사기",
+      "source": "test_object_translator#54"
+    },
+    {
+      "pattern": "self_ref_tag",
+      "input": "{{feathered|feathered}} leather armor",
+      "expected": "{{feathered|깃털 달린}} 가죽 갑옷",
+      "source": "test_object_translator#101"
+    },
+    {
+      "pattern": "self_ref_tag",
+      "input": "{{spiked|spiked}} leather armor",
+      "expected": "{{spiked|가시 달린}} 가죽 갑옷",
+      "source": "test_object_translator#103"
+    },
+    {
+      "pattern": "food",
+      "input": "bear jerky",
+      "expected": "곰 육포",
+      "source": "test_object_translator#56"
+    },
+    {
+      "pattern": "food",
+      "input": "pig meat",
+      "expected": "돼지 고기",
+      "source": "test_object_translator#57"
+    },
+    {
+      "pattern": "food",
+      "input": "cooked meat",
+      "expected": "조리된 고기",
+      "source": "test_object_translator#60"
+    },
+    {
+      "pattern": "food",
+      "input": "preserved bear",
+      "expected": "절임 곰",
+      "source": "test_object_translator#59"
+    },
+    {
+      "pattern": "parts",
+      "input": "bear egg",
+      "expected": "곰 알",
+      "source": "test_object_translator#64"
+    },
+    {
+      "pattern": "parts",
+      "input": "wolf hide",
+      "expected": "늑대 가죽",
+      "source": "test_object_translator#65"
+    },
+    {
+      "pattern": "parts",
+      "input": "elder bear skull",
+      "expected": "장로 곰 두개골",
+      "source": "test_object_translator#69"
+    },
+    {
+      "pattern": "possessive",
+      "input": "panther's claw",
+      "expected": "표범의 발톱",
+      "source": "test_object_translator#72"
+    },
+    {
+      "pattern": "possessive",
+      "input": "bear's fang",
+      "expected": "곰의 송곳니",
+      "source": "test_object_translator#73"
+    },
+    {
+      "pattern": "possessive",
+      "input": "Praetorian's cloak",
+      "expected": "근위병의 망토",
+      "source": "test_object_translator#112"
+    },
+    {
+      "pattern": "of_pattern",
+      "input": "sword of fire",
+      "expected": "불의 검",
+      "source": "test_object_translator#77"
+    },
+    {
+      "pattern": "of_pattern",
+      "input": "sandals of the river-wives",
+      "expected": "강 아내들의 샌들",
+      "source": "test_object_translator#78"
+    },
+    {
+      "pattern": "of_pattern",
+      "input": "boots of ice",
+      "expected": "얼음의 장화",
+      "source": "test_object_translator#80"
+    },
+    {
+      "pattern": "corpse",
+      "input": "bear corpse",
+      "expected": "곰 시체",
+      "source": "test_object_translator#82"
+    },
+    {
+      "pattern": "corpse",
+      "input": "snapjaw corpse",
+      "expected": "스냅조 시체",
+      "source": "test_object_translator#83"
+    },
+    {
+      "pattern": "compound",
+      "input": "engraved bronze mace +3",
+      "expected": "새겨진 청동 철퇴 +3",
+      "source": "test_object_translator#95"
+    },
+    {
+      "pattern": "compound",
+      "input": "flawless crysteel sword of fire",
+      "expected": "완벽한 크리스틸 불의 검",
+      "source": "test_object_translator#97"
+    },
+    {
+      "pattern": "compound",
+      "input": "elder bear skull x3",
+      "expected": "장로 곰 두개골 x3",
+      "source": "test_object_translator#99"
+    },
+    {
+      "pattern": "possessive_tag",
+      "input": "{{w|Praetorian's}} cloak",
+      "expected": "{{w|근위병의}} 망토",
+      "source": "test_object_translator#122"
+    },
+    {
+      "pattern": "non_self_ref_tag",
+      "input": "{{glittering|glitter}} grenade mk I",
+      "expected": "{{glittering|글리터}} 수류탄 mk I",
+      "source": "test_object_translator#110"
+    },
+    {
+      "pattern": "serving",
+      "input": "concentrated 진눈깨비수염 gland paste [1 serving]",
+      "expected": "농축된 진눈깨비수염 분비샘 페이스트 [1인분]",
+      "source": "test_object_translator#105"
+    },
+    {
+      "pattern": "color_tag",
+      "input": "{{c|stun whip}}",
+      "expected": "{{c|기절 채찍}}",
+      "source": "manual"
+    },
+    {
+      "pattern": "suffix_state",
+      "input": "torch (unburnt)",
+      "expected": "횃불 (미사용)",
+      "source": "manual"
+    },
+    {
+      "pattern": "suffix_state",
+      "input": "waterskin [empty]",
+      "expected": "물주머니 [비어있음]",
+      "source": "manual"
+    },
+    {
+      "pattern": "suffix_state",
+      "input": "musket [loaded]",
+      "expected": "머스킷 [장전됨]",
+      "source": "manual"
+    },
+    {
+      "pattern": "suffix_quantity",
+      "input": "grenade x3",
+      "expected": "수류탄 x3",
+      "source": "manual"
+    },
+    {
+      "pattern": "suffix_quantity",
+      "input": "torch x14 (unburnt)",
+      "expected": "횃불 x14 (미사용)",
+      "source": "manual"
+    },
+    {
+      "pattern": "suffix_plus",
+      "input": "{{c|vibro blade}} +2",
+      "expected": "{{c|바이브로 블레이드}} +2",
+      "source": "manual"
+    },
+    {
+      "pattern": "corpse",
+      "input": "basilisk corpse",
+      "expected": "바실리스크 시체",
+      "source": "manual"
+    },
+    {
+      "pattern": "corpse",
+      "input": "mopango corpse",
+      "expected": "모팡고 시체",
+      "source": "manual"
+    },
+    {
+      "pattern": "food",
+      "input": "boar haunch",
+      "expected": "멧돼지 넓적다리",
+      "source": "manual"
+    },
+    {
+      "pattern": "food",
+      "input": "snapjaw jerky",
+      "expected": "스냅조 육포",
+      "source": "manual"
+    },
+    {
+      "pattern": "self_ref_tag",
+      "input": "{{gaslight|gaslight}} kris",
+      "expected": "{{gaslight|가스라이트}} 크리스",
+      "source": "manual"
+    },
+    {
+      "pattern": "self_ref_tag",
+      "input": "{{metachrome|metachrome}} sword",
+      "expected": "{{metachrome|메타크롬}} 검",
+      "source": "manual"
+    },
+    {
+      "pattern": "self_ref_tag",
+      "input": "{{lanterned|lanterned}} helmet",
+      "expected": "{{lanterned|랜턴 달린}} 투구",
+      "source": "manual"
+    },
+    {
+      "pattern": "of_pattern",
+      "input": "banner of the Holy Rhombus",
+      "expected": "성스러운 마름모의 깃발",
+      "source": "manual"
+    },
+    {
+      "pattern": "of_pattern",
+      "input": "dagger of lightning",
+      "expected": "번개의 단검",
+      "source": "manual"
+    },
+    {
+      "pattern": "possessive",
+      "input": "wolf's hide",
+      "expected": "늑대의 가죽",
+      "source": "manual"
+    },
+    {
+      "pattern": "possessive",
+      "input": "snapjaw's tooth",
+      "expected": "스냅조의 이빨",
+      "source": "manual"
+    },
+    {
+      "pattern": "direct",
+      "input": "sword",
+      "expected": "검",
+      "source": "manual"
+    },
+    {
+      "pattern": "direct",
+      "input": "canteen",
+      "expected": "수통",
+      "source": "manual"
+    }
+  ]
+}
