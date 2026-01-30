@@ -35,6 +35,9 @@ namespace QudKorean.Objects.V2
         private static TranslationPipeline _pipeline;
         private static bool _initialized;
 
+        // XML DisplayName → 한글 1:1 매핑 (빌드타임 생성, 컬러태그 포함 원문 key)
+        private static Dictionary<string, string> _displayLookup;
+
         // 빠른 경로: blueprint → {영어이름 → 한글이름} 프리빌드 캐시
         // 고정 오브젝트(1838개)는 Dictionary 조회만으로 O(1) 번역
         private static Dictionary<string, Dictionary<string, string>> _fastCache;
@@ -45,6 +48,7 @@ namespace QudKorean.Objects.V2
         private static HashSet<string> _knownBlueprints;
 
         // 성능 카운터
+        private static int _lookupHit;
         private static int _fastHit;
         private static int _fastSkip;
         private static int _pipelineFallback;
@@ -120,12 +124,31 @@ namespace QudKorean.Objects.V2
             {
                 _hotspotWarned = true;
                 var sb = new System.Text.StringBuilder();
-                sb.AppendLine($"{LOG_PREFIX} Hotspot report at {_totalCalls} calls (FastHit:{_fastHit} Skip:{_fastSkip} Pipeline:{_pipelineFallback}):");
+                sb.AppendLine($"{LOG_PREFIX} Hotspot report at {_totalCalls} calls (Lookup:{_lookupHit} FastHit:{_fastHit} Skip:{_fastSkip} Pipeline:{_pipelineFallback}):");
                 var sorted = new List<KeyValuePair<string, int>>(_callFrequency);
                 sorted.Sort((a, b) => b.Value.CompareTo(a.Value));
                 for (int i = 0; i < Math.Min(10, sorted.Count); i++)
                     sb.AppendLine($"  {sorted[i].Key}: {sorted[i].Value}x");
                 UnityEngine.Debug.Log(sb.ToString());
+            }
+
+            // 최우선 경로: XML DisplayName 1:1 lookup (컬러태그 포함 원문 매칭)
+            if (_displayLookup != null)
+            {
+                if (_displayLookup.TryGetValue(originalName, out translated) && !string.IsNullOrEmpty(translated))
+                {
+                    _lookupHit++;
+                    return true;
+                }
+
+                // 컬러태그 제거 후 재시도
+                string strippedForLookup = ColorTagProcessor.Strip(originalName);
+                if (strippedForLookup != originalName &&
+                    _displayLookup.TryGetValue(strippedForLookup, out translated) && !string.IsNullOrEmpty(translated))
+                {
+                    _lookupHit++;
+                    return true;
+                }
             }
 
             // 빠른 경로: 고정 오브젝트는 프리빌드 캐시에서 O(1) 조회
@@ -200,6 +223,11 @@ namespace QudKorean.Objects.V2
             {
                 var context = new TranslationContext(_repository, blueprint, originalName);
                 var result = _pipeline.Execute(context);
+
+                if (result.Success && _displayLookup != null && !string.IsNullOrEmpty(result.Translated))
+                {
+                    _displayLookup[originalName] = result.Translated;
+                }
 
                 translated = result.Translated;
                 return result.Success;
@@ -285,7 +313,7 @@ namespace QudKorean.Objects.V2
         {
             EnsureInitialized();
             string repoStats = _repository.GetStats();
-            return $"{repoStats}, Cached: {TranslationContext.CacheCount}, FastHit: {_fastHit}, FastSkip: {_fastSkip}, Pipeline: {_pipelineFallback}, Total: {_totalCalls}";
+            return $"{repoStats}, Cached: {TranslationContext.CacheCount}, LookupHit: {_lookupHit}, FastHit: {_fastHit}, FastSkip: {_fastSkip}, Pipeline: {_pipelineFallback}, Total: {_totalCalls}";
         }
 
         #endregion
@@ -300,6 +328,14 @@ namespace QudKorean.Objects.V2
 
             // Create pipeline with default handlers
             _pipeline = TranslationPipeline.CreateDefault(_repository);
+
+            // XML DisplayName → 한글 1:1 lookup 로드
+            var lookupData = _repository.DisplayLookup;
+            if (lookupData != null && lookupData.Count > 0)
+            {
+                _displayLookup = new Dictionary<string, string>(lookupData, StringComparer.Ordinal);
+                UnityEngine.Debug.Log($"{LOG_PREFIX} Display lookup loaded: {_displayLookup.Count} entries");
+            }
 
             // 고정 오브젝트 빠른 캐시 프리빌드
             BuildFastCache();

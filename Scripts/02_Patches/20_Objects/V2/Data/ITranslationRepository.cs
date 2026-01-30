@@ -105,6 +105,12 @@ namespace QudKorean.Objects.V2.Data
         /// </summary>
         IReadOnlyDictionary<string, string> GlobalNameIndex { get; }
 
+        /// <summary>
+        /// Display lookup: original DisplayName (with color tags) -> Korean translation.
+        /// Built at build time from XML assets for O(1) direct lookup.
+        /// </summary>
+        IReadOnlyDictionary<string, string> DisplayLookup { get; }
+
         #endregion
 
         #region Lifecycle

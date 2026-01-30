@@ -51,6 +51,7 @@ namespace QudKorean.Objects.V2.Data
         private List<KeyValuePair<string, string>> _baseNounsSorted;
         private List<KeyValuePair<string, string>> _partSuffixesSorted;
         private Dictionary<string, string> _globalNameIndex;
+        private Dictionary<string, string> _displayLookup;
 
         private string _modDirectory;
         private bool _initialized;
@@ -198,6 +199,15 @@ namespace QudKorean.Objects.V2.Data
             }
         }
 
+        public IReadOnlyDictionary<string, string> DisplayLookup
+        {
+            get
+            {
+                EnsureInitialized();
+                return _displayLookup ?? (IReadOnlyDictionary<string, string>)new Dictionary<string, string>();
+            }
+        }
+
         public void Reload()
         {
             ClearAll();
@@ -215,8 +225,9 @@ namespace QudKorean.Objects.V2.Data
             int suffixesCount = (_states?.Count ?? 0) + (_liquids?.Count ?? 0) +
                                (_ofPatterns?.Count ?? 0) + (_bodyParts?.Count ?? 0) +
                                (_partSuffixesSorted?.Count ?? 0);
+            int lookupCount = _displayLookup?.Count ?? 0;
             string mode = _loadedFromBundle ? "bundle" : "source";
-            return $"Creatures: {_creatureCache.Count}, Items: {_itemCache.Count}, Vocab: {vocabCount}, Species: {speciesCount}, Nouns: {nounsCount}, Suffixes: {suffixesCount}, Mode: {mode}";
+            return $"Creatures: {_creatureCache.Count}, Items: {_itemCache.Count}, Vocab: {vocabCount}, Species: {speciesCount}, Nouns: {nounsCount}, Suffixes: {suffixesCount}, Lookup: {lookupCount}, Mode: {mode}";
         }
 
         /// <summary>
@@ -287,6 +298,7 @@ namespace QudKorean.Objects.V2.Data
             _baseNounsSorted = null;
             _partSuffixesSorted = null;
             _globalNameIndex = null;
+            _displayLookup = null;
         }
 
         #endregion
@@ -464,6 +476,26 @@ namespace QudKorean.Objects.V2.Data
                 catch (Exception ex)
                 {
                     UnityEngine.Debug.LogError($"{LOG_PREFIX} Failed to load objects bundle: {ex.Message}");
+                }
+            }
+
+            // Load display_lookup.json
+            string lookupPath = Path.Combine(bundleDir, "display_lookup.json");
+            if (File.Exists(lookupPath))
+            {
+                try
+                {
+                    var lookupRoot = JObject.Parse(File.ReadAllText(lookupPath));
+                    _displayLookup = new Dictionary<string, string>(StringComparer.Ordinal);
+                    foreach (var prop in lookupRoot.Properties())
+                    {
+                        _displayLookup[prop.Name] = prop.Value.ToString();
+                    }
+                    UnityEngine.Debug.Log($"{LOG_PREFIX} Loaded display_lookup: {_displayLookup.Count} entries");
+                }
+                catch (Exception ex)
+                {
+                    UnityEngine.Debug.LogError($"{LOG_PREFIX} Failed to load display_lookup: {ex.Message}");
                 }
             }
 

@@ -27,6 +27,7 @@ PROJECT_ROOT = Path(__file__).parent.parent
 LOCALIZATION_DIR = PROJECT_ROOT / "LOCALIZATION"
 DIST_DIR = PROJECT_ROOT / "dist"
 DATA_DIR = DIST_DIR / "data"
+XML_DIR = PROJECT_ROOT / "Assets" / "StreamingAssets" / "Base"
 
 # 번들 매핑
 BUNDLE_CONFIG = {
@@ -284,6 +285,142 @@ def process_vocabulary_file(file_path: Path, bundle_data: Dict, source_mapper: S
         )
 
 # ============================================================
+# Display Lookup 생성 (XML DisplayName → 한글 1:1 매핑)
+# ============================================================
+
+def normalize_for_lookup(name: str) -> str:
+    """컬러태그 제거, 소문자화하여 번역 사전 조회용 키 생성"""
+    normalized = re.sub(r'\{\{[^|]*\|([^}]*)\}\}', r'\1', name)
+    normalized = normalized.replace('&amp;', '&')
+    normalized = re.sub(r'&[A-Za-z]', '', normalized)
+    return normalized.lower().strip()
+
+
+def load_all_translations() -> Dict[str, str]:
+    """LOCALIZATION 디렉토리에서 모든 번역 사전 로드 (normalized_key → korean)"""
+    translations = {}
+
+    def walk_json(data: dict, file_path: str):
+        for key, value in data.items():
+            if key.startswith('_'):
+                continue
+            if isinstance(value, str) and not re.search(r'[\uac00-\ud7af]', key):
+                norm = normalize_for_lookup(key)
+                if norm:
+                    translations[norm] = value
+            elif isinstance(value, dict):
+                if "ko" in value:
+                    translations[normalize_for_lookup(key)] = value["ko"]
+                elif key == "names":
+                    for eng, kor in value.items():
+                        if isinstance(kor, str):
+                            translations[normalize_for_lookup(eng)] = kor
+                else:
+                    walk_json(value, file_path)
+
+    for json_file in LOCALIZATION_DIR.rglob("*.json"):
+        try:
+            with open(json_file, 'r', encoding='utf-8') as f:
+                data = json.load(f)
+            if isinstance(data, dict):
+                walk_json(data, str(json_file.relative_to(PROJECT_ROOT)))
+        except (json.JSONDecodeError, UnicodeDecodeError):
+            continue
+
+    return translations
+
+
+def build_display_lookup() -> Tuple[Dict[str, str], int, int]:
+    """
+    XML ObjectBlueprints에서 DisplayName을 추출하고 번역과 1:1 매핑.
+    상속(Inherits) 관계를 반영하여 부모 블루프린트의 번역도 활용.
+
+    Returns: (lookup_dict, total_extracted, matched_count)
+    """
+    if not XML_DIR.exists():
+        print("  [WARN] XML 디렉토리 없음, display_lookup 스킵")
+        return {}, 0, 0
+
+    # 1. XML에서 모든 DisplayName 추출
+    # {blueprint_name: display_name}, {blueprint_name: inherits_from}
+    blueprint_display: Dict[str, str] = {}
+    blueprint_inherits: Dict[str, str] = {}
+
+    # 정규식 기반 추출 (게임 XML에 invalid character references가 있어 ET 사용 불가)
+    obj_pattern = re.compile(
+        r'<object\s+[^>]*?Name="([^"]*)"[^>]*?Inherits="([^"]*)"',
+    )
+    dn_pattern = re.compile(
+        r'<object\s+[^>]*?Name="([^"]*)"[^>]*?>.*?'
+        r'<part\s+[^>]*?Name="Render"[^>]*?DisplayName="([^"]*)"',
+        re.DOTALL,
+    )
+
+    for xml_file in sorted(XML_DIR.rglob("*.xml")):
+        try:
+            with open(xml_file, 'r', encoding='utf-8') as f:
+                content = f.read()
+        except Exception:
+            continue
+
+        # 상속 관계 추출
+        for match in obj_pattern.finditer(content):
+            bp_name, inherits = match.group(1), match.group(2)
+            blueprint_inherits[bp_name] = inherits
+
+        # DisplayName 추출 (object → Render part)
+        # 더 정확한 매칭: object 블록 단위로 처리
+        for match in re.finditer(
+            r'<object\s+[^>]*?Name="([^"]*)"[^>]*?>(.*?)</object>',
+            content, re.DOTALL
+        ):
+            bp_name = match.group(1)
+            body = match.group(2)
+            dn_match = re.search(
+                r'<part\s+[^>]*?Name="Render"[^>]*?DisplayName="([^"]*)"',
+                body
+            )
+            if dn_match:
+                display = dn_match.group(1)
+                if display and not display.startswith('['):
+                    blueprint_display[bp_name] = display
+
+    # 2. 번역 사전 로드
+    translations = load_all_translations()
+
+    # 3. DisplayName → 한글 매핑 (원문 그대로 key)
+    lookup: Dict[str, str] = {}
+    matched = 0
+
+    for bp_name, display_name in blueprint_display.items():
+        norm = normalize_for_lookup(display_name)
+
+        # 직접 매칭
+        if norm in translations:
+            lookup[display_name] = translations[norm]
+            matched += 1
+            continue
+
+        # 상속 체인을 따라 부모의 DisplayName으로 매칭 시도
+        parent = blueprint_inherits.get(bp_name)
+        found = False
+        visited = set()
+        while parent and parent not in visited:
+            visited.add(parent)
+            parent_display = blueprint_display.get(parent)
+            if parent_display:
+                parent_norm = normalize_for_lookup(parent_display)
+                if parent_norm in translations:
+                    lookup[display_name] = translations[parent_norm]
+                    matched += 1
+                    found = True
+                    break
+            parent = blueprint_inherits.get(parent)
+
+    return lookup, len(blueprint_display), matched
+
+
+# ============================================================
 # 메인 빌드 함수
 # ============================================================
 
@@ -320,6 +457,19 @@ def build():
         )
         print(f"   저장: {output_path.name} ({size_kb:.1f}KB, {entry_count}개 항목)")
         build_log.append(f"{bundle_name}: {size_kb:.1f}KB, {entry_count} entries")
+
+    # Display Lookup 생성
+    print(f"\n>> display_lookup 생성 중...")
+    display_lookup, total_dn, matched_dn = build_display_lookup()
+    if display_lookup:
+        lookup_path = DATA_DIR / "display_lookup.json"
+        with open(lookup_path, 'w', encoding='utf-8') as f:
+            json.dump(display_lookup, f, ensure_ascii=False, indent=2)
+        size_kb = lookup_path.stat().st_size / 1024
+        print(f"   저장: display_lookup.json ({size_kb:.1f}KB, {matched_dn}/{total_dn} 매칭)")
+        build_log.append(f"display_lookup: {size_kb:.1f}KB, {matched_dn}/{total_dn} matched")
+    else:
+        print(f"   display_lookup 생성 실패 (XML 없음)")
 
     # 소스맵 저장
     sourcemap_path = DIST_DIR / "sourcemap.json"
