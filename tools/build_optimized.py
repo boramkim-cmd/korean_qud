@@ -38,6 +38,7 @@ BUNDLE_CONFIG = {
             "OBJECTS/terrain",
             "OBJECTS/hidden.json",
             "OBJECTS/widgets.json",
+            "OBJECTS/misc",
         ],
         "vocabulary": [
             "OBJECTS/_vocabulary",
