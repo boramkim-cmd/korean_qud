@@ -150,27 +150,50 @@ namespace QudKorean.Objects.V2
                     }
 
                     // 접미사(수량, 상태, 스탯) 제거 후 기본 이름으로 매칭 (Regex 없이)
-                    string baseName = StripSuffixFast(stripped != originalName ? stripped : originalName);
+                    string strippedInput = stripped != originalName ? stripped : originalName;
+                    string baseName = StripSuffixFast(strippedInput);
                     if (baseName != null && nameMap.TryGetValue(baseName, out translated) && !string.IsNullOrEmpty(translated))
                     {
+                        // 접미사 번역 후 재결합
+                        string suffix = strippedInput.Substring(baseName.Length);
+                        if (!string.IsNullOrEmpty(suffix))
+                        {
+                            string suffixKo = SuffixExtractor.TranslateState(suffix, _repository);
+                            translated = translated + suffixKo;
+                        }
                         _fastHit++;
                         return true;
                     }
 
                     // 고정 오브젝트인데 이름 변형이 다름 → 파이프라인으로 폴스루
                     _pipelineFallback++;
+                    if (_pipelineFallback <= 50)
+                        UnityEngine.Debug.Log($"{LOG_PREFIX} PipelineFallback: bp={blueprint} name=\"{originalName}\"");
                 }
                 else if (_knownBlueprints != null && !_knownBlueprints.Contains(normalizedBp))
                 {
-                    // 데이터에 없는 블루프린트 = 번역 데이터 자체가 없음 → 스킵
+                    // 데이터에 없는 블루프린트 → GlobalNameIndex에서 display name으로 O(1) 조회 시도
+                    string stripped = ColorTagProcessor.Strip(originalName);
+                    string baseName = StripSuffixFast(stripped) ?? stripped;
+
+                    if (_repository.GlobalNameIndex.TryGetValue(baseName, out translated) && !string.IsNullOrEmpty(translated))
+                    {
+                        // 접미사가 있었으면 번역 추가
+                        if (baseName != stripped)
+                        {
+                            string suffix = stripped.Substring(baseName.Length);
+                            string suffixKo = SuffixExtractor.TranslateState(suffix, _repository);
+                            translated = translated + suffixKo;
+                        }
+                        _fastHit++;
+                        return true;
+                    }
+
+                    // GlobalNameIndex에도 없음 → 스킵
                     _fastSkip++;
                     return false;
                 }
             }
-
-            // 세계 생성 중에는 파이프라인 스킵 (빠른 캐시만 허용)
-            if (QudKRTranslation.Patches.WorldGenActivityIndicator.IsWorldGenActive)
-                return false;
 
             // 느린 경로: 이름 변형이 있는 고정 오브젝트 또는 절차적 생성물 → 전체 파이프라인
             try

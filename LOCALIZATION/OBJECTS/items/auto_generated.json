@@ -1,0 +1,4050 @@
+{
+  "_meta": {
+    "description": "Auto-generated item translations from XML blueprints",
+    "description_ko": "XML 블루프린트에서 자동 생성된 아이템 번역",
+    "version": "1.0",
+    "created": "2026-01-30",
+    "source": "tools/generate_missing_translations.py",
+    "note": "Empty values need manual translation"
+  },
+  "Acidic Pseudopod": {
+    "names": {
+      "acidic pseudopod": "산성의 위족"
+    }
+  },
+  "Across1": {
+    "names": {
+      "Across Moghra'yi, Vol. I: The Sunderlies": ""
+    }
+  },
+  "Across2": {
+    "names": {
+      "Across Moghra'yi, Vol. II: Athenreach": ""
+    }
+  },
+  "Across3": {
+    "names": {
+      "Across Moghra'yi, Vol. III: Oth, the Free City": ""
+    }
+  },
+  "Advanced Toolkit": {
+    "names": {
+      "advanced toolkit": "고급 도구함"
+    }
+  },
+  "AgateWall": {
+    "names": {
+      "shale wall with agate deposits": ""
+    }
+  },
+  "AirCurrentMicrosensor": {
+    "names": {
+      "air current microsensor": "공기 전류 마이크로센서"
+    }
+  },
+  "Albino Ape Pelt": {
+    "names": {
+      "albino ape pelt": "알비노 유인원 모피"
+    }
+  },
+  "Albino Monkey Braid": {
+    "names": {
+      "albino monkey braid": "알비노 원숭이 땋은"
+    }
+  },
+  "Albino ape fist": {
+    "names": {
+      "fist": "주먹"
+    }
+  },
+  "Algal Pseudopod": {
+    "names": {
+      "algal pseudopod": "조류의 위족"
+    }
+  },
+  "Amaranthine Ashes": {
+    "names": {
+      "amaranthine ashes": "불멸의 재"
+    }
+  },
+  "Amaranthine Dust": {
+    "names": {
+      "amaranthine dust": "불멸의 먼지"
+    }
+  },
+  "AmethystWall": {
+    "names": {
+      "shale wall with amethyst deposits": ""
+    }
+  },
+  "AnchorSpikes": {
+    "names": {
+      "anchor spikes": "닻 스파이크"
+    }
+  },
+  "AnomalyFumigator": {
+    "names": {
+      "anomaly fumigator": "이상 훈증기"
+    }
+  },
+  "Anti-Gravity Boots": {
+    "names": {
+      "anti-gravity boots": "반중력 장화"
+    }
+  },
+  "Ape Fur Cloak": {
+    "names": {
+      "ape fur cloak": "유인원 털 망토"
+    }
+  },
+  "Ape Fur Gloves": {
+    "names": {
+      "ape fur gloves": "유인원 털 장갑"
+    }
+  },
+  "Ape Fur Hat": {
+    "names": {
+      "ape fur hat": "유인원 털 모자"
+    }
+  },
+  "AphorismsAboutBirds": {
+    "names": {
+      "Aphorisms about Birds": ""
+    }
+  },
+  "Apotheote_Bite": {
+    "names": {
+      "filed fangs": "갈린 송곳니"
+    }
+  },
+  "Apotheote_Claws": {
+    "names": {
+      "glinted nail claw": "반짝이는 못 발톱"
+    }
+  },
+  "Arc Cannon": {
+    "names": {
+      "arc cannon": "아크 대포"
+    }
+  },
+  "ArenaFloor": {
+    "names": {
+      "[Ground]": ""
+    }
+  },
+  "Argyve's Data Disk": {
+    "names": {
+      "stamped data disk": "압인된 데이터 디스크"
+    }
+  },
+  "Argyve's Data Disk Encoded": {
+    "names": {
+      "stamped data disk [with Q Girl's instructions encoded]": ""
+    }
+  },
+  "Armor": {
+    "names": {
+      "[Armor]": ""
+    }
+  },
+  "ArtlessBeauty": {
+    "names": {
+      "The Artless Beauty": ""
+    }
+  },
+  "Ash-Stained Robes": {
+    "names": {
+      "ash-stained robes": "재 묻은 로브"
+    }
+  },
+  "Ashes": {
+    "names": {
+      "ashes": "재"
+    }
+  },
+  "Astral_Tabby_Claw": {
+    "names": {
+      "claw": "발톱"
+    }
+  },
+  "Bandage": {
+    "names": {
+      "bandage": "붕대"
+    }
+  },
+  "Banner of the Holy Rhombus": {
+    "names": {
+      "banner of the Holy Rhombus": ""
+    }
+  },
+  "BarathrumKey": {
+    "names": {
+      "chrome key": "크롬 열쇠"
+    }
+  },
+  "Barathrumite Token": {
+    "names": {
+      "Barathrumite token": "바라스룸인 토큰"
+    }
+  },
+  "Barkbiter_Claw": {
+    "names": {
+      "claw": "발톱"
+    }
+  },
+  "Base Ring Gate": {
+    "names": {
+      "gate": "문"
+    }
+  },
+  "BaseArtifact": {
+    "names": {
+      "[base artifact]": ""
+    }
+  },
+  "BaseBeadBracelet": {
+    "names": {
+      "bracelet": "팔찌"
+    }
+  },
+  "BaseBed": {
+    "names": {
+      "[bed]": ""
+    }
+  },
+  "BaseBoulder": {
+    "names": {
+      "boulder": "바위"
+    }
+  },
+  "BaseBreatherCorpse": {
+    "names": {
+      "[breather corpse]": ""
+    }
+  },
+  "BaseBreatherGland": {
+    "names": {
+      "[breather gland]": ""
+    }
+  },
+  "BaseBreatherGlandPaste": {
+    "names": {
+      "[breather gland paste]": ""
+    }
+  },
+  "BaseCathedra": {
+    "names": {
+      "cathedra": "주교좌"
+    }
+  },
+  "BaseChair": {
+    "names": {
+      "[chair]": ""
+    }
+  },
+  "BaseCyberneticsCreditWedge": {
+    "names": {
+      "cybernetics credit wedge": ""
+    }
+  },
+  "BaseCyberneticsEquipment": {
+    "names": {
+      "cybernetic implant": "사이버네틱 임플란트"
+    }
+  },
+  "BaseEaterMonument": {
+    "names": {
+      "[eater monument]": ""
+    }
+  },
+  "BaseFangs": {
+    "names": {
+      "fangs": "송곳니"
+    }
+  },
+  "BaseForcefield": {
+    "names": {
+      "[forcefield]": ""
+    }
+  },
+  "BaseHindrenAxe": {
+    "names": {
+      "[BaseHindrenAxe]": ""
+    }
+  },
+  "BaseMetamorphicRock": {
+    "names": {
+      "[rock wall]": ""
+    }
+  },
+  "BaseMuralWall": {
+    "names": {
+      "[mural wall]": ""
+    }
+  },
+  "BasePlantWall": {
+    "names": {
+      "[plant wall]": ""
+    }
+  },
+  "BasePortableChair": {
+    "names": {
+      "[portablechair]": ""
+    }
+  },
+  "BaseRecoiler": {
+    "names": {
+      "recoiler": "귀환 장치"
+    }
+  },
+  "BaseSedimentaryRock": {
+    "names": {
+      "[rock wall]": ""
+    }
+  },
+  "BaseStalagmite": {
+    "names": {
+      "stalagmite": "석순"
+    }
+  },
+  "BaseStone": {
+    "names": {
+      "stone": "돌"
+    }
+  },
+  "BaseSultanWall": {
+    "names": {
+      "[ceremonial sultanate wall]": ""
+    }
+  },
+  "BaseTierArm": {
+    "names": {
+      "[base bracelet]": ""
+    }
+  },
+  "BaseTierArtifact": {
+    "names": {
+      "[base artifact]": ""
+    }
+  },
+  "BaseTierBack": {
+    "names": {
+      "[base back]": ""
+    }
+  },
+  "BaseTierBody": {
+    "names": {
+      "[base armor]": ""
+    }
+  },
+  "BaseTierFace": {
+    "names": {
+      "[base face]": ""
+    }
+  },
+  "BaseTierFeet": {
+    "names": {
+      "[base boots]": ""
+    }
+  },
+  "BaseTierFloating": {
+    "names": {
+      "[base floating]": ""
+    }
+  },
+  "BaseTierHands": {
+    "names": {
+      "[base gloves]": ""
+    }
+  },
+  "BaseTierHead": {
+    "names": {
+      "[base head]": ""
+    }
+  },
+  "BaseTierShield": {
+    "names": {
+      "[base shield]": ""
+    }
+  },
+  "Basic Toolkit": {
+    "names": {
+      "basic toolkit": "기본 도구함"
+    }
+  },
+  "Beak": {
+    "names": {
+      "beak": "부리"
+    }
+  },
+  "Beak Bill": {
+    "names": {
+      "bill": "낫"
+    }
+  },
+  "Beak Frill": {
+    "names": {
+      "frill": "프릴"
+    }
+  },
+  "Bear_Claw": {
+    "names": {
+      "claw": "발톱"
+    }
+  },
+  "BeautifulVisage": {
+    "names": {
+      "beautiful visage": "아름다운 형상"
+    }
+  },
+  "Bethesda Susa Recoiler": {
+    "names": {
+      "Bethesda Susa recoiler": ""
+    }
+  },
+  "Bilge Sphincter": {
+    "names": {
+      "bilge sphincter": "빌지 괄약근"
+    }
+  },
+  "BiodynamicPowerPlant": {
+    "names": {
+      "biodynamic power plant": "바이오다이나믹 파워 식물"
+    }
+  },
+  "BiologicalIndexer": {
+    "names": {
+      "optical bioscanner": "광학 바이오스캐너"
+    }
+  },
+  "BionicArm": {
+    "names": {
+      "bionic arm": "바이오닉 팔"
+    }
+  },
+  "BionicHands": {
+    "names": {
+      "bionic hands": "바이오닉 손"
+    }
+  },
+  "BionicLiver": {
+    "names": {
+      "bionic liver": "바이오닉 간"
+    }
+  },
+  "Bite": {
+    "names": {
+      "bite": "물기"
+    }
+  },
+  "Black Mote": {
+    "names": {
+      "black mote": "검은 먼지"
+    }
+  },
+  "Blackboard": {
+    "names": {
+      "burnished fullerite shield": "광이 난 풀러라이트 방패"
+    }
+  },
+  "Blast Cannon": {
+    "names": {
+      "blast cannon": "폭발 대포"
+    }
+  },
+  "BlazeTonic": {
+    "names": {
+      "{{blaze|blaze}} injector": ""
+    }
+  },
+  "BloodandFear": {
+    "names": {
+      "Blood and Fear: On the Life Cycle of Lah": ""
+    }
+  },
+  "BloodstainedSheaf": {
+    "names": {
+      "sheaf of bloodstained goatskin parchment": ""
+    }
+  },
+  "Bloody Pseudopod": {
+    "names": {
+      "bloody pseudopod": "피투성이 위족"
+    }
+  },
+  "Blue Security Card": {
+    "names": {
+      "law-enforcement security card": "법집행 보안 카드"
+    }
+  },
+  "Bones": {
+    "names": {
+      "bones": "뼈"
+    }
+  },
+  "Boomrose Arrow": {
+    "names": {
+      "boomrose arrow": "붐로즈 화살"
+    }
+  },
+  "Bot Mallet": {
+    "names": {
+      "mallet": ""
+    }
+  },
+  "BoxOfCrayons": {
+    "names": {
+      "box of {{R-W-G-B-M-C-Y sequence|crayons}}": ""
+    }
+  },
+  "Bracelet2": {
+    "names": {
+      "{{C-B-b-c sequence|beaded}} bracelet": ""
+    }
+  },
+  "Bracelet3": {
+    "names": {
+      "{{m-M sequence|beaded}} bracelet": ""
+    }
+  },
+  "Breather_Claw": {
+    "names": {
+      "claw": "발톱"
+    }
+  },
+  "BrickWall": {
+    "names": {
+      "brick": "벽돌"
+    }
+  },
+  "Bridge": {
+    "names": {
+      "bridge": "다리"
+    }
+  },
+  "BrineBridge": {
+    "names": {
+      "bridge": "다리"
+    }
+  },
+  "Brinestalk": {
+    "names": {
+      "brinestalk": "소금줄기"
+    }
+  },
+  "Bronze Ingot": {
+    "names": {
+      "bronze ingot": "청동 주괴"
+    }
+  },
+  "Burrowing Claws": {
+    "names": {
+      "burrowing claws": ""
+    }
+  },
+  "Burrowing Claws Claw": {
+    "names": {
+      "claw": "발톱"
+    }
+  },
+  "CalcifiedMossCasque": {
+    "names": {
+      "calcified moss casque": ""
+    }
+  },
+  "Canned Have-It-All": {
+    "names": {
+      "canned Have-It-All": "통조림 만물상"
+    }
+  },
+  "Canticles3": {
+    "names": {
+      "The Canticles Chromaic, Verses XVII-XXIV": ""
+    }
+  },
+  "CanvasWall": {
+    "names": {
+      "canvas": "캔버스"
+    }
+  },
+  "Carapace": {
+    "names": {
+      "carapace": ""
+    }
+  },
+  "Carbide Shield": {
+    "names": {
+      "carbide shield": "카바이드 방패"
+    }
+  },
+  "CarbideFist": {
+    "names": {
+      "carbide fist": "카바이드 주먹"
+    }
+  },
+  "Cat Claw": {
+    "names": {
+      "claw": "발톱"
+    }
+  },
+  "CathedraBlackOpal": {
+    "names": {
+      "cathedra with black opal tracery": ""
+    }
+  },
+  "CathedraRuby": {
+    "names": {
+      "cathedra with ruby tracery": ""
+    }
+  },
+  "CathedraSapphire": {
+    "names": {
+      "cathedra with sapphire tracery": ""
+    }
+  },
+  "CathedraWhiteOpal": {
+    "names": {
+      "cathedra with white opal tracery": ""
+    }
+  },
+  "CaveSpider_Bite": {
+    "names": {
+      "fangs": "송곳니"
+    }
+  },
+  "CaverCorpse": {
+    "names": {
+      "ancient bones": "고대의 뼈"
+    }
+  },
+  "CherubicVisage": {
+    "names": {
+      "cherubic visage": "케루빔 형상"
+    }
+  },
+  "Chiliad Creature Bark": {
+    "names": {
+      "bark": "나무껍질"
+    }
+  },
+  "Chiliad Creature Claw": {
+    "names": {
+      "claw": "발톱"
+    }
+  },
+  "Chiliad Creature Fangs": {
+    "names": {
+      "fangs": "송곳니"
+    }
+  },
+  "Chiliad Creature Hoof": {
+    "names": {
+      "hoof": "발굽"
+    }
+  },
+  "Chiliad Creature Horns": {
+    "names": {
+      "horns": "뿔"
+    }
+  },
+  "Chiliad Creature Nodule": {
+    "names": {
+      "nodule": "혹"
+    }
+  },
+  "Chiliad Creature Peck": {
+    "names": {
+      "peck": "쪼기"
+    }
+  },
+  "Chiliad Creature Pincer": {
+    "names": {
+      "claw": "발톱"
+    }
+  },
+  "Chiliad Creature Pistil": {
+    "names": {
+      "pistil": "암술"
+    }
+  },
+  "Chiliad Creature Prism Point": {
+    "names": {
+      "prism point": "프리즘 점"
+    }
+  },
+  "Chiliad Creature Pseudopod": {
+    "names": {
+      "pseudopod": "위족"
+    }
+  },
+  "Chiliad Creature Spade": {
+    "names": {
+      "spade": "삽"
+    }
+  },
+  "Chiliad Creature Spines": {
+    "names": {
+      "spines": "가시"
+    }
+  },
+  "Chiliad Creature Strangle": {
+    "names": {
+      "stranglehold": "목조르기"
+    }
+  },
+  "Chrome Mantle": {
+    "names": {
+      "chrome mantle": "크롬 망토"
+    }
+  },
+  "Chrome Stilt": {
+    "names": {
+      "chrome stilt": "크롬 죽마"
+    }
+  },
+  "ClamGrass": {
+    "names": {
+      "[Ground]": ""
+    }
+  },
+  "ClimberBlueprints": {
+    "names": {
+      "blueprints for {{m|Q Girl's climber design}}": ""
+    }
+  },
+  "Clockthing_QGirl": {
+    "names": {
+      "Barathrum clock with Q Girl pendulum": ""
+    }
+  },
+  "Cloneling_Scalpel": {
+    "names": {
+      "scalpel": "메스"
+    }
+  },
+  "CommunicationsInterlock": {
+    "names": {
+      "communications interlock": "통신 연동"
+    }
+  },
+  "Congealed Hulk Honey": {
+    "names": {
+      "congealed hulk honey": "응고된 헐크 꿀"
+    }
+  },
+  "Congealed Salve": {
+    "names": {
+      "congealed &Ysalve": ""
+    }
+  },
+  "Copper Nugget": {
+    "names": {
+      "copper nugget": "구리 덩어리"
+    }
+  },
+  "Copper Trollking Key": {
+    "names": {
+      "bronze key": "청동 열쇠"
+    }
+  },
+  "Coral": {
+    "names": {
+      "[Coral]": ""
+    }
+  },
+  "Corpse": {
+    "names": {
+      "[Corpse]": ""
+    }
+  },
+  "Corpus": {
+    "names": {
+      "Corpus Choliys": ""
+    }
+  },
+  "CosmeticObject": {
+    "names": {
+      "[Object]": ""
+    }
+  },
+  "CouncilAtGammaRock": {
+    "names": {
+      "Council at Gamma Rock": ""
+    }
+  },
+  "Creeper_Thorns": {
+    "names": {
+      "thorns": "가시"
+    }
+  },
+  "Crime and Punishment": {
+    "names": {
+      "Crime and Punishment": ""
+    }
+  },
+  "Crimson Hood": {
+    "names": {
+      "crimson hood": "진홍색 두건"
+    }
+  },
+  "Croc Corpse": {
+    "names": {
+      "croc corpse": "악어 시체"
+    }
+  },
+  "Croc Jerky": {
+    "names": {
+      "croc jerky": "악어 육포"
+    }
+  },
+  "CrypticGirshling_Bite": {
+    "names": {
+      "zigzag fangs": "지그재그 송곳니"
+    }
+  },
+  "Crystal": {
+    "names": {
+      "[Crystal]": ""
+    }
+  },
+  "CrystalKey": {
+    "names": {
+      "crystal key": "수정 열쇠"
+    }
+  },
+  "Crysteel Arrow": {
+    "names": {
+      "{{crysteel|crysteel arrow}}": ""
+    }
+  },
+  "Crysteel Coronet": {
+    "names": {
+      "{{crysteel|crysteel coronet}}": ""
+    }
+  },
+  "Crysteel Shield": {
+    "names": {
+      "{{crysteel|crysteel aegis}}": ""
+    }
+  },
+  "CrysteelFist": {
+    "names": {
+      "crysteel fist": "크리스틸 주먹"
+    }
+  },
+  "CrysteelHandBones": {
+    "names": {
+      "crysteel hand bones": "크리스틸 손 뼈"
+    }
+  },
+  "CustomVisage": {
+    "names": {
+      "custom visage": "맞춤 형상"
+    }
+  },
+  "DarkCalculus": {
+    "names": {
+      "On the Origins and Nature of the Dark Calculus": ""
+    }
+  },
+  "Dawning ape fist": {
+    "names": {
+      "ape fist": "유인원 주먹"
+    }
+  },
+  "DeadTauFigurine": {
+    "names": {
+      "sapphire figurine of the Dreamshatter": ""
+    }
+  },
+  "Decrypted Signal Data Disk": {
+    "names": {
+      "stamped data disk [with signal encoded]": ""
+    }
+  },
+  "DefaultBite": {
+    "names": {
+      "bite": "물기"
+    }
+  },
+  "DefoliantGas": {
+    "names": {
+      "defoliant": "고엽제"
+    }
+  },
+  "DefoliantGrenade1": {
+    "names": {
+      "{{defoliant|defoliant}} grenade mk I": "{{defoliant|고엽제}} 수류탄 Mk I",
+      "defoliant grenade mk I": "고엽제 수류탄 Mk I"
+    }
+  },
+  "DermalPlating": {
+    "names": {
+      "dermal plating": "피부 도금"
+    }
+  },
+  "Desk": {
+    "names": {
+      "desk": "책상"
+    }
+  },
+  "Di-Thermo Beam": {
+    "names": {
+      "di-thermo beam": "이중열 빔"
+    }
+  },
+  "DisquisitionOnTheMaladyOfTheMimic": {
+    "names": {
+      "Disquisition on the Malady of the Mimic": ""
+    }
+  },
+  "DopamineSynth": {
+    "names": {
+      "dopamine synth": "도파민 신스"
+    }
+  },
+  "Dormant Waydroid": {
+    "names": {
+      "dormant waydroid": "휴면 웨이드로이드"
+    }
+  },
+  "Dreadroot": {
+    "names": {
+      "dreadroot": "공포뿌리"
+    }
+  },
+  "DreamWren_Peck": {
+    "names": {
+      "peck": "쪼기"
+    }
+  },
+  "Dreamer": {
+    "names": {
+      "_": ""
+    }
+  },
+  "Drillbot_Drill": {
+    "names": {
+      "wailing drill": "울부짖는 드릴"
+    }
+  },
+  "Droid Scrambler": {
+    "names": {
+      "droid scrambler": "드로이드 스크램블러"
+    }
+  },
+  "DummyTinkerScreenObject": {
+    "names": {
+      "Known Modifications": ""
+    }
+  },
+  "Earth Gate E": {
+    "names": {
+      "Earth Gate": ""
+    }
+  },
+  "Earth Gate W": {
+    "names": {
+      "Earth Gate": ""
+    }
+  },
+  "Eaters' Crest": {
+    "names": {
+      "Eaters' crest": "식자의 볏"
+    }
+  },
+  "Elastyne Gloves": {
+    "names": {
+      "elastyne gloves": "엘라스틴 장갑"
+    }
+  },
+  "Elastyne Skin Suit": {
+    "names": {
+      "elastyne skin suit": "엘라스틴 피부 슈트"
+    }
+  },
+  "Elastyne Skull Cap": {
+    "names": {
+      "elastyne skull cap": "엘라스틴 두개골 모자"
+    }
+  },
+  "Elastyne Slippers": {
+    "names": {
+      "elastyne slippers": "엘라스틴 슬리퍼"
+    }
+  },
+  "ElectricSnail_Flail": {
+    "names": {
+      "electric-snail flail": "전기달팽이 도리깨"
+    }
+  },
+  "ElectromagneticSensor": {
+    "names": {
+      "electromagnetic sensor": "전자기 센서"
+    }
+  },
+  "EmeraldWall": {
+    "names": {
+      "shale wall with emerald deposits": ""
+    }
+  },
+  "Energy Cell": {
+    "names": {
+      "[Energy Cell]": ""
+    }
+  },
+  "Enigma Cap": {
+    "names": {
+      "enigma cap": "수수께끼 모자"
+    }
+  },
+  "Enigma Cone": {
+    "names": {
+      "enigma cone": "수수께끼 원뿔"
+    }
+  },
+  "EnigmaSnail_Bite": {
+    "names": {
+      "perplexcis": ""
+    }
+  },
+  "Entropic Pseudopod": {
+    "names": {
+      "entropic pseudopod": "엔트로피 위족"
+    }
+  },
+  "Equimax_Kick": {
+    "names": {
+      "kick": "발차기"
+    }
+  },
+  "EquipmentRack": {
+    "names": {
+      "equipment rack": ""
+    }
+  },
+  "EtaandtheEarthling1": {
+    "names": {
+      "Eta and the Earthling, Canto I": ""
+    }
+  },
+  "ExileCorpse": {
+    "names": {
+      "human remains": "인간 잔해"
+    }
+  },
+  "Eyeless King Crab_Claw": {
+    "names": {
+      "monstrous claw": "괴물같은 발톱"
+    }
+  },
+  "EyelessCrabShell": {
+    "names": {
+      "eyeless crab shell": "눈먼 게 껍데기"
+    }
+  },
+  "Ezra Recoiler": {
+    "names": {
+      "Ezra recoiler": ""
+    }
+  },
+  "FactionDeed": {
+    "names": {
+      "Schrodinger page from the Annals of Qud": ""
+    }
+  },
+  "Farmers Token": {
+    "names": {
+      "farmer's token": ""
+    }
+  },
+  "FaunsoftheMeadow": {
+    "names": {
+      "Fauns of the Meadow": ""
+    }
+  },
+  "FireSuppressionSystem": {
+    "names": {
+      "fire suppression system": ""
+    }
+  },
+  "Fjolnir Fist": {
+    "names": {
+      "ice-encrusted fist": "얼음이 낀 주먹"
+    }
+  },
+  "Flawless Crysteel Arrow": {
+    "names": {
+      "flawless {{crysteel|crysteel arrow}}": ""
+    }
+  },
+  "Flawless Crysteel Coronet": {
+    "names": {
+      "flawless {{crysteel|crysteel coronet}}": ""
+    }
+  },
+  "Flawless Crysteel Shield": {
+    "names": {
+      "flawless {{crysteel|crysteel aegis}}": ""
+    }
+  },
+  "Floating Glowsphere": {
+    "names": {
+      "floating glowsphere": ""
+    }
+  },
+  "Floor Cushion": {
+    "names": {
+      "floor cushion": ""
+    }
+  },
+  "Flowers": {
+    "names": {
+      "flowers": "꽃"
+    }
+  },
+  "Foamcrete": {
+    "names": {
+      "foamcrete": "발포콘크리트"
+    }
+  },
+  "Folded Carbide Arrow": {
+    "names": {
+      "folded carbide arrow": "접힌 카바이드 화살"
+    }
+  },
+  "FoldingChair": {
+    "names": {
+      "metal folding chair": "금속 접이식 의자"
+    }
+  },
+  "Food Cube": {
+    "names": {
+      "food cube": "식품 큐브"
+    }
+  },
+  "ForceKnife": {
+    "names": {
+      "force knife": "포스 칼"
+    }
+  },
+  "ForceModulator": {
+    "names": {
+      "force modulator": "포스 변조기"
+    }
+  },
+  "Fracti": {
+    "names": {
+      "fractus": "프락투스"
+    }
+  },
+  "FromEntropytoHierarchy": {
+    "names": {
+      "From Entropy to Hierarchy": ""
+    }
+  },
+  "FromEntropytoHierarchy2": {
+    "names": {
+      "From Entropy to Hierarchy, 2nd Edition": ""
+    }
+  },
+  "Fullerite Armet": {
+    "names": {
+      "fullerite armet": "풀러라이트 아멧"
+    }
+  },
+  "Fullerite Arrow": {
+    "names": {
+      "fullerite arrow": "풀러라이트 화살"
+    }
+  },
+  "Fullerite Flake Armor": {
+    "names": {
+      "fullerite flake armor": "풀러라이트 조각 갑옷"
+    }
+  },
+  "Fullerite Plate Mail": {
+    "names": {
+      "fullerite plate mail": "풀러라이트 판금 갑옷"
+    }
+  },
+  "Fullerite Shield": {
+    "names": {
+      "fullerite aegis": "풀러라이트 아이기스"
+    }
+  },
+  "FulleriteFist": {
+    "names": {
+      "fullerite fist": "풀러라이트 주먹"
+    }
+  },
+  "FulleriteHandBones": {
+    "names": {
+      "fullerite hand bones": "풀러라이트 손 뼈"
+    }
+  },
+  "FungicideGas": {
+    "names": {
+      "fungicide": "살균제"
+    }
+  },
+  "Fungus": {
+    "names": {
+      "[Fungus]": ""
+    }
+  },
+  "FungusLimb": {
+    "names": {
+      "[limb]": ""
+    }
+  },
+  "Fusion Power Station": {
+    "names": {
+      "fusion power station": "융합 파워 스테이션"
+    }
+  },
+  "Fusion Pumping Station": {
+    "names": {
+      "fusion pumping station": "융합 펌핑 스테이션"
+    }
+  },
+  "Garbage": {
+    "names": {
+      "trash": "쓰레기"
+    }
+  },
+  "Gas": {
+    "names": {
+      "[Gas]": ""
+    }
+  },
+  "Gate": {
+    "names": {
+      "[gate]": ""
+    }
+  },
+  "GenericLimb": {
+    "names": {
+      "[limb]": ""
+    }
+  },
+  "Giant Heap of Chrome Scrap": {
+    "names": {
+      "giant heap of chrome scrap": ""
+    }
+  },
+  "GiantAmoeba_Pseudopod": {
+    "names": {
+      "slimy pseudopod": "점액질 위족"
+    }
+  },
+  "Giant_Ant_Bite": {
+    "names": {
+      "mandibles": "큰턱"
+    }
+  },
+  "Gigantic Chassis Plate": {
+    "names": {
+      "chassis plate": "섀시 판금갑옷"
+    }
+  },
+  "GiganticMachineHull": {
+    "names": {
+      "machine hull": "기계 선체"
+    }
+  },
+  "Girshfly_Mandibles": {
+    "names": {
+      "mandibles": "큰턱"
+    }
+  },
+  "Girshling Fangs": {
+    "names": {
+      "girshling fangs": "거슐링 송곳니"
+    }
+  },
+  "Girshling_Bite": {
+    "names": {
+      "fangs": "송곳니"
+    }
+  },
+  "Girshling_Claw": {
+    "names": {
+      "claw": "발톱"
+    }
+  },
+  "Glossy Hull": {
+    "names": {
+      "glossy hull": "광택있는 선체"
+    }
+  },
+  "Glowcrow_Peck": {
+    "names": {
+      "peck": "쪼기"
+    }
+  },
+  "Glowmoth_Gaze": {
+    "names": {
+      "gaze": "응시"
+    }
+  },
+  "Gnu Hoof": {
+    "names": {
+      "hoof": "발굽"
+    }
+  },
+  "Godshroom": {
+    "names": {
+      "elcatl": ""
+    }
+  },
+  "Gold Nugget": {
+    "names": {
+      "gold nugget": "금 덩어리"
+    }
+  },
+  "Gold Trollking Key": {
+    "names": {
+      "gold key": "금 열쇠"
+    }
+  },
+  "GolemOperatingManual": {
+    "names": {
+      "OPERATING MANUAL FOR LARGE CREATURE": ""
+    }
+  },
+  "Golgotha Recoiler": {
+    "names": {
+      "Golgotha recoiler": ""
+    }
+  },
+  "Gooey Pseudopod": {
+    "names": {
+      "gooey pseudopod": "끈적끈적한 위족"
+    }
+  },
+  "Gooey Pseudopod2": {
+    "names": {
+      "gooey pseudopod": "끈적끈적한 위족"
+    }
+  },
+  "GraftedMirrorArm": {
+    "names": {
+      "grafted mirror arm": "접목된 거울 팔"
+    }
+  },
+  "Granite": {
+    "names": {
+      "granite": "화강암"
+    }
+  },
+  "Gravchair": {
+    "names": {
+      "grav chair": "중력 의자"
+    }
+  },
+  "Great Magma Crab Claw": {
+    "names": {
+      "red-hot claw": "시뻘건 발톱"
+    }
+  },
+  "Green Security Card": {
+    "names": {
+      "emergency-services security card": "응급서비스 보안 카드"
+    }
+  },
+  "Grenade": {
+    "names": {
+      "[Grenade]": ""
+    }
+  },
+  "Grit Gate Dormant Waydroid": {
+    "names": {
+      "dormant waydroid": "휴면 웨이드로이드"
+    }
+  },
+  "Grit Gate Recoiler": {
+    "names": {
+      "Grit Gate recoiler": ""
+    }
+  },
+  "GritGateGridKey": {
+    "names": {
+      "chrome security card": "크롬 보안 카드"
+    }
+  },
+  "GroundingShunts": {
+    "names": {
+      "grounding shunts": "접지 션트"
+    }
+  },
+  "Gun Rack": {
+    "names": {
+      "gun rack": "총 선반"
+    }
+  },
+  "GunRack": {
+    "names": {
+      "gun rack": "총 선반"
+    }
+  },
+  "Gyrohumor_Pseudopod": {
+    "names": {
+      "giant pseudopod": "거대한 위족"
+    }
+  },
+  "HEGrenade1": {
+    "names": {
+      "high explosive grenade mk I": "고폭 수류탄 mk I"
+    }
+  },
+  "HEGrenade2": {
+    "names": {
+      "high explosive grenade mk II": "고폭 수류탄 mk II"
+    }
+  },
+  "HEGrenade3": {
+    "names": {
+      "high explosive grenade mk III": "고폭 수류탄 mk III"
+    }
+  },
+  "HagHands": {
+    "names": {
+      "adumbral hand": "어두운 손"
+    }
+  },
+  "Hand Rail": {
+    "names": {
+      "hand rail": "손 레일"
+    }
+  },
+  "HandENuke": {
+    "names": {
+      "Hand-E-Nuke": ""
+    }
+  },
+  "Headlamp": {
+    "names": {
+      "headlamp": "헤드램프"
+    }
+  },
+  "HeatGrenade1": {
+    "names": {
+      "thermal grenade mk I": "열 수류탄 mk I"
+    }
+  },
+  "HeatGrenade2": {
+    "names": {
+      "thermal grenade mk II": "열 수류탄 mk II"
+    }
+  },
+  "HeatGrenade3": {
+    "names": {
+      "thermal grenade mk III": "열 수류탄 mk III"
+    }
+  },
+  "HeirloomsCatalog": {
+    "names": {
+      "Heirlooms of Qud": ""
+    }
+  },
+  "High-Voltage Arc Winder": {
+    "names": {
+      "high-voltage arc winder": "고전압 아크 와인더"
+    }
+  },
+  "HighFidelityMatterRecompositer": {
+    "names": {
+      "high-fidelity matter recompositer": "고충실도 물질 재구성기"
+    }
+  },
+  "HighGradeDermalInsulation": {
+    "names": {
+      "high-grade dermal insulation": "고급 피부 절연"
+    }
+  },
+  "HistoryofJoppaVol1": {
+    "names": {
+      "History of Joppa, Vol. 1": ""
+    }
+  },
+  "HistoryofJoppaVol2": {
+    "names": {
+      "History of Joppa, Vol. 2": ""
+    }
+  },
+  "Hologram Distraction": {
+    "names": {
+      "[Hologram]": ""
+    }
+  },
+  "Holographic Ivory": {
+    "names": {
+      "holographic ivory": "홀로그래픽 상아"
+    }
+  },
+  "HolographicVisage": {
+    "names": {
+      "holographic visage": "홀로그래픽 형상"
+    }
+  },
+  "Homogenized Pseudopod": {
+    "names": {
+      "homogenized pseudopod": "균질화된 위족"
+    }
+  },
+  "Honeyed Pseudopod": {
+    "names": {
+      "honeyed pseudopod": "꿀바른 위족"
+    }
+  },
+  "Hookah": {
+    "names": {
+      "hookah": "물담배"
+    }
+  },
+  "Horns": {
+    "names": {
+      "horns": "뿔"
+    }
+  },
+  "Horns Antlers": {
+    "names": {
+      "antlers": "뿔"
+    }
+  },
+  "Horns Casque": {
+    "names": {
+      "casque": "철모"
+    }
+  },
+  "Horns Single": {
+    "names": {
+      "horn": "뿔"
+    }
+  },
+  "Humor_Pseudopod": {
+    "names": {
+      "giant pseudopod": "거대한 위족"
+    }
+  },
+  "Hydraulic Irrigator": {
+    "names": {
+      "hydraulic irrigator": "유압 관개기"
+    }
+  },
+  "Hydraulic Turbine": {
+    "names": {
+      "hydraulic turbine": "유압 터빈"
+    }
+  },
+  "Hyrkhound_Bite": {
+    "names": {
+      "acid-wet fangs": "산에 젖은 송곳니"
+    }
+  },
+  "Ice frog corpse": {
+    "names": {
+      "ice frog corpse": "얼음 개구리 시체"
+    }
+  },
+  "InMaqqomYd": {
+    "names": {
+      "In Maqqom Yd": ""
+    }
+  },
+  "Incandescent Fangs": {
+    "names": {
+      "incandescent fangs": "백열 송곳니"
+    }
+  },
+  "InflatableAxons": {
+    "names": {
+      "inflatable axons": "팽창식 축삭"
+    }
+  },
+  "Inky Pseudopod": {
+    "names": {
+      "inky pseudopod": "잉크빛 위족"
+    }
+  },
+  "InnerSultanWall_Period1": {
+    "names": {
+      "gilded marble from the sultanate of *Sultan1Name*": ""
+    }
+  },
+  "InnerSultanWall_Period2": {
+    "names": {
+      "gilded marble from the sultanate of *Sultan2Name*": ""
+    }
+  },
+  "InnerSultanWall_Period3": {
+    "names": {
+      "gilded marble from the sultanate of *Sultan3Name*": ""
+    }
+  },
+  "InnerSultanWall_Period4": {
+    "names": {
+      "gilded marble from the sultanate of *Sultan4Name*": ""
+    }
+  },
+  "InnerSultanWall_Period5": {
+    "names": {
+      "gilded marble from the sultanate of *Sultan5Name*": ""
+    }
+  },
+  "IntravenousPort": {
+    "names": {
+      "intravenous port": "정맥주사 포트"
+    }
+  },
+  "Iron Maiden": {
+    "names": {
+      "iron maiden": "철 처녀"
+    }
+  },
+  "Irritable Palm Frond": {
+    "names": {
+      "frond": "잎사귀"
+    }
+  },
+  "JasperWall": {
+    "names": {
+      "shale wall with jasper deposits": ""
+    }
+  },
+  "JoppaCorpse": {
+    "names": {
+      "human remains": "인간 잔해"
+    }
+  },
+  "JoppaSultanShrine": {
+    "names": {
+      "shrine": "성소"
+    }
+  },
+  "Juicing Cannibal Fist": {
+    "names": {
+      "fist": "주먹"
+    }
+  },
+  "Kyakukya Recoiler": {
+    "names": {
+      "Kyakukya recoiler": "키아쿠키아 귀환 장치"
+    }
+  },
+  "Lagroot": {
+    "names": {
+      "lagroot": "라그루트"
+    }
+  },
+  "Lamprey Bite": {
+    "names": {
+      "psychic bite": "정신 물기"
+    }
+  },
+  "LandmarkJoppaArgyveWorkshop": {
+    "names": {
+      "workshop": "작업장"
+    }
+  },
+  "Large Stone": {
+    "names": {
+      "stone": "돌"
+    }
+  },
+  "LargeBoulder": {
+    "names": {
+      "boulder": "바위"
+    }
+  },
+  "Lathe": {
+    "names": {
+      "lathe": "선반"
+    }
+  },
+  "LightCircleEhalcodon": {
+    "names": {
+      "circle of light in the chord of {{ehalcodon|Ehalcodon}}": ""
+    }
+  },
+  "LightRondure": {
+    "names": {
+      "rondure of light": ""
+    }
+  },
+  "LightSource": {
+    "names": {
+      "[LightSource]": ""
+    }
+  },
+  "Lignin": {
+    "names": {
+      "lignin": "리그닌"
+    }
+  },
+  "Liquid Fueled Energy Cell": {
+    "names": {
+      "[Liquid Fueled Energy Cell]": ""
+    }
+  },
+  "LiquidLichen": {
+    "names": {
+      "liquidlichen": ""
+    }
+  },
+  "Lives1": {
+    "names": {
+      "Frivolous Lives, Vol. I": ""
+    }
+  },
+  "Long Jug": {
+    "names": {
+      "vessel": "용기"
+    }
+  },
+  "LoveAndFearCompleted": {
+    "names": {
+      "A Tale of Love in Bey Lah": ""
+    }
+  },
+  "LoveAndFearUncompleted": {
+    "names": {
+      "A Tale of Fear in Bey Lah": ""
+    }
+  },
+  "LoveTonic": {
+    "names": {
+      "{{love|love}} injector": "{{love|사랑}} 주사기",
+      "love injector": "사랑 주사기"
+    }
+  },
+  "Lovers_Thorns": {
+    "names": {
+      "thorns": "가시"
+    }
+  },
+  "Luminous Mote": {
+    "names": {
+      "luminous {{W-Y-y-K sequence|mote}}": ""
+    }
+  },
+  "Luminous Pseudopod": {
+    "names": {
+      "luminous pseudopod": "빛나는 위족"
+    }
+  },
+  "Luminous Pseudopod2": {
+    "names": {
+      "luminous pseudopod": "빛나는 위족"
+    }
+  },
+  "LuminousInfection": {
+    "names": {
+      "glowcrust": ""
+    }
+  },
+  "Lurking Beth": {
+    "names": {
+      "lurking beth": "잠복 베스"
+    }
+  },
+  "Lush Pseudopod": {
+    "names": {
+      "lush pseudopod": "무성한 위족"
+    }
+  },
+  "MachinedEdge": {
+    "names": {
+      "machined edge": "가공된 날"
+    }
+  },
+  "Madpole_Jaws": {
+    "names": {
+      "jaws": "턱"
+    }
+  },
+  "Magmatic Pseudopod": {
+    "names": {
+      "magmatic pseudopod": "마그마 위족"
+    }
+  },
+  "MagneticCore": {
+    "names": {
+      "magnetic core": "자기 코어"
+    }
+  },
+  "Mannequin": {
+    "names": {
+      "mannequin": "마네킹"
+    }
+  },
+  "MatterRecompositer": {
+    "names": {
+      "matter recompositer": "물질 재구성기"
+    }
+  },
+  "Mech_Kick": {
+    "names": {
+      "kick": "발차기"
+    }
+  },
+  "Mechanical Cherubic Bands": {
+    "names": {
+      "mechanical cherubic bands": "기계 케루빔 밴드"
+    }
+  },
+  "Mechanical Cherubic Bark": {
+    "names": {
+      "mechanical cherubic bark": "기계 케루빔 나무껍질"
+    }
+  },
+  "Mechanical Cherubic Bite": {
+    "names": {
+      "mechanical cherubic bite": "기계 케루빔 물기"
+    }
+  },
+  "Mechanical Cherubic Claw": {
+    "names": {
+      "mechanical cherubic claw": "기계 케루빔 발톱"
+    }
+  },
+  "Mechanical Cherubic Fist": {
+    "names": {
+      "mechanical cherubic fist": "기계 케루빔 주먹"
+    }
+  },
+  "Mechanical Cherubic Foot": {
+    "names": {
+      "mechanical cherubic foot": "기계 케루빔 발"
+    }
+  },
+  "Mechanical Cherubic Hand Claw": {
+    "names": {
+      "mechanical cherubic claw": "기계 케루빔 발톱"
+    }
+  },
+  "Mechanical Cherubic Handle": {
+    "names": {
+      "mechanical cherubic handle": "기계 케루빔 손잡이"
+    }
+  },
+  "Mechanical Cherubic Kick": {
+    "names": {
+      "mechanical cherubic kick": "기계 케루빔 발차기"
+    }
+  },
+  "Mechanical Cherubic Nodule": {
+    "names": {
+      "mechanical cherubic nodule": "기계 케루빔 혹"
+    }
+  },
+  "Mechanical Cherubic Pistil": {
+    "names": {
+      "mechanical cherubic pistil": "기계 케루빔 암술"
+    }
+  },
+  "Mechanical Cherubic Pseudopod": {
+    "names": {
+      "mechanical cherubic pseudopod": "기계 케루빔 위족"
+    }
+  },
+  "Mechanical Cherubic Spade": {
+    "names": {
+      "mechanical cherubic spade": "기계 케루빔 삽"
+    }
+  },
+  "Mechanical Cherubic Spines": {
+    "names": {
+      "mechanical cherubic spines": "기계 케루빔 가시"
+    }
+  },
+  "Mechanical Cherubic Strangle": {
+    "names": {
+      "mechanical cherubic stranglehold": "기계 케루빔 목조르기"
+    }
+  },
+  "Mechanical Cherubic Talons": {
+    "names": {
+      "mechanical cherubic talons": "기계 케루빔 발톱"
+    }
+  },
+  "MedassistModule": {
+    "names": {
+      "medassist module": "메드어시스트 모듈"
+    }
+  },
+  "Medication": {
+    "names": {
+      "[medication autoinjector]": ""
+    }
+  },
+  "MediumBoulder": {
+    "names": {
+      "boulder": "바위"
+    }
+  },
+  "MerchantAdvertisement": {
+    "names": {
+      "*advertisement*": ""
+    }
+  },
+  "MicromanipulatorArray": {
+    "names": {
+      "micromanipulator array": "마이크로매니퓰레이터 배열"
+    }
+  },
+  "MimicandMadpole": {
+    "names": {
+      "The Mimic and the Madpole": ""
+    }
+  },
+  "MineShell": {
+    "names": {
+      "mine": ""
+    }
+  },
+  "ModuloMoonStair": {
+    "names": {
+      "Modulo Moon Stair and the Tree of Life": ""
+    }
+  },
+  "Mortar Tube": {
+    "names": {
+      "mortar tube": "박격포 튜브"
+    }
+  },
+  "MotorizedTreads": {
+    "names": {
+      "motorized treads": "전동 궤도"
+    }
+  },
+  "MountedFurniture": {
+    "names": {
+      "[MountedFurniture]": ""
+    }
+  },
+  "MumblesInfection": {
+    "names": {
+      "mumble mouth": "중얼거림 입"
+    }
+  },
+  "MurmursPrayer": {
+    "names": {
+      "The Murmurs' Prayer": ""
+    }
+  },
+  "Mushroom": {
+    "names": {
+      "[mushroom]": ""
+    }
+  },
+  "NaturalFist": {
+    "names": {
+      "fist": "주먹"
+    }
+  },
+  "NaturalMissileWeapon": {
+    "names": {
+      "[Natural Missile Weapon]": ""
+    }
+  },
+  "NaturalWeapon": {
+    "names": {
+      "[Natural Weapon]": ""
+    }
+  },
+  "NavigationSystem": {
+    "names": {
+      "navigation system": ""
+    }
+  },
+  "NectarTonic": {
+    "names": {
+      "{{eater|Eaters'}} {{nectar|nectar}} injector": ""
+    }
+  },
+  "Nephal_Weapon": {
+    "names": {
+      "claw": "발톱"
+    }
+  },
+  "Neuro Animator": {
+    "names": {
+      "{{nanoneuro|nano-neuro}} animator": ""
+    }
+  },
+  "Night-Sight Interpolators": {
+    "names": {
+      "night-sight interpolators": "야시 보간기"
+    }
+  },
+  "NocturnalApex": {
+    "names": {
+      "nocturnal apex": "야행성 정점"
+    }
+  },
+  "NormalityGasGrenade1": {
+    "names": {
+      "{{normal|normality gas}} grenade mk I": "{{normal|정상성 가스}} 수류탄 Mk I",
+      "normality gas grenade mk I": "정상성 가스 수류탄 Mk I"
+    }
+  },
+  "NormalityGasGrenade2": {
+    "names": {
+      "{{normal|normality gas}} grenade mk II": "{{normal|정상성 가스}} 수류탄 Mk II",
+      "normality gas grenade mk II": "정상성 가스 수류탄 Mk II"
+    }
+  },
+  "NormalityGasGrenade3": {
+    "names": {
+      "{{normal|normality gas}} grenade mk III": "{{normal|정상성 가스}} 수류탄 Mk III",
+      "normality gas grenade mk III": "정상성 가스 수류탄 Mk III"
+    }
+  },
+  "NotakeItem": {
+    "names": {
+      "[notakeItem]": ""
+    }
+  },
+  "Nuclear Cell": {
+    "names": {
+      "nuclear cell": "핵 전지"
+    }
+  },
+  "Ogre Ape Pelt": {
+    "names": {
+      "ogre ape pelt": "오우거 유인원 모피"
+    }
+  },
+  "Ogre Fur Cloak": {
+    "names": {
+      "ogre fur cloak": "오우거 털 망토"
+    }
+  },
+  "Ogre Fur Gloves": {
+    "names": {
+      "ogre fur gloves": "오우거 털 장갑"
+    }
+  },
+  "Ogre Fur Hat": {
+    "names": {
+      "ogre fur hat": "오우거 털 모자"
+    }
+  },
+  "Ogre ape fist": {
+    "names": {
+      "ape fist": "유인원 주먹"
+    }
+  },
+  "Oily Pseudopod": {
+    "names": {
+      "oily pseudopod": "기름진 위족"
+    }
+  },
+  "OnHumanMimicry": {
+    "names": {
+      "On Humanoid Mimicry of Animals and Plants": ""
+    }
+  },
+  "OnboardRecoiler": {
+    "names": {
+      "onboard recoiler": "탑재 귀환 장치"
+    }
+  },
+  "Ontological Anchor": {
+    "names": {
+      "ontological anchor": "존재론적 닻"
+    }
+  },
+  "Oozing Pseudopod": {
+    "names": {
+      "oozing pseudopod": "스며나오는 위족"
+    }
+  },
+  "Oozing Pseudopod2": {
+    "names": {
+      "oozing pseudopod": "스며나오는 위족"
+    }
+  },
+  "OpticalMultiscanner": {
+    "names": {
+      "optical multiscanner": "광학 멀티스캐너"
+    }
+  },
+  "PalladiumElectrodeposits": {
+    "names": {
+      "palladium electrodeposits": "팔라듐 전착물"
+    }
+  },
+  "PaxInfection": {
+    "names": {
+      "Klanq": ""
+    }
+  },
+  "PenetratingRadar": {
+    "names": {
+      "penetrating radar": "관통 레이더"
+    }
+  },
+  "Pentaceps": {
+    "names": {
+      "pentaceps": ""
+    }
+  },
+  "Period1SultanShrine": {
+    "names": {
+      "shrine": "성소"
+    }
+  },
+  "Period2SultanShrine": {
+    "names": {
+      "shrine": "성소"
+    }
+  },
+  "Period3SultanShrine": {
+    "names": {
+      "shrine": "성소"
+    }
+  },
+  "Period4SultanShrine": {
+    "names": {
+      "shrine": "성소"
+    }
+  },
+  "Period5SultanShrine": {
+    "names": {
+      "shrine": "성소"
+    }
+  },
+  "Period6SultanShrine": {
+    "names": {
+      "shrine": "성소"
+    }
+  },
+  "Phase-Adaptive Scope": {
+    "names": {
+      "phase-adaptive scope": "위상적응 스코프"
+    }
+  },
+  "PhaseHarmonicModulator": {
+    "names": {
+      "phase harmonic modulator": "위상 조화 변조기"
+    }
+  },
+  "Phial": {
+    "names": {
+      "phial": "약병"
+    }
+  },
+  "PhysicalObject": {
+    "names": {
+      "[Object]": ""
+    }
+  },
+  "Plant": {
+    "names": {
+      "[Plant]": ""
+    }
+  },
+  "PlantLimb": {
+    "names": {
+      "[limb]": ""
+    }
+  },
+  "Plasma": {
+    "names": {
+      "plasma": "플라즈마"
+    }
+  },
+  "PlasmaGrenade1": {
+    "names": {
+      "{{plasma|plasma}} grenade mk I": "{{plasma|플라즈마}} 수류탄 Mk I",
+      "plasma grenade mk I": "플라즈마 수류탄 Mk I"
+    }
+  },
+  "PlasmaGrenade2": {
+    "names": {
+      "{{plasma|plasma}} grenade mk II": "{{plasma|플라즈마}} 수류탄 Mk II",
+      "plasma grenade mk II": "플라즈마 수류탄 Mk II"
+    }
+  },
+  "PlasmaGrenade3": {
+    "names": {
+      "{{plasma|plasma}} grenade mk III": "{{plasma|플라즈마}} 수류탄 Mk III",
+      "plasma grenade mk III": "플라즈마 수류탄 Mk III"
+    }
+  },
+  "PlasmaticGirshling_Bite": {
+    "names": {
+      "incandescent fangs": "백열 송곳니"
+    }
+  },
+  "Plastifer Chem Vest": {
+    "names": {
+      "{{plastifer|plastifer}} chem vest": ""
+    }
+  },
+  "Plastronoid_Whacker": {
+    "names": {
+      "gimbal": ""
+    }
+  },
+  "PneumaticPistons": {
+    "names": {
+      "pneumatic pistons": ""
+    }
+  },
+  "PoisonGas": {
+    "names": {
+      "poison gas": "독가스"
+    }
+  },
+  "Polished Agate": {
+    "names": {
+      "smooth agate gemstone": "매끄러운 마노 보석"
+    }
+  },
+  "Polished Amethyst": {
+    "names": {
+      "smooth amethyst gemstone": "매끄러운 자수정 보석"
+    }
+  },
+  "Polished Emerald": {
+    "names": {
+      "smooth emerald gemstone": "매끄러운 에메랄드색 보석"
+    }
+  },
+  "Polished Jasper": {
+    "names": {
+      "smooth jasper gemstone": "매끄러운 벽옥 보석"
+    }
+  },
+  "Polished Sapphire": {
+    "names": {
+      "smooth sapphire gemstone": "매끄러운 사파이어색 보석"
+    }
+  },
+  "Polished Topaz": {
+    "names": {
+      "smooth topaz gemstone": "매끄러운 토파즈 보석"
+    }
+  },
+  "PowerCore": {
+    "names": {
+      "[power core]": ""
+    }
+  },
+  "Precision Nanon Fingers": {
+    "names": {
+      "precision nanon fingers": "정밀 나논 손가락"
+    }
+  },
+  "PrecisionForceLathe": {
+    "names": {
+      "precision force lathe": "정밀 포스 선반"
+    }
+  },
+  "Prism Point": {
+    "names": {
+      "prism point": "프리즘 점"
+    }
+  },
+  "Projectile": {
+    "names": {
+      "projectile": "투사체"
+    }
+  },
+  "ProjectileArcCannon": {
+    "names": {
+      "electrical arc": "전기 아크"
+    }
+  },
+  "ProjectileBlastCannon": {
+    "names": {
+      "pressurized energy": "가압된 에너지"
+    }
+  },
+  "ProjectileBloodGradientHandVacuumPulse": {
+    "names": {
+      "blood plasma vacuum": "피 플라즈마 흡입기"
+    }
+  },
+  "ProjectileCrungleGaze": {
+    "names": {
+      "crungling gaze": "크런글링 응시"
+    }
+  },
+  "ProjectileCrysteelArrow": {
+    "names": {
+      "{{crysteel|crysteel arrow}}": ""
+    }
+  },
+  "ProjectileDecarbonizer": {
+    "names": {
+      "molecular cannon beam": "분자 대포 빔"
+    }
+  },
+  "ProjectileDiThermoBeamCold": {
+    "names": {
+      "cold beam": "차가운 빔"
+    }
+  },
+  "ProjectileDiThermoBeamHeat": {
+    "names": {
+      "heat beam": "열 빔"
+    }
+  },
+  "ProjectileEigenpistol": {
+    "names": {
+      "dot vector": "점 벡터"
+    }
+  },
+  "ProjectileEigenrifle": {
+    "names": {
+      "dot vector": "점 벡터"
+    }
+  },
+  "ProjectileElectroPistol": {
+    "names": {
+      "ion packet": "이온 패킷"
+    }
+  },
+  "ProjectileElectrobow": {
+    "names": {
+      "energy bolt": "에너지 볼트"
+    }
+  },
+  "ProjectileExplosiveArrow": {
+    "names": {
+      "boomrose arrow": "붐로즈 화살"
+    }
+  },
+  "ProjectileFlamethrower": {
+    "names": {
+      "stream of flame": ""
+    }
+  },
+  "ProjectileFlamingRay": {
+    "names": {
+      "stream of fire": ""
+    }
+  },
+  "ProjectileFlawlessCrysteelArrow": {
+    "names": {
+      "flawless {{crysteel|crysteel arrow}}": ""
+    }
+  },
+  "ProjectileFoldedCarbideArrow": {
+    "names": {
+      "folded carbide arrow": "접힌 카바이드 화살"
+    }
+  },
+  "ProjectileFreezeRay": {
+    "names": {
+      "energy beam": "에너지 빔"
+    }
+  },
+  "ProjectileFreezingRay": {
+    "names": {
+      "stream of frost": ""
+    }
+  },
+  "ProjectileFromShunter": {
+    "names": {
+      "off ray": ""
+    }
+  },
+  "ProjectileFulleriteArrow": {
+    "names": {
+      "fullerite arrow": "풀러라이트 화살"
+    }
+  },
+  "ProjectileFungicideGasStream": {
+    "names": {
+      "{{fungicide|stream of gas}}": ""
+    }
+  },
+  "ProjectileGammaMothGaze": {
+    "names": {
+      "flash of light": ""
+    }
+  },
+  "ProjectileHandrail": {
+    "names": {
+      "long photon": "긴 광자"
+    }
+  },
+  "ProjectileHookRay": {
+    "names": {
+      "energy beam": "에너지 빔"
+    }
+  },
+  "ProjectileIrisdualBeam": {
+    "names": {
+      "{{rainbow|flash of neon}}": ""
+    }
+  },
+  "ProjectileLaserColumn": {
+    "names": {
+      "laser column": "레이저 기둥"
+    }
+  },
+  "ProjectileLaserPistol": {
+    "names": {
+      "laser beam": "레이저 빔"
+    }
+  },
+  "ProjectileLaserRifle": {
+    "names": {
+      "laser beam": "레이저 빔"
+    }
+  },
+  "ProjectileLightLock": {
+    "names": {
+      "fat photon": "뚱뚱한 광자"
+    }
+  },
+  "ProjectileLightManipulation": {
+    "names": {
+      "burst of light": ""
+    }
+  },
+  "ProjectileLightrail": {
+    "names": {
+      "long photon": "긴 광자"
+    }
+  },
+  "ProjectileLinearCannon": {
+    "names": {
+      "1D slug": ""
+    }
+  },
+  "ProjectileNaserCannon": {
+    "names": {
+      "naser beam": "나서 빔"
+    }
+  },
+  "ProjectileNormalityGasStream": {
+    "names": {
+      "stream of gas": ""
+    }
+  },
+  "ProjectileNullray": {
+    "names": {
+      "nothing": ""
+    }
+  },
+  "ProjectilePhaseCannon": {
+    "names": {
+      "energy bolt": "에너지 볼트"
+    }
+  },
+  "ProjectilePointDefenseLaser": {
+    "names": {
+      "laser beam": "레이저 빔"
+    }
+  },
+  "ProjectilePsychalFleshgun": {
+    "names": {
+      "psychic throb": "정신 욱신거림"
+    }
+  },
+  "ProjectileShoulderMountedLightCannon": {
+    "names": {
+      "proton beam": "양성자 빔"
+    }
+  },
+  "ProjectileSpaserPistol": {
+    "names": {
+      "plasmon": ""
+    }
+  },
+  "ProjectileSpaserRifle": {
+    "names": {
+      "plasmon": ""
+    }
+  },
+  "ProjectileSpatSeed": {
+    "names": {
+      "seed": "씨앗"
+    }
+  },
+  "ProjectileStoneGaze": {
+    "names": {
+      "baleful gaze": "사악한 응시"
+    }
+  },
+  "ProjectileSwarmRocket": {
+    "names": {
+      "rocket": "로켓"
+    }
+  },
+  "ProjectileThirstThistle": {
+    "names": {
+      "thistle": "엉겅퀴"
+    }
+  },
+  "ProjectileVerticalLauncher": {
+    "names": {
+      "targetting beam": "조준 빔"
+    }
+  },
+  "ProjectileWoodenArrow": {
+    "names": {
+      "wooden arrow": "나무 화살"
+    }
+  },
+  "ProjectileZetachromeArrow": {
+    "names": {
+      "{{zetachrome|zetachrome}} arrow": ""
+    }
+  },
+  "Projectile_Girshfly_Energy": {
+    "names": {
+      "ray of jaundiced light": ""
+    }
+  },
+  "Projectile_GlowmothGaze": {
+    "names": {
+      "flash of neon": ""
+    }
+  },
+  "Projectile_Slugsnout_Slug": {
+    "names": {
+      "slug": "민달팽이"
+    }
+  },
+  "PuffInfection": {
+    "names": {
+      "fickle gill": "변덕스러운 아가미"
+    }
+  },
+  "Purple Security Card": {
+    "names": {
+      "military security card": "군용 보안 카드"
+    }
+  },
+  "Putrid Pseudopod": {
+    "names": {
+      "putrid pseudopod": "부패액 위족"
+    }
+  },
+  "Quartzfur Cloak": {
+    "names": {
+      "quartzfur cloak": "석영털 망토"
+    }
+  },
+  "Quartzfur Gloves": {
+    "names": {
+      "quartzfur gloves": "석영털 장갑"
+    }
+  },
+  "Quartzfur Hat": {
+    "names": {
+      "quartzfur hat": "석영털 모자"
+    }
+  },
+  "Qudzu_Frond": {
+    "names": {
+      "frond": "잎사귀"
+    }
+  },
+  "Quills": {
+    "names": {
+      "quills": "가시"
+    }
+  },
+  "Random Agate Figurine": {
+    "names": {
+      "agate {{|*creature*}} figurine": ""
+    }
+  },
+  "Random Amethyst Figurine": {
+    "names": {
+      "amethyst {{|*creature*}} figurine": ""
+    }
+  },
+  "Random Copper Figurine": {
+    "names": {
+      "copper {{|*creature*}} figurine": ""
+    }
+  },
+  "Random Emerald Figurine": {
+    "names": {
+      "emerald {{|*creature*}} figurine": ""
+    }
+  },
+  "Random Figurine": {
+    "names": {
+      "[figurine]": ""
+    }
+  },
+  "Random Gold Figurine": {
+    "names": {
+      "gold {{|*creature*}} figurine": ""
+    }
+  },
+  "Random Jasper Figurine": {
+    "names": {
+      "jasper {{|*creature*}} figurine": ""
+    }
+  },
+  "Random Peridot Figurine": {
+    "names": {
+      "{{peridot|peridot}} *creature* figurine": ""
+    }
+  },
+  "Random Sapphire Figurine": {
+    "names": {
+      "sapphire {{|*creature*}} figurine": ""
+    }
+  },
+  "Random Silver Figurine": {
+    "names": {
+      "{{silvery|silver}} {{|*creature*}} figurine": ""
+    }
+  },
+  "Random Statue": {
+    "names": {
+      "[statue]": ""
+    }
+  },
+  "Random Topaz Figurine": {
+    "names": {
+      "topaz {{|*creature*}} figurine": ""
+    }
+  },
+  "RandomCrater": {
+    "names": {
+      "craters": ""
+    }
+  },
+  "Rank Fangs": {
+    "names": {
+      "rank fangs": "등급 송곳니"
+    }
+  },
+  "RankGirshling_Bite": {
+    "names": {
+      "rank fangs": "등급 송곳니"
+    }
+  },
+  "RapidReleaseFingerFlexors": {
+    "names": {
+      "rapid release finger flexors": "신속 해제 손가락 굴근"
+    }
+  },
+  "Raw Croc Meat": {
+    "names": {
+      "raw croc meat": "생 악어 고기"
+    }
+  },
+  "ReactiveCranialPlating": {
+    "names": {
+      "reactive cranial plating": "반응성 두개 도금"
+    }
+  },
+  "ReactiveTraumaPlate": {
+    "names": {
+      "reactive trauma plate": "반응성 외상 판금갑옷"
+    }
+  },
+  "Reclamation Cist": {
+    "names": {
+      "reclamation cist": "매립 석관"
+    }
+  },
+  "Red Security Card": {
+    "names": {
+      "laborer security card": "노동자 보안 카드"
+    }
+  },
+  "Relief": {
+    "names": {
+      "[Wall]": ""
+    }
+  },
+  "Reliquary": {
+    "names": {
+      "reliquary": "성물함"
+    }
+  },
+  "Repulsive Device": {
+    "names": {
+      "repulsive device": "혐오스러운 장치"
+    }
+  },
+  "ReshephsCrypt": {
+    "names": {
+      "crypt": "지하묘"
+    }
+  },
+  "Rhinox figure": {
+    "names": {
+      "copper {{|*creature*}} figurine": ""
+    }
+  },
+  "Robot Corpse": {
+    "names": {
+      "[Corpse]": ""
+    }
+  },
+  "RobotLimb": {
+    "names": {
+      "[Corpse]": ""
+    }
+  },
+  "Rocket Skates": {
+    "names": {
+      "{{rocket|rocket}} skates": ""
+    }
+  },
+  "Rough Agate": {
+    "names": {
+      "rough agate gemstone": "거친 마노 보석"
+    }
+  },
+  "Rough Amethyst": {
+    "names": {
+      "rough amethyst gemstone": "거친 자수정 보석"
+    }
+  },
+  "Rough Emerald": {
+    "names": {
+      "rough emerald gemstone": "거친 에메랄드색 보석"
+    }
+  },
+  "Rough Jasper": {
+    "names": {
+      "rough jasper gemstone": "거친 벽옥 보석"
+    }
+  },
+  "Rough Sapphire": {
+    "names": {
+      "rough sapphire gemstone": "거친 사파이어색 보석"
+    }
+  },
+  "Rough Topaz": {
+    "names": {
+      "rough topaz gemstone": "거친 토파즈 보석"
+    }
+  },
+  "Rubber Suit": {
+    "names": {
+      "rubber suit": "고무 슈트"
+    }
+  },
+  "RubbergumTonic": {
+    "names": {
+      "{{rubbergum|rubbergum}} injector": ""
+    }
+  },
+  "RustLocker": {
+    "names": {
+      "rust-chewed locker": ""
+    }
+  },
+  "Rustacean Crab_Claw": {
+    "names": {
+      "rust-encrusted claw": "녹이 낀 발톱"
+    }
+  },
+  "SalthopperMandible": {
+    "names": {
+      "salthopper mandible": "소금메뚜기 큰턱"
+    }
+  },
+  "Salthopper_Mandibles": {
+    "names": {
+      "rending mandibles": "찢는 큰턱"
+    }
+  },
+  "Salty Pseudopod": {
+    "names": {
+      "salty pseudopod": "짠 위족"
+    }
+  },
+  "SapphireWall": {
+    "names": {
+      "shale wall with sapphire deposits": ""
+    }
+  },
+  "Sawhander_Saw": {
+    "names": {
+      "rust-pitted saw": "녹구멍 톱"
+    }
+  },
+  "Scarlet Shawl": {
+    "names": {
+      "scarlet shawl": "주홍 숄"
+    }
+  },
+  "Schemasoft2": {
+    "names": {
+      "Schemasoft": ""
+    }
+  },
+  "Schemasoft3": {
+    "names": {
+      "Schemasoft": ""
+    }
+  },
+  "Schemasoft4": {
+    "names": {
+      "Schemasoft": ""
+    }
+  },
+  "Scorpiock_Claws": {
+    "names": {
+      "claws": "발톱"
+    }
+  },
+  "Scrap": {
+    "names": {
+      "[scrap]": ""
+    }
+  },
+  "ScrapX": {
+    "names": {
+      "[the ultimate scrap]": ""
+    }
+  },
+  "Scrapbot_Junkshovel": {
+    "names": {
+      "scrap shovel": "고철 삽"
+    }
+  },
+  "Scrapbot_Scrapsaw": {
+    "names": {
+      "scrap saw": "고철 톱"
+    }
+  },
+  "Scratched Data Disk": {
+    "names": {
+      "scratched data disk": "긁힌 데이터 디스크"
+    }
+  },
+  "Scroll Bound by Kelp": {
+    "names": {
+      "scroll bound by a strand of kelp": ""
+    }
+  },
+  "SecurityInterlock": {
+    "names": {
+      "security interlock": "보안 연동"
+    }
+  },
+  "ShadeOilTonic": {
+    "names": {
+      "{{shade|shade oil}} injector": "{{shade|그림자 기름}} 주사기",
+      "shade oil injector": "그림자 기름 주사기"
+    }
+  },
+  "Sheaf1": {
+    "names": {
+      "sheaf of tattered parchment": ""
+    }
+  },
+  "Sheyd_Claw": {
+    "names": {
+      "diamond claw": ""
+    }
+  },
+  "Shield": {
+    "names": {
+      "[Shield]": ""
+    }
+  },
+  "SingleSkillsoft1": {
+    "names": {
+      "skillsoft": ""
+    }
+  },
+  "SingleSkillsoft2": {
+    "names": {
+      "skillsoft": ""
+    }
+  },
+  "SingleSkillsoft3": {
+    "names": {
+      "skillsoft": ""
+    }
+  },
+  "Six Day Stilt Recoiler": {
+    "names": {
+      "Six Day Stilt recoiler": "여섯 일 죽마 귀환 장치"
+    }
+  },
+  "SkinGlitter1": {
+    "names": {
+      "skin glitter": "피부 글리터"
+    }
+  },
+  "SkinGlitter2": {
+    "names": {
+      "skin glitter": "피부 글리터"
+    }
+  },
+  "SkulkTonic": {
+    "names": {
+      "{{skulk|skulk}} injector": ""
+    }
+  },
+  "SkybearJetpack": {
+    "names": {
+      "{{R-r-w-W-Y-y sequence|Flume-Flier}} of the {{b-B-C-c sequence|Sky-Bear}}": ""
+    }
+  },
+  "Slate": {
+    "names": {
+      "slate": "슬레이트"
+    }
+  },
+  "Slimy Pseudopod": {
+    "names": {
+      "slimy pseudopod": "점액질 위족"
+    }
+  },
+  "SlogTrophy": {
+    "names": {
+      "{{g-w-w-g-g sequence|Slog's annunclus}}": ""
+    }
+  },
+  "Sludgy Pseudopod": {
+    "names": {
+      "sludgy pseudopod": "진흙투성이 위족"
+    }
+  },
+  "Sludgy Pseudopod2": {
+    "names": {
+      "sludgy pseudopod": "진흙투성이 위족"
+    }
+  },
+  "Slugsnout Tusks": {
+    "names": {
+      "tusks": "엄니"
+    }
+  },
+  "Slumberling Claw": {
+    "names": {
+      "claw": "발톱"
+    }
+  },
+  "Small Stone": {
+    "names": {
+      "stone": "돌"
+    }
+  },
+  "SmallBoulder": {
+    "names": {
+      "boulder": "바위"
+    }
+  },
+  "SmallMetalTrinket": {
+    "names": {
+      "[toaster]": ""
+    }
+  },
+  "SnapjawFeeder_Bite": {
+    "names": {
+      "gore-brushed fangs": "피칠한 송곳니"
+    }
+  },
+  "SocialCoprocessor": {
+    "names": {
+      "social coprocessor": "사회 보조프로세서"
+    }
+  },
+  "Solar Power Station": {
+    "names": {
+      "solar power station": "솔라 파워 스테이션"
+    }
+  },
+  "Solar Pumping Station": {
+    "names": {
+      "solar pumping station": "솔라 펌핑 스테이션"
+    }
+  },
+  "Sonnet": {
+    "names": {
+      "crumpled sheet of paper": ""
+    }
+  },
+  "Space-Time Anomaly": {
+    "names": {
+      "spacetime vortex": ""
+    }
+  },
+  "SparkingBaetyl": {
+    "names": {
+      "sparking baetyl": "스파크 튀는 바에틸"
+    }
+  },
+  "SphynxSaltTonic": {
+    "names": {
+      "{{sphynx|sphynx}} {{Y|salt}} injector": "{{sphynx|스핑크스}} {{Y|소금}} 주사기",
+      "sphynx salt injector": "스핑크스 소금 주사기"
+    }
+  },
+  "Spiced Pseudopod": {
+    "names": {
+      "spiced pseudopod": "양념된 위족"
+    }
+  },
+  "Sponge": {
+    "names": {
+      "[Sponge]": ""
+    }
+  },
+  "Spray-a-Brain": {
+    "names": {
+      "Spray-a-Brain": ""
+    }
+  },
+  "Stairs": {
+    "names": {
+      "stairs": "계단"
+    }
+  },
+  "Stamped Data Disk": {
+    "names": {
+      "stamped data disk": "압인된 데이터 디스크"
+    }
+  },
+  "StandaloneMarkovBook": {
+    "names": {
+      "book": "책"
+    }
+  },
+  "Starch": {
+    "names": {
+      "starch": "전분"
+    }
+  },
+  "Starshell_Bite": {
+    "names": {
+      "adumbral bite": "어두운 물기"
+    }
+  },
+  "StasisEntangler": {
+    "names": {
+      "stasis entangler": "정지 얽힘장치"
+    }
+  },
+  "StasisGrenade1": {
+    "names": {
+      "stasis grenade mk I": "정지 수류탄 mk I"
+    }
+  },
+  "StasisGrenade2": {
+    "names": {
+      "stasis grenade mk II": "정지 수류탄 mk II"
+    }
+  },
+  "StasisGrenade3": {
+    "names": {
+      "stasis grenade mk III": "정지 수류탄 mk III"
+    }
+  },
+  "StasisProjector": {
+    "names": {
+      "stasis projector": "정지 투사기"
+    }
+  },
+  "Steam": {
+    "names": {
+      "steam": "증기"
+    }
+  },
+  "Steel Buckler": {
+    "names": {
+      "steel buckler": "강철 버클러"
+    }
+  },
+  "Steel Plate Mail": {
+    "names": {
+      "steel plate mail": "강철 판금 갑옷"
+    }
+  },
+  "Steel Shield": {
+    "names": {
+      "steel shield": "강철 방패"
+    }
+  },
+  "StiltTile": {
+    "names": {
+      "white tile": ""
+    }
+  },
+  "Stinger": {
+    "names": {
+      "stinger": "독침"
+    }
+  },
+  "Stopsvaalinn": {
+    "names": {
+      "{{R-r-K-y-Y sequence|Stopsvalinn}}": ""
+    }
+  },
+  "StripFly_Pincer": {
+    "names": {
+      "mechanical pincers": "기계 집게"
+    }
+  },
+  "Sugary Pseudopod": {
+    "names": {
+      "sugary pseudopod": "설탕맛 위족"
+    }
+  },
+  "Sultan Croc Corpse": {
+    "names": {
+      "sultan croc corpse": "술탄 악어 시체"
+    }
+  },
+  "SultanMuralWall": {
+    "names": {
+      "[sultan mural]": ""
+    }
+  },
+  "SultanMuralWall1": {
+    "names": {
+      "[sultan mural]": ""
+    }
+  },
+  "SultanMuralWall2": {
+    "names": {
+      "[sultan mural]": ""
+    }
+  },
+  "SultanMuralWall3": {
+    "names": {
+      "[sultan mural]": ""
+    }
+  },
+  "SultanMuralWall4": {
+    "names": {
+      "[sultan mural]": ""
+    }
+  },
+  "SultanMuralWall5": {
+    "names": {
+      "[sultan mural]": ""
+    }
+  },
+  "SultanMuralWall6": {
+    "names": {
+      "[sultan mural]": ""
+    }
+  },
+  "SultanMuralWallOutside2": {
+    "names": {
+      "[sultan mural]": ""
+    }
+  },
+  "SultanMuralWallOutside2Preserved": {
+    "names": {
+      "[sultan mural]": ""
+    }
+  },
+  "SultanMuralWallOutside3": {
+    "names": {
+      "[sultan mural]": ""
+    }
+  },
+  "SultanMuralWallOutside4": {
+    "names": {
+      "[sultan mural]": ""
+    }
+  },
+  "SultanReliquaryE": {
+    "names": {
+      "reliquary": "성물함"
+    }
+  },
+  "SultanReliquaryW": {
+    "names": {
+      "reliquary": "성물함"
+    }
+  },
+  "SultanSarcophagusEPeriod1": {
+    "names": {
+      "imperial sarcophagus of *Sultan1Name*": ""
+    }
+  },
+  "SultanSarcophagusEPeriod2": {
+    "names": {
+      "imperial sarcophagus of *Sultan2Name*": ""
+    }
+  },
+  "SultanSarcophagusEPeriod3": {
+    "names": {
+      "imperial sarcophagus of *Sultan3Name*": ""
+    }
+  },
+  "SultanSarcophagusEPeriod4": {
+    "names": {
+      "imperial sarcophagus of *Sultan4Name*": ""
+    }
+  },
+  "SultanSarcophagusEPeriod5": {
+    "names": {
+      "imperial sarcophagus of *Sultan5Name*": ""
+    }
+  },
+  "SultanSarcophagusWPeriod1": {
+    "names": {
+      "imperial sarcophagus of *Sultan1Name*": ""
+    }
+  },
+  "SultanSarcophagusWPeriod2": {
+    "names": {
+      "imperial sarcophagus of *Sultan2Name*": ""
+    }
+  },
+  "SultanSarcophagusWPeriod3": {
+    "names": {
+      "imperial sarcophagus of *Sultan3Name*": ""
+    }
+  },
+  "SultanSarcophagusWPeriod4": {
+    "names": {
+      "imperial sarcophagus of *Sultan4Name*": ""
+    }
+  },
+  "SultanSarcophagusWPeriod5": {
+    "names": {
+      "imperial sarcophagus of *Sultan5Name*": ""
+    }
+  },
+  "SultanShrine": {
+    "names": {
+      "shrine": "성소"
+    }
+  },
+  "SultanWall_Ornate_Period5": {
+    "names": {
+      "carved stone from the sultanate of *Sultan5Name*": ""
+    }
+  },
+  "SultanWall_Period1": {
+    "names": {
+      "carved stone from the sultanate of *Sultan1Name*": ""
+    }
+  },
+  "SultanWall_Period2": {
+    "names": {
+      "carved stone from the sultanate of *Sultan2Name*": ""
+    }
+  },
+  "SultanWall_Period3": {
+    "names": {
+      "carved stone from the sultanate of *Sultan3Name*": ""
+    }
+  },
+  "SultanWall_Period4": {
+    "names": {
+      "carved stone from the sultanate of *Sultan4Name*": ""
+    }
+  },
+  "SultanWall_Period5": {
+    "names": {
+      "carved stone from the sultanate of *Sultan5Name*": ""
+    }
+  },
+  "Sun and Moon Mask": {
+    "names": {
+      "{{sun|sun}} and {{moon|moon}} mask": ""
+    }
+  },
+  "SunderGrenade1": {
+    "names": {
+      "{{resonance|resonance}} grenade mk I": "{{resonance|공명}} 수류탄 Mk I",
+      "resonance grenade mk I": "공명 수류탄 Mk I"
+    }
+  },
+  "SunderGrenade2": {
+    "names": {
+      "{{resonance|resonance}} grenade mk II": "{{resonance|공명}} 수류탄 Mk II",
+      "resonance grenade mk II": "공명 수류탄 Mk II"
+    }
+  },
+  "SunderGrenade3": {
+    "names": {
+      "{{resonance|resonance}} grenade mk III": "{{resonance|공명}} 수류탄 Mk III",
+      "resonance grenade mk III": "공명 수류탄 Mk III"
+    }
+  },
+  "Svensword": {
+    "names": {
+      "[Svensword]": ""
+    }
+  },
+  "Swarm Rack": {
+    "names": {
+      "swarm rack": "군집 선반"
+    }
+  },
+  "TarBones": {
+    "names": {
+      "tar-encrusted bones": "타르덮인 뼈"
+    }
+  },
+  "Tarry Pseudopod": {
+    "names": {
+      "tarry pseudopod": "타르칠한 위족"
+    }
+  },
+  "TauNoLongerFigurine": {
+    "names": {
+      "sapphire figurine of the Crystal Woe": ""
+    }
+  },
+  "TechnologicalIndexer": {
+    "names": {
+      "optical technoscanner": "광학 테크노스캐너"
+    }
+  },
+  "Telemetric Visor": {
+    "names": {
+      "{{telemetric|telemetric}} visor": ""
+    }
+  },
+  "Telescope": {
+    "names": {
+      "telescope": "망원경"
+    }
+  },
+  "TemporaryProjectile": {
+    "names": {
+      "projectile": "투사체"
+    }
+  },
+  "TerrainDesertCanyon2": {
+    "names": {
+      "desert canyons": "사막 협곡"
+    }
+  },
+  "TerrainDesertCanyon3": {
+    "names": {
+      "desert canyons": "사막 협곡"
+    }
+  },
+  "TerrainDesertCanyon4": {
+    "names": {
+      "desert canyons": "사막 협곡"
+    }
+  },
+  "TerrainEarthGateFlank": {
+    "names": {
+      "Earth Gate": ""
+    }
+  },
+  "TerrainFungalBase": {
+    "names": {
+      "Rainbow Wood": ""
+    }
+  },
+  "TerrainJoppa": {
+    "names": {
+      "Joppa": ""
+    }
+  },
+  "TerrainJoppaRedrockChannel": {
+    "names": {
+      "salt marsh": "소금 습지"
+    }
+  },
+  "TerrainJoppaRuins": {
+    "names": {
+      "salt marsh": "소금 습지"
+    }
+  },
+  "TerrainKyakukya": {
+    "names": {
+      "Kyakukya": "키아쿠키아"
+    }
+  },
+  "TerrainSaltdunes2": {
+    "names": {
+      "salt dunes": "소금 모래언덕"
+    }
+  },
+  "TerrainSaltmarsh2": {
+    "names": {
+      "salt marsh": "소금 습지"
+    }
+  },
+  "TerrainTerrarium": {
+    "names": {
+      "terrarium": "테라리움"
+    }
+  },
+  "TerrainTremblezone": {
+    "names": {
+      "salt dunes": "소금 모래언덕"
+    }
+  },
+  "TerrainWater": {
+    "names": {
+      "water": "물"
+    }
+  },
+  "TerrainWatervine": {
+    "names": {
+      "salt marsh": "소금 습지"
+    }
+  },
+  "The Kesil Face": {
+    "names": {
+      "{{kesil|Kesil}} Face": ""
+    }
+  },
+  "The Nil Face": {
+    "names": {
+      "Null Face": ""
+    }
+  },
+  "Thermoelectric Cell": {
+    "names": {
+      "thermoelectric cell": "열전기 전지"
+    }
+  },
+  "TibularHydrojets": {
+    "names": {
+      "tibular hydrojets": "경골 하이드로젯"
+    }
+  },
+  "TimeDilationGrenade1": {
+    "names": {
+      "time dilation grenade mk I": "시간 확장 수류탄 mk I"
+    }
+  },
+  "TimeDilationGrenade2": {
+    "names": {
+      "time dilation grenade mk II": "시간 확장 수류탄 mk II"
+    }
+  },
+  "TimeDilationGrenade3": {
+    "names": {
+      "time dilation grenade mk III": "시간 확장 수류탄 mk III"
+    }
+  },
+  "Timecube": {
+    "names": {
+      "timecube": ""
+    }
+  },
+  "TopazWall": {
+    "names": {
+      "shale wall with topaz deposits": ""
+    }
+  },
+  "Torch": {
+    "names": {
+      "torch": "횃불"
+    }
+  },
+  "TornGraphPaper": {
+    "names": {
+      "torn sheet of graph paper": ""
+    }
+  },
+  "TranslucentSkin": {
+    "names": {
+      "translucent skin": "반투명 피부"
+    }
+  },
+  "TransparentSkin": {
+    "names": {
+      "transparent skin": "투명한 피부"
+    }
+  },
+  "TreeSkillsoft": {
+    "names": {
+      "skillsoft": ""
+    }
+  },
+  "TriningLamprey_Bite": {
+    "names": {
+      "psychic bite": "정신 물기"
+    }
+  },
+  "Trinket": {
+    "names": {
+      "trinket": ""
+    }
+  },
+  "UbernostrumTonic": {
+    "names": {
+      "{{ubernostrum|ubernostrum}} injector": ""
+    }
+  },
+  "UltraElasticAnkleTendons": {
+    "names": {
+      "ultra-elastic ankle tendons": "초탄성 발목 힘줄"
+    }
+  },
+  "Unctuous Pseudopod": {
+    "names": {
+      "unctuous pseudopod": "번들거리는 위족"
+    }
+  },
+  "Unicomputer": {
+    "names": {
+      "unicomputer": "유니컴퓨터"
+    }
+  },
+  "Unimax_Kick": {
+    "names": {
+      "kick": "발차기"
+    }
+  },
+  "UnknownArmor": {
+    "names": {
+      "armor": "갑옷"
+    }
+  },
+  "UnknownAxe": {
+    "names": {
+      "axe": "도끼"
+    }
+  },
+  "UnknownBoots": {
+    "names": {
+      "boots": "장화"
+    }
+  },
+  "UnknownBottle": {
+    "names": {
+      "bottle": "병"
+    }
+  },
+  "UnknownBow": {
+    "names": {
+      "bow": "활"
+    }
+  },
+  "UnknownCannon": {
+    "names": {
+      "cannon": "대포"
+    }
+  },
+  "UnknownEmptyMed": {
+    "names": {
+      "tube": "튜브"
+    }
+  },
+  "UnknownGloves": {
+    "names": {
+      "gloves": "장갑"
+    }
+  },
+  "UnknownGrenade": {
+    "names": {
+      "grenade": "수류탄"
+    }
+  },
+  "UnknownHelmet": {
+    "names": {
+      "helmet": "투구"
+    }
+  },
+  "UnknownKnife": {
+    "names": {
+      "knife": "칼"
+    }
+  },
+  "UnknownMask": {
+    "names": {
+      "mask": "가면"
+    }
+  },
+  "UnknownMed": {
+    "names": {
+      "tube": "튜브"
+    }
+  },
+  "UnknownRifle": {
+    "names": {
+      "rifle": "소총"
+    }
+  },
+  "UnknownShield": {
+    "names": {
+      "shield": "방패"
+    }
+  },
+  "UnknownSmallCobaltTube": {
+    "names": {
+      "cobalt tube": "코발트색 튜브"
+    }
+  },
+  "UnknownSmallGoldFleckedTube": {
+    "names": {
+      "gold-flecked tube": "금박 점박이 튜브"
+    }
+  },
+  "UnknownSmallMilkyTube": {
+    "names": {
+      "milky tube": "우유빛 튜브"
+    }
+  },
+  "UnknownSmallMossyTube": {
+    "names": {
+      "mossy tube": "이끼색 튜브"
+    }
+  },
+  "UnknownSmallMuddyTube": {
+    "names": {
+      "muddy tube": "진흙투성이 튜브"
+    }
+  },
+  "UnknownSmallPlatinumTube": {
+    "names": {
+      "platinum tube": "백금색 튜브"
+    }
+  },
+  "UnknownSmallRoseyTube": {
+    "names": {
+      "rosey tube": "장밋빛 튜브"
+    }
+  },
+  "UnknownSmallSmokeyTube": {
+    "names": {
+      "smokey tube": "연기빛 튜브"
+    }
+  },
+  "UnknownSmallTurquoiseTube": {
+    "names": {
+      "turquoise tube": "청록색 튜브"
+    }
+  },
+  "UnknownSmallVioletTube": {
+    "names": {
+      "violet tube": "보라색 튜브"
+    }
+  },
+  "UnknownSword": {
+    "names": {
+      "sword": "검"
+    }
+  },
+  "VISAGE": {
+    "names": {
+      "{{visage|VISAGE}}": ""
+    }
+  },
+  "Vaam's Lens": {
+    "names": {
+      "{{K-K-K-K-c-C-Y sequence|Va'am's}} {{C-c-K-K sequence|lens}}": ""
+    }
+  },
+  "Vessel": {
+    "names": {
+      "[vase]": ""
+    }
+  },
+  "Village Monument": {
+    "names": {
+      "[village monument]": ""
+    }
+  },
+  "Voider_Bite": {
+    "names": {
+      "fangs": "송곳니"
+    }
+  },
+  "Walkway": {
+    "names": {
+      "[walkway]": ""
+    }
+  },
+  "Walltrap": {
+    "names": {
+      "[wall trap]": ""
+    }
+  },
+  "WanderingTauFigurine": {
+    "names": {
+      "sapphire figurine of the Wandering Jewel": ""
+    }
+  },
+  "WaterContainer": {
+    "names": {
+      "[Water Container]": ""
+    }
+  },
+  "Watery Pseudopod": {
+    "names": {
+      "watery pseudopod": "물기있는 위족"
+    }
+  },
+  "WaxInfection": {
+    "names": {
+      "waxflab": ""
+    }
+  },
+  "Waxen Pseudopod": {
+    "names": {
+      "waxen pseudopod": "밀랍같은 위족"
+    }
+  },
+  "Web": {
+    "names": {
+      "web": "거미줄"
+    }
+  },
+  "WhiteEsh_Beak": {
+    "names": {
+      "hooked beak": "갈고리 달린 부리"
+    }
+  },
+  "Winch_Lever": {
+    "names": {
+      "winch lever": "윈치 레버"
+    }
+  },
+  "Wings": {
+    "names": {
+      "wings": "날개"
+    }
+  },
+  "Wire Strand": {
+    "names": {
+      "wire strand": "철사 가닥"
+    }
+  },
+  "Witchwood Wreath": {
+    "names": {
+      "witchwood wreath": "마녀나무 화환"
+    }
+  },
+  "Wooden Arrow": {
+    "names": {
+      "wooden arrow": "나무 화살"
+    }
+  },
+  "Wooden Water Wheel": {
+    "names": {
+      "wooden water wheel": "나무 물 바퀴"
+    }
+  },
+  "Wooden Wind Turbine": {
+    "names": {
+      "wooden wind turbine": "나무 바람 터빈"
+    }
+  },
+  "Writhing Cable": {
+    "names": {
+      "writhing cable": "몸부림치는 케이블"
+    }
+  },
+  "Writhing Spike": {
+    "names": {
+      "writhing spike": "몸부림치는 가시"
+    }
+  },
+  "Yd Freehold Recoiler": {
+    "names": {
+      "Yd Freehold recoiler": "야드 프리홀드 귀환 장치"
+    }
+  },
+  "Yellow Security Card": {
+    "names": {
+      "maintenance security card": "정비 보안 카드"
+    }
+  },
+  "YithMaggotBite": {
+    "names": {
+      "acidic mandibles": "산성의 큰턱"
+    }
+  },
+  "Yonderbrush": {
+    "names": {
+      "yonderbrush": ""
+    }
+  },
+  "Young Ivory": {
+    "names": {
+      "young ivory": "어린 상아"
+    }
+  },
+  "Yuckwheat": {
+    "names": {
+      "yuckwheat": "역겨운밀"
+    }
+  },
+  "Zetachrome Arrow": {
+    "names": {
+      "{{zetachrome|zetachrome}} arrow": ""
+    }
+  },
+  "Zigzag Fangs": {
+    "names": {
+      "zigzag fangs": "지그재그 송곳니"
+    }
+  },
+  "acidLichen": {
+    "names": {
+      "giant acid weep": "거대한 산 위프"
+    }
+  },
+  "acidLichen Minor": {
+    "names": {
+      "acid weep": "산 위프"
+    }
+  },
+  "asphaltLichen": {
+    "names": {
+      "giant asphalt weep": "거대한 아스팔트 위프"
+    }
+  },
+  "asphaltLichen Minor": {
+    "names": {
+      "asphalt weep": "아스팔트 위프"
+    }
+  },
+  "ciderLichen": {
+    "names": {
+      "giant cider weep": "거대한 사이다 위프"
+    }
+  },
+  "ciderLichen Minor": {
+    "names": {
+      "cider weep": "사이다 위프"
+    }
+  },
+  "gelLichen": {
+    "names": {
+      "giant gel weep": "거대한 젤 위프"
+    }
+  },
+  "gelLichen Minor": {
+    "names": {
+      "gel weep": "젤 위프"
+    }
+  },
+  "honeyLichen": {
+    "names": {
+      "giant honey weep": "거대한 꿀 위프"
+    }
+  },
+  "honeyLichen Minor": {
+    "names": {
+      "honey weep": "꿀 위프"
+    }
+  },
+  "inkLichen": {
+    "names": {
+      "giant ink weep": "거대한 잉크 위프"
+    }
+  },
+  "inkLichen Minor": {
+    "names": {
+      "ink weep": "잉크 위프"
+    }
+  },
+  "oilLichen": {
+    "names": {
+      "giant oil weep": "거대한 기름 위프"
+    }
+  },
+  "oilLichen Minor": {
+    "names": {
+      "oil weep": "기름 위프"
+    }
+  },
+  "quillipede quills": {
+    "names": {
+      "quills": "가시"
+    }
+  },
+  "saltLichen": {
+    "names": {
+      "giant salt weep": "거대한 소금 위프"
+    }
+  },
+  "saltLichen Minor": {
+    "names": {
+      "salt weep": "소금 위프"
+    }
+  },
+  "sapLichen": {
+    "names": {
+      "giant sap weep": "거대한 수액 위프"
+    }
+  },
+  "sapLichen Minor": {
+    "names": {
+      "sap weep": "수액 위프"
+    }
+  },
+  "slimeLichen": {
+    "names": {
+      "giant slime weep": "거대한 점액 위프"
+    }
+  },
+  "slimeLichen Minor": {
+    "names": {
+      "slime weep": "점액 위프"
+    }
+  },
+  "waterLichen": {
+    "names": {
+      "giant water weep": "거대한 물 위프"
+    }
+  },
+  "waterLichen Minor": {
+    "names": {
+      "water weep": "물 위프"
+    }
+  },
+  "waxLichen": {
+    "names": {
+      "giant wax weep": "거대한 왁스 위프"
+    }
+  },
+  "waxLichen Minor": {
+    "names": {
+      "wax weep": "왁스 위프"
+    }
+  },
+  "wineLichen": {
+    "names": {
+      "giant wine weep": "거대한 와인 위프"
+    }
+  },
+  "wineLichen Minor": {
+    "names": {
+      "wine weep": "와인 위프"
+    }
+  },
+
+  "_comment_scrap": "Scrap items (blueprint ID ≠ display name)",
+  "Scrap Metal": {
+    "names": {
+      "bent metal sheet": "휜 금속 판"
+    }
+  },
+  "Scrap Crystal": {
+    "names": {
+      "cracked lens": "금간 렌즈"
+    }
+  },
+  "Scrap Electronics": {
+    "names": {
+      "fractured microchip": "금간 마이크로칩"
+    }
+  },
+  "Scrap Energy": {
+    "names": {
+      "burnt capacitor": "타버린 축전기"
+    }
+  },
+  "Scrap 1": {
+    "names": {
+      "failed energy relay": "고장난 에너지 중계기"
+    }
+  },
+
+  "_comment_armor": "Armor items missing from structured files",
+  "Leather Cloak": {
+    "names": {
+      "leather cloak": "가죽 망토"
+    }
+  },
+  "Nylon Bodypack": {
+    "names": {
+      "nylon bodypack": "나일론 바디팩"
+    }
+  },
+
+  "_comment_tools": "Tools and trade goods",
+  "Bubble Level": {
+    "names": {
+      "bubble level": "수평기"
+    }
+  },
+
+  "_comment_grenades": "Grenade blueprint aliases (XML ID ≠ JSON key)",
+  "StunGasGrenade1": {
+    "names": {
+      "stun gas grenade mk I": "기절 가스 수류탄 Mk I"
+    }
+  },
+  "StunGasGrenade2": {
+    "names": {
+      "stun gas grenade mk II": "기절 가스 수류탄 Mk II"
+    }
+  },
+  "StunGasGrenade3": {
+    "names": {
+      "stun gas grenade mk III": "기절 가스 수류탄 Mk III"
+    }
+  },
+  "SleepGasGrenade1": {
+    "names": {
+      "sleep gas grenade mk I": "수면 가스 수류탄 Mk I"
+    }
+  },
+  "SleepGasGrenade2": {
+    "names": {
+      "sleep gas grenade mk II": "수면 가스 수류탄 Mk II"
+    }
+  },
+  "SleepGasGrenade3": {
+    "names": {
+      "sleep gas grenade mk III": "수면 가스 수류탄 Mk III"
+    }
+  },
+  "PoisonGasGrenade1": {
+    "names": {
+      "poison gas grenade mk I": "독가스 수류탄 Mk I"
+    }
+  },
+  "PoisonGasGrenade2": {
+    "names": {
+      "poison gas grenade mk II": "독가스 수류탄 Mk II"
+    }
+  },
+  "PoisonGasGrenade3": {
+    "names": {
+      "poison gas grenade mk III": "독가스 수류탄 Mk III"
+    }
+  },
+  "FlashbangGrenade1": {
+    "names": {
+      "flashbang grenade mk I": "섬광탄 Mk I"
+    }
+  },
+  "FlashbangGrenade2": {
+    "names": {
+      "flashbang grenade mk II": "섬광탄 Mk II"
+    }
+  },
+  "FlashbangGrenade3": {
+    "names": {
+      "flashbang grenade mk III": "섬광탄 Mk III"
+    }
+  },
+
+  "_comment_injectors": "Injector blueprint aliases (XML ID ≠ JSON key)",
+  "SalveTonic": {
+    "names": {
+      "salve injector": "연고 주사기"
+    }
+  },
+  "HulkHoneyTonic": {
+    "names": {
+      "hulk honey injector": "헐크 꿀 주사기"
+    }
+  },
+
+  "_comment_banners": "Faction banners",
+  "Issachari Banner": {
+    "names": {
+      "Issachari banner": "이사카리 깃발"
+    }
+  }
+}
