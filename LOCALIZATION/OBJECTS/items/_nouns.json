@@ -1,6 +1,7 @@
 {
   "_meta": {
     "description": "Base item nouns - weapons, armor, consumables, tools, etc.",
+    "description_ko": "기본 아이템 명사 - 무기, 갑옷, 소모품, 도구 등",
     "version": "1.0",
     "created": "2026-01-25",
     "source": "Migrated from _baseNounTranslations in ObjectTranslator.cs"

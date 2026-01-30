@@ -1,6 +1,7 @@
 {
   "_meta": {
     "description": "잔여 미번역 음식 항목 (Foods.xml)",
+    "description_ko": "잔여 미번역 음식 항목 (Foods.xml)",
     "version": "1.0.0",
     "created": "2026-01-30"
   },

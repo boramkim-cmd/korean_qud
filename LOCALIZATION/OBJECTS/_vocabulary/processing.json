@@ -1,6 +1,7 @@
 {
   "_meta": {
     "description": "가공/처리 방법 - 음식 및 아이템 처리",
+    "description_ko": "가공/처리 방법 - 음식 및 아이템 처리",
     "version": "1.0.0",
     "source": "Extracted from OBJECTS/items/_common.json processing section"
   },

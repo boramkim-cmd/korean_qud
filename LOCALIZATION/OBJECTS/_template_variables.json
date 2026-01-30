@@ -1,6 +1,7 @@
 {
   "_meta": {
     "description": "XML에서 사용되는 템플릿 변수 (=variable=) 전체 목록",
+    "description_ko": "XML에서 사용되는 템플릿 변수 (=variable=) 전체 목록",
     "note": "런타임에 게임 엔진이 대체하므로 직접 번역 불가",
     "updated": "2026-01-27"
   },

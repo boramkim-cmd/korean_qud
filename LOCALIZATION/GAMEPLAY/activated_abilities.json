@@ -1,6 +1,7 @@
 {
   "_meta": {
     "description": "Activated ability stat labels from ActivatedAbilities.xml",
+    "description_ko": "ActivatedAbilities.xml의 활성화 능력 스탯 레이블",
     "version": "1.0",
     "created": "2026-01-30"
   },

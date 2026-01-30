@@ -2,6 +2,7 @@
   "_meta": {
     "category": "weapons/ranged/bows",
     "description": "Bow ranged weapons - bows, crossbows, dart guns",
+    "description_ko": "활 원거리 무기 - 활, 석궁, 다트건",
     "version": "2.1",
     "updated": "2026-01-25",
     "phase": "Phase1-RangedWeapons"

@@ -2,6 +2,7 @@
   "_meta": {
     "category": "consumables/drinks",
     "description": "Liquid consumables - water, tonics, other drinks",
+    "description_ko": "액체 소모품 - 물, 강장제, 기타 음료",
     "version": "2.0",
     "updated": "2026-01-22"
   },

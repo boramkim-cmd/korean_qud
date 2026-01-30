@@ -1,6 +1,7 @@
 {
   "_meta": {
-    "description": "Mutation category headers from Mutations.xml"
+    "description": "Mutation category headers from Mutations.xml",
+    "description_ko": "Mutations.xml의 돌연변이 카테고리 헤더"
   },
   "categories": {
     "Mental Defects": "정신 결함",

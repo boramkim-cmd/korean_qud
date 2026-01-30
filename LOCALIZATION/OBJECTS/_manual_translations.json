@@ -1,6 +1,7 @@
 {
   "_meta": {
     "description": "Manual translations for untranslated items in the Caves of Qud Korean localization project",
+    "description_ko": "Caves of Qud 한글화 프로젝트의 미번역 항목 수동 번역",
     "version": "1.0",
     "created": "2026-01-30"
   },

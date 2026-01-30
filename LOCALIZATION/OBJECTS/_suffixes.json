@@ -1,6 +1,7 @@
 {
   "_meta": {
     "description": "Suffix translations - states, liquids, of-patterns, body parts",
+    "description_ko": "접미사 번역 - 상태, 액체, of-패턴, 신체 부위",
     "version": "1.0",
     "created": "2026-01-25",
     "source": "Migrated from inline dictionaries in ObjectTranslator.cs"

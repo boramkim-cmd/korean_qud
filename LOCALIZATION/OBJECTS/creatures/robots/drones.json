@@ -2,6 +2,7 @@
   "_meta": {
     "category": "robots/drones",
     "description": "Drone and mobile robot creatures",
+    "description_ko": "드론 및 이동형 로봇 생물",
     "version": "2.0",
     "updated": "2026-01-22"
   },

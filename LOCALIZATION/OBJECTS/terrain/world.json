@@ -2,6 +2,7 @@
   "_meta": {
     "category": "terrain/world",
     "description": "World terrain - regions, biomes, world map locations",
+    "description_ko": "세계 지형 - 지역, 생물군계, 세계 지도 위치",
     "version": "2.0",
     "created": "2026-01-24",
     "updated": "2026-01-24",

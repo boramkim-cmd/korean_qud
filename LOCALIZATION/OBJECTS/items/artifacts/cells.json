@@ -2,6 +2,7 @@
   "_meta": {
     "category": "artifacts/cells",
     "description": "Energy cells and power sources",
+    "description_ko": "에너지 전지 및 전원",
     "version": "2.0",
     "updated": "2026-01-22"
   },

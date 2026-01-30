@@ -2,6 +2,7 @@
   "_meta": {
     "category": "artifacts/grenades",
     "description": "Throwable explosives and grenades",
+    "description_ko": "투척용 폭발물 및 수류탄",
     "version": "2.1",
     "updated": "2026-01-25",
     "phase": "Phase1-Grenades"

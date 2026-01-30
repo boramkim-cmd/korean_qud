@@ -1,6 +1,7 @@
 {
   "_meta": {
     "description": "데이터/미확인 오브젝트 번역 (Data.xml)",
+    "description_ko": "데이터/미확인 오브젝트 번역 (Data.xml)",
     "version": "1.0.0",
     "created": "2026-01-30"
   },

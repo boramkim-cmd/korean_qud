@@ -2,6 +2,7 @@
   "_meta": {
     "category": "weapons/ranged/guns",
     "description": "Gun ranged weapons - pistols, rifles, shotguns, energy weapons",
+    "description_ko": "총기 원거리 무기 - 권총, 소총, 산탄총, 에너지 무기",
     "version": "2.1",
     "updated": "2026-01-25",
     "phase": "Phase1-RangedWeapons"

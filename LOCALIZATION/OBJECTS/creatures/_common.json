@@ -1,6 +1,7 @@
 {
   "_meta": {
     "description": "Common creature terms - species names, corpse terms, etc.",
+    "description_ko": "공통 생물 용어 - 종족 이름, 시체 용어 등",
     "version": "3.0",
     "created": "2026-01-22",
     "updated": "2026-01-25",

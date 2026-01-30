@@ -2,6 +2,7 @@
   "_meta": {
     "category": "artifacts/books",
     "description": "Books, tablets, and written materials",
+    "description_ko": "책, 석판, 기록물",
     "version": "2.0",
     "updated": "2026-01-22"
   },

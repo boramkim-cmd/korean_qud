@@ -2,6 +2,7 @@
   "_meta": {
     "category": "armor/face",
     "description": "Face slot armor - masks, goggles, visors",
+    "description_ko": "얼굴 슬롯 갑옷 - 가면, 고글, 바이저",
     "version": "2.1",
     "updated": "2026-01-25",
     "phase": "Phase1-Armor"

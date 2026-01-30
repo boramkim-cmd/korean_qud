@@ -2,6 +2,7 @@
   "_meta": {
     "category": "widgets",
     "description": "Widgets - zone mutators, UI elements, floor painters, builders",
+    "description_ko": "위젯 - 구역 변환기, UI 요소, 바닥 페인터, 빌더",
     "version": "2.0",
     "created": "2026-01-24",
     "updated": "2026-01-24",

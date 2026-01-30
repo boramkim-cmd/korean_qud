@@ -1,6 +1,7 @@
 {
   "_meta": {
     "description": "Common item vocabulary - modifiers, tonics, grenades, colors, shaders",
+    "description_ko": "공통 아이템 어휘 - 수식어, 강장제, 수류탄, 색상, 셰이더",
     "version": "2.0",
     "source": "Migrated from ObjectTranslator.cs hardcoded dictionaries",
     "refactored": "2026-01-27 - materials/qualities moved to _SHARED"

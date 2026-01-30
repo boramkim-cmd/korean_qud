@@ -2,6 +2,7 @@
   "_meta": {
     "category": "consumables/injectors",
     "description": "Injectors and tonics - medical and combat drugs",
+    "description_ko": "주입기 및 강장제 - 의료용 및 전투용 약물",
     "version": "2.1",
     "updated": "2026-01-25",
     "notes": "Added color tag versions for in-game display"

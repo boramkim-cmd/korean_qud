@@ -2,6 +2,7 @@
   "_meta": {
     "category": "armor/back",
     "description": "Back slot armor - cloaks, capes, backpacks",
+    "description_ko": "등 슬롯 갑옷 - 망토, 케이프, 배낭",
     "version": "2.1",
     "updated": "2026-01-25",
     "phase": "Phase1-Armor"

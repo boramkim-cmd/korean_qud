@@ -1,6 +1,7 @@
 {
   "_meta": {
     "description": "위젯 오브젝트 번역 (Widgets.xml)",
+    "description_ko": "위젯 오브젝트 번역 (Widgets.xml)",
     "version": "1.0.0",
     "created": "2026-01-30"
   },

@@ -2,6 +2,7 @@
   "_meta": {
     "category": "terrain/walls",
     "description": "Walls - natural and constructed walls",
+    "description_ko": "벽 - 자연 벽과 건축 벽",
     "version": "2.0",
     "created": "2026-01-24",
     "updated": "2026-01-24",

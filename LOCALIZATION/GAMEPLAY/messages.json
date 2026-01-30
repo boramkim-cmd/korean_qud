@@ -2,6 +2,7 @@
   "_meta": {
     "category": "gameplay/messages",
     "description": "In-game message log translations",
+    "description_ko": "게임 내 메시지 로그 번역",
     "version": "1.0",
     "updated": "2026-01-22"
   },

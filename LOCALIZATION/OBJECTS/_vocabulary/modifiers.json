@@ -1,6 +1,7 @@
 {
   "_meta": {
     "description": "아이템 수식어 - 상태, 품질, 특성",
+    "description_ko": "아이템 수식어 - 상태, 품질, 특성",
     "version": "1.0.0",
     "source": "Extracted from OBJECTS/items/_common.json modifiers section",
     "categories": ["damage", "state", "size", "appearance", "weapon", "dynamic"]

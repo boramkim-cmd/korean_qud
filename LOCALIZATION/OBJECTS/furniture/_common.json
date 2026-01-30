@@ -2,6 +2,7 @@
   "_meta": {
     "category": "furniture/_common",
     "description": "Common furniture base types and shared items",
+    "description_ko": "공통 가구 기본 유형 및 공유 항목",
     "version": "2.0",
     "created": "2026-01-24",
     "updated": "2026-01-24",

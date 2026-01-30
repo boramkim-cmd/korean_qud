@@ -2,6 +2,7 @@
   "_meta": {
     "category": "consumables/food",
     "description": "Food items - cooking recipes, raw foods, mushrooms, organs, preservables",
+    "description_ko": "음식 아이템 - 요리 레시피, 날음식, 버섯, 장기, 보존식품",
     "version": "2.0",
     "created": "2026-01-22",
     "updated": "2026-01-24",

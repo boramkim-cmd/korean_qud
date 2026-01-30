@@ -1,6 +1,7 @@
 {
   "_meta": {
     "description": "물리 현상 번역 (PhysicalPhenomena.xml)",
+    "description_ko": "물리 현상 번역 (PhysicalPhenomena.xml)",
     "version": "1.0.0",
     "created": "2026-01-30"
   },

@@ -2,6 +2,7 @@
   "_meta": {
     "category": "weapons/melee/long_blades",
     "description": "Long blade weapons - swords, longswords, two-handed swords",
+    "description_ko": "장검 무기 - 검, 장검, 양손검",
     "version": "2.1",
     "updated": "2026-01-25",
     "phase": "Phase1-MeleeWeapons"

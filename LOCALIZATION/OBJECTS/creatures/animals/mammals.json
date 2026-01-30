@@ -2,6 +2,7 @@
   "_meta": {
     "category": "animals/mammals",
     "description": "Mammalian creatures - bears, baboons, pigs, etc.",
+    "description_ko": "포유류 생물 - 곰, 개코원숭이, 돼지 등",
     "version": "2.0",
     "updated": "2026-01-22"
   },

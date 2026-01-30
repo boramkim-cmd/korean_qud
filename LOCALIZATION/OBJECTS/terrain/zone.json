@@ -2,6 +2,7 @@
   "_meta": {
     "category": "terrain/zone",
     "description": "Zone terrain - floors, ground types, zone-level features",
+    "description_ko": "구역 지형 - 바닥, 지면 유형, 구역 수준 특징",
     "version": "2.0",
     "created": "2026-01-24",
     "updated": "2026-01-24",

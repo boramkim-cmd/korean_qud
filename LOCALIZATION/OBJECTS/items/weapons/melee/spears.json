@@ -2,6 +2,7 @@
   "_meta": {
     "category": "weapons/melee/spears",
     "description": "Spear and polearm weapons",
+    "description_ko": "창 및 장병기 무기",
     "version": "2.0",
     "updated": "2026-01-22"
   },

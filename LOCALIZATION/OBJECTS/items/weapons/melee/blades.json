@@ -2,6 +2,7 @@
   "_meta": {
     "category": "weapons/melee/blades",
     "description": "Blade melee weapons - daggers, swords, knives (short blades)",
+    "description_ko": "칼날 근접 무기 - 단검, 검, 나이프 (단검류)",
     "version": "2.1",
     "updated": "2026-01-25",
     "phase": "Phase1-MeleeWeapons"

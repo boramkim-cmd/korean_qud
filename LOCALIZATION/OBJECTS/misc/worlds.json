@@ -1,6 +1,7 @@
 {
   "_meta": {
     "description": "세계 번역 (Worlds.xml)",
+    "description_ko": "세계 번역 (Worlds.xml)",
     "version": "1.0.0",
     "created": "2026-01-30"
   },

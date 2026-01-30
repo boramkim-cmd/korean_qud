@@ -2,6 +2,7 @@
   "_meta": {
     "category": "base_items",
     "description": "Base item names for prefix/suffix system",
+    "description_ko": "접두사/접미사 체계용 기본 아이템 이름",
     "version": "1.0"
   },
 

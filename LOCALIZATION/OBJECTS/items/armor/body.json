@@ -2,6 +2,7 @@
   "_meta": {
     "category": "armor/body",
     "description": "Body armor - chest, torso protection",
+    "description_ko": "몸통 갑옷 - 가슴, 몸통 보호구",
     "version": "2.1",
     "updated": "2026-01-25",
     "phase": "Phase1-Armor"

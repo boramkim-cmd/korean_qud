@@ -2,6 +2,7 @@
   "_meta": {
     "category": "weapons/melee/cudgels",
     "description": "Cudgel melee weapons - clubs, maces, hammers",
+    "description_ko": "곤봉 근접 무기 - 몽둥이, 철퇴, 망치",
     "version": "2.1",
     "updated": "2026-01-25",
     "phase": "Phase1-MeleeWeapons"

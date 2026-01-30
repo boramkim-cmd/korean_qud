@@ -2,6 +2,7 @@
   "_meta": {
     "category": "artifacts/relics",
     "description": "True artifacts and legendary relics",
+    "description_ko": "진정한 유물 및 전설적 유물",
     "version": "2.0",
     "updated": "2026-01-22"
   },

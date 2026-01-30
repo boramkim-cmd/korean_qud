@@ -2,6 +2,7 @@
   "_meta": {
     "category": "humanoids/farmers",
     "description": "Watervine farmer NPCs",
+    "description_ko": "수초덩굴 농부 NPC",
     "version": "2.0",
     "created": "2026-01-22",
     "updated": "2026-01-22"
