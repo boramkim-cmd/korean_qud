@@ -55,6 +55,8 @@ namespace QudKorean.Objects.V2
         private static int _totalCalls;
 
         // 핫스팟 감지: 블루프린트별 호출 횟수 (상위 반복 호출 추적)
+        // 디버깅용 — EnableHotspotTracking = false로 프로덕션 오버헤드 제거
+        internal static bool EnableHotspotTracking = false;
         private static Dictionary<string, int> _callFrequency = new Dictionary<string, int>(StringComparer.OrdinalIgnoreCase);
         private static bool _hotspotWarned;
 
@@ -122,23 +124,25 @@ namespace QudKorean.Objects.V2
 
             _totalCalls++;
 
-            // 핫스팟 추적
-            if (_callFrequency.TryGetValue(blueprint, out int freq))
-                _callFrequency[blueprint] = freq + 1;
-            else
-                _callFrequency[blueprint] = 1;
-
-            // 1000회 이상 반복 호출 경고 (1회만)
-            if (!_hotspotWarned && _totalCalls % 5000 == 0 && _totalCalls > 0)
+            // 핫스팟 추적 (디버깅 전용 — 프로덕션에서는 EnableHotspotTracking = false)
+            if (EnableHotspotTracking)
             {
-                _hotspotWarned = true;
-                var sb = new System.Text.StringBuilder();
-                sb.AppendLine($"{LOG_PREFIX} Hotspot report at {_totalCalls} calls (Lookup:{_lookupHit} FastHit:{_fastHit} Skip:{_fastSkip} Pipeline:{_pipelineFallback}):");
-                var sorted = new List<KeyValuePair<string, int>>(_callFrequency);
-                sorted.Sort((a, b) => b.Value.CompareTo(a.Value));
-                for (int i = 0; i < Math.Min(10, sorted.Count); i++)
-                    sb.AppendLine($"  {sorted[i].Key}: {sorted[i].Value}x");
-                UnityEngine.Debug.Log(sb.ToString());
+                if (_callFrequency.TryGetValue(blueprint, out int freq))
+                    _callFrequency[blueprint] = freq + 1;
+                else
+                    _callFrequency[blueprint] = 1;
+
+                if (!_hotspotWarned && _totalCalls % 5000 == 0 && _totalCalls > 0)
+                {
+                    _hotspotWarned = true;
+                    var sb = new System.Text.StringBuilder();
+                    sb.AppendLine($"{LOG_PREFIX} Hotspot report at {_totalCalls} calls (Lookup:{_lookupHit} FastHit:{_fastHit} Skip:{_fastSkip} Pipeline:{_pipelineFallback}):");
+                    var sorted = new List<KeyValuePair<string, int>>(_callFrequency);
+                    sorted.Sort((a, b) => b.Value.CompareTo(a.Value));
+                    for (int i = 0; i < Math.Min(10, sorted.Count); i++)
+                        sb.AppendLine($"  {sorted[i].Key}: {sorted[i].Value}x");
+                    UnityEngine.Debug.Log(sb.ToString());
+                }
             }
 
             // 최우선 경로: XML DisplayName 1:1 lookup (컬러태그 포함 원문 그대로 매칭)

@@ -18,6 +18,7 @@ using XRL.World;
 using UnityEngine;
 using QudKorean.Objects.V2;
 using QudKRTranslation.Utils;
+using QudKRTranslation.Patches.UI;
 
 namespace QudKorean.Objects
 {
@@ -40,6 +41,7 @@ namespace QudKorean.Objects
             try
             {
                 ObjectTranslatorV2.ReloadJson();
+                Patch_InventoryCategory.InvalidateCache();
                 string stats = ObjectTranslatorV2.GetStats();
                 Popup.Show($"Object translations reloaded!\n{stats}");
                 UnityEngine.Debug.Log($"{LOG_PREFIX} Translations reloaded: {stats}");

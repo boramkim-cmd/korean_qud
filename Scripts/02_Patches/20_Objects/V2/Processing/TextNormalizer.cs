@@ -21,6 +21,14 @@ namespace QudKorean.Objects.V2.Processing
         public static string NormalizeBlueprintId(string id)
         {
             if (string.IsNullOrEmpty(id)) return id;
+            // 이미 정규화된 경우 (공백 없음 + 모두 소문자) 할당 없이 원본 반환
+            bool needsNorm = false;
+            for (int i = 0; i < id.Length; i++)
+            {
+                char c = id[i];
+                if (c == ' ' || (c >= 'A' && c <= 'Z')) { needsNorm = true; break; }
+            }
+            if (!needsNorm) return id;
             return id.Replace(" ", "").ToLowerInvariant();
         }
 

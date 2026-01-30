@@ -323,7 +323,7 @@ def load_all_translations() -> Dict[str, str]:
                 else:
                     walk_json(value, file_path)
 
-    for json_file in LOCALIZATION_DIR.rglob("*.json"):
+    for json_file in sorted(LOCALIZATION_DIR.rglob("*.json")):
         try:
             with open(json_file, 'r', encoding='utf-8') as f:
                 data = json.load(f)

@@ -223,6 +223,7 @@ namespace QudKRTranslation.Patches
 
         // Static buffer for fallback scope to avoid per-call List+ToArray allocation
         private static readonly Dictionary<string, string>[] _fallbackBuf = new Dictionary<string, string>[2];
+        private static readonly Dictionary<string, string>[] _fallbackBuf1 = new Dictionary<string, string>[1];
 
         private static bool ContainsKorean(string s)
         {
@@ -265,7 +266,9 @@ namespace QudKRTranslation.Patches
                 if (HasNoLatinLetters(value)) { PerfCounters.TmpSetterSkipped++; return; }
 
                 // 0. Unity 리치 텍스트 태그 strip하여 순수 텍스트 추출
-                string stripped = UnityTagPattern.Replace(value, "").Trim();
+                string stripped = value.IndexOf('<') >= 0
+                    ? UnityTagPattern.Replace(value, "").Trim()
+                    : value.Trim();
                 if (string.IsNullOrEmpty(stripped)) return;
                 
                 // 1. hardcoded 텍스트 매칭 (태그 제거된 텍스트로)
@@ -321,7 +324,9 @@ namespace QudKRTranslation.Patches
 
                 if (n > 0)
                 {
-                    var scopes = n == 2 ? _fallbackBuf : new[] { _fallbackBuf[0] };
+                    Dictionary<string, string>[] scopes;
+                    if (n == 2) { scopes = _fallbackBuf; }
+                    else { _fallbackBuf1[0] = _fallbackBuf[0]; scopes = _fallbackBuf1; }
                     if (TranslationUtils.TryTranslatePreservingTags(value, out string t2, scopes))
                     {
                         if (value != t2) value = t2;
