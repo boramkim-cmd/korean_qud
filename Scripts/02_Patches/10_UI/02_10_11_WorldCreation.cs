@@ -1,16 +1,21 @@
 /*
  * 파일명: 02_10_11_WorldCreation.cs
  * 분류: [UI Patch] 월드 생성 화면
- * 역할: "Creating World" 화면의 진행 메시지를 번역하고 한글 폰트를 적용합니다.
+ * 역할: "Creating World" 화면의 진행 메시지를 번역하고, 활성 표시기(점 애니메이션 + 경과 시간)를 표시합니다.
  * 작성일: 2026-01-21
- * 
+ *
  * 구조:
  * 1. Modern UI (WorldGenerationScreen) 메시지 번역
- * 2. Legacy UI (WorldCreationProgress) 메시지 번역 + TMP 오버레이
+ * 2. Legacy UI (WorldCreationProgress) 메시지 번역
+ * 3. WorldGenActivityIndicator - ControlManager.Update 기반 점 애니메이션 오버레이
+ *    (Draw()는 워커 스레드에서 호출되어 Unity UI 생성 불가 → 메인 스레드인 Update()에서 처리)
+ *
+ * 성능 주의:
+ * IsWorldGenActive 플래그를 통해 DisplayNamePatch, GlobalUI 등 무거운 패치가
+ * 세계 생성 중 스킵되도록 합니다.
  */
 
 using System;
-using System.Collections.Generic;
 using System.Reflection;
 using HarmonyLib;
 using UnityEngine;
@@ -24,10 +29,7 @@ namespace QudKRTranslation.Patches
     // STEP 1: Modern UI (Qud.UI.WorldGenerationScreen) 메시지 번역
     // TMP_Text를 사용하므로 기존 폰트 패치가 자동 적용됨
     // ========================================================================
-    
-    /// <summary>
-    /// WorldGenerationScreen._AddMessage 패치 - 진행 메시지 번역
-    /// </summary>
+
     [HarmonyPatch]
     public static class Patch_WorldGenerationScreen_AddMessage
     {
@@ -41,32 +43,29 @@ namespace QudKRTranslation.Patches
             }
             return AccessTools.Method(type, "_AddMessage");
         }
-        
+
         [HarmonyPrefix]
         static void Prefix(ref string message)
         {
             if (string.IsNullOrEmpty(message)) return;
-            
-            // Ensure localization is loaded
+
             LocalizationManager.Initialize();
-            
+
             string key = message.Trim().TrimEnd('.');
 
             if (LocalizationManager.TryGetAnyTerm(key, out string translated, "worldgen", "ui"))
             {
                 message = translated;
             }
+
+            WorldGenActivityIndicator.OnMessage(message);
         }
     }
-    
+
     // ========================================================================
-    // STEP 2: Legacy UI (XRL.UI.WorldCreationProgress) 패치 + TMP 오버레이
-    // 스프라이트 기반이므로 TMP 오버레이를 생성하여 한글 표시
+    // STEP 2: Legacy UI (XRL.UI.WorldCreationProgress) 패치
     // ========================================================================
-    
-    /// <summary>
-    /// WorldCreationProgress.Begin 패치 - 시작 시 로그
-    /// </summary>
+
     [HarmonyPatch]
     public static class Patch_WorldCreationProgress_Begin
     {
@@ -80,16 +79,14 @@ namespace QudKRTranslation.Patches
             }
             return AccessTools.Method(type, "Begin", new Type[] { typeof(int) });
         }
-        
+
         [HarmonyPrefix]
         static void Prefix()
         {
+            WorldGenActivityIndicator.SetActive(true);
         }
     }
-    
-    /// <summary>
-    /// WorldCreationProgress.NextStep 패치 - 진행 단계 텍스트 번역
-    /// </summary>
+
     [HarmonyPatch]
     public static class Patch_WorldCreationProgress_NextStep
     {
@@ -99,14 +96,14 @@ namespace QudKRTranslation.Patches
             if (type == null) return null;
             return AccessTools.Method(type, "NextStep", new Type[] { typeof(string), typeof(int) });
         }
-        
+
         [HarmonyPrefix]
         static void Prefix(ref string Text)
         {
             if (string.IsNullOrEmpty(Text)) return;
-            
+
             LocalizationManager.Initialize();
-            
+
             string key = Text.Trim().TrimEnd('.');
 
             if (LocalizationManager.TryGetAnyTerm(key, out string translated, "worldgen", "ui"))
@@ -115,10 +112,7 @@ namespace QudKRTranslation.Patches
             }
         }
     }
-    
-    /// <summary>
-    /// WorldCreationProgress.StepProgress 패치 - 세부 진행 텍스트 번역
-    /// </summary>
+
     [HarmonyPatch]
     public static class Patch_WorldCreationProgress_StepProgress
     {
@@ -128,14 +122,14 @@ namespace QudKRTranslation.Patches
             if (type == null) return null;
             return AccessTools.Method(type, "StepProgress", new Type[] { typeof(string), typeof(bool) });
         }
-        
+
         [HarmonyPrefix]
         static void Prefix(ref string StepText)
         {
             if (string.IsNullOrEmpty(StepText) || StepText.Trim().Length == 0) return;
-            
+
             LocalizationManager.Initialize();
-            
+
             string key = StepText.Trim().TrimEnd('.');
 
             if (LocalizationManager.TryGetAnyTerm(key, out string translated, "worldgen", "ui"))
@@ -144,127 +138,143 @@ namespace QudKRTranslation.Patches
             }
         }
     }
-    
-    /// <summary>
-    /// WorldCreationProgress.Draw 패치 - 타이틀 "Creating World" 번역
-    /// TMP 오버레이 생성하여 한글 표시
-    /// </summary>
-    [HarmonyPatch]
-    public static class Patch_WorldCreationProgress_Draw
+
+    // ========================================================================
+    // STEP 3: 활성 표시기 - ControlManager.Update() 메인 스레드에서 오버레이 관리
+    // + IsWorldGenActive 플래그로 다른 무거운 패치들 스킵
+    // ========================================================================
+
+    [HarmonyPatch(typeof(ControlManager), "Update")]
+    public static class WorldGenActivityIndicator
     {
+        private static bool _worldGenActive;
+        private static float _startTime;
+        private static float _lastDotUpdate;
+        private static int _dotPhase;
+
         private static GameObject _overlayCanvas;
-        private static TextMeshProUGUI _titleText;
-        
-        static MethodBase TargetMethod()
+        private static TextMeshProUGUI _statusText;
+
+        private const float DOT_INTERVAL = 0.4f;
+        private static readonly string[] DOT_FRAMES = { "●", "● ●", "● ● ●" };
+
+        /// <summary>
+        /// 다른 패치에서 세계 생성 중인지 확인하여 무거운 작업을 스킵하는 데 사용
+        /// </summary>
+        public static bool IsWorldGenActive => _worldGenActive;
+
+        public static void SetActive(bool active)
         {
-            var type = AccessTools.TypeByName("XRL.UI.WorldCreationProgress");
-            if (type == null) return null;
-            return AccessTools.Method(type, "Draw");
+            _worldGenActive = active;
+            if (active)
+            {
+                _startTime = Time.realtimeSinceStartup;
+                _lastDotUpdate = 0f;
+                _dotPhase = 0;
+                Debug.Log("[Qud-KR] World generation started - heavy patches suspended");
+            }
+            else
+            {
+                float duration = Time.realtimeSinceStartup - _startTime;
+                Debug.Log($"[Qud-KR] World generation ended ({duration:F1}s) - stats: {QudKorean.Objects.V2.ObjectTranslatorV2.GetStats()}");
+            }
         }
-        
+
+        public static void OnMessage(string message)
+        {
+            if (!_worldGenActive) return;
+            if (string.IsNullOrEmpty(message)) return;
+
+            string lower = message.ToLowerInvariant();
+            if (lower.Contains("complete") || lower.Contains("done") || lower.Contains("finished") ||
+                lower.Contains("완료"))
+            {
+                SetActive(false);
+            }
+        }
+
         [HarmonyPostfix]
         static void Postfix()
         {
-            // DISABLED: TMP overlay creation causes crash when Graphics device is null
-            // The crash occurs because Draw() is called from a worker thread where
-            // Unity's graphics context is not available.
-            // 
-            // Error: "Graphics device is null" -> AddComponent fails
-            // See: Player.log stack trace pointing to this line
-            //
-            // TODO: Move overlay creation to main thread using Unity's main thread dispatcher
-            // For now, translation still works for Modern UI (WorldGenerationScreen._AddMessage)
-            
-            // Legacy UI "Creating World" title remains in English, but this prevents crash
-            return;
-            
-            /* ORIGINAL CODE - DISABLED
-            // TMP 오버레이가 없으면 생성
+            if (!_worldGenActive)
+            {
+                if (_overlayCanvas != null)
+                    DestroyOverlay();
+                return;
+            }
+
+            // 플레이어 오브젝트 존재 = 세계 생성 완료
+            try
+            {
+                if (XRL.The.Player != null)
+                {
+                    SetActive(false);
+                    return;
+                }
+            }
+            catch { }
+
+            float elapsed = Time.realtimeSinceStartup - _startTime;
+
             if (_overlayCanvas == null)
             {
                 CreateOverlay();
+                if (_overlayCanvas == null) return;
             }
-            
-            // 타이틀 번역 적용
-            if (_titleText != null)
+
+            if (Time.realtimeSinceStartup - _lastDotUpdate >= DOT_INTERVAL)
             {
-                string translatedTitle;
-                if (LocalizationManager.TryGetAnyTerm("creating world", out translatedTitle, "worldgen", "ui"))
-                {
-                    _titleText.text = translatedTitle;
-                }
-                else
-                {
-                    _titleText.text = "세계 생성 중";
-                }
+                _lastDotUpdate = Time.realtimeSinceStartup;
+                _dotPhase = (_dotPhase + 1) % DOT_FRAMES.Length;
+                int seconds = Mathf.FloorToInt(elapsed);
+                _statusText.text = $"세계 생성 중 {DOT_FRAMES[_dotPhase]}  ({seconds}초)";
             }
-            */
         }
-        
+
         private static void CreateOverlay()
         {
             try
             {
-                // Canvas 생성
-                _overlayCanvas = new GameObject("WorldCreationKoreanOverlay");
+                _overlayCanvas = new GameObject("WorldGenActivityOverlay");
                 var canvas = _overlayCanvas.AddComponent<Canvas>();
                 canvas.renderMode = RenderMode.ScreenSpaceOverlay;
-                canvas.sortingOrder = 9999; // 최상위에 표시
-                
+                canvas.sortingOrder = 9999;
+
                 _overlayCanvas.AddComponent<CanvasScaler>();
-                _overlayCanvas.AddComponent<GraphicRaycaster>();
-                
-                // 타이틀 텍스트 생성
-                var titleObj = new GameObject("TitleText");
-                titleObj.transform.SetParent(_overlayCanvas.transform, false);
-                
-                _titleText = titleObj.AddComponent<TextMeshProUGUI>();
-                _titleText.text = "세계 생성 중";
-                _titleText.fontSize = 48;
-                _titleText.alignment = TextAlignmentOptions.Center;
-                _titleText.color = new Color(0.81f, 0.75f, 0.25f, 1f); // #CFC041
-                
-                // 위치 설정 (화면 상단 중앙)
-                var rectTransform = titleObj.GetComponent<RectTransform>();
-                rectTransform.anchorMin = new Vector2(0.5f, 0.8f);
-                rectTransform.anchorMax = new Vector2(0.5f, 0.8f);
-                rectTransform.pivot = new Vector2(0.5f, 0.5f);
-                rectTransform.sizeDelta = new Vector2(800, 100);
-                
-                // 한글 폰트 적용
-                if (FontManager.IsFontLoaded)
-                {
-                    var koreanFont = FontManager.GetKoreanFont();
-                    if (koreanFont != null)
-                    {
-                        if (_titleText.font != null && _titleText.font.fallbackFontAssetTable != null)
-                        {
-                            if (!_titleText.font.fallbackFontAssetTable.Contains(koreanFont))
-                            {
-                                _titleText.font.fallbackFontAssetTable.Insert(0, koreanFont);
-                            }
-                        }
-                    }
-                }
-                
-                Debug.Log("[Qud-KR] Created WorldCreation TMP overlay for Korean text");
+
+                var textObj = new GameObject("StatusText");
+                textObj.transform.SetParent(_overlayCanvas.transform, false);
+
+                _statusText = textObj.AddComponent<TextMeshProUGUI>();
+                _statusText.text = "세계 생성 중 ●  (0초)";
+                _statusText.fontSize = 20;
+                _statusText.alignment = TextAlignmentOptions.BottomRight;
+                _statusText.color = new Color(0.5f, 1f, 0.5f, 0.8f);
+
+                var rt = textObj.GetComponent<RectTransform>();
+                rt.anchorMin = new Vector2(1f, 0f);
+                rt.anchorMax = new Vector2(1f, 0f);
+                rt.pivot = new Vector2(1f, 0f);
+                rt.anchoredPosition = new Vector2(-20f, 20f);
+                rt.sizeDelta = new Vector2(400, 40);
+
+                Debug.Log("[Qud-KR] WorldGen activity indicator created");
             }
             catch (Exception ex)
             {
-                Debug.LogError($"[Qud-KR] Failed to create WorldCreation overlay: {ex.Message}");
+                Debug.LogError($"[Qud-KR] Failed to create WorldGen activity overlay: {ex.Message}");
+                _overlayCanvas = null;
             }
         }
-        
-        /// <summary>
-        /// 오버레이 정리 (월드 생성 완료 시)
-        /// </summary>
-        public static void DestroyOverlay()
+
+        private static void DestroyOverlay()
         {
             if (_overlayCanvas != null)
             {
                 UnityEngine.Object.Destroy(_overlayCanvas);
                 _overlayCanvas = null;
-                _titleText = null;
+                _statusText = null;
+                Debug.Log("[Qud-KR] WorldGen activity indicator destroyed");
             }
         }
     }

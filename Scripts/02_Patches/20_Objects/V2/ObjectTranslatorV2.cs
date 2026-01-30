@@ -14,6 +14,7 @@
  */
 
 using System;
+using System.Collections.Generic;
 using QudKorean.Objects.V2.Core;
 using QudKorean.Objects.V2.Data;
 using QudKorean.Objects.V2.Pipeline;
@@ -33,6 +34,25 @@ namespace QudKorean.Objects.V2
         private static ITranslationRepository _repository;
         private static TranslationPipeline _pipeline;
         private static bool _initialized;
+
+        // 빠른 경로: blueprint → {영어이름 → 한글이름} 프리빌드 캐시
+        // 고정 오브젝트(1838개)는 Dictionary 조회만으로 O(1) 번역
+        private static Dictionary<string, Dictionary<string, string>> _fastCache;
+
+        // 고정 오브젝트 블루프린트 집합 (데이터에 존재하는 모든 블루프린트)
+        // 이 집합에 없는 블루프린트 = 절차적 생성물 → 파이프라인 실행
+        // 이 집합에 있는데 빠른 캐시 미스 = 이름 변형 → 파이프라인 실행
+        private static HashSet<string> _knownBlueprints;
+
+        // 성능 카운터
+        private static int _fastHit;
+        private static int _fastSkip;
+        private static int _pipelineFallback;
+        private static int _totalCalls;
+
+        // 핫스팟 감지: 블루프린트별 호출 횟수 (상위 반복 호출 추적)
+        private static Dictionary<string, int> _callFrequency = new Dictionary<string, int>(StringComparer.OrdinalIgnoreCase);
+        private static bool _hotspotWarned;
 
         #region Public API (Compatible with original ObjectTranslator)
 
@@ -87,6 +107,72 @@ namespace QudKorean.Objects.V2
 
             EnsureInitialized();
 
+            _totalCalls++;
+
+            // 핫스팟 추적
+            if (_callFrequency.TryGetValue(blueprint, out int freq))
+                _callFrequency[blueprint] = freq + 1;
+            else
+                _callFrequency[blueprint] = 1;
+
+            // 1000회 이상 반복 호출 경고 (1회만)
+            if (!_hotspotWarned && _totalCalls % 5000 == 0 && _totalCalls > 0)
+            {
+                _hotspotWarned = true;
+                var sb = new System.Text.StringBuilder();
+                sb.AppendLine($"{LOG_PREFIX} Hotspot report at {_totalCalls} calls (FastHit:{_fastHit} Skip:{_fastSkip} Pipeline:{_pipelineFallback}):");
+                var sorted = new List<KeyValuePair<string, int>>(_callFrequency);
+                sorted.Sort((a, b) => b.Value.CompareTo(a.Value));
+                for (int i = 0; i < Math.Min(10, sorted.Count); i++)
+                    sb.AppendLine($"  {sorted[i].Key}: {sorted[i].Value}x");
+                UnityEngine.Debug.Log(sb.ToString());
+            }
+
+            // 빠른 경로: 고정 오브젝트는 프리빌드 캐시에서 O(1) 조회
+            if (_fastCache != null)
+            {
+                string normalizedBp = TextNormalizer.NormalizeBlueprintId(blueprint);
+                if (_fastCache.TryGetValue(normalizedBp, out var nameMap))
+                {
+                    // 정확한 이름 매칭
+                    if (nameMap.TryGetValue(originalName, out translated) && !string.IsNullOrEmpty(translated))
+                    {
+                        _fastHit++;
+                        return true;
+                    }
+
+                    // 컬러태그 제거 후 매칭
+                    string stripped = ColorTagProcessor.Strip(originalName);
+                    if (stripped != originalName && nameMap.TryGetValue(stripped, out translated) && !string.IsNullOrEmpty(translated))
+                    {
+                        _fastHit++;
+                        return true;
+                    }
+
+                    // 접미사(수량, 상태, 스탯) 제거 후 기본 이름으로 매칭 (Regex 없이)
+                    string baseName = StripSuffixFast(stripped != originalName ? stripped : originalName);
+                    if (baseName != null && nameMap.TryGetValue(baseName, out translated) && !string.IsNullOrEmpty(translated))
+                    {
+                        _fastHit++;
+                        return true;
+                    }
+
+                    // 고정 오브젝트인데 이름 변형이 다름 → 파이프라인으로 폴스루
+                    _pipelineFallback++;
+                }
+                else if (_knownBlueprints != null && !_knownBlueprints.Contains(normalizedBp))
+                {
+                    // 데이터에 없는 블루프린트 = 번역 데이터 자체가 없음 → 스킵
+                    _fastSkip++;
+                    return false;
+                }
+            }
+
+            // 세계 생성 중에는 파이프라인 스킵 (빠른 캐시만 허용)
+            if (QudKRTranslation.Patches.WorldGenActivityIndicator.IsWorldGenActive)
+                return false;
+
+            // 느린 경로: 이름 변형이 있는 고정 오브젝트 또는 절차적 생성물 → 전체 파이프라인
             try
             {
                 var context = new TranslationContext(_repository, blueprint, originalName);
@@ -176,7 +262,7 @@ namespace QudKorean.Objects.V2
         {
             EnsureInitialized();
             string repoStats = _repository.GetStats();
-            return $"{repoStats}, Cached: {TranslationContext.CacheCount}";
+            return $"{repoStats}, Cached: {TranslationContext.CacheCount}, FastHit: {_fastHit}, FastSkip: {_fastSkip}, Pipeline: {_pipelineFallback}, Total: {_totalCalls}";
         }
 
         #endregion
@@ -191,6 +277,110 @@ namespace QudKorean.Objects.V2
 
             // Create pipeline with default handlers
             _pipeline = TranslationPipeline.CreateDefault(_repository);
+
+            // 고정 오브젝트 빠른 캐시 프리빌드
+            BuildFastCache();
+        }
+
+        private static void BuildFastCache()
+        {
+            _fastCache = new Dictionary<string, Dictionary<string, string>>(StringComparer.OrdinalIgnoreCase);
+            int count = 0;
+
+            foreach (var data in _repository.AllCreatures)
+            {
+                if (data.Names != null && data.Names.Count > 0)
+                {
+                    string key = TextNormalizer.NormalizeBlueprintId(data.BlueprintId);
+                    _fastCache[key] = new Dictionary<string, string>(data.Names, StringComparer.OrdinalIgnoreCase);
+                    count++;
+                }
+            }
+
+            foreach (var data in _repository.AllItems)
+            {
+                if (data.Names != null && data.Names.Count > 0)
+                {
+                    string key = TextNormalizer.NormalizeBlueprintId(data.BlueprintId);
+                    _fastCache[key] = new Dictionary<string, string>(data.Names, StringComparer.OrdinalIgnoreCase);
+                    count++;
+                }
+            }
+
+            _knownBlueprints = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+            foreach (var key in _fastCache.Keys)
+                _knownBlueprints.Add(key);
+
+            UnityEngine.Debug.Log($"{LOG_PREFIX} Fast cache built: {count} blueprints preloaded, {_knownBlueprints.Count} known");
+        }
+
+        #endregion
+
+        #region Fast Suffix Strip
+
+        /// <summary>
+        /// Regex 없이 접미사를 빠르게 제거.
+        /// "torch x14 (unburnt)" → "torch"
+        /// "leather cloak ◆0 ○1" → "leather cloak"
+        /// "musket →8 ♥1d8 [empty]" → "musket"
+        /// </summary>
+        private static string StripSuffixFast(string name)
+        {
+            if (string.IsNullOrEmpty(name) || name.Length < 2) return null;
+
+            // 끝에서부터 접미사 패턴 제거
+            int end = name.Length;
+
+            // 1. 괄호/대괄호 제거: (unburnt), [empty], [3 servings]
+            while (end > 0)
+            {
+                char last = name[end - 1];
+                if (last == ')')
+                {
+                    int open = name.LastIndexOf('(', end - 2);
+                    if (open > 0) { end = open; while (end > 0 && name[end - 1] == ' ') end--; continue; }
+                }
+                if (last == ']')
+                {
+                    int open = name.LastIndexOf('[', end - 2);
+                    if (open > 0) { end = open; while (end > 0 && name[end - 1] == ' ') end--; continue; }
+                }
+                break;
+            }
+
+            // 2. 수량 제거: x14, x3
+            if (end > 2 && name[end - 1] >= '0' && name[end - 1] <= '9')
+            {
+                int i = end - 1;
+                while (i > 0 && name[i - 1] >= '0' && name[i - 1] <= '9') i--;
+                if (i > 0 && name[i - 1] == 'x' && (i < 2 || name[i - 2] == ' '))
+                {
+                    end = i - 1;
+                    while (end > 0 && name[end - 1] == ' ') end--;
+                }
+            }
+
+            // 3. 스탯 제거: →4 ♥1d2, ◆0 ○1 등 (특수문자로 시작하는 숫자 패턴)
+            while (end > 2)
+            {
+                // 끝이 숫자인 경우 스탯 접미사 확인
+                if (name[end - 1] >= '0' && name[end - 1] <= '9')
+                {
+                    int i = end - 1;
+                    // 숫자+특수문자 패턴 역추적: d2, 1d2, ♥1d2 등
+                    while (i > 0 && (char.IsDigit(name[i - 1]) || name[i - 1] == 'd' || name[i - 1] == '+' || name[i - 1] == '-')) i--;
+                    if (i > 0 && "→◆♦●○♥♠♣".IndexOf(name[i - 1]) >= 0)
+                    {
+                        end = i - 1;
+                        while (end > 0 && name[end - 1] == ' ') end--;
+                        continue;
+                    }
+                }
+                break;
+            }
+
+            if (end <= 0 || end == name.Length) return null;
+            return name.Substring(0, end).Trim();
         }
 
         #endregion

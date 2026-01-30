@@ -250,6 +250,9 @@ namespace QudKRTranslation.Patches
             {
                 PerfCounters.TmpSetterCalls++;
 
+                // 세계 생성 중 스킵 (빠른 캐시가 DisplayName은 처리하지만 TMP setter는 여전히 무거움)
+                if (WorldGenActivityIndicator.IsWorldGenActive) { PerfCounters.TmpSetterSkipped++; return; }
+
                 // ★ 폰트 fallback 항상 적용 (번역 여부와 관계없이)
                 EnsureFontFallback(__instance);
 
