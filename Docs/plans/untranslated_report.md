@@ -512,4 +512,62 @@
 - ... 외 183개
 
 ---
+
+## 우선순위별 번역 작업 목록
+
+| 우선순위 | 카테고리 | 미번역 수 | 이유 |
+|----------|----------|-----------|------|
+| **P1** | ActivatedAbilities (48), Mutations (10) | 58 | 게임플레이 핵심, 소량으로 빠르게 완료 가능 |
+| **P2** | Creatures (770) | 770 | 가장 많이 노출되는 항목, 대량 작업 |
+| **P3** | Items (463) | 463 | 두 번째로 많이 노출되는 항목 |
+| **P4** | Furniture (209), Walls (99) | 308 | 환경 텍스트, 탐험 시 노출 |
+| **P5** | ZoneTerrain (81), WorldTerrain (22) | 103 | 맵/지역 텍스트 |
+| **P6** | Factions (37), ChiliadFactions (30) | 67 | 팩션 이름 |
+| **P7** | HiddenObjects (221) | 221 | 동적 패턴(`=variable=`) 포함, 복잡한 처리 필요 |
+| **P8** | 나머지 (Foods 22, Data 19, PhysicalPhenomena 19, WishCommands 13, Widgets 12, Mutations 10, Worlds 4) | 89 | 소량 잔여 항목 |
+
+### P1: ActivatedAbilities + Mutations (58개)
+
+- **작업**: LOCALIZATION/GAMEPLAY/ 하위에 JSON 파일 생성/업데이트
+- **난이도**: 낮음 — 고정 텍스트, 패턴 단순
+- **참고**: Mutations은 이미 LOCALIZATION/GAMEPLAY/MUTATIONS/ 구조 존재
+
+### P2: Creatures (770개)
+
+- **작업**: LOCALIZATION/OBJECTS/creatures/ 하위 JSON 파일에 번역 추가
+- **난이도**: 중간 — 대량이지만 패턴 반복적
+- **참고**: 고유명사(Agolgut 등) vs 일반명사(albino ape 등) 구분 필요
+
+### P3: Items (463개)
+
+- **작업**: LOCALIZATION/OBJECTS/items/ 하위 JSON 파일에 번역 추가
+- **난이도**: 중간 — 아이템 이름 번역 규칙 적용
+- **참고**: 컬러 태그(`{{W|name}}`) 포함 항목 주의
+
+### P4: Furniture + Walls (308개)
+
+- **작업**: LOCALIZATION/OBJECTS/furniture/, terrain/ 하위 JSON 파일 업데이트
+- **난이도**: 낮음~중간
+
+### P5: ZoneTerrain + WorldTerrain (103개)
+
+- **작업**: LOCALIZATION/OBJECTS/terrain/ 하위 JSON 파일 업데이트
+- **난이도**: 낮음
+
+### P6: Factions + ChiliadFactions (67개)
+
+- **작업**: 팩션 이름 번역 — 고유명사 음역 or 의역 판단 필요
+- **난이도**: 중간 — 세계관 지식 필요
+
+### P7: HiddenObjects (221개)
+
+- **작업**: `=variable=` 패턴 포함 항목은 동적 처리 로직 필요
+- **난이도**: 높음 — 단순 사전 대응이 아닌 패턴 매칭 로직 필요 가능
+
+### P8: 나머지 (89개)
+
+- **작업**: 각 XML 소스별로 소량 잔여 항목 번역
+- **난이도**: 낮음
+
+---
 *이 리포트는 asset_index.json 기반 자동 생성되었습니다.*

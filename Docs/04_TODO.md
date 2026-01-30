@@ -1,6 +1,6 @@
 # Caves of Qud Korean Localization - TODO
 
-> **Version**: 3.7 | **Last Updated**: 2026-01-27
+> **Version**: 3.8 | **Last Updated**: 2026-01-30
 
 ---
 
@@ -91,6 +91,23 @@
 | Power descriptions | 한글 상세 설명 표시 | [ ] |
 
 **Test Path**: New game - Character screen (C) - Skills tab
+
+---
+
+## 번역 커버리지 확장 (2,056개 미번역)
+
+> 상세 리포트: `Docs/plans/untranslated_report.md`
+
+| 우선순위 | 대상 | 미번역 | 상태 |
+|----------|------|--------|------|
+| P1 | ActivatedAbilities (48) + Mutations (10) | 58 | Todo |
+| P2 | Creatures | 770 | Todo |
+| P3 | Items | 463 | Todo |
+| P4 | Furniture (209) + Walls (99) | 308 | Todo |
+| P5 | ZoneTerrain (81) + WorldTerrain (22) | 103 | Todo |
+| P6 | Factions (37) + ChiliadFactions (30) | 67 | Todo |
+| P7 | HiddenObjects (동적 패턴) | 221 | Todo |
+| P8 | 나머지 (Foods, Data, etc.) | 89 | Todo |
 
 ---
 
