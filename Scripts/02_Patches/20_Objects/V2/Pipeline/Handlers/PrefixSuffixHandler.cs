@@ -134,24 +134,13 @@ namespace QudKorean.Objects.V2.Pipeline.Handlers
         {
             translated = null;
 
-            // Try creature cache first
-            foreach (var creature in repo.AllCreatures)
-            {
-                foreach (var namePair in creature.Names)
-                {
-                    if (namePair.Key.Equals(creatureName, StringComparison.OrdinalIgnoreCase))
-                    {
-                        translated = namePair.Value;
-                        return true;
-                    }
-                }
-            }
+            // O(1) lookup via GlobalNameIndex (replaces O(n) AllCreatures scan)
+            if (repo.GlobalNameIndex.TryGetValue(creatureName, out translated) && !string.IsNullOrEmpty(translated))
+                return true;
 
             // Fallback: species dictionary
             if (repo.Species.TryGetValue(creatureName, out translated))
-            {
                 return true;
-            }
 
             return false;
         }
@@ -160,20 +149,11 @@ namespace QudKorean.Objects.V2.Pipeline.Handlers
         {
             translated = null;
 
-            // Try item cache first
-            foreach (var item in repo.AllItems)
-            {
-                foreach (var namePair in item.Names)
-                {
-                    if (namePair.Key.Equals(itemName, StringComparison.OrdinalIgnoreCase))
-                    {
-                        translated = namePair.Value;
-                        return true;
-                    }
-                }
-            }
+            // O(1) lookup via GlobalNameIndex (replaces O(n) AllItems scan)
+            if (repo.GlobalNameIndex.TryGetValue(itemName, out translated) && !string.IsNullOrEmpty(translated))
+                return true;
 
-            // Fallback: base nouns dictionary
+            // Fallback: base nouns dictionary (sorted list, still O(n) but small)
             var baseNouns = repo.BaseNouns;
             foreach (var noun in baseNouns)
             {

@@ -13,6 +13,7 @@ using HarmonyLib;
 using XRL;
 using XRL.World;
 using QudKorean.Objects.V2;
+using QudKRTranslation.Patches;
 
 namespace QudKorean.Objects
 {
@@ -48,7 +49,10 @@ namespace QudKorean.Objects
             {
                 // CRITICAL: Skip translation for special modes
                 if (ForSort || ColorOnly) return;
-                
+
+                // Skip during world generation — no UI visible, pipeline is O(n) expensive
+                if (WorldGenActivityIndicator.IsWorldGenActive) return;
+
                 // Basic validation
                 if (Object == null || string.IsNullOrEmpty(__result)) return;
                 
