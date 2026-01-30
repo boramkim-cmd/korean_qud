@@ -86,6 +86,15 @@ namespace QudKorean.Objects.V2
         {
             _repository?.Reload();
             TranslationContext.ClearCache();
+
+            // Rebuild display lookup from reloaded repository
+            var lookupData = _repository?.DisplayLookup;
+            if (lookupData != null && lookupData.Count > 0)
+                _displayLookup = new Dictionary<string, string>(lookupData, StringComparer.Ordinal);
+
+            // Rebuild fast cache
+            BuildFastCache();
+
             UnityEngine.Debug.Log($"{LOG_PREFIX} Reloaded!");
         }
 
@@ -132,23 +141,12 @@ namespace QudKorean.Objects.V2
                 UnityEngine.Debug.Log(sb.ToString());
             }
 
-            // 최우선 경로: XML DisplayName 1:1 lookup (컬러태그 포함 원문 매칭)
-            if (_displayLookup != null)
+            // 최우선 경로: XML DisplayName 1:1 lookup (컬러태그 포함 원문 그대로 매칭)
+            if (_displayLookup != null &&
+                _displayLookup.TryGetValue(originalName, out translated) && !string.IsNullOrEmpty(translated))
             {
-                if (_displayLookup.TryGetValue(originalName, out translated) && !string.IsNullOrEmpty(translated))
-                {
-                    _lookupHit++;
-                    return true;
-                }
-
-                // 컬러태그 제거 후 재시도
-                string strippedForLookup = ColorTagProcessor.Strip(originalName);
-                if (strippedForLookup != originalName &&
-                    _displayLookup.TryGetValue(strippedForLookup, out translated) && !string.IsNullOrEmpty(translated))
-                {
-                    _lookupHit++;
-                    return true;
-                }
+                _lookupHit++;
+                return true;
             }
 
             // 빠른 경로: 고정 오브젝트는 프리빌드 캐시에서 O(1) 조회
@@ -223,11 +221,6 @@ namespace QudKorean.Objects.V2
             {
                 var context = new TranslationContext(_repository, blueprint, originalName);
                 var result = _pipeline.Execute(context);
-
-                if (result.Success && _displayLookup != null && !string.IsNullOrEmpty(result.Translated))
-                {
-                    _displayLookup[originalName] = result.Translated;
-                }
 
                 translated = result.Translated;
                 return result.Success;

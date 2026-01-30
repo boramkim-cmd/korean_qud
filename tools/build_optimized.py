@@ -333,7 +333,6 @@ def load_all_translations() -> Dict[str, str]:
 def build_display_lookup() -> Tuple[Dict[str, str], int, int]:
     """
     XML ObjectBlueprints에서 DisplayName을 추출하고 번역과 1:1 매핑.
-    상속(Inherits) 관계를 반영하여 부모 블루프린트의 번역도 활용.
 
     Returns: (lookup_dict, total_extracted, matched_count)
     """
@@ -342,20 +341,10 @@ def build_display_lookup() -> Tuple[Dict[str, str], int, int]:
         return {}, 0, 0
 
     # 1. XML에서 모든 DisplayName 추출
-    # {blueprint_name: display_name}, {blueprint_name: inherits_from}
     blueprint_display: Dict[str, str] = {}
-    blueprint_inherits: Dict[str, str] = {}
 
     # 정규식 기반 추출 (게임 XML에 invalid character references가 있어 ET 사용 불가)
-    obj_pattern = re.compile(
-        r'<object\s+[^>]*?Name="([^"]*)"[^>]*?Inherits="([^"]*)"',
-    )
-    dn_pattern = re.compile(
-        r'<object\s+[^>]*?Name="([^"]*)"[^>]*?>.*?'
-        r'<part\s+[^>]*?Name="Render"[^>]*?DisplayName="([^"]*)"',
-        re.DOTALL,
-    )
-
+    # object 블록 단위로 Name과 Render part의 DisplayName 추출
     for xml_file in sorted(XML_DIR.rglob("*.xml")):
         try:
             with open(xml_file, 'r', encoding='utf-8') as f:
@@ -363,13 +352,6 @@ def build_display_lookup() -> Tuple[Dict[str, str], int, int]:
         except Exception:
             continue
 
-        # 상속 관계 추출
-        for match in obj_pattern.finditer(content):
-            bp_name, inherits = match.group(1), match.group(2)
-            blueprint_inherits[bp_name] = inherits
-
-        # DisplayName 추출 (object → Render part)
-        # 더 정확한 매칭: object 블록 단위로 처리
         for match in re.finditer(
             r'<object\s+[^>]*?Name="([^"]*)"[^>]*?>(.*?)</object>',
             content, re.DOTALL
@@ -395,27 +377,9 @@ def build_display_lookup() -> Tuple[Dict[str, str], int, int]:
     for bp_name, display_name in blueprint_display.items():
         norm = normalize_for_lookup(display_name)
 
-        # 직접 매칭
         if norm in translations:
             lookup[display_name] = translations[norm]
             matched += 1
-            continue
-
-        # 상속 체인을 따라 부모의 DisplayName으로 매칭 시도
-        parent = blueprint_inherits.get(bp_name)
-        found = False
-        visited = set()
-        while parent and parent not in visited:
-            visited.add(parent)
-            parent_display = blueprint_display.get(parent)
-            if parent_display:
-                parent_norm = normalize_for_lookup(parent_display)
-                if parent_norm in translations:
-                    lookup[display_name] = translations[parent_norm]
-                    matched += 1
-                    found = True
-                    break
-            parent = blueprint_inherits.get(parent)
 
     return lookup, len(blueprint_display), matched
 
