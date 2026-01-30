@@ -1,6 +1,6 @@
 # 📚 프로젝트 완전 인덱스 (자동 생성)
 
-**생성**: 2026-01-26 23:53:47
+**생성**: 2026-01-30 12:03:14
 
 이 문서는 프로젝트의 모든 파일과 메서드 시그니처를 포함합니다. **새로운 기능을 만들기 전, 반드시 여기서 기존 메서드를 검색하십시오.**
 
@@ -151,12 +151,26 @@
   ObjectData GetItem(string id)
   void Reload()
   string GetStats()
+  SourceInfo GetSourceInfo(string blueprintId)
+  string GetSourceLocation(string blueprintId)
+  string FormatErrorSource(string blueprintId, string term = null)
   void EnsureInitialized()
   ```
 
 ### `Scripts/02_Patches/20_Objects/V2/Data/ObjectData.cs`
 - **역할**: 오브젝트 데이터 모델
 - **Namespace**: `QudKorean.Objects.V2.Data`
+
+### `Scripts/02_Patches/20_Objects/V2/Data/SourceMap.cs`
+- **역할**: 빌드된 번들에서 원본 소스 파일/라인 추적
+- **Namespace**: `QudKorean.Objects.V2.Data`
+- **공개 메서드 (Public Methods)**:
+  ```csharp
+  void Load(string path)
+  SourceInfo GetBlueprintSource(string blueprintId)
+  SourceInfo GetVocabularySource(string term)
+  string FormatErrorSource(string blueprintId, string term = null)
+  ```
 
 ### `Scripts/02_Patches/20_Objects/V2/ObjectTranslatorV2.cs`
 - **역할**: ObjectTranslator V2 Public API
@@ -171,6 +185,24 @@
   bool TryTranslateDescriptionExact(string blueprint, string currentText, out string translated)
   bool HasTranslation(string blueprint)
   string GetStats()
+  ```
+
+### `Scripts/02_Patches/20_Objects/V2/Patterns/BookTitleTranslator.cs`
+- **역할**: 책 제목 번역기 - 한글 어순 변환
+- **Namespace**: `QudKorean.Objects.V2.Patterns`
+- **공개 메서드 (Public Methods)**:
+  ```csharp
+  bool CanHandle(string name)
+  TranslationResult Translate(string name, ITranslationContext context)
+  ```
+
+### `Scripts/02_Patches/20_Objects/V2/Patterns/CompoundTranslator.cs`
+- **역할**: 복합어 패턴 번역기 (bear golem → 곰 골렘)
+- **Namespace**: `QudKorean.Objects.V2.Patterns`
+- **공개 메서드 (Public Methods)**:
+  ```csharp
+  bool CanHandle(string name)
+  TranslationResult Translate(string name, ITranslationContext context)
   ```
 
 ### `Scripts/02_Patches/20_Objects/V2/Patterns/CorpseTranslator.cs`
@@ -455,6 +487,7 @@
   void ListUntranslated()
   void ShowStats()
   void ClearCache()
+  void ShowPerformance()
   void InvestigateFont()
   ```
 
@@ -478,4 +511,13 @@
   string TranslateLongDescription(string original, params string[] categories)
   IEnumerable<MenuOption> TranslateMenuOptions(IEnumerable<MenuOption> options)
   void TranslateBreadcrumb(UIBreadcrumb breadcrumb)
+  ```
+
+### `Scripts/99_Utils/99_00_04_PerfCounters.cs`
+- **역할**: 번역 시스템의 성능 측정을 위한 카운터를 제공합니다.
+- **Namespace**: `QudKRTranslation.Utils`
+- **공개 메서드 (Public Methods)**:
+  ```csharp
+  void Reset()
+  string Report()
   ```

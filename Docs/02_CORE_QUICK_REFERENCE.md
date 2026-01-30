@@ -1,6 +1,6 @@
 # 🚀 프로젝트 빠른 참조 (자동 생성)
 
-**생성**: 2026-01-26 23:53:47
+**생성**: 2026-01-30 12:03:14
 
 ## ⭐ 핵심 경로
 ```
@@ -215,10 +215,13 @@ LOCALIZATION/**/*.json              → 용어집 데이터
 - `Watervine_Farmer.json`: 1개 항목
 - `Wayfaring.json`: 12개 항목
 - `Wings.json`: 1개 항목
-- `_common.json`: 389개 항목
-- `_nouns.json`: 520개 항목
+- `_common.json`: 438개 항목
+- `_compound_translations.json`: 1400개 항목
+- `_manual_translations.json`: 531개 항목
+- `_nouns.json`: 616개 항목
 - `_suffixes.json`: 225개 항목
 - `_template_variables.json`: 19개 항목
+- `activated_abilities.json`: 51개 항목
 - `ammo.json`: 59개 항목
 - `ants.json`: 98개 항목
 - `attributes.json`: 9개 항목
@@ -235,11 +238,12 @@ LOCALIZATION/**/*.json              → 용어집 데이터
 - `bows.json`: 83개 항목
 - `cats.json`: 18개 항목
 - `cells.json`: 60개 항목
-- `common.json`: 203개 항목
+- `common.json`: 206개 항목
 - `containers.json`: 66개 항목
 - `crabs.json`: 94개 항목
 - `cudgels.json`: 243개 항목
 - `cybernetics.json`: 60개 항목
+- `data.json`: 22개 항목
 - `decoration.json`: 78개 항목
 - `descriptions.json`: 25개 항목
 - `display.json`: 32개 항목
@@ -248,11 +252,12 @@ LOCALIZATION/**/*.json              → 용어집 데이터
 - `dromad.json`: 10개 항목
 - `drones.json`: 52개 항목
 - `face.json`: 173개 항목
-- `factions.json`: 33개 항목
+- `factions.json`: 102개 항목
 - `farmers.json`: 29개 항목
 - `feet.json`: 139개 항목
 - `fish.json`: 10개 항목
 - `food.json`: 790개 항목
+- `food_remaining.json`: 25개 항목
 - `fungi.json`: 10개 항목
 - `glossary_worldgen.json`: 40개 항목
 - `goatfolk.json`: 102개 항목
@@ -274,13 +279,15 @@ LOCALIZATION/**/*.json              → 용어집 데이터
 - `messages.json`: 71개 항목
 - `misc.json`: 67개 항목
 - `modes.json`: 6개 항목
-- `modifiers.json`: 250개 항목
+- `modifiers.json`: 1028개 항목
 - `moths.json`: 116개 항목
+- `mutation_categories.json`: 6개 항목
 - `naphtaali.json`: 16개 항목
 - `options.json`: 454개 항목
 - `others.json`: 180개 항목
+- `phenomena.json`: 22개 항목
 - `processing.json`: 7개 항목
-- `qualities.json`: 18개 항목
+- `qualities.json`: 19개 항목
 - `relics.json`: 95개 항목
 - `reptiles.json`: 29개 항목
 - `seedsprout.json`: 17개 항목
@@ -291,15 +298,17 @@ LOCALIZATION/**/*.json              → 용어집 데이터
 - `svardym.json`: 28개 항목
 - `tech.json`: 72개 항목
 - `templars.json`: 22개 항목
-- `terms.json`: 35개 항목
+- `terms.json`: 39개 항목
 - `tools.json`: 60개 항목
 - `turrets.json`: 28개 항목
 - `tutorial.json`: 21개 항목
 - `ui.json`: 8개 항목
 - `vines.json`: 16개 항목
 - `walls.json`: 132개 항목
-- `widgets.json`: 174개 항목
+- `widgets.json`: 15개 항목
+- `wish_commands.json`: 16개 항목
 - `world.json`: 106개 항목
+- `worlds.json`: 6개 항목
 - `worms.json`: 130개 항목
 - `zone.json`: 206개 항목
 

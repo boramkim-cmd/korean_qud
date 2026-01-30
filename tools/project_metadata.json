@@ -1,5 +1,5 @@
 {
-  "generated": "2026-01-26 23:53:47",
+  "generated": "2026-01-30 12:03:14",
   "scripts": {
     "Scripts/99_Utils/99_00_03_StructureTranslator.cs": {
       "classification": "Util",
@@ -69,6 +69,26 @@
           "name": "TranslateBreadcrumb",
           "return": "void",
           "params": "UIBreadcrumb breadcrumb"
+        }
+      ]
+    },
+    "Scripts/99_Utils/99_00_04_PerfCounters.cs": {
+      "classification": "Utils",
+      "role": "번역 시스템의 성능 측정을 위한 카운터를 제공합니다.",
+      "namespace": "QudKRTranslation.Utils",
+      "classes": [
+        "PerfCounters"
+      ],
+      "methods": [
+        {
+          "name": "Reset",
+          "return": "void",
+          "params": ""
+        },
+        {
+          "name": "Report",
+          "return": "string",
+          "params": ""
         }
       ]
     },
@@ -592,6 +612,11 @@
           "params": ""
         },
         {
+          "name": "ShowPerformance",
+          "return": "void",
+          "params": ""
+        },
+        {
           "name": "InvestigateFont",
           "return": "void",
           "params": ""
@@ -855,6 +880,26 @@
         }
       ]
     },
+    "Scripts/02_Patches/20_Objects/V2/Patterns/BookTitleTranslator.cs": {
+      "classification": "N/A",
+      "role": "책 제목 번역기 - 한글 어순 변환",
+      "namespace": "QudKorean.Objects.V2.Patterns",
+      "classes": [
+        "BookTitleTranslator"
+      ],
+      "methods": [
+        {
+          "name": "CanHandle",
+          "return": "bool",
+          "params": "string name"
+        },
+        {
+          "name": "Translate",
+          "return": "TranslationResult",
+          "params": "string name, ITranslationContext context"
+        }
+      ]
+    },
     "Scripts/02_Patches/20_Objects/V2/Patterns/OfPatternTranslator.cs": {
       "classification": "N/A",
       "role": "\"of X\" 패턴 번역기",
@@ -888,6 +933,26 @@
       "namespace": "QudKorean.Objects.V2.Patterns",
       "classes": [
         "FoodTranslator"
+      ],
+      "methods": [
+        {
+          "name": "CanHandle",
+          "return": "bool",
+          "params": "string name"
+        },
+        {
+          "name": "Translate",
+          "return": "TranslationResult",
+          "params": "string name, ITranslationContext context"
+        }
+      ]
+    },
+    "Scripts/02_Patches/20_Objects/V2/Patterns/CompoundTranslator.cs": {
+      "classification": "N/A",
+      "role": "복합어 패턴 번역기 (bear golem → 곰 골렘)",
+      "namespace": "QudKorean.Objects.V2.Patterns",
+      "classes": [
+        "CompoundTranslator"
       ],
       "methods": [
         {
@@ -1049,6 +1114,37 @@
       "classes": [],
       "methods": []
     },
+    "Scripts/02_Patches/20_Objects/V2/Data/SourceMap.cs": {
+      "classification": "N/A",
+      "role": "빌드된 번들에서 원본 소스 파일/라인 추적",
+      "namespace": "QudKorean.Objects.V2.Data",
+      "classes": [
+        "SourceInfo",
+        "SourceMap"
+      ],
+      "methods": [
+        {
+          "name": "Load",
+          "return": "void",
+          "params": "string path"
+        },
+        {
+          "name": "GetBlueprintSource",
+          "return": "SourceInfo",
+          "params": "string blueprintId"
+        },
+        {
+          "name": "GetVocabularySource",
+          "return": "SourceInfo",
+          "params": "string term"
+        },
+        {
+          "name": "FormatErrorSource",
+          "return": "string",
+          "params": "string blueprintId, string term = null"
+        }
+      ]
+    },
     "Scripts/02_Patches/20_Objects/V2/Data/ObjectData.cs": {
       "classification": "N/A",
       "role": "오브젝트 데이터 모델",
@@ -1085,6 +1181,21 @@
           "name": "GetStats",
           "return": "string",
           "params": ""
+        },
+        {
+          "name": "GetSourceInfo",
+          "return": "SourceInfo",
+          "params": "string blueprintId"
+        },
+        {
+          "name": "GetSourceLocation",
+          "return": "string",
+          "params": "string blueprintId"
+        },
+        {
+          "name": "FormatErrorSource",
+          "return": "string",
+          "params": "string blueprintId, string term = null"
         },
         {
           "name": "EnsureInitialized",
@@ -1170,6 +1281,10 @@
     }
   },
   "tools": {
+    "test_bracket_patterns.py": {
+      "type": "script",
+      "size": 5368
+    },
     "test_display_contexts.py": {
       "type": "script",
       "size": 55652
@@ -1177,6 +1292,10 @@
     "merge_options.py": {
       "type": "script",
       "size": 6712
+    },
+    "test_book_titles.py": {
+      "type": "script",
+      "size": 3592
     },
     "sync_copilot_instructions.py": {
       "type": "script",
@@ -1190,6 +1309,10 @@
       "type": "script",
       "size": 20314
     },
+    "test_compound_translator.py": {
+      "type": "script",
+      "size": 30802
+    },
     "get_deploy_path.py": {
       "type": "script",
       "size": 663
@@ -1202,6 +1325,34 @@
       "type": "script",
       "size": 11503
     },
+    "trace_translation.py": {
+      "type": "script",
+      "size": 5517
+    },
+    "diagnose_translation.py": {
+      "type": "script",
+      "size": 22503
+    },
+    "run_regression.py": {
+      "type": "script",
+      "size": 5613
+    },
+    "final_analysis.py": {
+      "type": "script",
+      "size": 4726
+    },
+    "test_v2_fixes.py": {
+      "type": "script",
+      "size": 7673
+    },
+    "test_screenshot_items.py": {
+      "type": "script",
+      "size": 8732
+    },
+    "find_missing_vocab.py": {
+      "type": "script",
+      "size": 9113
+    },
     "test_object_translator.py": {
       "type": "script",
       "size": 45056
@@ -1210,28 +1361,55 @@
       "type": "script",
       "size": 8112
     },
+    "test_book_title_translator.py": {
+      "type": "script",
+      "size": 5267
+    },
     "sort_json.py": {
       "type": "script",
       "size": 2136
+    },
+    "analyze_issues.py": {
+      "type": "script",
+      "size": 6019
     },
     "compare_translations.py": {
       "type": "script",
       "size": 11675
     },
+    "build_asset_index.py": {
+      "type": "script",
+      "size": 8542
+    },
     "extract_all_displaynames.py": {
       "type": "script",
       "size": 2772
+    },
+    "test_comprehensive.py": {
+      "type": "script",
+      "size": 9593
+    },
+    "test_all_patterns.py": {
+      "type": "script",
+      "size": 8126
+    },
+    "build_optimized.py": {
+      "type": "script",
+      "size": 12979
     }
   },
   "docs": {
     "05_CHANGELOG.md": {
-      "modified": "2026-01-26"
+      "modified": "2026-01-27"
     },
     "01_ARCHITECTURE.md": {
       "modified": "2026-01-25"
     },
+    "UI_GLOSSARY.md": {
+      "modified": "2026-01-27"
+    },
     "00_CONTEXT.md": {
-      "modified": "2026-01-26"
+      "modified": "2026-01-27"
     },
     "03_DATA.md": {
       "modified": "2026-01-25"
@@ -1240,13 +1418,13 @@
       "modified": "2026-01-25"
     },
     "01_CORE_PROJECT_INDEX.md": {
-      "modified": "2026-01-26"
+      "modified": "2026-01-27"
     },
     "02_CORE_QUICK_REFERENCE.md": {
-      "modified": "2026-01-26"
+      "modified": "2026-01-27"
     },
     "04_TODO.md": {
-      "modified": "2026-01-26"
+      "modified": "2026-01-30"
     },
     "07_TEMPLATE_VARIABLES.md": {
       "modified": "2026-01-26"
@@ -1279,13 +1457,20 @@
         "quality",
         "categories"
       ],
-      "entries": 203
+      "entries": 206
     },
     "display.json": {
       "categories": [
         "display"
       ],
       "entries": 32
+    },
+    "wish_commands.json": {
+      "categories": [
+        "_meta",
+        "wish_commands"
+      ],
+      "entries": 16
     },
     "terms.json": {
       "categories": [
@@ -1298,7 +1483,7 @@
         "weapon",
         "world"
       ],
-      "entries": 35
+      "entries": 39
     },
     "glossary_worldgen.json": {
       "categories": [
@@ -1323,7 +1508,7 @@
         "_meta",
         "factions"
       ],
-      "entries": 33
+      "entries": 102
     },
     "ui.json": {
       "categories": [
@@ -1371,6 +1556,25 @@
       ],
       "entries": 120
     },
+    "_compound_translations.json": {
+      "categories": [
+        "_meta",
+        "creatures",
+        "data",
+        "factions",
+        "foods",
+        "furniture",
+        "hiddenobjects",
+        "items",
+        "physicalphenomena",
+        "walls",
+        "widgets",
+        "wishcommands",
+        "worldterrain",
+        "zoneterrain"
+      ],
+      "entries": 1400
+    },
     "_template_variables.json": {
       "categories": [
         "_meta",
@@ -1379,6 +1583,13 @@
         "usage_in_display_names"
       ],
       "entries": 19
+    },
+    "_manual_translations.json": {
+      "categories": [
+        "_meta",
+        "translations"
+      ],
+      "entries": 531
     },
     "_suffixes.json": {
       "categories": [
@@ -1394,50 +1605,9 @@
     "widgets.json": {
       "categories": [
         "_meta",
-        "Widget",
-        "ZoneMusic",
-        "AmbientLight",
-        "SpindleLight",
-        "DaylightWidget",
-        "HolyPlaceWidget",
-        "Trashy",
-        "Dirty",
-        "Flowery",
-        "Mushroomy",
-        "Grassy",
-        "Rocky",
-        "Kelpy",
-        "ConcreteFloor",
-        "BlueTile",
-        "RedTile",
-        "GreenTile",
-        "WhiteTile",
-        "BlackTile",
-        "WoodFloor",
-        "MarbleFloor",
-        "SandFloor",
-        "WaterDropper",
-        "AcidDropper",
-        "SlimeDropper",
-        "TorchPlacer",
-        "RuinedWalls",
-        "CrumblingWalls",
-        "VineCoveredWalls",
-        "WeatheredFloor",
-        "BloodSplatter",
-        "CorpsePile",
-        "BonePile",
-        "FurniturePopulator",
-        "CreaturePopulator",
-        "LootPopulator",
-        "SecretDoorPlacer",
-        "TrapPlacer",
-        "FogEffect",
-        "RainEffect",
-        "SnowEffect",
-        "StormEffect"
+        "widgets"
       ],
-      "entries": 174
+      "entries": 15
     },
     "cybernetics.json": {
       "categories": [
@@ -1466,6 +1636,13 @@
       ],
       "entries": 71
     },
+    "activated_abilities.json": {
+      "categories": [
+        "_meta",
+        "ability_labels"
+      ],
+      "entries": 51
+    },
     "body_parts.json": {
       "categories": [
         "_meta",
@@ -1485,7 +1662,7 @@
         "_meta",
         "qualities"
       ],
-      "entries": 18
+      "entries": 19
     },
     "03_explore.json": {
       "categories": [
@@ -1503,6 +1680,7 @@
       "categories": [
         "_meta",
         "common_terms",
+        "lifecycle",
         "species",
         "creature_classes",
         "roles",
@@ -1512,9 +1690,10 @@
         "species_extended",
         "unique_names",
         "creatures_final",
-        "modifiers_final"
+        "modifiers_final",
+        "vocab_expansion_2026_01_30"
       ],
-      "entries": 389
+      "entries": 438
     },
     "01_chest.json": {
       "categories": [
@@ -1539,6 +1718,13 @@
         "tutorial_intro"
       ],
       "entries": 5
+    },
+    "mutation_categories.json": {
+      "categories": [
+        "_meta",
+        "categories"
+      ],
+      "entries": 6
     },
     "Wayfaring.json": {
       "categories": [
@@ -3394,6 +3580,20 @@
       ],
       "entries": 1
     },
+    "data.json": {
+      "categories": [
+        "_meta",
+        "data_objects"
+      ],
+      "entries": 22
+    },
+    "worlds.json": {
+      "categories": [
+        "_meta",
+        "worlds"
+      ],
+      "entries": 6
+    },
     "decoration.json": {
       "categories": [
         "_meta",
@@ -3553,6 +3753,13 @@
       ],
       "entries": 206
     },
+    "phenomena.json": {
+      "categories": [
+        "_meta",
+        "phenomena"
+      ],
+      "entries": 22
+    },
     "world.json": {
       "categories": [
         "_meta",
@@ -3655,9 +3862,13 @@
         "game_terms",
         "clothing_extended",
         "final_coverage",
+        "book_vocabulary",
+        "vocab_expansion_2026_01_30",
+        "gap_completion_2026_01_30",
+        "creature_region_nouns",
         "final_push"
       ],
-      "entries": 520
+      "entries": 616
     },
     "base_items.json": {
       "categories": [
@@ -3720,6 +3931,7 @@
         "_meta",
         "damage",
         "state",
+        "age_behavior",
         "size",
         "appearance",
         "enchantment",
@@ -3728,9 +3940,10 @@
         "dynamic_mods",
         "hyphenated",
         "tinker_mods",
-        "misc"
+        "misc",
+        "vocab_expansion_2026_01_30"
       ],
-      "entries": 250
+      "entries": 1028
     },
     "goatfolk.json": {
       "categories": [
@@ -4680,6 +4893,13 @@
         "Desalination Pill"
       ],
       "entries": 89
+    },
+    "food_remaining.json": {
+      "categories": [
+        "_meta",
+        "foods"
+      ],
+      "entries": 25
     },
     "spears.json": {
       "categories": [

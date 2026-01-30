@@ -1,0 +1,32 @@
+file: Scripts/02_Patches/20_Objects/V2/Patterns/OfPatternTranslator.cs
+lines: 159
+created: 2026-01-26
+
+why: |
+  "X of Y" 패턴을 한국어 어순 "Y의 X"로 변환.
+  예: "sandals of the river-wives" → "강 아내들의 샌들"
+
+do_not_simplify:
+  - three_tier_lookup: |
+      Lines 43-71: of_patterns 3단계 조회 순서 (full_with_the → full → element_only).
+      순서 변경 시 "of the X" vs "of X" 우선순위 깨짐.
+  - suffix_의_append: |
+      Line 59,70: 부분 매칭 시 "의" 자동 추가.
+      이미 "의"가 포함된 값과 미포함 값을 구분해야 함.
+  - strip_before_match: |
+      Line 32: ColorTagProcessor.Strip() 반드시 먼저 호출.
+      태그가 있는 상태로 regex 매칭하면 실패.
+  - dictionary_iteration_order: |
+      Lines 100-125: BaseNouns → Prefixes → ColorTagVocab 순서.
+      단어가 여러 사전에 있을 때 우선순위 결정.
+
+depends_on:
+  - ColorTagProcessor.cs (Strip)
+  - ITranslationRepository (OfPatterns, BaseNouns, Prefixes, ColorTagVocab)
+  - IPatternTranslator interface
+
+depended_by:
+  - ObjectTranslatorV2 pipeline (Priority 50)
+
+history:
+  - 2026-01-26: V2 파이프라인 최초 구현
