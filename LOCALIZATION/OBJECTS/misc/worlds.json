@@ -1,0 +1,12 @@
+{
+  "_meta": {
+    "description": "세계 번역 (Worlds.xml)",
+    "version": "1.0.0",
+    "created": "2026-01-30"
+  },
+  "worlds": {
+    "inside": "내부",
+    "the north sheva": "북부 셰바",
+    "thin world": "얇은 세계"
+  }
+}

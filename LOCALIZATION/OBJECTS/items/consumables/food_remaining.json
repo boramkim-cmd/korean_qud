@@ -1,0 +1,31 @@
+{
+  "_meta": {
+    "description": "잔여 미번역 음식 항목 (Foods.xml)",
+    "version": "1.0.0",
+    "created": "2026-01-30"
+  },
+  "foods": {
+    "bone meal": "뼈 가루",
+    "canned have-it-all": "올인원 통조림",
+    "concentrated dreambeard gland paste": "농축 꿈수염 분비샘 반죽",
+    "concentrated flamebeard gland paste": "농축 불꽃수염 분비샘 반죽",
+    "concentrated gallbeard gland paste": "농축 쓸개수염 분비샘 반죽",
+    "concentrated mazebeard gland paste": "농축 미로수염 분비샘 반죽",
+    "concentrated nullbeard gland paste": "농축 허무수염 분비샘 반죽",
+    "concentrated sleetbeard gland paste": "농축 진눈깨비수염 분비샘 반죽",
+    "concentrated stillbeard gland paste": "농축 고요수염 분비샘 반죽",
+    "concentrated tartbeard gland paste": "농축 신맛수염 분비샘 반죽",
+    "congealed blaze": "응고된 불꽃",
+    "congealed hulk honey": "응고된 헐크 꿀",
+    "congealed love": "응고된 사랑",
+    "congealed rubbergum": "응고된 고무껌",
+    "congealed salve": "응고된 연고",
+    "congealed shade oil": "응고된 그늘기름",
+    "congealed skulk": "응고된 잠행",
+    "croc jerky": "악어 육포",
+    "crusty loaf": "딱딱한 빵",
+    "dream smoke": "꿈 연기",
+    "drop of nectar": "넥타르 한 방울",
+    "soul curd": "영혼 커드"
+  }
+}

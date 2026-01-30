@@ -1,0 +1,21 @@
+{
+  "_meta": {
+    "description": "위젯 오브젝트 번역 (Widgets.xml)",
+    "version": "1.0.0",
+    "created": "2026-01-30"
+  },
+  "widgets": {
+    "arsplice hyphae": "아스플라이스 균사",
+    "coral polyp": "산호 폴립",
+    "hut": "오두막",
+    "known modifications": "알려진 개조",
+    "machine press": "기계 프레스",
+    "medical bay": "의료실",
+    "palladium strut": "팔라듐 버팀대",
+    "palladium strut with coral growth": "산호가 자란 팔라듐 버팀대",
+    "tent": "천막",
+    "village mill": "마을 방앗간",
+    "watervine patch": "수초 밭",
+    "workshop": "작업장"
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "_meta": {
+    "description": "위시 커맨드 번역 (WishCommands.xml)",
+    "version": "1.0.0",
+    "created": "2026-01-30"
+  },
+  "wish_commands": {
+    "calm creatures": "생물 진정시키기",
+    "cure fungal infection": "균류 감염 치료",
+    "fast-forward to tomb of the eaters": "먹는 자들의 무덤으로 빠르게 이동",
+    "gain 25,000 xp": "경험치 25,000 획득",
+    "spawn a can of spray-a-brain": "스프레이-어-브레인 캔 생성",
+    "spawn a dreamcrungle": "드림크런글 생성",
+    "spawn a floating glowsphere": "떠다니는 발광구 생성",
+    "spawn an ubernostrum tonic (regrows limbs)": "우버노스트럼 토닉 생성 (사지 재생)",
+    "spawn rare liquids": "희귀 액체 생성",
+    "swap bodies (choose direction after wish)": "신체 교환 (소원 후 방향 선택)",
+    "switch to roleplay mode (checkpointing at settlements)": "롤플레이 모드 전환 (정착지 체크포인트)",
+    "toggle godmode": "갓모드 전환",
+    "wish for something specific": "특정 소원 빌기"
+  }
+}

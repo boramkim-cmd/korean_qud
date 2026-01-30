@@ -671,6 +671,35 @@
     "ribbons": "리본"
   },
 
+  "gap_completion_2026_01_30": {
+    "_comment": "미번역 완성 - 누락 명사 추가",
+    "baron": "남작",
+    "cactus": "선인장",
+    "kudu": "쿠두",
+    "moa": "모아",
+    "zebra": "얼룩말",
+    "consortium": "컨소시엄"
+  },
+
+  "creature_region_nouns": {
+    "_comment": "CreatureRegionSpice 지역 명사 (HistorySpice.json)",
+    "marshdweller": "습지민",
+    "brinestalker": "염수추적자",
+    "lilyeater": "백합포식자",
+    "marsheater": "습지포식자",
+    "mudeater": "진흙포식자",
+    "gorgedweller": "협곡민",
+    "shale-eater": "셰일포식자",
+    "cliffling": "절벽쟁이",
+    "sloper": "경사지기",
+    "erosionist": "침식자",
+    "lime-eater": "석회포식자",
+    "hilldweller": "언덕민",
+    "sunbaker": "태양구이",
+    "stone-eater": "돌포식자",
+    "hillchild": "언덕아이"
+  },
+
   "final_push": {
     "_comment": "마지막 커버리지 확장",
     "rate": "비율",

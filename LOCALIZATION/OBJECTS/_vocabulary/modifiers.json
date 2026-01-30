@@ -1034,6 +1034,26 @@
     "communication": "통신",
     "cure": "치료",
     "open": "열린",
-    "brick": "벽돌"
+    "brick": "벽돌",
+    "blooming": "꽃피는",
+    "shading": "그늘진",
+    "spiny": "가시 돋친",
+
+    "_comment_creature_region_adj": "CreatureRegionSpice 지역 형용사 (HistorySpice.json)",
+    "marsh": "습지",
+    "brine": "염수",
+    "lily": "백합",
+    "glade": "빈터",
+    "mud": "진흙",
+    "saltwater": "소금물",
+    "sedge": "사초",
+    "canyon": "협곡",
+    "trench": "도랑",
+    "valley": "골짜기",
+    "cliff": "절벽",
+    "gorge": "협곡",
+    "hill": "언덕",
+    "mound": "구릉",
+    "knoll": "언덕"
   }
 }

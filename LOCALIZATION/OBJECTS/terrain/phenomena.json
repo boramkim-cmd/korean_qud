@@ -1,0 +1,28 @@
+{
+  "_meta": {
+    "description": "물리 현상 번역 (PhysicalPhenomena.xml)",
+    "version": "1.0.0",
+    "created": "2026-01-30"
+  },
+  "phenomena": {
+    "confusion gas": "혼란 가스",
+    "corrosive gas": "부식성 가스",
+    "cryogenic mist": "극저온 안개",
+    "empty space": "빈 공간",
+    "freezing mist": "동결 안개",
+    "fungal spores": "균류 포자",
+    "glitter dust": "반짝이 먼지",
+    "kindled flame": "피워진 불꽃",
+    "miasma": "독기",
+    "normality field": "정상성 장",
+    "normality gas": "정상성 가스",
+    "osseous ash": "뼈 재",
+    "pool": "웅덩이",
+    "scalding steam": "뜨거운 증기",
+    "shimmering heat": "아지랑이",
+    "shimmering sphere": "빛나는 구체",
+    "sleep gas": "수면 가스",
+    "steam": "증기",
+    "stun gas": "기절 가스"
+  }
+}

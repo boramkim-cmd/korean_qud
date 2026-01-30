@@ -1,0 +1,28 @@
+{
+  "_meta": {
+    "description": "데이터/미확인 오브젝트 번역 (Data.xml)",
+    "version": "1.0.0",
+    "created": "2026-01-30"
+  },
+  "data_objects": {
+    "bizarre contraption": "기이한 장치",
+    "cobalt tube": "코발트 튜브",
+    "gold-flecked tube": "금박 튜브",
+    "jewelry": "장신구",
+    "milky tube": "유백색 튜브",
+    "mossy tube": "이끼 낀 튜브",
+    "muddy tube": "흙투성이 튜브",
+    "odd trinket": "이상한 장식품",
+    "platinum tube": "백금 튜브",
+    "rosey tube": "장밋빛 튜브",
+    "smokey tube": "연기빛 튜브",
+    "strange furniture": "이상한 가구",
+    "strange piece of meat": "이상한 고기 조각",
+    "strange plant": "이상한 식물",
+    "strange tubes": "이상한 튜브들",
+    "tool": "도구",
+    "turquoise tube": "청록색 튜브",
+    "violet tube": "보라색 튜브",
+    "weird artifact": "기이한 유물"
+  }
+}
