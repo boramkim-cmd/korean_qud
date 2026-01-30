@@ -1,5 +1,5 @@
 {
-  "generated": "2026-01-30 12:03:14",
+  "generated": "2026-01-30 13:05:17",
   "scripts": {
     "Scripts/99_Utils/99_00_03_StructureTranslator.cs": {
       "classification": "Util",
@@ -1355,7 +1355,7 @@
     },
     "test_object_translator.py": {
       "type": "script",
-      "size": 45056
+      "size": 45013
     },
     "extract_all_xml.py": {
       "type": "script",
@@ -1395,12 +1395,12 @@
     },
     "build_optimized.py": {
       "type": "script",
-      "size": 12979
+      "size": 13007
     }
   },
   "docs": {
     "05_CHANGELOG.md": {
-      "modified": "2026-01-27"
+      "modified": "2026-01-30"
     },
     "01_ARCHITECTURE.md": {
       "modified": "2026-01-25"
@@ -1409,7 +1409,7 @@
       "modified": "2026-01-27"
     },
     "00_CONTEXT.md": {
-      "modified": "2026-01-27"
+      "modified": "2026-01-30"
     },
     "03_DATA.md": {
       "modified": "2026-01-25"
@@ -1418,10 +1418,10 @@
       "modified": "2026-01-25"
     },
     "01_CORE_PROJECT_INDEX.md": {
-      "modified": "2026-01-27"
+      "modified": "2026-01-30"
     },
     "02_CORE_QUICK_REFERENCE.md": {
-      "modified": "2026-01-27"
+      "modified": "2026-01-30"
     },
     "04_TODO.md": {
       "modified": "2026-01-30"
@@ -1554,7 +1554,7 @@
         "Mover Rail",
         "Mover Stop"
       ],
-      "entries": 120
+      "entries": 121
     },
     "_compound_translations.json": {
       "categories": [
@@ -1573,7 +1573,7 @@
         "worldterrain",
         "zoneterrain"
       ],
-      "entries": 1400
+      "entries": 1401
     },
     "_template_variables.json": {
       "categories": [
@@ -1582,14 +1582,14 @@
         "summary",
         "usage_in_display_names"
       ],
-      "entries": 19
+      "entries": 20
     },
     "_manual_translations.json": {
       "categories": [
         "_meta",
         "translations"
       ],
-      "entries": 531
+      "entries": 532
     },
     "_suffixes.json": {
       "categories": [
@@ -1600,14 +1600,14 @@
         "body_parts",
         "part_suffixes"
       ],
-      "entries": 225
+      "entries": 226
     },
     "widgets.json": {
       "categories": [
         "_meta",
         "widgets"
       ],
-      "entries": 15
+      "entries": 16
     },
     "cybernetics.json": {
       "categories": [
@@ -1621,7 +1621,7 @@
         "Giant Hands",
         "Parabolic Muscular Subroutine"
       ],
-      "entries": 60
+      "entries": 61
     },
     "messages.json": {
       "categories": [
@@ -1634,14 +1634,14 @@
         "interaction",
         "system"
       ],
-      "entries": 71
+      "entries": 72
     },
     "activated_abilities.json": {
       "categories": [
         "_meta",
         "ability_labels"
       ],
-      "entries": 51
+      "entries": 52
     },
     "body_parts.json": {
       "categories": [
@@ -1693,7 +1693,7 @@
         "modifiers_final",
         "vocab_expansion_2026_01_30"
       ],
-      "entries": 438
+      "entries": 439
     },
     "01_chest.json": {
       "categories": [
@@ -1724,7 +1724,7 @@
         "_meta",
         "categories"
       ],
-      "entries": 6
+      "entries": 7
     },
     "Wayfaring.json": {
       "categories": [
@@ -3585,14 +3585,14 @@
         "_meta",
         "data_objects"
       ],
-      "entries": 22
+      "entries": 23
     },
     "worlds.json": {
       "categories": [
         "_meta",
         "worlds"
       ],
-      "entries": 6
+      "entries": 7
     },
     "decoration.json": {
       "categories": [
@@ -3610,7 +3610,7 @@
         "Tombstone",
         "Sarcophagus"
       ],
-      "entries": 78
+      "entries": 79
     },
     "misc.json": {
       "categories": [
@@ -3625,7 +3625,7 @@
         "Merchant's Token",
         "Minstrel's Token"
       ],
-      "entries": 67
+      "entries": 68
     },
     "tech.json": {
       "categories": [
@@ -3642,7 +3642,7 @@
         "Data Terminal",
         "Mainframe Panel"
       ],
-      "entries": 72
+      "entries": 73
     },
     "containers.json": {
       "categories": [
@@ -3658,7 +3658,7 @@
         "Cabinet",
         "Shelf"
       ],
-      "entries": 66
+      "entries": 67
     },
     "lighting.json": {
       "categories": [
@@ -3674,7 +3674,7 @@
         "Holographic Light",
         "Bioluminescent Panel"
       ],
-      "entries": 66
+      "entries": 67
     },
     "doors.json": {
       "categories": [
@@ -3695,7 +3695,7 @@
         "Blue Security Door",
         "Purple Security Door"
       ],
-      "entries": 86
+      "entries": 87
     },
     "zone.json": {
       "categories": [
@@ -3751,14 +3751,14 @@
         "Stone Bridge",
         "Metal Bridge"
       ],
-      "entries": 206
+      "entries": 207
     },
     "phenomena.json": {
       "categories": [
         "_meta",
         "phenomena"
       ],
-      "entries": 22
+      "entries": 23
     },
     "world.json": {
       "categories": [
@@ -3783,7 +3783,7 @@
         "TerrainPallidReef",
         "TerrainAsphaltMines"
       ],
-      "entries": 106
+      "entries": 107
     },
     "walls.json": {
       "categories": [
@@ -3820,7 +3820,7 @@
         "Fulcrete",
         "Mainframe Wall"
       ],
-      "entries": 132
+      "entries": 133
     },
     "_nouns.json": {
       "categories": [
@@ -3868,7 +3868,7 @@
         "creature_region_nouns",
         "final_push"
       ],
-      "entries": 616
+      "entries": 617
     },
     "base_items.json": {
       "categories": [
@@ -3905,7 +3905,7 @@
         "BaseInjector",
         "BaseFood"
       ],
-      "entries": 34
+      "entries": 35
     },
     "tutorial.json": {
       "categories": [
@@ -3917,14 +3917,14 @@
         "Bear",
         "ClockworkBeetle"
       ],
-      "entries": 21
+      "entries": 22
     },
     "processing.json": {
       "categories": [
         "_meta",
         "processing"
       ],
-      "entries": 7
+      "entries": 8
     },
     "modifiers.json": {
       "categories": [
@@ -3943,7 +3943,7 @@
         "misc",
         "vocab_expansion_2026_01_30"
       ],
-      "entries": 1028
+      "entries": 1025
     },
     "goatfolk.json": {
       "categories": [
@@ -3966,7 +3966,7 @@
         "Goatfolk Hero 0",
         "Goatfolk Hero 1"
       ],
-      "entries": 102
+      "entries": 103
     },
     "snapjaws.json": {
       "categories": [
@@ -3996,7 +3996,7 @@
         "Snapjaw Corpse",
         "Legendary Snapjaw"
       ],
-      "entries": 124
+      "entries": 125
     },
     "naphtaali.json": {
       "categories": [
@@ -4004,14 +4004,14 @@
         "Naphtaali Forager",
         "Naphtaali Hunter"
       ],
-      "entries": 16
+      "entries": 17
     },
     "dromad.json": {
       "categories": [
         "_meta",
         "Dromad"
       ],
-      "entries": 10
+      "entries": 11
     },
     "farmers.json": {
       "categories": [
@@ -4021,7 +4021,7 @@
         "Dromad Merchant",
         "Warden"
       ],
-      "entries": 29
+      "entries": 30
     },
     "seedsprout.json": {
       "categories": [
@@ -4029,7 +4029,7 @@
         "Seedsprout",
         "Elder Seedsprout"
       ],
-      "entries": 17
+      "entries": 18
     },
     "svardym.json": {
       "categories": [
@@ -4039,7 +4039,7 @@
         "Svardym Scavenger",
         "Svardym Junk Shopper"
       ],
-      "entries": 28
+      "entries": 29
     },
     "others.json": {
       "categories": [
@@ -4078,14 +4078,14 @@
         "Urshiib",
         "Urshiib Corpse"
       ],
-      "entries": 180
+      "entries": 181
     },
     "hindren.json": {
       "categories": [
         "_meta",
         "Hindren"
       ],
-      "entries": 10
+      "entries": 11
     },
     "templars.json": {
       "categories": [
@@ -4094,14 +4094,14 @@
         "Putus Templar",
         "Templar Knight"
       ],
-      "entries": 22
+      "entries": 23
     },
     "fungi.json": {
       "categories": [
         "_meta",
         "Luminous Hoarshroom"
       ],
-      "entries": 10
+      "entries": 11
     },
     "vines.json": {
       "categories": [
@@ -4109,7 +4109,7 @@
         "Seed-spitting Vine",
         "Jilted Lover"
       ],
-      "entries": 16
+      "entries": 17
     },
     "joppa.json": {
       "categories": [
@@ -4129,7 +4129,7 @@
         "AppleFarmerDaughter",
         "Mayor Nuntu"
       ],
-      "entries": 86
+      "entries": 87
     },
     "jells.json": {
       "categories": [
@@ -4142,7 +4142,7 @@
         "Black Ooze",
         "Gelatinous Mass"
       ],
-      "entries": 46
+      "entries": 47
     },
     "reptiles.json": {
       "categories": [
@@ -4152,7 +4152,7 @@
         "Salt Kraken",
         "Tongue Tyrant"
       ],
-      "entries": 29
+      "entries": 30
     },
     "birds.json": {
       "categories": [
@@ -4162,14 +4162,14 @@
         "Madpole",
         "Salthopper"
       ],
-      "entries": 29
+      "entries": 30
     },
     "fish.json": {
       "categories": [
         "_meta",
         "Glowfish"
       ],
-      "entries": 10
+      "entries": 11
     },
     "bats.json": {
       "categories": [
@@ -4177,7 +4177,7 @@
         "Bat",
         "Bat Corpse"
       ],
-      "entries": 14
+      "entries": 15
     },
     "mammals.json": {
       "categories": [
@@ -4221,7 +4221,7 @@
         "Bop",
         "Bop Corpse"
       ],
-      "entries": 196
+      "entries": 197
     },
     "cats.json": {
       "categories": [
@@ -4230,7 +4230,7 @@
         "Ray Cat Corpse",
         "Joppa Ray Cat"
       ],
-      "entries": 18
+      "entries": 19
     },
     "spiders.json": {
       "categories": [
@@ -4261,7 +4261,7 @@
         "Scorpiock",
         "Scorpiock Corpse"
       ],
-      "entries": 132
+      "entries": 133
     },
     "crabs.json": {
       "categories": [
@@ -4283,7 +4283,7 @@
         "Albino Crab",
         "Glowing Crab"
       ],
-      "entries": 94
+      "entries": 95
     },
     "hoppers.json": {
       "categories": [
@@ -4303,7 +4303,7 @@
         "Cricket",
         "Mole Cricket"
       ],
-      "entries": 82
+      "entries": 83
     },
     "worms.json": {
       "categories": [
@@ -4333,7 +4333,7 @@
         "Giant Leech",
         "Giant Leech Corpse"
       ],
-      "entries": 130
+      "entries": 131
     },
     "moths.json": {
       "categories": [
@@ -4360,7 +4360,7 @@
         "Hornet Corpse",
         "Firefly"
       ],
-      "entries": 116
+      "entries": 117
     },
     "ants.json": {
       "categories": [
@@ -4382,7 +4382,7 @@
         "Fire Ant Corpse",
         "Giant Ant Corpse"
       ],
-      "entries": 98
+      "entries": 99
     },
     "beetles.json": {
       "categories": [
@@ -4407,7 +4407,7 @@
         "Giant Beetle Corpse",
         "Beetle Larva"
       ],
-      "entries": 108
+      "entries": 109
     },
     "turrets.json": {
       "categories": [
@@ -4417,7 +4417,7 @@
         "Missile Turret",
         "Laser Turret"
       ],
-      "entries": 28
+      "entries": 29
     },
     "drones.json": {
       "categories": [
@@ -4431,7 +4431,7 @@
         "Cherubim",
         "Seraphim"
       ],
-      "entries": 52
+      "entries": 53
     },
     "cells.json": {
       "categories": [
@@ -4445,7 +4445,7 @@
         "Fidget Cell",
         "Biodynamic Cell"
       ],
-      "entries": 60
+      "entries": 61
     },
     "grenades.json": {
       "categories": [
@@ -4507,7 +4507,7 @@
         "Confusion Gas Grenade Mk II",
         "Confusion Gas Grenade Mk III"
       ],
-      "entries": 397
+      "entries": 398
     },
     "relics.json": {
       "categories": [
@@ -4526,7 +4526,7 @@
         "Kah's Loop",
         "Slog's Annunclus"
       ],
-      "entries": 95
+      "entries": 96
     },
     "tools.json": {
       "categories": [
@@ -4540,7 +4540,7 @@
         "Compass Bracelet",
         "Geomagnetic Disc"
       ],
-      "entries": 60
+      "entries": 61
     },
     "books.json": {
       "categories": [
@@ -4552,7 +4552,7 @@
         "Cookbook",
         "HeirloomsOfQud"
       ],
-      "entries": 41
+      "entries": 42
     },
     "hands.json": {
       "categories": [
@@ -4574,7 +4574,7 @@
         "Powered Exoframe Gauntlets",
         "Fingerless Gloves"
       ],
-      "entries": 118
+      "entries": 119
     },
     "head.json": {
       "categories": [
@@ -4600,7 +4600,7 @@
         "Powered Exoframe Helmet",
         "Miner's Helmet"
       ],
-      "entries": 146
+      "entries": 147
     },
     "feet.json": {
       "categories": [
@@ -4625,7 +4625,7 @@
         "Croccasins",
         "Step Sowers"
       ],
-      "entries": 139
+      "entries": 140
     },
     "face.json": {
       "categories": [
@@ -4655,7 +4655,7 @@
         "Mirrorshades",
         "Telescopic Monocle"
       ],
-      "entries": 173
+      "entries": 174
     },
     "back.json": {
       "categories": [
@@ -4679,7 +4679,7 @@
         "Praetorian's Cloak",
         "Panther's Cloak"
       ],
-      "entries": 131
+      "entries": 132
     },
     "body.json": {
       "categories": [
@@ -4707,7 +4707,7 @@
         "Fur Vest",
         "Brigandine"
       ],
-      "entries": 159
+      "entries": 160
     },
     "ammo.json": {
       "categories": [
@@ -4722,7 +4722,7 @@
         "Shotgun Shell",
         "Missile"
       ],
-      "entries": 59
+      "entries": 60
     },
     "food.json": {
       "categories": [
@@ -4860,7 +4860,7 @@
         "Ekuemekiyyen Greens",
         "Defoliant Grenade Mk I"
       ],
-      "entries": 790
+      "entries": 791
     },
     "drinks.json": {
       "categories": [
@@ -4874,7 +4874,7 @@
         "Cider",
         "Wine"
       ],
-      "entries": 60
+      "entries": 61
     },
     "injectors.json": {
       "categories": [
@@ -4892,14 +4892,14 @@
         "Empty Injector",
         "Desalination Pill"
       ],
-      "entries": 89
+      "entries": 90
     },
     "food_remaining.json": {
       "categories": [
         "_meta",
         "foods"
       ],
-      "entries": 25
+      "entries": 26
     },
     "spears.json": {
       "categories": [
@@ -4914,7 +4914,7 @@
         "Glaive",
         "Trident"
       ],
-      "entries": 67
+      "entries": 68
     },
     "axes.json": {
       "categories": [
@@ -4944,7 +4944,7 @@
         "Ari",
         "Yal"
       ],
-      "entries": 174
+      "entries": 175
     },
     "cudgels.json": {
       "categories": [
@@ -4984,7 +4984,7 @@
         "Leather Whip",
         "Stun Whip"
       ],
-      "entries": 243
+      "entries": 244
     },
     "long_blades.json": {
       "categories": [
@@ -5015,7 +5015,7 @@
         "Polluxus",
         "La Jeunesse"
       ],
-      "entries": 180
+      "entries": 181
     },
     "blades.json": {
       "categories": [
@@ -5041,7 +5041,7 @@
         "Gaslight Chisel",
         "Difucila"
       ],
-      "entries": 145
+      "entries": 146
     },
     "bows.json": {
       "categories": [
@@ -5059,7 +5059,7 @@
         "Sleep Dart",
         "Poison Dart"
       ],
-      "entries": 83
+      "entries": 84
     },
     "guns.json": {
       "categories": [
@@ -5091,7 +5091,7 @@
         "Eigenpistol",
         "Lead Slug"
       ],
-      "entries": 186
+      "entries": 187
     },
     "descriptions.json": {
       "categories": [

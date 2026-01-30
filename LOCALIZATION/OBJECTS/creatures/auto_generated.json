@@ -1,0 +1,975 @@
+{
+  "_meta": {
+    "description": "Auto-generated creature translations from XML blueprints",
+    "description_ko": "XML 블루프린트에서 자동 생성된 크리처 번역",
+    "version": "1.0",
+    "created": "2026-01-30",
+    "source": "tools/generate_missing_translations.py",
+    "note": "Empty values need manual translation"
+  },
+  "Agolgot": {
+    "names": {
+      "Agolgot": "아골곳"
+    }
+  },
+  "Alchemist": {
+    "names": {
+      "alchemist": "연금술사"
+    }
+  },
+  "Animal": {
+    "names": {
+      "[Animal]": ""
+    }
+  },
+  "Apothecary": {
+    "names": {
+      "apothecary": "약제사"
+    }
+  },
+  "AppleMerchant": {
+    "names": {
+      "apple farmer": "사과 농부"
+    }
+  },
+  "Armorer": {
+    "names": {
+      "armorer": "갑옷장이"
+    }
+  },
+  "Astral Tabby": {
+    "names": {
+      "astral tabby": "성계 얼룩고양이"
+    }
+  },
+  "Barathrum": {
+    "names": {
+      "Barathrum": "바라스룸"
+    }
+  },
+  "Barathrumite Arconaut": {
+    "names": {
+      "arconaut": ""
+    }
+  },
+  "Barathrumite Tinker": {
+    "names": {
+      "tinker": "땜장이"
+    }
+  },
+  "BaseArconaut": {
+    "names": {
+      "arconaut": ""
+    }
+  },
+  "BaseBiomech": {
+    "names": {
+      "[child]": ""
+    }
+  },
+  "BaseBreather": {
+    "names": {
+      "breathbeard": "숨결수염"
+    }
+  },
+  "BaseConservator": {
+    "names": {
+      "conservator": "보존관"
+    }
+  },
+  "BaseFarmer": {
+    "names": {
+      "[farmer]": ""
+    }
+  },
+  "BaseGyreWight": {
+    "names": {
+      "gyre wight": "자이어 와이트"
+    }
+  },
+  "BaseHindren": {
+    "names": {
+      "[base hindren]": ""
+    }
+  },
+  "BaseMiner": {
+    "names": {
+      "miner": "광부"
+    }
+  },
+  "BaseMopango": {
+    "names": {
+      "[base mopango]": ""
+    }
+  },
+  "BaseNaphtaali": {
+    "names": {
+      "Naphtaali": "나프탈리"
+    }
+  },
+  "BaseNephal": {
+    "names": {
+      "nephal": "네팔"
+    }
+  },
+  "BaseNest": {
+    "names": {
+      "[Nest]": ""
+    }
+  },
+  "BaseSlugsnout": {
+    "names": {
+      "[slugsnout]": ""
+    }
+  },
+  "BaseSlynth": {
+    "names": {
+      "slynth": "슬린스"
+    }
+  },
+  "BaseUrchin": {
+    "names": {
+      "[urchin]": ""
+    }
+  },
+  "Beekeeper": {
+    "names": {
+      "beekeeper": "양봉가"
+    }
+  },
+  "Bethsaida": {
+    "names": {
+      "Bethsaida": "벳세다"
+    }
+  },
+  "Black Jel": {
+    "names": {
+      "black jell": ""
+    }
+  },
+  "Bloated Leech": {
+    "names": {
+      "bloated leech": ""
+    }
+  },
+  "Bone Worm": {
+    "names": {
+      "bone worm": "뼈 벌레"
+    }
+  },
+  "Bookbinder": {
+    "names": {
+      "bookbinder": "제본사"
+    }
+  },
+  "Boosterbot": {
+    "names": {
+      "boosterbot": ""
+    }
+  },
+  "ChainLaserEmplacement": {
+    "names": {
+      "chain laser emplacement": "사슬 레이저 배치"
+    }
+  },
+  "ChaingunTurret": {
+    "names": {
+      "chaingun turret": ""
+    }
+  },
+  "Chef": {
+    "names": {
+      "chef": "주방장"
+    }
+  },
+  "Chiliad Creature Antelopes": {
+    "names": {
+      "=creatureRegionAdjective= kudu": ""
+    }
+  },
+  "Chiliad Creature Apes": {
+    "names": {
+      "=creatureRegionAdjective= ape": ""
+    }
+  },
+  "Chiliad Creature Arachnids": {
+    "names": {
+      "=creatureRegionAdjective= scorpion": ""
+    }
+  },
+  "Chiliad Creature Baboons": {
+    "names": {
+      "baboon =creatureRegionNoun=": ""
+    }
+  },
+  "Chiliad Creature Baetyls": {
+    "names": {
+      "=creatureRegionAdjective= baetyl": ""
+    }
+  },
+  "Chiliad Creature Barathrumites": {
+    "names": {
+      "urshiib =creatureRegionNoun=": ""
+    }
+  },
+  "Chiliad Creature Bears": {
+    "names": {
+      "=creatureRegionAdjective= bear": ""
+    }
+  },
+  "Chiliad Creature Birds": {
+    "names": {
+      "=creatureRegionAdjective= moa": ""
+    }
+  },
+  "Chiliad Creature Cannibals": {
+    "names": {
+      "=creatureRegionAdjective= cannibal": ""
+    }
+  },
+  "Chiliad Creature Cats": {
+    "names": {
+      "=creatureRegionAdjective= cat": ""
+    }
+  },
+  "Chiliad Creature Chavvah": {
+    "names": {
+      "=creatureRegionAdjective= chime": ""
+    }
+  },
+  "Chiliad Creature Consortium": {
+    "names": {
+      "Consortium =creatureRegionNoun=": ""
+    }
+  },
+  "Chiliad Creature Crabs": {
+    "names": {
+      "=creatureRegionAdjective= crab": ""
+    }
+  },
+  "Chiliad Creature Cragmensch": {
+    "names": {
+      "cragmensch =creatureRegionNoun=": ""
+    }
+  },
+  "Chiliad Creature Daughters": {
+    "names": {
+      "=creatureRegionAdjective= daughter": ""
+    }
+  },
+  "Chiliad Creature Dogs": {
+    "names": {
+      "=creatureRegionAdjective= dog": ""
+    }
+  },
+  "Chiliad Creature Dromads": {
+    "names": {
+      "dromad =creatureRegionNoun=": ""
+    }
+  },
+  "Chiliad Creature Entropic": {
+    "names": {
+      "entropic =creatureRegionNoun=": ""
+    }
+  },
+  "Chiliad Creature Equines": {
+    "names": {
+      "=creatureRegionAdjective= zebra": ""
+    }
+  },
+  "Chiliad Creature Farmers": {
+    "names": {
+      "=creatureRegionAdjective= farmer": ""
+    }
+  },
+  "Chiliad Creature Fish": {
+    "names": {
+      "=creatureRegionAdjective= fish": ""
+    }
+  },
+  "Chiliad Creature Flowers": {
+    "names": {
+      "blooming =creatureRegionNoun=": ""
+    }
+  },
+  "Chiliad Creature Frogs": {
+    "names": {
+      "=creatureRegionAdjective= frog": ""
+    }
+  },
+  "Chiliad Creature Fungi": {
+    "names": {
+      "=creatureRegionAdjective= fungus": ""
+    }
+  },
+  "Chiliad Creature Girsh": {
+    "names": {
+      "=creatureRegionAdjective= Girshling": ""
+    }
+  },
+  "Chiliad Creature Goatfolk": {
+    "names": {
+      "goatfolk =creatureRegionNoun=": ""
+    }
+  },
+  "Chiliad Creature Gyre Wights": {
+    "names": {
+      "=creatureRegionNoun= of the Gyre": ""
+    }
+  },
+  "Chiliad Creature Hermits": {
+    "names": {
+      "=creatureRegionAdjective= hermit": ""
+    }
+  },
+  "Chiliad Creature Hindren": {
+    "names": {
+      "hindren =creatureRegionNoun=": ""
+    }
+  },
+  "Chiliad Creature Insects": {
+    "names": {
+      "=creatureRegionAdjective= fly": ""
+    }
+  },
+  "Chiliad Creature Issachari": {
+    "names": {
+      "Issachari =creatureRegionNoun=": ""
+    }
+  },
+  "Chiliad Creature Mechanimists": {
+    "names": {
+      "Mechanimist =creatureRegionNoun=": ""
+    }
+  },
+  "Chiliad Creature Merchants": {
+    "names": {
+      "=creatureRegionAdjective= trader": ""
+    }
+  },
+  "Chiliad Creature Mollusks": {
+    "names": {
+      "=creatureRegionAdjective= clam": ""
+    }
+  },
+  "Chiliad Creature Mopango": {
+    "names": {
+      "mopango =creatureRegionNoun=": ""
+    }
+  },
+  "Chiliad Creature Naphtaali": {
+    "names": {
+      "Naphtaali =creatureRegionNoun=": ""
+    }
+  },
+  "Chiliad Creature Oozes": {
+    "names": {
+      "=creatureRegionAdjective= ooze": ""
+    }
+  },
+  "Chiliad Creature Pariahs": {
+    "names": {
+      "=creatureRegionNoun= and pariah to =subject.possessive= people": ""
+    }
+  },
+  "Chiliad Creature Prey": {
+    "names": {
+      "=creatureRegionAdjective= goat": ""
+    }
+  },
+  "Chiliad Creature Robots": {
+    "names": {
+      "machine =creatureRegionNoun=": ""
+    }
+  },
+  "Chiliad Creature Roots": {
+    "names": {
+      "=creatureRegionAdjective= root": ""
+    }
+  },
+  "Chiliad Creature Seekers": {
+    "names": {
+      "=creatureRegionNoun= of the Sightless Way": ""
+    }
+  },
+  "Chiliad Creature Snapjaws": {
+    "names": {
+      "snapjaw =creatureRegionNoun=": ""
+    }
+  },
+  "Chiliad Creature Strangers": {
+    "names": {
+      "mysterious =creatureRegionNoun=": ""
+    }
+  },
+  "Chiliad Creature Succulents": {
+    "names": {
+      "=creatureRegionAdjective= cactus": ""
+    }
+  },
+  "Chiliad Creature Svardym": {
+    "names": {
+      "svardym =creatureRegionNoun=": ""
+    }
+  },
+  "Chiliad Creature Swine": {
+    "names": {
+      "=creatureRegionAdjective= pig": ""
+    }
+  },
+  "Chiliad Creature Templar": {
+    "names": {
+      "Templar =creatureRegionNoun=": ""
+    }
+  },
+  "Chiliad Creature Tortoises": {
+    "names": {
+      "=creatureRegionAdjective= tortoise": ""
+    }
+  },
+  "Chiliad Creature Trees": {
+    "names": {
+      "shading =creatureRegionNoun=": ""
+    }
+  },
+  "Chiliad Creature Trolls": {
+    "names": {
+      "troll =creatureRegionNoun=": ""
+    }
+  },
+  "Chiliad Creature Unshelled Reptiles": {
+    "names": {
+      "=creatureRegionAdjective= lizard": ""
+    }
+  },
+  "Chiliad Creature Urchins": {
+    "names": {
+      "spiny =creatureRegionNoun=": ""
+    }
+  },
+  "Chiliad Creature Vines": {
+    "names": {
+      "=creatureRegionAdjective= vine": ""
+    }
+  },
+  "Chiliad Creature Wardens": {
+    "names": {
+      "=creatureRegionAdjective= warden": ""
+    }
+  },
+  "Chiliad Creature Water": {
+    "names": {
+      "=creatureRegionAdjective= baron": ""
+    }
+  },
+  "Chiliad Creature Winged Mammals": {
+    "names": {
+      "=creatureRegionAdjective= bat": ""
+    }
+  },
+  "Chiliad Creature Worms": {
+    "names": {
+      "=creatureRegionAdjective= worm": ""
+    }
+  },
+  "Chitinous Puma": {
+    "names": {
+      "chitinous puma": "키틴질 퓨마"
+    }
+  },
+  "Chromeling": {
+    "names": {
+      "chromeling": "크롬링"
+    }
+  },
+  "Cloneling": {
+    "names": {
+      "cloneling": ""
+    }
+  },
+  "ConfusionBreather": {
+    "names": {
+      "mazebeard": "미로수염"
+    }
+  },
+  "Conservator": {
+    "names": {
+      "conservator": "보존관"
+    }
+  },
+  "CorrosiveBreather": {
+    "names": {
+      "tartbeard": "타르수염"
+    }
+  },
+  "Cragmensch": {
+    "names": {
+      "cragmensch": "바위인"
+    }
+  },
+  "Creature": {
+    "names": {
+      "[Creature]": ""
+    }
+  },
+  "Croc": {
+    "names": {
+      "croc": "악어"
+    }
+  },
+  "Crypt Ferret": {
+    "names": {
+      "crypt ferret": "지하묘 족제비"
+    }
+  },
+  "Dagasha": {
+    "names": {
+      "Dagasha": "다가샤"
+    }
+  },
+  "Dream Wren": {
+    "names": {
+      "dream wren": "꿈굴뚝새"
+    }
+  },
+  "Dreamcrungle": {
+    "names": {
+      "dreamcrungle": "드림크런글"
+    }
+  },
+  "Drillbot": {
+    "names": {
+      "drillbot": ""
+    }
+  },
+  "DromadTrader_Village0": {
+    "names": {
+      "[dromad merchant]": ""
+    }
+  },
+  "Feral Lah": {
+    "names": {
+      "feral lah": "야생 라"
+    }
+  },
+  "Feral Lah Pod": {
+    "names": {
+      "tumbling pod": "굴러다니는 포드"
+    }
+  },
+  "FireBreather": {
+    "names": {
+      "flamebeard": "불수염"
+    }
+  },
+  "FungusPuffer": {
+    "names": {
+      "brooding puff": "부화 중인 송이"
+    }
+  },
+  "FungusPuffer1": {
+    "names": {
+      "brooding goldpuff": "부화 중인 황금송이"
+    }
+  },
+  "FungusPuffer2": {
+    "names": {
+      "brooding azurepuff": "부화 중인 파란송이"
+    }
+  },
+  "FungusPuffer3": {
+    "names": {
+      "brooding rosepuff": "부화 중인 장미송이"
+    }
+  },
+  "FungusPuffer4": {
+    "names": {
+      "brooding jadepuff": "부화 중인 옥송이"
+    }
+  },
+  "Gamma Moth": {
+    "names": {
+      "gamma moth": "감마나방"
+    }
+  },
+  "Gemcutter": {
+    "names": {
+      "gemcutter": "보석세공사"
+    }
+  },
+  "Glittermensch": {
+    "names": {
+      "glittermensch": "반짝인"
+    }
+  },
+  "Glover": {
+    "names": {
+      "glover": "장갑장이"
+    }
+  },
+  "Glowcrow": {
+    "names": {
+      "glowcrow": "발광까마귀"
+    }
+  },
+  "Glowpad": {
+    "names": {
+      "glowpad": "발광패드"
+    }
+  },
+  "GolgothaSlog": {
+    "names": {
+      "Slog": "슬로그"
+    }
+  },
+  "Great Magma Crab": {
+    "names": {
+      "great magma crab": "대형 마그마 게"
+    }
+  },
+  "Great Saltback": {
+    "names": {
+      "great saltback": "대형 소금등"
+    }
+  },
+  "Grenadier": {
+    "names": {
+      "grenadier": "척탄병"
+    }
+  },
+  "Gunsmith": {
+    "names": {
+      "gunsmith": "총포장이"
+    }
+  },
+  "Hatter": {
+    "names": {
+      "hatter": "모자장이"
+    }
+  },
+  "Honey Skunk": {
+    "names": {
+      "honey skunk": "꿀스컹크"
+    }
+  },
+  "HumanApothecary": {
+    "names": {
+      "[human apothecary]": ""
+    }
+  },
+  "HumanTinker": {
+    "names": {
+      "[human tinker]": ""
+    }
+  },
+  "Hyrkhound": {
+    "names": {
+      "hyrkhound": ""
+    }
+  },
+  "Ice frog": {
+    "names": {
+      "ice frog": "얼음 개구리"
+    }
+  },
+  "IceBreather": {
+    "names": {
+      "sleetbeard": "진눈깨비수염"
+    }
+  },
+  "Ickslug": {
+    "names": {
+      "ickslug": "역겨운민달팽이"
+    }
+  },
+  "Infiltrator": {
+    "names": {
+      "infiltrator": "침투자"
+    }
+  },
+  "Interdictor": {
+    "names": {
+      "interdictor": "차단자"
+    }
+  },
+  "Jeweler": {
+    "names": {
+      "jeweler": "보석상"
+    }
+  },
+  "Kah": {
+    "names": {
+      "Kah": "카"
+    }
+  },
+  "Kaleidoslug": {
+    "names": {
+      "{{kaleidoslug|kaleidoslug}}": ""
+    }
+  },
+  "Lithofex": {
+    "names": {
+      "lithofex": "리토펙스"
+    }
+  },
+  "Mechanimist Choraler": {
+    "names": {
+      "Mechanimist choraler": "메카니미스트 합창자"
+    }
+  },
+  "Memory Eater": {
+    "names": {
+      "memory eater": "기억포식자"
+    }
+  },
+  "Mercurial": {
+    "names": {
+      "{{mercurial|mercurial}}": ""
+    }
+  },
+  "Microturret": {
+    "names": {
+      "microturret": ""
+    }
+  },
+  "Mimic": {
+    "names": {
+      "mimic": "미믹"
+    }
+  },
+  "Mirror Bug": {
+    "names": {
+      "mirror bug": "거울벌레"
+    }
+  },
+  "Monad": {
+    "names": {
+      "monad": "모나드"
+    }
+  },
+  "Mover": {
+    "names": {
+      "mover": "이동기"
+    }
+  },
+  "MutatedFungus": {
+    "names": {
+      "[Mutated Fungus]": ""
+    }
+  },
+  "MutatedPlant": {
+    "names": {
+      "[Mutated Plant]": ""
+    }
+  },
+  "Nacham": {
+    "names": {
+      "Nacham": "나참"
+    }
+  },
+  "Newfather": {
+    "names": {
+      "newfather": "새아버지"
+    }
+  },
+  "NormalityBreather": {
+    "names": {
+      "nullbeard": "허무수염"
+    }
+  },
+  "Plant Turret": {
+    "names": {
+      "spitting plant": "뱉는 식물"
+    }
+  },
+  "Plasma Jelly": {
+    "names": {
+      "plasma jelly": "플라즈마 젤리"
+    }
+  },
+  "Plastronoid": {
+    "names": {
+      "plastronoid": "플라스트로노이드"
+    }
+  },
+  "Plated Chromeling": {
+    "names": {
+      "plated chromeling": ""
+    }
+  },
+  "PoisonBreather": {
+    "names": {
+      "gallbeard": "담즙수염"
+    }
+  },
+  "Prickler": {
+    "names": {
+      "prickler": ""
+    }
+  },
+  "Purple Jell": {
+    "names": {
+      "purple jell": ""
+    }
+  },
+  "Qas": {
+    "names": {
+      "Qas": "카스"
+    }
+  },
+  "Qon": {
+    "names": {
+      "Qon": "콘"
+    }
+  },
+  "Qudzu": {
+    "names": {
+      "qudzu": "쿠드주"
+    }
+  },
+  "Quillipede": {
+    "names": {
+      "quillipede": "가시지네"
+    }
+  },
+  "Red Death Dacca": {
+    "names": {
+      "red death dacca": "빨간 죽음 다카"
+    }
+  },
+  "Red Jell": {
+    "names": {
+      "red jell": ""
+    }
+  },
+  "Rermadon": {
+    "names": {
+      "Rermadon": "레르마돈"
+    }
+  },
+  "RifleTurret": {
+    "names": {
+      "rifle turret": "소총 터렛"
+    }
+  },
+  "RocketTurret": {
+    "names": {
+      "rocket turret": "로켓 터렛"
+    }
+  },
+  "Rustacean": {
+    "names": {
+      "rustacean": "녹갑각류"
+    }
+  },
+  "Salamander": {
+    "names": {
+      "salamander": "도롱뇽"
+    }
+  },
+  "Sawhander": {
+    "names": {
+      "saw-hander": ""
+    }
+  },
+  "Scrapbot": {
+    "names": {
+      "scrap shoveler": "고철 삽군"
+    }
+  },
+  "Scrapbot Mechanimist": {
+    "names": {
+      "reprogrammed scrap shoveler": "재프로그래밍된 고철 삽군"
+    }
+  },
+  "SecurityTurret": {
+    "names": {
+      "musket turret": "머스킷 터렛"
+    }
+  },
+  "Shem -1": {
+    "names": {
+      "Shem -1": ""
+    }
+  },
+  "Shugruith": {
+    "names": {
+      "Shug'ruith": "슈그루이스"
+    }
+  },
+  "SleepBreather": {
+    "names": {
+      "dreambeard": "꿈수염"
+    }
+  },
+  "Slugsnout": {
+    "names": {
+      "slugsnout": "민달팽이주둥이"
+    }
+  },
+  "Slumberling": {
+    "names": {
+      "slumberling": "졸음이"
+    }
+  },
+  "Snailmother": {
+    "names": {
+      "snailmother": "달팽이어미"
+    }
+  },
+  "Snapjaw Troglodyte": {
+    "names": {
+      "[snapjaw troglodyte]": ""
+    }
+  },
+  "Snapjaw Warrior": {
+    "names": {
+      "snapjaw warrior": "스냅조 전사"
+    }
+  },
+  "SoupSludge": {
+    "names": {
+      "soupy sludge": "걸쭉한 슬러지"
+    }
+  },
+  "StunBreather": {
+    "names": {
+      "stillbeard": "고요수염"
+    }
+  },
+  "TauNoLonger": {
+    "names": {
+      "Tau-No-Longer": ""
+    }
+  },
+  "TauWanderer": {
+    "names": {
+      "Wandering Tau": ""
+    }
+  },
+  "Traipsing Mortar": {
+    "names": {
+      "traipsing mortar": "배회하는 박격포"
+    }
+  },
+  "Unimax": {
+    "names": {
+      "unimax": "유니맥스"
+    }
+  },
+  "Vaam": {
+    "names": {
+      "Va'am": "바암"
+    }
+  },
+  "Worm of the Earth": {
+    "names": {
+      "worm of the earth": "대지의 벌레"
+    }
+  },
+  "Zero Jell": {
+    "names": {
+      "zero jell": ""
+    }
+  }
+}
