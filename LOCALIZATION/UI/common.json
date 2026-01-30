@@ -218,6 +218,15 @@
     "Tools": "도구",
     "Miscellaneous": "기타",
     "Junk": "잡동사니",
-    "Medicine": "약품"
+    "Medicine": "약품",
+    "Energy Cells": "에너지 셀",
+    "Melee Weapons": "근접 무기",
+    "Missile Weapons": "원거리 무기",
+    "Scrap": "고철",
+    "Shields": "방패",
+    "Meds": "의약품",
+    "Light Sources": "광원",
+    "Corpses": "시체",
+    "Quest Items": "퀘스트 아이템"
   }
 }

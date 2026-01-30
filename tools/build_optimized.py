@@ -306,15 +306,20 @@ def load_all_translations() -> Dict[str, str]:
                 continue
             if isinstance(value, str) and not re.search(r'[\uac00-\ud7af]', key):
                 norm = normalize_for_lookup(key)
-                if norm:
+                if norm and (value or norm not in translations):
                     translations[norm] = value
             elif isinstance(value, dict):
                 if "ko" in value:
-                    translations[normalize_for_lookup(key)] = value["ko"]
+                    ko = value["ko"]
+                    norm = normalize_for_lookup(key)
+                    if ko or norm not in translations:
+                        translations[norm] = ko
                 elif key == "names":
                     for eng, kor in value.items():
                         if isinstance(kor, str):
-                            translations[normalize_for_lookup(eng)] = kor
+                            norm = normalize_for_lookup(eng)
+                            if kor or norm not in translations:
+                                translations[norm] = kor
                 else:
                     walk_json(value, file_path)
 
