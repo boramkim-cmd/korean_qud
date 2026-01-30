@@ -1,58 +1,23 @@
 # Claude Code 프로젝트 규칙
 
-> **qud_korean** - Caves of Qud 한글화 프로젝트 | v3.1 (2026-01-30)
+> **qud_korean** - Caves of Qud 한글화 프로젝트 | v3.2 (2026-01-30)
 
 ## 다음 세션 할 일
 
-> 이 작업 완료 후 이 섹션을 비우고 커밋할 것
+> `.claude/session-state.md` 참조 (상세 맥락)
 
-### 1. 세계 생성 성능 최적화 (진행 중)
-
-**현재 상태:** 배포 완료, 게임 테스트 필요
-- DisplayName 파이프라인 스킵 제거 → 세계 생성 중에도 파이프라인 허용
-- TMP_Text setter만 세계 생성 중 스킵 유지
-- 세계 생성 시간 측정 필요: `grep "World generation ended" Player.log`
-
-**구현 완료:**
-- `ObjectTranslatorV2` 빠른 캐시 (`_fastCache`): 1836 블루프린트 프리로드
-- `_knownBlueprints` HashSet: 데이터에 없는 블루프린트 즉시 스킵
-- `StripSuffixFast()`: Regex 없이 접미사(수량/상태/스탯) 제거 → 빠른 캐시 히트율 향상
-- 성능 카운터: FastHit/FastSkip/Pipeline/Total + 핫스팟 리포트 (5000호출마다 TOP 10)
-- `WorldGenActivityIndicator`: ControlManager.Update 기반 점 애니메이션 오버레이
-
-**측정 결과 (파이프라인 스킵 + StripSuffixFast 적용):**
-- Total: 3113, FastHit: 558 (18%), FastSkip: 2168 (70%), Pipeline: 387 (12% - 스킵됨)
-- 세계 생성 시간: 7.5초 (모드 꺼짐: ~10초 미만)
-- 파이프라인 허용 시: 80초+ (DirectMatchHandler의 AllCreatures/AllItems 전체 순회가 O(n) 병목)
-- StripSuffixFast로 80개 파이프라인→빠른 캐시 전환 성공
-
-**현재 문제 (다음 세션 해결):**
-1. **상점/인벤토리 로드 느림** — 파이프라인 387개가 화면 열 때 한꺼번에 실행
-2. **번역 누락** — 파이프라인 스킵으로 세계 생성 중 번역 안 된 것들이 게임에 남음
-   - 누락 예시: wooden arrow, torch, basic toolkit, cracked lens, bent metal sheet,
-     copper nugget, congealed salve, canned Have-It-All, chrome revolver, fungicide grenade, canteen
-3. **파이프라인 허용 시 80초+** — `DirectMatchHandler`의 AllCreatures/AllItems 전체 순회 O(n)이 병목
-
-**해결 방향:**
-- `DirectMatchHandler` O(n) 순회 → Dictionary 인덱스로 O(1) 변환
-- 또는 `StripSuffixFast` 확장으로 빠른 캐시 히트율을 387→0에 가깝게
-- 파이프라인 최적화 후 세계 생성 중 스킵 제거 가능
-
-**수정된 파일:**
-- `Scripts/02_Patches/10_UI/02_10_11_WorldCreation.cs` — 활성 표시기 + IsWorldGenActive 플래그
-- `Scripts/02_Patches/10_UI/02_10_00_GlobalUI.cs` — TMP setter 세계 생성 중 스킵
-- `Scripts/02_Patches/20_Objects/V2/ObjectTranslatorV2.cs` — 빠른 캐시 + StripSuffixFast + 카운터
-- `Scripts/02_Patches/20_Objects/02_20_01_DisplayNamePatch.cs` — (스킵 제거됨, 정상 동작)
-
-**주의:** 성능 카운터/핫스팟 코드는 디버깅용. 안정화 후 제거할 것.
+### 1. 게임 테스트 — Display Lookup 검증
+- `./deploy.sh` → 게임 실행 → `kr:stats`로 `Lookup: 2764`, `LookupHit: N` 확인
+- 인벤토리/상점 번역 누락 확인 (torch, canteen, wooden arrow 등)
+- LookupHit 99%+ 시 세계 생성 스킵 제거 시도
 
 ### 2. 동적 패턴 85개 (게임 테스트 후 판단)
-- `=creatureRegionAdjective= X` (58개) — CompoundTranslator 런타임 처리 확인
-- `*SultanName*` / `*creature*` (26개) — 동적 치환 확인
-- 처리 안 되면 → C# 패치 필요
+- `=creatureRegionAdjective= X` (58개), `*SultanName*` (26개)
 
 ### 3. Phase 4: 커뮤니티
 - Steam Workshop 배포, README 한글화, 기여 가이드
+
+**주의:** 성능 카운터/핫스팟 코드는 디버깅용. 안정화 후 제거할 것.
 
 ---
 
