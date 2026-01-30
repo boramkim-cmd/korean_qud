@@ -50,19 +50,11 @@ namespace QudKRTranslation.Patches
             // Ensure localization is loaded
             LocalizationManager.Initialize();
             
-            string originalMessage = message;
             string key = message.Trim().TrimEnd('.');
-            
-            Debug.Log($"[Qud-KR WorldGen] _AddMessage called with: '{originalMessage}', key='{key}'");
-            
+
             if (LocalizationManager.TryGetAnyTerm(key, out string translated, "worldgen", "ui"))
             {
                 message = translated;
-                Debug.Log($"[Qud-KR WorldGen] Translated: '{key}' -> '{translated}'");
-            }
-            else
-            {
-                Debug.Log($"[Qud-KR WorldGen] No translation found for key: '{key}'");
             }
         }
     }
@@ -92,7 +84,6 @@ namespace QudKRTranslation.Patches
         [HarmonyPrefix]
         static void Prefix()
         {
-            Debug.Log("[Qud-KR] WorldCreation: Begin called");
         }
     }
     
@@ -116,15 +107,11 @@ namespace QudKRTranslation.Patches
             
             LocalizationManager.Initialize();
             
-            string originalText = Text;
             string key = Text.Trim().TrimEnd('.');
-            
-            Debug.Log($"[Qud-KR WorldGen] NextStep called with: '{originalText}', key='{key}'");
-            
+
             if (LocalizationManager.TryGetAnyTerm(key, out string translated, "worldgen", "ui"))
             {
                 Text = translated;
-                Debug.Log($"[Qud-KR WorldGen] NextStep translated: '{key}' -> '{translated}'");
             }
         }
     }
@@ -149,15 +136,11 @@ namespace QudKRTranslation.Patches
             
             LocalizationManager.Initialize();
             
-            string originalText = StepText;
             string key = StepText.Trim().TrimEnd('.');
-            
-            Debug.Log($"[Qud-KR WorldGen] StepProgress called with: '{originalText}', key='{key}'");
-            
+
             if (LocalizationManager.TryGetAnyTerm(key, out string translated, "worldgen", "ui"))
             {
                 StepText = translated;
-                Debug.Log($"[Qud-KR WorldGen] StepProgress translated: '{key}' -> '{translated}'");
             }
         }
     }

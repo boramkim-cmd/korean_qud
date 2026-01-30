@@ -55,7 +55,6 @@ namespace QudKRTranslation.Patches.UI
             {
                 ScopeManager.PushScope(dictsToPush.ToArray());
                 _scopePushed = true;
-                Debug.Log("[QudKR] Status/Inventory Scope Pushed");
             }
         }
 
@@ -65,7 +64,6 @@ namespace QudKRTranslation.Patches.UI
             {
                 ScopeManager.PopScope();
                 _scopePushed = false;
-                Debug.Log("[QudKR] Status/Inventory Scope Popped");
             }
         }
     }

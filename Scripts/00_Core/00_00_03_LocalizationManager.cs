@@ -22,6 +22,10 @@ namespace QudKRTranslation.Core
 
         private static Dictionary<string, Dictionary<string, string>> _translationDB = new Dictionary<string, Dictionary<string, string>>(StringComparer.OrdinalIgnoreCase);
         private static Dictionary<string, string> _aliasToCanonical = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase);
+        // prefix → list of sub-category keys (e.g. "power_" → ["power_axe", "power_sword", ...])
+        private static Dictionary<string, List<string>> _subCategoryMap = new Dictionary<string, List<string>>(StringComparer.OrdinalIgnoreCase);
+        // Cache for GetCategoryGroup results
+        private static Dictionary<string, Dictionary<string, string>> _groupCache = new Dictionary<string, Dictionary<string, string>>(StringComparer.OrdinalIgnoreCase);
         private static bool _isLoaded = false;
         private static string _modPath = null;
         private static int _sharedEntriesCount = 0;
@@ -30,6 +34,7 @@ namespace QudKRTranslation.Core
         {
             if (_isLoaded) return;
             LoadAllJsonFiles();
+            BuildSubCategoryMap();
             _isLoaded = true;
         }
 
@@ -37,6 +42,8 @@ namespace QudKRTranslation.Core
         {
             _translationDB.Clear();
             _aliasToCanonical.Clear();
+            _subCategoryMap.Clear();
+            _groupCache.Clear();
             _sharedEntriesCount = 0;
             _isLoaded = false;
             Initialize();
@@ -183,6 +190,39 @@ namespace QudKRTranslation.Core
             return result.Trim().ToLowerInvariant();
         }
         
+        private static void BuildSubCategoryMap()
+        {
+            _subCategoryMap.Clear();
+            _groupCache.Clear();
+            foreach (var key in _translationDB.Keys)
+            {
+                int idx = key.IndexOf('_');
+                if (idx > 0)
+                {
+                    string prefix = key.Substring(0, idx);
+                    if (!_subCategoryMap.TryGetValue(prefix, out var list))
+                    {
+                        list = new List<string>();
+                        _subCategoryMap[prefix] = list;
+                    }
+                    list.Add(key);
+                }
+            }
+        }
+
+        /// <summary>
+        /// Get sub-category keys that start with the given prefix (e.g. "power_").
+        /// Uses the prebuilt map instead of LINQ.
+        /// </summary>
+        private static List<string> GetSubCategoryKeys(string baseCategory)
+        {
+            // Try exact prefix from map (baseCategory without trailing _)
+            string prefix = baseCategory.EndsWith("_") ? baseCategory.Substring(0, baseCategory.Length - 1) : baseCategory;
+            if (_subCategoryMap.TryGetValue(prefix, out var list))
+                return list;
+            return null;
+        }
+
         public static string GetModDirectory()
         {
             if (_modPath != null) return _modPath;
@@ -266,8 +306,8 @@ namespace QudKRTranslation.Core
             if (_translationDB.TryGetValue(category, out var dict)) return dict;
 
             // 자동 병합 (예: "power" 호출 시 "power_*" 병합)
-            var subCats = _translationDB.Keys.Where(k => k.StartsWith(category + "_")).ToList();
-            if (subCats.Count > 0) return GetCategoryGroup(category + "_");
+            var subKeys = GetSubCategoryKeys(category);
+            if (subKeys != null && subKeys.Count > 0) return GetCategoryGroup(category + "_");
 
             return null;
         }
@@ -275,17 +315,26 @@ namespace QudKRTranslation.Core
         public static Dictionary<string, string> GetCategoryGroup(string prefix)
         {
             if (!_isLoaded) Initialize();
-            var combined = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase);
-            var targets = _translationDB.Keys.Where(k => k.StartsWith(prefix, StringComparison.OrdinalIgnoreCase));
 
-            foreach (var cat in targets)
+            if (_groupCache.TryGetValue(prefix, out var cached))
+                return cached;
+
+            var combined = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase);
+            var subKeys = GetSubCategoryKeys(prefix);
+            if (subKeys != null)
             {
-                foreach (var kv in _translationDB[cat])
+                foreach (var cat in subKeys)
                 {
-                    combined[kv.Key] = kv.Value;
+                    foreach (var kv in _translationDB[cat])
+                    {
+                        combined[kv.Key] = kv.Value;
+                    }
                 }
             }
-            return combined.Count > 0 ? combined : null;
+
+            var result = combined.Count > 0 ? combined : null;
+            _groupCache[prefix] = result;
+            return result;
         }
 
         public static string GetTerm(string category, string key, string fallback = "")
@@ -304,7 +353,8 @@ namespace QudKRTranslation.Core
             }
 
             // 3. Auto sub-category search
-            var subCats = _translationDB.Keys.Where(k => k.StartsWith(category + "_"));
+            var subCats = GetSubCategoryKeys(category);
+            if (subCats == null) return string.IsNullOrEmpty(fallback) ? key : fallback;
             foreach (var cat in subCats)
             {
                 var subDict = _translationDB[cat];
@@ -345,8 +395,8 @@ namespace QudKRTranslation.Core
                     }
 
                     // Sub-category search
-                    string prefix = cat + "_";
-                    var subCats = _translationDB.Keys.Where(k => k.StartsWith(prefix));
+                    var subCats = GetSubCategoryKeys(cat);
+                    if (subCats == null) continue;
                     foreach (var sc in subCats)
                     {
                         var subDict = _translationDB[sc];

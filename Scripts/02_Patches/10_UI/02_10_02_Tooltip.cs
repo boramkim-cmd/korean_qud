@@ -124,7 +124,6 @@ namespace QudKRTranslation.Patches
                     if (ObjectTranslatorV2.TryGetDisplayName(blueprint, __result.DisplayName, out string nameKo))
                     {
                         __result.DisplayName = nameKo;
-                        Debug.Log($"[Qud-KR][TooltipInfo] Translated DisplayName: '{nameKo}' (Blueprint: {blueprint})");
                     }
                 }
 
@@ -134,7 +133,6 @@ namespace QudKRTranslation.Patches
                     if (ObjectTranslatorV2.TryTranslateDescriptionExact(blueprint, __result.LongDescription, out string descKo))
                     {
                         __result.LongDescription = descKo;
-                        Debug.Log($"[Qud-KR][TooltipInfo] Translated LongDescription for: {blueprint}");
                     }
                 }
             }

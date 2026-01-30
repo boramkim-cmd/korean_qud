@@ -544,7 +544,6 @@ namespace QudKRTranslation.Patches
                     tmp.ForceMeshUpdate();
                 }
                 
-                Debug.Log($"[Qud-KR][Tooltip] Applied Korean font to {applied} TMP components.");
             }
             catch (System.Exception ex)
             {
@@ -578,14 +577,12 @@ namespace QudKRTranslation.Patches
             if (isDisplayed)
             {
                 // Apply Korean font to tooltip TMP components
-                Debug.Log($"[Qud-KR][AttributeUpdate] Tooltip displayed for {__instance.data.Attribute}, applying font...");
                 ApplyTooltipFont(__instance.tooltip);
-                
+
                 // Apply translated text
                 string translated = TranslateBonusSource(__instance.data.BonusSource);
                 string rtf = Sidebar.FormatToRTF(translated);
                 __instance.tooltip.SetText("BodyText", rtf);
-                Debug.Log($"[Qud-KR] AttributeSelection tooltip text set: {translated}");
             }
             
             // 툴팁이 표시되기 시작하면 시간 기록
@@ -645,7 +642,6 @@ namespace QudKRTranslation.Patches
                 // Font is now applied in Update_Postfix when tooltip is actually displayed
                 string translated = TranslateBonusSource(bonusSource);
                 string rtf = Sidebar.FormatToRTF(translated);
-                UnityEngine.Debug.Log($"[KR-Bonus] Original: '{bonusSource}' -> Translated: '{translated}' -> RTF: '{rtf}'");
                 __instance.tooltip.SetText("BodyText", rtf);
             }
         }
@@ -683,8 +679,6 @@ namespace QudKRTranslation.Patches
         {
             if (string.IsNullOrEmpty(line)) return line;
             
-            UnityEngine.Debug.Log($"[KR-BonusLine] Input: '{line}'");
-            
             // BonusSource format: "+2 from {{important|Priest of All Moons}} caste"
             // Pattern: "{+/-N} from {source} [caste/calling/genotype/subtype]"
             // Note: source may include Qud color tags
@@ -702,7 +696,6 @@ namespace QudKRTranslation.Patches
                 bonus = typedMatch.Groups[1].Value;
                 rawSource = typedMatch.Groups[2].Value.Trim();
                 sourceType = typedMatch.Groups[3].Value?.Trim();
-                UnityEngine.Debug.Log($"[KR-BonusLine] TypedMatch: bonus='{bonus}', rawSource='{rawSource}', sourceType='{sourceType}'");
             }
             else
             {
@@ -715,7 +708,6 @@ namespace QudKRTranslation.Patches
                 {
                     bonus = basicMatch.Groups[1].Value;
                     rawSource = basicMatch.Groups[2].Value.Trim();
-                    UnityEngine.Debug.Log($"[KR-BonusLine] BasicMatch: bonus='{bonus}', rawSource='{rawSource}'");
                 }
                 else
                 {
@@ -726,23 +718,19 @@ namespace QudKRTranslation.Patches
 
                     if (!trailingBonusMatch.Success)
                     {
-                        UnityEngine.Debug.Log($"[KR-BonusLine] No match, returning original line");
                         return line;
                     }
 
                     rawSource = trailingBonusMatch.Groups[1].Value.Trim();
                     bonus = trailingBonusMatch.Groups[2].Value.Trim();
-                    UnityEngine.Debug.Log($"[KR-BonusLine] TrailingMatch: rawSource='{rawSource}', bonus='{bonus}'");
                 }
             }
 
             // 색상 태그 제거: {{important|Priest of All Moons}} -> Priest of All Moons
             string source = StripQudTags(rawSource);
-            UnityEngine.Debug.Log($"[KR-BonusLine] StripQudTags: '{rawSource}' -> '{source}'");
 
             if (string.IsNullOrEmpty(source))
             {
-                UnityEngine.Debug.Log($"[KR-BonusLine] Source is empty, returning original line");
                 return line;
             }
 
@@ -753,28 +741,23 @@ namespace QudKRTranslation.Patches
             if (CasteShortNames.TryGetValue(source, out string casteName))
             {
                 translatedSource = casteName;
-                UnityEngine.Debug.Log($"[KR-BonusLine] CasteShortNames found: '{source}' -> '{casteName}'");
             }
             // 2. StructureTranslator에서 찾기 (Calling 포함)
             else if (StructureTranslator.TryGetData(source, out var data) && !string.IsNullOrEmpty(data.KoreanName))
             {
                 translatedSource = data.KoreanName;
-                UnityEngine.Debug.Log($"[KR-BonusLine] StructureTranslator found: '{source}' -> '{data.KoreanName}'");
             }
             // 3. LocalizationManager에서 찾기
             else if (LocalizationManager.TryGetAnyTerm(source, out string tSource, "chargen_attributes", "chargen_ui", "ui", "common") ||
                      LocalizationManager.TryGetAnyTerm(source, out tSource, "chargen_attributes", "chargen_ui", "ui", "common"))
             {
                 translatedSource = tSource;
-                UnityEngine.Debug.Log($"[KR-BonusLine] LocalizationManager found: '{source}' -> '{tSource}'");
             }
             else
             {
-                UnityEngine.Debug.Log($"[KR-BonusLine] No translation found for '{source}'");
             }
 
             string translatedType = TranslateBonusSourceType(sourceType, source);
-            UnityEngine.Debug.Log($"[KR-BonusLine] TranslatedType: '{sourceType}' -> '{translatedType}'");
             
             string result;
             if (!string.IsNullOrEmpty(translatedType))
@@ -786,7 +769,6 @@ namespace QudKRTranslation.Patches
                 result = $"{translatedSource} {bonus}";
             }
             
-            UnityEngine.Debug.Log($"[KR-BonusLine] Result: '{result}'");
             return result;
         }
 
@@ -834,7 +816,6 @@ namespace QudKRTranslation.Patches
         static void BeforeShow_Postfix(QudAttributesModuleWindow __instance)
         {
             // Force apply Korean font to ALL TMP components in attributes screen
-            Debug.Log("[Qud-KR][AttributesWindow] BeforeShow called, applying fonts to all TMP components...");
             FontManager.ApplyKoreanFont();
             
             var allTmps = __instance.GetComponentsInChildren<TMPro.TextMeshProUGUI>(true);
@@ -845,7 +826,6 @@ namespace QudKRTranslation.Patches
                 FontManager.ApplyFallbackToTMPComponent(tmp, forceLog: false);
                 applied++;
             }
-            Debug.Log($"[Qud-KR][AttributesWindow] Applied Korean font to {applied} TMP components");
         }
         
         [HarmonyPatch(nameof(QudAttributesModuleWindow.UpdateControls))]
@@ -1118,11 +1098,9 @@ namespace QudKRTranslation.Patches
             var categoryMenus = Traverse.Create(__instance).Field("cyberneticsMenuState").GetValue<List<CategoryMenuData>>();
             if (categoryMenus == null)
             {
-                Debug.Log("[Qud-KR Cyber] cyberneticsMenuState is null");
                 return;
             }
             
-            Debug.Log($"[Qud-KR Cyber] UpdateControls_Postfix: {categoryMenus.Count} categories");
             
             foreach (var cat in categoryMenus)
             {
@@ -1133,7 +1111,6 @@ namespace QudKRTranslation.Patches
                 // Translate each PrefixMenuOption in the category
                 if (cat.menuOptions == null) continue;
                 
-                Debug.Log($"[Qud-KR Cyber] Category '{cat.Title}' has {cat.menuOptions.Count} options");
                 
                 foreach (var opt in cat.menuOptions)
                 {
@@ -1151,7 +1128,6 @@ namespace QudKRTranslation.Patches
             string desc = opt.Description;
             if (string.IsNullOrEmpty(desc))
             {
-                Debug.Log("[Qud-KR Cyber] Option has empty description");
                 return;
             }
             
@@ -1165,7 +1141,6 @@ namespace QudKRTranslation.Patches
                 {
                     opt.LongDescription = ChargenTranslationUtils.TranslateLongDescription(opt.LongDescription, "chargen_ui", "ui");
                 }
-                Debug.Log($"[Qud-KR Cyber] Translated <none> option");
                 return;
             }
             
@@ -1173,7 +1148,6 @@ namespace QudKRTranslation.Patches
             int parenIdx = desc.LastIndexOf(" (");
             if (parenIdx <= 0)
             {
-                Debug.Log($"[Qud-KR Cyber] No slot format in: {desc}");
                 return;
             }
             
@@ -1183,7 +1157,6 @@ namespace QudKRTranslation.Patches
             // Strip color tags from cybernetic name: {{Y|name}} -> name
             string cyberName = System.Text.RegularExpressions.Regex.Replace(cyberNameRaw, @"\{\{[a-zA-Z]\|([^}]+)\}\}", "$1");
             
-            Debug.Log($"[Qud-KR Cyber] Parsing: raw='{cyberNameRaw}', stripped='{cyberName}', slot='{slotPart}'");
             
             // Extract slot name from " (Slot)"
             string slotName = slotPart.Trim();
@@ -1210,7 +1183,6 @@ namespace QudKRTranslation.Patches
                     opt.LongDescription = combinedDesc;
                 }
                 
-                Debug.Log($"[Qud-KR Cyber] Translated via StructureTranslator: {cyberName} -> {translatedName}");
             }
             else
             {
@@ -1218,13 +1190,11 @@ namespace QudKRTranslation.Patches
                 if (LocalizationManager.TryGetAnyTerm(cyberName, out string tName, "cybernetics", "chargen_ui", "ui"))
                 {
                     opt.Description = $"{tName} ({translatedSlot})";
-                    Debug.Log($"[Qud-KR Cyber] Translated via LocalizationManager: {cyberName} -> {tName}");
                 }
                 else
                 {
                     // At least translate the slot
                     opt.Description = $"{cyberName} ({translatedSlot})";
-                    Debug.Log($"[Qud-KR Cyber] No translation found for: {cyberName}");
                 }
             }
         }
@@ -1252,7 +1222,6 @@ namespace QudKRTranslation.Patches
                 {
                     __instance.selectedDescriptionText.SetText(prefixMenuOption.LongDescription);
                 }
-                Debug.Log($"[Qud-KR Cyber] UpdateDescriptions re-applied: {prefixMenuOption.Description?.Substring(0, Math.Min(30, prefixMenuOption.Description?.Length ?? 0))}...");
             }
         }
     }
@@ -1634,7 +1603,6 @@ namespace QudKRTranslation.Patches
                 var canvas = __instance.GetComponentInParent<Canvas>();
                 if (canvas == null)
                 {
-                    Debug.Log("[Qud-KR][Debug] Canvas is null in BeforeShowWithWindow_Postfix");
                     return;
                 }
                 
@@ -1661,7 +1629,6 @@ namespace QudKRTranslation.Patches
                                 translated + " ", 
                                 System.Text.RegularExpressions.RegexOptions.IgnoreCase);
                             tmp.text = newText;
-                            Debug.Log($"[Qud-KR] Translated 'character creation': '{text}' -> '{newText}'");
                         }
                     }
                 }

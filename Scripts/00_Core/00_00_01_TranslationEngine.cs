@@ -22,6 +22,7 @@ namespace QudKRTranslation
         private static readonly Regex RxQudTag = new Regex(@"\{\{[a-zA-Z]\|([^}]+)\}\}", RegexOptions.Compiled);
         private static readonly Regex RxUnityColor = new Regex(@"<color=[^>]+>([^<]+)</color>", RegexOptions.Compiled);
         private static readonly Regex RxBullet = new Regex(@"^[ùúûü·•◦‣⁃]\s*", RegexOptions.Compiled);
+        private static readonly Regex RxHotkey = new Regex(@"^(\[[A-Za-z0-9~\+\-\.]+\]\s+)", RegexOptions.Compiled);
 
         /// <summary>
         /// 텍스트를 번역합니다. 현재 활성 Scope를 사용합니다.
@@ -95,8 +96,7 @@ namespace QudKRTranslation
             }
 
             // 2. Hotkeys: [A], [9], [Esc], [Tab], [Delete], [~], [Space]
-            // Pattern: Starts with [ ... ] followed by space
-            var match = Regex.Match(text, @"^(\[[A-Za-z0-9~\+\-\.]+\]\s+)");
+            var match = RxHotkey.Match(text);
             if (match.Success)
             {
                 string p = match.Groups[1].Value;

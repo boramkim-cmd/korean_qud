@@ -33,7 +33,6 @@ namespace QudKRTranslation
             }
             
             scopeStack.Push(scopes);
-            Debug.Log($"[ScopeManager] Pushed scope (depth: {scopeStack.Count})");
         }
         
         /// <summary>
@@ -44,7 +43,6 @@ namespace QudKRTranslation
             if (scopeStack.Count > 0)
             {
                 scopeStack.Pop();
-                Debug.Log($"[ScopeManager] Popped scope (depth: {scopeStack.Count})");
             }
             else
             {

@@ -177,11 +177,6 @@ namespace QudKRTranslation.Patches
                         }
                         else
                         {
-                            // 디버깅: 번역 실패한 중요 항목 로그 출력
-                            if (original.IndexOf("new", StringComparison.OrdinalIgnoreCase) >= 0 || original.IndexOf("game", StringComparison.OrdinalIgnoreCase) >= 0)
-                            {
-                                Debug.Log($"[Qud-KR] Failed to translate: '{original}'");
-                            }
                         }
                     }
                 }

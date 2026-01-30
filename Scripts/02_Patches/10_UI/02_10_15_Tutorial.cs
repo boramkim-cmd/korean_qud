@@ -178,7 +178,6 @@ namespace QudKRTranslation.Patches
                 if (anyTranslated)
                 {
                     translated = string.Join("\n\n", paragraphs);
-                    Debug.Log($"[Qud-KR][Tutorial] Paragraph match: '{originalText.Substring(0, Math.Min(40, originalText.Length))}...'");
                     return true;
                 }
             }
@@ -190,9 +189,6 @@ namespace QudKRTranslation.Patches
                 return true;
             }
             
-            // 디버그 로그 (매칭 실패 시)
-            string normalizedForLog = NormalizeKey(originalText);
-            Debug.Log($"[Qud-KR][Tutorial] No match. Original(60): '{originalText.Substring(0, Math.Min(60, originalText.Length))}' / Normalized(60): '{normalizedForLog.Substring(0, Math.Min(60, normalizedForLog.Length))}'");
             return false;
         }
         
