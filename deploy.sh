@@ -85,7 +85,6 @@ echo ""
 echo "[3/7] 대상 폴더 준비..."
 mkdir -p "$DST"
 rm -rf "$DST/Scripts"
-rm -rf "$DST/LOCALIZATION"
 rm -rf "$DST/data"
 rm -rf "$DST/StreamingAssets"
 rm -f "$DST/sourcemap.json"
@@ -96,20 +95,17 @@ cp -R "$SRC/dist/data" "$DST/"
 cp "$SRC/dist/sourcemap.json" "$DST/"
 
 # 5. 필수 파일 복사
-echo "[5/7] 필수 파일 복사..."
+echo "[5/6] 필수 파일 복사..."
+cp "$SRC/mod_info.json" "$DST/"
 cp "$SRC/manifest.json" "$DST/"
 cp "$SRC/d2coding.bundle" "$DST/"
 cp -R "$SRC/Scripts" "$DST/"
 
-# 6. LOCALIZATION 복사 (개발 모드 폴백용)
-echo "[6/7] LOCALIZATION 복사 (폴백용)..."
-cp -R "$SRC/LOCALIZATION" "$DST/"
-
 # StreamingAssets 복사 (존재하는 경우)
 [ -d "$SRC/StreamingAssets" ] && cp -R "$SRC/StreamingAssets" "$DST/"
 
-# 7. 정리
-echo "[7/7] 정리 중..."
+# 6. 정리
+echo "[6/6] 정리 중..."
 find "$DST" -name ".DS_Store" -delete 2>/dev/null || true
 find "$DST" -name "*.meta" -delete 2>/dev/null || true
 

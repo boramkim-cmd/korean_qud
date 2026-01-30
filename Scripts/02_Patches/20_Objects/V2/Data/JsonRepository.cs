@@ -50,6 +50,7 @@ namespace QudKorean.Objects.V2.Data
         private List<KeyValuePair<string, string>> _colorTagVocabSorted;
         private List<KeyValuePair<string, string>> _baseNounsSorted;
         private List<KeyValuePair<string, string>> _partSuffixesSorted;
+        private Dictionary<string, string> _globalNameIndex;
 
         private string _modDirectory;
         private bool _initialized;
@@ -188,6 +189,15 @@ namespace QudKorean.Objects.V2.Data
             }
         }
 
+        public IReadOnlyDictionary<string, string> GlobalNameIndex
+        {
+            get
+            {
+                EnsureInitialized();
+                return _globalNameIndex ?? (IReadOnlyDictionary<string, string>)new Dictionary<string, string>();
+            }
+        }
+
         public void Reload()
         {
             ClearAll();
@@ -276,6 +286,7 @@ namespace QudKorean.Objects.V2.Data
             _colorTagVocabSorted = null;
             _baseNounsSorted = null;
             _partSuffixesSorted = null;
+            _globalNameIndex = null;
         }
 
         #endregion
@@ -1035,7 +1046,26 @@ namespace QudKorean.Objects.V2.Data
             // Build base nouns sorted
             _baseNounsSorted = DictionaryCache.SortByKeyLength(_baseNouns);
 
-            UnityEngine.Debug.Log($"{LOG_PREFIX} Built caches: {_prefixesSorted.Count} prefixes, {_colorTagVocabSorted.Count} color tag vocab, {_baseNounsSorted.Count} nouns");
+            // Build global name index from all creatures and items
+            _globalNameIndex = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase);
+            foreach (var creature in _creatureCache.Values)
+            {
+                foreach (var namePair in creature.Names)
+                {
+                    if (!string.IsNullOrEmpty(namePair.Value) && !_globalNameIndex.ContainsKey(namePair.Key))
+                        _globalNameIndex[namePair.Key] = namePair.Value;
+                }
+            }
+            foreach (var item in _itemCache.Values)
+            {
+                foreach (var namePair in item.Names)
+                {
+                    if (!string.IsNullOrEmpty(namePair.Value) && !_globalNameIndex.ContainsKey(namePair.Key))
+                        _globalNameIndex[namePair.Key] = namePair.Value;
+                }
+            }
+
+            UnityEngine.Debug.Log($"{LOG_PREFIX} Built caches: {_prefixesSorted.Count} prefixes, {_colorTagVocabSorted.Count} color tag vocab, {_baseNounsSorted.Count} nouns, {_globalNameIndex.Count} global names");
         }
 
         #endregion

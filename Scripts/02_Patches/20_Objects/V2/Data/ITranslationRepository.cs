@@ -99,6 +99,12 @@ namespace QudKorean.Objects.V2.Data
         /// </summary>
         IReadOnlyDictionary<string, string> Shaders { get; }
 
+        /// <summary>
+        /// Global name index: English name -> Korean translation.
+        /// Built from all creature and item Names dictionaries for O(1) lookup.
+        /// </summary>
+        IReadOnlyDictionary<string, string> GlobalNameIndex { get; }
+
         #endregion
 
         #region Lifecycle

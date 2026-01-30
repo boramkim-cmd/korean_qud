@@ -113,41 +113,20 @@ namespace QudKorean.Objects.V2.Pipeline.Handlers
                 }
             }
 
-            // Try global search with state suffix stripped
+            // Try global search with state suffix stripped (O(1) via GlobalNameIndex)
             string globalStripped = ColorTagProcessor.Strip(withTranslatedMaterials);
             string globalNoSuffix = SuffixExtractor.StripState(globalStripped);
             if (globalNoSuffix != globalStripped)
             {
                 string globalSuffix = globalStripped.Substring(globalNoSuffix.Length);
 
-                foreach (var creature in repo.AllCreatures)
+                if (repo.GlobalNameIndex.TryGetValue(globalNoSuffix, out string globalMatch))
                 {
-                    foreach (var namePair in creature.Names)
-                    {
-                        if (namePair.Key.Equals(globalNoSuffix, StringComparison.OrdinalIgnoreCase))
-                        {
-                            string suffixKo = SuffixExtractor.TranslateState(globalSuffix, repo);
-                            string translated = ColorTagProcessor.RestoreFormatting(withTranslatedMaterials, globalNoSuffix, namePair.Value, globalSuffix, suffixKo);
-                            translated = ColorTagProcessor.TranslateNounsOutsideTags(translated, repo);
-                            CacheAndReturn(context, translated);
-                            return TranslationResult.Hit(translated, Name);
-                        }
-                    }
-                }
-
-                foreach (var item in repo.AllItems)
-                {
-                    foreach (var namePair in item.Names)
-                    {
-                        if (namePair.Key.Equals(globalNoSuffix, StringComparison.OrdinalIgnoreCase))
-                        {
-                            string suffixKo = SuffixExtractor.TranslateState(globalSuffix, repo);
-                            string translated = ColorTagProcessor.RestoreFormatting(withTranslatedMaterials, globalNoSuffix, namePair.Value, globalSuffix, suffixKo);
-                            translated = ColorTagProcessor.TranslateNounsOutsideTags(translated, repo);
-                            CacheAndReturn(context, translated);
-                            return TranslationResult.Hit(translated, Name);
-                        }
-                    }
+                    string suffixKo = SuffixExtractor.TranslateState(globalSuffix, repo);
+                    string translated = ColorTagProcessor.RestoreFormatting(withTranslatedMaterials, globalNoSuffix, globalMatch, globalSuffix, suffixKo);
+                    translated = ColorTagProcessor.TranslateNounsOutsideTags(translated, repo);
+                    CacheAndReturn(context, translated);
+                    return TranslationResult.Hit(translated, Name);
                 }
             }
 
