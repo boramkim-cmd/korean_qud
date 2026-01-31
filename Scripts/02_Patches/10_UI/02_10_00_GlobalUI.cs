@@ -245,6 +245,30 @@ namespace QudKRTranslation.Patches
             return true;
         }
         
+        // 오브젝트 이름 패턴 감지: "[N dram(s) of" 또는 "<A>~<Z>" interaction tag
+        private static bool LooksLikeObjectName(string s)
+        {
+            // "[N dram" 패턴 (아이템 액체 용량 표시)
+            if (s.IndexOf(" dram", StringComparison.OrdinalIgnoreCase) >= 0 && s.Contains("["))
+                return true;
+            // "<A>" ~ "<Z>" interaction key tags (1~2글자 영대문자)
+            int lt = s.IndexOf('<');
+            if (lt >= 0 && lt + 2 < s.Length)
+            {
+                char c = s[lt + 1];
+                if (c >= 'A' && c <= 'Z' && s.Length > lt + 2 && s[lt + 2] == '>')
+                    return true;
+            }
+            // Qud 스탯 마커 (→♦○♥ 등) — 무기/방어구 이름
+            for (int i = 0; i < s.Length; i++)
+            {
+                char c = s[i];
+                if (c == '→' || c == '♦' || c == '◆' || c == '○' || c == '●' || c == '♥' || c == '♠' || c == '♣')
+                    return true;
+            }
+            return false;
+        }
+
         static void Prefix(TMP_Text __instance, ref string value)
         {
             try
@@ -264,6 +288,9 @@ namespace QudKRTranslation.Patches
 
                 // Fast skip: no Latin letters = pure numbers/symbols/whitespace
                 if (HasNoLatinLetters(value)) { PerfCounters.TmpSetterSkipped++; return; }
+
+                // Fast skip: 오브젝트 이름 패턴 (DisplayNamePatch가 처리 — TMP setter가 건드리면 이중 번역으로 깨짐)
+                if (LooksLikeObjectName(value)) { PerfCounters.TmpSetterSkipped++; return; }
 
                 // 0. Unity 리치 텍스트 태그 strip하여 순수 텍스트 추출
                 string stripped = value.IndexOf('<') >= 0

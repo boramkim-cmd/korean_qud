@@ -18,6 +18,10 @@ namespace QudKRTranslation.Patches
         private static readonly Regex RxDollarBefore = new Regex(@"\$(\d+(?:\.\d+)?)", RegexOptions.Compiled);
         // 숫자$ 패턴: "96$" → "96드램" (HUD 무게 바에서 사용)
         private static readonly Regex RxDollarAfter = new Regex(@"(\d+(?:\.\d+)?)\$", RegexOptions.Compiled);
+        // 컬러태그로 분리된 $ 패턴: "{{B|$}}{{C|11.90}}" → "{{C|11.90드램}}"
+        private static readonly Regex RxDollarColorTag = new Regex(
+            @"\{\{[^{}|]*\|\$\}\}\s*\{\{([^{}|]*)\|(\d+(?:\.\d+)?)\}\}",
+            RegexOptions.Compiled);
 
         public static string Translate(string val)
         {
@@ -34,6 +38,9 @@ namespace QudKRTranslation.Patches
             // $숫자 또는 숫자$ → 숫자드램
             if (val.Contains("$"))
             {
+                // 컬러태그로 분리된 $ 패턴 우선 처리: {{B|$}}{{C|11.90}} → {{C|11.90드램}}
+                val = RxDollarColorTag.Replace(val, "{{$1|$2드램}}");
+                // 일반 패턴
                 val = RxDollarBefore.Replace(val, "$1드램");
                 val = RxDollarAfter.Replace(val, "$1드램");
             }
