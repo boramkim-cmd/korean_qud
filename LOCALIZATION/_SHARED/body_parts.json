@@ -12,6 +12,8 @@
     "Back": { "ko": "등", "aliases": ["back", "BACK"] },
     "Hands": { "ko": "손", "aliases": ["hands", "HANDS"] },
     "Arm": { "ko": "팔", "aliases": ["arm", "ARM"] },
-    "Floating Nearby": { "ko": "부유 아이템", "aliases": ["floating nearby", "FLOATING NEARBY"] }
+    "Floating Nearby": { "ko": "부유 아이템", "aliases": ["floating nearby", "FLOATING NEARBY"] },
+    "Missile Weapon": { "ko": "투사 무기", "aliases": ["missile weapon", "MISSILE WEAPON"] },
+    "Thrown Weapon": { "ko": "투척 무기", "aliases": ["thrown weapon", "THROWN WEAPON"] }
   }
 }
