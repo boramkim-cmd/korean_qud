@@ -8,7 +8,7 @@ using System.Collections.Generic;
 using System.Reflection;
 using HarmonyLib;
 using UnityEngine;
-using XRL.UI;
+using Qud.UI;
 
 namespace QudKRTranslation.Patches
 {
