@@ -43,26 +43,8 @@ namespace QudKRTranslation.Patches
                         val = val.Replace(" of ", " ");
                     return val;
                 });
-            }
-            catch (Exception e)
-            {
-                Debug.LogWarning($"[Qud-KR] PlayerStatusBar BeginEndTurn 오류: {e.Message}");
-            }
-        }
-    }
 
-    // Task 5b: PlayerStatusBar.Update() — LVL/Exp 바
-    [HarmonyPatch(typeof(Qud.UI.PlayerStatusBar), "Update")]
-    public static class Patch_PlayerStatusBar_Update
-    {
-        [HarmonyPostfix]
-        static void Postfix(Qud.UI.PlayerStatusBar __instance)
-        {
-            try
-            {
-                var barType = typeof(Qud.UI.PlayerStatusBar);
-
-                // XPBar 텍스트
+                // LVL/Exp 바 (Update()는 매 프레임이므로 여기서 처리)
                 StatusFormatExtensions.TranslateUITextSkin(__instance, barType, "xpBarText", val =>
                 {
                     val = val.Replace("LVL: ", "레벨: ");
@@ -72,10 +54,14 @@ namespace QudKRTranslation.Patches
             }
             catch (Exception e)
             {
-                Debug.LogWarning($"[Qud-KR] PlayerStatusBar Update 오류: {e.Message}");
+                Debug.LogWarning($"[Qud-KR] PlayerStatusBar BeginEndTurn 오류: {e.Message}");
             }
         }
     }
+
+    // Task 5b: PlayerStatusBar — LVL/Exp 바
+    // BeginEndTurn()에서 함께 처리 (Update()는 매 프레임 호출되므로 성능 문제)
+    // XP 바는 레벨업 시에만 변경되므로 BeginEndTurn으로 충분
 
     // Task 6: Stomach — 배고픔/갈증 상태 텍스트
     [HarmonyPatch(typeof(XRL.World.Parts.Stomach), "FoodStatus")]
@@ -119,7 +105,7 @@ namespace QudKRTranslation.Patches
         {
             { "Quenched", "해갈" },
             { "Thirsty", "목마름" },
-            { "Parched", "탈수" },
+            { "Parched", "극갈" },
             { "Dehydrated!", "탈수!" },
             { "Tumescent", "과수분" }
         };
