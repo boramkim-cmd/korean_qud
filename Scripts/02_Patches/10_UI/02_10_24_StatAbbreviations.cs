@@ -36,12 +36,12 @@ namespace QudKRTranslation.Patches
         };
 
         [HarmonyPostfix]
-        static void Postfix(string Name, ref string __result)
+        static void Postfix(string Stat, ref string __result)
         {
             try
             {
-                if (string.IsNullOrEmpty(Name)) return;
-                if (_shortNames.TryGetValue(Name, out var ko))
+                if (string.IsNullOrEmpty(Stat)) return;
+                if (_shortNames.TryGetValue(Stat, out var ko))
                     __result = ko;
             }
             catch (Exception e)
