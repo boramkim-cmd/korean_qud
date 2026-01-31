@@ -1,6 +1,6 @@
 # Caves of Qud Korean Localization - TODO
 
-> **Version**: 3.9 | **Last Updated**: 2026-01-30
+> **Version**: 4.0 | **Last Updated**: 2026-02-01
 
 ---
 
@@ -9,10 +9,10 @@
 | Phase | Done | WIP | Todo | Progress |
 |-------|------|-----|------|----------|
 | Phase 1: Stabilization | 7 | 0 | 0 | 100% |
-| Phase 2: Gameplay | 5 | 0 | 1 | 90% |
+| Phase 2: Gameplay | 6 | 0 | 1 | 92% |
 | Phase 3: Optimization | 6 | 0 | 1 | 86% |
 | Phase 4: Community | 0 | 0 | 3 | 0% |
-| **Total** | **18** | **0** | **5** | **78%** |
+| **Total** | **19** | **0** | **5** | **79%** |
 
 ### Translation Coverage (2026-01-30)
 | Metric | Value |
@@ -129,6 +129,7 @@
 | ID | Task | Hours | Priority | Status |
 |----|------|-------|----------|--------|
 | P2-01 | Message Log Patch | 8h | Medium | ✅ Done |
+| P2-05 | UI 번역 확장 (HUD, 능력치, 장비, 능력, 무게) | 8h | High | ✅ Done |
 | P2-04 | NPC Dialogue (Conversations.xml 647KB) | 16h | Medium | Todo |
 
 ### Phase 3: Optimization
@@ -175,6 +176,7 @@
 | Message Log Patch (P2-01) | 01-22 |
 | Objects Translation Major Expansion (67 files, 6,169 entries) | 01-24 |
 | Items Translation Extension (weapons, armor, grenades) (+787 entries) | 01-25 |
+| UI 번역 확장 (HUD, 능력치, 장비, 능력, 무게 단위) (9개 패치) | 02-01 |
 
 ### Testing & Tooling
 | Task | Date |

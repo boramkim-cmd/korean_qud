@@ -1,10 +1,49 @@
 # Caves of Qud Korean Localization - Changelog
 
-> **Version**: 7.2 | **Last Updated**: 2026-01-30
+> **Version**: 8.0 | **Last Updated**: 2026-02-01
 
 ---
 
 ## Recent Changes
+
+### [2026-02-01] UI 번역 대규모 확장 — HUD, 능력치, 장비, 능력, 무게 단위 (세션 7-8, 커밋 32개)
+
+**Phase 1: 번역 파이프라인 수정 (세션 7)**
+- full-name 우선 매칭, 복합 액체 처리, 원문 텍스트 매칭 수정
+- 색상 태그 false positive, dead code, partial match 정렬 수정
+- RestoreFormatting 모든 경로에 fallback 적용
+
+**Phase 2: UI 패치 대규모 확장 (세션 8)**
+- **9개 신규 UI 패치** 생성:
+  | 패치 | 역할 |
+  |------|------|
+  | `02_10_19_AbilityBar.cs` | 능력 바 한글 번역 |
+  | `02_10_20_StatHelpText.cs` | 능력치 도움말 16개 번역 |
+  | `02_10_21_ActivatedAbilities.cs` | 활성화된 능력 이름 |
+  | `02_10_22_EquipmentSlots.cs` | 장비 슬롯 부위 이름 |
+  | `02_10_23_StatusFormat.cs` | 상태 표시 형식 |
+  | `02_10_24_StatAbbreviations.cs` | 능력치 약어 (ST→힘 등) |
+  | `02_10_25_SkillsScreen.cs` | 스킬 화면 |
+  | `02_10_26_PlayerStatusBar.cs` | 상태 바 (허기/갈증/XP) |
+  | `02_10_27_WeightUnit.cs` | 무게 lbs→kg |
+
+- **새로운 JSON**:
+  - `LOCALIZATION/UI/stat_help.json` — 16개 능력치 도움말
+  - `LOCALIZATION/GAMEPLAY/ability_names.json` — 능력 이름
+
+- **핵심 변경**:
+  - 무게 단위: lbs → kg (전체 UI)
+  - 통화 기호: $ → 드램
+  - 능력치 약어: ST→힘, AG→민, TO→건, IN→지, WI→의, EG→자
+  - 허기/갈증: Hungry/Parched/Dehydrated → 한글
+  - XP 바: Update()→BeginEndTurn() 최적화
+
+- **버그 수정**:
+  - AbilityBar 네임스페이스 (XRL.UI → Qud.UI)
+  - GetStatShortName 파라미터 (Name → Stat)
+  - Property→Field, AfterRender 타이밍 수정
+
+- **수정 파일**: 24개 (C# 13개, JSON 5개, 문서 6개)
 
 ### [2026-01-30] 미번역 항목 완료 - 어휘, 팩션, 현상, 음식, 지역 단어 (커밋 8877c1d)
 - **목표**: 정적 번역 커버리지 100% 달성, 동적 패턴 런타임 처리 지원

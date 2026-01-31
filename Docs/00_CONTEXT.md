@@ -1,7 +1,7 @@
 # QUD_KOREAN 프로젝트 컨텍스트
 
 > **이 파일은 Claude Code가 세션 시작 시 반드시 읽어야 하는 핵심 문서입니다.**
-> 최종 업데이트: 2026-01-30
+> 최종 업데이트: 2026-02-01
 
 ---
 
@@ -32,6 +32,9 @@
 - **CompoundTranslator** - 복합어 번역 (99% 커버리지)
 - **BookTitleTranslator** - 책 제목 한글 어순 변환 (18개 전치사 패턴)
 - **빌드 시스템 Phase 1** - JSON 번들링 + 소스맵 (607KB 번들)
+- **UI 패치 23개** — HUD, 능력치, 장비 슬롯, 능력 바, 스킬 화면, 상태 바, 무게 단위(lbs→kg)
+- **능력치 약어 번역** — ST→힘, AG→민, TO→건, IN→지, WI→의, EG→자
+- **능력치 도움말 16개** — stat help text 한글화
 
 ### 번역 현황 (2026-01-30)
 | 항목 | 값 |
@@ -56,11 +59,19 @@
 | 팩션 | 67 |
 
 ### 다음 세션 필수 작업
-1. **게임 테스트**: `./deploy.sh` → `kr:stats` + `kr:perf` (번들 모드 + 성능 검증)
-2. **새 JSON 파일 로드 확인**: LocalizationManager가 신규 6개 JSON 파일을 정상 로드하는지 확인
-3. **지역 형용사/명사 인게임 확인**: CompoundTranslator에서 정상 처리되는지 확인
+1. **게임 테스트**: `./deploy.sh` → 전체 UI 번역 검증 (HUD, 능력치, 장비, 능력, 무게)
+2. **HUD 확인**: 무게(kg), 드램 통화, 허기/갈증 상태
+3. **능력치 약어 확인**: 힘/민/건/지/의/자 표시
 
-### 최근 작업 (2026-01-30 - 미번역 항목 완료) ✅ 완료
+### 최근 작업 (2026-02-01 - UI 번역 대규모 확장) ✅ 완료
+- ✅ **9개 신규 UI 패치** (AbilityBar, StatHelp, ActivatedAbilities, EquipmentSlots, StatusFormat, StatAbbreviations, SkillsScreen, PlayerStatusBar, WeightUnit)
+- ✅ **무게 단위 lbs→kg** 전체 UI 변환
+- ✅ **능력치 약어** ST→힘, AG→민, TO→건, IN→지, WI→의, EG→자
+- ✅ **16개 능력치 도움말** 한글 번역
+- ✅ **허기/갈증 상태** 한글 번역
+- ✅ 번역 파이프라인 버그 수정 (full-name 우선, 색상 태그, partial match)
+
+### 이전 작업 (2026-01-30 - 미번역 항목 완료) ✅ 완료
 - ✅ **194개 번역 항목 추가** (커밋 8877c1d)
   - 어휘 9개 (nouns 6 + modifiers 3)
   - 생물 지역 단어 30개 (형용사 15 + 명사 15)
@@ -214,6 +225,13 @@ kr:perf         # 성능 카운터 표시 + 리셋
 | **소스맵 클래스** | `Scripts/.../V2/Data/SourceMap.cs` |
 | **빌드 계획** | `Docs/plans/2026-01-27-build-optimization-plan.md` |
 | **성능 카운터** | `Scripts/99_Utils/99_00_04_PerfCounters.cs` |
+| **능력 바 패치** | `Scripts/02_Patches/10_UI/02_10_19_AbilityBar.cs` |
+| **능력치 도움말** | `Scripts/02_Patches/10_UI/02_10_20_StatHelpText.cs` |
+| **장비 슬롯** | `Scripts/02_Patches/10_UI/02_10_22_EquipmentSlots.cs` |
+| **능력치 약어** | `Scripts/02_Patches/10_UI/02_10_24_StatAbbreviations.cs` |
+| **무게 단위** | `Scripts/02_Patches/10_UI/02_10_27_WeightUnit.cs` |
+| **능력치 도움말 JSON** | `LOCALIZATION/UI/stat_help.json` |
+| **능력 이름 JSON** | `LOCALIZATION/GAMEPLAY/ability_names.json` |
 
 ---
 

@@ -1,111 +1,56 @@
-# 잔여 영어 UI 번역 설계 문서 (v2)
+# Remaining English UI Translation Implementation Plan
 
-> 2026-01-31 | 게임 플레이 화면에 남아있는 영어 텍스트 한글화
-> v2: 비판적 리뷰 + 코드 검증 결과 반영
+> **For Claude:** REQUIRED SUB-SKILL: Use superpowers:executing-plans to implement this plan task-by-task.
 
----
+**Goal:** Translate all remaining English UI text visible during gameplay into Korean, across 6 phases.
 
-## 0. 설계 원칙
+**Architecture:** Harmony postfix patches intercept game methods at runtime and replace English strings with Korean from JSON lookup files. The `LocalizationManager.GetCategory()` API loads `Dictionary<string, string>` from JSON files under `LOCALIZATION/`. Some items only need JSON additions to existing categories (picked up by existing patches); others need new C# patch files.
 
-### 0-1. 쿼드 세계관 용어 규칙
-
-| 규칙 | 예시 |
-|------|------|
-| 고유명사(인명/지명)는 음차 | Joppa → 조파, Artifex → 기술자(기존), Shwut Ux → 슈우트 욱스 |
-| 게임 고유 단위는 원문 유지 또는 음차 | dram → 드램, # → # (파운드 약어) |
-| 기술/RPG 용어는 의역 | True Kin → 순수 인간(기존), Mutated Human → 변이된 인간(기존) |
-| 상태 텍스트는 간결한 한글 | Sated → 포만, Quenched → 해갈 |
-
-### 0-2. UI 깨짐 방지 원칙
-
-1. **고정폭 영역 글자 수 검증**: 상단 바, 능력 바 등은 픽셀 폭 제한 있음. 한글 2바이트 문자가 영어보다 넓으므로 **번역 후 실제 렌더링 폭 확인** 필수
-2. **색상 태그 완전 보존**: `{{W|...}}`, `{{C|...}}`, `{{K|...}}`, `<color=...>` 모두 유지
-3. **포맷 문자열 보존**: `{0}`, `{1}` 등 플레이스홀더 위치/개수 변경 금지
-4. **약어 유지**: STR, AGI, AV, DV, MA, QN, MS, AR, ER, CR, HR — 박스 내 표시되는 약어는 영어 유지 (이미 적용됨)
-5. **StringBuilder 주입 시 문자열 길이**: Replace 방식은 원본보다 한글이 짧으면 안전. 길면 레이아웃 확인
-6. **null/empty 체크**: 번역 실패 시 원문 반환, 빈 문자열 반환 금지
-
-### 0-3. 무게 단위 시스템
-
-게임 내 무게 표시 형태 (모두 **파운드 기반**, 톤 변환 없음):
-
-| 형태 | 소스 | 예시 |
-|------|------|------|
-| `X lbs.` | Description.cs:156, InventoryLine.cs:243 | `[12 lbs.]` |
-| `X/Y lbs.` | InventoryAndEquipmentStatusScreen.cs:575 | `121/300 lbs.` |
-| `#X/Y` | Sidebar.cs:568 | `#121/300` |
-| `X/Y#` | PlayerStatusBar.cs:326 | `121/300#` |
-
-**번역 전략**:
-- `lbs.` → 한국 표기 고려. 선택지:
-  - (A) `lbs.` 유지 — 게임 고유 느낌 보존, 기존 사용자 혼란 없음
-  - (B) `파운드` — 한글화 일관성, 하지만 길이 증가
-  - (C) `#` 기호 통일 — 게임 내 이미 `#`을 파운드 약어로 사용 중
-- **권장: (A) `lbs.` 유지** — 게임의 고유 세계관 단위처럼 취급. 무게 숫자가 중요하고 단위는 맥락으로 이해 가능. 길이 문제도 없음.
-- `Weight:` 라벨만 `무게:`로 번역
+**Tech Stack:** C# with Harmony 2.0, Newtonsoft.Json, Unity TextMeshPro. JSON translation data. Python validation tooling.
 
 ---
 
-## 1. 미번역 항목 목록 및 소스 위치
+### Task 1: Phase 1 — Add 5 menu items to common.json
 
-### A. 속성 설명 텍스트 (16개) — 새 패치 필요
+**Files:**
+- Modify: `LOCALIZATION/UI/common.json`
 
-**소스**: `Statistic.cs` → `GetHelpText()` 메서드 (line 368-435)
+**Step 1: Add the 5 new entries to common.json**
 
-**중요 발견**: `stats.json`에 6대 속성 설명이 이미 번역되어 있지만, 이는 **캐릭터 생성 화면용** 텍스트(Genotypes.xml)이며 `GetHelpText()` 반환값과 **내용이 다르다**.
+Open `LOCALIZATION/UI/common.json` and add these entries to the `"common"` object (alphabetical order):
 
-| Name 키 | stats.json 키 (캐릭생성) | GetHelpText 반환값 (인게임) |
-|---------|------------------------|--------------------------|
-| Strength | "your {{w\|strength}} **score** determines..." | "Your {{W\|Strength}} determines how much **melee damage**..." |
-
-→ 동일 속성이지만 **다른 텍스트**이므로 새 번역 필요. 단, 기존 stats.json 번역의 **어조와 용어**를 최대한 일치시킨다.
-
-**전체 목록** (16개 — Temperature 포함):
-
-| Name 키 | 영문 요약 |
-|---------|----------|
-| Strength | melee damage, armor penetration, forced movement, carry capacity |
-| Agility | accuracy, dodge attacks |
-| Toughness | hit points, regeneration, poison/disease resist |
-| Intelligence | skill points, examine artifacts |
-| Willpower | cooldowns, mental attack resist, HP regen |
-| Ego | mental mutations, haggle, dominate |
-| AV | protection against physical attacks |
-| DV | chance to be hit, Agility modifier |
-| MA | mental attack protection, Willpower modifier |
-| Speed | action speed, base 100 |
-| MoveSpeed | walk/fly speed, base 100 |
-| T | temperature, cold reduces Quickness, hot causes fire |
-| AcidResistance | acid damage ablation, base 0, immune at 100 |
-| ColdResistance | cold damage, temperature reduction insulation |
-| ElectricResistance | electrical damage, electric current resistance |
-| HeatResistance | heat damage, temperature increase insulation |
-
-**번역 전략**:
-- 새 패치: `02_10_20_StatHelpText.cs`
-- `[HarmonyPostfix]` on `Statistic.GetHelpText()`
-- **`Name` 값을 키로** JSON 조회 (전체 문장을 키로 쓰면 원문 변경 시 깨짐)
-- JSON: `LOCALIZATION/UI/stat_help.json`
-
-```csharp
-[HarmonyPatch(typeof(XRL.World.Statistic), nameof(XRL.World.Statistic.GetHelpText))]
-public static class Patch_Statistic_GetHelpText
-{
-    private static Dictionary<string, string> _helpTexts;
-
-    [HarmonyPostfix]
-    static void Postfix(Statistic __instance, ref string __result)
-    {
-        if (string.IsNullOrEmpty(__result)) return;
-        if (_helpTexts == null)
-            _helpTexts = LocalizationManager.GetCategory("stat_help");
-        if (_helpTexts != null && _helpTexts.TryGetValue(__instance.Name, out var ko))
-            __result = ko;
-    }
-}
+```json
+"Buy Mutation": "변이 구매",
+"navigation": "이동",
+"Set Primary Limb": "주 사용 부위 설정",
+"Show Effects": "효과 보기",
+"Show Tooltip": "도움말 보기"
 ```
 
-**JSON 예시** (`LOCALIZATION/UI/stat_help.json`):
+**Step 2: Run validation**
+
+Run: `python3 tools/project_tool.py validate`
+Expected: PASS, no duplicate key errors
+
+**Step 3: Commit**
+
+```bash
+git add LOCALIZATION/UI/common.json
+git commit -m "feat: add 5 status screen menu items to common.json"
+git push
+```
+
+---
+
+### Task 2: Phase 2 — Create stat_help.json with 16 attribute descriptions
+
+**Files:**
+- Create: `LOCALIZATION/UI/stat_help.json`
+
+**Step 1: Create the JSON file**
+
+Create `LOCALIZATION/UI/stat_help.json` with the following content. Keys are `Statistic.Name` values. Translations follow existing `stats.json` tone ("~을 결정합니다", "~을 나타냅니다") and use canonical attribute names from `_SHARED/attributes.json`.
+
 ```json
 {
   "stat_help": {
@@ -129,326 +74,624 @@ public static class Patch_Statistic_GetHelpText
 }
 ```
 
-**번역 시 기존 stats.json과 어조 통일점**:
-- 속성명: `_SHARED/attributes.json` 기준 (힘, 민첩, 건강, 지능, 의지, 자아)
-- 문체: "~을 결정합니다", "~을 나타냅니다" (stats.json의 "~을 결정합니다" 패턴 유지)
-- 게임 용어: hit points → 체력, skill points → 기술 포인트, armor penetration → 방어 관통 (기존 번역 일관)
+**Step 2: Run validation**
+
+Run: `python3 tools/project_tool.py validate`
+Expected: PASS
+
+**Step 3: Commit**
+
+```bash
+git add LOCALIZATION/UI/stat_help.json
+git commit -m "feat: add 16 stat help text translations"
+git push
+```
 
 ---
 
-### B. HUD 하단 바 (AbilityBar) — 새 패치 필요
+### Task 3: Phase 2 — Create StatHelpText Harmony patch
 
-**소스**: `AbilityBar.cs`
+**Files:**
+- Create: `Scripts/02_Patches/10_UI/02_10_20_StatHelpText.cs`
 
-| 메서드 | 접근 | 텍스트 | 번역 |
-|--------|------|--------|------|
-| `InternalUpdateActiveEffects` (private, void) | line 260 | `ACTIVE EFFECTS:` | `활성 효과:` |
-| `AfterRender` (private, void) | line 380 | `TARGET: {DisplayName}` | `대상: {DisplayName}` |
-| `AfterRender` (private, void) | line 412 | `TARGET: [none]` | `대상: [없음]` |
-| `UpdateAbilitiesText` (public, void) | line 723,730 | `ABILITIES` / `page X of Y` | `능력` / `X/Y 페이지` |
-| (능력 상태) | line 569 | `[disabled]` | `[비활성]` |
-| (토글 상태) | line 579 | `[on]` | `[켜짐]` |
-| (토글 상태) | line 583 | `[off]` | `[꺼짐]` |
+**Step 1: Write the patch file**
 
-**번역 전략** (이전 리뷰에서 수정):
-- 모든 메서드가 **void 반환** → `ref string __result` 불가
-- **인스턴스 필드 직접 수정** 방식 사용
+Create `Scripts/02_Patches/10_UI/02_10_20_StatHelpText.cs`:
 
 ```csharp
-// ACTIVE EFFECTS — InternalUpdateActiveEffects Postfix
-[HarmonyPatch(typeof(AbilityBar), "InternalUpdateActiveEffects")]
-static void Postfix(AbilityBar __instance)
+// 분류: UI 패치
+// 역할: Statistic.GetHelpText() 반환값을 한글로 교체
+
+using System;
+using System.Collections.Generic;
+using HarmonyLib;
+using UnityEngine;
+using QudKRTranslation.Core;
+
+namespace QudKRTranslation.Patches
 {
-    // Reflection으로 effectText 필드 접근 후 Replace
-    // 또는 Traverse.Create(__instance).Field("effectText")
-    var field = AccessTools.Field(typeof(AbilityBar), "effectText");
-    if (field != null)
+    [HarmonyPatch(typeof(XRL.World.Statistic), nameof(XRL.World.Statistic.GetHelpText))]
+    public static class Patch_Statistic_GetHelpText
     {
-        string val = (string)field.GetValue(__instance);
-        if (val != null && val.Contains("ACTIVE EFFECTS:"))
-            field.SetValue(__instance, val.Replace("ACTIVE EFFECTS:", "활성 효과:"));
+        private static Dictionary<string, string> _helpTexts;
+
+        [HarmonyPostfix]
+        static void Postfix(XRL.World.Statistic __instance, ref string __result)
+        {
+            try
+            {
+                if (string.IsNullOrEmpty(__result)) return;
+                if (_helpTexts == null)
+                    _helpTexts = LocalizationManager.GetCategory("stat_help");
+                if (_helpTexts != null && _helpTexts.TryGetValue(__instance.Name, out var ko))
+                    __result = ko;
+            }
+            catch (Exception e)
+            {
+                Debug.LogWarning($"[Qud-KR] GetHelpText Postfix 오류: {e.Message}");
+            }
+        }
     }
 }
-
-// ABILITIES — UpdateAbilitiesText Postfix
-// UITextSkin.text에 직접 설정하므로 기존 TMP_Text 전역 패치가 잡을 수 있음
-// → 먼저 common.json에 "ABILITIES" 추가 테스트, 실패 시 직접 패치
 ```
 
-**UI 깨짐 위험 항목**:
-- `ACTIVE EFFECTS:` (15자) → `활성 효과:` (5자) — 짧아져서 안전
-- `TARGET:` (7자) → `대상:` (3자) — 안전
-- `ABILITIES` (9자) → `능력` (2자) — 안전, 단 `page X of Y` → `X/Y 페이지` 길이 확인
-- `[disabled]` (10자) → `[비활성]` (5자) — 안전
+**Step 2: Run validation**
+
+Run: `python3 tools/project_tool.py validate`
+Expected: PASS (header check: `분류:` and `역할:` present, brace balance OK)
+
+**Step 3: Commit**
+
+```bash
+git add Scripts/02_Patches/10_UI/02_10_20_StatHelpText.cs
+git commit -m "feat: add Harmony patch for stat help text translation"
+git push
+```
 
 ---
 
-### C. 능력 이름 (5개+) — 새 패치 + 용어 통일 필요
+### Task 4: Phase 3 — Create AbilityBar Harmony patch
 
-**검증 결과**: `activated_abilities.json`에 능력명 번역 **없음**. `ActivatedAbilityEntry.DisplayName` 패치도 **없음**.
+**Files:**
+- Create: `Scripts/02_Patches/10_UI/02_10_19_AbilityBar.cs`
 
-**기존 용어 충돌 발견**:
+**Step 1: Write the patch file**
 
-| 능력 | 기존 번역 1 | 기존 번역 2 | 위치 |
-|------|------------|------------|------|
-| Sprint | 질주 | 달리기 | common.json / tutorial |
-| Make Camp | 캠프 설치 | — | Wayfaring.json |
-| Deploy Turret | 포탑 배치 | — | Tinkering.json |
-| Rebuke Robot | (없음, 설명만) | — | — |
-| Recharge | (없음, 복합어만) | — | — |
+Create `Scripts/02_Patches/10_UI/02_10_19_AbilityBar.cs`. This patches void methods via field/property reflection since `ref string __result` is not available.
 
-**용어 결정 (권장)**:
+```csharp
+// 분류: UI 패치
+// 역할: AbilityBar의 영어 UI 텍스트를 한글로 교체 (ACTIVE EFFECTS, TARGET, ABILITIES, 토글 상태)
 
-| 영문 | 한글 | 근거 |
-|------|------|------|
-| Sprint | **질주** | common.json 기존 + 짧고 직관적 |
-| Make Camp | **캠프 설치** | Wayfaring.json 기존 |
-| Rebuke Robot | **로봇 복종** | chargen ui "로봇을 복종시킬 수 있음" 기반 |
-| Deploy Turret | **포탑 배치** | Tinkering.json 기존 |
-| Recharge | **충전** | "주변광 충전 속도" 기존 패턴 |
+using System;
+using System.Collections.Generic;
+using HarmonyLib;
+using UnityEngine;
+using XRL.UI;
 
-**번역 전략**:
-- `AddMyActivatedAbility`의 Postfix로 `DisplayName` 교체, 또는
-- `ActivatedAbilityEntry` 생성/렌더링 시점에서 교체
-- JSON: `LOCALIZATION/GAMEPLAY/ability_names.json`
-- 기존 `tutorial`, `common.json`의 충돌 항목도 통일 (Sprint → 질주로 통일)
+namespace QudKRTranslation.Patches
+{
+    // ACTIVE EFFECTS: → 활성 효과:
+    [HarmonyPatch(typeof(AbilityBar), "InternalUpdateActiveEffects")]
+    public static class Patch_AbilityBar_ActiveEffects
+    {
+        [HarmonyPostfix]
+        static void Postfix(AbilityBar __instance)
+        {
+            try
+            {
+                var field = AccessTools.Field(typeof(AbilityBar), "effectText");
+                if (field == null) return;
+                string val = field.GetValue(__instance) as string;
+                if (val != null && val.Contains("ACTIVE EFFECTS:"))
+                    field.SetValue(__instance, val.Replace("ACTIVE EFFECTS:", "활성 효과:"));
+            }
+            catch (Exception e)
+            {
+                Debug.LogWarning($"[Qud-KR] AbilityBar ActiveEffects 오류: {e.Message}");
+            }
+        }
+    }
+
+    // TARGET: {name} → 대상: {name}, TARGET: [none] → 대상: [없음]
+    [HarmonyPatch(typeof(AbilityBar), "AfterRender")]
+    public static class Patch_AbilityBar_Target
+    {
+        [HarmonyPostfix]
+        static void Postfix(AbilityBar __instance)
+        {
+            try
+            {
+                var field = AccessTools.Field(typeof(AbilityBar), "targetText");
+                if (field == null) return;
+                string val = field.GetValue(__instance) as string;
+                if (val == null) return;
+                if (val.Contains("TARGET:"))
+                {
+                    val = val.Replace("TARGET:", "대상:");
+                    val = val.Replace("[none]", "[없음]");
+                    field.SetValue(__instance, val);
+                }
+            }
+            catch (Exception e)
+            {
+                Debug.LogWarning($"[Qud-KR] AbilityBar Target 오류: {e.Message}");
+            }
+        }
+    }
+
+    // ABILITIES, page X of Y, [disabled], [on], [off]
+    [HarmonyPatch(typeof(AbilityBar), "UpdateAbilitiesText")]
+    public static class Patch_AbilityBar_Abilities
+    {
+        private static readonly Dictionary<string, string> _replacements = new Dictionary<string, string>
+        {
+            { "ABILITIES", "능력" },
+            { "[disabled]", "[비활성]" },
+            { "[on]", "[켜짐]" },
+            { "[off]", "[꺼짐]" }
+        };
+
+        [HarmonyPostfix]
+        static void Postfix(AbilityBar __instance)
+        {
+            try
+            {
+                var field = AccessTools.Field(typeof(AbilityBar), "abilitiesText");
+                if (field == null) return;
+                string val = field.GetValue(__instance) as string;
+                if (val == null) return;
+
+                foreach (var kv in _replacements)
+                    val = val.Replace(kv.Key, kv.Value);
+
+                // "page X of Y" → "X/Y 페이지"
+                if (val.Contains("page "))
+                {
+                    var match = System.Text.RegularExpressions.Regex.Match(val, @"page (\d+) of (\d+)");
+                    if (match.Success)
+                        val = val.Replace(match.Value, $"{match.Groups[1].Value}/{match.Groups[2].Value} 페이지");
+                }
+
+                field.SetValue(__instance, val);
+            }
+            catch (Exception e)
+            {
+                Debug.LogWarning($"[Qud-KR] AbilityBar Abilities 오류: {e.Message}");
+            }
+        }
+    }
+}
+```
+
+**Step 2: Run validation**
+
+Run: `python3 tools/project_tool.py validate`
+Expected: PASS
+
+**Important caveat:** The field names (`effectText`, `targetText`, `abilitiesText`) are guesses based on the design document. Before implementation, verify actual field names by searching `Assets/core_source/AbilityBar.cs` for the string assignments at the lines referenced in the design doc (lines 260, 380, 412, 723). If field names differ, update accordingly. The patch may need to target `UITextSkin.text` or `TMP_Text.text` properties instead of string fields.
+
+**Step 3: Commit**
+
+```bash
+git add Scripts/02_Patches/10_UI/02_10_19_AbilityBar.cs
+git commit -m "feat: add AbilityBar Korean translation patch"
+git push
+```
 
 ---
 
-### D. 장비 슬롯명 — 조합 메서드 특정 필요
+### Task 5: Phase 4 — Create ability_names.json
 
-**소스**: `Bodies.xml`의 `DescriptionPrefix` + `Type` + `Laterality` 런타임 조합
+**Files:**
+- Create: `LOCALIZATION/GAMEPLAY/ability_names.json`
 
-**기존 JSON 상태**:
-- `_SHARED/body_parts.json`: Arm → 팔, Hands → 손, Back → 등 (있음)
-- "Worn on" 프리픽스 번역: **없음**
-- "Left"/"Right" Laterality 번역: **없음**
+**Step 1: Create the JSON file**
 
-**번역 제안**:
+Create `LOCALIZATION/GAMEPLAY/ability_names.json`:
 
-| 영문 | 한글 | 비고 |
-|------|------|------|
-| Worn on Hands | 손 착용 | |
-| Worn on Back | 등 착용 | |
-| Left Arm | 왼쪽 팔 | |
-| Right Arm | 오른쪽 팔 | |
-| Left Missile Weapon | 왼쪽 투사 무기 | |
-| Right Missile Weapon | 오른쪽 투사 무기 | |
-| Left Hand | 왼손 | `*Left Hand` 아니고 `왼쪽 손`보다 자연스러움 |
-| Right Hand | 오른손 | |
-| Floating Nearby | 부유 아이템 | body_parts.json 기존 |
-
-**조합 로직 특정 (미해결)**:
-`DescriptionPrefix + " " + Type` 조합이 어느 C# 메서드에서 실행되는지 아직 미확인. 구현 전 반드시:
-1. `Assets/core_source/`에서 `DescriptionPrefix`를 참조하는 코드 검색
-2. 해당 메서드에 Postfix 적용 또는 결과 문자열을 전역 패치로 잡기
-
----
-
-### E. 상태 화면 UI — KeyMenuOption 패치 경로 확인됨
-
-**검증 결과**: `KeyMenuOption.setDataMenuOption` Postfix가 **이미 존재** (`02_10_01_Options.cs:345-389`). `"options"`과 `"common"` 카테고리를 검색.
-
-→ `common.json`에 추가하면 `Show Effects`, `Buy Mutation` 등이 **잡힌다**.
-
-| 텍스트 | 처리 방법 | 필요 조치 |
-|--------|-----------|-----------|
-| `Show Effects` | KeyMenuOption 패치가 잡음 | `common.json`에 추가 |
-| `Buy Mutation` | KeyMenuOption 패치가 잡음 | `common.json`에 추가 |
-| `navigation` | KeyMenuOption 패치가 잡음 | `common.json`에 추가 |
-| `Set Primary Limb` | KeyMenuOption 패치가 잡음 | `common.json`에 추가 |
-| `Show Tooltip` | KeyMenuOption 패치가 잡음 | `common.json`에 추가 |
-| `Attribute Points: {N}` | `string.Format()` 결과가 TMP_Text에 설정 | 포맷 문자열 패치 필요 (별도) |
-| `Level: 1 ¯ HP: 14/14 ¯ XP: 0/220 ¯ Weight: 5T2#` | `string.Format()` 결과 | 포맷 문자열 패치 필요 (별도) |
-| `True Kin Artifex` | `GetGenotype() + " " + GetSubtype()` | Genotype/Subtype 반환값 패치 또는 결합 시점 패치 |
-
-**JSON 추가 내용** (`UI/common.json`):
 ```json
-"Show Effects": "효과 보기",
-"Buy Mutation": "변이 구매",
-"navigation": "이동",
-"Set Primary Limb": "주 사용 부위 설정",
-"Show Tooltip": "도움말 보기"
+{
+  "ability_names": {
+    "Sprint": "질주",
+    "Make Camp": "캠프 설치",
+    "Rebuke Robot": "로봇 복종",
+    "Deploy Turret": "포탑 배치",
+    "Recharge": "충전"
+  }
+}
+```
+
+**Step 2: Run validation**
+
+Run: `python3 tools/project_tool.py validate`
+Expected: PASS
+
+**Step 3: Commit**
+
+```bash
+git add LOCALIZATION/GAMEPLAY/ability_names.json
+git commit -m "feat: add ability name translations"
+git push
 ```
 
 ---
 
-### F. show cybernetics — JSON만으로 불가, 별도 패치 필요
+### Task 6: Phase 4 — Create ActivatedAbility patch for ability names
 
-**근본 원인 확인됨**: `InventoryAndEquipmentStatusScreen.cs:590`에서 `{{hotkey|[~Toggle]}} show cybernetics` 형태로 설정. TMP_Text 전역 패치가 태그를 벗긴 후 `"[~Toggle] show cybernetics"`가 되어 정확한 키 매칭 실패.
+**Files:**
+- Create: `Scripts/02_Patches/10_UI/02_10_21_ActivatedAbilities.cs`
 
-**해결 방법**:
-- `InventoryAndEquipmentStatusScreen`에 새 Postfix 패치
-- 또는 TMP_Text 패치의 전처리에서 hotkey 태그 뒤 부분을 분리하여 번역
+**Step 1: Write the patch file**
 
----
+Create `Scripts/02_Patches/10_UI/02_10_21_ActivatedAbilities.cs`. This patches the point where ability display names are set so they render in Korean on the ability bar.
 
-### G. 상단 바 상태 텍스트 — 세계관 용어
+```csharp
+// 분류: UI 패치
+// 역할: ActivatedAbilityEntry.DisplayName을 한글로 교체
 
-스크린샷 상단 바: `Sated Quenched`, `Harvest Dawn 2nd of Shwut Ux`, `Joppa`
+using System;
+using System.Collections.Generic;
+using HarmonyLib;
+using UnityEngine;
+using QudKRTranslation.Core;
+using XRL.World.Parts;
 
-| 텍스트 | 현재 상태 | 번역 |
-|--------|-----------|------|
-| Sated | 미번역 | **포만** |
-| Quenched | `options.json`에 "충분히 마심" | **해갈** (짧게) |
-| Harvest Dawn | 미번역 | **수확의 새벽** (쿼드 달력 시간대) |
-| 2nd of Shwut Ux | 미번역 | **슈우트 욱스 2일** (쿼드 달력 월) |
-| Joppa | 기존 번역 "조파" | **조파** |
+namespace QudKRTranslation.Patches
+{
+    [HarmonyPatch(typeof(ActivatedAbilities), nameof(ActivatedAbilities.AddAbility))]
+    public static class Patch_ActivatedAbilities_AddAbility
+    {
+        private static Dictionary<string, string> _abilityNames;
 
-**주의**: 달력/시간 시스템은 별도 대규모 작업. 이 문서에서는 범위 외로 표기하되 목록에 기록.
+        [HarmonyPostfix]
+        static void Postfix(ActivatedAbilities __instance, string Name, ref Guid __result)
+        {
+            try
+            {
+                if (_abilityNames == null)
+                    _abilityNames = LocalizationManager.GetCategory("ability_names");
+                if (_abilityNames == null) return;
 
----
+                if (__instance.AbilityByGuid.TryGetValue(__result, out var entry))
+                {
+                    if (_abilityNames.TryGetValue(entry.DisplayName, out var ko))
+                        entry.DisplayName = ko;
+                }
+            }
+            catch (Exception e)
+            {
+                Debug.LogWarning($"[Qud-KR] AddAbility Postfix 오류: {e.Message}");
+            }
+        }
+    }
+}
+```
 
-### H. 기타
+**Step 2: Run validation**
 
-| 텍스트 | 소스 | 처리 |
-|--------|------|------|
-| `Message log` | MessageLogStatusScreen.cs:99 | `common.json`에 이미 "메시지 기록" 존재 (line 135). 적용 안 되면 별도 패치 |
-| `You have no missile weapons equipped.` | MissileWeaponArea.cs:219 | TMP_Text 패치 경로 확인 후 JSON 추가 또는 별도 패치 |
-| `lbs.` (인벤토리 무게) | 4곳 | 유지 (0-3 무게 단위 정책 참조) |
+Run: `python3 tools/project_tool.py validate`
+Expected: PASS
 
----
+**Important caveat:** The exact method signature of `AddAbility` must be verified against `Assets/core_source/`. The method name, parameter list, and return type may differ. Check `ActivatedAbilities.cs` for the actual signature. Also verify `AbilityByGuid` is the correct dictionary property name.
 
-## 2. 구현 우선순위
+**Step 3: Commit**
 
-### Phase 1: JSON 추가 (패치 불필요, 즉시 적용)
-- `common.json`에 추가: `Show Effects`, `Buy Mutation`, `navigation`, `Set Primary Limb`, `Show Tooltip`
-- 기존 `KeyMenuOption.setDataMenuOption` Postfix가 잡음
-- `Message log` → 이미 있으므로 적용 여부 확인만
-
-### Phase 2: 속성 설명 (가장 눈에 띄는 미번역, 16개)
-- 새 파일: `02_10_20_StatHelpText.cs`
-- 새 JSON: `LOCALIZATION/UI/stat_help.json`
-- `Name` 키 기반 조회 (전체 문장 키 아님)
-- 기존 `stats.json` 어조/용어와 통일
-
-### Phase 3: HUD AbilityBar
-- 새 파일: `02_10_19_AbilityBar.cs`
-- 인스턴스 필드 직접 수정 방식 (void 메서드이므로)
-- `ACTIVE EFFECTS:`, `TARGET:`, `[on]`/`[off]`/`[disabled]`, `page X of Y`
-- `ABILITIES` → 먼저 JSON 추가로 TMP_Text 패치 테스트, 실패 시 직접 패치
-
-### Phase 4: 능력 이름
-- 새 JSON: `LOCALIZATION/GAMEPLAY/ability_names.json`
-- `ActivatedAbilityEntry.DisplayName` 패치 또는 `AddMyActivatedAbility` Postfix
-- 기존 용어 충돌 통일 (Sprint → 질주)
-
-### Phase 5: 장비 슬롯명
-- 조합 메서드 특정 후 패치
-- `Worn on` + Laterality 번역
-- `_SHARED/body_parts.json` 확장
-
-### Phase 6: 상태 화면 포맷 문자열 + show cybernetics
-- `CharacterStatusScreen` 포맷 문자열 패치
-- `True Kin Artifex` → `순수 인간 기술자`
-- `InventoryAndEquipmentStatusScreen` show cybernetics 패치
-
-### 범위 외 (별도 작업):
-- 쿼드 달력 시스템 (Harvest Dawn, Shwut Ux 등)
-- 상태 텍스트 (Sated, Quenched 등) — Sidebar/PlayerStatusBar 패치 필요
+```bash
+git add Scripts/02_Patches/10_UI/02_10_21_ActivatedAbilities.cs
+git commit -m "feat: add activated ability name translation patch"
+git push
+```
 
 ---
 
-## 3. 검증된 용어표
+### Task 7: Phase 5 — Investigate equipment slot composition method
 
-`_SHARED/attributes.json` 및 기존 JSON에서 **실제 확인된** 값:
+**Files:**
+- Search: `Assets/core_source/` for `DescriptionPrefix` usage
 
-### 주요 속성
+**Step 1: Search for the slot name composition code**
 
-| 영어 | 한글 (SSOT) | 출처 |
-|------|------------|------|
-| Strength | 힘 | _SHARED/attributes.json |
-| Agility | 민첩 | _SHARED/attributes.json |
-| Toughness | **건강** | _SHARED/attributes.json (~~강인함~~ 아님) |
-| Intelligence | 지능 | _SHARED/attributes.json |
-| Willpower | 의지 | _SHARED/attributes.json |
-| Ego | 자아 | _SHARED/attributes.json |
+Run:
+```bash
+cd /Users/ben/Desktop/qud_korean
+grep -rn "DescriptionPrefix" Assets/core_source/ | head -20
+```
 
-### 보조 속성
+Look for the method that combines `DescriptionPrefix + " " + Type` (and Laterality like "Left"/"Right"). Document the exact method name, class, and line numbers.
 
-| 영어 | 한글 | 출처 |
-|------|------|------|
-| Quickness | **속도** | common.json (~~신속~~ 아님) |
-| Move Speed | 이동 속도 | common.json |
-| Armor Value (AV) | 방어력 | 확인 필요 |
-| Dodge Value (DV) | 회피력 | 확인 필요 |
-| Mental Armor (MA) | 정신 방어력 | 확인 필요 |
+**Step 2: Search for Laterality rendering**
 
-### 저항력
+Run:
+```bash
+grep -rn "Laterality" Assets/core_source/ | grep -i "left\|right\|display\|render\|text" | head -20
+```
 
-| 영어 | 한글 | 출처 |
-|------|------|------|
-| Heat Resist | 열 저항 | common.json |
-| Cold Resist | 냉기 저항 | common.json |
-| Acid Resist | 산 저항 | common.json |
-| Electrical Resist | 전기 저항 | common.json |
+**Step 3: Document findings**
 
-### 신체 부위 (장비 슬롯 관련)
+Record the exact method(s) to patch in a comment at the top of the future patch file. This task is **research only** — implementation depends on findings.
 
-| 영어 | 한글 | 출처 |
-|------|------|------|
-| Head | 머리 | _SHARED/body_parts.json |
-| Body | 몸통 | _SHARED/body_parts.json |
-| Feet | 발 | _SHARED/body_parts.json |
-| Face | 얼굴 | _SHARED/body_parts.json |
-| Back | 등 | _SHARED/body_parts.json |
-| Hands | 손 | _SHARED/body_parts.json |
-| Arm | 팔 | _SHARED/body_parts.json |
-| Floating Nearby | 부유 아이템 | _SHARED/body_parts.json |
+**Step 4: Commit findings as code comment or update design doc**
 
-### 세계관 고유명사
-
-| 영어 | 한글 | 출처 |
-|------|------|------|
-| True Kin | 순수 인간 | GENOTYPES/True_Kin.json |
-| Mutated Human | 변이된 인간 | GENOTYPES/Mutated_Human.json |
-| Artifex | 기술자 | SUBTYPES/Castes/Artifex.json |
-| Joppa | 조파 | locations.json |
-| dram | 드램 (음차) | _suffixes.json 주석 |
-
-### 능력 이름 (통일안)
-
-| 영어 | 한글 | 근거 |
-|------|------|------|
-| Sprint | 질주 | common.json 기존 |
-| Make Camp | 캠프 설치 | Wayfaring.json 기존 |
-| Rebuke Robot | 로봇 복종 | chargen ui 기반 |
-| Deploy Turret | 포탑 배치 | Tinkering.json 기존 |
-| Recharge | 충전 | 기존 패턴 |
+No commit if research only. Proceed to Task 8 based on findings.
 
 ---
 
-## 4. 검증 체크리스트
+### Task 8: Phase 5 — Implement equipment slot translation patch
 
-### Phase 1 (JSON 추가)
-- [ ] `common.json`에 5개 항목 추가
-- [ ] `python3 tools/project_tool.py` 통과
-- [ ] 게임 실행 → 속성 화면 하단 `효과 보기`, `변이 구매` 확인
-- [ ] 인벤토리 하단 `주 사용 부위 설정`, `도움말 보기` 확인
+**Files:**
+- Modify: `LOCALIZATION/_SHARED/body_parts.json` (add Laterality + prefix entries)
+- Create: `Scripts/02_Patches/10_UI/02_10_22_EquipmentSlots.cs`
 
-### Phase 2 (속성 설명)
-- [ ] `stat_help.json` 16개 항목 작성
-- [ ] `02_10_20_StatHelpText.cs` 컴파일 오류 없음
-- [ ] 게임 실행 → 속성 화면에서 각 속성 선택 시 한글 설명 표시
-- [ ] 색상 태그 `{{W|...}}` 정상 렌더링
-- [ ] 용어가 stats.json (캐릭생성)과 일관성 유지
+**Step 1: Add laterality and prefix translations to body_parts.json**
 
-### Phase 3 (AbilityBar)
-- [ ] `02_10_19_AbilityBar.cs` 컴파일 오류 없음
-- [ ] `활성 효과:` 표시, 레이아웃 깨짐 없음
-- [ ] `대상: [없음]` 표시
-- [ ] 능력 토글 `[켜짐]`/`[꺼짐]`/`[비활성]` 표시
-- [ ] `능력` 헤더, 페이지 표시
+Add to the body_parts category in `LOCALIZATION/_SHARED/body_parts.json`:
 
-### Phase 4 (능력 이름)
-- [ ] 능력 바에서 `질주`, `캠프 설치`, `충전` 등 한글 표시
-- [ ] 기존 tutorial "달리기" → "질주"로 통일 여부 결정 및 적용
+```json
+"Worn on": "착용:",
+"Left": "왼쪽",
+"Right": "오른쪽",
+"Missile Weapon": "투사 무기"
+```
 
-### Phase 5 (장비 슬롯)
-- [ ] 인벤토리 장비 슬롯 `손 착용`, `등 착용`, `왼쪽 팔` 등 표시
-- [ ] 장비 슬롯 길이로 인한 레이아웃 깨짐 없음
+**Step 2: Write the patch**
 
-### Phase 6 (포맷 문자열)
-- [ ] `순수 인간 기술자` 표시
-- [ ] `사이버네틱스 보기` 표시
-- [ ] `레벨: 1 ¯ 체력: 14/14 ¯ 경험치: 0/220 ¯ 무게: 121#` 표시
+The exact patch depends on Task 7 findings. The patch should intercept the slot name composition method and replace components:
+- `"Worn on"` → `"착용:"`
+- `"Left"` / `"Right"` → `"왼쪽"` / `"오른쪽"`
+- Body part type → from existing `body_parts.json`
+
+Template:
+
+```csharp
+// 분류: UI 패치
+// 역할: 장비 슬롯 표시명의 Laterality + DescriptionPrefix를 한글로 교체
+
+using System;
+using System.Collections.Generic;
+using HarmonyLib;
+using UnityEngine;
+using QudKRTranslation.Core;
+
+namespace QudKRTranslation.Patches
+{
+    // Target class and method to be determined by Task 7 research
+    // [HarmonyPatch(typeof(TARGET_CLASS), "TARGET_METHOD")]
+    public static class Patch_EquipmentSlotDisplay
+    {
+        private static Dictionary<string, string> _bodyParts;
+
+        [HarmonyPostfix]
+        static void Postfix(ref string __result)
+        {
+            try
+            {
+                if (string.IsNullOrEmpty(__result)) return;
+                if (_bodyParts == null)
+                    _bodyParts = LocalizationManager.GetCategory("body_parts");
+                if (_bodyParts == null) return;
+
+                // Direct match first
+                if (_bodyParts.TryGetValue(__result, out var ko))
+                {
+                    __result = ko;
+                    return;
+                }
+
+                // Component replacement
+                __result = __result.Replace("Worn on ", "");
+                __result = __result.Replace("Left ", "왼쪽 ");
+                __result = __result.Replace("Right ", "오른쪽 ");
+
+                // Translate remaining body part type
+                string remaining = __result.Replace("왼쪽 ", "").Replace("오른쪽 ", "").Trim();
+                if (_bodyParts.TryGetValue(remaining, out var partKo))
+                {
+                    __result = __result.Replace(remaining, partKo);
+                }
+
+                // Add back "착용" prefix if it was "Worn on"
+                // (Logic depends on actual composition pattern found in Task 7)
+            }
+            catch (Exception e)
+            {
+                Debug.LogWarning($"[Qud-KR] EquipmentSlot 오류: {e.Message}");
+            }
+        }
+    }
+}
+```
+
+**Step 3: Run validation**
+
+Run: `python3 tools/project_tool.py validate`
+Expected: PASS
+
+**Step 4: Commit**
+
+```bash
+git add LOCALIZATION/_SHARED/body_parts.json Scripts/02_Patches/10_UI/02_10_22_EquipmentSlots.cs
+git commit -m "feat: add equipment slot name Korean translation"
+git push
+```
+
+---
+
+### Task 9: Phase 6 — Patch status screen format strings
+
+**Files:**
+- Create: `Scripts/02_Patches/10_UI/02_10_23_StatusFormat.cs`
+- Modify: `LOCALIZATION/UI/common.json`
+
+**Step 1: Add format string labels to common.json**
+
+Add to `LOCALIZATION/UI/common.json`:
+
+```json
+"Level:": "레벨:",
+"HP:": "체력:",
+"XP:": "경험치:",
+"Weight:": "무게:"
+```
+
+**Step 2: Write status format patch**
+
+Create `Scripts/02_Patches/10_UI/02_10_23_StatusFormat.cs`:
+
+```csharp
+// 분류: UI 패치
+// 역할: 상태 화면 포맷 문자열 (Level/HP/XP/Weight, 유전형+하위유형)을 한글로 교체
+
+using System;
+using System.Collections.Generic;
+using HarmonyLib;
+using UnityEngine;
+using QudKRTranslation.Core;
+
+namespace QudKRTranslation.Patches
+{
+    // Genotype + Subtype display (e.g., "True Kin Artifex" → "순수 인간 기술자")
+    // Target the method in CharacterStatusScreen that builds the genotype/subtype line
+    // Exact target TBD — search for GetGenotype()/GetSubtype() usage in CharacterStatusScreen
+
+    // Status bar labels
+    // Target: the method that formats "Level: X ¯ HP: X/X ¯ XP: X/X ¯ Weight: X"
+    // Apply string.Replace on the formatted result
+
+    public static class Patch_StatusFormat
+    {
+        private static readonly Dictionary<string, string> _labels = new Dictionary<string, string>
+        {
+            { "Level:", "레벨:" },
+            { "HP:", "체력:" },
+            { "XP:", "경험치:" },
+            { "Weight:", "무게:" }
+        };
+
+        public static string TranslateStatusLine(string line)
+        {
+            if (string.IsNullOrEmpty(line)) return line;
+            foreach (var kv in _labels)
+                line = line.Replace(kv.Key, kv.Value);
+            return line;
+        }
+    }
+
+    // show cybernetics — needs dedicated patch on InventoryAndEquipmentStatusScreen
+    // The {{hotkey}} tag strips to "[~Toggle] show cybernetics"
+    // Patch: replace "show cybernetics" → "사이버네틱스 보기" after hotkey rendering
+}
+```
+
+**Step 3: Run validation**
+
+Run: `python3 tools/project_tool.py validate`
+Expected: PASS
+
+**Important caveat:** This task is partially a template. The exact `[HarmonyPatch]` targets for status line formatting and genotype display must be identified by searching `Assets/core_source/CharacterStatusScreen.cs` and `InventoryAndEquipmentStatusScreen.cs`. The helper method `TranslateStatusLine` is ready to use once the correct target is found.
+
+**Step 4: Commit**
+
+```bash
+git add LOCALIZATION/UI/common.json Scripts/02_Patches/10_UI/02_10_23_StatusFormat.cs
+git commit -m "feat: add status screen format string translation"
+git push
+```
+
+---
+
+### Task 10: Phase 6 — Patch "show cybernetics" hotkey text
+
+**Files:**
+- Modify: `Scripts/02_Patches/10_UI/02_10_23_StatusFormat.cs` (add patch class)
+
+**Step 1: Add cybernetics patch to existing file**
+
+Add to `02_10_23_StatusFormat.cs`:
+
+```csharp
+[HarmonyPatch(typeof(XRL.UI.InventoryAndEquipmentStatusScreen), "Show")]
+public static class Patch_ShowCybernetics
+{
+    [HarmonyPostfix]
+    static void Postfix()
+    {
+        try
+        {
+            // After the screen renders, find and replace the cybernetics toggle text
+            // This targets the post-hotkey-rendered string
+            // Exact field/property TBD — search for "show cybernetics" in InventoryAndEquipmentStatusScreen
+        }
+        catch (Exception e)
+        {
+            Debug.LogWarning($"[Qud-KR] ShowCybernetics 오류: {e.Message}");
+        }
+    }
+}
+```
+
+**Step 2: Run validation**
+
+Run: `python3 tools/project_tool.py validate`
+Expected: PASS
+
+**Step 3: Commit**
+
+```bash
+git add Scripts/02_Patches/10_UI/02_10_23_StatusFormat.cs
+git commit -m "feat: add show cybernetics translation patch"
+git push
+```
+
+---
+
+### Task 11: In-game verification checklist
+
+**Files:** None (manual testing)
+
+**Step 1: Deploy mod**
+
+Run: `./deploy.sh`
+
+**Step 2: Phase 1 verification**
+
+Launch game → Status screen → Verify:
+- [ ] `효과 보기` visible (was `Show Effects`)
+- [ ] `변이 구매` visible (was `Buy Mutation`)
+- [ ] `이동` visible (was `navigation`)
+- [ ] `주 사용 부위 설정` visible (was `Set Primary Limb`)
+- [ ] `도움말 보기` visible (was `Show Tooltip`)
+
+**Step 3: Phase 2 verification**
+
+Status screen → Select each attribute → Verify:
+- [ ] Korean help text displays for all 16 stats
+- [ ] Color tags `{{W|...}}` render correctly
+- [ ] No layout overflow
+
+**Step 4: Phase 3 verification**
+
+Gameplay HUD → Verify:
+- [ ] `활성 효과:` (was `ACTIVE EFFECTS:`)
+- [ ] `대상: [없음]` (was `TARGET: [none]`)
+- [ ] `[켜짐]`/`[꺼짐]`/`[비활성]` on ability toggles
+- [ ] `능력` header and `X/Y 페이지` pagination
+
+**Step 5: Phase 4 verification**
+
+Ability bar → Verify:
+- [ ] `질주` (was `Sprint`)
+- [ ] `캠프 설치` (was `Make Camp`)
+- [ ] `충전` (was `Recharge`)
+
+**Step 6: Phase 5 verification**
+
+Inventory → Equipment tab → Verify:
+- [ ] `왼쪽 팔`, `오른쪽 팔` slot names
+- [ ] No layout overflow from Korean text
+
+**Step 7: Phase 6 verification**
+
+Status screen header → Verify:
+- [ ] `레벨:`, `체력:`, `경험치:`, `무게:` labels
+- [ ] `사이버네틱스 보기` toggle text

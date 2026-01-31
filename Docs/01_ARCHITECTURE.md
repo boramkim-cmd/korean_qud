@@ -147,10 +147,19 @@ Scripts/
 │
 ├── 02_Patches/
 │   ├── 00_Core/                # 플랫폼 패치
-│   ├── 10_UI/                  # UI 패치 (12개)
+│   ├── 10_UI/                  # UI 패치 (23개)
 │   │   ├── 02_10_00_GlobalUI.cs
 │   │   ├── 02_10_01_Options.cs
 │   │   ├── 02_10_10_CharacterCreation.cs
+│   │   ├── 02_10_19_AbilityBar.cs        # NEW
+│   │   ├── 02_10_20_StatHelpText.cs      # NEW
+│   │   ├── 02_10_21_ActivatedAbilities.cs # NEW
+│   │   ├── 02_10_22_EquipmentSlots.cs    # NEW
+│   │   ├── 02_10_23_StatusFormat.cs      # NEW
+│   │   ├── 02_10_24_StatAbbreviations.cs # NEW
+│   │   ├── 02_10_25_SkillsScreen.cs     # NEW
+│   │   ├── 02_10_26_PlayerStatusBar.cs   # NEW
+│   │   ├── 02_10_27_WeightUnit.cs        # NEW
 │   │   └── ...
 │   └── 20_Objects/             # 오브젝트 패치 (4개)
 │       ├── 02_20_00_ObjectTranslator.cs
@@ -158,10 +167,11 @@ Scripts/
 │       ├── 02_20_02_DescriptionPatch.cs
 │       └── 02_20_99_DebugWishes.cs
 │
-└── 99_Utils/                   # 유틸리티 (3개)
+└── 99_Utils/                   # 유틸리티 (4개)
     ├── 99_00_01_TranslationUtils.cs
     ├── 99_00_02_ChargenTranslationUtils.cs
-    └── 99_00_03_StructureTranslator.cs
+    ├── 99_00_03_StructureTranslator.cs
+    └── 99_00_04_PerfCounters.cs
 
 LOCALIZATION/
 ├── CHARGEN/      # 캐릭터 생성

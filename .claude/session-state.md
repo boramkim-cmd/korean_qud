@@ -1,21 +1,25 @@
 # 세션 상태
-> **최종 업데이트**: 2026-01-31 (세션 6)
-> **현재 작업**: 체계적 버그 수정 + 코드 리뷰 완료 → 게임 테스트
+> **최종 업데이트**: 2026-02-01 (세션 8)
+> **현재 작업**: UI 번역 대규모 확장 완료 → 게임 테스트
 
 ---
 
 ## 다음 세션 할 일
 
-### 1. 게임 테스트 (번들 로딩 수정 검증) ← **최우선**
+### 1. 게임 테스트 (전체 UI 번역 검증) ← **최우선**
 - 게임 재시작 → `kr:stats`에서 **Species/Nouns 값 확인** (0이 아니어야 함)
-- bubble level 등 접미사 아이템 번역 확인 ("수평기 [잉크 1드램]")
+- **HUD 번역 확인**: 무게 단위(lbs→kg), 드램 통화, 허기/갈증 상태
+- **능력치 약어 확인**: 힘/민/건/지/의/자 (StatAbbreviations 패치)
+- **스킬 화면 확인**: 스킬 설명, 스킬 이름 한글 표시
+- **장비 슬롯 확인**: 장비 부위 이름 한글 표시
+- **능력 바 확인**: AbilityBar 능력 이름 한글
+- **능력치 도움말 확인**: 16개 stat help text 한글
 - Pipeline/Partial 비율 확인 (이전보다 낮아져야 함)
 - 상점/인벤토리/전투 로그 전반적 번역 품질
 
 ### 2. 남은 코드 리뷰 이슈 (낮은 우선순위)
 - Status 스크린 스코프 누수 (Finalizer 미구현)
 - GlobalUI `Regex.Replace` 핫패스 할당
-- StructureTranslator 불필요 O(n) 루프 제거
 - 중복 `TryGetAnyTerm` 호출 3곳
 
 ### 3. 동적 패턴 85개
@@ -23,6 +27,63 @@
 
 ### 4. Phase 4: 커뮤니티
 - Steam Workshop 배포, README 한글화, 기여 가이드
+
+---
+
+## 이번 세션 완료 (2026-02-01, 세션 8)
+
+### UI 번역 대규모 확장 — HUD, 능력치, 장비, 능력, 무게 단위 (커밋 20개)
+
+**새로 생성된 UI 패치 파일 (9개):**
+
+| 파일 | 역할 |
+|------|------|
+| `02_10_19_AbilityBar.cs` | 능력 바 한글 번역 |
+| `02_10_20_StatHelpText.cs` | 능력치 도움말 번역 |
+| `02_10_21_ActivatedAbilities.cs` | 활성화된 능력 이름 번역 |
+| `02_10_22_EquipmentSlots.cs` | 장비 슬롯 부위 이름 번역 |
+| `02_10_23_StatusFormat.cs` | 상태 표시 형식 번역 |
+| `02_10_24_StatAbbreviations.cs` | 능력치 약어 (ST→힘 등) |
+| `02_10_25_SkillsScreen.cs` | 스킬 화면 번역 |
+| `02_10_26_PlayerStatusBar.cs` | 플레이어 상태 바 (허기/갈증/XP) |
+| `02_10_27_WeightUnit.cs` | 무게 단위 lbs→kg 변환 |
+
+**새로 생성/수정된 JSON 파일:**
+
+| 파일 | 내용 |
+|------|------|
+| `LOCALIZATION/UI/stat_help.json` (신규) | 16개 능력치 도움말 번역 |
+| `LOCALIZATION/GAMEPLAY/ability_names.json` (신규) | 능력 이름 번역 |
+| `LOCALIZATION/UI/common.json` | 상태 메뉴 5개 항목 추가 |
+
+**주요 변경 사항:**
+- 무게 단위: lbs → kg 전체 UI 화면에서 변환
+- 통화 기호: $ → 드램
+- 허기/갈증 상태: Hungry/Parched/Dehydrated → 한글
+- XP 바: Update()에서 BeginEndTurn()으로 이동 (성능)
+- 능력치 약어: ST→힘, AG→민, TO→건, IN→지, WI→의, EG→자
+
+**버그 수정:**
+- AbilityBar 네임스페이스: XRL.UI → Qud.UI
+- GetStatShortName 파라미터: Name → Stat
+- Property → Field 접근 수정, AfterRender 타이밍 수정
+
+---
+
+## 이번 세션 완료 (2026-01-31, 세션 7)
+
+### 번역 파이프라인 버그 수정 + 코드 리뷰 (커밋 12개)
+
+**파이프라인 수정:**
+- full-name 우선 매칭, 복합 액체 처리, 원문 텍스트 매칭
+- 색상 태그 false positive 수정, dead code 제거
+- RestoreFormatting 모든 경로에 fallback 적용
+- partial match 정렬 순서 수정
+
+**문서:**
+- UI 번역 설계 문서 v2 작성 (`Docs/plans/2026-01-31-remaining-english-ui-translation-design.md`)
+- 소스 코드 조사 결과 참조 문서 작성 (`.claude/source-findings.md`)
+- 아이템 관찰 기록 규칙 추가
 
 ---
 
