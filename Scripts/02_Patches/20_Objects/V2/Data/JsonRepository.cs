@@ -407,11 +407,15 @@ namespace QudKorean.Objects.V2.Data
                 // Load from bundles (optimized path)
                 LoadBundledData(modDir, bundleDir);
 
-                // 번들에 포함되지 않는 보충 사전 로드 (nouns, species, suffixes)
+                // 번들에 포함되지 않는 보충 사전 로드
+                // (tonics, grenades, marks, colors, shaders, nouns, species, suffixes, vocabulary)
                 string objectsPath = Path.Combine(modDir, "LOCALIZATION", "OBJECTS");
+                LoadItemCommon(objectsPath);
                 LoadCreatureCommon(objectsPath);
                 LoadItemNouns(objectsPath);
                 LoadSuffixes(objectsPath);
+                LoadVocabulary(objectsPath);
+                LoadShared(modDir);
 
                 // Load source map for error tracking
                 string sourcemapPath = Path.Combine(modDir, "sourcemap.json");
