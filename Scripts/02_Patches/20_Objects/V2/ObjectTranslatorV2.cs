@@ -182,12 +182,17 @@ namespace QudKorean.Objects.V2
                 {
                     string suffix = reentryInput.Substring(reentryBase.Length);
                     string suffixKo = SuffixExtractor.TranslateState(suffix, _repository);
+                    // 접미사 번역 성공 시 즉시 반환, 실패 시 fast cache로 폴스루
                     if (suffixKo != suffix)
                     {
                         translated = reentryBase + suffixKo;
                         _lookupHit++;
                         return true;
                     }
+                    // 접미사 번역 실패해도 한글 베이스 + 원본 접미사로 반환
+                    translated = reentryBase + suffix;
+                    _lookupHit++;
+                    return true;
                 }
             }
 
@@ -230,8 +235,6 @@ namespace QudKorean.Objects.V2
 
                     // 고정 오브젝트인데 이름 변형이 다름 → 파이프라인으로 폴스루
                     _pipelineFallback++;
-                    if (_pipelineFallback <= 50)
-                        UnityEngine.Debug.Log($"{LOG_PREFIX} PipelineFallback: bp={blueprint} name=\"{originalName}\"");
                 }
                 else if (_knownBlueprints != null && !_knownBlueprints.Contains(normalizedBp))
                 {
@@ -252,9 +255,8 @@ namespace QudKorean.Objects.V2
                         return true;
                     }
 
-                    // GlobalNameIndex에도 없음 → 스킵
+                    // GlobalNameIndex에도 없음 → 파이프라인으로 폴스루
                     _fastSkip++;
-                    return false;
                 }
             }
 
@@ -348,7 +350,8 @@ namespace QudKorean.Objects.V2
         {
             EnsureInitialized();
             string repoStats = _repository.GetStats();
-            return $"{repoStats}, Cached: {TranslationContext.CacheCount}, LookupHit: {_lookupHit}, FastHit: {_fastHit}, FastSkip: {_fastSkip}, Pipeline: {_pipelineFallback}, Total: {_totalCalls}";
+            int partialCount = Pipeline.Handlers.FallbackHandler.PartialCount;
+            return $"{repoStats}, Cached: {TranslationContext.CacheCount}, LookupHit: {_lookupHit}, FastHit: {_fastHit}, FastSkip: {_fastSkip}, Pipeline: {_pipelineFallback}, Partial: {partialCount}, Total: {_totalCalls}";
         }
 
         #endregion

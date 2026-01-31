@@ -10,6 +10,7 @@ using System.Collections.Generic;
 using System.Text.RegularExpressions;
 using QudKorean.Objects.V2.Core;
 using QudKorean.Objects.V2.Processing;
+using UnityEngine;
 
 namespace QudKorean.Objects.V2.Pipeline.Handlers
 {
@@ -19,7 +20,9 @@ namespace QudKorean.Objects.V2.Pipeline.Handlers
     /// </summary>
     public class FallbackHandler : ITranslationHandler
     {
+        private const string LOG_PREFIX = "[QudKR-V2]";
         private static readonly Regex RxOfPattern = new Regex(@"^(.+?)\s+of\s+(?:the\s+)?(.+)$", RegexOptions.Compiled | RegexOptions.IgnoreCase);
+        private static int _partialCount;
 
         public string Name => "Fallback";
         public ITranslationHandler Next { get; set; }
@@ -52,6 +55,7 @@ namespace QudKorean.Objects.V2.Pipeline.Handlers
                 // Translate base nouns outside the color tags
                 string translated = ColorTagProcessor.TranslateNounsOutsideTags(withTranslatedMaterials, repo);
                 CacheAndReturn(context, translated);
+                LogPartial(context.Blueprint, originalName, translated);
                 return TranslationResult.Partial(translated, Name);
             }
 
@@ -60,6 +64,7 @@ namespace QudKorean.Objects.V2.Pipeline.Handlers
             if (withBaseNouns != originalName)
             {
                 CacheAndReturn(context, withBaseNouns);
+                LogPartial(context.Blueprint, originalName, withBaseNouns);
                 return TranslationResult.Partial(withBaseNouns, Name);
             }
 
@@ -159,6 +164,18 @@ namespace QudKorean.Objects.V2.Pipeline.Handlers
                    c == '"' || c == '\'' || c == ',' || c == '.' ||
                    c == ':' || c == ';' || c == '!' || c == '?';
         }
+
+        private static void LogPartial(string blueprint, string original, string translated)
+        {
+            _partialCount++;
+            if (_partialCount <= 20)
+                Debug.Log($"{LOG_PREFIX} Partial: bp={blueprint} \"{original}\" → \"{translated}\"");
+        }
+
+        /// <summary>
+        /// Returns the number of partial translation results produced this session.
+        /// </summary>
+        public static int PartialCount => _partialCount;
 
         private void CacheAndReturn(ITranslationContext context, string translated)
         {

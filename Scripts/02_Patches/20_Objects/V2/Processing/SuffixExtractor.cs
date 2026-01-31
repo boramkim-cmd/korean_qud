@@ -7,6 +7,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Text;
 using System.Text.RegularExpressions;
 using QudKorean.Objects.V2.Data;
 
@@ -115,7 +116,7 @@ namespace QudKorean.Objects.V2.Processing
             {
                 if (result.IndexOf(kvp.Key, StringComparison.OrdinalIgnoreCase) >= 0)
                 {
-                    result = Regex.Replace(result, Regex.Escape(kvp.Key), kvp.Value, RegexOptions.IgnoreCase);
+                    result = ReplaceIgnoreCase(result, kvp.Key, kvp.Value);
                 }
             }
 
@@ -169,7 +170,7 @@ namespace QudKorean.Objects.V2.Processing
             {
                 if (result.IndexOf(kvp.Key, StringComparison.OrdinalIgnoreCase) >= 0)
                 {
-                    result = Regex.Replace(result, Regex.Escape(kvp.Key), kvp.Value, RegexOptions.IgnoreCase);
+                    result = ReplaceIgnoreCase(result, kvp.Key, kvp.Value);
                 }
             }
 
@@ -184,6 +185,27 @@ namespace QudKorean.Objects.V2.Processing
             result = RxServings.Replace(result, "[$1인분]");
 
             return result;
+        }
+
+        /// <summary>
+        /// Case-insensitive string replace without Regex allocation.
+        /// </summary>
+        private static string ReplaceIgnoreCase(string source, string oldValue, string newValue)
+        {
+            int idx = source.IndexOf(oldValue, StringComparison.OrdinalIgnoreCase);
+            if (idx < 0) return source;
+
+            var sb = new StringBuilder(source.Length + newValue.Length - oldValue.Length);
+            int lastIdx = 0;
+            while (idx >= 0)
+            {
+                sb.Append(source, lastIdx, idx - lastIdx);
+                sb.Append(newValue);
+                lastIdx = idx + oldValue.Length;
+                idx = source.IndexOf(oldValue, lastIdx, StringComparison.OrdinalIgnoreCase);
+            }
+            sb.Append(source, lastIdx, source.Length - lastIdx);
+            return sb.ToString();
         }
     }
 }

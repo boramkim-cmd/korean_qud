@@ -323,10 +323,10 @@ namespace QudKorean.Objects.V2.Processing
 
             string result = original;
 
-            // 1. Replace the core name
+            // 1. Replace the core name (case-insensitive, no Regex)
             if (!string.IsNullOrEmpty(coreName) && !string.IsNullOrEmpty(translatedCore))
             {
-                result = Regex.Replace(result, Regex.Escape(coreName), translatedCore, RegexOptions.IgnoreCase);
+                result = ReplaceIgnoreCase(result, coreName, translatedCore);
             }
 
             // 2. Replace the suffix
@@ -334,7 +334,7 @@ namespace QudKorean.Objects.V2.Processing
             {
                 if (result.IndexOf(suffix, StringComparison.OrdinalIgnoreCase) >= 0)
                 {
-                    result = Regex.Replace(result, Regex.Escape(suffix), translatedSuffix, RegexOptions.IgnoreCase);
+                    result = ReplaceIgnoreCase(result, suffix, translatedSuffix);
                 }
                 else
                 {
@@ -361,22 +361,65 @@ namespace QudKorean.Objects.V2.Processing
                     }
                     else
                     {
-                        string tagPattern = @"\{\{[^|]+\|" + Regex.Escape(suffixContent) + @"\}\}";
-                        var tagMatch = Regex.Match(result, tagPattern, RegexOptions.IgnoreCase);
-                        if (tagMatch.Success)
+                        // Try to find suffix inside a color tag
+                        int tagIdx = FindSuffixInTag(result, suffixContent);
+                        if (tagIdx >= 0)
                         {
-                            string replacement = tagMatch.Value.Replace(suffixContent, translatedContent);
-                            result = result.Substring(0, tagMatch.Index) + replacement + result.Substring(tagMatch.Index + tagMatch.Length);
+                            result = ReplaceIgnoreCase(result, suffixContent, translatedContent);
                         }
                         else
                         {
-                            result = Regex.Replace(result, Regex.Escape(suffixContent), translatedContent, RegexOptions.IgnoreCase);
+                            result = ReplaceIgnoreCase(result, suffixContent, translatedContent);
                         }
                     }
                 }
             }
 
             return result;
+        }
+
+        /// <summary>
+        /// Case-insensitive string replace without Regex allocation.
+        /// </summary>
+        private static string ReplaceIgnoreCase(string source, string oldValue, string newValue)
+        {
+            int idx = source.IndexOf(oldValue, StringComparison.OrdinalIgnoreCase);
+            if (idx < 0) return source;
+
+            var sb = new StringBuilder(source.Length + newValue.Length - oldValue.Length);
+            int lastIdx = 0;
+            while (idx >= 0)
+            {
+                sb.Append(source, lastIdx, idx - lastIdx);
+                sb.Append(newValue);
+                lastIdx = idx + oldValue.Length;
+                idx = source.IndexOf(oldValue, lastIdx, StringComparison.OrdinalIgnoreCase);
+            }
+            sb.Append(source, lastIdx, source.Length - lastIdx);
+            return sb.ToString();
+        }
+
+        /// <summary>
+        /// Finds suffix content inside a {{tag|...}} block. Returns index or -1.
+        /// </summary>
+        private static int FindSuffixInTag(string text, string suffixContent)
+        {
+            int searchFrom = 0;
+            while (true)
+            {
+                int tagStart = text.IndexOf("{{", searchFrom, StringComparison.Ordinal);
+                if (tagStart < 0) return -1;
+                int pipeIdx = text.IndexOf('|', tagStart + 2);
+                if (pipeIdx < 0) return -1;
+                int closeIdx = text.IndexOf("}}", pipeIdx, StringComparison.Ordinal);
+                if (closeIdx < 0) return -1;
+
+                string content = text.Substring(pipeIdx + 1, closeIdx - pipeIdx - 1);
+                int innerIdx = content.IndexOf(suffixContent, StringComparison.OrdinalIgnoreCase);
+                if (innerIdx >= 0) return pipeIdx + 1 + innerIdx;
+
+                searchFrom = closeIdx + 2;
+            }
         }
     }
 }
