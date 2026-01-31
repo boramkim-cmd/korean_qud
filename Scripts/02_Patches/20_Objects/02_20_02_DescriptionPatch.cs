@@ -42,6 +42,13 @@ namespace QudKorean.Objects
                 {
                     __result = translated;
                 }
+
+                // "Weight: X lbs." → "무게: X kg"
+                if (__result.Contains(" lbs."))
+                {
+                    __result = __result.Replace("Weight: ", "무게: ");
+                    __result = __result.Replace(" lbs.", " kg");
+                }
             }
             catch (Exception ex)
             {
