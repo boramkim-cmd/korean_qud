@@ -14,6 +14,7 @@
  */
 
 using System;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using QudKorean.Objects.V2.Core;
 using QudKorean.Objects.V2.Data;
@@ -48,7 +49,7 @@ namespace QudKorean.Objects.V2
         private static HashSet<string> _knownBlueprints;
 
         // Negative cache: 파이프라인 실패한 blueprint+name → 재시도 방지 (O(1) 스킵)
-        private static HashSet<string> _negativeCache = new HashSet<string>(StringComparer.Ordinal);
+        private static ConcurrentDictionary<string, byte> _negativeCache = new ConcurrentDictionary<string, byte>(StringComparer.Ordinal);
 
         // 성능 카운터
         private static int _lookupHit;
@@ -267,7 +268,7 @@ namespace QudKorean.Objects.V2
 
             // Negative cache 확인: 이전에 파이프라인 실패한 조합은 즉시 스킵
             string negKey = string.Concat(blueprint, "\0", originalName);
-            if (_negativeCache.Contains(negKey))
+            if (_negativeCache.ContainsKey(negKey))
             {
                 _fastSkip++;
                 return false;
@@ -280,14 +281,14 @@ namespace QudKorean.Objects.V2
                 var result = _pipeline.Execute(context);
 
                 if (!result.Success)
-                    _negativeCache.Add(negKey);
+                    _negativeCache.TryAdd(negKey, 0);
 
                 translated = result.Translated;
                 return result.Success;
             }
             catch (Exception ex)
             {
-                _negativeCache.Add(negKey);
+                _negativeCache.TryAdd(negKey, 0);
                 LogTranslationError(blueprint, originalName, ex);
                 return false;
             }

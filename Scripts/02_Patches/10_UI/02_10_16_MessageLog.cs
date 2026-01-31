@@ -138,10 +138,8 @@ namespace QudKoreanMod.Patches
         /// <summary>
         /// 동사 번역
         /// </summary>
-        private static string TranslateVerb(string verb)
+        private static readonly Dictionary<string, string> _verbMap = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase)
         {
-            var verbMap = new Dictionary<string, string>
-            {
                 { "begin", "시작한다" },
                 { "return", "돌아온다" },
                 { "fall", "떨어진다" },
@@ -167,9 +165,11 @@ namespace QudKoreanMod.Patches
                 { "see", "본다" },
                 { "hear", "듣는다" },
                 { "feel", "느낀다" },
-            };
+        };
 
-            return verbMap.TryGetValue(verb, out string korean) ? korean : null;
+        private static string TranslateVerb(string verb)
+        {
+            return _verbMap.TryGetValue(verb, out string korean) ? korean : null;
         }
 
         /// <summary>

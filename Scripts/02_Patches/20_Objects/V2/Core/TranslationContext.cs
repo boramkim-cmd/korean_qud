@@ -6,6 +6,7 @@
  */
 
 using System;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using QudKorean.Objects.V2.Data;
 using QudKorean.Objects.V2.Processing;
@@ -17,7 +18,7 @@ namespace QudKorean.Objects.V2.Core
     /// </summary>
     public class TranslationContext : ITranslationContext
     {
-        private static readonly Dictionary<string, string> _globalCache = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase);
+        private static readonly ConcurrentDictionary<string, string> _globalCache = new ConcurrentDictionary<string, string>(StringComparer.OrdinalIgnoreCase);
 
         public ITranslationRepository Repository { get; }
         public string Blueprint { get; }
@@ -39,7 +40,7 @@ namespace QudKorean.Objects.V2.Core
 
         public void SetCached(string key, string value)
         {
-            _globalCache[key] = value;
+            _globalCache.TryAdd(key, value);
         }
 
         /// <summary>

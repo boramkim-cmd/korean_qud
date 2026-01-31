@@ -319,15 +319,8 @@ namespace QudKRTranslation.Core
     // [END DISABLED FOR TESTING]
     // ================================================================
 
-    [HarmonyPatch(typeof(MessageQueue), "AddPlayerMessage", new Type[] { typeof(string), typeof(string), typeof(bool) })]
-    public static class MessageLogPatch
-    {
-        static void Prefix(ref string Message)
-        {
-            if (!string.IsNullOrEmpty(Message))
-                Message = KoreanTextHelper.ResolveJosa(Message);
-        }
-    }
+    // [REMOVED] MessageLogPatch — 02_10_16_MessageLog.cs에서 더 포괄적으로 처리
+    // 중복 Harmony 패치 제거 (이중 실행 방지)
 
     [HarmonyPatch(typeof(Grammar), "IndefiniteArticle", new Type[] { typeof(string), typeof(bool) })]
     public static class ArticleKillerPatch
@@ -385,18 +378,8 @@ namespace QudKRTranslation.Core
     }
     */
 
-    [HarmonyPatch(typeof(Description), "GetShortDescription")]
-    public static class DescriptionPatch
-    {
-        static void Postfix(ref string __result)
-        {
-            if (__result != null && __result.StartsWith("You see "))
-            {
-                string content = __result.Substring(8).TrimEnd('.');
-                __result = KoreanTextHelper.ResolveJosa(content + "{을/를} 본다.");
-            }
-        }
-    }
+    // [REMOVED] DescriptionPatch — 02_20_02_DescriptionPatch.cs V2 시스템에서 처리
+    // 중복 Harmony 패치 제거 (이중 실행 방지)
 
     // =================================================================
     // 4. TextMeshPro 글로벌 폰트 적용 패치 [DISABLED FOR TESTING]
