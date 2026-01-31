@@ -96,3 +96,37 @@ grep -i "error\|exception" ~/Library/Logs/Freehold\ Games/CavesOfQud/Player.log 
 | armor | 갑옷 | ~~방어구~~ |
 
 > 전체 목록: `Docs/terminology_standard.md`
+
+---
+
+## 7. 번들 모드 사전 로딩 누락 (세션 6에서 수정됨)
+
+**증상**: `kr:stats`에서 Species: 0, Nouns: 0 → 파이프라인 전체 번역 실패
+
+**원인**: `LoadBundledData()`만 호출하고 `LoadItemCommon()`/`LoadCreatureCommon()` 등 보충 로딩 누락
+
+**수정**: 번들 로딩 후 소스 파일에서 보충 사전 로드 추가 (`JsonRepository.cs:410-416`)
+
+**향후 주의**: 새 어휘 카테고리 추가 시 `AddToVocabularyByCategory()`에 case 추가 필요
+
+---
+
+## 8. 중복 Harmony 패치 금지 (세션 6에서 수정됨)
+
+**증상**: 같은 메서드에 2개 Postfix/Prefix → 이중 실행, 예측 불가 결과
+
+**제거된 중복**:
+- `QudKREngine.MessageLogPatch` (→ `02_10_16_MessageLog.cs`에서 처리)
+- `QudKREngine.DescriptionPatch` (→ `02_20_02_DescriptionPatch.cs`에서 처리)
+- `02_10_15_EmbarkOverlay.cs` (→ `02_10_10_CharacterCreation.cs`에서 처리)
+
+**규칙**: 새 Harmony 패치 추가 전 `grep -rn "HarmonyPatch.*TargetClass.*TargetMethod" Scripts/` 실행
+
+---
+
+## 9. 스레드 안전성
+
+**핵심 캐시**: `TranslationContext._globalCache`와 `ObjectTranslatorV2._negativeCache`는
+`ConcurrentDictionary` 사용 (세션 6에서 수정).
+
+**규칙**: 정적 mutable 컬렉션 추가 시 `ConcurrentDictionary` 또는 `lock` 필수

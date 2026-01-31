@@ -1,22 +1,103 @@
 # 세션 상태
-> **최종 업데이트**: 2026-01-31 (세션 5)
-> **현재 작업**: 성능 최적화 완료 → 게임 테스트 대기
+> **최종 업데이트**: 2026-01-31 (세션 6)
+> **현재 작업**: 체계적 버그 수정 + 코드 리뷰 완료 → 게임 테스트
 
 ---
 
 ## 다음 세션 할 일
 
-### 1. 게임 테스트 (최적화 검증) ← **최우선**
-- `./deploy.sh` → `kr:stats`로 Pipeline 비율 확인
-- 상점/인벤토리 체감 속도 비교
-- 카테고리 헤더 한글 + 필터 동작 확인
-- 번역 품질 확인 (기존 번역이 깨지지 않았는지)
+### 1. 게임 테스트 (번들 로딩 수정 검증) ← **최우선**
+- 게임 재시작 → `kr:stats`에서 **Species/Nouns 값 확인** (0이 아니어야 함)
+- bubble level 등 접미사 아이템 번역 확인 ("수평기 [잉크 1드램]")
+- Pipeline/Partial 비율 확인 (이전보다 낮아져야 함)
+- 상점/인벤토리/전투 로그 전반적 번역 품질
 
-### 2. 동적 패턴 85개 (게임 테스트 후 판단)
+### 2. 남은 코드 리뷰 이슈 (낮은 우선순위)
+- Status 스크린 스코프 누수 (Finalizer 미구현)
+- GlobalUI `Regex.Replace` 핫패스 할당
+- StructureTranslator 불필요 O(n) 루프 제거
+- 중복 `TryGetAnyTerm` 호출 3곳
+
+### 3. 동적 패턴 85개
 - `=creatureRegionAdjective= X` (58개), `*SultanName*` (26개)
 
-### 3. Phase 4: 커뮤니티
+### 4. Phase 4: 커뮤니티
 - Steam Workshop 배포, README 한글화, 기여 가이드
+
+---
+
+## 이번 세션 완료 (2026-01-31, 세션 6)
+
+### 체계적 버그 분석 + 코드 리뷰 기반 수정 (커밋 6개)
+
+**분석 프레임워크:** 7 Thinking Hats로 10개 이슈 식별 → 우선순위별 실행
+
+#### Phase 1: 정확성 (Silent Failure 수정)
+
+| 커밋 | 내용 |
+|------|------|
+| `3934276` | #1 unknown blueprint fast skip → pipeline fallthrough |
+| | #2 display lookup reentry 실패 시 한글베이스+원본접미사 반환 |
+| | #3 FallbackHandler partial 결과 경고 로그 + 카운터 |
+| | #4 ColorTagProcessor.RestoreFormatting Regex → ReplaceIgnoreCase |
+| | #5 SuffixExtractor TranslateAll/TranslateState Regex → ReplaceIgnoreCase |
+| | #6 pipeline fallback 로깅 50건 제한 제거, GetStats()에 통합 |
+
+#### Phase 2: 성능 (파이프라인 O(n) → O(1))
+
+| 커밋 | 내용 |
+|------|------|
+| `fbf6ec9` | negative cache 추가 — unknown blueprint 파이프라인 재실행 방지 |
+| `66be52e` | CompoundTranslator TryTranslatePart 7개 O(n) → Dict O(1) |
+| | CompoundTranslator CanHandle/ShouldKeepAsIs Regex 5회 → 순수 문자열 |
+| | PrefixSuffixHandler BaseNouns O(n) → BaseNounsDict O(1) |
+| | CompoundTranslator GlobalNameIndex 전체 이름 우선 조회 |
+| | 미번역 단어 Partial 반환 (기존 즉시 Miss 실패) |
+
+#### Phase 3: 크리티컬 번들 로딩 버그
+
+| 커밋 | 내용 |
+|------|------|
+| `f8de245` | **번들 모드 Species: 0, Nouns: 0 수정** — LoadCreatureCommon/LoadItemNouns/LoadSuffixes 추가 호출 |
+| | StripSuffixFast에 `<A>` angle bracket 태그 제거 추가 |
+| `3a84f8f` | **번들 모드 6개 사전 미로딩 수정** — LoadItemCommon/LoadVocabulary/LoadShared 추가 호출 |
+| | _tonics, _grenades, _marks, _colors, _shaders 전부 비어있던 문제 |
+
+#### Phase 4: 코드 리뷰 기반 수정
+
+| 커밋 | 내용 |
+|------|------|
+| `ca6f89c` | 중복 Harmony 패치 3개 제거 (MessageLog, Description, EmbarkOverlay) |
+| | TranslationContext._globalCache → ConcurrentDictionary (스레드 안전) |
+| | ObjectTranslatorV2._negativeCache → ConcurrentDictionary (스레드 안전) |
+| | MessageLog verbMap → static readonly (핫패스 할당 제거) |
+
+### 아키텍처: 번역 조회 순서 (업데이트)
+
+```
+TryGetDisplayName(blueprint, originalName)
+│
+├─ 0. <A> 태그 등 angle bracket strip (NEW)
+│
+├─ 1. _displayLookup.TryGetValue(originalName)     (2764 entries)
+│     히트 → 즉시 반환
+│     suffix strip 후 재시도 → 접미사 번역 후 반환
+│     한글 베이스 + 영어 접미사 재진입 → 폴스루 (NEW)
+│
+├─ 2. _fastCache[blueprint][originalName]            (1836 blueprints)
+│     히트 → suffix strip → 반환
+│     미스 → pipeline fallback
+│
+├─ 3. _knownBlueprints에 없음 → GlobalNameIndex
+│     히트 → 반환
+│     미스 → 파이프라인 폴스루 (NEW, 기존: return false)
+│
+├─ 4. Negative cache 확인 (NEW)
+│     히트 → 즉시 skip
+│
+└─ 5. TranslationPipeline.Execute()                  (최후 수단)
+      실패 → negative cache에 추가 (NEW)
+```
 
 ---
 
