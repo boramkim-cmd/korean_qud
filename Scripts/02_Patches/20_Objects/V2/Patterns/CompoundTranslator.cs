@@ -79,9 +79,9 @@ namespace QudKorean.Objects.V2.Patterns
             var repo = context.Repository;
             if (repo.GlobalNameIndex.TryGetValue(baseName, out string fullMatch) && !string.IsNullOrEmpty(fullMatch))
             {
-                string suffixKo = SuffixExtractor.TranslateAll(suffixes, repo);
-                string result = string.IsNullOrEmpty(suffixKo) ? fullMatch : fullMatch + suffixKo;
-                return TranslationResult.Hit(result, Name);
+                string sfxKo = SuffixExtractor.TranslateAll(suffixes, repo);
+                string fullResult = string.IsNullOrEmpty(sfxKo) ? fullMatch : fullMatch + sfxKo;
+                return TranslationResult.Hit(fullResult, Name);
             }
 
             // Check if base name (without suffixes) is a valid compound
