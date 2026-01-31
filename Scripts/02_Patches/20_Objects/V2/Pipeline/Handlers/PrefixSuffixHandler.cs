@@ -25,12 +25,23 @@ namespace QudKorean.Objects.V2.Pipeline.Handlers
             var repo = context.Repository;
             string originalName = context.OriginalName;
 
-            // First translate prefixes/materials in color tags (for later restoration)
-            string withTranslatedTags = ColorTagProcessor.TranslateMaterials(originalName, repo);
-
-            // Strip ORIGINAL (not translated) for prefix matching - need English keys!
+            // Strip ORIGINAL for prefix matching - need English keys!
             string strippedForPrefix = ColorTagProcessor.Strip(originalName);
             string baseNameForPrefix = SuffixExtractor.ExtractAll(strippedForPrefix, out string allSuffixes);
+
+            // TranslateMaterials on base name part only (exclude bracket suffixes like [1 dram of X])
+            // This prevents color tags inside brackets from being translated, which breaks RestoreFormatting
+            string baseOriginal = originalName;
+            if (!string.IsNullOrEmpty(allSuffixes))
+            {
+                string suffixTrimmed = allSuffixes.TrimStart();
+                int suffixIdx = originalName.LastIndexOf(suffixTrimmed.Length > 0 ? suffixTrimmed[0] : ' ');
+                // Find the bracket start in original to split
+                int bracketStart = originalName.IndexOf('[');
+                if (bracketStart > 0)
+                    baseOriginal = originalName.Substring(0, bracketStart).TrimEnd();
+            }
+            string withTranslatedTags = ColorTagProcessor.TranslateMaterials(baseOriginal, repo);
 
             // Full-name priority match: check GlobalNameIndex BEFORE prefix extraction
             // Protects compound names like "bubble level", "electrobow" from being split

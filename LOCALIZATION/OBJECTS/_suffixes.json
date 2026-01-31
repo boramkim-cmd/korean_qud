@@ -64,7 +64,18 @@
     "brackish water": "기수",
     "warm water": "따뜻한 물",
     "cold water": "차가운 물",
-    "dilute acid": "희석된 산"
+    "dilute acid": "희석된 산",
+    "salt": "소금",
+    "algae": "조류",
+    "asphalt": "아스팔트",
+    "green goo": "녹색 점액",
+    "black ooze": "검은 진흙",
+    "primordial soup": "원시 수프",
+    "putrescence": "부패액",
+    "sunslag": "태양찌꺼기",
+    "warm static": "따뜻한 정전기",
+    "brown sludge": "갈색 슬러지",
+    "molten wax": "녹은 밀랍"
   },
 
   "of_patterns": {

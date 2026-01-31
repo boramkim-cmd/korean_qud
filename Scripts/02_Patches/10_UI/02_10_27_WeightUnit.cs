@@ -63,9 +63,6 @@ namespace QudKRTranslation.Patches
 
                 // itemWeightText: "[X lbs.]" or "X#"
                 StatusFormatExtensions.TranslateUITextSkin(__instance, lineType, "itemWeightText", UnitTranslator.Translate);
-
-                // rightText: 거래 화면에서 "X# $Y.YY" 또는 "[$Y.YY]"
-                StatusFormatExtensions.TranslateUITextSkin(__instance, lineType, "rightText", UnitTranslator.Translate);
             }
             catch (Exception e)
             {
@@ -75,6 +72,7 @@ namespace QudKRTranslation.Patches
     }
 
     // TradeScreen.UpdateTotals() — 거래 화면 무게/가격 단위 + drams 텍스트
+    // 검증된 필드: freeDramsLabels[], totalLabels[] (TradeScreen.cs:209,211,739-742)
     [HarmonyPatch(typeof(Qud.UI.TradeScreen), "UpdateTotals")]
     public static class Patch_TradeScreen_Weight
     {
@@ -85,18 +83,11 @@ namespace QudKRTranslation.Patches
             {
                 var screenType = typeof(Qud.UI.TradeScreen);
 
-                // freeDramsLabels: 배열 전체 순회
+                // freeDramsLabels[]: "$96" → "96드램", "57/315 lbs." → "57/315 kg"
                 TranslateAllSkins(__instance, screenType, "freeDramsLabels");
 
-                // 기타 거래 화면 텍스트 필드들
-                TranslateSkinField(__instance, screenType, "playerDramsLabel");
-                TranslateSkinField(__instance, screenType, "traderDramsLabel");
-                TranslateSkinField(__instance, screenType, "playerWeightLabel");
-                TranslateSkinField(__instance, screenType, "traderWeightLabel");
-                TranslateSkinField(__instance, screenType, "selectedItemWeight");
-                TranslateSkinField(__instance, screenType, "selectedItemPrice");
-                TranslateSkinField(__instance, screenType, "selectedItemInfo");
-                TranslateSkinField(__instance, screenType, "itemInfoText");
+                // totalLabels[]: "0.00 drams →" → "0.00 드램 →"
+                TranslateAllSkins(__instance, screenType, "totalLabels");
             }
             catch (Exception e)
             {
@@ -125,6 +116,51 @@ namespace QudKRTranslation.Patches
             var skin = field.GetValue(instance);
             if (skin != null)
                 UITextSkinHelper.Translate(skin, UnitTranslator.Translate);
+        }
+    }
+
+    // TradeScreen.HandleHighlightObject() — 하단 바 선택 아이템 "3# $11.90" 표시
+    // 검증된 필드: detailsRightText (TradeScreen.cs:75,950-957)
+    [HarmonyPatch(typeof(Qud.UI.TradeScreen), "HandleHighlightObject")]
+    public static class Patch_TradeScreen_Highlight
+    {
+        [HarmonyPostfix]
+        static void Postfix(Qud.UI.TradeScreen __instance)
+        {
+            try
+            {
+                var screenType = typeof(Qud.UI.TradeScreen);
+                // detailsRightText: " {{K|3#}} {{B|$}}{{C|11.90}}" → " {{K|3kg}} {{C|11.90}}드램"
+                var field = AccessTools.Field(screenType, "detailsRightText");
+                if (field == null) return;
+                var skin = field.GetValue(__instance);
+                if (skin != null)
+                    UITextSkinHelper.Translate(skin, UnitTranslator.Translate);
+            }
+            catch (Exception e)
+            {
+                Debug.LogWarning($"[Qud-KR] TradeScreen Highlight 오류: {e.Message}");
+            }
+        }
+    }
+
+    // TradeLine.setData() — 거래 목록 개별 아이템 가격 "[$11.90]"
+    // 검증된 필드: rightFloatText (TradeLine.cs:40,487-491)
+    [HarmonyPatch(typeof(Qud.UI.TradeLine), "setData")]
+    public static class Patch_TradeLine_Price
+    {
+        [HarmonyPostfix]
+        static void Postfix(Qud.UI.TradeLine __instance)
+        {
+            try
+            {
+                var lineType = typeof(Qud.UI.TradeLine);
+                StatusFormatExtensions.TranslateUITextSkin(__instance, lineType, "rightFloatText", UnitTranslator.Translate);
+            }
+            catch (Exception e)
+            {
+                Debug.LogWarning($"[Qud-KR] TradeLine Price 오류: {e.Message}");
+            }
         }
     }
 }
