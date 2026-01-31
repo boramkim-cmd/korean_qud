@@ -22,6 +22,7 @@ namespace QudKRTranslation.Patches
         private static object _hpKey, _tempKey, _timeKey, _weightKey;
         private static bool _initialized;
         private static readonly Regex RxDollar = new Regex(@"\$(\d+(?:\.\d+)?)", RegexOptions.Compiled);
+        private static readonly Regex RxDollarAfter = new Regex(@"(\d+(?:\.\d+)?)\$", RegexOptions.Compiled);
 
         static void Init()
         {
@@ -112,7 +113,11 @@ namespace QudKRTranslation.Patches
             if (!dict.Contains(key)) return;
             var val = dict[key] as string;
             if (val != null && val.Contains("$"))
-                dict[key] = RxDollar.Replace(val, "$1드램");
+            {
+                val = RxDollar.Replace(val, "$1드램");
+                val = RxDollarAfter.Replace(val, "$1드램");
+                dict[key] = val;
+            }
         }
     }
 

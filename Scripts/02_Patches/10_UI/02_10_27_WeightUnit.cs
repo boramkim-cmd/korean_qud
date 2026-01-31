@@ -11,11 +11,13 @@ using UnityEngine;
 
 namespace QudKRTranslation.Patches
 {
-    // 공통: "$123.45" → "123.45드램", "[$5.71]" → "[5.71드램]"
+    // 공통: "$123.45" → "123.45드램", "96$" → "96드램"
     internal static class UnitTranslator
     {
         // $숫자 패턴: "$12.34" → "12.34드램"
-        private static readonly Regex RxDollar = new Regex(@"\$(\d+(?:\.\d+)?)", RegexOptions.Compiled);
+        private static readonly Regex RxDollarBefore = new Regex(@"\$(\d+(?:\.\d+)?)", RegexOptions.Compiled);
+        // 숫자$ 패턴: "96$" → "96드램" (HUD 무게 바에서 사용)
+        private static readonly Regex RxDollarAfter = new Regex(@"(\d+(?:\.\d+)?)\$", RegexOptions.Compiled);
 
         public static string Translate(string val)
         {
@@ -29,9 +31,12 @@ namespace QudKRTranslation.Patches
             if (val.Contains("#"))
                 val = val.Replace("#", "kg");
 
-            // $숫자 → 숫자드램 (Regex로 순서 보장)
+            // $숫자 또는 숫자$ → 숫자드램
             if (val.Contains("$"))
-                val = RxDollar.Replace(val, "$1드램");
+            {
+                val = RxDollarBefore.Replace(val, "$1드램");
+                val = RxDollarAfter.Replace(val, "$1드램");
+            }
 
             // "drams" → "드램"
             if (val.Contains("drams"))

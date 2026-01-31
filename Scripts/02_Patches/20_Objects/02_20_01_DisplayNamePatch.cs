@@ -72,6 +72,10 @@ namespace QudKorean.Objects
                         __result = translated;
                     }
                 }
+
+                // 후처리: "data disk:" 접두사 한글화 (번역 성공/실패 무관)
+                if (__result.Contains("data disk:"))
+                    __result = __result.Replace("data disk:", "데이터 디스크:");
             }
             catch (Exception ex)
             {
