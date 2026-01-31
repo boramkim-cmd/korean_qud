@@ -47,6 +47,9 @@ namespace QudKorean.Objects.V2
         // 이 집합에 있는데 빠른 캐시 미스 = 이름 변형 → 파이프라인 실행
         private static HashSet<string> _knownBlueprints;
 
+        // Negative cache: 파이프라인 실패한 blueprint+name → 재시도 방지 (O(1) 스킵)
+        private static HashSet<string> _negativeCache = new HashSet<string>(StringComparer.Ordinal);
+
         // 성능 카운터
         private static int _lookupHit;
         private static int _fastHit;
@@ -96,6 +99,7 @@ namespace QudKorean.Objects.V2
 
             // Rebuild fast cache
             BuildFastCache();
+            _negativeCache.Clear();
 
             UnityEngine.Debug.Log($"{LOG_PREFIX} Reloaded!");
         }
@@ -106,6 +110,7 @@ namespace QudKorean.Objects.V2
         public static void ClearCache()
         {
             TranslationContext.ClearCache();
+            _negativeCache.Clear();
         }
 
         /// <summary>
@@ -260,17 +265,29 @@ namespace QudKorean.Objects.V2
                 }
             }
 
+            // Negative cache 확인: 이전에 파이프라인 실패한 조합은 즉시 스킵
+            string negKey = string.Concat(blueprint, "\0", originalName);
+            if (_negativeCache.Contains(negKey))
+            {
+                _fastSkip++;
+                return false;
+            }
+
             // 느린 경로: 이름 변형이 있는 고정 오브젝트 또는 절차적 생성물 → 전체 파이프라인
             try
             {
                 var context = new TranslationContext(_repository, blueprint, originalName);
                 var result = _pipeline.Execute(context);
 
+                if (!result.Success)
+                    _negativeCache.Add(negKey);
+
                 translated = result.Translated;
                 return result.Success;
             }
             catch (Exception ex)
             {
+                _negativeCache.Add(negKey);
                 LogTranslationError(blueprint, originalName, ex);
                 return false;
             }
