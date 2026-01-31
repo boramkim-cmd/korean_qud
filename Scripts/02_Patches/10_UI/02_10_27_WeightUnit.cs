@@ -21,18 +21,22 @@ namespace QudKRTranslation.Patches
             {
                 var lineType = typeof(Qud.UI.InventoryLine);
 
-                // categoryWeightText: "|X items|Y lbs.|"
+                // categoryWeightText: "|X items|Y lbs.|" or "|X items|Y#|"
                 StatusFormatExtensions.TranslateUITextSkin(__instance, lineType, "categoryWeightText", val =>
                 {
                     val = val.Replace(" lbs.", " kg");
                     val = val.Replace(" items", " 개");
+                    if (val.Contains("#"))
+                        val = val.Replace("#", "kg");
                     return val;
                 });
 
-                // itemWeightText: "[X lbs.]"
+                // itemWeightText: "[X lbs.]" or "X#"
                 StatusFormatExtensions.TranslateUITextSkin(__instance, lineType, "itemWeightText", val =>
                 {
                     val = val.Replace(" lbs.", " kg");
+                    if (val.Contains("#"))
+                        val = val.Replace("#", "kg");
                     return val;
                 });
             }
@@ -66,8 +70,13 @@ namespace QudKRTranslation.Patches
 
                 UITextSkinHelper.Translate(label, val =>
                 {
-                    if (val != null && val.Contains(" lbs."))
-                        return val.Replace(" lbs.", " kg");
+                    if (val == null) return val;
+                    if (val.Contains(" lbs."))
+                        val = val.Replace(" lbs.", " kg");
+                    if (val.Contains("#"))
+                        val = val.Replace("#", "kg");
+                    if (val.Contains("$"))
+                        val = val.Replace("$", "드램");
                     return val;
                 });
             }

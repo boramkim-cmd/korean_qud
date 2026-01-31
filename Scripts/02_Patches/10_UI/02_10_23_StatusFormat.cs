@@ -27,6 +27,9 @@ namespace QudKRTranslation.Patches
                     val = val.Replace("HP:", "체력:");
                     val = val.Replace("XP:", "경험치:");
                     val = val.Replace("Weight:", "무게:");
+                    // "448#" → "448kg"
+                    if (val.Contains("#"))
+                        val = val.Replace("#", "kg");
                     return val;
                 });
 
@@ -66,11 +69,15 @@ namespace QudKRTranslation.Patches
                 StatusFormatExtensions.TranslateUITextSkin(__instance, screenType, "cyberneticsHotkeySkin", TranslateCyberText);
                 StatusFormatExtensions.TranslateUITextSkin(__instance, screenType, "cyberneticsHotkeySkinForList", TranslateCyberText);
 
-                // weightText (UITextSkin): "lbs." → "kg"
+                // weightText (UITextSkin): "lbs." → "kg", "#" → "kg", "$" → "드램"
                 StatusFormatExtensions.TranslateUITextSkin(__instance, screenType, "weightText", val =>
                 {
                     if (val.Contains("lbs."))
                         val = val.Replace("lbs.", "kg");
+                    if (val.Contains("#"))
+                        val = val.Replace("#", "kg");
+                    if (val.Contains("$"))
+                        val = val.Replace("$", "드램");
                     return val;
                 });
             }
