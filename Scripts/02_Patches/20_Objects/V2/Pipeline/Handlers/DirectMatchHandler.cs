@@ -6,6 +6,8 @@
  */
 
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using QudKorean.Objects.V2.Core;
 using QudKorean.Objects.V2.Data;
 using QudKorean.Objects.V2.Processing;
@@ -87,9 +89,9 @@ namespace QudKorean.Objects.V2.Pipeline.Handlers
                     }
                 }
 
-                // Try partial match fallback
+                // Try partial match fallback (longest key first to avoid short-key collisions)
                 string strippedFromOriginal = ColorTagProcessor.Strip(originalName);
-                foreach (var kvp in data.Names)
+                foreach (var kvp in data.Names.OrderByDescending(k => k.Key.Length))
                 {
                     if (!string.IsNullOrEmpty(kvp.Value))
                     {

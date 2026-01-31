@@ -43,6 +43,12 @@ namespace QudKorean.Objects.V2.Pipeline.Handlers
                 {
                     translated = ColorTagProcessor.RestoreFormatting(
                         withTranslatedTags, baseNameForPrefix, fullNameKo, allSuffixes, suffixKo);
+
+                    string strippedResult = ColorTagProcessor.Strip(translated);
+                    if (ContainsAsciiLetter(strippedResult) && !ContainsAsciiLetter(fullNameKo))
+                    {
+                        translated = string.IsNullOrEmpty(suffixKo) ? fullNameKo : fullNameKo + suffixKo;
+                    }
                 }
                 else
                 {
@@ -98,6 +104,12 @@ namespace QudKorean.Objects.V2.Pipeline.Handlers
                         {
                             translated = ColorTagProcessor.RestoreFormatting(
                                 withTranslatedTags, baseOnly, baseKo2, allSuffixes, suffixKo);
+
+                            string strippedResult = ColorTagProcessor.Strip(translated);
+                            if (ContainsAsciiLetter(strippedResult) && !ContainsAsciiLetter(baseKo2))
+                            {
+                                translated = $"{prefixKo} {materialKo} {baseKo2}{suffixKo}";
+                            }
                         }
                         else
                         {
