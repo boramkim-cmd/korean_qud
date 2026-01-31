@@ -146,11 +146,34 @@ namespace QudKorean.Objects.V2
             }
 
             // 최우선 경로: XML DisplayName 1:1 lookup (컬러태그 포함 원문 그대로 매칭)
-            if (_displayLookup != null &&
-                _displayLookup.TryGetValue(originalName, out translated) && !string.IsNullOrEmpty(translated))
+            if (_displayLookup != null)
             {
-                _lookupHit++;
-                return true;
+                // 1) 원문 그대로 매칭
+                if (_displayLookup.TryGetValue(originalName, out translated) && !string.IsNullOrEmpty(translated))
+                {
+                    _lookupHit++;
+                    return true;
+                }
+
+                // 2) 컬러태그 strip 후 매칭
+                string dlStripped = ColorTagProcessor.Strip(originalName);
+                if (dlStripped != originalName && _displayLookup.TryGetValue(dlStripped, out translated) && !string.IsNullOrEmpty(translated))
+                {
+                    _lookupHit++;
+                    return true;
+                }
+
+                // 3) suffix strip 후 매칭 (e.g. "torch x10 (unburnt)" → "torch")
+                string dlInput = dlStripped != originalName ? dlStripped : originalName;
+                string dlBase = StripSuffixFast(dlInput);
+                if (dlBase != null && dlBase != dlInput && _displayLookup.TryGetValue(dlBase, out translated) && !string.IsNullOrEmpty(translated))
+                {
+                    string suffix = dlInput.Substring(dlBase.Length);
+                    string suffixKo = SuffixExtractor.TranslateState(suffix, _repository);
+                    translated = translated + suffixKo;
+                    _lookupHit++;
+                    return true;
+                }
             }
 
             // 빠른 경로: 고정 오브젝트는 프리빌드 캐시에서 O(1) 조회

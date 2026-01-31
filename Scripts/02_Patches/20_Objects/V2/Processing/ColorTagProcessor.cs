@@ -189,10 +189,6 @@ namespace QudKorean.Objects.V2.Processing
             IReadOnlyDictionary<string, string> vocab,
             IReadOnlyDictionary<string, string> nouns)
         {
-            // If content contains nested tags, translate the non-tag parts only
-            if (content.Contains("{{"))
-                return TranslateWordsInSegment(content, prefixes, vocab, nouns);
-
             return TranslateWordsInSegment(content, prefixes, vocab, nouns);
         }
 
