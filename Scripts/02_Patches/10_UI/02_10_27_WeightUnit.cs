@@ -1,16 +1,47 @@
 // 분류: UI 패치
-// 역할: 모든 UI에서 무게 단위 lbs → kg 통일
-//   - InventoryLine.setData(): 카테고리/아이템 무게
-//   - TradeScreen.UpdateTotals(): 거래 화면 무게
+// 역할: 모든 UI에서 무게/가격 단위 한글화
+//   - "#" → "kg", "$X.XX" → "X.XX드램", "X lbs." → "X kg"
+//   - InventoryLine.setData(): 카테고리/아이템 무게 + 가격
+//   - TradeScreen.UpdateTotals(): 거래 화면 무게/가격/drams
 
 using System;
+using System.Text.RegularExpressions;
 using HarmonyLib;
 using UnityEngine;
 
 namespace QudKRTranslation.Patches
 {
-    // InventoryLine.setData() — 인벤토리 카테고리 및 아이템 무게
-    // "X items|Y lbs.|" → "X 개|Y kg|", "[X lbs.]" → "[X kg]"
+    // 공통: "$123.45" → "123.45드램", "[$5.71]" → "[5.71드램]"
+    internal static class UnitTranslator
+    {
+        // $숫자 패턴: "$12.34" → "12.34드램"
+        private static readonly Regex RxDollar = new Regex(@"\$(\d+(?:\.\d+)?)", RegexOptions.Compiled);
+
+        public static string Translate(string val)
+        {
+            if (val == null) return val;
+
+            // lbs. → kg
+            if (val.Contains(" lbs."))
+                val = val.Replace(" lbs.", " kg");
+
+            // # → kg (무게 기호)
+            if (val.Contains("#"))
+                val = val.Replace("#", "kg");
+
+            // $숫자 → 숫자드램 (Regex로 순서 보장)
+            if (val.Contains("$"))
+                val = RxDollar.Replace(val, "$1드램");
+
+            // "drams" → "드램"
+            if (val.Contains("drams"))
+                val = val.Replace("drams", "드램");
+
+            return val;
+        }
+    }
+
+    // InventoryLine.setData() — 인벤토리 카테고리/아이템 무게 + 가격
     [HarmonyPatch(typeof(Qud.UI.InventoryLine), "setData")]
     public static class Patch_InventoryLine_Weight
     {
@@ -24,32 +55,17 @@ namespace QudKRTranslation.Patches
                 // categoryWeightText: "|X items|Y lbs.|" or "|X items|Y#|"
                 StatusFormatExtensions.TranslateUITextSkin(__instance, lineType, "categoryWeightText", val =>
                 {
-                    val = val.Replace(" lbs.", " kg");
-                    val = val.Replace(" items", " 개");
-                    if (val.Contains("#"))
-                        val = val.Replace("#", "kg");
+                    val = UnitTranslator.Translate(val);
+                    if (val != null && val.Contains(" items"))
+                        val = val.Replace(" items", " 개");
                     return val;
                 });
 
                 // itemWeightText: "[X lbs.]" or "X#"
-                StatusFormatExtensions.TranslateUITextSkin(__instance, lineType, "itemWeightText", val =>
-                {
-                    val = val.Replace(" lbs.", " kg");
-                    if (val.Contains("#"))
-                        val = val.Replace("#", "kg");
-                    return val;
-                });
+                StatusFormatExtensions.TranslateUITextSkin(__instance, lineType, "itemWeightText", UnitTranslator.Translate);
 
-                // rightText: 거래 화면에서 "X# $Y.YY" 형식의 가격/무게
-                StatusFormatExtensions.TranslateUITextSkin(__instance, lineType, "rightText", val =>
-                {
-                    if (val == null) return val;
-                    if (val.Contains("#"))
-                        val = val.Replace("#", "kg");
-                    if (val.Contains("$"))
-                        val = val.Replace("$", "드램");
-                    return val;
-                });
+                // rightText: 거래 화면에서 "X# $Y.YY" 또는 "[$Y.YY]"
+                StatusFormatExtensions.TranslateUITextSkin(__instance, lineType, "rightText", UnitTranslator.Translate);
             }
             catch (Exception e)
             {
@@ -69,7 +85,7 @@ namespace QudKRTranslation.Patches
             {
                 var screenType = typeof(Qud.UI.TradeScreen);
 
-                // freeDramsLabels: 배열 전체 순회 (drams/weight 라벨)
+                // freeDramsLabels: 배열 전체 순회
                 TranslateAllSkins(__instance, screenType, "freeDramsLabels");
 
                 // 기타 거래 화면 텍스트 필드들
@@ -77,25 +93,15 @@ namespace QudKRTranslation.Patches
                 TranslateSkinField(__instance, screenType, "traderDramsLabel");
                 TranslateSkinField(__instance, screenType, "playerWeightLabel");
                 TranslateSkinField(__instance, screenType, "traderWeightLabel");
+                TranslateSkinField(__instance, screenType, "selectedItemWeight");
+                TranslateSkinField(__instance, screenType, "selectedItemPrice");
+                TranslateSkinField(__instance, screenType, "selectedItemInfo");
+                TranslateSkinField(__instance, screenType, "itemInfoText");
             }
             catch (Exception e)
             {
                 Debug.LogWarning($"[Qud-KR] TradeScreen Weight 오류: {e.Message}");
             }
-        }
-
-        private static string TranslateUnits(string val)
-        {
-            if (val == null) return val;
-            if (val.Contains(" lbs."))
-                val = val.Replace(" lbs.", " kg");
-            if (val.Contains("drams"))
-                val = val.Replace("drams", "드램");
-            if (val.Contains("#"))
-                val = val.Replace("#", "kg");
-            if (val.Contains("$"))
-                val = val.Replace("$", "드램");
-            return val;
         }
 
         private static void TranslateAllSkins(object instance, Type type, string fieldName)
@@ -108,7 +114,7 @@ namespace QudKRTranslation.Patches
             {
                 var skin = arr.GetValue(i);
                 if (skin != null)
-                    UITextSkinHelper.Translate(skin, TranslateUnits);
+                    UITextSkinHelper.Translate(skin, UnitTranslator.Translate);
             }
         }
 
@@ -118,7 +124,7 @@ namespace QudKRTranslation.Patches
             if (field == null) return;
             var skin = field.GetValue(instance);
             if (skin != null)
-                UITextSkinHelper.Translate(skin, TranslateUnits);
+                UITextSkinHelper.Translate(skin, UnitTranslator.Translate);
         }
     }
 }

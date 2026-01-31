@@ -7,6 +7,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Reflection;
+using System.Text.RegularExpressions;
 using HarmonyLib;
 using UnityEngine;
 
@@ -20,6 +21,7 @@ namespace QudKRTranslation.Patches
         private static FieldInfo _xpBarField;
         private static object _hpKey, _tempKey, _timeKey, _weightKey;
         private static bool _initialized;
+        private static readonly Regex RxDollar = new Regex(@"\$(\d+(?:\.\d+)?)", RegexOptions.Compiled);
 
         static void Init()
         {
@@ -62,7 +64,8 @@ namespace QudKRTranslation.Patches
 
                 // 무게: "68/285# {{blue|96$}}" → "68/285kg {{blue|96드램}}"
                 TranslateEntry(dict, _weightKey, "#", "kg");
-                TranslateEntry(dict, _weightKey, "$", "드램");
+                // $숫자 → 숫자드램 (순서 보장)
+                TranslateDollar(dict, _weightKey);
             }
             catch (Exception e)
             {
@@ -102,6 +105,14 @@ namespace QudKRTranslation.Patches
             var val = dict[key] as string;
             if (val != null && val.Contains(from))
                 dict[key] = val.Replace(from, to);
+        }
+
+        private static void TranslateDollar(IDictionary dict, object key)
+        {
+            if (!dict.Contains(key)) return;
+            var val = dict[key] as string;
+            if (val != null && val.Contains("$"))
+                dict[key] = RxDollar.Replace(val, "$1드램");
         }
     }
 
