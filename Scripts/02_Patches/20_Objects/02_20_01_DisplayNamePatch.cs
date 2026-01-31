@@ -9,10 +9,12 @@
 
 using System;
 using System.Collections.Generic;
+using System.Text.RegularExpressions;
 using HarmonyLib;
 using XRL;
 using XRL.World;
 using QudKorean.Objects.V2;
+using QudKorean.Objects.V2.Processing;
 using QudKRTranslation.Patches;
 
 namespace QudKorean.Objects
@@ -27,7 +29,12 @@ namespace QudKorean.Objects
     public static class Patch_ObjectDisplayName
     {
         private const string LOG_PREFIX = "[QudKR-Objects]";
-        
+
+        // 최종 안전망: "[X dram(s) of Y]" 패턴을 한글로 변환
+        private static readonly Regex RxDramFinal = new Regex(
+            @"\[(\d+) drams? of ([^\]]+)\]",
+            RegexOptions.Compiled | RegexOptions.IgnoreCase);
+
         // Static constructor to verify patch is loaded
         static Patch_ObjectDisplayName()
         {
@@ -73,9 +80,24 @@ namespace QudKorean.Objects
                     }
                 }
 
-                // 후처리: "data disk:" 접두사 한글화 (번역 성공/실패 무관)
+                // 후처리 (번역 성공/실패 무관)
+
+                // "data disk:" → "데이터 디스크:"
                 if (__result.Contains("data disk:"))
                     __result = __result.Replace("data disk:", "데이터 디스크:");
+
+                // "[X dram(s) of Y]" 최종 안전망 — 어떤 번역 경로를 탔든 dram 패턴 한글화
+                if (__result.Contains(" dram"))
+                {
+                    __result = RxDramFinal.Replace(__result, m =>
+                    {
+                        string amount = m.Groups[1].Value;
+                        string liquid = m.Groups[2].Value.Trim();
+                        // 색상태그 strip 후 액체명 (이미 부분 번역되어 있을 수 있음)
+                        string liquidClean = ColorTagProcessor.Strip(liquid);
+                        return $"[{liquidClean} {amount}드램]";
+                    });
+                }
             }
             catch (Exception ex)
             {

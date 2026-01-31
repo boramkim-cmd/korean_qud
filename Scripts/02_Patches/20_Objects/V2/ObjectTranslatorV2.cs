@@ -176,6 +176,9 @@ namespace QudKorean.Objects.V2
                 {
                     string suffix = dlInput.Substring(dlBase.Length);
                     string suffixKo = SuffixExtractor.TranslateState(suffix, _repository);
+                    // DEBUG: dram 패턴 디버깅
+                    if (suffix.Contains("dram"))
+                        UnityEngine.Debug.Log($"{LOG_PREFIX} [DRAM-DEBUG] displayLookup path: base='{dlBase}' suffix='{suffix}' suffixKo='{suffixKo}'");
                     translated = translated + suffixKo;
                     _lookupHit++;
                     return true;
@@ -233,6 +236,9 @@ namespace QudKorean.Objects.V2
                         if (!string.IsNullOrEmpty(suffix))
                         {
                             string suffixKo = SuffixExtractor.TranslateState(suffix, _repository);
+                            // DEBUG: dram 패턴 디버깅
+                            if (suffix.Contains("dram"))
+                                UnityEngine.Debug.Log($"{LOG_PREFIX} [DRAM-DEBUG] fastCache path: base='{baseName}' suffix='{suffix}' suffixKo='{suffixKo}'");
                             translated = translated + suffixKo;
                         }
                         _fastHit++;

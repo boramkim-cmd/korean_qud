@@ -34,20 +34,41 @@ namespace QudKorean.Objects.V2.Processing
             string current = name;
 
             // Iteratively extract prefixes (there may be multiple)
+            // Handles: "counterweighted(2) carbide long sword" → prefix="counterweighted", modifier="(2)"
             bool foundAny = true;
             while (foundAny)
             {
                 foundAny = false;
                 foreach (var prefix in allPrefixes)
                 {
-                    if (current.Length > prefix.Key.Length &&
-                        current[prefix.Key.Length] == ' ' &&
-                        current.StartsWith(prefix.Key, StringComparison.OrdinalIgnoreCase))
+                    if (!current.StartsWith(prefix.Key, StringComparison.OrdinalIgnoreCase))
+                        continue;
+
+                    int afterPrefix = prefix.Key.Length;
+                    if (afterPrefix >= current.Length)
+                        continue;
+
+                    // 접두사 바로 뒤가 공백이면 일반 매칭
+                    if (current[afterPrefix] == ' ')
                     {
                         translatedPrefixes.Add(prefix.Value);
-                        current = current.Substring(prefix.Key.Length + 1);
+                        current = current.Substring(afterPrefix + 1);
                         foundAny = true;
                         break;
+                    }
+
+                    // 접두사 뒤에 (숫자) 수정치가 붙은 경우: "counterweighted(2) ..."
+                    if (current[afterPrefix] == '(' && afterPrefix + 2 < current.Length)
+                    {
+                        int closeParen = current.IndexOf(')', afterPrefix);
+                        if (closeParen > afterPrefix && closeParen + 1 < current.Length && current[closeParen + 1] == ' ')
+                        {
+                            string modifier = current.Substring(afterPrefix, closeParen - afterPrefix + 1);
+                            translatedPrefixes.Add(prefix.Value + modifier);
+                            current = current.Substring(closeParen + 2);
+                            foundAny = true;
+                            break;
+                        }
                     }
                 }
             }
