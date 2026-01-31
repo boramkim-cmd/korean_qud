@@ -1,0 +1,9 @@
+{
+  "ability_names": {
+    "Sprint": "질주",
+    "Make Camp": "캠프 설치",
+    "Rebuke Robot": "로봇 복종",
+    "Deploy Turret": "포탑 배치",
+    "Recharge": "충전"
+  }
+}
