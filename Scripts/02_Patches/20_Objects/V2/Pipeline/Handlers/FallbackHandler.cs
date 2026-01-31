@@ -5,6 +5,8 @@
  * 작성일: 2026-01-26
  */
 
+using System;
+using System.Collections.Generic;
 using System.Text.RegularExpressions;
 using QudKorean.Objects.V2.Core;
 using QudKorean.Objects.V2.Processing;
@@ -17,6 +19,8 @@ namespace QudKorean.Objects.V2.Pipeline.Handlers
     /// </summary>
     public class FallbackHandler : ITranslationHandler
     {
+        private static readonly Regex RxOfPattern = new Regex(@"^(.+?)\s+of\s+(?:the\s+)?(.+)$", RegexOptions.Compiled | RegexOptions.IgnoreCase);
+
         public string Name => "Fallback";
         public ITranslationHandler Next { get; set; }
 
@@ -67,7 +71,7 @@ namespace QudKorean.Objects.V2.Pipeline.Handlers
             translated = null;
 
             // "X of Y" pattern matching
-            var match = Regex.Match(stripped, @"^(.+?)\s+of\s+(?:the\s+)?(.+)$", RegexOptions.IgnoreCase);
+            var match = RxOfPattern.Match(stripped);
             if (!match.Success)
                 return false;
 
@@ -110,27 +114,50 @@ namespace QudKorean.Objects.V2.Pipeline.Handlers
 
         private string TranslateWithPrefixesAndNouns(string text, Data.ITranslationRepository repo)
         {
-            string result = text;
+            if (string.IsNullOrEmpty(text)) return text;
 
-            // Try base nouns - handles brackets, colons, and quotes
-            foreach (var noun in repo.BaseNouns)
+            var nounDict = repo.BaseNounsDict;
+            var prefixDict = repo.PrefixesDict;
+
+            string[] words = text.Split(' ');
+            bool changed = false;
+
+            for (int i = 0; i < words.Length; i++)
             {
-                string pattern = $@"(^|\s|\[|"")({Regex.Escape(noun.Key)})($|\s|[,.\[\]():'""!?])";
-                result = Regex.Replace(result, pattern, m =>
-                    m.Groups[1].Value + noun.Value + m.Groups[3].Value,
-                    RegexOptions.IgnoreCase);
+                string word = words[i];
+                if (word.Length == 0) continue;
+
+                // Separate leading/trailing punctuation
+                int leadLen = 0;
+                while (leadLen < word.Length && IsBoundary(word[leadLen]))
+                    leadLen++;
+
+                int trailLen = 0;
+                while (trailLen < word.Length - leadLen && IsBoundary(word[word.Length - 1 - trailLen]))
+                    trailLen++;
+
+                string core = word.Substring(leadLen, word.Length - leadLen - trailLen);
+                if (core.Length == 0) continue;
+
+                string translated;
+                if (nounDict.TryGetValue(core, out translated) ||
+                    prefixDict.TryGetValue(core, out translated))
+                {
+                    string lead = leadLen > 0 ? word.Substring(0, leadLen) : "";
+                    string trail = trailLen > 0 ? word.Substring(word.Length - trailLen) : "";
+                    words[i] = lead + translated + trail;
+                    changed = true;
+                }
             }
 
-            // Try prefixes - handles brackets, colons, and quotes
-            foreach (var prefix in repo.Prefixes)
-            {
-                string pattern = $@"(^|\s|\[|"")({Regex.Escape(prefix.Key)})(\s|$|\]|[:'""!?])";
-                result = Regex.Replace(result, pattern, m =>
-                    m.Groups[1].Value + prefix.Value + m.Groups[3].Value,
-                    RegexOptions.IgnoreCase);
-            }
+            return changed ? string.Join(" ", words) : text;
+        }
 
-            return result;
+        private static bool IsBoundary(char c)
+        {
+            return c == '[' || c == ']' || c == '(' || c == ')' ||
+                   c == '"' || c == '\'' || c == ',' || c == '.' ||
+                   c == ':' || c == ';' || c == '!' || c == '?';
         }
 
         private void CacheAndReturn(ITranslationContext context, string translated)

@@ -53,6 +53,11 @@ namespace QudKorean.Objects.V2.Data
         private Dictionary<string, string> _globalNameIndex;
         private Dictionary<string, string> _displayLookup;
 
+        // Dictionary versions for O(1) lookup (used by optimized pipeline)
+        private Dictionary<string, string> _prefixesDict;
+        private Dictionary<string, string> _colorTagVocabDict;
+        private Dictionary<string, string> _baseNounsDict;
+
         private string _modDirectory;
         private bool _initialized;
         private bool _loadedFromBundle;
@@ -115,6 +120,33 @@ namespace QudKorean.Objects.V2.Data
             {
                 EnsureInitialized();
                 return _baseNounsSorted ?? new List<KeyValuePair<string, string>>();
+            }
+        }
+
+        public IReadOnlyDictionary<string, string> PrefixesDict
+        {
+            get
+            {
+                EnsureInitialized();
+                return _prefixesDict ?? (IReadOnlyDictionary<string, string>)new Dictionary<string, string>();
+            }
+        }
+
+        public IReadOnlyDictionary<string, string> ColorTagVocabDict
+        {
+            get
+            {
+                EnsureInitialized();
+                return _colorTagVocabDict ?? (IReadOnlyDictionary<string, string>)new Dictionary<string, string>();
+            }
+        }
+
+        public IReadOnlyDictionary<string, string> BaseNounsDict
+        {
+            get
+            {
+                EnsureInitialized();
+                return _baseNounsDict ?? (IReadOnlyDictionary<string, string>)new Dictionary<string, string>();
             }
         }
 
@@ -299,6 +331,9 @@ namespace QudKorean.Objects.V2.Data
             _partSuffixesSorted = null;
             _globalNameIndex = null;
             _displayLookup = null;
+            _prefixesDict = null;
+            _colorTagVocabDict = null;
+            _baseNounsDict = null;
         }
 
         #endregion
@@ -1079,6 +1114,7 @@ namespace QudKorean.Objects.V2.Data
             DictionaryCache.MergeInto(allPrefixes, _shaders);
             DictionaryCache.MergeInto(allPrefixes, _species);
             _prefixesSorted = DictionaryCache.SortByKeyLength(allPrefixes);
+            _prefixesDict = allPrefixes;
 
             // Build color tag vocab sorted
             var colorTagVocab = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase);
@@ -1094,9 +1130,11 @@ namespace QudKorean.Objects.V2.Data
             DictionaryCache.MergeInto(colorTagVocab, _bodyParts);
             DictionaryCache.MergeInto(colorTagVocab, _species);
             _colorTagVocabSorted = DictionaryCache.SortByKeyLength(colorTagVocab);
+            _colorTagVocabDict = colorTagVocab;
 
             // Build base nouns sorted
             _baseNounsSorted = DictionaryCache.SortByKeyLength(_baseNouns);
+            _baseNounsDict = new Dictionary<string, string>(_baseNouns, StringComparer.OrdinalIgnoreCase);
 
             // Build global name index from all creatures and items
             _globalNameIndex = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase);

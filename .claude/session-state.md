@@ -1,35 +1,47 @@
 # 세션 상태
-> **최종 업데이트**: 2026-01-31 (세션 4)
-> **현재 작업**: Pipeline 성능 최적화 — regex → dictionary 치환
+> **최종 업데이트**: 2026-01-31 (세션 5)
+> **현재 작업**: 성능 최적화 완료 → 게임 테스트 대기
 
 ---
 
 ## 다음 세션 할 일
 
-### 1. Pipeline 성능 최적화 (8개 태스크)
-
-**플랜 파일:** `.claude/plans/validated-twirling-wind.md` — "구현해줘"로 바로 실행 가능
-
-**핵심:** Pipeline fallback 경로에서 아이템당 ~7,000번 regex → ~50번 dictionary lookup으로 300x 개선
-
-**실행 순서:**
-```
-Task 7 (Dictionary 인터페이스) → Task 1 (SuffixExtractor compiled regex)
-→ Task 2 (PrefixExtractor concat 제거) → Task 5 (Strip compiled)
-→ Task 3 (TranslateMaterials dict 치환) → Task 6 (NounsOutsideTags dict 치환)
-→ Task 4 (FallbackHandler dict 치환) → Task 8 (Pre-warming)
-```
-
-### 2. 게임 테스트 (최적화 후)
+### 1. 게임 테스트 (최적화 검증) ← **최우선**
 - `./deploy.sh` → `kr:stats`로 Pipeline 비율 확인
 - 상점/인벤토리 체감 속도 비교
 - 카테고리 헤더 한글 + 필터 동작 확인
+- 번역 품질 확인 (기존 번역이 깨지지 않았는지)
 
-### 3. 동적 패턴 85개 (게임 테스트 후 판단)
+### 2. 동적 패턴 85개 (게임 테스트 후 판단)
 - `=creatureRegionAdjective= X` (58개), `*SultanName*` (26개)
 
-### 4. Phase 4: 커뮤니티
+### 3. Phase 4: 커뮤니티
 - Steam Workshop 배포, README 한글화, 기여 가이드
+
+---
+
+## 이번 세션 완료 (2026-01-31, 세션 5)
+
+### Pipeline 성능 최적화 8개 태스크 전체 구현
+
+**플랜 파일:** `.claude/plans/performance-optimization-plan.md`
+
+**핵심 변경:** Pipeline fallback 경로에서 아이템당 ~7,000번 regex → ~50번 dictionary lookup
+
+| Task | 파일 | 내용 |
+|------|------|------|
+| 7 | ITranslationRepository, JsonRepository | PrefixesDict/ColorTagVocabDict/BaseNounsDict 추가 |
+| 1 | SuffixExtractor | 18개 regex → static readonly compiled |
+| 2 | PrefixExtractor | TryExtract string concat 제거, TranslateInText 766 regex → dict lookup |
+| 5 | ColorTagProcessor.Strip() | compiled regex, limit 10→20 |
+| 3 | ColorTagProcessor.TranslateMaterials() | ~15,000 regex → indexOf 파싱 + dict lookup |
+| 6 | ColorTagProcessor.TranslateNounsOutsideTags/InText/PrefixesInText | 1,378 regex → dict lookup |
+| 4 | FallbackHandler.TranslateWithPrefixesAndNouns() | 1,378 regex → dict lookup |
+| 8 | ObjectTranslatorV2 | PreWarmCommonItems() — 첫 프레임 스파이크 방지 |
+
+추가 개선: TranslatePossessivesInTags에서 BaseNouns O(n) → BaseNounsDict O(1)
+
+**검증:** pytest 4 passed, build 성공 (2168 blueprints, 850KB)
 
 ---
 

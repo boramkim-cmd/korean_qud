@@ -48,15 +48,30 @@ namespace QudKorean.Objects.V2.Data
         IReadOnlyList<KeyValuePair<string, string>> Prefixes { get; }
 
         /// <summary>
+        /// Prefixes as case-insensitive dictionary for O(1) lookup.
+        /// </summary>
+        IReadOnlyDictionary<string, string> PrefixesDict { get; }
+
+        /// <summary>
         /// Vocabulary for color tag content translation.
         /// Includes materials, qualities, tonics, grenades, modifiers, colors, liquids, of patterns, body parts.
         /// </summary>
         IReadOnlyList<KeyValuePair<string, string>> ColorTagVocab { get; }
 
         /// <summary>
+        /// ColorTagVocab as case-insensitive dictionary for O(1) lookup.
+        /// </summary>
+        IReadOnlyDictionary<string, string> ColorTagVocabDict { get; }
+
+        /// <summary>
         /// Base nouns sorted by length (longest first).
         /// </summary>
         IReadOnlyList<KeyValuePair<string, string>> BaseNouns { get; }
+
+        /// <summary>
+        /// BaseNouns as case-insensitive dictionary for O(1) lookup.
+        /// </summary>
+        IReadOnlyDictionary<string, string> BaseNounsDict { get; }
 
         /// <summary>
         /// Species dictionary (creature names to Korean).

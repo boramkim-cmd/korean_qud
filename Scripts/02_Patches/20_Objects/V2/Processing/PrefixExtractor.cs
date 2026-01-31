@@ -7,7 +7,6 @@
 
 using System;
 using System.Collections.Generic;
-using System.Text.RegularExpressions;
 using QudKorean.Objects.V2.Data;
 
 namespace QudKorean.Objects.V2.Processing
@@ -41,7 +40,9 @@ namespace QudKorean.Objects.V2.Processing
                 foundAny = false;
                 foreach (var prefix in allPrefixes)
                 {
-                    if (current.StartsWith(prefix.Key + " ", StringComparison.OrdinalIgnoreCase))
+                    if (current.Length > prefix.Key.Length &&
+                        current[prefix.Key.Length] == ' ' &&
+                        current.StartsWith(prefix.Key, StringComparison.OrdinalIgnoreCase))
                     {
                         translatedPrefixes.Add(prefix.Value);
                         current = current.Substring(prefix.Key.Length + 1);
@@ -62,7 +63,7 @@ namespace QudKorean.Objects.V2.Processing
         }
 
         /// <summary>
-        /// Translates prefixes in text (for final fallback).
+        /// Translates prefixes in text using dictionary lookup instead of regex loop.
         /// "leather 모카신" -> "가죽 모카신"
         /// </summary>
         public static string TranslateInText(string text, ITranslationRepository repo)
@@ -70,16 +71,23 @@ namespace QudKorean.Objects.V2.Processing
             if (string.IsNullOrEmpty(text))
                 return text;
 
-            string result = text;
-            foreach (var prefix in repo.Prefixes)
+            var dict = repo.PrefixesDict;
+            if (dict == null || dict.Count == 0)
+                return text;
+
+            // Split by spaces, look up each word in the prefix dictionary
+            string[] words = text.Split(' ');
+            bool changed = false;
+            for (int i = 0; i < words.Length; i++)
             {
-                // Match prefix followed by space at word boundaries
-                string pattern = $@"(^|\s)({Regex.Escape(prefix.Key)})(\s)";
-                result = Regex.Replace(result, pattern, m =>
-                    m.Groups[1].Value + prefix.Value + m.Groups[3].Value,
-                    RegexOptions.IgnoreCase);
+                if (dict.TryGetValue(words[i], out var translated))
+                {
+                    words[i] = translated;
+                    changed = true;
+                }
             }
-            return result;
+
+            return changed ? string.Join(" ", words) : text;
         }
     }
 }

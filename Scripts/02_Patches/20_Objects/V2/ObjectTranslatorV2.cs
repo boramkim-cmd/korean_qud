@@ -336,6 +336,10 @@ namespace QudKorean.Objects.V2
 
             // 고정 오브젝트 빠른 캐시 프리빌드
             BuildFastCache();
+
+            // Pre-warm: 자주 등장하는 블루프린트의 첫 번째 이름을 미리 번역하여
+            // 첫 프레임 스파이크 방지 (TranslationContext._globalCache에 채움)
+            PreWarmCommonItems();
         }
 
         private static void BuildFastCache()
@@ -368,6 +372,25 @@ namespace QudKorean.Objects.V2
                 _knownBlueprints.Add(key);
 
             UnityEngine.Debug.Log($"{LOG_PREFIX} Fast cache built: {count} blueprints preloaded, {_knownBlueprints.Count} known");
+        }
+
+        private static void PreWarmCommonItems()
+        {
+            if (_fastCache == null) return;
+
+            int warmed = 0;
+            foreach (var bp in _fastCache)
+            {
+                foreach (var name in bp.Value)
+                {
+                    string dummy;
+                    TryGetDisplayName(bp.Key, name.Key, out dummy);
+                    warmed++;
+                    break; // 첫 번째 이름만
+                }
+            }
+
+            UnityEngine.Debug.Log($"{LOG_PREFIX} Pre-warmed {warmed} items");
         }
 
         #endregion
