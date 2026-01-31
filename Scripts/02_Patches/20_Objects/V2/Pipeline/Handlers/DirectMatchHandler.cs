@@ -103,10 +103,10 @@ namespace QudKorean.Objects.V2.Pipeline.Handlers
                             string translated;
                             if (inTranslated)
                                 translated = withTranslatedMaterials.Replace(kvp.Key, kvp.Value);
-                            else if (inOriginalStripped)
-                                translated = strippedFromOriginal.Replace(kvp.Key, kvp.Value);
-                            else
+                            else if (inStripped)
                                 translated = strippedOriginal.Replace(kvp.Key, kvp.Value);
+                            else
+                                translated = strippedFromOriginal.Replace(kvp.Key, kvp.Value);
 
                             if (!string.IsNullOrEmpty(translated))
                             {

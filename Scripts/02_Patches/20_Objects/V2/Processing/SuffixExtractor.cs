@@ -120,17 +120,7 @@ namespace QudKorean.Objects.V2.Processing
                 }
             }
 
-            result = RxDrams.Replace(result, m => {
-                string amount = m.Groups[1].Value;
-                string liquid = m.Groups[2].Value.Trim();
-                string liquidStripped = ColorTagProcessor.Strip(liquid);
-                string liquidKo;
-                if (repo.Liquids.TryGetValue(liquidStripped, out var ko))
-                    liquidKo = ko;
-                else
-                    liquidKo = TranslateLiquidPhrase(liquidStripped, repo);
-                return $"[{liquidKo} {amount}드램]";
-            });
+            result = RxDrams.Replace(result, m => TranslateDramMatch(m, repo));
 
             result = RxServings.Replace(result, "[$1인분]");
 
@@ -178,21 +168,24 @@ namespace QudKorean.Objects.V2.Processing
                 }
             }
 
-            result = RxDrams.Replace(result, m => {
-                string amount = m.Groups[1].Value;
-                string liquid = m.Groups[2].Value.Trim();
-                string liquidStripped = ColorTagProcessor.Strip(liquid);
-                string liquidKo;
-                if (repo.Liquids.TryGetValue(liquidStripped, out var ko))
-                    liquidKo = ko;
-                else
-                    liquidKo = TranslateLiquidPhrase(liquidStripped, repo);
-                return $"[{liquidKo} {amount}드램]";
-            });
+            result = RxDrams.Replace(result, m => TranslateDramMatch(m, repo));
 
             result = RxServings.Replace(result, "[$1인분]");
 
             return result;
+        }
+
+        private static string TranslateDramMatch(Match m, ITranslationRepository repo)
+        {
+            string amount = m.Groups[1].Value;
+            string liquid = m.Groups[2].Value.Trim();
+            string liquidStripped = ColorTagProcessor.Strip(liquid);
+            string liquidKo;
+            if (repo.Liquids.TryGetValue(liquidStripped, out var ko))
+                liquidKo = ko;
+            else
+                liquidKo = TranslateLiquidPhrase(liquidStripped, repo);
+            return $"[{liquidKo} {amount}드램]";
         }
 
         /// <summary>

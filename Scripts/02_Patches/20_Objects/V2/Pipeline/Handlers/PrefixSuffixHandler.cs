@@ -69,7 +69,9 @@ namespace QudKorean.Objects.V2.Pipeline.Handlers
                             withTranslatedTags, remainder, baseKo, allSuffixes, suffixKo);
 
                         // Fallback: if RestoreFormatting left English remnants but baseKo is pure Korean
-                        if (ContainsAsciiLetter(translated) && !ContainsAsciiLetter(baseKo))
+                        // Strip color tags before checking to avoid false positives from tag codes like {{W|...}}
+                        string strippedResult = ColorTagProcessor.Strip(translated);
+                        if (ContainsAsciiLetter(strippedResult) && !ContainsAsciiLetter(baseKo))
                         {
                             translated = $"{prefixKo} {baseKo}{suffixKo}";
                         }
@@ -135,16 +137,6 @@ namespace QudKorean.Objects.V2.Pipeline.Handlers
                     CacheAndReturn(context, translated);
                     return TranslationResult.Hit(translated, Name);
                 }
-            }
-
-            // Try base item name lookup (handles both simple items and items with suffixes)
-            if (TryGetItemTranslation(repo, baseNameForPrefix, out string baseKo3) ||
-                TryGetCreatureTranslation(repo, baseNameForPrefix, out baseKo3))
-            {
-                string suffixKo = SuffixExtractor.TranslateAll(allSuffixes, repo);
-                string translated = string.IsNullOrEmpty(suffixKo) ? baseKo3 : $"{baseKo3}{suffixKo}";
-                CacheAndReturn(context, translated);
-                return TranslationResult.Hit(translated, Name);
             }
 
             // Pass to next handler
