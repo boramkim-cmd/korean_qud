@@ -59,6 +59,10 @@ namespace QudKRTranslation.Patches
                     inner = inner.Substring(pipeIdx + 1, closeIdx - pipeIdx - 1);
                 }
 
+                // Strip "Worn on " prefix (불필요한 한글 표시)
+                if (inner.StartsWith("Worn on "))
+                    inner = inner.Substring(8);
+
                 // Extract position suffix like " (2)"
                 string posSuffix = "";
                 var posMatch = System.Text.RegularExpressions.Regex.Match(inner, @" \(\d+\)$");

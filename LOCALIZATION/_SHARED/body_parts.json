@@ -14,6 +14,11 @@
     "Arm": { "ko": "팔", "aliases": ["arm", "ARM"] },
     "Floating Nearby": { "ko": "부유 아이템", "aliases": ["floating nearby", "FLOATING NEARBY"] },
     "Missile Weapon": { "ko": "투사 무기", "aliases": ["missile weapon", "MISSILE WEAPON"] },
-    "Thrown Weapon": { "ko": "투척 무기", "aliases": ["thrown weapon", "THROWN WEAPON"] }
+    "Thrown Weapon": { "ko": "투척 무기", "aliases": ["thrown weapon", "THROWN WEAPON"] },
+    "Hand": { "ko": "손", "aliases": ["hand", "HAND"] },
+    "Foot": { "ko": "발", "aliases": ["foot", "FOOT"] },
+    "Tail": { "ko": "꼬리", "aliases": ["tail", "TAIL"] },
+    "Roots": { "ko": "뿌리", "aliases": ["roots", "ROOTS"] },
+    "Trunk": { "ko": "줄기", "aliases": ["trunk", "TRUNK"] }
   }
 }
