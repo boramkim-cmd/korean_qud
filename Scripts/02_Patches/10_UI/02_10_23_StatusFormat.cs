@@ -1,14 +1,17 @@
 // 분류: UI 패치
 // 역할: 상태 화면 포맷 문자열 (Level/HP/XP/Weight, Attribute Points, show cybernetics/equipment)을 한글로 교체
+// 참고: UITextSkin.text, UIHotkeySkin.text는 property가 아닌 public field임.
+//       값 변경 후 SetText()를 호출해야 formattedText 캐시가 리셋됨.
 
 using System;
 using System.Collections.Generic;
+using System.Reflection;
 using HarmonyLib;
 using UnityEngine;
 
 namespace QudKRTranslation.Patches
 {
-    // CharacterStatusScreen.UpdateViewFromData() — Level/HP/XP/Weight line + Attribute Points + Genotype/Subtype
+    // CharacterStatusScreen.UpdateViewFromData() — Level/HP/XP/Weight line + Attribute Points
     [HarmonyPatch(typeof(Qud.UI.CharacterStatusScreen), "UpdateViewFromData")]
     public static class Patch_CharacterStatusScreen_UpdateViewFromData
     {
@@ -18,47 +21,22 @@ namespace QudKRTranslation.Patches
             try
             {
                 // levelText: "Level: X ¯ HP: X/X ¯ XP: X/X ¯ Weight: X#"
-                var levelTextField = AccessTools.Field(typeof(Qud.UI.CharacterStatusScreen), "levelText");
-                if (levelTextField != null)
+                StatusFormatExtensions.TranslateUITextSkin(__instance, typeof(Qud.UI.CharacterStatusScreen), "levelText", val =>
                 {
-                    var skin = levelTextField.GetValue(__instance);
-                    if (skin != null)
-                    {
-                        var textProp = AccessTools.Property(skin.GetType(), "text");
-                        if (textProp != null)
-                        {
-                            string val = textProp.GetValue(skin) as string;
-                            if (val != null)
-                            {
-                                val = val.Replace("Level:", "레벨:");
-                                val = val.Replace("HP:", "체력:");
-                                val = val.Replace("XP:", "경험치:");
-                                val = val.Replace("Weight:", "무게:");
-                                textProp.SetValue(skin, val);
-                            }
-                        }
-                    }
-                }
+                    val = val.Replace("Level:", "레벨:");
+                    val = val.Replace("HP:", "체력:");
+                    val = val.Replace("XP:", "경험치:");
+                    val = val.Replace("Weight:", "무게:");
+                    return val;
+                });
 
                 // attributePointsText: "Attribute Points: {{G|X}}"
-                var apField = AccessTools.Field(typeof(Qud.UI.CharacterStatusScreen), "attributePointsText");
-                if (apField != null)
+                StatusFormatExtensions.TranslateUITextSkin(__instance, typeof(Qud.UI.CharacterStatusScreen), "attributePointsText", val =>
                 {
-                    var skin = apField.GetValue(__instance);
-                    if (skin != null)
-                    {
-                        var textProp = AccessTools.Property(skin.GetType(), "text");
-                        if (textProp != null)
-                        {
-                            string val = textProp.GetValue(skin) as string;
-                            if (val != null && val.Contains("Attribute Points:"))
-                            {
-                                val = val.Replace("Attribute Points:", "속성 포인트:");
-                                textProp.SetValue(skin, val);
-                            }
-                        }
-                    }
-                }
+                    if (val.Contains("Attribute Points:"))
+                        val = val.Replace("Attribute Points:", "속성 포인트:");
+                    return val;
+                });
             }
             catch (Exception e)
             {
@@ -67,11 +45,11 @@ namespace QudKRTranslation.Patches
         }
     }
 
-    // InventoryAndEquipmentStatusScreen.UpdateViewFromData() — "show cybernetics" / "show equipment"
+    // InventoryAndEquipmentStatusScreen.UpdateViewFromData() — "show cybernetics" / "show equipment" / "lbs."
     [HarmonyPatch(typeof(Qud.UI.InventoryAndEquipmentStatusScreen), "UpdateViewFromData")]
     public static class Patch_InventoryEquipment_UpdateViewFromData
     {
-        private static readonly Dictionary<string, string> _replacements = new Dictionary<string, string>
+        private static readonly Dictionary<string, string> _cyberReplacements = new Dictionary<string, string>
         {
             { "show cybernetics", "사이버네틱스 보기" },
             { "show equipment", "장비 보기" }
@@ -82,28 +60,19 @@ namespace QudKRTranslation.Patches
         {
             try
             {
-                TranslateSkinField(__instance, "cyberneticsHotkeySkin");
-                TranslateSkinField(__instance, "cyberneticsHotkeySkinForList");
+                var screenType = typeof(Qud.UI.InventoryAndEquipmentStatusScreen);
 
-                // Also translate "lbs." in weight text
-                var weightField = AccessTools.Field(typeof(Qud.UI.InventoryAndEquipmentStatusScreen), "weightText");
-                if (weightField != null)
+                // cyberneticsHotkeySkin / cyberneticsHotkeySkinForList (UIHotkeySkin)
+                StatusFormatExtensions.TranslateUITextSkin(__instance, screenType, "cyberneticsHotkeySkin", TranslateCyberText);
+                StatusFormatExtensions.TranslateUITextSkin(__instance, screenType, "cyberneticsHotkeySkinForList", TranslateCyberText);
+
+                // weightText (UITextSkin): "lbs." → "파운드"
+                StatusFormatExtensions.TranslateUITextSkin(__instance, screenType, "weightText", val =>
                 {
-                    var skin = weightField.GetValue(__instance);
-                    if (skin != null)
-                    {
-                        var textProp = AccessTools.Property(skin.GetType(), "text");
-                        if (textProp != null)
-                        {
-                            string val = textProp.GetValue(skin) as string;
-                            if (val != null && val.Contains("lbs."))
-                            {
-                                val = val.Replace("lbs.", "파운드");
-                                textProp.SetValue(skin, val);
-                            }
-                        }
-                    }
-                }
+                    if (val.Contains("lbs."))
+                        val = val.Replace("lbs.", "파운드");
+                    return val;
+                });
             }
             catch (Exception e)
             {
@@ -111,23 +80,64 @@ namespace QudKRTranslation.Patches
             }
         }
 
-        private static void TranslateSkinField(object instance, string fieldName)
+        private static string TranslateCyberText(string val)
         {
-            var field = AccessTools.Field(typeof(Qud.UI.InventoryAndEquipmentStatusScreen), fieldName);
-            if (field == null) return;
-            var skin = field.GetValue(instance);
-            if (skin == null) return;
-            var textProp = AccessTools.Property(skin.GetType(), "text");
-            if (textProp == null) return;
-            string val = textProp.GetValue(skin) as string;
-            if (val == null) return;
-
-            foreach (var kv in _replacements)
+            foreach (var kv in _cyberReplacements)
             {
                 if (val.Contains(kv.Key))
                     val = val.Replace(kv.Key, kv.Value);
             }
-            textProp.SetValue(skin, val);
+            return val;
+        }
+    }
+
+    // 공통 헬퍼: UITextSkin/UIHotkeySkin의 text field를 읽고 SetText()로 업데이트
+    internal static class UITextSkinHelper
+    {
+        // text는 UITextSkin/UIHotkeySkin 모두 public field
+        // SetText(string)은 두 클래스 모두 구현함
+        private static Dictionary<Type, FieldInfo> _textFields = new Dictionary<Type, FieldInfo>();
+        private static Dictionary<Type, MethodInfo> _setTextMethods = new Dictionary<Type, MethodInfo>();
+
+        public static void Translate(object skin, Func<string, string> translator)
+        {
+            if (skin == null) return;
+            var skinType = skin.GetType();
+
+            if (!_textFields.TryGetValue(skinType, out var textField))
+            {
+                textField = AccessTools.Field(skinType, "text");
+                _textFields[skinType] = textField;
+            }
+            if (textField == null) return;
+
+            string val = textField.GetValue(skin) as string;
+            if (val == null) return;
+
+            string translated = translator(val);
+            if (translated == val) return;
+
+            if (!_setTextMethods.TryGetValue(skinType, out var setTextMethod))
+            {
+                setTextMethod = AccessTools.Method(skinType, "SetText", new Type[] { typeof(string) });
+                _setTextMethods[skinType] = setTextMethod;
+            }
+
+            if (setTextMethod != null)
+                setTextMethod.Invoke(skin, new object[] { translated });
+            else
+                textField.SetValue(skin, translated); // fallback
+        }
+    }
+
+    internal static class StatusFormatExtensions
+    {
+        public static void TranslateUITextSkin(object instance, Type declaringType, string fieldName, Func<string, string> translator)
+        {
+            var field = AccessTools.Field(declaringType, fieldName);
+            if (field == null) return;
+            var skin = field.GetValue(instance);
+            UITextSkinHelper.Translate(skin, translator);
         }
     }
 }

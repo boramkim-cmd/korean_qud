@@ -1,73 +1,72 @@
 // 분류: UI 패치
 // 역할: AbilityBar의 영어 UI 텍스트를 한글로 교체 (ACTIVE EFFECTS, TARGET, ABILITIES, 토글 상태)
+// 참고: effectText/targetText는 AfterRender에서 빌드 후 dirty flag → Update()에서 SetText() 호출
+//       따라서 AfterRender postfix에서 string field를 번역하면 Update()가 번역된 값을 UI에 적용함
 
 using System;
 using System.Collections.Generic;
+using System.Reflection;
 using HarmonyLib;
 using UnityEngine;
 using XRL.UI;
 
 namespace QudKRTranslation.Patches
 {
-    // ACTIVE EFFECTS: → 활성 효과:
-    [HarmonyPatch(typeof(AbilityBar), "InternalUpdateActiveEffects")]
-    public static class Patch_AbilityBar_ActiveEffects
-    {
-        [HarmonyPostfix]
-        static void Postfix(AbilityBar __instance)
-        {
-            try
-            {
-                var field = AccessTools.Field(typeof(AbilityBar), "effectText");
-                if (field == null) return;
-                string val = field.GetValue(__instance) as string;
-                if (val != null && val.Contains("ACTIVE EFFECTS:"))
-                    field.SetValue(__instance, val.Replace("ACTIVE EFFECTS:", "활성 효과:"));
-            }
-            catch (Exception e)
-            {
-                Debug.LogWarning($"[Qud-KR] AbilityBar ActiveEffects 오류: {e.Message}");
-            }
-        }
-    }
-
-    // TARGET: {name} → 대상: {name}, TARGET: [none] → 대상: [없음]
+    // AfterRender에서 effectText + targetText 모두 번역
+    // AfterRender가 effectText를 매 프레임 재빌드하므로 여기서 처리해야 함
     [HarmonyPatch(typeof(AbilityBar), "AfterRender")]
-    public static class Patch_AbilityBar_Target
+    public static class Patch_AbilityBar_AfterRender
     {
+        private static FieldInfo _effectTextField;
+        private static FieldInfo _targetTextField;
+
         [HarmonyPostfix]
         static void Postfix(AbilityBar __instance)
         {
             try
             {
-                var field = AccessTools.Field(typeof(AbilityBar), "targetText");
-                if (field == null) return;
-                string val = field.GetValue(__instance) as string;
-                if (val == null) return;
-                if (val.Contains("TARGET:"))
+                // ACTIVE EFFECTS: → 활성 효과:
+                if (_effectTextField == null)
+                    _effectTextField = AccessTools.Field(typeof(AbilityBar), "effectText");
+                if (_effectTextField != null)
                 {
-                    val = val.Replace("TARGET:", "대상:");
-                    val = val.Replace("[none]", "[없음]");
-                    field.SetValue(__instance, val);
+                    string val = _effectTextField.GetValue(__instance) as string;
+                    if (val != null && val.Contains("ACTIVE EFFECTS:"))
+                        _effectTextField.SetValue(__instance, val.Replace("ACTIVE EFFECTS:", "활성 효과:"));
+                }
+
+                // TARGET: → 대상:, [none] → [없음]
+                if (_targetTextField == null)
+                    _targetTextField = AccessTools.Field(typeof(AbilityBar), "targetText");
+                if (_targetTextField != null)
+                {
+                    string val = _targetTextField.GetValue(__instance) as string;
+                    if (val != null && val.Contains("TARGET:"))
+                    {
+                        val = val.Replace("TARGET:", "대상:");
+                        val = val.Replace("[none]", "[없음]");
+                        _targetTextField.SetValue(__instance, val);
+                    }
                 }
             }
             catch (Exception e)
             {
-                Debug.LogWarning($"[Qud-KR] AbilityBar Target 오류: {e.Message}");
+                Debug.LogWarning($"[Qud-KR] AbilityBar AfterRender 오류: {e.Message}");
             }
         }
     }
 
-    // ABILITIES, page X of Y, [disabled], [on], [off]
+    // ABILITIES, page X of Y, [disabled]
     [HarmonyPatch(typeof(AbilityBar), "UpdateAbilitiesText")]
     public static class Patch_AbilityBar_Abilities
     {
+        private static FieldInfo _abilityCommandTextField;
+        private static MethodInfo _setTextMethod;
+
         private static readonly Dictionary<string, string> _replacements = new Dictionary<string, string>
         {
             { "ABILITIES", "능력" },
-            { "[disabled]", "[비활성]" },
-            { "[on]", "[켜짐]" },
-            { "[off]", "[꺼짐]" }
+            { "[disabled]", "[비활성]" }
         };
 
         [HarmonyPostfix]
@@ -75,16 +74,21 @@ namespace QudKRTranslation.Patches
         {
             try
             {
-                var skinField = AccessTools.Field(typeof(AbilityBar), "AbilityCommandText");
-                if (skinField == null) return;
-                var skin = skinField.GetValue(__instance);
+                // AbilityCommandText는 public UITextSkin field
+                if (_abilityCommandTextField == null)
+                    _abilityCommandTextField = AccessTools.Field(typeof(AbilityBar), "AbilityCommandText");
+                if (_abilityCommandTextField == null) return;
+
+                var skin = _abilityCommandTextField.GetValue(__instance);
                 if (skin == null) return;
 
-                var textProp = AccessTools.Property(skin.GetType(), "text");
-                if (textProp == null) return;
-                string val = textProp.GetValue(skin) as string;
+                // UITextSkin.text는 public field (property 아님)
+                var textField = AccessTools.Field(skin.GetType(), "text");
+                if (textField == null) return;
+                string val = textField.GetValue(skin) as string;
                 if (val == null) return;
 
+                string original = val;
                 foreach (var kv in _replacements)
                     val = val.Replace(kv.Key, kv.Value);
 
@@ -96,7 +100,16 @@ namespace QudKRTranslation.Patches
                         val = val.Replace(match.Value, $"{match.Groups[1].Value}/{match.Groups[2].Value} 페이지");
                 }
 
-                textProp.SetValue(skin, val);
+                if (val != original)
+                {
+                    // SetText()를 호출해야 formattedText 캐시가 리셋됨
+                    if (_setTextMethod == null)
+                        _setTextMethod = AccessTools.Method(skin.GetType(), "SetText", new Type[] { typeof(string) });
+                    if (_setTextMethod != null)
+                        _setTextMethod.Invoke(skin, new object[] { val });
+                    else
+                        textField.SetValue(skin, val); // fallback
+                }
             }
             catch (Exception e)
             {
