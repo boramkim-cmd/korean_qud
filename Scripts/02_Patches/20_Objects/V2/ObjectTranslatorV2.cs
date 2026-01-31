@@ -446,6 +446,14 @@ namespace QudKorean.Objects.V2
             // 끝에서부터 접미사 패턴 제거
             int end = name.Length;
 
+            // 0. 꺾쇠 태그 제거: <A>, <B> 등 (Qud interaction 태그)
+            while (end > 0 && name[end - 1] == '>')
+            {
+                int open = name.LastIndexOf('<', end - 2);
+                if (open >= 0) { end = open; while (end > 0 && name[end - 1] == ' ') end--; }
+                else break;
+            }
+
             // 1. 괄호/대괄호 제거: (unburnt), [empty], [3 servings]
             while (end > 0)
             {
