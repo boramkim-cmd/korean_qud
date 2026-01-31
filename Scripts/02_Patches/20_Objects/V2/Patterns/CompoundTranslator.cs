@@ -15,7 +15,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Text.RegularExpressions;
 using QudKorean.Objects.V2.Core;
 using QudKorean.Objects.V2.Data;
 using QudKorean.Objects.V2.Processing;
@@ -41,11 +40,11 @@ namespace QudKorean.Objects.V2.Patterns
                 return false;
 
             // Skip "of" patterns - handled by OfPatternTranslator
-            if (Regex.IsMatch(stripped, @"\bof\b", RegexOptions.IgnoreCase))
+            if (ContainsWord(stripped, "of"))
                 return false;
 
             // Skip patterns with "the" - usually proper names
-            if (Regex.IsMatch(stripped, @"\bthe\b", RegexOptions.IgnoreCase))
+            if (ContainsWord(stripped, "the"))
                 return false;
 
             string[] parts = stripped.Split(new[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
@@ -54,11 +53,36 @@ namespace QudKorean.Objects.V2.Patterns
             return parts.Length >= 2 && parts.Length <= 4;
         }
 
+        /// <summary>
+        /// Checks if text contains a whole word (space-delimited) without Regex.
+        /// </summary>
+        private static bool ContainsWord(string text, string word)
+        {
+            int idx = text.IndexOf(word, StringComparison.OrdinalIgnoreCase);
+            while (idx >= 0)
+            {
+                bool leftOk = idx == 0 || text[idx - 1] == ' ';
+                bool rightOk = idx + word.Length == text.Length || text[idx + word.Length] == ' ';
+                if (leftOk && rightOk) return true;
+                idx = text.IndexOf(word, idx + 1, StringComparison.OrdinalIgnoreCase);
+            }
+            return false;
+        }
+
         public TranslationResult Translate(string name, ITranslationContext context)
         {
             // Extract suffixes first (접미사 먼저 분리)
             string stripped = ColorTagProcessor.Strip(name);
             string baseName = SuffixExtractor.ExtractAll(stripped, out string suffixes);
+
+            // 1) 전체 이름을 GlobalNameIndex에서 먼저 조회 (복합어가 이미 등록된 경우)
+            var repo = context.Repository;
+            if (repo.GlobalNameIndex.TryGetValue(baseName, out string fullMatch) && !string.IsNullOrEmpty(fullMatch))
+            {
+                string suffixKo = SuffixExtractor.TranslateAll(suffixes, repo);
+                string result = string.IsNullOrEmpty(suffixKo) ? fullMatch : fullMatch + suffixKo;
+                return TranslationResult.Hit(result, Name);
+            }
 
             // Check if base name (without suffixes) is a valid compound
             string[] parts = baseName.Split(new[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
@@ -67,13 +91,13 @@ namespace QudKorean.Objects.V2.Patterns
                 return TranslationResult.Miss();
 
             // Build translation map for all words
-            // Words that can't be translated are kept as-is (numbers, proper nouns, etc.)
             var translationMap = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase);
             int translatedCount = 0;
+            int unknownCount = 0;
 
             foreach (string part in parts)
             {
-                if (TryTranslatePart(context.Repository, part, out string translated))
+                if (TryTranslatePart(repo, part, out string translated))
                 {
                     if (!translationMap.ContainsKey(part))
                     {
@@ -83,7 +107,6 @@ namespace QudKorean.Objects.V2.Patterns
                 }
                 else if (ShouldKeepAsIs(part))
                 {
-                    // Numbers, roman numerals, proper nouns - keep as-is
                     if (!translationMap.ContainsKey(part))
                     {
                         translationMap[part] = part;
@@ -91,8 +114,12 @@ namespace QudKorean.Objects.V2.Patterns
                 }
                 else
                 {
-                    // Unknown word that should be translated - fail
-                    return TranslationResult.Miss();
+                    // 미번역 단어: 원문 유지하되 카운트
+                    if (!translationMap.ContainsKey(part))
+                    {
+                        translationMap[part] = part;
+                        unknownCount++;
+                    }
                 }
             }
 
@@ -129,11 +156,13 @@ namespace QudKorean.Objects.V2.Patterns
             string result = translatedBase;
             if (!string.IsNullOrEmpty(suffixes))
             {
-                string translatedSuffix = SuffixExtractor.TranslateAll(suffixes, context.Repository);
+                string translatedSuffix = SuffixExtractor.TranslateAll(suffixes, repo);
                 result = translatedBase + translatedSuffix;
             }
 
-            return TranslationResult.Hit(result, Name);
+            return unknownCount > 0
+                ? TranslationResult.Partial(result, Name)
+                : TranslationResult.Hit(result, Name);
         }
 
         /// <summary>
@@ -294,91 +323,54 @@ namespace QudKorean.Objects.V2.Patterns
             // Handle possessive forms: "word's" → "word_ko의"
             bool isPossessive = word.EndsWith("'s", StringComparison.OrdinalIgnoreCase);
             string baseWord = isPossessive ? word.Substring(0, word.Length - 2) : word;
-            string lowerWord = baseWord.ToLower();
 
-            // 1. Check Species dictionary (creatures)
-            if (repo.Species.TryGetValue(lowerWord, out translated) ||
-                repo.Species.TryGetValue(baseWord, out translated))
+            // 1. GlobalNameIndex (모든 creature/item 이름 O(1))
+            if (repo.GlobalNameIndex.TryGetValue(baseWord, out translated))
             {
                 if (isPossessive) translated += "의";
                 return true;
             }
 
-            // 2. Check BaseNouns (items, types)
-            foreach (var kv in repo.BaseNouns)
-            {
-                if (kv.Key.Equals(baseWord, StringComparison.OrdinalIgnoreCase))
-                {
-                    translated = kv.Value;
-                    if (isPossessive) translated += "의";
-                    return true;
-                }
-            }
-
-            // 3. Check Prefixes (modifiers, materials, qualities)
-            foreach (var kv in repo.Prefixes)
-            {
-                if (kv.Key.Equals(baseWord, StringComparison.OrdinalIgnoreCase))
-                {
-                    translated = kv.Value;
-                    if (isPossessive) translated += "의";
-                    return true;
-                }
-            }
-
-            // 4. Check ColorTagVocab (broader vocabulary)
-            foreach (var kv in repo.ColorTagVocab)
-            {
-                if (kv.Key.Equals(baseWord, StringComparison.OrdinalIgnoreCase))
-                {
-                    translated = kv.Value;
-                    if (isPossessive) translated += "의";
-                    return true;
-                }
-            }
-
-            // 5. Check BodyParts
-            if (repo.BodyParts.TryGetValue(lowerWord, out translated) ||
-                repo.BodyParts.TryGetValue(baseWord, out translated))
+            // 2. Species (creature 종 이름)
+            if (repo.Species.TryGetValue(baseWord, out translated))
             {
                 if (isPossessive) translated += "의";
                 return true;
             }
 
-            // 6. Check Liquids
-            if (repo.Liquids.TryGetValue(lowerWord, out translated) ||
-                repo.Liquids.TryGetValue(baseWord, out translated))
+            // 3. BaseNouns O(1)
+            if (repo.BaseNounsDict.TryGetValue(baseWord, out translated))
             {
                 if (isPossessive) translated += "의";
                 return true;
             }
 
-            // 7. Check creature Names directly
-            foreach (var creature in repo.AllCreatures)
+            // 4. Prefixes O(1)
+            if (repo.PrefixesDict.TryGetValue(baseWord, out translated))
             {
-                foreach (var namePair in creature.Names)
-                {
-                    if (namePair.Key.Equals(baseWord, StringComparison.OrdinalIgnoreCase))
-                    {
-                        translated = namePair.Value;
-                        if (isPossessive) translated += "의";
-                        return true;
-                    }
-                }
+                if (isPossessive) translated += "의";
+                return true;
             }
 
-            // 8. Check item Names directly
-            foreach (var item in repo.AllItems)
+            // 5. ColorTagVocab O(1)
+            if (repo.ColorTagVocabDict.TryGetValue(baseWord, out translated))
             {
-                foreach (var namePair in item.Names)
-                {
-                    if (namePair.Key.Equals(baseWord, StringComparison.OrdinalIgnoreCase))
-                    {
-                        translated = namePair.Value;
-                        if (isPossessive) translated += "의";
-                        return true;
-                    }
-                }
+                if (isPossessive) translated += "의";
+                return true;
+            }
+
+            // 6. BodyParts
+            if (repo.BodyParts.TryGetValue(baseWord, out translated))
+            {
+                if (isPossessive) translated += "의";
+                return true;
+            }
+
+            // 7. Liquids
+            if (repo.Liquids.TryGetValue(baseWord, out translated))
+            {
+                if (isPossessive) translated += "의";
+                return true;
             }
 
             return false;
@@ -394,35 +386,64 @@ namespace QudKorean.Objects.V2.Patterns
                 return false;
 
             // Numbers (including negative): 1, 2, -1, 100, etc.
-            if (Regex.IsMatch(word, @"^-?\d+$"))
+            if (IsNumber(word))
                 return true;
 
             // Roman numerals: I, II, III, IV, V, VI, VII, VIII, IX, X, etc.
-            if (Regex.IsMatch(word, @"^[IVXLCDM]+$", RegexOptions.IgnoreCase) && word.Length <= 8)
+            if (word.Length <= 8 && IsRomanNumeral(word))
                 return true;
 
             // MK abbreviations: Mk, Mk., MK, mk
-            if (Regex.IsMatch(word, @"^mk\.?$", RegexOptions.IgnoreCase))
+            if (word.Length >= 2 && word.Length <= 3 &&
+                (word[0] == 'M' || word[0] == 'm') &&
+                (word[1] == 'K' || word[1] == 'k') &&
+                (word.Length == 2 || word[2] == '.'))
                 return true;
 
             // Single letters: a, b, q, y, etc. (often used as identifiers)
             if (word.Length == 1 && char.IsLetter(word[0]))
                 return true;
 
-            // Proper nouns: starts with uppercase (and more than 1 char)
-            // Examples: Joppa, Ptyrus, Resheph
-            if (word.Length > 1 && char.IsUpper(word[0]) && !word.All(char.IsUpper))
+            // Proper nouns: starts with uppercase (and more than 1 char, not all-caps)
+            if (word.Length > 1 && char.IsUpper(word[0]) && !AllUpper(word))
                 return true;
 
             // All-caps abbreviations (2-4 letters): HE, AP, HP, etc.
-            if (word.Length >= 2 && word.Length <= 4 && word.All(char.IsUpper))
+            if (word.Length >= 2 && word.Length <= 4 && AllUpper(word))
                 return true;
 
             // Placeholders: *creature*, *item*, etc.
-            if (word.StartsWith("*") && word.EndsWith("*"))
+            if (word.Length >= 2 && word[0] == '*' && word[word.Length - 1] == '*')
                 return true;
 
             return false;
+        }
+
+        private static bool IsNumber(string s)
+        {
+            int start = (s.Length > 1 && s[0] == '-') ? 1 : 0;
+            if (start >= s.Length) return false;
+            for (int i = start; i < s.Length; i++)
+                if (!char.IsDigit(s[i])) return false;
+            return true;
+        }
+
+        private static bool IsRomanNumeral(string s)
+        {
+            for (int i = 0; i < s.Length; i++)
+            {
+                char c = char.ToUpper(s[i]);
+                if (c != 'I' && c != 'V' && c != 'X' && c != 'L' && c != 'C' && c != 'D' && c != 'M')
+                    return false;
+            }
+            return s.Length > 0;
+        }
+
+        private static bool AllUpper(string s)
+        {
+            for (int i = 0; i < s.Length; i++)
+                if (!char.IsUpper(s[i])) return false;
+            return true;
         }
     }
 }

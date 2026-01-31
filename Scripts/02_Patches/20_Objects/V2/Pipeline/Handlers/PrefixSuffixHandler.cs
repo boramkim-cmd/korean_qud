@@ -149,20 +149,13 @@ namespace QudKorean.Objects.V2.Pipeline.Handlers
         {
             translated = null;
 
-            // O(1) lookup via GlobalNameIndex (replaces O(n) AllItems scan)
+            // O(1) lookup via GlobalNameIndex
             if (repo.GlobalNameIndex.TryGetValue(itemName, out translated) && !string.IsNullOrEmpty(translated))
                 return true;
 
-            // Fallback: base nouns dictionary (sorted list, still O(n) but small)
-            var baseNouns = repo.BaseNouns;
-            foreach (var noun in baseNouns)
-            {
-                if (noun.Key.Equals(itemName, StringComparison.OrdinalIgnoreCase))
-                {
-                    translated = noun.Value;
-                    return true;
-                }
-            }
+            // O(1) lookup via BaseNounsDict
+            if (repo.BaseNounsDict.TryGetValue(itemName, out translated) && !string.IsNullOrEmpty(translated))
+                return true;
 
             return false;
         }
