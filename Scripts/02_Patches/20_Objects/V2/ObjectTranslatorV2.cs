@@ -92,7 +92,7 @@ namespace QudKorean.Objects.V2
             // Rebuild display lookup from reloaded repository
             var lookupData = _repository?.DisplayLookup;
             if (lookupData != null && lookupData.Count > 0)
-                _displayLookup = new Dictionary<string, string>(lookupData, StringComparer.Ordinal);
+                _displayLookup = new Dictionary<string, string>(lookupData, StringComparer.OrdinalIgnoreCase);
 
             // Rebuild fast cache
             BuildFastCache();
@@ -173,6 +173,21 @@ namespace QudKorean.Objects.V2
                     translated = translated + suffixKo;
                     _lookupHit++;
                     return true;
+                }
+
+                // 4) 한글 베이스 + 영어 접미사 재진입 (e.g., "횃불 (unburnt)" → "횃불 (미사용)")
+                string reentryInput = dlStripped != originalName ? dlStripped : originalName;
+                string reentryBase = StripSuffixFast(reentryInput);
+                if (reentryBase != null && reentryBase != reentryInput && ContainsKorean(reentryBase))
+                {
+                    string suffix = reentryInput.Substring(reentryBase.Length);
+                    string suffixKo = SuffixExtractor.TranslateState(suffix, _repository);
+                    if (suffixKo != suffix)
+                    {
+                        translated = reentryBase + suffixKo;
+                        _lookupHit++;
+                        return true;
+                    }
                 }
             }
 
@@ -353,7 +368,7 @@ namespace QudKorean.Objects.V2
             var lookupData = _repository.DisplayLookup;
             if (lookupData != null && lookupData.Count > 0)
             {
-                _displayLookup = new Dictionary<string, string>(lookupData, StringComparer.Ordinal);
+                _displayLookup = new Dictionary<string, string>(lookupData, StringComparer.OrdinalIgnoreCase);
                 UnityEngine.Debug.Log($"{LOG_PREFIX} Display lookup loaded: {_displayLookup.Count} entries");
             }
 
@@ -440,19 +455,27 @@ namespace QudKorean.Objects.V2
                 }
             }
 
-            // 3. 스탯 제거: →4 ♥1d2, ◆0 ○1 등 (특수문자로 시작하는 숫자 패턴)
+            // 3+4. 스탯 제거: 유니코드 마커(→♦○♥) 또는 평문 숫자 패턴을 통합 루프로 처리
+            // "iron buckler ♦2 \t-3" → ♦2도 제거, "musket 8 1d8" → 둘 다 제거
             while (end > 2)
             {
-                // 끝이 숫자인 경우 스탯 접미사 확인
                 if (name[end - 1] >= '0' && name[end - 1] <= '9')
                 {
                     int i = end - 1;
-                    // 숫자+특수문자 패턴 역추적: d2, 1d2, ♥1d2 등
-                    while (i > 0 && (char.IsDigit(name[i - 1]) || name[i - 1] == 'd' || name[i - 1] == '+' || name[i - 1] == '-')) i--;
+                    while (i > 0 && (char.IsDigit(name[i - 1]) || name[i - 1] == 'd'
+                           || name[i - 1] == '+' || name[i - 1] == '-')) i--;
+                    // 유니코드 스탯 마커 (→◆♦●○♥♠♣)
                     if (i > 0 && "→◆♦●○♥♠♣".IndexOf(name[i - 1]) >= 0)
                     {
                         end = i - 1;
-                        while (end > 0 && name[end - 1] == ' ') end--;
+                        while (end > 0 && char.IsWhiteSpace(name[end - 1])) end--;
+                        continue;
+                    }
+                    // 평문 스탯 (컬러태그 strip 후 남은 숫자)
+                    if (i > 0 && i < end && char.IsWhiteSpace(name[i - 1]))
+                    {
+                        end = i - 1;
+                        while (end > 0 && char.IsWhiteSpace(name[end - 1])) end--;
                         continue;
                     }
                 }
@@ -461,6 +484,17 @@ namespace QudKorean.Objects.V2
 
             if (end <= 0 || end == name.Length) return null;
             return name.Substring(0, end).Trim();
+        }
+
+        #endregion
+
+        #region Helpers
+
+        private static bool ContainsKorean(string s)
+        {
+            for (int i = 0; i < s.Length; i++)
+                if (s[i] >= '\uAC00' && s[i] <= '\uD7AF') return true;
+            return false;
         }
 
         #endregion

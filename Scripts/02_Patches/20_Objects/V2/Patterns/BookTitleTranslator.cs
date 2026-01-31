@@ -90,13 +90,13 @@ namespace QudKorean.Objects.V2.Patterns
                 string subtitleKo = TranslatePhrase(subtitle, repo);
 
                 string result = $"{titleKo}: {subtitleKo}";
-                if (result != stripped)
+                if (result != stripped && !IsMixedScript(result))
                     return TranslationResult.Hit(result, Name);
             }
 
             // Try translating as single phrase
             string translated = TranslatePhrase(stripped, repo);
-            if (translated != stripped)
+            if (translated != stripped && !IsMixedScript(translated))
                 return TranslationResult.Hit(translated, Name);
 
             return TranslationResult.Miss();
@@ -288,6 +288,22 @@ namespace QudKorean.Objects.V2.Patterns
                 return $"{firstKo}와 {secondKo}";
             }
             return text;
+        }
+
+        /// <summary>
+        /// 영한 혼합 스크립트 감지 — 마르코프 책 등 부분 번역 방지
+        /// </summary>
+        private static bool IsMixedScript(string s)
+        {
+            bool hasKorean = false, hasLatin = false;
+            for (int i = 0; i < s.Length; i++)
+            {
+                char c = s[i];
+                if (c >= '\uAC00' && c <= '\uD7AF') hasKorean = true;
+                else if ((c >= 'A' && c <= 'Z') || (c >= 'a' && c <= 'z')) hasLatin = true;
+                if (hasKorean && hasLatin) return true;
+            }
+            return false;
         }
 
         private string TranslateWords(string text, Data.ITranslationRepository repo)
