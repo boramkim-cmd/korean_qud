@@ -66,11 +66,11 @@ namespace QudKRTranslation.Patches
                 StatusFormatExtensions.TranslateUITextSkin(__instance, screenType, "cyberneticsHotkeySkin", TranslateCyberText);
                 StatusFormatExtensions.TranslateUITextSkin(__instance, screenType, "cyberneticsHotkeySkinForList", TranslateCyberText);
 
-                // weightText (UITextSkin): "lbs." → "#" (HUD와 통일)
+                // weightText (UITextSkin): "lbs." 제거 (HUD는 "무게" 표기)
                 StatusFormatExtensions.TranslateUITextSkin(__instance, screenType, "weightText", val =>
                 {
-                    if (val.Contains("lbs."))
-                        val = val.Replace("lbs.", "#");
+                    if (val.Contains(" lbs."))
+                        val = val.Replace(" lbs.", "");
                     return val;
                 });
             }
