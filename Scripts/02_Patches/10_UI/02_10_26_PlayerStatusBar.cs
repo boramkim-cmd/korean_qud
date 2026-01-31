@@ -60,8 +60,8 @@ namespace QudKRTranslation.Patches
                 // 날짜: "Harvest Dawn 22nd of Tuum Ut" → "Harvest Dawn 22nd Tuum Ut"
                 TranslateEntry(dict, _timeKey, " of ", " ");
 
-                // 무게: "68/285# {{blue|96$}}" → "68/285무게 {{blue|96드램}}"
-                TranslateEntry(dict, _weightKey, "#", "무게");
+                // 무게: "68/285# {{blue|96$}}" → "68/285kg {{blue|96드램}}"
+                TranslateEntry(dict, _weightKey, "#", "kg");
                 TranslateEntry(dict, _weightKey, "$", "드램");
             }
             catch (Exception e)
