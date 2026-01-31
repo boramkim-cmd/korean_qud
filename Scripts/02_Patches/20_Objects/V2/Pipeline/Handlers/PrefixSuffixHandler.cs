@@ -32,6 +32,26 @@ namespace QudKorean.Objects.V2.Pipeline.Handlers
             string strippedForPrefix = ColorTagProcessor.Strip(originalName);
             string baseNameForPrefix = SuffixExtractor.ExtractAll(strippedForPrefix, out string allSuffixes);
 
+            // Full-name priority match: check GlobalNameIndex BEFORE prefix extraction
+            // Protects compound names like "bubble level", "electrobow" from being split
+            if (TryGetItemTranslation(repo, baseNameForPrefix, out string fullNameKo) ||
+                TryGetCreatureTranslation(repo, baseNameForPrefix, out fullNameKo))
+            {
+                string suffixKo = SuffixExtractor.TranslateAll(allSuffixes, repo);
+                string translated;
+                if (withTranslatedTags.Contains("{{"))
+                {
+                    translated = ColorTagProcessor.RestoreFormatting(
+                        withTranslatedTags, baseNameForPrefix, fullNameKo, allSuffixes, suffixKo);
+                }
+                else
+                {
+                    translated = string.IsNullOrEmpty(suffixKo) ? fullNameKo : fullNameKo + suffixKo;
+                }
+                CacheAndReturn(context, translated);
+                return TranslationResult.Hit(translated, Name);
+            }
+
             // Try with prefixes
             if (PrefixExtractor.TryExtract(baseNameForPrefix, repo, out string prefixKo, out string remainder))
             {
@@ -47,6 +67,12 @@ namespace QudKorean.Objects.V2.Pipeline.Handlers
                     {
                         translated = ColorTagProcessor.RestoreFormatting(
                             withTranslatedTags, remainder, baseKo, allSuffixes, suffixKo);
+
+                        // Fallback: if RestoreFormatting left English remnants but baseKo is pure Korean
+                        if (ContainsAsciiLetter(translated) && !ContainsAsciiLetter(baseKo))
+                        {
+                            translated = $"{prefixKo} {baseKo}{suffixKo}";
+                        }
                     }
                     else
                     {
@@ -163,6 +189,17 @@ namespace QudKorean.Objects.V2.Pipeline.Handlers
         private void CacheAndReturn(ITranslationContext context, string translated)
         {
             context.SetCached(context.CacheKey, translated);
+        }
+
+        private static bool ContainsAsciiLetter(string s)
+        {
+            if (s == null) return false;
+            for (int i = 0; i < s.Length; i++)
+            {
+                char c = s[i];
+                if ((c >= 'A' && c <= 'Z') || (c >= 'a' && c <= 'z')) return true;
+            }
+            return false;
         }
 
         /// <summary>

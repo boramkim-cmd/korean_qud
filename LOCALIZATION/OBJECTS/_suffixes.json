@@ -58,7 +58,13 @@
     "convalessence": "회복액",
     "cloning draught": "복제 음료",
     "brain brine": "뇌 염수",
-    "neutron flux": "중성자 플럭스"
+    "neutron flux": "중성자 플럭스",
+    "inky water": "잉크빛 물",
+    "salty water": "짠 물",
+    "brackish water": "기수",
+    "warm water": "따뜻한 물",
+    "cold water": "차가운 물",
+    "dilute acid": "희석된 산"
   },
 
   "of_patterns": {

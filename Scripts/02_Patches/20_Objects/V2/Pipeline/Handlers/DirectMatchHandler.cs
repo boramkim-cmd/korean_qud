@@ -88,6 +88,7 @@ namespace QudKorean.Objects.V2.Pipeline.Handlers
                 }
 
                 // Try partial match fallback
+                string strippedFromOriginal = ColorTagProcessor.Strip(originalName);
                 foreach (var kvp in data.Names)
                 {
                     if (!string.IsNullOrEmpty(kvp.Value))
@@ -95,12 +96,17 @@ namespace QudKorean.Objects.V2.Pipeline.Handlers
                         // Use withTranslatedMaterials to preserve color tag translations
                         bool inTranslated = withTranslatedMaterials.Contains(kvp.Key);
                         bool inStripped = strippedOriginal.Contains(kvp.Key);
+                        bool inOriginalStripped = strippedFromOriginal.Contains(kvp.Key);
 
-                        if (inTranslated || inStripped)
+                        if (inTranslated || inStripped || inOriginalStripped)
                         {
-                            string translated = inTranslated
-                                ? withTranslatedMaterials.Replace(kvp.Key, kvp.Value)
-                                : strippedOriginal.Replace(kvp.Key, kvp.Value);
+                            string translated;
+                            if (inTranslated)
+                                translated = withTranslatedMaterials.Replace(kvp.Key, kvp.Value);
+                            else if (inOriginalStripped)
+                                translated = strippedFromOriginal.Replace(kvp.Key, kvp.Value);
+                            else
+                                translated = strippedOriginal.Replace(kvp.Key, kvp.Value);
 
                             if (!string.IsNullOrEmpty(translated))
                             {

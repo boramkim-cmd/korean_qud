@@ -124,7 +124,11 @@ namespace QudKorean.Objects.V2.Processing
                 string amount = m.Groups[1].Value;
                 string liquid = m.Groups[2].Value.Trim();
                 string liquidStripped = ColorTagProcessor.Strip(liquid);
-                string liquidKo = repo.Liquids.TryGetValue(liquidStripped, out var ko) ? ko : liquid;
+                string liquidKo;
+                if (repo.Liquids.TryGetValue(liquidStripped, out var ko))
+                    liquidKo = ko;
+                else
+                    liquidKo = TranslateLiquidPhrase(liquidStripped, repo);
                 return $"[{liquidKo} {amount}드램]";
             });
 
@@ -178,13 +182,35 @@ namespace QudKorean.Objects.V2.Processing
                 string amount = m.Groups[1].Value;
                 string liquid = m.Groups[2].Value.Trim();
                 string liquidStripped = ColorTagProcessor.Strip(liquid);
-                string liquidKo = repo.Liquids.TryGetValue(liquidStripped, out var ko) ? ko : liquid;
+                string liquidKo;
+                if (repo.Liquids.TryGetValue(liquidStripped, out var ko))
+                    liquidKo = ko;
+                else
+                    liquidKo = TranslateLiquidPhrase(liquidStripped, repo);
                 return $"[{liquidKo} {amount}드램]";
             });
 
             result = RxServings.Replace(result, "[$1인분]");
 
             return result;
+        }
+
+        /// <summary>
+        /// Translates compound liquid phrases by individual word lookup.
+        /// E.g., "inky water" → tries "inky" in Liquids/Prefixes, "water" in Liquids.
+        /// </summary>
+        private static string TranslateLiquidPhrase(string liquid, ITranslationRepository repo)
+        {
+            string[] words = liquid.Split(' ');
+            bool changed = false;
+            for (int i = 0; i < words.Length; i++)
+            {
+                if (repo.Liquids.TryGetValue(words[i], out var wko))
+                    { words[i] = wko; changed = true; }
+                else if (repo.PrefixesDict.TryGetValue(words[i], out wko))
+                    { words[i] = wko; changed = true; }
+            }
+            return changed ? string.Join(" ", words) : liquid;
         }
 
         /// <summary>
